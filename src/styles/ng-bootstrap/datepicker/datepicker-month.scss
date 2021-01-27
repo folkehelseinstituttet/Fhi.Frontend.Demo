@@ -1,0 +1,58 @@
+.fhi-ngb {
+    .ngb-dp {
+        &-weekday {
+            font-style: unset;
+            font-weight: bold;
+        }
+        &-weekdays {
+            background-color: $white;
+            border: unset;
+        }
+        &-day,
+        &-weekday,
+        &-week-number {
+            color: $body-color;
+            font-size: $fhi-font-size-1;
+            height: $fhi-daypicker-day-height-and-width;
+            width: $fhi-daypicker-day-height-and-width;
+            margin: ($fhi-px * 2) ($fhi-px * 2);
+        }
+        &-day.ngb-dp-today {
+            &[tabindex="-1"],
+            &[tabindex="0"] {
+                [ngbDatepickerDayView],
+                [ngbDatepickerDayView].active {
+                    background-color: $white;
+                    border: 1px solid $fhi-brand-color;
+                    color: $body-color;
+                }
+            }
+        }
+
+        // Bugfix: fjerner feilaktig markering av den 1. i en månded i dette tilfelle:
+        //   1. Bruker åpner datepicker
+        //   2. Bruker navigerer til forrige måned
+        //   3. Bruker klikker på en annen dag enn den 1.
+        &-day {
+            &[tabindex="0"] {
+                [ngbDatepickerDayView].active {
+                    background-color: $white;
+                    border-color: transparent;
+                    color: $body-color;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .fhi-ngb {
+        .ngb-dp {
+            &-day,
+            &-weekday,
+            &-week-number {
+                margin: $fhi-space-1 ($fhi-px * 12);
+            }
+        }
+    }
+}

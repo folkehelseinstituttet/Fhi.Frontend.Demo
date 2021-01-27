@@ -1,0 +1,120 @@
+$assets: '../../assets';
+
+// Midlertidig fontdeklarasjon i påvente av alle filer fra Kommunikasjon:
+@font-face {
+    font-family: 'Brandon Black';
+    font-weight: 900;
+    font-style: normal;
+    src: url($assets + '/fhi-felles/fonts/BrandonTextWeb-Black.woff') format('woff');
+}
+@font-face {
+    font-family: 'Brandon Bold';
+    font-weight: 700;
+    font-style: normal;
+    src: url($assets + '/fhi-felles/fonts/BrandonTextWeb-Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Brandon Medium';
+    font-weight: 500;
+    font-style: normal;
+    src: url($assets + '/fhi-felles/fonts/BrandonTextWeb-Medium.woff') format('woff');
+}
+@font-face {
+    font-family: 'Brandon Regular';
+    font-weight: 400;
+    font-style: normal;
+    src: url($assets + '/fhi-felles/fonts/BrandonTextWeb-Regular.woff') format('woff');
+}
+@font-face {
+    font-family: 'Crimson Regular';
+    font-weight: 400;
+    font-style: normal;
+    src: url($assets + '/fhi-felles/fonts/CrimsonText-Regular.ttf') format('truetype');
+}
+
+// Under følger den fulle listen som skal benyttes når vi får alle filer fra Kommunikasjon:
+
+// Brandon
+// @font-face {
+//     font-family: 'Brandon Black';
+//     font-weight: 900;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Black.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Black.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Black.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Brandon Bold';
+//     font-weight: 700;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Bold.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Bold.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Bold.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Brandon Medium';
+//     font-weight: 500;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Medium.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Medium.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Medium.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Brandon Medium Italic';
+//     font-weight: 500;
+//     font-style: italic;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-MediumItalic.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-MediumItalic.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-MediumItalic.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Brandon Regular';
+//     font-weight: 400;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Regular.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Regular.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-Regular.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Brandon Regular Italic';
+//     font-weight: 400;
+//     font-style: italic;
+//     src:
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-RegularItalic.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-RegularItalic.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/BrandonTextWeb-RegularItalic.ttf') format('truetype');
+// }
+
+// Crimson
+// @font-face {
+//     font-family: 'Crimson SemiBold';
+//     font-weight: 500;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/CrimsonText-SemiBold.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-SemiBold.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-SemiBold.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Crimson Regular';
+//     font-weight: 400;
+//     font-style: normal;
+//     src:
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Regular.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Regular.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Regular.ttf') format('truetype');
+// }
+// @font-face {
+//     font-family: 'Crimson Regular Italic';
+//     font-weight: 400;
+//     font-style: italic;
+//     src:
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Italic.woff2') format('woff2'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Italic.woff') format('woff'),
+//         url($assets + '/fhi-felles/fonts/CrimsonText-Italic.ttf') format('truetype');
+// }

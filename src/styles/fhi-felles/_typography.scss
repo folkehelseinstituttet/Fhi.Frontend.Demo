@@ -1,0 +1,74 @@
+/**
+ * Typografi
+ *
+ * Overskriver element og klasser i både
+ * https://github.com/twbs/bootstrap/blob/main/scss/_reboot.scss og
+ * https://github.com/twbs/bootstrap/blob/main/scss/_type.scss,
+ * samt legger til noen egne klasser.
+ */
+
+body {
+    font-family: $fhi-font-family-sans-serif-regular;
+    font-size: $fhi-default-font-size-xs;
+}
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5 {
+    font-family: $headings-font-family;
+}
+h1, .h1 {
+    font-size: $fhi-h1-font-size-xs;
+    font-weight: 400;
+}
+h2, .h2 {
+    font-size: $fhi-h2-font-size-xs;
+}
+h3, .h3 {
+    font-size: $fhi-h3-font-size-xs;
+}
+h4, .h4 {
+    font-size: $fhi-h4-font-size-xs;
+}
+h5, .h5 {
+    font-size: $fhi-h5-font-size-xs;
+    font-weight: 700;
+}
+h6, .h6 {
+    color: red; // h6 skal ikke brukes!
+}
+.lead {
+    font-family: $fhi-font-family-sans-serif-medium;
+    font-size: $fhi-lead-font-size-xs;
+}
+p, .p {
+    font-family: $fhi-font-family-sans-serif-regular;
+    font-size: $fhi-default-font-size-xs;
+}
+small, .small {
+    font-size: $fhi-small-font-size-xs;
+}
+b, .b,
+strong,
+.font-weight-bold {
+    font-family: $fhi-font-family-sans-serif-bold;
+}
+a {
+    font-family: $fhi-font-family-sans-serif-medium;
+    font-size: $fhi-default-font-size-xs;
+    color: $inline-link-color;
+    text-decoration: underline;
+    &:hover {
+        color: $inline-link-hover-color;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    h1, .h1 {
+        font-size: $fhi-h1-font-size-lg;
+    }
+    body, p, .p, a {
+        font-size: $fhi-default-font-size-lg;
+    }
+}

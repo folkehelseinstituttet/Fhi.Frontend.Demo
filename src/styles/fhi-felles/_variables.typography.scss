@@ -1,0 +1,53 @@
+/**
+ * Typografi
+ *
+ * Variabler uten fhi-prefiks er Bootstrap-variabler
+ */
+
+// Font-størrelser
+$fhi-font-size-1: $fhi-px * 15;
+$fhi-font-size-2: $fhi-px * 17;
+$fhi-font-size-3: $fhi-px * 19;
+$fhi-font-size-4: $fhi-px * 21;
+$fhi-font-size-5: $fhi-px * 25;
+$fhi-font-size-6: $fhi-px * 30;
+$fhi-font-size-7: $fhi-px * 36;
+$fhi-font-size-8: $fhi-px * 44;
+$fhi-font-size-9: $fhi-px * 70;
+
+// Responsive verdier for headinger
+//
+// h1
+$fhi-h1-font-size-xs:  $fhi-font-size-8;
+$fhi-h1-font-size-lg:  $fhi-font-size-9;
+// h2
+$fhi-h2-font-size-xs:  $fhi-font-size-7;
+// h3
+$fhi-h3-font-size-xs:  $fhi-font-size-6;
+// h4
+$fhi-h4-font-size-xs:  $fhi-font-size-5;
+// h5
+$fhi-h5-font-size-xs:  $fhi-font-size-4;
+
+// Responsive verdier for typografisk hierarki
+//
+// Liten tekst
+$fhi-small-font-size-xs:  $fhi-font-size-1;
+// Brødtekst
+$fhi-default-font-size-xs:  $fhi-font-size-3; // Brødtekst er større på mobil
+$fhi-default-font-size-lg:  $fhi-font-size-2;
+// Ingress
+$fhi-lead-font-size-xs:  $fhi-font-size-3;
+
+// Font families
+$fhi-font-family-serif-regular: 'CrimsonText', 'Cambria', serif;
+$fhi-font-family-sans-serif-regular: 'Brandon Regular', 'Calibri', sans-serif;
+$fhi-font-family-sans-serif-medium: 'Brandon Medium', 'Calibri', sans-serif;
+$fhi-font-family-sans-serif-bold: 'Brandon Bold', 'Calibri', sans-serif;
+$fhi-font-family-sans-serif-secondary: 'Calibri', 'Trebuchet MS', sans-serif;
+$font-family-monospace: Consolas, "Liberation Mono", "Courier New", monospace;
+
+// Div Bootstrap resets
+$line-height-base: 1.5;
+$headings-font-family: $fhi-font-family-serif-regular;
+$input-btn-font-family: $fhi-font-family-sans-serif-secondary;

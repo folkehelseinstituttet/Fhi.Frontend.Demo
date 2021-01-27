@@ -1,0 +1,40 @@
+@mixin fhi-btn-shortcut($background-color) {
+    @include fhi-btn($background-color, $border-color, $body-color);
+    text-align: left;
+
+    &__icon {
+        color: $fhi-red-2;
+        display: inline-block;
+        font-size: $fhi-font-size-3;
+        padding: 0 $fhi-space-2 0 $fhi-space-1;
+    }
+    &__text {
+        vertical-align: top;
+    }
+}
+
+.fhi-btn-shortcut {
+    @include fhi-btn-shortcut(transparent);
+
+    &:hover {
+        @include fhi-btn-shortcut($fhi-pink-light-2);
+    }
+    &:focus {
+        @include fhi-btn-shortcut($fhi-pink-light-2);
+
+        &:hover {
+            @include fhi-btn-shortcut($fhi-pink-light-2);
+        }
+    }
+    &:active {
+        @include fhi-btn-shortcut($fhi-pink-light-2);
+    }
+}
+
+[data-whatintent="keyboard"] {
+    .fhi-btn-shortcut {
+        &:focus {
+            @include fhi-btn-keyboard-focus();
+       }
+    }
+}

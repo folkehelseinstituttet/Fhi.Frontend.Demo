@@ -1,0 +1,58 @@
+# Node.js with Angular
+# Build a Node.js project that uses Angular.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '12.x'
+    displayName: 'Install Node.js'
+
+  - script: |
+      npm install -g @angular/cli
+      npm install
+      ng build --prod
+    displayName: 'Run "npm install" and "ng build --prod"'
+
+  - task: CopyFiles@2
+    displayName: "Copy dist-folder"
+    inputs:
+      Contents: 'dist/fhi-frontend-bibliotek-web-klient/**' # Pull the build directory
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+
+  - task: CopyFiles@2
+    displayName: "Copy web.config"
+    inputs:
+      Contents: 'web.config'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/dist/fhi-frontend-bibliotek-web-klient/'
+
+  - task: ArchiveFiles@2
+    displayName: "Create .zip"
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/dist/fhi-frontend-bibliotek-web-klient/'
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/Fhi.FrontendBibliotek.Web.$(Build.BuildId).zip'
+      replaceExistingArchive: true
+
+  - task: DeleteFiles@1
+    displayName: "Clean up dist folder"
+    inputs:
+      SourceFolder: '$(Build.ArtifactStagingDirectory)/dist'
+      Contents: '*'
+      RemoveSourceFolder: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: "Publish build artifact"
+    inputs:
+      pathtoPublish: $(Build.ArtifactStagingDirectory)
+
+      ArtifactName: 'www' # output artifact named www
+
+
+

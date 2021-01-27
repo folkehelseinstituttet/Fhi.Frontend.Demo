@@ -1,0 +1,25 @@
+.fhi-btn-outline-secondary {
+    @include fhi-btn(transparent, $fhi-charcoal-1, $body-color);
+
+    &:hover {
+        @include fhi-btn-hover($fhi-grey-light-3, $fhi-charcoal-1, $body-color);
+    }
+    &:focus {
+        @include fhi-btn-focus(transparent, $fhi-charcoal-1, $body-color);
+
+        &:hover {
+            @include fhi-btn-focus(transparent, $fhi-charcoal-1, $body-color);
+        }
+    }
+    &:active {
+        @include fhi-btn-focus(transparent, $fhi-charcoal-1, $body-color);
+    }
+}
+
+[data-whatintent="keyboard"] {
+    .fhi-btn-outline-secondary {
+        &:focus {
+            @include fhi-btn-keyboard-focus();
+       }
+    }
+}

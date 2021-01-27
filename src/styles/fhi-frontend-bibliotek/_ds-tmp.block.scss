@@ -1,0 +1,202 @@
+.nav-tabs {
+    border-bottom: 1px solid $fhi-grey-1;
+
+    .nav-link:hover,
+    .nav-link:focus {
+        border-color: $white $white $fhi-grey-1;
+        text-decoration: none;
+    }
+    .nav-link.active,
+    .nav-link.active:hover,
+    .nav-link.active:focus {
+        color: $body-color;
+        border-color: $fhi-grey-1 $fhi-grey-1 $white;
+        text-decoration: none;
+    }
+}
+
+.nav-pills {
+    .nav-link {
+        font-size: $fhi-font-size-2;
+    }
+    .nav-link.active,
+    .nav-item.show .nav-link
+    .nav-link:hover {
+        color: $fhi-grey-3;
+        background-color: $fhi-grey-light-3;
+        text-decoration: none;
+    }
+}
+
+.list-group-item {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid transparent;
+}
+.list-group-item:first-child {
+    padding-top: 0;
+}
+
+.ds-left-menu {
+    position: sticky;
+    top: 1rem;
+}
+
+.ds-scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 2;
+
+    &__icon {
+        font-size: 2rem;
+        line-height: 1;
+
+        &:hover {
+            color: $inline-link-color;
+        }
+    }
+}
+
+.ds-color-palette {
+    &__color {
+        height: $fhi-space-6;
+        min-width: $fhi-space-5 * 5;
+    }
+    &__code {
+        color: $fhi-grey-3;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: $fhi-font-size-1;
+        height: $fhi-space-6;
+    }
+
+    // Lyse gråtoner
+    &__color--fhi-grey-light-1 {
+        background-color: $fhi-grey-light-1;
+    }
+    &__color--fhi-grey-light-2 {
+        background-color: $fhi-grey-light-2;
+    }
+    &__color--fhi-grey-light-3 {
+        background-color: $fhi-grey-light-3;
+    }
+    &__color--fhi-grey-light-4 {
+        background-color: $fhi-grey-light-4;
+    }
+
+    // Gråtoner
+    &__color--fhi-grey-1 {
+        background-color: $fhi-grey-1;
+    }
+    &__color--fhi-grey-2 {
+        background-color: $fhi-grey-2;
+    }
+    &__color--fhi-grey-3 {
+        background-color: $fhi-grey-3;
+    }
+    &__color--fhi-grey-4 {
+        background-color: $fhi-grey-4;
+    }
+
+    // Koksgrå
+    &__color--fhi-charcoal-1 {
+        background-color: $fhi-charcoal-1;
+    }
+
+    // Blågrått
+    &__color--fhi-blue-grey-1 {
+        background-color: $fhi-blue-grey-1;
+    }
+    &__color--fhi-blue-grey-2 {
+        background-color: $fhi-blue-grey-2;
+    }
+    &__color--fhi-blue-grey-3 {
+        background-color: $fhi-blue-grey-3;
+    }
+    &__color--fhi-blue-grey-4 {
+        background-color: $fhi-blue-grey-4;
+    }
+    &__color--fhi-blue-grey-5 {
+        background-color: $fhi-blue-grey-5;
+    }
+    &__color--fhi-blue-grey-6 {
+        background-color: $fhi-blue-grey-6;
+    }
+
+    // Lys blå
+    &__color--fhi-blue-light-1 {
+        background-color: $fhi-blue-light-1;
+    }
+    &__color--fhi-blue-light-2 {
+        background-color: $fhi-blue-light-2;
+    }
+
+    // Blå
+    &__color--fhi-blue-1 {
+        background-color: $fhi-blue-1;
+    }
+
+    // Mørk blå
+    &__color--fhi-blue-dark-1 {
+        background-color: $fhi-blue-dark-1;
+    }
+    &__color--fhi-blue-dark-2 {
+        background-color: $fhi-blue-dark-2;
+    }
+    &__color--fhi-blue-dark-3 {
+        background-color: $fhi-blue-dark-3;
+    }
+
+    // Grønt
+    &__color--fhi-green-1 {
+        background-color: $fhi-green-1;
+    }
+    &__color--fhi-green-2 {
+        background-color: $fhi-green-2;
+    }
+
+    // Gult
+    &__color--fhi-yellow-1 {
+        background-color: $fhi-yellow-1;
+    }
+
+    // Oransje
+    &__color--fhi-orange-2 {
+        background-color: $fhi-orange-2;
+    }
+    &__color--fhi-orange-1 {
+        background-color: $fhi-orange-1;
+    }
+
+    // Rødt
+    &__color--fhi-red-1 {
+        background-color: $fhi-red-1;
+    }
+    &__color--fhi-red-2 {
+        background-color: $fhi-red-2;
+    }
+    &__color--fhi-red-3 {
+        background-color: $fhi-red-3;
+    }
+
+    // Mørk rosa
+    &__color--fhi-pink-dark-1 {
+        background-color: $fhi-pink-dark-1;
+    }
+    &__color--fhi-pink-dark-2 {
+        background-color: $fhi-pink-dark-2;
+    }
+    &__color--fhi-pink-dark-3 {
+        background-color: $fhi-pink-dark-3;
+    }
+
+    // Lys rosa
+    &__color--fhi-pink-light-1 {
+        background-color: $fhi-pink-light-1;
+    }
+    &__color--fhi-pink-light-2 {
+        background-color: $fhi-pink-light-2;
+    }
+    &__color--fhi-pink-light-3 {
+        background-color: $fhi-pink-light-3;
+    }
+}

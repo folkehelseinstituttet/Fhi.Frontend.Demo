@@ -1,0 +1,46 @@
+<div class="fhi-app" id="top">
+  <header class="fhi-app__header">
+
+    <div class="fhi-app__brand">
+      <div class="container fhi-app__brand-container">
+        <div class="fhi-app__brand-content">
+          <a class="fhi-app__logo" routerLink="/">
+            <img src="./assets/fhi-felles/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI-logo">
+          </a>
+          <div class="fhi-app__project">
+            <span class="fhi-app__project-name">{{ prosjektnavn }}</span>
+            <span class="fhi-app__project-description">
+              &nbsp;&ndash;&nbsp;{{ prosjektbeskrivelse }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fhi-app__main-menu">
+      <div class="container fhi-app__main-menu-container">
+        <app-main-menu [prosjektnavn]="prosjektnavn"></app-main-menu>
+      </div>
+    </div>
+
+    <!-- <div class="fhi-app__utility-menu">
+      <div class="container fhi-app__utility-menu-container">
+        <div class="fhi-app__utility-menu-content">
+          [...]
+        </div>
+      </div>
+    </div> -->
+
+  </header>
+
+  <main class="fhi-app__main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <div class="ds-scroll-to-top">
+    <a [routerLink] [fragment]="'top'">
+      <fa-icon class="ds-scroll-to-top__icon" [icon]="faArrowCircleUp"></fa-icon>
+    </a>
+  </div>
+
+</div>
