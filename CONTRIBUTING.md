@@ -1,6 +1,6 @@
 # How to contribute
 
-So you're thinking about contributing to NUnit? Great! Maintaining and enhancing NUnit is a big job, so **the community's help is really appreciated.**
+So you're thinking about contributing to Fhi.FrontendBibliotek.App? Great! Maintaining and enhancing Fhi.FrontendBibliotek.App is a big job, so **the community's help is really appreciated.**
 
 Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
 
@@ -11,7 +11,7 @@ Requests for new features and bug reports keep the project moving forward.
 ### Before you submit an issue
 
 - Ensure you are running the [latest version](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/releases) of Fhi.FrontendBibliotek.App
-- **Search** the [issue list](https://github.com/nunit/nunit/issues?utf8=%E2%9C%93&q=is%3Aissue) (including closed issues) to make sure it hasn't already been reported.
+- **Search** the [issue list](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/issues?utf8=✓&q=is%3Aissue) (including closed issues) to make sure it hasn't already been reported.
 
 ### Submitting a good issue
 
@@ -31,7 +31,7 @@ Issues that need confirmation will have the **confirm** label or be unlabeled an
 
 ## Documentation
 
-Great documentation is essential for any open source project and NUnit is no exception. [Our README](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/blob/dev/README.md) often lags behind the features that have been implemented or would benefit from better examples.
+Great documentation is essential for any open source project and Fhi.FrontendBibliotek.App is no exception. [Our README](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/blob/dev/README.md) often lags behind the features that have been implemented or would benefit from better examples.
 
 **PS.** If you would like to contribute to creating an exended, and better, documentation in the form of a [Wiki](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/wiki), help is really appreciated!
 
@@ -43,7 +43,7 @@ It is also a good idea to add a comment to an issue that you are working on to l
 
 ## License
 
-Fhi.FrontendBibliotek.App is under the [MIT license](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/blob/dev/LICENSE). By contributing to NUnit, you assert that:
+Fhi.FrontendBibliotek.App is under the [MIT license](https://github.com/folkehelseinstituttet/Fhi.FrontendBibliotek.App/blob/dev/LICENSE). By contributing to Fhi.FrontendBibliotek.App, you assert that:
 
 - The contribution is your own original work.
 - You have the right to assign the copyright for the work (it is not owned by your employer, or
