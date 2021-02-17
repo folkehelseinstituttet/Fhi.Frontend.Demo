@@ -1,0 +1,140 @@
+markdown {
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $fhi-font-family-sans-serif-bold;
+        margin: 0 0 $fhi-space-1;
+    }
+    h1, h2 {
+        border-bottom: 1px solid $fhi-grey-light-3;
+        padding-bottom: $fhi-space-1;
+        margin-bottom: $fhi-space-3;
+    }
+    h1 {
+        font-family: $fhi-font-family-sans-serif-medium;
+        font-size: $fhi-font-size-6;
+    }
+    h2 {
+        font-size: $fhi-font-size-4;
+        margin-top: $fhi-space-4;
+        margin-bottom: $fhi-space-2;
+    }
+    h3 {
+        font-size: $fhi-font-size-3;
+        margin-top: $fhi-space-3;
+    }
+    h4, h5, h6 {
+        font-size: $fhi-font-size-2;
+        margin-top: $fhi-space-2;
+    }
+    hr {
+        border-color: $fhi-grey-light-3;
+    }
+}
+
+// Egendefinerte stiler for å tilpasse Prismjs-temaet "solarizedlight".
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background-color: $fhi-bg-color-3;
+}
+code[class*="language-"],
+pre[class*="language-"] {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: $fhi-font-size-1;
+    padding: 0;
+    margin: 0;
+}
+
+code[class*="language-html"],
+pre[class*="language-html"] {
+    color: $fhi-grey-2;
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+        color: $fhi-blue-1;
+    }
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.char,
+    .token.builtin,
+    .token.url,
+    .token.inserted {
+        color: $fhi-pink-dark-3;
+    }
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword {
+        color: lighten($fhi-red-1, 10%);
+    }
+    .token.punctuation {
+        color: $fhi-grey-3;
+    }
+    .token.entity {
+        color: $fhi-grey-3;
+        background: $fhi-bg-color-3;
+    }
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: $fhi-grey-1;
+    }
+}
+
+code[class*="language-js"],
+pre[class*="language-js"] {
+    color: $fhi-blue-dark-1; // default
+
+    // Alt som ikke fungerer helt settes til samme farge som "default"
+    .token.class-name {
+        color: $fhi-blue-dark-1;
+    }
+    // Inline-kode
+    .token.entity {
+        color: $fhi-grey-3;
+        background: $fhi-bg-color-3;
+    }
+    .token.property,
+    .token.tag,
+    .token.number,
+    .token.constant,
+    .token.symbol,
+    .token.deleted {
+        color: $fhi-blue-1;
+    }
+    .token.selector,
+    .token.attr-name,
+    .token.char,
+    .token.builtin,
+    .token.url,
+    .token.inserted {
+        color: $fhi-pink-dark-3;
+    }
+    .token.comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: $fhi-grey-1;
+    }
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword {
+        color: $fhi-pink-dark-3;
+    }
+    .token.punctuation {
+        color: $fhi-grey-3;
+    }
+    .token.string {
+        color: $fhi-grey-2;
+    }
+    .token.function {
+        color: $fhi-blue-light-1;
+    }
+    .token.boolean {
+        color: lighten($fhi-green-2, 6%);
+    }
+}

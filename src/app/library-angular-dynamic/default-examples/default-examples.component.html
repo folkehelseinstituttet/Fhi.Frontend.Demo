@@ -1,0 +1,19 @@
+<ng-container *ngIf="libraryExamplesLoaded else spinner">
+  <div class="row">
+    <div class="col-3">
+      <!-- <app-library-menu-level-2
+        [menuItems]="libraryMenuLevel2Items"
+        [categories]="libraryMenuLevel2Categories">
+      </app-library-menu-level-2> -->
+    </div>
+    <div class="col-9">
+      <app-library-example-list-dynamic
+        *ngIf="libraryExamplesLoaded" [libraryExamples]="libraryExamples">
+      </app-library-example-list-dynamic>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #spinner>
+  <app-spinner></app-spinner>
+</ng-template>

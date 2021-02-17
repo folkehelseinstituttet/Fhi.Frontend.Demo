@@ -1,0 +1,39 @@
+/**
+ * Forms
+ */
+
+.form-control {
+    @include fhi-border-transition();
+    border-radius: $input-border-radius;
+    border: 1px solid $fhi-grey-3;
+    box-shadow: none;
+    color: $body-color;
+    font-size: $fhi-default-font-size-xs;
+    height: $fhi-input-height-xs;
+}
+.form-control:focus {
+    border-radius: $fhi-input-height-xs / 2;
+    border-color: $fhi-grey-3;
+}
+select.form-control:focus {
+    border-radius: $input-border-radius;
+}
+.form-control.is-invalid {
+    background-image: unset;
+    color: $form-feedback-invalid-color;
+}
+.invalid-feedback {
+    font-family: $fhi-font-family-sans-serif-medium;
+    font-style: italic;
+    padding-left: $fhi-px * 12;
+}
+
+@include media-breakpoint-up(lg) {
+    .form-control {
+        font-size: $fhi-default-font-size-lg;
+        height: $fhi-input-height-lg;
+    }
+    .form-control:focus {
+        border-radius: $fhi-input-height-lg / 2;
+    }
+}

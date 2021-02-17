@@ -1,0 +1,106 @@
+.ds-ui-documentation {
+    margin-bottom: $fhi-space-7 * 1.7;
+
+    &__title {
+        background-color: $fhi-bg-color-3;
+        font-family: $fhi-font-family-sans-serif-medium;
+        font-size: $fhi-font-size-5;
+        margin: 0 (-$fhi-container-padding-xs);
+        padding: $fhi-space-3 $fhi-container-padding-xs 0;
+    }
+    &__description {
+        margin-bottom: $fhi-space-3;
+    }
+    &__info {
+        border: 1px solid $fhi-blue-light-1;
+        border-radius: 4px;
+        padding: $fhi-space-3;
+        margin-bottom: $fhi-space-3;
+    }
+    &__info-icon {
+        float: left;
+        font-size: $fhi-font-size-4;
+        margin: 0 $fhi-space-4 0 $fhi-space-2;
+    }
+    &__info-text {
+        margin-bottom: 0;
+    }
+    &__example-container {
+        background-color: $fhi-bg-color-3;
+        margin: 0 (-$fhi-container-padding-xs);
+        padding: $fhi-space-3 $fhi-px * 5;
+    }
+    &__example {
+        background-color: $fhi-bg-color-1;
+        border-radius: $border-radius;
+        margin-bottom: $fhi-space-3;
+        padding: $fhi-space-5 ($fhi-px * 15);
+
+        pre[class*="language-"] {
+            padding: $fhi-space-3;
+            margin: 0 0 $fhi-space-3;
+        }
+        :not(pre) > code {
+            background-color: $fhi-bg-color-4;
+            border-radius: $fhi-px * 3;
+            color: $body-color;
+            font-size: $fhi-font-size-1;
+            padding: ($fhi-px * 2) $fhi-space-2;
+        }
+    }
+    &__copy-btn {
+        float: right;
+        background-color: $fhi-grey-light-2;
+        margin: (-$fhi-space-1) (-$fhi-space-2) 0 $fhi-space-2;
+        &:focus {
+            box-shadow: none;
+        }
+        &:hover {
+            background-color: darken($fhi-grey-light-2, 10%);
+        }
+    }
+    &__markdown {
+        padding: $fhi-space-1 $fhi-space-2;
+    }
+    .nav-tabs {
+        border: unset;
+
+        .nav-link {
+            font-size: $fhi-font-size-1;
+        }
+        .nav-link:hover,
+        .nav-link:focus {
+            border-color: transparent;
+            text-decoration: none;
+        }
+        .nav-link.active,
+        .nav-link.active:hover,
+        .nav-link.active:focus {
+            border-color: transparent;
+            color: $body-color;
+            font-family: $fhi-font-family-sans-serif-bold;
+            text-decoration: none;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .ds-ui-documentation {
+        margin-bottom: $fhi-space-7;
+
+        &__title {
+            background-color: unset;
+            font-size: $fhi-font-size-4;
+            margin: 0 0 $fhi-space-3;
+            padding: unset;
+        }
+       &__example-container {
+            border-radius: $border-radius;
+            margin: unset;
+            padding: $fhi-space-3;
+        }
+        &__example {
+            padding: $fhi-space-5;
+        }
+    }
+}

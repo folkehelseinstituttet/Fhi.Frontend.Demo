@@ -1,0 +1,25 @@
+.fhi-btn-outline-primary {
+    @include fhi-btn(transparent, $fhi-red-2, $body-color);
+
+    &:hover {
+        @include fhi-btn-hover($fhi-pink-light-2, $fhi-red-2, $body-color);
+    }
+    &:focus {
+        @include fhi-btn-focus(transparent, $fhi-red-2, $body-color);
+
+        &:hover {
+            @include fhi-btn-focus(transparent, $fhi-red-2, $body-color);
+        }
+    }
+    &:active {
+        @include fhi-btn-focus(transparent, $fhi-red-2, $body-color);
+    }
+}
+
+[data-whatintent="keyboard"] {
+    .fhi-btn-outline-primary {
+        &:focus {
+            @include fhi-btn-keyboard-focus();
+       }
+    }
+}

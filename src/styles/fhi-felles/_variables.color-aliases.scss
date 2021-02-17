@@ -1,0 +1,70 @@
+/**
+ * Fargealiaser
+ *
+ * Variabler uten fhi-prefiks er Bootstrap-variabler
+ */
+
+$white:     white;
+$black:     $fhi-grey-4;
+
+// Bootstrap theme colors
+$primary:   $fhi-red-2;
+$secondary: $fhi-blue-grey-2;
+$success:   $fhi-green-2;
+$info:      $fhi-blue-light-2;
+$warning:   $fhi-orange-2;
+$danger:    $fhi-pink-dark-2;
+$light:     $fhi-grey-light-1;
+$dark:      $fhi-blue-dark-1;
+$theme-colors: (
+  'error':    $danger,
+);
+
+// FHI's hovedfarge
+$fhi-brand-color: $fhi-blue-dark-1;
+
+// Deaktivert
+$disabled-color: $fhi-grey-2;
+$fhi-disabled-color-inverse: $fhi-grey-1;
+
+// Text
+$body-color: $black;
+$text-muted: $disabled-color;
+$pre-color:  $fhi-red-2;
+$code-color: $fhi-red-2;
+
+$fhi-text-ancillary:         $fhi-grey-3;
+$fhi-text-ancillary-inverse: $fhi-grey-1;
+$fhi-text-error-inverse:     $fhi-pink-dark-1;
+
+// Lenker
+$inline-link-color:             $fhi-blue-1;
+$inline-link-hover-color:       $fhi-red-2;
+$fhi-main-menu-xs-color:        $white;
+$fhi-main-menu-xl-color:        $body-color;
+$fhi-main-menu-xl-active-color: $inline-link-hover-color;
+$fhi-main-menu-xl-hover-color:  $inline-link-hover-color;
+
+// Buttons
+$btn-link-disabled-color:          $fhi-grey-3;
+
+// Form
+$input-border-color:      $fhi-grey-1;
+$input-placeholder-color: $fhi-grey-3;
+$input-color:             $black;
+
+// Custom form
+$custom-select-indicator-color: $black;
+
+// Bakgrunnsfarger for flater
+$fhi-bg-color-1:  $white;
+$fhi-bg-color-2:  $fhi-grey-light-1;
+$fhi-bg-color-3:  $fhi-grey-light-2;
+$fhi-bg-color-4:  $fhi-grey-light-3;
+$fhi-bg-color-5:  $fhi-grey-light-4;
+$fhi-bg-color-6:  $fhi-blue-grey-1;
+$fhi-bg-color-7:  $fhi-blue-grey-2;
+$fhi-bg-color-8:  $fhi-blue-grey-1;
+
+// Borders
+$border-color: $fhi-grey-1;

@@ -1,0 +1,7 @@
+<ng-template #tipContent>{{ copyIsSuccess ? tooltipCopyIsSuccess : tooltipCopyInital }}</ng-template>
+<button class="btn ds-ui-documentation__copy-btn"
+        ngxClipboard [cbContent]="contentReferenceToCopy" (cbOnSuccess)="copied($event)"
+        (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
+        [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual">
+  <fa-icon [icon]="faCopy"></fa-icon><span class="sr-only">Kopier</span>
+</button>

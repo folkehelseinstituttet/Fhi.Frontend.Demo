@@ -1,0 +1,34 @@
+<article class="ds-ui-documentation" id="{{ id }}">
+  <h1 class="ds-ui-documentation__title">{{ title }}</h1>
+
+  <div class="ds-ui-documentation__example-container">
+    <ul ngbNav #exampleDetailNav="ngbNav" [(activeId)]="activeNavTab" class="nav-tabs" [animation]="false">
+      <li *ngFor="let navTab of navTabs;" [ngbNavItem]="navTab.id">
+        <a ngbNavLink>{{ navTab.title }}</a>
+
+        <ng-container *ngIf="navTab.id === 0">
+          <ng-template ngbNavContent>
+            <div class="ds-ui-documentation__example">
+              <div *ngIf="exampleHtml" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <ng-content select="[library-example-detail.example-component]"></ng-content>
+            </div>
+            <app-library-copy-button [contentReferenceToCopy]="exampleMarkdown"></app-library-copy-button>
+            <div class="ds-ui-documentation__markdown">
+              <markdown [data]="exampleMarkdown | language : 'html'"></markdown>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="navTab.id === 1">
+          <ng-template ngbNavContent>
+            <div class="ds-ui-documentation__example">
+              <markdown [data]="navTab.content"></markdown>
+            </div>
+          </ng-template>
+        </ng-container>
+
+      </li>
+    </ul>
+    <div [ngbNavOutlet]="exampleDetailNav"></div>
+  </div>
+</article>

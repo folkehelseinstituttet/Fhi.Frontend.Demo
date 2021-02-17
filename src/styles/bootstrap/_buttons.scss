@@ -1,0 +1,37 @@
+/**
+ * Buttons
+ */
+
+.btn {
+    font-size: $btn-font-size;
+    line-height: 1;
+    height: $fhi-btn-height-sm;
+    padding: $fhi-btn-padding-tb-sm $fhi-btn-padding-lr-sm;
+    transition: all 0.1s linear;
+}
+
+//
+// Button Sizes
+//   NB! xs, sm, osv. representere ikke her breakpoints.
+//
+.btn-sm {
+    width: $fhi-btn-sm-width;
+}
+.btn-md {
+    width: $fhi-btn-md-width;
+}
+.btn-lg {
+    width: $fhi-btn-lg-width;
+}
+
+@include media-breakpoint-down(sm) {
+    .btn-lg {
+        width: 100%;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .btn {
+        height: $fhi-btn-height-lg;
+        padding: $fhi-btn-padding-tb-lg $fhi-btn-padding-lr-lg;
+    }
+}
