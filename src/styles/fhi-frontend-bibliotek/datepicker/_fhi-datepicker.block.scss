@@ -7,7 +7,7 @@
         max-width: $fhi-px * 175;
 
         > .form-control {
-            @include fhi-border-transition();
+            // @include fhi-border-transition();
             height: $fhi-input-height-xs;
         }
         > .form-control:focus {
@@ -16,7 +16,7 @@
     }
     &__input-group-prepend {
         @include fhi-border-radius-left($fhi-px * 4);
-        @include fhi-border-transition();
+        // @include fhi-border-transition();
         background-color: $white;
         border: 1px solid $fhi-grey-3;
         line-height: 1;
