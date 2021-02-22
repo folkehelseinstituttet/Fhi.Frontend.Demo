@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faCalendarAlt } from '@fortawesome/pro-light-svg-icons';
+// import { faCalendarAlt } from '@fortawesome/pro-light-svg-icons';
 
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
@@ -11,7 +11,7 @@ export class NgbDatepickerSelectComponent implements OnInit {
 
   @Input() datepickerType: string;
 
-  faCalendarAlt = faCalendarAlt;
+  // faCalendarAlt = faCalendarAlt;
   minDate: NgbDateStruct = {
     year: 1950,
     month: 1,

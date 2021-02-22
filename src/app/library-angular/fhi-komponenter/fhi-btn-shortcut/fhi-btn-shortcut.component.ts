@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faLongArrowRight } from '@fortawesome/pro-light-svg-icons';
+// import { faLongArrowRight } from '@fortawesome/pro-light-svg-icons';
 
 @Component({
   selector: 'fhi-btn-shortcut',
@@ -10,5 +10,5 @@ export class FhiBtnShortcutComponent {
   @Input() link: string;
   @Input() text: string;
 
-  faLongArrowRight = faLongArrowRight;
+  // faLongArrowRight = faLongArrowRight;
 }

@@ -3,5 +3,5 @@
         ngxClipboard [cbContent]="contentReferenceToCopy" (cbOnSuccess)="copied($event)"
         (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
         [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual">
-  <fa-icon [icon]="faCopy"></fa-icon><span class="sr-only">Kopier</span>
+  <!-- <fa-icon [icon]="faCopy"></fa-icon><span class="sr-only">Kopier</span> -->
 </button>

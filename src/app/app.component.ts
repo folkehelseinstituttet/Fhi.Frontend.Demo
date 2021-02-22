@@ -3,14 +3,11 @@ import { Router, NavigationEnd, Scroll } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
-import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+// import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
+// import { faArrowCircleUp } from '@fortawesome/pro-light-svg-icons';
 
 import { BrowserViewportService } from './_felles/services/browser-viewport.service';
 import { UrlService } from './_felles/services/url.service';
-
-
-import { faArrowCircleUp } from '@fortawesome/pro-light-svg-icons';
-
 
 @Component({
   selector: 'app-root',
@@ -21,13 +18,13 @@ export class AppComponent implements OnInit {
 
   private subscription = new Subscription();
 
-  faInfoCircle = faInfoCircle;
+  // faInfoCircle = faInfoCircle;
   prosjektnavn = 'Frontend-bibliotek';
   prosjektbeskrivelse = 'Gjenbrukbar CSS og Angular-kode';
   isMobile: boolean;
 
 
-  faArrowCircleUp = faArrowCircleUp;
+  // faArrowCircleUp = faArrowCircleUp;
 
 
   constructor(
