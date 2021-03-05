@@ -5,6 +5,7 @@ import { FhiBtnSecondary } from './komponenter/fhi-btn-secondary';
 import { FhiBtnFlat } from './komponenter/fhi-btn-flat';
 import { FhiBtnShortcut } from './komponenter/fhi-btn-shorcut';
 import { FormInput } from './komponenter/form-input';
+import { FormCheckboxRadio } from './komponenter/form-checkbox-radio';
 import { FormInputValidation } from './komponenter/form-input-valdation';
 import { FormSelect } from './komponenter/form-select';
 
@@ -14,6 +15,7 @@ export const CssKomponenterData: LibraryExample[] = [
   ...FhiBtnFlat,
   ...FhiBtnShortcut,
   ...FormInput,
+  ...FormCheckboxRadio,
   ...FormInputValidation,
   ...FormSelect
 ];
