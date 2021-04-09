@@ -1,0 +1,11 @@
+$fhi-brand-padding-top-xs: $fhi-space-6;
+$fhi-brand-padding-bottom-xs: $fhi-space-3;
+$fhi-brand-padding-top-xl: $fhi-space-7;
+$fhi-brand-padding-bottom-xl: $fhi-space-4;
+$fhi-brand-container-height: $fhi-px * 32;
+$fhi-brand-height-xs: $fhi-brand-padding-top-xs
+                      + $fhi-brand-container-height
+                      + $fhi-brand-padding-bottom-xs;
+
+// $fhi-project-height-xl: $fhi-px * 25;
+// $fhi-main-menu-height-xl: $fhi-px * 46;
