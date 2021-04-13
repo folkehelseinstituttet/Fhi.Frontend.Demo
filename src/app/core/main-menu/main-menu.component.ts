@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-// import { faBars } from '@fortawesome/pro-light-svg-icons';
-// import { faTimes } from '@fortawesome/pro-light-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { MainMenuItem } from './main-menu-item.model';
 import { UrlPaths } from '../../_felles/konstanter/url-paths';
@@ -14,8 +14,8 @@ export class MainMenuComponent {
 
   @Input() prosjektnavn: string;
 
-  // faBars = faBars;
-  // faTimes = faTimes;
+  faBars = faBars;
+  faTimes = faTimes;
   mainMenuIsOpen = false;
 
   mainMenuItems: MainMenuItem[] = [{

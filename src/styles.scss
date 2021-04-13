@@ -1,20 +1,7 @@
-@import "~@folkehelseinstituttet/style/scss/style";
+@import "~@folkehelseinstituttet/style/scss/style.scss";
 
 // FHI Frontend-bibliotek
 @import "~prismjs/themes/prism-solarizedlight.css";
 @import "~src/styles/fhi-frontend-bibliotek/ds.markdown";
 @import "~src/styles/fhi-frontend-bibliotek/ds-ui-documentation.block";
 @import "~src/styles/fhi-frontend-bibliotek/ds-tmp.block";
-
-
-
-// // TODO: move to Fhi.Frontend.NgComponents
-// // NgBootstrap
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/datepicker-day-view";
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/datepicker-month";
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/datepicker-navigation";
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/datepicker-navigation-select";
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/datepicker";
-// // FHI-Component
-// @import "~src/styles/fhi-frontend-bibliotek/datepicker/fhi-datepicker.block";
-
