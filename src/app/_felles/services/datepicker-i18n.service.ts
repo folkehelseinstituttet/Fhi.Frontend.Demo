@@ -24,7 +24,7 @@ export class DatepickerI18nService extends NgbDatepickerI18n {
     super();
   }
 
-  getWeekdayShortName(weekday: number): string {
+  getWeekdayLabel(weekday: number): string {
     return I18N_VALUES[this.locale].weekdays[weekday - 1];
   }
   getMonthShortName(month: number): string {
