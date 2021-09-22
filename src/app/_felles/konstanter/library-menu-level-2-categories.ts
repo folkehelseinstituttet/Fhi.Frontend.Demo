@@ -3,6 +3,7 @@ export class LibraryMenuLevel2Categories {
   static cssKomponentCategories = {
     knapper: 'Knapper',
     paginasjon: 'Paginasjon',
-    skjema: 'Skjema'
+    skjema: 'Skjema',
+    tabell: 'Tabell'
   };
 }
