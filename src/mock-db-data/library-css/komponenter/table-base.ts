@@ -6,49 +6,51 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const TableSimple: LibraryExample[] = [{
   title: 'Tabell',
   exampleHtml: `
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Fornavn</th>
-      <th>Etternavn</th>
-      <th>Rolle</th>
-    </tr>
-  </thead>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Fornavn</th>
+        <th scope="col">Etternavn</th>
+        <th scope="col">Rolle</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <td>1202</td>
-      <td>Birger Henrik</td>
-      <td>Tybring-Gjedde Olssen</td>
-      <td>Assistent</td>
-    </tr>
-    <tr>
-      <td>2003</td>
-      <td>Sigurd</td>
-      <td>Bråten</td>
-      <td>Designer</td>
-    </tr>
-    <tr>
-      <td>1009</td>
-      <td>Elida</td>
-      <td>Egge</td>
-      <td>Producer</td>
-    </tr>
-    <tr>
-      <td>1337</td>
-      <td>Marie</td>
-      <td>Mul</td>
-      <td>Regissør</td>
-    </tr>
-    <tr>
-      <td>4211</td>
-      <td>Elisabeth</td>
-      <td>Kristiansen</td>
-      <td>Script</td>
-    </tr>
-  </tbody>
-</table>
+    <tbody>
+      <tr>
+        <th scope="row">1202</th>
+        <td>Birger Henrik</td>
+        <td>Tybring-Gjedde Olssen</td>
+        <td>Assistent</td>
+      </tr>
+      <tr>
+        <th scope="row">2003</th>
+        <td>Sigurd</td>
+        <td>Bråten</td>
+        <td>Designer</td>
+      </tr>
+      <tr>
+        <th scope="row">1009</th>
+        <td>Elida</td>
+        <td>Egge</td>
+        <td>Producer</td>
+      </tr>
+      <tr>
+        <th scope="row">1337</th>
+        <td>Marie</td>
+        <td>Mul</td>
+        <td>Regissør</td>
+      </tr>
+      <tr>
+        <th scope="row">4211</th>
+        <td>Elisabeth</td>
+        <td>Kristiansen</td>
+        <td>Script</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 `,
   category: categoryNames.tabell
 }];
