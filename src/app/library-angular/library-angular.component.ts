@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UrlService } from 'src/app/_felles/services/url.service';
+import { UrlService } from 'src/app/_felles/services/url-service/url.service';
+import { UrlUtilitiesService } from 'src/app/_felles/services/url-service/url-utilities.service';
 import { UrlPaths } from 'src/app/_felles/konstanter/url-paths';
 import { LibraryAngularDataService } from './library-angular-data.service';
 import { LibraryMenuService } from '../_felles/services/library-menu.service';
@@ -18,6 +19,7 @@ export class LibraryAngularComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
+    private urlUtilities: UrlUtilitiesService,
     private libraryAngularDataService: LibraryAngularDataService,
     private libraryMenuService: LibraryMenuService
   ) { }
@@ -33,13 +35,13 @@ export class LibraryAngularComponent implements OnInit, OnDestroy {
   currentLibraryMenuLevel1Path: string;
 
   ngOnInit() {
-    this.currentLibraryMenuLevel1Path = this.urlService.urlSegmenter[1].path;
+    this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
     this.getLibraryExamples(this.currentLibraryMenuLevel1Path);
 
-    this.subscription.add(this.urlService.urlSegmenter$
-      .subscribe(urlSegmenter => {
-        if (this.urlService.urlFragment === undefined) {
-          this.currentLibraryMenuLevel1Path = urlSegmenter[1].path;
+    this.subscription.add(this.urlService.urlTree$
+      .subscribe(() => {
+        if (this.urlUtilities.getFragment() === null) {
+          this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
           this.getLibraryExamples(this.currentLibraryMenuLevel1Path);
         }
       }));

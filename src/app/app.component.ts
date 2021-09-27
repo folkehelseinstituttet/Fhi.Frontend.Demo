@@ -7,7 +7,7 @@ import { debounceTime, filter } from 'rxjs/operators';
 // import { faArrowCircleUp } from '@fortawesome/pro-light-svg-icons';
 
 import { BrowserViewportService } from './_felles/services/browser-viewport.service';
-import { UrlService } from './_felles/services/url.service';
+import { UrlService } from './_felles/services/url-service/url.service';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.urlService.updateAfterNavigationEnd(this.router.parseUrl(event.urlAfterRedirects));
+        this.urlService.updateOnNavigationEnd(this.router.parseUrl(event.urlAfterRedirects));
       });
 
     this.router.events
