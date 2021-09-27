@@ -12,7 +12,7 @@ import { FormCheckbox } from './komponenter/form-checkbox';
 import { FormInputValidation } from './komponenter/form-input-valdation';
 import { FormSelect } from './komponenter/form-select';
 import { Pagination } from './komponenter/pagination';
-import { TableSimple } from './komponenter/table-base';
+import { TableSimple } from './komponenter/table-simple';
 
 export const CssKomponenterData: LibraryExample[] = [
   ...FhiBtnPrimary,
