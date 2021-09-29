@@ -7,8 +7,15 @@ export const FormCheckbox: LibraryExample[] = [{
   title: 'Checkbox',
   exampleHtml: `
 <div class="custom-control custom-checkbox">
-  <input type="checkbox" class="custom-control-input" id="customCheck1">
-  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+  <input type="checkbox" class="custom-control-input" id="customCheck">
+  <label class="custom-control-label" for="customCheck">Check this custom checkbox</label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="customCheck1">
+  <label class="form-check-label" for="customCheck1">
+    Check this custom checkbox
+  </label>
 </div>
 `,
   category: categoryNames.skjema
