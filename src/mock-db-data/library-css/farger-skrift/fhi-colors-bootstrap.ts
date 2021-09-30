@@ -4,13 +4,13 @@ const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?
   const textClass = (textColor === 'black') ? '' : ' class="text-white"';
   return `
 <div class="ds-color-palette d-flex flex-row">
-  <div class="pl-3 pt-2 ds-color-palette__color ds-color-palette__color--${color}">
+  <div class="ps-3 pt-2 ds-color-palette__color ds-color-palette__color--${color}">
     <p${textClass}>${bootstrapName}</p>
   </div>
-  <div class="ds-color-palette__code ml-4 p-2">
+  <div class="ds-color-palette__code ms-4 p-2">
     ${hex}
   </div>
-  <div class="ds-color-palette__code ml-4 p-2 d-none d-lg-block">
+  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
     $${color}
   </div>
 </div>`;

@@ -20,17 +20,18 @@ export const FormRadio: LibraryExample[] = [{
   <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
 </div>
 <div class="custom-control custom-radio">
-  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" checked>
   <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
 </div>
-<br>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
+`,
+  exampleMarkdown: `
+<div class="form-check">
+  <input type="radio" id="customRadio1" name="customRadio" class="forrm-check-input">
+  <label class="form-check-label" for="customRadio1">Toggle this custom radio</label>
 </div>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
+<div class="form-check">
+  <input type="radio" id="customRadio2" name="customRadio" class="forrm-check-input">
+  <label class="form-check-label" for="customRadio2">Or toggle this other custom radio</label>
 </div>
 `,
   category: categoryNames.skjema

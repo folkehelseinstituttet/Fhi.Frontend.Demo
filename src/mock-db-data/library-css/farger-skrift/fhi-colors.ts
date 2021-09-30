@@ -4,10 +4,10 @@ const colorHtml = (hex: string, color: string) => {
   return `
 <div class="ds-color-palette d-flex flex-row">
   <div class="ds-color-palette__color ds-color-palette__color--${color}"></div>
-  <div class="ds-color-palette__code ml-4 p-2">
+  <div class="ds-color-palette__code ms-4 p-2">
     ${hex}
   </div>
-  <div class="ds-color-palette__code ml-4 p-2 d-none d-lg-block">
+  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
     $${color}
   </div>
 </div>`;

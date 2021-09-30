@@ -16,13 +16,5 @@ export const FhiBtnPrimary: LibraryExample[] = [{
   <button type="button" class="btn btn-md fhi-btn-outline-primary mb-3 mb-lg-0 me-3">Standard, 170px</button>
   <button type="button" class="btn btn-lg fhi-btn-outline-primary">Lang, 280px</button>
 </div>`,
-  exampleMarkdown: `
-<button type="button" class="btn btn-sm fhi-btn-primary">Liten, 120px</button>
-<button type="button" class="btn btn-md fhi-btn-primary">Standard, 170px</button>
-<button type="button" class="btn btn-lg fhi-btn-primary">Lang, 280px</button>
-
-<button type="button" class="btn btn-sm fhi-btn-outline-primary">Liten, 120px</button>
-<button type="button" class="btn btn-md fhi-btn-outline-primary">Standard, 170px</button>
-<button type="button" class="btn btn-lg fhi-btn-outline-primary">Lang, 280px</button>`,
   category: categoryNames.knapper
 }];
