@@ -5,13 +5,14 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 
 export const FormSwitch: LibraryExample[] = [{
   title: 'Switchknapp',
-  exampleHtml: `<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch1">
-  <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+  exampleHtml: `
+<div class="form-check form-switch">
+  <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
+  <label class="form-check-label" for="flexSwitchCheckDefault">Toggle this switch element</label>
 </div>
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">
-  <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
+<div class="form-check form-switch">
+  <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckChecked2" disabled>
+  <label class="form-check-label" for="flexSwitchCheckChecked2">Disabled switch element</label>
 </div>
 `,
   category: categoryNames.skjema
