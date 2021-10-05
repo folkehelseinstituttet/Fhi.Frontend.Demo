@@ -6,21 +6,27 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const Pagination: LibraryExample[] = [{
   title: 'Paginasjon',
   exampleHtml: `
-<nav aria-label="Page navigation example">
+<nav aria-label="Sidenavigasjon">
   <ul class="pagination">
     <li class="page-item disabled">
-      <span class="page-link">
-        <span aria-hidden="true">&laquo;</span>
-      </span>
+      <a class="page-link" href="#">
+        <span class="visually-hidden">Forrige</span>
+        &laquo;
+      </a>
     </li>
     <li class="page-item active" aria-current="page">
-      <span class="page-link">1</span>
+      <a class="page-link" href="#">1</a>
     </li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Neste">
-        <span aria-hidden="true">&raquo;</span>
+      <a class="page-link" href="#">2</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">3</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="#">
+        <span class="visually-hidden">Neste</span>
+        &raquo;
       </a>
     </li>
   </ul>
