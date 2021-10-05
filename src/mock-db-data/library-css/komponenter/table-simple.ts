@@ -18,11 +18,6 @@ export const TableSimple: LibraryExample[] = [{
     </thead>
 
     <tbody>
-      <!--
-        The ID column in this example might not be a table heading,
-        but an example of use if the first column
-        would be a natural heading for the row
-      -->
       <tr>
         <th scope="row">1202</th>
         <td>Birger Henrik</td>
