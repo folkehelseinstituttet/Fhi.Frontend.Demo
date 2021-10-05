@@ -6,8 +6,13 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const FormInput: LibraryExample[] = [{
   title: 'Tekstfelt',
   exampleHtml: `
-<div class="form-group">
-  <label for="FormInput">Tekstfelt</label>
+<label for="FormInput" class="form-label">Tekstfelt</label>
+<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">
+`,
+exampleMarkdown: `
+<!-- ytre div for gruppering, men ikke absolutt nødvendig -->
+<div>
+  <label for="FormInput" class="form-label">Tekstfelt</label>
   <input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">
 </div>
 `,

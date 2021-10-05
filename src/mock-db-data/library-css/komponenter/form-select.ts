@@ -6,12 +6,13 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const FormSelect: LibraryExample[] = [{
   title: 'Nedtrekksliste (select)',
   exampleHtml: `
-<div class="form-group">
-  <label for="FormSelect">Nedtrekksliste</label>
-  <select class="form-control" id="FormSelect">
-    <option></option>
-    <option>1</option>
-    <option>2</option>
+<!-- ytre div for gruppering, men ikke absolutt nødvendig -->
+<div>
+  <label for="FormSelect" class="form-label">Nedtrekksliste</label>
+  <select class="form-select" id="FormSelect">
+    <option>Åpne for å gjøre et valg</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
   </select>
 </div>
 `,

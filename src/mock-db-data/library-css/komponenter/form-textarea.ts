@@ -6,8 +6,15 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const FormTextarea: LibraryExample[] = [{
   title: 'Tekstfelt flere linjer',
   exampleHtml: `
-<div class="form-group">
-  <label for="exampleFormControlTextarea1">Example textarea</label>
+<div>
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+`,
+  exampleMarkdown: `
+<!-- ytre div for gruppering, men ikke absolutt nødvendig -->
+<div>
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 `,
