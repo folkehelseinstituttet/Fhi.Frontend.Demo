@@ -9,7 +9,7 @@ export const FhiBtnSecondary: LibraryExample[] = [{
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
   <button type="button" class="btn btn-sm fhi-btn-secondary mb-3 me-3">Liten, 120px</button>
   <button type="button" class="btn btn-md fhi-btn-secondary mb-3 me-3">Standard, 170px</button>
-  <button type="button" class="btn btn-lg fhi-btn-secondary">Lang, 280px</button>
+  <button type="button" class="btn btn-lg fhi-btn-secondary mb-3">Lang, 280px</button>
 </div>
 <div class="d-flex flex-column flex-lg-row">
   <button type="button" class="btn btn-sm fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Liten, 120px</button>
