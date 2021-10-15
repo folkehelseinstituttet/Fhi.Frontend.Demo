@@ -6,22 +6,37 @@ const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 export const FormRadio: LibraryExample[] = [{
   title: 'Radioknapp',
   exampleHtml: `
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio1">Toggle this custom radio</label>
+<div class="form-check mb-2">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+  <label class="form-check-label" for="customRadio1">
+    Label for radio
+  </label>
 </div>
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio2">Or toggle this other custom radio</label>
+<div class="form-check mb-2">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2" checked>
+  <label class="form-check-label" for="customRadio2">
+    Label for checked radio
+  </label>
 </div>
-<br>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline1">Toggle this custom radio</label>
+<div class="form-check mb-2">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="customRadio3" disabled>
+  <label class="form-check-label" for="customRadio3">
+    Disabled radio
+  </label>
 </div>
-<div class="custom-control custom-radio custom-control-inline">
-  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-  <label class="custom-control-label" for="customRadioInline2">Or toggle this other custom radio</label>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault2" id="customRadio4" checked disabled>
+  <label class="form-check-label" for="customRadio4">
+    Checked disabled radio
+  </label>
+</div>
+`,
+  exampleMarkdown: `
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInput">
+  <label class="form-check-label" for="radioInput">
+    Label for radio
+  </label>
 </div>
 `,
   category: categoryNames.skjema
