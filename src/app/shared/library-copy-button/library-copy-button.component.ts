@@ -13,8 +13,8 @@ export class LibraryCopyButtonComponent implements OnInit {
 
   faCopy = faCopy;
   copyIsSuccess = false;
-  tooltipCopyInital = 'Kopier til utklippstavle';
-  tooltipCopyIsSuccess = 'Kopiert!';
+  tooltipCopyInital = 'Copy to clipboard';
+  tooltipCopyIsSuccess = 'Copied!';
 
   ngOnInit(): void {
   }
