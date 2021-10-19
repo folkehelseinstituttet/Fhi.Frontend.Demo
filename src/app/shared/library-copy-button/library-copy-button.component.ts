@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-// import { faCopy } from '@fortawesome/pro-light-svg-icons';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { IClipboardResponse } from 'ngx-clipboard';
 
 @Component({
@@ -11,10 +11,10 @@ export class LibraryCopyButtonComponent implements OnInit {
   @Input() contentReferenceToCopy;
   constructor() { }
 
-  // faCopy = faCopy;
+  faCopy = faCopy;
   copyIsSuccess = false;
-  tooltipCopyInital = 'Kopier til utklippstavle';
-  tooltipCopyIsSuccess = 'Kopiert!';
+  tooltipCopyInital = 'Copy to clipboard';
+  tooltipCopyIsSuccess = 'Copied!';
 
   ngOnInit(): void {
   }
