@@ -19,31 +19,31 @@ export const TableSimple: LibraryExample[] = [{
 
     <tbody>
       <tr>
-        <th scope="row">1202</th>
+        <th>1202</th>
         <td>Birger Henrik</td>
         <td>Tybring-Gjedde Olssen</td>
         <td>Assistent</td>
       </tr>
       <tr>
-        <th scope="row">2003</th>
+        <th>2003</th>
         <td>Sigurd</td>
         <td>Bråten</td>
         <td>Designer</td>
       </tr>
       <tr>
-        <th scope="row">1009</th>
+        <th>1009</th>
         <td>Elida</td>
         <td>Egge</td>
         <td>Producer</td>
       </tr>
       <tr>
-        <th scope="row">1337</th>
+        <th>1337</th>
         <td>Marie</td>
         <td>Mul</td>
         <td>Regissør</td>
       </tr>
       <tr>
-        <th scope="row">4211</th>
+        <th>4211</th>
         <td>Elisabeth</td>
         <td>Kristiansen</td>
         <td>Script</td>
