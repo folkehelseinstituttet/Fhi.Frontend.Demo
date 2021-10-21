@@ -13,6 +13,7 @@ import { FormInputValidation } from './komponenter/form-input-valdation';
 import { FormSelect } from './komponenter/form-select';
 import { Pagination } from './komponenter/pagination';
 import { TableSimple } from './komponenter/table-simple';
+import { TableSortable } from './komponenter/table-sortable';
 
 export const CssKomponenterData: LibraryExample[] = [
   ...FhiBtnPrimary,
@@ -27,7 +28,8 @@ export const CssKomponenterData: LibraryExample[] = [
   ...FormTextarea,
   ...FormSelect,
   ...Pagination,
-  ...TableSimple
+  ...TableSimple,
+  ...TableSortable
 ];
 
 
