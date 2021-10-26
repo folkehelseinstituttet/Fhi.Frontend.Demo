@@ -40,6 +40,9 @@
     position: sticky;
     top: 1rem;
     max-height: calc(100vh - 1rem);
+    margin-left: -6px;
+    margin-right: -6px;
+    padding: 6px;
     overflow-y: auto;
 }
 
