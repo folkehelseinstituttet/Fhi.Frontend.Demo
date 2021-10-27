@@ -10,10 +10,22 @@ export const TableSortable: LibraryExample[] = [{
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th scope="col" tabindex="0" aria-sort="descending" aria-label="Sorter tabellen stigende basert på ID"><span class="text-decoration-underline">ID</span> <i class="icon-chevron-down"></i></th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Fornavn"><span class="text-decoration-underline">Fornavn</span> <i class="icon-chevron-expand"></i></th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Etternavn"><span class="text-decoration-underline">Etternavn</span> <i class="icon-chevron-expand"></i></th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Rolle"><span class="text-decoration-underline">Rolle</span> <i class="icon-chevron-expand"></i></th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på ID">
+          <span class="text-decoration-underline">ID</span>
+          <i class="icon-chevron-down"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Fornavn">
+          <span class="text-decoration-underline">Fornavn</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Etternavn">
+          <span class="text-decoration-underline">Etternavn</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Rolle">
+          <span class="text-decoration-underline">Rolle</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
       </tr>
     </thead>
 
@@ -44,10 +56,22 @@ export const TableSortable: LibraryExample[] = [{
   <table class="table table-striped table-bordered">
     <thead>
       <tr>
-      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på ID"><span class="text-decoration-underline">ID</span> <i class="icon-chevron-expand"></i></th>
-      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Fornavn"><span class="text-decoration-underline">Fornavn</span> <i class="icon-chevron-expand"></i></th>
-      <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Etternavn"><span class="text-decoration-underline">Etternavn</span> <i class="icon-chevron-up"></i></th>
-      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Rolle"><span class="text-decoration-underline">Rolle</span> <i class="icon-chevron-expand"></i></th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på ID">
+          <span class="text-decoration-underline">ID</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Fornavn">
+          <span class="text-decoration-underline">Fornavn</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Etternavn">
+          <span class="text-decoration-underline">Etternavn</span>
+          <i class="icon-chevron-up"></i>
+        </th>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Rolle">
+          <span class="text-decoration-underline">Rolle</span>
+          <i class="icon-chevron-expand"></i>
+        </th>
       </tr>
     </thead>
 
