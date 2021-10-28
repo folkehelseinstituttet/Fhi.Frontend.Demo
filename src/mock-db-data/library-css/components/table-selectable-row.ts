@@ -1,7 +1,7 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_felles/konstanter/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 
 export const TableSelectableRow: LibraryExample[] = [{
   title: 'Tabell - selekterbar rad',
@@ -229,5 +229,5 @@ exampleMarkdown: `
   </table>
 </div>
 `,
-  category: categoryNames.table
+  category: categoryNames.tabell
 }];
