@@ -4,7 +4,7 @@ export class LibraryMenuLevel2Categories {
     knapper: 'Knapper',
     paginasjon: 'Paginasjon',
     skjema: 'Skjema',
-    structuredContent: 'Structured content',
+    strukturertInnhold: 'Strukturert innhold',
     tabell: 'Tabell'
   };
 }
