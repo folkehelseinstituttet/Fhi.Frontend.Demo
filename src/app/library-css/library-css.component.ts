@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UrlService } from 'src/app/_felles/services/url-service/url.service';
-import { UrlUtilitiesService } from 'src/app/_felles/services/url-service/url-utilities.service';
+import { UrlService } from 'src/app/_common/services/url-service/url.service';
+import { UrlUtilitiesService } from 'src/app/_common/services/url-service/url-utilities.service';
 import { LibraryCssDataService } from './library-css-data.service';
-import { LibraryMenuService } from '../_felles/services/library-menu.service';
+import { LibraryMenuService } from '../_common/services/library-menu.service';
 import { LibraryExample } from '../shared/models/library-example.model';
-import { LibraryCssMenu } from './konstanter/library-css-menu';
+import { LibraryCssMenu } from './constants/library-css-menu';
 import { LibraryMenuLevel2Item } from 'src/app/shared/models/library-menu-level-2-item.model';
 import { LibraryMenuLevel2Category } from '../shared/models/library-menu-level-2-category.model';
 

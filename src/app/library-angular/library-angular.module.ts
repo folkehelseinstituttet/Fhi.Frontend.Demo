@@ -3,8 +3,8 @@ import { NgModule } from '@angular/core';
 import { LibraryAngularRoutingModule } from './library-angular-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
-import { NgbEksemplerModule } from './eksempelkomponenter/ngb-eksempler/ngb-eksempler.module';
-import { FontAwesomeEksemplerModule } from './eksempelkomponenter/font-awesome-eksempler/font-awesome-eksempler.module';
+import { NgbEksemplerModule } from './example-components/ngb-examples/ngb-examples.module';
+import { FontAwesomeEksemplerModule } from './example-components/font-awesome-examples/font-awesome-examples.module';
 
 @NgModule({
   declarations: [LibraryAngularRoutingModule.components],

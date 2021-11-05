@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UrlService } from '../../_felles/services/url.service';
-import { UrlPaths } from '../../_felles/konstanter/url-paths';
+import { UrlService } from '../../_common/services/url.service';
+import { UrlPaths } from '../../_common/constants/url-paths';
 import { DefaultExamplesDataService } from './default-examples-data.service';
 import { LibraryExample } from '../../shared/models/library-example.model';
-import { AngularComponents } from '../konstanter/library-angular-components';
+import { AngularComponents } from '../constants/library-angular-components';
 
 @Component({
   selector: 'app-default-examples',

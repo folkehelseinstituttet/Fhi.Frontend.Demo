@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UrlPaths } from './_felles/konstanter/url-paths';
+import { UrlPaths } from './_common/constants/url-paths';
 
 const defaultPath = `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekKomponenter}`;
 
