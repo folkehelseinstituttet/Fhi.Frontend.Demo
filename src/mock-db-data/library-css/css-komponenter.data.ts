@@ -1,5 +1,6 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
+import { Accordion } from './komponenter/accordion';
 import { FhiBtnPrimary } from './komponenter/fhi-btn-primary';
 import { FhiBtnSecondary } from './komponenter/fhi-btn-secondary';
 import { FhiBtnFlat } from './komponenter/fhi-btn-flat';
@@ -16,6 +17,7 @@ import { TableSimple } from './komponenter/table-simple';
 import { TableSortable } from './komponenter/table-sortable';
 
 export const CssKomponenterData: LibraryExample[] = [
+  ...Accordion,
   ...FhiBtnPrimary,
   ...FhiBtnSecondary,
   ...FhiBtnFlat,
