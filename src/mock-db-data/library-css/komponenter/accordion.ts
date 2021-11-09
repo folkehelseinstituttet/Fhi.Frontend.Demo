@@ -4,7 +4,7 @@ import { LibraryMenuLevel2Categories } from 'src/app/_felles/konstanter/library-
 const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
 
 export const Accordion: LibraryExample[] = [{
-  title: 'Trekkspill',
+  title: 'Accordion',
   exampleHtml: `
 <p>The accordion is using Bootstrap 5 markup, you can either include Bootstrap JS to your project or write your own functionality. Remember to include the a11y principles.</p>
 
@@ -77,7 +77,7 @@ export const Accordion: LibraryExample[] = [{
     <div id="collapseTwo-2" class="accordion-collapse collapse show" aria-labelledby="headingTwo-2">
       <div class="accordion-body">
         <p>This is the second item's accordion body.</p>
-        <p>This example is without the <code>data-bs-parent</code> attribute, thus multiple accordion elements might be open simultaneously.</p>
+        <p>This example is without the <code>data-bs-parent</code> attribute, allowing multiple accordion elements to be open simultaneously.</p>
       </div>
     </div>
   </div>
