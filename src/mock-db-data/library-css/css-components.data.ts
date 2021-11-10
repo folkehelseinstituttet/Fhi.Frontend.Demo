@@ -1,6 +1,6 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
-import { Accordion } from './komponenter/accordion';
+import { Accordion } from './components/accordion';
 import { FhiBtnPrimary } from './components/fhi-btn-primary';
 import { FhiBtnSecondary } from './components/fhi-btn-secondary';
 import { FhiBtnFlat } from './components/fhi-btn-flat';
