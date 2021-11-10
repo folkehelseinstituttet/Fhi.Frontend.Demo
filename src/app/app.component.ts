@@ -6,8 +6,8 @@ import { debounceTime, filter } from 'rxjs/operators';
 // import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 // import { faArrowCircleUp } from '@fortawesome/pro-light-svg-icons';
 
-import { BrowserViewportService } from './_felles/services/browser-viewport.service';
-import { UrlService } from './_felles/services/url-service/url.service';
+import { BrowserViewportService } from './_common/services/browser-viewport.service';
+import { UrlService } from './_common/services/url-service/url.service';
 
 @Component({
   selector: 'app-root',

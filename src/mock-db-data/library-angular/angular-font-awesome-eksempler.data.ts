@@ -1,7 +1,7 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
-import { FhiBtnShortcut } from './font-awesome-eksempler/fhi-btn-shortcut/fhi-btn-shortcut';
+import { FhiBtnShortcut } from './font-awesome-examples/fhi-btn-shortcut/fhi-btn-shortcut';
 
-export const AngularFontAwesomeEksemplerData: LibraryExample[] = [
+export const AngularFontAwesomeExamplesData: LibraryExample[] = [
   ...FhiBtnShortcut
 ];

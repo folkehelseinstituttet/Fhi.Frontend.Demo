@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LibraryAngularMenu } from './konstanter/library-angular-menu';
+import { LibraryAngularMenu } from './constants/library-angular-menu';
 
 @Component({
   selector: 'app-library-angular',

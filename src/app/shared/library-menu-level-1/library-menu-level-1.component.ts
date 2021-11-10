@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { BrowserViewportService } from 'src/app/_felles/services/browser-viewport.service';
+import { BrowserViewportService } from 'src/app/_common/services/browser-viewport.service';
 import { LibraryMenuLevel1Item } from '../models/library-menu-level-1-item.model';
 
 @Component({

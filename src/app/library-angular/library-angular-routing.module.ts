@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UrlPaths } from '../_felles/konstanter/url-paths';
+import { UrlPaths } from '../_common/constants/url-paths';
 import { LibraryAngularComponent } from './library-angular.component';
 
 const routes: Routes = [{

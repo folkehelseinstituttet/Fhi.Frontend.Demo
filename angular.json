@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fhi-frontend-bibliotek-web-klient": {
+    "fhi-frontend-library-web-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fhi-frontend-bibliotek-web-klient",
+            "outputPath": "dist/fhi-frontend-library-web-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fhi-frontend-bibliotek-web-klient:build"
+            "browserTarget": "fhi-frontend-library-web-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fhi-frontend-bibliotek-web-klient:build:production"
+              "browserTarget": "fhi-frontend-library-web-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fhi-frontend-bibliotek-web-klient:build"
+            "browserTarget": "fhi-frontend-library-web-client:build"
           }
         },
         "test": {
@@ -120,15 +120,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "fhi-frontend-bibliotek-web-klient:serve"
+            "devServerTarget": "fhi-frontend-library-web-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "fhi-frontend-bibliotek-web-klient:serve:production"
+              "devServerTarget": "fhi-frontend-library-web-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "fhi-frontend-bibliotek-web-klient"
+  "defaultProject": "fhi-frontend-library-web-client"
 }

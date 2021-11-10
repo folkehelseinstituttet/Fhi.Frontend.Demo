@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { UrlParamNames } from 'src/app/_felles/konstanter/url-param-names';
-import { UrlPaths } from 'src/app/_felles/konstanter/url-paths';
+import { UrlParamNames } from 'src/app/_common/constants/url-param-names';
+import { UrlPaths } from 'src/app/_common/constants/url-paths';
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
 @Injectable({
@@ -31,7 +31,7 @@ export class LibraryAngularDataService {
       case UrlPaths.angularBibliotekNgBootstrap:
         return 'AngularNgbEksemplerData';
       case UrlPaths.angularBibliotekFontAwesome:
-        return 'AngularFontAwesomeEksemplerData';
+        return 'AngularFontAwesomeExamplesData';
       default:
         throw new Error('LibraryAngularDataService.getMockDataSetName(): no dataset matches this path: ' + path);
     }
