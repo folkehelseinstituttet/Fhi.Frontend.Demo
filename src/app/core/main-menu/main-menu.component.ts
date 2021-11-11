@@ -19,8 +19,8 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MainMenuItem[] = [{
-    name: MenuNames.cssBibliotek,
-    routerLink: `/${UrlPaths.cssBibliotek}`
+    name: MenuNames.cssLibrary,
+    routerLink: `/${UrlPaths.cssLibrary}`
   }, {
     name: MenuNames.angularBibliotek,
     routerLink: `/${UrlPaths.angularBibliotek}`

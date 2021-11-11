@@ -5,22 +5,22 @@ import { LibraryMenuLevel1Item } from '../../shared/models/library-menu-level-1-
 
 export class LibraryCssMenu {
   static level1Items: LibraryMenuLevel1Item[] = [{
-  //   name: MenuNames.cssBibliotekSidemaler,
-  //   routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekSidemaler}`
+  //   name: MenuNames.cssLibraryPageTemplates,
+  //   routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryPageTemplates}`
   // }, {
-  //   name: MenuNames.cssBibliotekModuler,
-  //   routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekModuler}`
+  //   name: MenuNames.cssLibraryModules,
+  //   routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryModules}`
   // }, {
-    name: MenuNames.cssBibliotekKomponenter,
-    routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekKomponenter}`
+    name: MenuNames.cssLibraryComponents,
+    routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryComponents}`
   }, {
-  //   name: MenuNames.cssBibliotekHjelpeklasser,
-  //   routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekHjelpeklasser}`
+  //   name: MenuNames.cssLibraryUtilityClasses,
+  //   routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryUtilityClasses}`
   // }, {
-    name: MenuNames.cssBibliotekFargerSkrift,
-    routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekFargerSkrift}`
+    name: MenuNames.cssLibraryColorsFonts,
+    routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryColorsFonts}`
   // }, {
-  //   name: MenuNames.cssBibliotekIkoner,
-  //   routerLink: `/${UrlPaths.cssBibliotek}/${UrlPaths.cssBibliotekIkoner}`
+  //   name: MenuNames.cssLibraryIcons,
+  //   routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryIcons}`
   }];
 }

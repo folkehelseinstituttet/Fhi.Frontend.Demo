@@ -10,7 +10,7 @@ const routes: Routes = [{
 }, {
   path: '',
   pathMatch: 'full',
-  redirectTo: `${UrlPaths.cssBibliotekKomponenter}`
+  redirectTo: `${UrlPaths.cssLibraryComponents}`
 }];
 
 @NgModule({

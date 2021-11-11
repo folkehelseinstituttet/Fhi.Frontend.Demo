@@ -2,14 +2,14 @@ export class UrlPaths {
   static angularBibliotek = 'angular';
   static angularBibliotekNgBootstrap = 'ng-bootstrap';
   static angularBibliotekFontAwesome = 'font-awesome';
-  static angularBibliotekSharedComponents = 'delte-komponenter';
+  static angularBibliotekSharedComponents = 'shared-components';
   static angularBibliotekReactiveForms = 'reactive-forms';
 
-  static cssBibliotek = 'css';
-  static cssBibliotekSidemaler = 'sidemaler';
-  static cssBibliotekModuler = 'moduler';
-  static cssBibliotekKomponenter = 'komponenter';
-  static cssBibliotekHjelpeklasser = 'hjelpeklasser';
-  static cssBibliotekFargerSkrift = 'farger-skrift';
-  static cssBibliotekIkoner = 'ikoner';
+  static cssLibrary = 'css';
+  static cssLibraryPageTemplates = 'page-templates';
+  static cssLibraryModules = 'modules';
+  static cssLibraryComponents = 'components';
+  static cssLibraryUtilityClasses = 'utility-classes';
+  static cssLibraryColorsFonts = 'colors-fonts';
+  static cssLibraryIcons = 'icons';
 }

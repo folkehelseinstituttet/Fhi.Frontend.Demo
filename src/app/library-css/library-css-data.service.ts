@@ -28,22 +28,22 @@ export class LibraryCssDataService {
 
   private getMockDataSetName(path: string): string {
     switch (path) {
-      case UrlPaths.cssBibliotekSidemaler:
+      case UrlPaths.cssLibraryPageTemplates:
         return 'CssSidemalerData';
 
-      case UrlPaths.cssBibliotekModuler:
+      case UrlPaths.cssLibraryModules:
         return 'CssModulesData';
 
-      case UrlPaths.cssBibliotekKomponenter:
+      case UrlPaths.cssLibraryComponents:
         return 'CssComponentsData';
 
-      case UrlPaths.cssBibliotekHjelpeklasser:
+      case UrlPaths.cssLibraryUtilityClasses:
         return 'CssHjelpeklasserData';
 
-      case UrlPaths.cssBibliotekFargerSkrift:
+      case UrlPaths.cssLibraryColorsFonts:
         return 'CssColorsFontsData';
 
-      case UrlPaths.cssBibliotekIkoner:
+      case UrlPaths.cssLibraryIcons:
         return 'CssIconsData';
 
       default:
