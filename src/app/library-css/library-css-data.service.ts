@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { UrlParamNames } from 'src/app/_felles/konstanter/url-param-names';
-import { UrlPaths } from 'src/app/_felles/konstanter/url-paths';
+import { UrlParamNames } from 'src/app/_common/constants/url-param-names';
+import { UrlPaths } from 'src/app/_common/constants/url-paths';
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
 @Injectable({
@@ -28,23 +28,23 @@ export class LibraryCssDataService {
 
   private getMockDataSetName(path: string): string {
     switch (path) {
-      case UrlPaths.cssBibliotekSidemaler:
+      case UrlPaths.cssLibraryPageTemplates:
         return 'CssSidemalerData';
 
-      case UrlPaths.cssBibliotekModuler:
-        return 'CssModulerData';
+      case UrlPaths.cssLibraryModules:
+        return 'CssModulesData';
 
-      case UrlPaths.cssBibliotekKomponenter:
-        return 'CssKomponenterData';
+      case UrlPaths.cssLibraryComponents:
+        return 'CssComponentsData';
 
-      case UrlPaths.cssBibliotekHjelpeklasser:
+      case UrlPaths.cssLibraryUtilityClasses:
         return 'CssHjelpeklasserData';
 
-      case UrlPaths.cssBibliotekFargerSkrift:
-        return 'CssFargerSkriftData';
+      case UrlPaths.cssLibraryColorsFonts:
+        return 'CssColorsFontsData';
 
-      case UrlPaths.cssBibliotekIkoner:
-        return 'CssIkonerData';
+      case UrlPaths.cssLibraryIcons:
+        return 'CssIconsData';
 
       default:
         throw new Error('LibraryCssDataService.getMockDataSetName(): no dataset matches this path: ' + path);

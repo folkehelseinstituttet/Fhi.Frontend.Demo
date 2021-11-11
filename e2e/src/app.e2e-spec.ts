@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('fhi-frontend-bibliotek-web-klient app is running!');
+    expect(page.getTitleText()).toEqual('fhi-frontend-library-web-client app is running!');
   });
 
   afterEach(async () => {

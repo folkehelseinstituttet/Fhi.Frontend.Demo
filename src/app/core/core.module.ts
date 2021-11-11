@@ -8,9 +8,9 @@ import localeNbExtra from '@angular/common/locales/extra/nb';
 registerLocaleData(localeNb, 'nb', localeNbExtra);
 
 import { NgbDatepickerI18n, NgbDateParserFormatter, NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { DatepickerI18nService } from 'src/app/_felles/services/datepicker-i18n.service';
-import { DatepickerParserFormatterService } from 'src/app/_felles/services/datepicker-parser-formatter.service';
-import { DatepickerDateAdapterService } from 'src/app/_felles/services/datepicker-date-adapter.service';
+import { DatepickerI18nService } from 'src/app/_common/services/datepicker-i18n.service';
+import { DatepickerParserFormatterService } from 'src/app/_common/services/datepicker-parser-formatter.service';
+import { DatepickerDateAdapterService } from 'src/app/_common/services/datepicker-date-adapter.service';
 
 // HttpClientInMemoryWebApiModule avskjærer HTTP-requester og returnerer simulerte server-responser.
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';

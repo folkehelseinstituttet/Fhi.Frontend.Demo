@@ -3,8 +3,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { MainMenuItem } from './main-menu-item.model';
-import { UrlPaths } from '../../_felles/konstanter/url-paths';
-import { MenuNames } from 'src/app/_felles/konstanter/menu-names';
+import { UrlPaths } from '../../_common/constants/url-paths';
+import { MenuNames } from 'src/app/_common/constants/menu-names';
 
 @Component({
   selector: 'app-main-menu',
@@ -19,8 +19,8 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MainMenuItem[] = [{
-    name: MenuNames.cssBibliotek,
-    routerLink: `/${UrlPaths.cssBibliotek}`
+    name: MenuNames.cssLibrary,
+    routerLink: `/${UrlPaths.cssLibrary}`
   }, {
     name: MenuNames.angularBibliotek,
     routerLink: `/${UrlPaths.angularBibliotek}`
