@@ -29,7 +29,7 @@ export class LibraryAngularDataService {
   private getMockDataSetName(path: string): string {
     switch (path) {
       case UrlPaths.angularBibliotekNgBootstrap:
-        return 'AngularNgbEksemplerData';
+        return 'AngularNgbExamplesData';
       case UrlPaths.angularBibliotekFontAwesome:
         return 'AngularFontAwesomeExamplesData';
       default:

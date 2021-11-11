@@ -32,19 +32,19 @@ export class LibraryCssDataService {
         return 'CssSidemalerData';
 
       case UrlPaths.cssBibliotekModuler:
-        return 'CssModulerData';
+        return 'CssModulesData';
 
       case UrlPaths.cssBibliotekKomponenter:
-        return 'CssKomponenterData';
+        return 'CssComponentsData';
 
       case UrlPaths.cssBibliotekHjelpeklasser:
         return 'CssHjelpeklasserData';
 
       case UrlPaths.cssBibliotekFargerSkrift:
-        return 'CssFargerSkriftData';
+        return 'CssColorsFontsData';
 
       case UrlPaths.cssBibliotekIkoner:
-        return 'CssIkonerData';
+        return 'CssIconsData';
 
       default:
         throw new Error('LibraryCssDataService.getMockDataSetName(): no dataset matches this path: ' + path);

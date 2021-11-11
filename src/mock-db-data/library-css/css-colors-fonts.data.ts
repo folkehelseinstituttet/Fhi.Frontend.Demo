@@ -6,7 +6,7 @@ import { FhiHeadings } from './colors-fonts/fhi-headings';
 import { FhiTypographicHierarchy } from './colors-fonts/fhi-typographic-hierarchy';
 import { FhiFontColors } from './colors-fonts/fhi-font-colors';
 
-export const CssFargerSkriftData: LibraryExample[] = [
+export const CssColorsFontsData: LibraryExample[] = [
   ...FhiColors,
   ...FhiColorsBootstrap,
   ...FhiHeadings,

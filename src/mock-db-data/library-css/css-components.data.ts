@@ -16,7 +16,7 @@ import { Pagination } from './components/pagination';
 import { TableSimple } from './components/table-simple';
 import { TableSortable } from './components/table-sortable';
 
-export const CssKomponenterData: LibraryExample[] = [
+export const CssComponentsData: LibraryExample[] = [
   ...Accordion,
   ...FhiBtnPrimary,
   ...FhiBtnSecondary,
