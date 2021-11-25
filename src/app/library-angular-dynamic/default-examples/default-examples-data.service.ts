@@ -40,7 +40,7 @@ export class DefaultExamplesDataService {
     switch (path) {
 
       case UrlPaths.angularBibliotekSharedComponents:
-        return 'AngularDelteKomponenterData';
+        return 'AngularSharedComponentsData';
 
       default:
         throw new Error('DefaultExamplesDataService.getMockDataSetName(): no dataset matches this path.');
