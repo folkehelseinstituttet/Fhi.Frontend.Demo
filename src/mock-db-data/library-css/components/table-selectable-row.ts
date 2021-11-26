@@ -7,14 +7,14 @@ export const TableSelectableRow: LibraryExample[] = [{
   title: 'Tabell - selekterbar rad',
   exampleHtml: `
 <div class="table-responsive mb-5">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">
           <input class="form-check-input" id="selectAllRows" type="checkbox" />
           <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen synkende basert på Fornavn">
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Fornavn">
           <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-up"></i>
         </th>
@@ -81,14 +81,14 @@ export const TableSelectableRow: LibraryExample[] = [{
 
 
 <div class="table-responsive">
-  <table class="table table-striped-columns table-bordered">
+  <table class="table table-striped table-striped-columns">
     <thead>
       <tr>
         <th scope="col">
           <input class="form-check-input" id="selectAllRows" type="checkbox" />
           <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen synkende basert på Fornavn">
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Fornavn">
           <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-up"></i>
         </th>
@@ -155,14 +155,14 @@ export const TableSelectableRow: LibraryExample[] = [{
 `,
 exampleMarkdown: `
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">
           <input class="form-check-input" id="selectAllRows" type="checkbox" />
           <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen synkende basert på Fornavn"><span class="text-decoration-underline">Fornavn</span><i class="icon-chevron-up"></i></th>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen synkende basert på Fornavn"><span class="text-decoration-underline">Fornavn</span><i class="icon-chevron-up"></i></th>
         <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Etternavn"><span class="text-decoration-underline">Etternavn</span><i class="icon-chevron-expand"></i></th>
         <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen stigende basert på Rolle"><span class="text-decoration-underline">Rolle</span><i class="icon-chevron-expand"></i></th>
       </tr>
@@ -191,9 +191,11 @@ exampleMarkdown: `
   </table>
 </div>
 
+
+<!-- with selected rows -->
 <div class="table-responsive">
   <!-- Once one or more rows are selected, the class table-striped is replaced with table-striped-columns -->
-  <table class="table table-striped-columns table-bordered">
+  <table class="table table-striped table-striped-columns">
     <thead>
       <tr>
         <th scope="col">

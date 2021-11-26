@@ -15,6 +15,7 @@ import { FormSelect } from './components/form-select';
 import { Pagination } from './components/pagination';
 import { TableSimple } from './components/table-simple';
 import { TableSortable } from './components/table-sortable';
+import { TableSelectableRow } from './components/table-selectable-row';
 
 export const CssComponentsData: LibraryExample[] = [
   ...Accordion,
@@ -31,7 +32,8 @@ export const CssComponentsData: LibraryExample[] = [
   ...FormSelect,
   ...Pagination,
   ...TableSimple,
-  ...TableSortable
+  ...TableSortable,
+  ...TableSelectableRow,
 ];
 
 
