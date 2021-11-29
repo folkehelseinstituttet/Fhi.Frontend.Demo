@@ -10,21 +10,21 @@ export const FhiFontColors: LibraryExample[] = [{
 -->
 <div class="row">
   <div class="col-sm p-3 pt-5">
-    <p><strong>Normaltekst</strong></p>
-    <p class="fhi-text-ancillary"><strong>Underordnet tekst</strong></p>
-    <p><a href="#">Lenketekst</a></p>
+    <p><strong>Regular text</strong></p>
+    <p class="fhi-text-ancillary"><strong>Ancillary text</strong></p>
+    <p><a href="#">Link text</a></p>
     <p class="text-muted"><strong>Disabled</strong></p>
     <p class="text-error"><strong>Error</strong></p>
   </div>
   <div class="col-sm p-3 pt-5 bg-dark">
-    <p class="text-white"><strong>Normaltekst</strong></p>
-    <p class="fhi-text-ancillary-inverse"><strong>Underordnet tekst</strong></p>
-    <p><a href="#" class="text-white">Lenketekst</a></p>
+    <p class="text-white"><strong>Regular text</strong></p>
+    <p class="fhi-text-ancillary-inverse"><strong>Ancillary text</strong></p>
+    <p><a href="#" class="text-white">Link text</a></p>
     <p class="fhi-text-disabled-inverse"><strong>Disabled</strong></p>
     <p class="fhi-text-error-inverse"><strong>Error</strong></p>
   </div>
   <div class="col-sm p-3 pt-5 bg-primary">
-    <p class="text-white"><strong>Normaltekst</strong></p>
+    <p class="text-white"><strong>Regular text</strong></p>
   </div>
 </div>`
 }];

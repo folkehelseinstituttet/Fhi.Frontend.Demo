@@ -16,13 +16,13 @@ const colorHtml = (hex: string, color: string) => {
 export const FhiColors: LibraryExample[] = [{
   title: 'Color palette',
   exampleHtml: `
-<p class="text-muted small mt-2 mb-0">Light greys</p>
+<p class="text-muted small mt-2 mb-0">Light grey</p>
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1')}
 ${colorHtml('#f7f6f5', 'fhi-grey-light-2')}
 ${colorHtml('#f0edeb', 'fhi-grey-light-3')}
 ${colorHtml('#e0dddb', 'fhi-grey-light-4')}
 
-<p class="text-muted small mt-2 mb-0">Greys</p>
+<p class="text-muted small mt-2 mb-0">Grey</p>
 ${colorHtml('#cfd0cb', 'fhi-grey-1')}
 ${colorHtml('#9f9f9f', 'fhi-grey-2')}
 ${colorHtml('#767676', 'fhi-grey-3')}
