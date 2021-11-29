@@ -1,19 +1,19 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const TableSimple: LibraryExample[] = [{
-  title: 'Tabell',
+  title: 'Table',
   exampleHtml: `
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Fornavn</th>
-        <th scope="col">Etternavn</th>
-        <th scope="col">Rolle</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Role</th>
       </tr>
     </thead>
 
@@ -22,7 +22,7 @@ export const TableSimple: LibraryExample[] = [{
         <th>1202</th>
         <td>Birger Henrik</td>
         <td>Tybring-Gjedde Olssen</td>
-        <td>Assistent</td>
+        <td>Assistant</td>
       </tr>
       <tr>
         <th>2003</th>
@@ -40,7 +40,7 @@ export const TableSimple: LibraryExample[] = [{
         <th>1337</th>
         <td>Marie</td>
         <td>Mul</td>
-        <td>Regissør</td>
+        <td>Director</td>
       </tr>
       <tr>
         <th>4211</th>
@@ -52,5 +52,5 @@ export const TableSimple: LibraryExample[] = [{
   </table>
 </div>
 `,
-  category: categoryNames.tabell
+  category: categoryNames.tables
 }];

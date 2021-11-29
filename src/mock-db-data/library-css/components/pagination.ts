@@ -1,16 +1,16 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const Pagination: LibraryExample[] = [{
-  title: 'Paginasjon',
+  title: 'Pagination',
   exampleHtml: `
 <nav aria-label="Sidenavigasjon">
   <ul class="pagination">
     <li class="page-item disabled">
       <a class="page-link" href="#">
-        <span class="visually-hidden">Forrige</span>
+        <span class="visually-hidden">Previous</span>
         &laquo;
       </a>
     </li>
@@ -25,12 +25,12 @@ export const Pagination: LibraryExample[] = [{
     </li>
     <li class="page-item">
       <a class="page-link" href="#">
-        <span class="visually-hidden">Neste</span>
+        <span class="visually-hidden">Next</span>
         &raquo;
       </a>
     </li>
   </ul>
 </nav>
 `,
-  category: categoryNames.paginasjon
+  category: categoryNames.pagination
 }];

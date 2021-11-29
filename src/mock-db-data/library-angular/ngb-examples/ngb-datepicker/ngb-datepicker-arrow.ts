@@ -1,5 +1,5 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
-import { NgbDatepickerDocumentation } from './ngb-datepicker-dockumentation';
+import { NgbDatepickerDocumentation } from './ngb-datepicker-documentation';
 
 export const NgbDatepickerArrow: LibraryExample[] = [{
   title: 'Datepicker (arrow)',

@@ -1,10 +1,10 @@
 export class LibraryMenuLevel2Categories {
   static ukategorisert = 'Ukategorisert';
-  static cssKomponentCategories = {
-    knapper: 'Knapper',
-    paginasjon: 'Paginasjon',
-    skjema: 'Skjema',
-    strukturertInnhold: 'Strukturert innhold',
-    tabell: 'Tabell'
+  static cssComponentCategories = {
+    buttons: 'Buttons',
+    pagination: 'Pagination',
+    forms: 'Form elements',
+    structuredContent: 'Structured content',
+    tables: 'Tables'
   };
 }

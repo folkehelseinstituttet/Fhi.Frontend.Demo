@@ -1,5 +1,5 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
-import { FhiBtnShortcutDocumentation } from './fhi-btn-shortcut-dockumentation';
+import { FhiBtnShortcutDocumentation } from './fhi-btn-shortcut-documentation';
 
 export const FhiBtnShortcut: LibraryExample[] = [{
   title: 'Snarveiknapp',

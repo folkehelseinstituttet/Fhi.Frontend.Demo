@@ -1,20 +1,20 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FormInput: LibraryExample[] = [{
-  title: 'Tekstfelt',
+  title: 'Text input',
   exampleHtml: `
-<label for="FormInput" class="form-label">Tekstfelt</label>
-<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">
+<label for="FormInput" class="form-label">Text input</label>
+<input type="text" id="FormInput" class="form-control" placeholder="Regular text input">
 `,
 exampleMarkdown: `
-<!-- ytre div for gruppering, men ikke absolutt nødvendig -->
+<!-- optional outer div for grouping -->
 <div>
-  <label for="FormInput" class="form-label">Tekstfelt</label>
-  <input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">
+  <label for="FormInput" class="form-label">Text input</label>
+  <input type="text" id="FormInput" class="form-control" placeholder="Regular text input">
 </div>
 `,
-  category: categoryNames.skjema
+  category: categoryNames.forms
 }];

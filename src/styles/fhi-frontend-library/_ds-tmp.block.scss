@@ -74,7 +74,7 @@
         height: $fhi-space-6;
     }
 
-    // Lyse gråtoner
+    // Light greys
     &__color--fhi-grey-light-1 {
         background-color: $fhi-grey-light-1;
     }
@@ -88,7 +88,7 @@
         background-color: $fhi-grey-light-4;
     }
 
-    // Gråtoner
+    // Greys
     &__color--fhi-grey-1 {
         background-color: $fhi-grey-1;
     }
@@ -107,7 +107,7 @@
         background-color: $fhi-charcoal-1;
     }
 
-    // Blågrått
+    // Blue/Grey
     &__color--fhi-blue-grey-1 {
         background-color: $fhi-blue-grey-1;
     }
@@ -127,7 +127,7 @@
         background-color: $fhi-blue-grey-6;
     }
 
-    // Lys blå
+    // Light blue
     &__color--fhi-blue-light-1 {
         background-color: $fhi-blue-light-1;
     }
@@ -135,12 +135,12 @@
         background-color: $fhi-blue-light-2;
     }
 
-    // Blå
+    // Blue
     &__color--fhi-blue-1 {
         background-color: $fhi-blue-1;
     }
 
-    // Mørk blå
+    // Dark blue
     &__color--fhi-blue-dark-1 {
         background-color: $fhi-blue-dark-1;
     }
@@ -151,7 +151,7 @@
         background-color: $fhi-blue-dark-3;
     }
 
-    // Grønt
+    // Green
     &__color--fhi-green-1 {
         background-color: $fhi-green-1;
     }
@@ -159,12 +159,12 @@
         background-color: $fhi-green-2;
     }
 
-    // Gult
+    // Yellow
     &__color--fhi-yellow-1 {
         background-color: $fhi-yellow-1;
     }
 
-    // Oransje
+    // Orange
     &__color--fhi-orange-2 {
         background-color: $fhi-orange-2;
     }
@@ -172,7 +172,7 @@
         background-color: $fhi-orange-1;
     }
 
-    // Rødt
+    // Red
     &__color--fhi-red-1 {
         background-color: $fhi-red-1;
     }
@@ -183,7 +183,7 @@
         background-color: $fhi-red-3;
     }
 
-    // Mørk rosa
+    // Dark pink
     &__color--fhi-pink-dark-1 {
         background-color: $fhi-pink-dark-1;
     }
@@ -194,7 +194,7 @@
         background-color: $fhi-pink-dark-3;
     }
 
-    // Lys rosa
+    // Light pink
     &__color--fhi-pink-light-1 {
         background-color: $fhi-pink-light-1;
     }
@@ -202,8 +202,6 @@
         background-color: $fhi-pink-light-2;
     }
     &__color--fhi-pink-light-3 {
-        // TODO: update from Fhi.Style
-        // background-color: $fhi-pink-light-3;
-        background-color: $fhi-pink-light-2;
+        background-color: $fhi-pink-light-3;
     }
 }

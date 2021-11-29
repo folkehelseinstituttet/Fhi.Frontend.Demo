@@ -2,13 +2,13 @@
   <ng-container *ngIf="categories.length > 1; else allExamples">
     <ul ngbNav #exampleNav="ngbNav" [(activeId)]="activeNavTab" [animation]="false" class="nav-pills mb-6">
       <li [ngbNavItem]="0">
-        <a ngbNavLink>Alle</a>
+        <a ngbNavLink>All</a>
         <ng-template ngbNavContent>
           <ng-container *ngTemplateOutlet="allExamples"></ng-container>
         </ng-template>
       </li>
       <li [ngbNavItem]="1">
-        <a ngbNavLink>Kategorier</a>
+        <a ngbNavLink>Categories</a>
         <ng-template ngbNavContent>
           <ng-container *ngTemplateOutlet="examplesByCategory"></ng-container>
         </ng-template>
@@ -21,7 +21,7 @@
 
 <ng-template #allExamples>
   <div class="mb-3">
-    <input class="form-control form-control-lg" type="text" [(ngModel)]="libraryExampleFilter.title" placeholder="Søk" autofocus>
+    <input class="form-control form-control-lg" type="text" [(ngModel)]="libraryExampleFilter.title" placeholder="Search" autofocus>
     <p class="p-3" *ngIf="(menuItems | filterBy: libraryExampleFilter).length === 0">
       Søket gir ingen treff <br><br>
     </p>

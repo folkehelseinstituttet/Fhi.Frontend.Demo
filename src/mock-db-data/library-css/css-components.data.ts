@@ -9,7 +9,7 @@ import { FormInput } from './components/form-input';
 import { FormTextarea } from './components/form-textarea';
 import { FormRadio } from './components/form-radio';
 import { FormSwitch } from './components/form-switch'
-import { FormCheckbox } from './components/form-checkbox';
+import { FormChecks } from './components/form-checkbox';
 import { FormInputValidation } from './components/form-input-valdation';
 import { FormSelect } from './components/form-select';
 import { Pagination } from './components/pagination';
@@ -22,7 +22,7 @@ export const CssComponentsData: LibraryExample[] = [
   ...FhiBtnSecondary,
   ...FhiBtnFlat,
   // ...FhiBtnShortcut,
-  ...FormCheckbox,
+  ...FormChecks,
   ...FormRadio,
   ...FormSwitch,
   ...FormInput,
