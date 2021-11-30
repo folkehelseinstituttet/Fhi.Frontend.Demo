@@ -1,9 +1,9 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 
-import { FhiBtnPrimary } from './page-templates/fhi-btn-primary';
+import { IconsSet } from './icons/icons-set';
 
 export const CssIconsData: LibraryExample[] = [
-  ...FhiBtnPrimary
+  ...IconsSet
 ];
 
 
