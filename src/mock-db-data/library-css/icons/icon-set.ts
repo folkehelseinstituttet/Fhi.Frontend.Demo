@@ -17,7 +17,7 @@ export const IconsSet: LibraryExample[] = [{
   <!-- <i class="icon-cards" title="icon-cards"></i> -->
   <!-- <i class="icon-check-circle-regular" title="icon-check-circle-regular"></i> -->
   <i class="icon-chevron-down" title="icon-chevron-down"></i>
-  <i class="icon-chevron-down-fat" title="icon-chevron-down-fat"></i>
+  <!-- <i class="icon-chevron-down-fat" title="icon-chevron-down-fat"></i> -->
   <i class="icon-chevron-expand" title="icon-chevron-expand"></i>
   <i class="icon-chevron-up" title="icon-chevron-up"></i>
   <!-- <i class="icon-circle-regular" title="icon-circle-regular"></i> -->
@@ -50,7 +50,7 @@ export const IconsSet: LibraryExample[] = [{
 <!-- <i class="icon-cards"></i> -->
 <!-- <i class="icon-check-circle-regular"></i> -->
 <i class="icon-chevron-down"></i>
-<i class="icon-chevron-down-fat"></i>
+<!-- <i class="icon-chevron-down-fat"></i> -->
 <i class="icon-chevron-expand"></i>
 <i class="icon-chevron-up"></i>
 <!-- <i class="icon-circle-regular"></i> -->
