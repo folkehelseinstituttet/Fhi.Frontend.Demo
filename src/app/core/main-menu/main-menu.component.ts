@@ -12,7 +12,7 @@ import { MenuNames } from 'src/app/_common/constants/menu-names';
 })
 export class MainMenuComponent {
 
-  @Input() prosjektnavn: string;
+  @Input() projectName: string;
 
   faBars = faBars;
   faTimes = faTimes;

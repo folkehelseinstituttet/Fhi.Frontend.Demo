@@ -1,10 +1,10 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FormSwitch: LibraryExample[] = [{
-  title: 'Switchknapp',
+  title: 'Switches',
   exampleHtml: `
 <div class="form-check form-switch mb-2">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
@@ -39,6 +39,6 @@ export const FormSwitch: LibraryExample[] = [{
   </label>
 </div>
 `,
-  category: categoryNames.skjema
+  category: categoryNames.forms
 }];
 

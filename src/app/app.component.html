@@ -8,9 +8,9 @@
             <img src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI-logo">
           </a>
           <div class="fhi-app__project">
-            <span class="fhi-app__project-name">{{ prosjektnavn }}</span>
+            <span class="fhi-app__project-name">{{ projectName }}</span>
             <span class="fhi-app__project-description">
-              &nbsp;&ndash;&nbsp;{{ prosjektbeskrivelse }}
+              &nbsp;&ndash;&nbsp;{{ projectDescription }}
             </span>
           </div>
         </div>
@@ -19,7 +19,7 @@
 
     <div class="fhi-app__main-menu">
       <div class="container fhi-app__main-menu-container">
-        <app-main-menu [prosjektnavn]="prosjektnavn"></app-main-menu>
+        <app-main-menu [projectName]="projectName"></app-main-menu>
       </div>
     </div>
 

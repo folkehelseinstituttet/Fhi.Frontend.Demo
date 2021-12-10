@@ -17,7 +17,7 @@ const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?
 };
 
 export const FhiColorsBootstrap: LibraryExample[] = [{
-  title: 'Fargepalett (Bootstrap)',
+  title: 'Color palette (Bootstrap)',
   exampleHtml: `
 ${colorHtml('#d14641', 'fhi-red-2', 'Primary')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2', 'Secondary', 'black')}

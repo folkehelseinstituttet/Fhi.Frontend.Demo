@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   private subscription = new Subscription();
 
   // faInfoCircle = faInfoCircle;
-  prosjektnavn = 'Frontend-bibliotek';
-  prosjektbeskrivelse = 'Gjenbrukbar CSS og Angular-kode';
+  projectName = 'Frontend library';
+  projectDescription = 'Reusable CSS';
   isMobile: boolean;
 
 

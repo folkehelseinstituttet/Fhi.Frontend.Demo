@@ -2,25 +2,25 @@ export class MenuNames {
 
   // Hovedmeny
   static angularBibliotek = 'Angular-bibliotek';
-  static cssLibrary = 'CSS-bibliotek';
+  static cssLibrary = 'CSS library';
 
-  // Angular-meny (nivå 1)
+  // Angular-meny (level 1)
   static angularBibliotekNgBootstrap = 'NgBoostrap';
   static angularBibliotekFontAwesome = 'Font Awesome';
   static angularBibliotekSharedComponents = 'Delte komponenter';
   static angularBibliotekReactiveForms = 'Reactive forms';
 
-  // Angular-meny (nivå 2)
+  // Angular-meny (level 2)
   static angularBibliotekAlleSharedComponents = 'Alle delte komponenter';
 
-  // Css-meny (nivå 1)
-  static cssLibraryPageTemplates = 'Sidemaler';
-  static cssLibraryModules = 'Moduler';
-  static cssLibraryComponents = 'Komponenter';
-  static cssLibraryUtilityClasses = 'Hjelpeklasser';
-  static cssLibraryColorsFonts = 'Farger, skrift';
-  static cssLibraryIcons = 'Ikoner';
+  // Css-meny (level 1)
+  static cssLibraryPageTemplates = 'Page templates';
+  static cssLibraryModules = 'Modules';
+  static cssLibraryComponents = 'Components';
+  static cssLibraryUtilityClasses = 'Utility classes';
+  static cssLibraryColorsFonts = 'Colors, fonts';
+  static cssLibraryIcons = 'Icons';
 
-  // Css-meny (nivå 2)
-  static cssLibraryAlle = 'Alle komponenter';
+  // Css-meny (level 2)
+  static cssLibraryAll = 'All components';
 }

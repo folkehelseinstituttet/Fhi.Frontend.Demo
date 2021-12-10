@@ -55,7 +55,7 @@ export class LibraryExampleDetailComponent implements OnInit {
 
     navTabs[n] = {
       id: n++,
-      title: 'Eksempel',
+      title: 'Example',
       content: this.exampleMarkdown
     };
     if (this.documentationMarkdown !== undefined) {

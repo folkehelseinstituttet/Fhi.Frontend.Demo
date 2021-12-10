@@ -1,7 +1,7 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssKomponentCategories;
+const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FhiBtnShortcut: LibraryExample[] = [{
   title: 'Snarveiknapp',
@@ -14,5 +14,5 @@ For "Snarveiknapp" se
   exampleMarkdown: `
 <!-- NA -->
 `,
-  category: categoryNames.knapper
+  category: categoryNames.buttons
 }];
