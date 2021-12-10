@@ -99,5 +99,5 @@ export const TableSelectableRow: LibraryExample[] = [{
   </table>
 </div>
 `,
-  category: categoryNames.table
+  category: categoryNames.tables
 }];
