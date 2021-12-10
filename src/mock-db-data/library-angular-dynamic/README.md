@@ -29,7 +29,7 @@ I denne seksjonen beskrives fremgangsmåten for hvordan en kan vise frem en gene
         import { HelloWorldLibraryComponent } from './delte-komponenter/hello-world.component';
         import { NavnPåKomponentLibraryExample } from './delte-komponenter/navn-på-komponent.component.ts';
 
-        export const AngularDelteKomponenterData: LibraryExample[] = [
+        export const AngularSharedComponentsData: LibraryExample[] = [
             ...HelloWorldLibraryComponent,
             ...NavnPåKomponentLibraryExample
         ];
