@@ -19,8 +19,8 @@ export class LibraryCssMenu {
   // }, {
     name: MenuNames.cssLibraryColorsFonts,
     routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryColorsFonts}`
-  // }, {
-  //   name: MenuNames.cssLibraryIcons,
-  //   routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryIcons}`
+  }, {
+    name: MenuNames.cssLibraryIcons,
+    routerLink: `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryIcons}`
   }];
 }
