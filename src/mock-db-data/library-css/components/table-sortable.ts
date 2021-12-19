@@ -7,7 +7,7 @@ export const TableSortable: LibraryExample[] = [{
   title: 'Table - sortable',
   exampleHtml: `
 <div class="table-responsive mb-5">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered" data-sort-column="1">
     <thead>
       <tr>
         <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
@@ -53,7 +53,7 @@ export const TableSortable: LibraryExample[] = [{
 </div>
 
 <div class="table-responsive pt-5">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered" data-sort-column="3">
     <thead>
       <tr>
         <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
