@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 
 import { LibraryExample } from '../models/library-example.model';
 import { NavTab } from './nav-tab.model';
@@ -7,7 +9,12 @@ import { NavTab } from './nav-tab.model';
   selector: 'app-library-example-detail',
   templateUrl: './library-example-detail.component.html'
 })
-export class LibraryExampleDetailComponent implements OnInit {
+export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private viewportScroller: ViewportScroller
+  ) { }
 
   @Input() libraryExample: LibraryExample;
 
@@ -22,6 +29,12 @@ export class LibraryExampleDetailComponent implements OnInit {
   ngOnInit() {
     this.updateExampleDataFromInput(this.libraryExample);
     this.navTabs = this.createNavTabsArray();
+  }
+
+  ngAfterViewInit() {
+    if (this.activatedRoute.snapshot.fragment === this.id) {
+      this.viewportScroller.scrollToAnchor(this.id);
+    }
   }
 
   private updateExampleDataFromInput(example: LibraryExample) {
