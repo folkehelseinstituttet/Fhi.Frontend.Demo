@@ -45,7 +45,7 @@ pre[class*="language-"] {
 
 code[class*="language-html"],
 pre[class*="language-html"] {
-    color: $fhi-grey-2;
+    color: darken($fhi-grey-2, 18%);
 
     .token.property,
     .token.tag,
@@ -63,25 +63,25 @@ pre[class*="language-html"] {
     .token.builtin,
     .token.url,
     .token.inserted {
-        color: $fhi-pink-dark-3;
+        color: adjust-hue($fhi-pink-dark-3, -10deg);
     }
     .token.atrule,
     .token.attr-value,
     .token.keyword {
-        color: lighten($fhi-red-1, 10%);
+        color: darken($fhi-red-1, 25%);
     }
+    .token.entity,
     .token.punctuation {
-        color: $fhi-grey-3;
+        color: darken($fhi-grey-3, 2%);
     }
     .token.entity {
-        color: $fhi-grey-3;
         background: $fhi-bg-color-3;
     }
     .token.comment,
     .token.prolog,
     .token.doctype,
     .token.cdata {
-        color: $fhi-grey-1;
+        color: darken($fhi-grey-1, 38%);
     }
 }
 
