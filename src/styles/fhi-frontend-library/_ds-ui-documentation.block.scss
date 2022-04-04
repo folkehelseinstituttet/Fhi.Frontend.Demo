@@ -37,8 +37,8 @@
         padding: $fhi-space-5 ($fhi-px * 15);
 
         pre[class*="language-"] {
-            padding: $fhi-space-3;
-            margin: 0 0 $fhi-space-3;
+            background-color: $fhi-white;
+            margin: 0;
         }
         :not(pre) > code {
             background-color: $fhi-bg-color-4;

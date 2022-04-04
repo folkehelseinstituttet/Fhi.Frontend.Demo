@@ -6,20 +6,25 @@
       <li *ngFor="let navTab of navTabs;" [ngbNavItem]="navTab.id">
         <a ngbNavLink>{{ navTab.title }}</a>
 
-        <ng-container *ngIf="navTab.id === 0">
+        <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
               <div *ngIf="exampleHtml" [innerHtml]="exampleHtml | safe: 'html'"></div>
               <ng-content select="[library-example-detail.example-component]"></ng-content>
             </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="navTab.title === 'Code'">
+          <ng-template ngbNavContent>
             <app-library-copy-button [contentReferenceToCopy]="exampleMarkdown"></app-library-copy-button>
-            <div class="ds-ui-documentation__markdown">
+            <div class="ds-ui-documentation__example">
               <markdown [data]="exampleMarkdown | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="navTab.id === 1">
+        <ng-container *ngIf="navTab.title === 'Documentation'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
               <markdown [data]="navTab.content"></markdown>
