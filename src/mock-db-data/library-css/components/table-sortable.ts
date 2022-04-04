@@ -100,7 +100,8 @@ export const TableSortable: LibraryExample[] = [{
 `,
   exampleMarkdown: `
 <div class="table-responsive">
-  <table class="table table-striped table-bordered">
+  <!-- Note the [data-sort-column] attribute that sets the currently sorted column -->
+  <table class="table table-striped table-bordered" data-sort-column="3">
     <thead>
       <tr>
         <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
