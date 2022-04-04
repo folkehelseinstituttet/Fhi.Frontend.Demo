@@ -100,7 +100,7 @@ export const TableSortable: LibraryExample[] = [{
 `,
   exampleMarkdown: `
 <div class="table-responsive">
-  <!-- Note the [data-sort-column] attribute that sets the currently sorted column -->
+  <!-- Note the [data-sort-column] attribute that is used to set the currently sorted column style -->
   <table class="table table-striped table-bordered" data-sort-column="3">
     <thead>
       <tr>
