@@ -2,6 +2,7 @@ export class MenuNames {
 
   // Hovedmeny
   static cssLibrary = 'CSS library';
+  static ngBootstrapLibrary = 'ngBootstrap ++';
 
   // Css-meny (level 1)
   static cssLibraryPageTemplates = 'Page templates';

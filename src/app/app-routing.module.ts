@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UrlPaths } from './_common/constants/url-paths';
+import { LibraryNgBootstrapComponent } from './library-ng-bootstrap/library-ng-bootstrap.component'
 
 const defaultPath = `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryComponents}`;
 
@@ -12,6 +13,9 @@ const routes: Routes = [{
 }, {
   path: UrlPaths.cssLibrary,
   loadChildren: () => import('./library-css/library-css.module').then(m => m.LibraryCssModule)
+}, {
+  path: UrlPaths.ngBootstrapLibrary,
+  component: LibraryNgBootstrapComponent
 }, {
   path: '**',
   redirectTo: defaultPath

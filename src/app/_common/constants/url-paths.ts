@@ -6,4 +6,6 @@ export class UrlPaths {
   static cssLibraryUtilityClasses = 'utility-classes';
   static cssLibraryColorsFonts = 'colors-fonts';
   static cssLibraryIcons = 'icons';
+
+  static ngBootstrapLibrary = 'ng-bootstrap';
 }
