@@ -71,10 +71,15 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
       title: 'Example',
       content: this.exampleMarkdown
     };
+    navTabs[n] = {
+      id: n++,
+      title: 'Code',
+      content: 'this.exampleHtml'
+    };
     if (this.documentationMarkdown !== undefined) {
       navTabs[n] = {
         id: n++,
-        title: 'Dokumentasjon',
+        title: 'Documentation',
         content: this.documentationMarkdown
       };
     }
