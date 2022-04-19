@@ -13,9 +13,6 @@ const routes: Routes = [{
   path: UrlPaths.cssLibrary,
   loadChildren: () => import('./library-css/library-css.module').then(m => m.LibraryCssModule)
 }, {
-  path: UrlPaths.angularBibliotek,
-  loadChildren: () => import('./library-angular/library-angular.module').then(m => m.LibraryAngularModule)
-}, {
   path: '**',
   redirectTo: defaultPath
 }];
