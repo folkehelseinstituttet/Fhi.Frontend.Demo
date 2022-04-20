@@ -6,15 +6,21 @@ import { SharedModule } from './shared/shared.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { LibraryNgBootstrapComponent } from './library-ng-bootstrap/library-ng-bootstrap.component';
+import { NgbAccordionComponent } from '../mock-db-data/library-ng-bootstrap/ng-bootstrap/ngb-accordion.component';
 
 @NgModule({
-  declarations: [AppComponent, LibraryNgBootstrapComponent],
+  declarations: [
+    AppComponent,
+    LibraryNgBootstrapComponent,
+    NgbAccordionComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })
