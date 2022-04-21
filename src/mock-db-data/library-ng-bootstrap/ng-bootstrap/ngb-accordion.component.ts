@@ -8,7 +8,6 @@ export class NgbAccordionComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
