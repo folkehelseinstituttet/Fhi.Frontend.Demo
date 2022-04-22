@@ -6,49 +6,74 @@
       <ng-container ngbNavItem>
         <a ngbNavLink>Example</a>
         <ng-template ngbNavContent>
+
+          <div class="pb-5 mb-5">
+            <ngb-accordion #acc="ngbAccordion" class="accordion-flush" activeIds="ngb-panel-0">
+              <ngb-panel title="Item #1">
+                <ng-template ngbPanelContent>
+                  <p>Item #1 content</p>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel title="Item #2">
+                <ng-template ngbPanelContent>
+                  <p>Item #2 content</p>
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel title="Item #3">
+                <ng-template ngbPanelContent>
+                  <p>Item #3 content</p>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+
           <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-            <ngb-panel title="Simple">
+            <ngb-panel title="Item #1">
               <ng-template ngbPanelContent>
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-                aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                labore sustainable VHS.
+                <p>Item #1 content</p>
               </ng-template>
             </ngb-panel>
-            <ngb-panel>
-              <ng-template ngbPanelTitle>
-                <span>&#9733; <b>Fancy</b> title &#9733;</span>
-              </ng-template>
+            <ngb-panel title="Item #2">
               <ng-template ngbPanelContent>
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-                aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                labore sustainable VHS.
+                <p>Item #2 content</p>
               </ng-template>
             </ngb-panel>
-            <ngb-panel title="Accordion Item #3">
+            <ngb-panel title="Item #3">
               <ng-template ngbPanelContent>
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-                aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-                sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-                occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-                labore sustainable VHS.
+                <p>Item #3 content</p>
               </ng-template>
             </ngb-panel>
           </ngb-accordion>
+
         </ng-template>
       </ng-container>
+
       <ng-container ngbNavItem>
         <a ngbNavLink>Code</a>
         <ng-template ngbNavContent>
           
+<pre><code class="language-html">&lt;ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"&gt;
+  &lt;ngb-panel title="Item #1"&gt;
+    &lt;ng-template ngbPanelContent&gt;
+      &lt;p&gt;Item #1 content&lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/ngb-panel&gt;
+  &lt;ngb-panel title="Item #2"&gt;
+    &lt;ng-template ngbPanelContent&gt;
+      &lt;p&gt;Item #2 content&lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/ngb-panel&gt;
+  &lt;ngb-panel title="Item #3"&gt;
+    &lt;ng-template ngbPanelContent&gt;
+      &lt;p&gt;Item #3 content&lt;/p&gt;
+    &lt;/ng-template&gt;
+  &lt;/ngb-panel&gt;
+&lt;/ngb-accordion&gt;
+</code></pre>
+
         </ng-template>
       </ng-container>
+
       <ng-container ngbNavItem>
         <a ngbNavLink>Documentation</a>
         <ng-template ngbNavContent>
