@@ -19,7 +19,7 @@ export class LibraryCssDataService {
     let serverUrl: string;
 
     if (category) {
-      serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}?${UrlParamNames.komponentCategory}=${category}`;
+      serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}?${UrlParamNames.componentCategory}=${category}`;
     } else {
       serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
     }

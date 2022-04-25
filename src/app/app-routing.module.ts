@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UrlPaths } from './_common/constants/url-paths';
-import { LibraryNgBootstrapComponent } from './library-ng-bootstrap/library-ng-bootstrap.component'
+import { LibraryNgBootstrapComponent } from './library-ng-bootstrap/library-ng-bootstrap.component';
+import { NgBootsrapFhiCustomComponentsComponent } from './library-ng-bootstrap/fhi-custom.component';
 
 const defaultPath = `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryComponents}`;
 
@@ -16,6 +17,9 @@ const routes: Routes = [{
 }, {
   path: UrlPaths.ngBootstrapLibrary,
   component: LibraryNgBootstrapComponent
+}, {
+  path: UrlPaths.ngBootstrapLibraryFHICustom,
+  component: NgBootsrapFhiCustomComponentsComponent
 }, {
   path: '**',
   redirectTo: defaultPath

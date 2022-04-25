@@ -1,0 +1,72 @@
+<div class="container">
+    <ul class="nav mb-7 nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/ng-bootstrap">ngBootstrap</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" routerLink="/ng-bootstrap/fhi-custom">FHI Custom</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-md-4 col-lg-3 col-xxl-3">
+            <div class="ds-left-menu">
+                <div class="tab-pane show active">
+                    <ul class="nav flex-column d-inline-block mb-7 pb-2">
+                        <li class="nav-item">
+                            <a [routerLink]="'.'" fragment="table-sortable" class="nav-link">Table - sortable</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-lg-9 col-xxl-7">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered" data-sort-column="1">
+                  <thead>
+                    <tr>
+                      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
+                        <span class="text-decoration-underline">ID</span>
+                        <i class="icon-chevron-expand"></i>
+                      </th>
+                      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on First name, descending">
+                        <span class="text-decoration-underline">First name</span>
+                        <i class="icon-chevron-up"></i>
+                      </th>
+                      <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort table based on Last name">
+                        <span class="text-decoration-underline">Last name</span>
+                        <i class="icon-chevron-expand"></i>
+                      </th>
+                      <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on Role">
+                        <span class="text-decoration-underline">Role</span>
+                        <i class="icon-chevron-expand"></i>
+                      </th>
+                    </tr>
+                  </thead>
+              
+                  <tbody>
+                    <tr>
+                      <th>1009</th>
+                      <td>Elida</td>
+                      <td>Egge</td>
+                      <td>Producer</td>
+                    </tr>
+                    <tr>
+                      <th>1202</th>
+                      <td>Henrik</td>
+                      <td>Olsen</td>
+                      <td>Assistant</td>
+                    </tr>
+                    <tr>
+                      <th>2003</th>
+                      <td>Sigurd</td>
+                      <td>Bråten</td>
+                      <td>Designer</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+</div>

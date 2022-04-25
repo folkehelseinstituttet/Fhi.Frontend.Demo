@@ -8,8 +8,8 @@
         <ng-template ngbNavContent>
 
           <div class="pb-5 mb-5">
-            <ngb-accordion #acc="ngbAccordion" class="accordion-flush" activeIds="ngb-panel-0">
-              <ngb-panel title="Item #1">
+            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+              <ngb-panel id="ngb-panel-0" title="Item #1">
                 <ng-template ngbPanelContent>
                   <p>Item #1 content</p>
                 </ng-template>
@@ -27,18 +27,19 @@
             </ngb-accordion>
           </div>
 
-          <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-            <ngb-panel title="Item #1">
+          <p>Only one panel open at a time, with the first one open in this case:</p>
+          <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" class="accordion-flush" activeIds="custom-id-0">
+            <ngb-panel id="custom-id-0" title="Item #1">
               <ng-template ngbPanelContent>
                 <p>Item #1 content</p>
               </ng-template>
             </ngb-panel>
-            <ngb-panel title="Item #2">
+            <ngb-panel id="custom-id-1" title="Item #2">
               <ng-template ngbPanelContent>
                 <p>Item #2 content</p>
               </ng-template>
             </ngb-panel>
-            <ngb-panel title="Item #3">
+            <ngb-panel id="custom-id-2" title="Item #3">
               <ng-template ngbPanelContent>
                 <p>Item #3 content</p>
               </ng-template>
@@ -52,24 +53,7 @@
         <a ngbNavLink>Code</a>
         <ng-template ngbNavContent>
           
-<pre><code class="language-html">&lt;ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0"&gt;
-  &lt;ngb-panel title="Item #1"&gt;
-    &lt;ng-template ngbPanelContent&gt;
-      &lt;p&gt;Item #1 content&lt;/p&gt;
-    &lt;/ng-template&gt;
-  &lt;/ngb-panel&gt;
-  &lt;ngb-panel title="Item #2"&gt;
-    &lt;ng-template ngbPanelContent&gt;
-      &lt;p&gt;Item #2 content&lt;/p&gt;
-    &lt;/ng-template&gt;
-  &lt;/ngb-panel&gt;
-  &lt;ngb-panel title="Item #3"&gt;
-    &lt;ng-template ngbPanelContent&gt;
-      &lt;p&gt;Item #3 content&lt;/p&gt;
-    &lt;/ng-template&gt;
-  &lt;/ngb-panel&gt;
-&lt;/ngb-accordion&gt;
-</code></pre>
+          <markdown [data]="code | language : 'html'"></markdown>
 
         </ng-template>
       </ng-container>
@@ -78,6 +62,18 @@
         <a ngbNavLink>Documentation</a>
         <ng-template ngbNavContent>
           
+          <h3 class="ds-ui-documentation__title">Options</h3>
+
+          <p>To open the first item on load, add <code>activeIds="ngb-panel-0"</code>. Use comma separation to open multiple items.</p>
+
+          <p>Note that if multiple accordions exists on one page, the default id's of panels is incremented across the accordions, so it is recommended to override with custom id's.</p>
+
+          <p>To allow only one item to be open at a time, add <code>[closeOthers]="true"</code></p>
+
+          <h3 class="ds-ui-documentation__title">Styling</h3>
+
+          <p><code>class="accordion-flush"</code> is the main visually preferred variant for FHI.</p>
+
         </ng-template>
       </ng-container>
     </nav>

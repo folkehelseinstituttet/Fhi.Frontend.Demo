@@ -8,4 +8,5 @@ export class UrlPaths {
   static cssLibraryIcons = 'icons';
 
   static ngBootstrapLibrary = 'ng-bootstrap';
+  static ngBootstrapLibraryFHICustom = 'ng-bootstrap/fhi-custom';
 }
