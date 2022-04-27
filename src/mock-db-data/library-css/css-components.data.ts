@@ -4,6 +4,7 @@ import { Accordion } from './components/accordion';
 import { FhiBtnPrimary } from './components/fhi-btn-primary';
 import { FhiBtnSecondary } from './components/fhi-btn-secondary';
 import { FhiBtnFlat } from './components/fhi-btn-flat';
+import { FhiBtnRounded } from './components/fhi-btn-rounded';
 // import { FhiBtnShortcut } from './components/fhi-btn-shorcut';
 import { FormInput } from './components/form-input';
 import { FormTextarea } from './components/form-textarea';
@@ -20,6 +21,7 @@ import { TableSelectableRow } from './components/table-selectable-row';
 export const CssComponentsData: LibraryExample[] = [
   ...Accordion,
   ...FhiBtnPrimary,
+  ...FhiBtnRounded,
   ...FhiBtnSecondary,
   ...FhiBtnFlat,
   // ...FhiBtnShortcut,
