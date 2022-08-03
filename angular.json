@@ -129,6 +129,6 @@
           }
         }
       }
-    }},
-  "defaultProject": "fhi-frontend-library-web-client"
+    }
+  }
 }
