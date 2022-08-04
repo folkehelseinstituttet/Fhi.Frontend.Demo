@@ -6,53 +6,50 @@ const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 export const Toast: LibraryExample[] = [{
   title: 'Toast',
   exampleHtml: `
-<div class="position-relative" style="border:2px solid #cfd0cb; background-color:#eee; height:250px;">
+<div class="position-relative" style="border:2px solid #cfd0cb; background-color:#eee; height:500px;">
     <div class="toast-container top-0 end-0 p-3">
 
         <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto">Bootstrap</strong>
+                <strong class="me-auto">Regular toast</strong>
                 <small>Just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Hello, world! This is a toast message.
+                Dette er en kort og konsis driftsmelding eller endringsinformasjon.
             </div>
         </div>
 
-        <div id="liveToast" class="toast text-bg-success show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="liveToast" class="toast text-bg-success-light show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto">Bootstrap</strong>
+                <strong class="me-auto">Success!</strong>
                 <small>Just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Hello, world! This is a toast message.
+                Message for successful action.
             </div>
         </div>
 
-    </div>
-    <div class="toast-container top-0 start-0 p-3">
-
-        <div id="liveToast" class="toast text-bg-danger show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="liveToast" class="toast text-bg-danger-light show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto">Bootstrap</strong>
+                <strong class="me-auto">Danger!</strong>
                 <small>Just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Hello, world! This is a toast message.
+                Message about something dangerous.
             </div>
         </div>
 
-        <div id="liveToast" class="toast text-bg-warning show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="liveToast" class="toast text-bg-warning-light show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <strong class="me-auto">Bootstrap</strong>
+                <strong class="me-auto">Warning!</strong>
                 <small>Just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Hello, world! This is a toast message.
+                This is a warning.
             </div>
         </div>
         
@@ -64,12 +61,12 @@ export const Toast: LibraryExample[] = [{
 
     <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
-            <strong class="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
+            <strong class="me-auto">Regular toast</strong>
+            <small>Just now</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            Hello, world! This is a toast message.
+            Dette er en kort og konsis driftsmelding eller endringsinformasjon.
         </div>
     </div>
 

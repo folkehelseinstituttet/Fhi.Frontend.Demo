@@ -16,7 +16,7 @@ import { Pagination } from './components/pagination';
 import { TableSimple } from './components/table-simple';
 import { TableSortable } from './components/table-sortable';
 import { TableSelectableRow } from './components/table-selectable-row';
-import { Toast } from './components/toast';
+import { Toast } from './components/toasts';
 
 export const CssComponentsData: LibraryExample[] = [
   ...Accordion,
