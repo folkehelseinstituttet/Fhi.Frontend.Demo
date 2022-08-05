@@ -5,6 +5,7 @@ import { FhiBtnPrimary } from './components/fhi-btn-primary';
 import { FhiBtnSecondary } from './components/fhi-btn-secondary';
 import { FhiBtnFlat } from './components/fhi-btn-flat';
 // import { FhiBtnShortcut } from './components/fhi-btn-shorcut';
+import { FormInputDate } from './components/form-input-date';
 import { FormInput } from './components/form-input';
 import { FormTextarea } from './components/form-textarea';
 import { FormRadio } from './components/form-radio';
@@ -27,6 +28,7 @@ export const CssComponentsData: LibraryExample[] = [
   ...FormRadio,
   ...FormSwitch,
   ...FormInput,
+  ...FormInputDate,
   ...FormInputValidation,
   ...FormTextarea,
   ...FormSelect,
