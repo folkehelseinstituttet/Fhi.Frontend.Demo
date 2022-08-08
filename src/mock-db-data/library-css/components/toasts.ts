@@ -6,7 +6,7 @@ const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 export const Toast: LibraryExample[] = [{
   title: 'Toast',
   exampleHtml: `
-<div class="position-relative" style="border:2px solid #cfd0cb; background-color:#fbfbfb; height:550px;">
+<div class="position-relative" style="border:2px solid #cfd0cb; background-color:#fbfbfb; height:500px;">
     <div class="toast-container top-0 end-0 p-3">
 
         <div id="liveToast" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
