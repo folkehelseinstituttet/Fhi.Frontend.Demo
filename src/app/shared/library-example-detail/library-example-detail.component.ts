@@ -55,13 +55,6 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
     return '<!-- codeMarkdown === undefined -->';
   }
 
-  private updateDocumentationMarkdown(example: LibraryExample): string | undefined {
-    if (example.documentationMarkdown !== undefined) {
-      return example.documentationMarkdown.trim();
-    }
-    return undefined;
-  }
-
   private createNavTabsArray(): NavTab[] {
     let n = 0;
     const navTabs: NavTab[] = [];
