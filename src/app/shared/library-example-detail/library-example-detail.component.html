@@ -9,8 +9,16 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="exampleHtml" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <div *ngIf="exampleHtml !== undefined; else angularComponent" [innerHtml]="exampleHtml | safe: 'html'"></div>
               <ng-content select="[library-example-detail.example-component]"></ng-content>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="navTab.title === 'Documentation'">
+          <ng-template ngbNavContent>
+            <div class="ds-ui-documentation__example">
+              <div [innerHtml]="documentationMarkdown | safe: 'html'"></div>
             </div>
           </ng-template>
         </ng-container>
@@ -24,16 +32,31 @@
           </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="navTab.title === 'Documentation'">
-          <ng-template ngbNavContent>
-            <div class="ds-ui-documentation__example">
-              <markdown [data]="navTab.content"></markdown>
-            </div>
-          </ng-template>
-        </ng-container>
-
       </li>
     </ul>
     <div [ngbNavOutlet]="exampleDetailNav"></div>
   </div>
 </article>
+
+
+<ng-template #angularComponent>
+  <ng-container *ngIf="title === 'Accordion'">
+    <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" class="accordion-flush" activeIds="custom-id-0">
+      <ngb-panel id="custom-id-0" title="Item #1">
+        <ng-template ngbPanelContent>
+          <p>Item #1 content</p>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel id="custom-id-1" title="Item #2">
+        <ng-template ngbPanelContent>
+          <p>Item #2 content</p>
+        </ng-template>
+      </ngb-panel>
+      <ngb-panel id="custom-id-2" title="Item #3">
+        <ng-template ngbPanelContent>
+          <p>Item #3 content</p>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </ng-container>
+</ng-template>
