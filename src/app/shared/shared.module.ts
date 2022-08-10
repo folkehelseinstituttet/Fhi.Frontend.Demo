@@ -17,6 +17,7 @@ import { LibraryMenuLevel2Component } from './library-menu-level-2/library-menu-
 import { LibraryExampleDetailComponent } from './library-example-detail/library-example-detail.component';
 import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AngularExampleComponent } from './library-example-detail/angular-example.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     LibraryMenuLevel2Component,
     LibraryExampleDetailComponent,
     LibraryCopyButtonComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AngularExampleComponent
   ],
   imports: [
     CommonModule,
