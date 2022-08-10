@@ -21,16 +21,15 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
 
   LibraryItemType = LibraryItemType;
 
-  title: string;
-  type: number;
-  id: string; // TODO: better name? And more transparent logic!!
+  exampleTitle: string;
+  exampleType: number;
+  exampleId: string;
+  exampleHtml: string;
+  documentationHtml: string;
+  codeMarkdown: string;
+
   activeNavTab = 0;
   navTabs: NavTab[];
-
-  // TODO: make private, or do without?
-  exampleHtml: string;
-  codeMarkdown: string;
-  documentationHtml: string;
 
   ngOnInit() {
     this.updateExampleDataFromInput(this.libraryExample);
@@ -38,18 +37,18 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    if (this.activatedRoute.snapshot.fragment === this.id) {
-      this.viewportScroller.scrollToAnchor(this.id);
+    if (this.activatedRoute.snapshot.fragment === this.exampleId) {
+      this.viewportScroller.scrollToAnchor(this.exampleId);
     }
   }
 
   private updateExampleDataFromInput(example: LibraryExample) {
-    this.title = example.title;
-    this.type = (example.type !== undefined) ? example.type : LibraryItemType.html;
+    this.exampleTitle = example.title;
+    this.exampleType = (example.type !== undefined) ? example.type : LibraryItemType.html;
     this.exampleHtml = example.exampleHtml;
     this.codeMarkdown = this.getCodeMarkdown(example);
     this.documentationHtml = example.documentationHtml;
-    this.id = example.id;
+    this.exampleId = example.id;
   }
 
   private getCodeMarkdown(example: LibraryExample): string {
@@ -68,20 +67,17 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
 
     navTabs[n] = {
       id: n++,
-      title: 'Example',
-      content: this.codeMarkdown
+      title: 'Example'
     };
     if (this.documentationHtml !== undefined) {
       navTabs[n] = {
         id: n++,
-        title: 'Documentation',
-        content: this.documentationHtml
+        title: 'Documentation'
       };
     }
     navTabs[n] = {
       id: n++,
-      title: 'Code',
-      content: 'this.exampleHtml'
+      title: 'Code'
     };
     return navTabs;
   }
