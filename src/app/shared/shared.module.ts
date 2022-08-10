@@ -18,6 +18,7 @@ import { LibraryExampleDetailComponent } from './library-example-detail/library-
 import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AngularExampleComponent } from './library-example-detail/angular-example.component';
+import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AngularExampleComponent } from './library-example-detail/angular-exampl
     LibraryExampleDetailComponent,
     LibraryCopyButtonComponent,
     SpinnerComponent,
-    AngularExampleComponent
+    AngularExampleComponent,
+    AccordionExampleComponent
   ],
   imports: [
     CommonModule,
