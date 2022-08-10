@@ -9,7 +9,7 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="exampleHtml !== undefined; else angularExample" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <div *ngIf="type === LibraryItemType.html; else angularExample" [innerHtml]="exampleHtml | safe: 'html'"></div>
               <ng-content select="[library-example-detail.example-component]"></ng-content>
             </div>
           </ng-template>
