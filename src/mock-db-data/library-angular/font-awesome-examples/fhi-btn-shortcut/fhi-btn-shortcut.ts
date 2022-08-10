@@ -8,5 +8,5 @@ export const FhiBtnShortcut: LibraryExample[] = [{
 <fhi-btn-shortcut [link]="'./'" [text]="'Snarvei til ...'"></fhi-btn-shortcut>
 `,
 
-  documentationMarkdown: FhiBtnShortcutDocumentation
+  documentationHtml: FhiBtnShortcutDocumentation
 }];

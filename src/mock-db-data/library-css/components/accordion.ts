@@ -27,7 +27,7 @@ export const Accordion: LibraryExample[] = [{
     </ng-template>
   </ngb-panel>
 </ngb-accordion>`,
-  documentationMarkdown: `
+  documentationHtml: `
 <p>
   Bootstrap documentation for
   <a href="${BootstrapBaseUrl}/${exampleTitle.toLocaleLowerCase}">Accordion</a>

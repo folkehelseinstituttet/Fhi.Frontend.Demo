@@ -22,7 +22,7 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
   id: string;
   exampleHtml: string;
   codeMarkdown: string;
-  documentationMarkdown: string;
+  documentationHtml: string;
   activeNavTab = 0;
   navTabs: NavTab[];
 
@@ -42,7 +42,7 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
     this.id = example.id;
     this.exampleHtml = example.exampleHtml;
     this.codeMarkdown = this.getCodeMarkdown(example);
-    this.documentationMarkdown = this.updateDocumentationMarkdown(example);
+    this.documentationHtml = example.documentationHtml;
   }
 
   private getCodeMarkdown(example: LibraryExample): string {
@@ -71,11 +71,11 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
       title: 'Example',
       content: this.codeMarkdown
     };
-    if (this.documentationMarkdown !== undefined) {
+    if (this.documentationHtml !== undefined) {
       navTabs[n] = {
         id: n++,
         title: 'Documentation',
-        content: this.documentationMarkdown
+        content: this.documentationHtml
       };
     }
     navTabs[n] = {

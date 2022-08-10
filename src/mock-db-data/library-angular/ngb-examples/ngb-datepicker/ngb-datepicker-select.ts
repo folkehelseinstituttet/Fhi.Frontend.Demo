@@ -20,5 +20,5 @@ export const NgbDatepickerSelect: LibraryExample[] = [{
   </div>
 </div>`,
 
-  documentationMarkdown: NgbDatepickerDocumentation
+  documentationHtml: NgbDatepickerDocumentation
 }];

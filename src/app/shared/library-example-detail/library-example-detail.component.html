@@ -18,7 +18,7 @@
         <ng-container *ngIf="navTab.title === 'Documentation'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div [innerHtml]="documentationMarkdown | safe: 'html'"></div>
+              <div [innerHtml]="documentationHtml | safe: 'html'"></div>
             </div>
           </ng-template>
         </ng-container>
