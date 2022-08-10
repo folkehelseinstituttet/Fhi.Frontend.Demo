@@ -11,7 +11,7 @@ export const FormTextarea: LibraryExample[] = [{
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
 </div>
 `,
-  exampleMarkdown: `
+  codeMarkdown: `
 <!-- optional outer div for grouping -->
 <div>
   <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>

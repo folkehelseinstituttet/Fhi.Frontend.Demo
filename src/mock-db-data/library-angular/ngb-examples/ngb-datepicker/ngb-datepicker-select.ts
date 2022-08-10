@@ -4,7 +4,7 @@ import { NgbDatepickerDocumentation } from './ngb-datepicker-documentation';
 export const NgbDatepickerSelect: LibraryExample[] = [{
   title: 'Datepicker (select)',
 
-  exampleMarkdown: `
+  codeMarkdown: `
 <div class="fhi-datepicker" [ngClass]="{'fhi-datepicker--open': datepicker.isOpen()}">
   <label for="fra-dato" class="">Velg dato</label>
   <div class="input-group fhi-datepicker__input-group">

@@ -9,7 +9,7 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="exampleHtml !== undefined; else angularComponent" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <div *ngIf="exampleHtml !== undefined; else angularExample" [innerHtml]="exampleHtml | safe: 'html'"></div>
               <ng-content select="[library-example-detail.example-component]"></ng-content>
             </div>
           </ng-template>
@@ -25,9 +25,9 @@
 
         <ng-container *ngIf="navTab.title === 'Code'">
           <ng-template ngbNavContent>
-            <app-library-copy-button [contentReferenceToCopy]="exampleMarkdown"></app-library-copy-button>
+            <app-library-copy-button [contentReferenceToCopy]="codeMarkdown"></app-library-copy-button>
             <div class="ds-ui-documentation__example">
-              <markdown [data]="exampleMarkdown | language : 'html'"></markdown>
+              <markdown [data]="codeMarkdown | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
@@ -39,6 +39,6 @@
 </article>
 
 
-<ng-template #angularComponent>
+<ng-template #angularExample>
   <app-angular-example [exampleTitle]="title"></app-angular-example>
 </ng-template>

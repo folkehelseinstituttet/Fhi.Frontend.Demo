@@ -31,7 +31,7 @@ export const FormRadio: LibraryExample[] = [{
   </label>
 </div>
 `,
-  exampleMarkdown: `
+  codeMarkdown: `
 <div class="form-check">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInput">
   <label class="form-check-label" for="radioInput">

@@ -11,7 +11,7 @@ For "Snarveiknapp" se
   ../../angular/font-awesome#snarveiknapp
 </a>
 `,
-  exampleMarkdown: `
+  codeMarkdown: `
 <!-- NA -->
 `,
   category: categoryNames.buttons

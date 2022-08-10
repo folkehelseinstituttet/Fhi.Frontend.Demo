@@ -4,9 +4,11 @@ import { BootstrapBaseUrl, NgBootstrapBaseUrl } from 'src/app/_common/constants/
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
+const exampleTitle = 'Accordion';
+
 export const Accordion: LibraryExample[] = [{
-  title: 'Accordion',
-  exampleMarkdown: `
+  title: exampleTitle,
+  codeMarkdown: `
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion"
                class="accordion-flush" activeIds="custom-id-0">
   <ngb-panel id="custom-id-0" title="Item #1">
@@ -28,11 +30,11 @@ export const Accordion: LibraryExample[] = [{
   documentationMarkdown: `
 <p>
   Bootstrap documentation for
-  <a href="${BootstrapBaseUrl}/accordion">Accordion</a>
+  <a href="${BootstrapBaseUrl}/${exampleTitle.toLocaleLowerCase}">Accordion</a>
 </p>
 <p>
   The accordion is implemented as a
-  <a href="${NgBootstrapBaseUrl}/accordion">ngBootstrap Accordion</a>
+  <a href="${NgBootstrapBaseUrl}/${exampleTitle.toLocaleLowerCase}">ngBootstrap Accordion</a>
   in the FHI Designsystem.
 </p>
 <p>

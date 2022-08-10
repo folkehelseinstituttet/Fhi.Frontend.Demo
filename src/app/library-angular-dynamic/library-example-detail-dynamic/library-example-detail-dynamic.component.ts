@@ -18,14 +18,14 @@ export class LibraryExampleDynamicDetailComponent implements OnInit {
   title: string;
   id: string;
   exampleHtml: string;
-  exampleMarkdown: string;
+  codeMarkdown: string;
   isExampleAngularComponent: boolean;
 
   ngOnInit(): void {
     this.title = this.libraryExample.title;
     this.id = this.libraryExample.id;
     this.exampleHtml = this.libraryExample.exampleHtml;
-    this.exampleMarkdown = this.setExampleMarkdown();
+    this.codeMarkdown = this.getCodeMarkdown();
     this.isExampleAngularComponent = this.libraryExample.angularComponentType !== undefined;
     this.loadExampleAngularComponent();
   }
@@ -49,10 +49,10 @@ export class LibraryExampleDynamicDetailComponent implements OnInit {
     }
   }
 
-  private setExampleMarkdown(): string {
+  private getCodeMarkdown(): string {
     let markdown: string;
-    if (this.libraryExample.exampleMarkdown) {
-      markdown = this.libraryExample.exampleMarkdown;
+    if (this.libraryExample.codeMarkdown) {
+      markdown = this.libraryExample.codeMarkdown;
     } else {
       markdown = this.libraryExample.exampleHtml;
     }
