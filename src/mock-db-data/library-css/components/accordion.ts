@@ -1,8 +1,8 @@
 import { LibraryExample } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
+import { BootstrapBaseUrl, NgBootstrapBaseUrl } from 'src/app/_common/constants/base-urls-bootstrap-doc';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
-const bootstrapVersion = '5.2'; // TODO: make global
 
 export const Accordion: LibraryExample[] = [{
   title: 'Accordion',
@@ -28,11 +28,11 @@ export const Accordion: LibraryExample[] = [{
   documentationMarkdown: `
 <p>
   Bootstrap documentation for
-  <a href="https://getbootstrap.com/docs/${ bootstrapVersion }/components/accordion">Accordion</a>
+  <a href="${BootstrapBaseUrl}/accordion">Accordion</a>
 </p>
 <p>
   The accordion is implemented as a
-  <a href="https://ng-bootstrap.github.io/#/components/accordion">ngBootstrap Accordion</a>
+  <a href="${NgBootstrapBaseUrl}/accordion">ngBootstrap Accordion</a>
   in the FHI Designsystem.
 </p>
 <p>
