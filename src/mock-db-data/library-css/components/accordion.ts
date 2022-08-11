@@ -32,7 +32,7 @@ export const Accordion: LibraryExample[] = [{
   documentationHtml: `
 <p>
   Bootstrap documentation for
-  <a href="${BootstrapBaseUrl}/${itemTitle.toLocaleLowerCase}">Accordion</a>
+  <a href="${BootstrapBaseUrl}/${itemTitle.toLocaleLowerCase()}">Accordion</a>
 </p>
 <p>
   The accordion is implemented as a
