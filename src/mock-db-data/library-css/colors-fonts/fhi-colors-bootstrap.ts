@@ -28,6 +28,6 @@ ${colorHtml('#d01858', 'fhi-pink-dark-2', 'Danger')}
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1', 'Light', 'black')}
 ${colorHtml('#393c61', 'fhi-blue-dark-1', 'Dark')}
 ${colorHtml('#ffffff', 'white', 'White', 'black')}`,
-  exampleMarkdown: `
+  codeMarkdown: `
 <!-- NA -->`
 }];
