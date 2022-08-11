@@ -36,7 +36,7 @@ export const Accordion: LibraryExample[] = [{
 </p>
 <p>
   The accordion is implemented as a
-  <a href="${NgBootstrapBaseUrl}/${itemTitle.toLocaleLowerCase}">ngBootstrap Accordion</a>
+  <a href="${NgBootstrapBaseUrl}/${itemTitle.toLocaleLowerCase()}">ngBootstrap Accordion</a>
   in the FHI Designsystem.
 </p>
 <p>
