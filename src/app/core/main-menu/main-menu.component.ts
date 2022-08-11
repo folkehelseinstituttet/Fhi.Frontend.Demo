@@ -21,9 +21,6 @@ export class MainMenuComponent {
   mainMenuItems: MainMenuItem[] = [{
     name: MenuNames.cssLibrary,
     routerLink: `/${UrlPaths.cssLibrary}`
-  }, {
-    name: MenuNames.angularBibliotek,
-    routerLink: `/${UrlPaths.angularBibliotek}`
   }];
 
   mainMenuClose(): void {
