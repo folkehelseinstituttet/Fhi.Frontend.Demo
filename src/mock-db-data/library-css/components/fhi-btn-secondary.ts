@@ -16,7 +16,7 @@ export const FhiBtnSecondary: LibraryExample[] = [{
   <button type="button" class="btn btn-md fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Standard, 170px</button>
   <button type="button" class="btn btn-lg fhi-btn-outline-secondary">Large, 280px</button>
 </div>`,
-  exampleMarkdown: `
+  codeMarkdown: `
 <button type="button" class="btn btn-sm fhi-btn-secondary">Small, 120px</button>
 <button type="button" class="btn btn-md fhi-btn-secondary">Standard, 170px</button>
 <button type="button" class="btn btn-lg fhi-btn-secondary">Large, 280px</button>

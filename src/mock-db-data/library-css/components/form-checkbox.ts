@@ -31,7 +31,7 @@ export const FormChecks: LibraryExample[] = [{
   </label>
 </div>
 `,
-  exampleMarkdown: `
+  codeMarkdown: `
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="customCheck">
   <label class="form-check-label" for="customCheck">

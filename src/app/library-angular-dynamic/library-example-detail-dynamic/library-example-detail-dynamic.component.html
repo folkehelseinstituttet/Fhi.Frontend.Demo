@@ -8,10 +8,10 @@
         <div [innerHtml]="exampleHtml | safe: 'html'"></div>
       </div>
 
-      <app-library-copy-button [contentReferenceToCopy]="exampleMarkdown"></app-library-copy-button>
+      <app-library-copy-button [contentReferenceToCopy]="codeMarkdown"></app-library-copy-button>
 
       <div class="ds-ui-documentation__markdown">
-        <markdown [data]="exampleMarkdown | language : 'html'"></markdown>
+        <markdown [data]="codeMarkdown | language : 'html'"></markdown>
       </div>
     </div>
 

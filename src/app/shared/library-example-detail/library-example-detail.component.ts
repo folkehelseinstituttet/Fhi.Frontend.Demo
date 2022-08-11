@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
+import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';
 import { LibraryExample } from '../models/library-example.model';
 import { NavTab } from './nav-tab.model';
 
@@ -18,11 +19,15 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
 
   @Input() libraryExample: LibraryExample;
 
-  title: string;
-  id: string;
+  LibraryItemType = LibraryItemType;
+
+  exampleTitle: string;
+  exampleType: number;
+  exampleId: string;
   exampleHtml: string;
-  exampleMarkdown: string;
-  documentationMarkdown: string;
+  documentationHtml: string;
+  codeMarkdown: string;
+
   activeNavTab = 0;
   navTabs: NavTab[];
 
@@ -32,34 +37,28 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    if (this.activatedRoute.snapshot.fragment === this.id) {
-      this.viewportScroller.scrollToAnchor(this.id);
+    if (this.activatedRoute.snapshot.fragment === this.exampleId) {
+      this.viewportScroller.scrollToAnchor(this.exampleId);
     }
   }
 
   private updateExampleDataFromInput(example: LibraryExample) {
-    this.title = example.title;
-    this.id = example.id;
+    this.exampleTitle = example.title;
+    this.exampleType = (example.type !== undefined) ? example.type : LibraryItemType.html;
     this.exampleHtml = example.exampleHtml;
-    this.exampleMarkdown = this.updateExampleMarkdown(example);
-    this.documentationMarkdown = this.updateDocumentationMarkdown(example);
+    this.codeMarkdown = this.getCodeMarkdown(example);
+    this.documentationHtml = example.documentationHtml;
+    this.exampleId = example.id;
   }
 
-  private updateExampleMarkdown(example: LibraryExample): string {
-    if (example.exampleMarkdown !== undefined) {
-      return example.exampleMarkdown.trim();
+  private getCodeMarkdown(example: LibraryExample): string {
+    if (example.codeMarkdown !== undefined) {
+      return example.codeMarkdown.trim();
     }
     if (example.exampleHtml !== undefined) {
       return example.exampleHtml.trim();
     }
-    return '<!-- exampleMarkdown === undefined -->';
-  }
-
-  private updateDocumentationMarkdown(example: LibraryExample): string | undefined {
-    if (example.documentationMarkdown !== undefined) {
-      return example.documentationMarkdown.trim();
-    }
-    return undefined;
+    return '<!-- codeMarkdown === undefined -->';
   }
 
   private createNavTabsArray(): NavTab[] {
@@ -68,21 +67,18 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
 
     navTabs[n] = {
       id: n++,
-      title: 'Example',
-      content: this.exampleMarkdown
+      title: 'Example'
     };
-    navTabs[n] = {
-      id: n++,
-      title: 'Code',
-      content: 'this.exampleHtml'
-    };
-    if (this.documentationMarkdown !== undefined) {
+    if (this.documentationHtml !== undefined) {
       navTabs[n] = {
         id: n++,
-        title: 'Documentation',
-        content: this.documentationMarkdown
+        title: 'Documentation'
       };
     }
+    navTabs[n] = {
+      id: n++,
+      title: 'Code'
+    };
     return navTabs;
   }
 
