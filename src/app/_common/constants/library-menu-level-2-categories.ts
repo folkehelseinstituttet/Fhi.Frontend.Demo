@@ -5,6 +5,7 @@ export class LibraryMenuLevel2Categories {
     pagination: 'Pagination',
     forms: 'Form elements',
     structuredContent: 'Structured content',
-    tables: 'Tables'
+    tables: 'Tables',
+    widgets: 'Widgets'
   };
 }
