@@ -10,7 +10,7 @@ const itemTitle = 'Accordion';
 export const Accordion: LibraryExample[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
-  codeMarkdown: `
+  codeHtml: `
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion"
                class="accordion-flush" activeIds="custom-id-0">
   <ngb-panel id="custom-id-0" title="Item #1">

@@ -35,7 +35,7 @@ export const IconsSet: LibraryExample[] = [{
   <i class="icon-user-regular" title="icon-user-regular"></i>
 </div>
 `,
-  codeMarkdown: `
+  codeHtml: `
 <i class="icon-alcohol-drugs"></i>
 <i class="icon-bell-regular"></i>
 <i class="icon-cancer"></i>

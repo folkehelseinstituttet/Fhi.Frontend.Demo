@@ -99,7 +99,7 @@ export const TableSelectableRow: LibraryExample[] = [{
   </table>
 </div>
 `,
-  codeMarkdown: `
+  codeHtml: `
 <div class="table-responsive">
   <table class="table table-striped" data-sort-column="2">
     <thead>
