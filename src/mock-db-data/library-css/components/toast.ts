@@ -11,10 +11,12 @@ export const Toast: LibraryExample[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
   codeMarkdown: `
-<div class="toast-container end-0">
+<div class="toast-container">
+
   <ngb-toast *ngIf="show" header="Toast title" [autohide]="true" (hidden)="show=false">
     Standard toast. This instance is automatically hidden.
   </ngb-toast>
+  
 </div>
 `,
   documentationHtml: `
