@@ -11,13 +11,11 @@ export const Toast: LibraryExample[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
   codeMarkdown: `
-<ngb-toast [autohide]="false">
-  I am a simple static toast.
-</ngb-toast>
-
-<ngb-toast *ngIf="show" header="Hello" [autohide]="false" (hidden)="show=false">
-  I am a simple static toast with a header.
-</ngb-toast>
+<div class="toast-container end-0">
+  <ngb-toast *ngIf="show" header="Toast title" [autohide]="true" (hidden)="show=false">
+    Standard toast. This instance is automatically hidden.
+  </ngb-toast>
+</div>
 `,
   documentationHtml: `
 <p>
