@@ -19,6 +19,7 @@ import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-b
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AngularExampleComponent } from './library-example-detail/angular-example.component';
 import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
+import { ToastExampleComponent } from './library-example-detail/ng-bootstrap-examples/toast-example/toast-example.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap
     LibraryCopyButtonComponent,
     SpinnerComponent,
     AngularExampleComponent,
-    AccordionExampleComponent
+    AccordionExampleComponent,
+    ToastExampleComponent
   ],
   imports: [
     CommonModule,
