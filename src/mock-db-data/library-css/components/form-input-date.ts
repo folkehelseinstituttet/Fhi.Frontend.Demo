@@ -21,7 +21,7 @@ export const FormInputDate: LibraryExample[] = [{
   
 </script>
 `,
-  exampleMarkdown: `
+codeMarkdown: `
 <label for="FormInputDate1" class="form-label">Date from:</label><br>
 <input type="date" id="FormInputDate1" class="form-control" pattern="\d{4}-\d{2}-\d{2}">
 `,
