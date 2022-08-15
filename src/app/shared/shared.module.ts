@@ -20,6 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { AngularExampleComponent } from './library-example-detail/angular-example.component';
 import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { ToastExampleComponent } from './library-example-detail/ng-bootstrap-examples/toast-example/toast-example.component';
+import { TooltipExampleComponent } from './library-example-detail/ng-bootstrap-examples/tooltip-example/tooltip-example.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ToastExampleComponent } from './library-example-detail/ng-bootstrap-exa
     SpinnerComponent,
     AngularExampleComponent,
     AccordionExampleComponent,
-    ToastExampleComponent
+    ToastExampleComponent,
+    TooltipExampleComponent
   ],
   imports: [
     CommonModule,
