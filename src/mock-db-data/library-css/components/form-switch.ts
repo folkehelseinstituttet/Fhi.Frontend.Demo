@@ -31,7 +31,7 @@ export const FormSwitch: LibraryExample[] = [{
   </label>
 </div>
 `,
-  exampleMarkdown: `
+  codeMarkdown: `
 <div class="form-check form-switch">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
   <label class="form-check-label" for="flexSwitchCheckDefault">

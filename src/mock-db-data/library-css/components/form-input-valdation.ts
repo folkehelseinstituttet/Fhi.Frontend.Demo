@@ -12,7 +12,7 @@ export const FormInputValidation: LibraryExample[] = [{
   <div class="invalid-feedback">Understandable error message.</div>
 </div>
 `,
-exampleMarkdown: `
+codeMarkdown: `
 <!-- optional outer div for grouping -->
 <div>
   <label for="FormInputValidation" class="form-label">Text input w/validation</label>

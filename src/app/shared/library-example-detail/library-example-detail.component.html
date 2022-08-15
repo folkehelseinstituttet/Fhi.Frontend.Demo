@@ -1,5 +1,5 @@
-<article class="ds-ui-documentation" id="{{ id }}">
-  <h1 class="ds-ui-documentation__title">{{ title }}</h1>
+<article class="ds-ui-documentation" id="{{ exampleId }}">
+  <h1 class="ds-ui-documentation__title">{{ exampleTitle }}</h1>
 
   <div class="ds-ui-documentation__example-container">
     <ul ngbNav #exampleDetailNav="ngbNav" [(activeId)]="activeNavTab" class="nav-tabs" [animation]="false">
@@ -9,17 +9,8 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="exampleHtml" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <div *ngIf="exampleType === LibraryItemType.html; else angularExample" [innerHtml]="exampleHtml | safe: 'html'"></div>
               <ng-content select="[library-example-detail.example-component]"></ng-content>
-            </div>
-          </ng-template>
-        </ng-container>
-
-        <ng-container *ngIf="navTab.title === 'Code'">
-          <ng-template ngbNavContent>
-            <app-library-copy-button [contentReferenceToCopy]="exampleMarkdown"></app-library-copy-button>
-            <div class="ds-ui-documentation__example">
-              <markdown [data]="exampleMarkdown | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
@@ -27,7 +18,16 @@
         <ng-container *ngIf="navTab.title === 'Documentation'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <markdown [data]="navTab.content"></markdown>
+              <div [innerHtml]="documentationHtml | safe: 'html'"></div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="navTab.title === 'Code'">
+          <ng-template ngbNavContent>
+            <app-library-copy-button [contentReferenceToCopy]="codeMarkdown"></app-library-copy-button>
+            <div class="ds-ui-documentation__example">
+              <markdown [data]="codeMarkdown | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
@@ -37,3 +37,8 @@
     <div [ngbNavOutlet]="exampleDetailNav"></div>
   </div>
 </article>
+
+
+<ng-template #angularExample>
+  <app-angular-example [exampleTitle]="exampleTitle"></app-angular-example>
+</ng-template>

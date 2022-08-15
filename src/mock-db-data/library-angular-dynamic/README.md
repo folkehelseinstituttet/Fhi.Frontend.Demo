@@ -16,7 +16,7 @@ I denne seksjonen beskrives fremgangsmåten for hvordan en kan vise frem en gene
         title: "",                      // Viser tittel på komponent-eksempelet
         exampleHtml: "",                // Denne skal ikke fylles ut da html hentes automatisk
         exampleTypeScript: "",          // Denne skal ikke fylles ut da typescript hentes automatisk
-        exampleMarkdown: "",            // Denne skal ikke fylles ut siden typescript hentes
+        codeMarkdown: "",            // Denne skal ikke fylles ut siden typescript hentes
         angularComponentClassName: "",  // Denne må være identisk til klassenavnet til angular komponenten
         componentFolder: ""             // Navnet på mappen hvor komponenten ligger under
     }];

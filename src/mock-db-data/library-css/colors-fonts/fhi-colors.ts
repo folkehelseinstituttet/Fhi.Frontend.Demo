@@ -76,6 +76,6 @@ ${colorHtml('#b10640', 'fhi-pink-dark-3')}
 ${colorHtml('#fdf7f6', 'fhi-pink-light-1')}
 ${colorHtml('#faedec', 'fhi-pink-light-2')}
 ${colorHtml('#ffe3e2', 'fhi-pink-light-3')}`,
-  exampleMarkdown: `
+  codeMarkdown: `
 <!-- NA -->`
 }];
