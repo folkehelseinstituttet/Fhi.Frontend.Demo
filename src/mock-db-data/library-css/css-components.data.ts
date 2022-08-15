@@ -16,6 +16,8 @@ import { Pagination } from './components/pagination';
 import { TableSimple } from './components/table-simple';
 import { TableSortable } from './components/table-sortable';
 import { TableSelectableRow } from './components/table-selectable-row';
+import { Toast } from './components/toast';
+import { Tooltip } from './components/tooltip';
 
 export const CssComponentsData: LibraryExample[] = [
   ...Accordion,
@@ -34,6 +36,8 @@ export const CssComponentsData: LibraryExample[] = [
   ...TableSimple,
   ...TableSortable,
   ...TableSelectableRow,
+  ...Toast,
+  ...Tooltip,
 ];
 
 
