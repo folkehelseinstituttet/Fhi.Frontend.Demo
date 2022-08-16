@@ -9,7 +9,9 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="type === htmlItemType; else angularItem" [innerHtml]="exampleHtml | safe: 'html'"></div>
+              <div *ngIf="type === itemTypeHtml; else angularExample"
+                   [innerHtml]="exampleHtml | safe: 'html'">
+              </div>
             </div>
           </ng-template>
         </ng-container>
@@ -38,6 +40,6 @@
 </article>
 
 
-<ng-template #angularItem>
+<ng-template #angularExample>
   <app-angular-example [itemTitle]="title"></app-angular-example>
 </ng-template>

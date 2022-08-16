@@ -25,7 +25,7 @@ export class LibraryItemDetailComponent implements AfterViewInit, OnInit {
   documentationHtml: string;
   codeHtml: string;
 
-  htmlItemType = LibraryItemType.html;
+  itemTypeHtml = LibraryItemType.html;
   activeNavTab = 0;
   navTabs: NavTab[];
 
