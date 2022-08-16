@@ -25,8 +25,8 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  libraryExamples: LibraryItem[];
-  libraryExamplesLoaded = false;
+  libraryItems: LibraryItem[];
+  libraryItemsLoaded = false;
   libraryMenuLevel1Items = LibraryCssMenu.level1Items;
   libraryMenuLevel2Items: LibraryMenuLevel2Item[];
   libraryMenuLevel2Categories: LibraryMenuLevel2Category[];
@@ -50,13 +50,13 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
   }
 
   private getLibraryItems(path: string) {
-    this.libraryExamplesLoaded = false;
+    this.libraryItemsLoaded = false;
     this.subscription.add(this.libraryCssDataService.getLibraryItems(path)
-      .subscribe(libraryExamples => {
-        this.libraryExamples = this.libraryMenuService.addItemId(libraryExamples);
-        this.libraryMenuLevel2Items = this.libraryMenuService.getLevel2MenuItems(this.libraryExamples);
-        this.libraryMenuLevel2Categories = this.libraryMenuService.getLevel2MenuItemsByCategory(this.libraryExamples);
-        this.libraryExamplesLoaded = true;
+      .subscribe(libraryItems => {
+        this.libraryItems = this.libraryMenuService.addItemId(libraryItems);
+        this.libraryMenuLevel2Items = this.libraryMenuService.getLevel2MenuItems(this.libraryItems);
+        this.libraryMenuLevel2Categories = this.libraryMenuService.getLevel2MenuItemsByCategory(this.libraryItems);
+        this.libraryItemsLoaded = true;
       },
       error => this.getErrorMessage(error)));
   }
