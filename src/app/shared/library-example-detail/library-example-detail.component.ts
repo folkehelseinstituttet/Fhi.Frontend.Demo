@@ -2,8 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
-import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';
-import { LibraryItem } from '../models/library-item.model';
+import { LibraryItem, LibraryItemType } from '../models/library-item.model';
 import { NavTab } from './nav-tab.model';
 
 @Component({
@@ -20,7 +19,6 @@ export class LibraryItemDetailComponent implements AfterViewInit, OnInit {
   @Input() libraryExample: LibraryItem;
 
   LibraryItemType = LibraryItemType;
-
   exampleTitle: string;
   exampleType: number;
   exampleId: string;

@@ -1,3 +1,9 @@
+export enum LibraryItemType {
+  html = 0,
+  ngBootstrap = 1,
+  fhiAngular = 2
+}
+
 export interface LibraryItem {
   title: string;
   type?: number;
