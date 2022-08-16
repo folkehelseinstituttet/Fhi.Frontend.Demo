@@ -1,3 +1,3 @@
-export interface LibraryExampleFilter {
+export interface LibraryItemFilter {
   title: string;
 }

@@ -1,7 +1,8 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 
-export const FhiFontColors: LibraryExample[] = [{
+export const FhiFontColors: LibraryItem[] = [{
   title: 'Font colors',
+  type: LibraryItemType.html,
   exampleHtml: `
 <!--
   NB! This code is not concidered best practice, but is an attempt to

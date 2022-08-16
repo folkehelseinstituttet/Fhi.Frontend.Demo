@@ -5,7 +5,7 @@ import { UrlService } from 'src/app/_common/services/url-service/url.service';
 import { UrlUtilitiesService } from 'src/app/_common/services/url-service/url-utilities.service';
 import { LibraryCssDataService } from './library-css-data.service';
 import { LibraryMenuService } from '../_common/services/library-menu.service';
-import { LibraryExample } from '../shared/models/library-example.model';
+import { LibraryItem } from '../shared/models/library-item.model';
 import { LibraryCssMenu } from './constants/library-css-menu';
 import { LibraryMenuLevel2Item } from 'src/app/shared/models/library-menu-level-2-item.model';
 import { LibraryMenuLevel2Category } from '../shared/models/library-menu-level-2-category.model';
@@ -25,8 +25,8 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  libraryExamples: LibraryExample[];
-  libraryExamplesLoaded = false;
+  libraryItems: LibraryItem[];
+  libraryItemsLoaded = false;
   libraryMenuLevel1Items = LibraryCssMenu.level1Items;
   libraryMenuLevel2Items: LibraryMenuLevel2Item[];
   libraryMenuLevel2Categories: LibraryMenuLevel2Category[];
@@ -34,13 +34,13 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
-    this.getLibraryExamples(this.currentLibraryMenuLevel1Path);
+    this.getLibraryItems(this.currentLibraryMenuLevel1Path);
 
     this.subscription.add(this.urlService.urlTree$
       .subscribe(() => {
         if (this.urlUtilities.getFragment() === null) {
           this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
-          this.getLibraryExamples(this.currentLibraryMenuLevel1Path);
+          this.getLibraryItems(this.currentLibraryMenuLevel1Path);
         }
       }));
   }
@@ -49,14 +49,14 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private getLibraryExamples(path: string) {
-    this.libraryExamplesLoaded = false;
-    this.subscription.add(this.libraryCssDataService.getLibraryExamples(path)
-      .subscribe(libraryExamples => {
-        this.libraryExamples = this.libraryMenuService.addItemId(libraryExamples);
-        this.libraryMenuLevel2Items = this.libraryMenuService.getLevel2MenuItems(this.libraryExamples);
-        this.libraryMenuLevel2Categories = this.libraryMenuService.getLevel2MenuItemsByCategory(this.libraryExamples);
-        this.libraryExamplesLoaded = true;
+  private getLibraryItems(path: string) {
+    this.libraryItemsLoaded = false;
+    this.subscription.add(this.libraryCssDataService.getLibraryItems(path)
+      .subscribe(libraryItems => {
+        this.libraryItems = this.libraryMenuService.addItemId(libraryItems);
+        this.libraryMenuLevel2Items = this.libraryMenuService.getLevel2MenuItems(this.libraryItems);
+        this.libraryMenuLevel2Categories = this.libraryMenuService.getLevel2MenuItemsByCategory(this.libraryItems);
+        this.libraryItemsLoaded = true;
       },
       error => this.getErrorMessage(error)));
   }

@@ -1,4 +1,4 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 
 const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?: string) => {
   const textClass = (textColor === 'black') ? '' : ' class="text-white"';
@@ -16,8 +16,9 @@ const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?
 </div>`;
 };
 
-export const FhiColorsBootstrap: LibraryExample[] = [{
+export const FhiColorsBootstrap: LibraryItem[] = [{
   title: 'Color palette (Bootstrap)',
+  type: LibraryItemType.html,
   exampleHtml: `
 ${colorHtml('#d14641', 'fhi-red-2', 'Primary')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2', 'Secondary', 'black')}

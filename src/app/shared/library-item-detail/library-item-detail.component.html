@@ -1,5 +1,5 @@
-<article class="ds-ui-documentation" id="{{ exampleId }}">
-  <h1 class="ds-ui-documentation__title">{{ exampleTitle }}</h1>
+<article class="ds-ui-documentation" id="{{ id }}">
+  <h1 class="ds-ui-documentation__title">{{ title }}</h1>
 
   <div class="ds-ui-documentation__example-container">
     <ul ngbNav #exampleDetailNav="ngbNav" [(activeId)]="activeNavTab" class="nav-tabs" [animation]="false">
@@ -9,8 +9,7 @@
         <ng-container *ngIf="navTab.title === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <div *ngIf="exampleType === LibraryItemType.html; else angularExample" [innerHtml]="exampleHtml | safe: 'html'"></div>
-              <ng-content select="[library-example-detail.example-component]"></ng-content>
+              <div *ngIf="type === htmlItemType; else angularItem" [innerHtml]="exampleHtml | safe: 'html'"></div>
             </div>
           </ng-template>
         </ng-container>
@@ -39,6 +38,6 @@
 </article>
 
 
-<ng-template #angularExample>
-  <app-angular-example [exampleTitle]="exampleTitle"></app-angular-example>
+<ng-template #angularItem>
+  <app-angular-example [itemTitle]="title"></app-angular-example>
 </ng-template>

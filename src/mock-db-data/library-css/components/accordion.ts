@@ -1,13 +1,12 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 import { BootstrapBaseUrl, NgBootstrapBaseUrl } from 'src/app/library-css/constants/bootstrap-base-urls';
-import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 const itemTitle = 'Accordion';
 
-export const Accordion: LibraryExample[] = [{
+export const Accordion: LibraryItem[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
   codeHtml: `

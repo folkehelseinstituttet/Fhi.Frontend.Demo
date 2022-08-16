@@ -2,7 +2,7 @@
 
   <app-library-menu-level-1 [menuItems]="libraryMenuLevel1Items"></app-library-menu-level-1>
 
-  <ng-container *ngIf="libraryExamplesLoaded else spinner">
+  <ng-container *ngIf="libraryItemsLoaded else spinner">
     <div class="row">
       <div class="col-md-4 col-lg-3 col-xxl-3">
         <app-library-menu-level-2
@@ -12,10 +12,10 @@
       </div>
       <div class="col-md-8 col-lg-9 col-xxl-7">
         <section>
-          <app-library-example-detail
-            *ngFor="let libraryExample of libraryExamples"
-            [libraryExample]="libraryExample">
-          </app-library-example-detail>
+          <app-library-item-detail
+            *ngFor="let libraryItem of libraryItems"
+            [libraryItem]="libraryItem">
+          </app-library-item-detail>
         </section>
       </div>
     </div>

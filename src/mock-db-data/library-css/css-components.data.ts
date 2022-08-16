@@ -1,4 +1,4 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-item.model';
 
 import { Accordion } from './components/accordion';
 import { FhiBtnPrimary } from './components/fhi-btn-primary';
@@ -19,7 +19,7 @@ import { TableSelectableRow } from './components/table-selectable-row';
 import { Toast } from './components/toast';
 import { Tooltip } from './components/tooltip';
 
-export const CssComponentsData: LibraryExample[] = [
+export const CssComponentsData: LibraryItem[] = [
   ...Accordion,
   ...FhiBtnPrimary,
   ...FhiBtnSecondary,

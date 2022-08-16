@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
 })
 export class AngularExampleComponent {
 
-  @Input() exampleTitle: string;
+  @Input() itemTitle: string;
 
 }

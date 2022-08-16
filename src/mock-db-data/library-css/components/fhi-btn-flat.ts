@@ -1,10 +1,11 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
-export const FhiBtnFlat: LibraryExample[] = [{
+export const FhiBtnFlat: LibraryItem[] = [{
   title: 'Transparent button',
+  type: LibraryItemType.html,
   exampleHtml: `
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
   <button type="button" class="btn btn-sm fhi-btn-flat mb-3 me-3">Small, 120px</button>
