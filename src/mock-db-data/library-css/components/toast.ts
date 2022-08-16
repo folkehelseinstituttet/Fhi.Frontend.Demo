@@ -10,15 +10,13 @@ const itemTitle = 'Toast';
 export const Toast: LibraryExample[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
-  codeMarkdown: `
+  codeHtml: `
 <div class="toast-container">
-
   <ngb-toast *ngIf="show" header="Toast title" [autohide]="true" (hidden)="show=false">
     Standard toast. This instance is automatically hidden.
   </ngb-toast>
-  
-</div>
-`,
+</div>`,
+
   documentationHtml: `
 <p>
   Bootstrap documentation for
@@ -32,5 +30,6 @@ export const Toast: LibraryExample[] = [{
 <p>
   If you use another Javascript framework, you will have to find a suitable 3. party library.
 </p>`,
+
   category: categoryNames.widgets
 }];
