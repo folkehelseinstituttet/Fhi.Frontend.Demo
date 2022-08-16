@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 
 const colorHtml = (hex: string, color: string) => {
   return `
@@ -15,6 +15,7 @@ const colorHtml = (hex: string, color: string) => {
 
 export const FhiColors: LibraryItem[] = [{
   title: 'Color palette',
+  type: LibraryItemType.html,
   exampleHtml: `
 <p class="text-muted small mt-2 mb-0">Light grey</p>
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1')}

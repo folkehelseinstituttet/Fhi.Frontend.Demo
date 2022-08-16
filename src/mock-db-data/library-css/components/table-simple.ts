@@ -1,10 +1,11 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const TableSimple: LibraryItem[] = [{
   title: 'Table',
+  type: LibraryItemType.html,
   exampleHtml: `
 <div class="table-responsive">
   <table class="table table-striped">

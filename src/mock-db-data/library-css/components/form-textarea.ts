@@ -1,10 +1,11 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FormTextarea: LibraryItem[] = [{
   title: 'Textarea',
+  type: LibraryItemType.html,
   exampleHtml: `
 <div>
   <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>

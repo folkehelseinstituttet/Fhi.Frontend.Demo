@@ -1,10 +1,11 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const Pagination: LibraryItem[] = [{
   title: 'Pagination',
+  type: LibraryItemType.html,
   exampleHtml: `
 <nav aria-label="Sidenavigasjon">
   <ul class="pagination">

@@ -1,7 +1,8 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
 
 export const IconsSet: LibraryItem[] = [{
   title: 'Icon set',
+  type: LibraryItemType.html,
   exampleHtml: `
 <div class="flex flex-wrap ds-icons-wrapper">
   <i class="icon-alcohol-drugs" title="icon-alcohol-drugs"></i>
