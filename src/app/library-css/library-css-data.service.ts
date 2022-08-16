@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UrlParamNames } from 'src/app/_common/constants/url-param-names';
 import { UrlPaths } from 'src/app/_common/constants/url-paths';
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class LibraryCssDataService {
 
   constructor(private http: HttpClient) { }
 
-  getLibraryExamples(path: string, category?: string): Observable<LibraryExample[]> {
+  getLibraryItems(path: string, category?: string): Observable<LibraryItem[]> {
     const mockDataSetName = this.getMockDataSetName(path);
     let serverUrl: string;
 
@@ -23,7 +23,7 @@ export class LibraryCssDataService {
     } else {
       serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
     }
-    return this.http.get<LibraryExample[]>(serverUrl);
+    return this.http.get<LibraryItem[]>(serverUrl);
   }
 
   private getMockDataSetName(path: string): string {

@@ -1,9 +1,9 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
-export const FormTextarea: LibraryExample[] = [{
+export const FormTextarea: LibraryItem[] = [{
   title: 'Textarea',
   exampleHtml: `
 <div>

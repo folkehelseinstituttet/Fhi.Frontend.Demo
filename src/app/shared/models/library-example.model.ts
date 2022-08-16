@@ -1,4 +1,4 @@
-export interface LibraryExample {
+export interface LibraryItem {
   title: string;
   type?: number;
   exampleHtml?: string;

@@ -1,9 +1,9 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
-export const TableSelectableRow: LibraryExample[] = [{
+export const TableSelectableRow: LibraryItem[] = [{
   title: 'Table - selectable row',
   exampleHtml: `
 <p>(Example is just showing visuals for current state, there's no toggle functionality here.)</p>

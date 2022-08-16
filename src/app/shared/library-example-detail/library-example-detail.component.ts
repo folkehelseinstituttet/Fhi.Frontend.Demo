@@ -3,21 +3,21 @@ import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
 import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';
-import { LibraryExample } from '../models/library-example.model';
+import { LibraryItem } from '../models/library-example.model';
 import { NavTab } from './nav-tab.model';
 
 @Component({
   selector: 'app-library-example-detail',
   templateUrl: './library-example-detail.component.html'
 })
-export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
+export class LibraryItemDetailComponent implements AfterViewInit, OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private viewportScroller: ViewportScroller
   ) { }
 
-  @Input() libraryExample: LibraryExample;
+  @Input() libraryExample: LibraryItem;
 
   LibraryItemType = LibraryItemType;
 
@@ -42,7 +42,7 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
     }
   }
 
-  private updateExampleDataFromInput(example: LibraryExample) {
+  private updateExampleDataFromInput(example: LibraryItem) {
     this.exampleTitle = example.title;
     this.exampleType = (example.type !== undefined) ? example.type : LibraryItemType.html;
     this.exampleHtml = example.exampleHtml;
@@ -51,7 +51,7 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
     this.exampleId = example.id;
   }
 
-  private getCodeHtml(example: LibraryExample): string {
+  private getCodeHtml(example: LibraryItem): string {
     if (example.codeHtml !== undefined) {
       return example.codeHtml.trim();
     }

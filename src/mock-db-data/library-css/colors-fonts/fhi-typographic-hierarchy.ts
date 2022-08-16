@@ -1,6 +1,6 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 
-export const FhiTypographicHierarchy: LibraryExample[] = [{
+export const FhiTypographicHierarchy: LibraryItem[] = [{
   title: 'Typographical hierarchy',
   exampleHtml: `
 <p class="small">Small text. The element <code>&lt;small&gt;</code> also inherits this font size.</p>

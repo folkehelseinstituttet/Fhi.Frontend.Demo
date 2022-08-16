@@ -14,7 +14,7 @@ import { SafePipe } from './pipes/safe.pipe';
 
 import { LibraryMenuLevel1Component } from './library-menu-level-1/library-menu-level-1.component';
 import { LibraryMenuLevel2Component } from './library-menu-level-2/library-menu-level-2.component';
-import { LibraryExampleDetailComponent } from './library-example-detail/library-example-detail.component';
+import { LibraryItemDetailComponent } from './library-example-detail/library-example-detail.component';
 import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AngularExampleComponent } from './library-example-detail/angular-example.component';
@@ -27,7 +27,7 @@ import { TooltipExampleComponent } from './library-example-detail/ng-bootstrap-e
     SafePipe,
     LibraryMenuLevel1Component,
     LibraryMenuLevel2Component,
-    LibraryExampleDetailComponent,
+    LibraryItemDetailComponent,
     LibraryCopyButtonComponent,
     SpinnerComponent,
     AngularExampleComponent,
@@ -50,7 +50,7 @@ import { TooltipExampleComponent } from './library-example-detail/ng-bootstrap-e
     SafePipe,
     LibraryMenuLevel1Component,
     LibraryMenuLevel2Component,
-    LibraryExampleDetailComponent,
+    LibraryItemDetailComponent,
     LibraryCopyButtonComponent,
     SpinnerComponent,
     CommonModule,

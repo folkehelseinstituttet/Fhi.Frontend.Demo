@@ -1,6 +1,6 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 
-export const IconsSet: LibraryExample[] = [{
+export const IconsSet: LibraryItem[] = [{
   title: 'Icon set',
   exampleHtml: `
 <div class="flex flex-wrap ds-icons-wrapper">

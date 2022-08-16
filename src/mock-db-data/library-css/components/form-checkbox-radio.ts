@@ -1,9 +1,9 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
-export const FormChecksRadio: LibraryExample[] = [{
+export const FormChecksRadio: LibraryItem[] = [{
   title: 'Checks og Radio',
   exampleHtml: `
 <div class="custom-control custom-checkbox">

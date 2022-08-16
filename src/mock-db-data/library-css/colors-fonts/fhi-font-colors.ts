@@ -1,6 +1,6 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 
-export const FhiFontColors: LibraryExample[] = [{
+export const FhiFontColors: LibraryItem[] = [{
   title: 'Font colors',
   exampleHtml: `
 <!--

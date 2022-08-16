@@ -1,9 +1,9 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
 const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
-export const FhiBtnPrimary: LibraryExample[] = [{
+export const FhiBtnPrimary: LibraryItem[] = [{
   title: 'Primary button',
   exampleHtml: `
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">

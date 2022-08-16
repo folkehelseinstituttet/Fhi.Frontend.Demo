@@ -1,6 +1,6 @@
-import { LibraryExample } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-example.model';
 
-export const FhiHeadings: LibraryExample[] = [{
+export const FhiHeadings: LibraryItem[] = [{
   title: 'Heading levels',
   exampleHtml: `
 <h1>Level 1</h1>
