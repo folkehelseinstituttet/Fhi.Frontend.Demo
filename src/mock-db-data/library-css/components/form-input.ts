@@ -9,7 +9,7 @@ export const FormInput: LibraryExample[] = [{
 <label for="FormInput" class="form-label">Text input</label>
 <input type="text" id="FormInput" class="form-control" placeholder="Regular text input">
 `,
-codeMarkdown: `
+codeHtml: `
 <!-- optional outer div for grouping -->
 <div>
   <label for="FormInput" class="form-label">Text input</label>

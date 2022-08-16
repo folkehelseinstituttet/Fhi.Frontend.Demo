@@ -10,12 +10,11 @@ const itemTitle = 'Tooltip';
 export const Tooltip: LibraryExample[] = [{
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
-  codeMarkdown: `
+  codeHtml: `
 <button type="button" class="btn fhi-btn-outline-secondary" ngbTooltip="This is the tooltip.">
   Hover for tooltip
-</button>
+</button>`,
 
-`,
   documentationHtml: `
 <p>
   Bootstrap documentation for
@@ -29,5 +28,6 @@ export const Tooltip: LibraryExample[] = [{
 <p>
   If you use another Javascript framework, you will have to find a suitable 3. party library.
 </p>`,
+
   category: categoryNames.widgets
 }];

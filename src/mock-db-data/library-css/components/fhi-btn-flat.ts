@@ -14,7 +14,7 @@ export const FhiBtnFlat: LibraryExample[] = [{
 <div>
   <button type="button" class="btn fhi-btn-flat">Dynamic width</button>
 </div>`,
-  codeMarkdown: `
+  codeHtml: `
 <button type="button" class="btn btn-sm fhi-btn-flat">Small, 120px</button>
 <button type="button" class="btn btn-md fhi-btn-flat">Standard, 170px</button>
 <button type="button" class="btn btn-lg fhi-btn-flat">Large, 280px</button>

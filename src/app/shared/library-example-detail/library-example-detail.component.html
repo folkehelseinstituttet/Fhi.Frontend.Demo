@@ -25,9 +25,9 @@
 
         <ng-container *ngIf="navTab.title === 'Code'">
           <ng-template ngbNavContent>
-            <app-library-copy-button [contentReferenceToCopy]="codeMarkdown"></app-library-copy-button>
+            <app-library-copy-button [contentReferenceToCopy]="codeHtml"></app-library-copy-button>
             <div class="ds-ui-documentation__example">
-              <markdown [data]="codeMarkdown | language : 'html'"></markdown>
+              <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>

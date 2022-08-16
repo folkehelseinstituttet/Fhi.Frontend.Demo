@@ -26,7 +26,7 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
   exampleId: string;
   exampleHtml: string;
   documentationHtml: string;
-  codeMarkdown: string;
+  codeHtml: string;
 
   activeNavTab = 0;
   navTabs: NavTab[];
@@ -46,19 +46,19 @@ export class LibraryExampleDetailComponent implements AfterViewInit, OnInit {
     this.exampleTitle = example.title;
     this.exampleType = (example.type !== undefined) ? example.type : LibraryItemType.html;
     this.exampleHtml = example.exampleHtml;
-    this.codeMarkdown = this.getCodeMarkdown(example);
+    this.codeHtml = this.getCodeHtml(example);
     this.documentationHtml = example.documentationHtml;
     this.exampleId = example.id;
   }
 
-  private getCodeMarkdown(example: LibraryExample): string {
-    if (example.codeMarkdown !== undefined) {
-      return example.codeMarkdown.trim();
+  private getCodeHtml(example: LibraryExample): string {
+    if (example.codeHtml !== undefined) {
+      return example.codeHtml.trim();
     }
     if (example.exampleHtml !== undefined) {
       return example.exampleHtml.trim();
     }
-    return '<!-- codeMarkdown === undefined -->';
+    return '<!-- codeHtml === undefined -->';
   }
 
   private createNavTabsArray(): NavTab[] {
