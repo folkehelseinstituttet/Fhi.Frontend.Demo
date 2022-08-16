@@ -14,13 +14,13 @@ import { SafePipe } from './pipes/safe.pipe';
 
 import { LibraryMenuLevel1Component } from './library-menu-level-1/library-menu-level-1.component';
 import { LibraryMenuLevel2Component } from './library-menu-level-2/library-menu-level-2.component';
-import { LibraryItemDetailComponent } from './library-example-detail/library-item-detail.component';
+import { LibraryItemDetailComponent } from './library-item-detail/library-item-detail.component';
 import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { AngularExampleComponent } from './library-example-detail/angular-example.component';
-import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
-import { ToastExampleComponent } from './library-example-detail/ng-bootstrap-examples/toast-example/toast-example.component';
-import { TooltipExampleComponent } from './library-example-detail/ng-bootstrap-examples/tooltip-example/tooltip-example.component';
+import { AngularExampleComponent } from './library-item-detail/angular-example.component';
+import { AccordionExampleComponent } from './library-item-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
+import { ToastExampleComponent } from './library-item-detail/ng-bootstrap-examples/toast-example/toast-example.component';
+import { TooltipExampleComponent } from './library-item-detail/ng-bootstrap-examples/tooltip-example/tooltip-example.component';
 
 @NgModule({
   declarations: [

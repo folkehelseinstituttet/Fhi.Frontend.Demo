@@ -10,7 +10,6 @@
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
               <div *ngIf="type === htmlItemType; else angularItem" [innerHtml]="exampleHtml | safe: 'html'"></div>
-              <ng-content select="[library-example-detail.example-component]"></ng-content>
             </div>
           </ng-template>
         </ng-container>
@@ -40,5 +39,5 @@
 
 
 <ng-template #angularItem>
-  <app-angular-example [exampleTitle]="title"></app-angular-example>
+  <app-angular-example [itemTitle]="title"></app-angular-example>
 </ng-template>
