@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-item.model';
 
 import { FhiColors } from './colors-fonts/fhi-colors';
 import { FhiColorsBootstrap } from './colors-fonts/fhi-colors-bootstrap';

@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-item.model';
 
 const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?: string) => {
   const textClass = (textColor === 'black') ? '' : ' class="text-white"';

@@ -5,7 +5,7 @@ import { UrlService } from 'src/app/_common/services/url-service/url.service';
 import { UrlUtilitiesService } from 'src/app/_common/services/url-service/url-utilities.service';
 import { LibraryCssDataService } from './library-css-data.service';
 import { LibraryMenuService } from '../_common/services/library-menu.service';
-import { LibraryItem } from '../shared/models/library-example.model';
+import { LibraryItem } from '../shared/models/library-item.model';
 import { LibraryCssMenu } from './constants/library-css-menu';
 import { LibraryMenuLevel2Item } from 'src/app/shared/models/library-menu-level-2-item.model';
 import { LibraryMenuLevel2Category } from '../shared/models/library-menu-level-2-category.model';

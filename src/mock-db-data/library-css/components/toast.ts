@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-item.model';
 import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 import { BootstrapBaseUrl, NgBootstrapBaseUrl } from 'src/app/library-css/constants/bootstrap-base-urls';
 import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';

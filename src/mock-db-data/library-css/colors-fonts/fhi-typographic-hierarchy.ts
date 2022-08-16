@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-example.model';
+import { LibraryItem } from 'src/app/shared/models/library-item.model';
 
 export const FhiTypographicHierarchy: LibraryItem[] = [{
   title: 'Typographical hierarchy',

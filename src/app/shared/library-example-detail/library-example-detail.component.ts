@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
 import { LibraryItemType } from 'src/app/library-css/constants/library-item-type';
-import { LibraryItem } from '../models/library-example.model';
+import { LibraryItem } from '../models/library-item.model';
 import { NavTab } from './nav-tab.model';
 
 @Component({
