@@ -1,4 +1,6 @@
 export class UrlPaths {
+  static developer = 'developer';
+
   static cssLibrary = 'css';
   static cssLibraryPageTemplates = 'page-templates';
   static cssLibraryModules = 'modules';

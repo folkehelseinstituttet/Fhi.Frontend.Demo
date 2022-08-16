@@ -1,0 +1,29 @@
+<div class="container">
+
+  <!-- <app-library-tab-menu [menuItems]="libraryMenuLevel1Items"></app-library-tab-menu> -->
+
+  <ng-container *ngIf="true else spinner">
+    <div class="row">
+      <div class="col-md-4 col-lg-3 col-xxl-3">
+        Developer works!
+        <!-- <app-library-menu-level-2
+          [menuItems]="libraryMenuLevel2Items"
+          [categories]="libraryMenuLevel2Categories">
+        </app-library-menu-level-2> -->
+      </div>
+      <div class="col-md-8 col-lg-9 col-xxl-7">
+        <section>
+          <!-- <app-library-example-detail
+            *ngFor="let libraryExample of libraryExamples"
+            [libraryExample]="libraryExample">
+          </app-library-example-detail> -->
+        </section>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+<ng-template #spinner>
+  <!-- <app-spinner></app-spinner> -->
+</ng-template>

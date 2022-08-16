@@ -13,6 +13,8 @@ const routes: Routes = [{
   path: UrlPaths.cssLibrary,
   loadChildren: () => import('./library-css/library-css.module').then(m => m.LibraryCssModule)
 }, {
+  path: UrlPaths.developer,
+  loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)}, {
   path: '**',
   redirectTo: defaultPath
 }];
