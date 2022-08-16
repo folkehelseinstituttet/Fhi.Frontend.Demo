@@ -6,8 +6,8 @@ import { LibraryItem, LibraryItemType } from '../models/library-item.model';
 import { NavTab } from './nav-tab.model';
 
 @Component({
-  selector: 'app-library-example-detail',
-  templateUrl: './library-example-detail.component.html'
+  selector: 'app-library-item-detail',
+  templateUrl: './library-item-detail.component.html'
 })
 export class LibraryItemDetailComponent implements AfterViewInit, OnInit {
 
@@ -16,45 +16,45 @@ export class LibraryItemDetailComponent implements AfterViewInit, OnInit {
     private viewportScroller: ViewportScroller
   ) { }
 
-  @Input() libraryExample: LibraryItem;
+  @Input() libraryItem: LibraryItem;
 
-  LibraryItemType = LibraryItemType;
-  exampleTitle: string;
-  exampleType: number;
-  exampleId: string;
+  id: string;
+  title: string;
+  type: number;
   exampleHtml: string;
   documentationHtml: string;
   codeHtml: string;
 
+  htmlItemType = LibraryItemType.html;
   activeNavTab = 0;
   navTabs: NavTab[];
 
   ngOnInit() {
-    this.updateExampleDataFromInput(this.libraryExample);
+    this.setItemData(this.libraryItem);
     this.navTabs = this.createNavTabsArray();
   }
 
   ngAfterViewInit() {
-    if (this.activatedRoute.snapshot.fragment === this.exampleId) {
-      this.viewportScroller.scrollToAnchor(this.exampleId);
+    if (this.activatedRoute.snapshot.fragment === this.id) {
+      this.viewportScroller.scrollToAnchor(this.id);
     }
   }
 
-  private updateExampleDataFromInput(example: LibraryItem) {
-    this.exampleTitle = example.title;
-    this.exampleType = (example.type !== undefined) ? example.type : LibraryItemType.html;
-    this.exampleHtml = example.exampleHtml;
-    this.codeHtml = this.getCodeHtml(example);
-    this.documentationHtml = example.documentationHtml;
-    this.exampleId = example.id;
+  private setItemData(item: LibraryItem) {
+    this.title = item.title;
+    this.type = item.type;
+    this.exampleHtml = item.exampleHtml;
+    this.codeHtml = this.getCodeHtml(item);
+    this.documentationHtml = item.documentationHtml;
+    this.id = item.id;
   }
 
-  private getCodeHtml(example: LibraryItem): string {
-    if (example.codeHtml !== undefined) {
-      return example.codeHtml.trim();
+  private getCodeHtml(item: LibraryItem): string {
+    if (item.codeHtml !== undefined) {
+      return item.codeHtml.trim();
     }
-    if (example.exampleHtml !== undefined) {
-      return example.exampleHtml.trim();
+    if (item.exampleHtml !== undefined) {
+      return item.exampleHtml.trim();
     }
     return '<!-- codeHtml === undefined -->';
   }

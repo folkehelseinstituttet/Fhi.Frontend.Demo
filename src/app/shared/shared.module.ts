@@ -14,7 +14,7 @@ import { SafePipe } from './pipes/safe.pipe';
 
 import { LibraryMenuLevel1Component } from './library-menu-level-1/library-menu-level-1.component';
 import { LibraryMenuLevel2Component } from './library-menu-level-2/library-menu-level-2.component';
-import { LibraryItemDetailComponent } from './library-example-detail/library-example-detail.component';
+import { LibraryItemDetailComponent } from './library-example-detail/library-item-detail.component';
 import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AngularExampleComponent } from './library-example-detail/angular-example.component';
