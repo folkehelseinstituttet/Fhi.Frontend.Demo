@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { MainMenuItem } from './main-menu-item.model';
+import { MenuItem } from '../../menu-item.model';
 import { UrlPaths } from '../../_common/constants/url-paths';
 import { MenuNames } from 'src/app/_common/constants/menu-names';
 
@@ -18,8 +18,10 @@ export class MainMenuComponent {
   faTimes = faTimes;
   mainMenuIsOpen = false;
 
-  mainMenuItems: MainMenuItem[] = [{
-    name: MenuNames.cssLibrary,
+  mainMenuItems: MenuItem[] = [{
+    name: 'Developer',
+    routerLink: `/${UrlPaths.developer}`
+  }, {    name: MenuNames.cssLibrary,
     routerLink: `/${UrlPaths.cssLibrary}`
   }];
 
