@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { BrowserViewportService } from 'src/app/services/browser-viewport.service';
+import { MenuItem } from 'src/app/models/menu-item.model';
 
 @Component({
   selector: 'app-library-top-level-menu',
-  templateUrl: './library-top-level-menu.component.html',
-  styles: [
-  ]
+  templateUrl: './library-top-level-menu.component.html'
 })
 export class LibraryTopLevelMenuComponent implements OnInit {
 
-  constructor() { }
+  @Input() menuItems: MenuItem[];
 
-  ngOnInit(): void {
+  isMobile: boolean;
+
+  private subscription = new Subscription();
+
+  constructor(private browserViewportService: BrowserViewportService) { }
+
+  ngOnInit() {
+    this.subscription.add(this.browserViewportService.isMobile$
+      .subscribe(isMobile => {
+        this.isMobile = isMobile;
+      }));
   }
 
 }

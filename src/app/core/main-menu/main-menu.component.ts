@@ -4,7 +4,6 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { MenuItem } from '../../models/menu-item.model';
 import { UrlPaths } from '../../_common/constants/url-paths';
-import { MenuNames } from 'src/app/_common/constants/menu-names';
 
 @Component({
   selector: 'app-main-menu',
@@ -19,9 +18,10 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MenuItem[] = [{
-    name: 'Developer',
+    name: 'CSS library (Developer)',
     routerLink: `/${UrlPaths.developer}`
-  }, {    name: MenuNames.cssLibrary,
+  }, {
+    name: 'CSS library',
     routerLink: `/${UrlPaths.cssLibrary}`
   }];
 

@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UrlPaths } from './_common/constants/url-paths';
 
-const defaultPath = `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryComponents}`;
+const defaultPath = `/${UrlPaths.developer}/${UrlPaths.components}`;
 
 const routes: Routes = [{
   path: '',
