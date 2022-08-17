@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { MenuItem } from 'src/app/models/menu-item.model';
+import { LibraryItemFilter } from '../models/library-item-filter.model';
 
 @Component({
   selector: 'app-library-second-level-menu',
-  templateUrl: './library-second-level-menu.component.html',
-  styles: [
-  ]
+  templateUrl: './library-second-level-menu.component.html'
 })
-export class LibrarySecondLevelMenuComponent implements OnInit {
+export class LibrarySecondLevelMenuComponent {
 
-  constructor() { }
+  @Input() menuItems: MenuItem[];
 
-  ngOnInit(): void {
-  }
+  activeNavTab = 0;
+  libraryItemFilter: LibraryItemFilter = { name: '' };
 
 }
