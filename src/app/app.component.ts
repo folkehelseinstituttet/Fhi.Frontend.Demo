@@ -5,7 +5,7 @@ import { fromEvent } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
 import { BrowserViewportService } from './services/browser-viewport.service';
-import { UrlService } from './_common/services/url-service/url.service';
+import { UrlService } from './services/url.service';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        this.urlService.updateOnNavigationEnd(this.router.parseUrl(event.urlAfterRedirects));
+        this.urlService.updateOnNavigationEnd(event);
       });
 
     this.router.events

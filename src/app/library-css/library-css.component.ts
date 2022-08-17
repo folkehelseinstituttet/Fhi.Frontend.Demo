@@ -1,8 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UrlService } from 'src/app/_common/services/url-service/url.service';
-import { UrlUtilitiesService } from 'src/app/_common/services/url-service/url-utilities.service';
+import { UrlService } from 'src/app/services/url.service';
 import { LibraryCssDataService } from './library-css-data.service';
 import { LibraryMenuService } from '../_common/services/library-menu.service';
 import { LibraryItem } from '../views/shared/library/models/library-item.model';
@@ -18,7 +17,6 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
-    private urlUtilities: UrlUtilitiesService,
     private libraryCssDataService: LibraryCssDataService,
     private libraryMenuService: LibraryMenuService
   ) { }
@@ -33,13 +31,10 @@ export class LibraryCssComponent implements OnInit, OnDestroy {
   currentLibraryMenuLevel1Path: string;
 
   ngOnInit() {
-    this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
-    this.getLibraryItems(this.currentLibraryMenuLevel1Path);
-
-    this.subscription.add(this.urlService.urlTree$
+    this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (this.urlUtilities.getFragment() === null) {
-          this.currentLibraryMenuLevel1Path = this.urlUtilities.getCurrentSegmentPath();
+        if (this.urlService.getFragment() === null) {
+          this.currentLibraryMenuLevel1Path = this.urlService.getCurrentSegmentPath();
           this.getLibraryItems(this.currentLibraryMenuLevel1Path);
         }
       }));
