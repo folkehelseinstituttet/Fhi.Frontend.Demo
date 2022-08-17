@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/library/models/library-item.model';
 
 import { Accordion } from './components/accordion';
 import { FhiBtnPrimary } from './components/fhi-btn-primary';

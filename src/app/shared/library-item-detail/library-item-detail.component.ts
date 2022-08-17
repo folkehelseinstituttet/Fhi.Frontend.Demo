@@ -2,7 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
-import { LibraryItem, LibraryItemType } from '../models/library-item.model';
+import { LibraryItem, LibraryItemType } from '../../views/shared/library/models/library-item.model';
 import { NavTab } from './nav-tab.model';
 
 @Component({

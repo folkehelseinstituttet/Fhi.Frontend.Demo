@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UrlParamNames } from 'src/app/_common/constants/url-param-names';
 import { UrlPaths } from 'src/app/_common/constants/url-paths';
-import { LibraryItem } from 'src/app/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/library/models/library-item.model';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const FhiHeadings: LibraryItem[] = [{
   title: 'Heading levels',
