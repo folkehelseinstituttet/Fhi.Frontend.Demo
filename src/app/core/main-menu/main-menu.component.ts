@@ -19,10 +19,10 @@ export class MainMenuComponent {
 
   mainMenuItems: MenuItem[] = [{
     name: 'CSS library (Developer)',
-    routerLink: `/${UrlPaths.developer}`
+    link: `/${UrlPaths.developer}`
   }, {
     name: 'CSS library',
-    routerLink: `/${UrlPaths.cssLibrary}`
+    link: `/${UrlPaths.cssLibrary}`
   }];
 
   mainMenuClose(): void {

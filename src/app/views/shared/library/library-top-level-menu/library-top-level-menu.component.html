@@ -1,6 +1,6 @@
 <ul class="nav mb-7" [ngClass]="{'nav-pills': isMobile, 'nav-tabs': !isMobile}">
   <li class="nav-item" *ngFor="let menuItem of menuItems">
-    <a class="nav-link" [routerLink]="menuItem.routerLink" routerLinkActive="active">
+    <a class="nav-link" [routerLink]="menuItem.link" routerLinkActive="active">
       {{ menuItem.name }}
     </a>
   </li>
