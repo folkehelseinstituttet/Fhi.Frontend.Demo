@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { BrowserViewportService } from 'src/app/_common/services/browser-viewport.service';
+import { BrowserViewportService } from 'src/app/services/browser-viewport.service';
 import { LibraryMenuLevel1Item } from '../models/library-menu-level-1-item.model';
 
 @Component({
@@ -19,10 +19,9 @@ export class LibraryMenuLevel1Component implements OnInit {
   @Input() menuItems: LibraryMenuLevel1Item[];
 
   ngOnInit() {
-    this.isMobile = this.browserViewportService.isMobile;
     this.subscription.add(this.browserViewportService.isMobile$
-    .subscribe(isMobile => {
-      this.isMobile = isMobile;
-    }));
+      .subscribe(isMobile => {
+        this.isMobile = isMobile;
+      }));
   }
 }
