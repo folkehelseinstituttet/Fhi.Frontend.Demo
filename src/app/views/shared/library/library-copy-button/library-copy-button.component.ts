@@ -22,7 +22,6 @@ export class LibraryCopyButtonComponent {
   }
 
   copied(event: IClipboardResponse) {
-    console.log('event', event);
     this.copyIsSuccess = event.isSuccess;
   }
 }

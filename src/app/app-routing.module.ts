@@ -10,9 +10,6 @@ const routes: Routes = [{
   pathMatch: 'full',
   redirectTo: defaultPath
 }, {
-  path: UrlPaths.cssLibrary,
-  loadChildren: () => import('./library-css/library-css.module').then(m => m.LibraryCssModule)
-}, {
   path: UrlPaths.developer,
   loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)
 }, {
