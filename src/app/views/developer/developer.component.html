@@ -9,11 +9,7 @@
       </div>
       <div class="col-md-8 col-lg-9 col-xxl-7">
         <section>
-          DeveloperComponent works!
-          <!-- <app-library-example-detail
-            *ngFor="let libraryExample of libraryExamples"
-            [libraryExample]="libraryExample">
-          </app-library-example-detail> -->
+          <app-library-item *ngFor="let libraryItem of libraryItems" [libraryItem]="libraryItem"></app-library-item>
         </section>
       </div>
     </div>

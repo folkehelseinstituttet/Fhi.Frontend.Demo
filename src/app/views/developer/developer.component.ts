@@ -45,12 +45,7 @@ export class DeveloperComponent implements OnInit {
     this.subscription.add(this.developerDataService.getLibraryItems(path)
       .subscribe(libraryItemsWithoutId => {
         this.libraryItems = this.libraryItemIdService.addItemId(libraryItemsWithoutId);
-        // console.log('libraryItems', this.libraryItems);
-
-        // TODO: promise pattern to get this out of getLibraryItems() ?
         this.secondLevelMenuItems = this.secondLevelMenuService.getSecondLevelMenuItems(this.libraryItems);
-        // console.log('secondLevelMenuItems', this.secondLevelMenuItems);
-
         this.libraryItemsLoaded = true;
       },
       error => this.getErrorMessage(error)));

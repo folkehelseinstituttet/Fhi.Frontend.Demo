@@ -1,16 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
+
+import { LibraryItem, LibraryItemType } from '../models/library-item.model';
+import { MenuItem } from 'src/app/models/menu-item.model';
 
 @Component({
   selector: 'app-library-item',
-  templateUrl: './library-item.component.html',
-  styles: [
-  ]
+  templateUrl: './library-item.component.html'
 })
 export class LibraryItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() libraryItem: LibraryItem;
 
-  ngOnInit(): void {
+  id: string;
+  title: string;
+  type: number;
+  exampleHtml: string;
+  documentationHtml: string;
+  codeHtml: string;
+
+  itemTypeHtml = LibraryItemType.html;
+  activeMenuItemByDefault = 0;
+  navTabMenuItems: MenuItem[];
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private viewportScroller: ViewportScroller
+  ) { }
+
+  ngOnInit() {
+    this.setItemData(this.libraryItem);
+    this.navTabMenuItems = this.navTabMenuItemsArray();
+  }
+
+  ngAfterViewInit() {
+    if (this.activatedRoute.snapshot.fragment === this.id) {
+      this.viewportScroller.scrollToAnchor(this.id);
+    }
+  }
+
+  private setItemData(item: LibraryItem) {
+    this.title = item.title;
+    this.type = item.type;
+    this.exampleHtml = item.exampleHtml;
+    this.codeHtml = this.getCodeHtml(item);
+    this.documentationHtml = item.documentationHtml;
+    this.id = item.id;
+  }
+
+  private getCodeHtml(item: LibraryItem): string {
+    if (item.codeHtml !== undefined) {
+      return item.codeHtml.trim();
+    }
+    if (item.exampleHtml !== undefined) {
+      return item.exampleHtml.trim();
+    }
+    return '<!-- codeHtml === undefined -->';
+  }
+
+  private navTabMenuItemsArray(): MenuItem[] {
+    let n = 0;
+    const menuItems: MenuItem[] = [];
+
+    menuItems[n++] = {
+      name: 'Example',
+      link: null
+    };
+    if (this.documentationHtml !== undefined) {
+      menuItems[n++] = {
+        name: 'Documentation',
+        link: null
+      };
+    }
+    menuItems[n++] = {
+      name: 'Code',
+      link: null
+    };
+    return menuItems;
   }
 
 }
