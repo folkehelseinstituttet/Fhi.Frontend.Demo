@@ -36,7 +36,7 @@ export class DeveloperDataService {
       case UrlPaths.colorsAndFonts:
         return 'CssColorsFontsData';
 
-      case UrlPaths.cssLibraryIcons:
+      case UrlPaths.icons:
         return 'CssIconsData';
 
       default:

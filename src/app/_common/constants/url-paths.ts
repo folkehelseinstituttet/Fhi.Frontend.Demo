@@ -9,14 +9,4 @@ export class UrlPaths {
   static components = 'components';
   static modules = 'modules';
   static pageTemplates = 'page-templates';
-
-
-  // deprecated
-  static cssLibrary = 'css';
-  static cssLibraryPageTemplates = 'page-templates';
-  static cssLibraryModules = 'modules';
-  static cssLibraryComponents = 'components';
-  static cssLibraryUtilityClasses = 'utility-classes';
-  static cssLibraryColorsFonts = 'colors-fonts';
-  static cssLibraryIcons = 'icons';
 }

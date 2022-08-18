@@ -18,11 +18,8 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MenuItem[] = [{
-    name: 'CSS library (Developer)',
-    link: `/${UrlPaths.developer}`
-  }, {
     name: 'CSS library',
-    link: `/${UrlPaths.cssLibrary}`
+    link: `/${UrlPaths.developer}`
   }];
 
   mainMenuClose(): void {
