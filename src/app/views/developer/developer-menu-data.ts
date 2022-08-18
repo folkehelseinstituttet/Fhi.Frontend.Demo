@@ -2,7 +2,7 @@ import { UrlPaths } from '../../_common/constants/url-paths';
 
 import { MenuItem } from 'src/app/models/menu-item.model';
 
-export class MenuData {
+export class DeveloperMenuData {
   static menutems: MenuItem[] = [{
     name: 'Components',
     link: `/${UrlPaths.developer}/${UrlPaths.components}`

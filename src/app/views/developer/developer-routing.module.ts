@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DeveloperComponent } from './developer.component';
+import { UrlPaths } from 'src/app/_common/constants/url-paths';
 
 const routes: Routes = [{
-  path: '',
+  path: ':param',
   component: DeveloperComponent
 }, {
   path: '',
   pathMatch: 'full',
-  redirectTo: ''
+  redirectTo: `${UrlPaths.components}`
 }];
 
 @NgModule({
