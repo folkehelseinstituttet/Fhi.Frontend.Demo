@@ -33,7 +33,7 @@ export class DeveloperComponent implements OnInit {
   ngOnInit() {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (this.urlService.getFragment() === null) {
+        if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
           const currentTopLevelSegementPath = this.urlService.getCurrentSegmentPath();
           this.getLibraryItems(currentTopLevelSegementPath);
         }
@@ -49,7 +49,7 @@ export class DeveloperComponent implements OnInit {
 
         // TODO: promise pattern to get this out of getLibraryItems() ?
         this.secondLevelMenuItems = this.secondLevelMenuService.getSecondLevelMenuItems(this.libraryItems);
-        console.log('secondLevelMenuItems', this.secondLevelMenuItems);
+        // console.log('secondLevelMenuItems', this.secondLevelMenuItems);
 
         this.libraryItemsLoaded = true;
       },
