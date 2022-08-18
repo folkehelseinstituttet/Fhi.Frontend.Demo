@@ -40,9 +40,25 @@ export class DeveloperComponent implements OnInit {
     this.libraryItemsLoaded = false;
     this.subscription.add(this.developerDataService.getLibraryItems(path)
       .subscribe(libraryItems => {
-        console.log('libraryItems', libraryItems);
+        this.libraryItems = this.addItemId(libraryItems);
+        console.log('libraryItems', this.libraryItems);
       },
       error => this.getErrorMessage(error)));
+  }
+
+  private addItemId(libraryExamples: LibraryItem[]): LibraryItem[] {
+    const examples: LibraryItem[] = [];
+    let i = 0;
+    libraryExamples.forEach(example => {
+      example.id = this.createId(example.title);
+      examples[i] = example;
+      i++;
+    });
+    return examples;
+  }
+
+  private createId(text: string): string  {
+    return text.replace(/\s+/g, '-').toLowerCase();
   }
 
   private getErrorMessage(error: object) {
