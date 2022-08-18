@@ -3,10 +3,12 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { DeveloperDataService } from './developer-data.service';
+import { SecondLevelMenuService } from '../shared/second-level-menu.service';
+import { LibraryItemIdService } from '../shared/library-item-id.service';
 
+import { DeveloperMenuData } from './developer-menu-data';
 import { LibraryItem } from '../shared/library/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
-import { DeveloperMenuData } from './developer-menu-data';
 
 @Component({
   selector: 'app-developer',
@@ -23,7 +25,9 @@ export class DeveloperComponent implements OnInit {
 
   constructor(
     private urlService: UrlService,
-    private developerDataService: DeveloperDataService
+    private developerDataService: DeveloperDataService,
+    private secondLevelMenuService: SecondLevelMenuService,
+    private libraryItemIdService: LibraryItemIdService
   ) { }
 
   ngOnInit() {
@@ -39,26 +43,17 @@ export class DeveloperComponent implements OnInit {
   private getLibraryItems(path: string) {
     this.libraryItemsLoaded = false;
     this.subscription.add(this.developerDataService.getLibraryItems(path)
-      .subscribe(libraryItems => {
-        this.libraryItems = this.addItemId(libraryItems);
-        console.log('libraryItems', this.libraryItems);
+      .subscribe(libraryItemsWithoutId => {
+        this.libraryItems = this.libraryItemIdService.addItemId(libraryItemsWithoutId);
+        // console.log('libraryItems', this.libraryItems);
+
+        // TODO: promise pattern to get this out of getLibraryItems() ?
+        this.secondLevelMenuItems = this.secondLevelMenuService.getSecondLevelMenuItems(this.libraryItems);
+        console.log('secondLevelMenuItems', this.secondLevelMenuItems);
+
+        this.libraryItemsLoaded = true;
       },
       error => this.getErrorMessage(error)));
-  }
-
-  private addItemId(libraryExamples: LibraryItem[]): LibraryItem[] {
-    const examples: LibraryItem[] = [];
-    let i = 0;
-    libraryExamples.forEach(example => {
-      example.id = this.createId(example.title);
-      examples[i] = example;
-      i++;
-    });
-    return examples;
-  }
-
-  private createId(text: string): string  {
-    return text.replace(/\s+/g, '-').toLowerCase();
   }
 
   private getErrorMessage(error: object) {
