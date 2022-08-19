@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { UrlService } from 'src/app/services/url.service';
+import { UrlService } from '../../services/url.service';
 import { DeveloperDataService } from './developer-data.service';
 import { SecondLevelMenuService } from '../shared/second-level-menu.service';
 import { LibraryItemIdService } from '../shared/library-item-id.service';
+import { UrlPaths } from '../../url-paths';
 
-import { DeveloperMenuData } from './developer-menu-data';
 import { LibraryItem } from '../shared/library/models/library-item.model';
-import { MenuItem } from 'src/app/models/menu-item.model';
+import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
   selector: 'app-developer',
@@ -18,7 +18,7 @@ export class DeveloperComponent implements OnInit {
 
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
-  topLevelMenuItems: MenuItem[] = DeveloperMenuData.menutems;
+  topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
 
   private subscription: Subscription = new Subscription();
@@ -31,6 +31,7 @@ export class DeveloperComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.topLevelMenuItems = this.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
         if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
@@ -53,6 +54,25 @@ export class DeveloperComponent implements OnInit {
 
   private getErrorMessage(error: object) {
     console.log(error);
+  }
+
+  private getTopLevelMenuItems(): MenuItem[] {
+    return [{
+      name: 'Components',
+      link: `/${UrlPaths.developer}/${UrlPaths.components}`
+    }, {
+      name: 'Colors, fonts',
+      link: `/${UrlPaths.developer}/${UrlPaths.colorsAndFonts}`
+    }, {
+      name: 'Icons',
+      link: `/${UrlPaths.developer}/${UrlPaths.icons}`
+    // }, {
+    //   name: 'Typography',
+    //   link: `/${UrlPaths.developer}/${UrlPaths.typography}`
+    // }, {
+    //   name: 'Colors',
+    //   link: `/${UrlPaths.developer}/${UrlPaths.colors}`
+    }];
   }
 
 }
