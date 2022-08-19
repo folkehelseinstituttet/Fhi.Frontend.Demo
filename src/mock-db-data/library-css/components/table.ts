@@ -1,9 +1,6 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
 
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
-
-export const TableSimple: LibraryItem[] = [{
+export const Table: LibraryItem[] = [{
   title: 'Table',
   type: LibraryItemType.html,
   exampleHtml: `
@@ -17,7 +14,6 @@ export const TableSimple: LibraryItem[] = [{
         <th scope="col">Role</th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
         <th>1202</th>
@@ -51,7 +47,27 @@ export const TableSimple: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>
-`,
-  category: categoryNames.tables
+</div>`,
+
+  codeHtml: `
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Last name</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>1202</th>
+        <td>Birger Henrik</td>
+        <td>Tybring-Gjedde Olssen</td>
+        <td>Assistant</td>
+      </tr>
+    </tbody>
+  </table>
+</div>`
 }];

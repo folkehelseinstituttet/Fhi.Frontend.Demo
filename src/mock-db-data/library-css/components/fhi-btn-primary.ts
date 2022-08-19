@@ -1,7 +1,4 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FhiBtnPrimary: LibraryItem[] = [{
   title: 'Primary button',
@@ -24,6 +21,5 @@ export const FhiBtnPrimary: LibraryItem[] = [{
 
 <button type="button" class="btn btn-sm fhi-btn-outline-primary">Small, 120px</button>
 <button type="button" class="btn btn-md fhi-btn-outline-primary">Standard, 170px</button>
-<button type="button" class="btn btn-lg fhi-btn-outline-primary">Large, 280px</button>`,
-  category: categoryNames.buttons
+<button type="button" class="btn btn-lg fhi-btn-outline-primary">Large, 280px</button>`
 }];

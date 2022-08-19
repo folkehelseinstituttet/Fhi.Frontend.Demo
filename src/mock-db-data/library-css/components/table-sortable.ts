@@ -1,7 +1,4 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const TableSortable: LibraryItem[] = [{
   title: 'Table - sortable',
@@ -97,8 +94,8 @@ export const TableSortable: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>
-`,
+</div>`,
+
   codeHtml: `
 <div class="table-responsive">
   <!-- Note the [data-sort-column] attribute that is used to set the currently sorted column style -->
@@ -145,7 +142,5 @@ export const TableSortable: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>
-`,
-  category: categoryNames.tables
+</div>`
 }];

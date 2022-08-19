@@ -1,7 +1,4 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
 
 export const FormRadio: LibraryItem[] = [{
   title: 'Radios',
@@ -38,7 +35,5 @@ export const FormRadio: LibraryItem[] = [{
   <label class="form-check-label" for="radioInput">
     Label for radio
   </label>
-</div>
-`,
-  category: categoryNames.forms
+</div>`
 }];
