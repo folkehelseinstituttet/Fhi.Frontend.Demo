@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UrlPaths } from 'src/app/url-paths';
 
 import { DeveloperComponent } from './developer.component';
+import { ListOfVariationsComponent } from './list-of-variations/list-of-variations.component';
 import { LibraryItemComponent } from './library-item/library-item.component';
 
 const routes: Routes = [{
@@ -22,6 +23,7 @@ const routes: Routes = [{
 export class DeveloperRoutingModule {
   static components = [
     DeveloperComponent,
+    ListOfVariationsComponent,
     LibraryItemComponent
   ];
 }
