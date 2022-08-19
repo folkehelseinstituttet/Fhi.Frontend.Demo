@@ -1,7 +1,4 @@
-import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const FormSwitch: LibraryItem[] = [{
   title: 'Switches',
@@ -30,16 +27,12 @@ export const FormSwitch: LibraryItem[] = [{
   <label class="form-check-label" for="flexSwitchCheckChecked4">
     Checked and disabled switch element
   </label>
-</div>
-`,
+</div>`,
   codeHtml: `
 <div class="form-check form-switch">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
   <label class="form-check-label" for="flexSwitchCheckDefault">
     Label for switch element
   </label>
-</div>
-`,
-  category: categoryNames.forms
+</div>`
 }];
-

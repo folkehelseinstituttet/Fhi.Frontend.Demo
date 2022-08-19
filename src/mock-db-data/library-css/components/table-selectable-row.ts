@@ -1,7 +1,4 @@
-import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const TableSelectableRow: LibraryItem[] = [{
   title: 'Table - selectable row',
@@ -98,8 +95,8 @@ export const TableSelectableRow: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>
-`,
+</div>`,
+
   codeHtml: `
 <div class="table-responsive">
   <table class="table table-striped" data-sort-column="2">
@@ -190,7 +187,5 @@ export const TableSelectableRow: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>
-`,
-  category: categoryNames.tables
+</div>`
 }];

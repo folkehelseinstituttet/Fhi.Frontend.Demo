@@ -2,9 +2,8 @@ import { Component, Input } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { MainMenuItem } from './main-menu-item.model';
-import { UrlPaths } from '../../_common/constants/url-paths';
-import { MenuNames } from 'src/app/_common/constants/menu-names';
+import { MenuItem } from '../../models/menu-item.model';
+import { UrlPaths } from '../../url-paths';
 
 @Component({
   selector: 'app-main-menu',
@@ -18,9 +17,9 @@ export class MainMenuComponent {
   faTimes = faTimes;
   mainMenuIsOpen = false;
 
-  mainMenuItems: MainMenuItem[] = [{
-    name: MenuNames.cssLibrary,
-    routerLink: `/${UrlPaths.cssLibrary}`
+  mainMenuItems: MenuItem[] = [{
+    name: 'CSS library', // TODO: 'For developers', or something like that?
+    link: `/${UrlPaths.developer}`
   }];
 
   mainMenuClose(): void {

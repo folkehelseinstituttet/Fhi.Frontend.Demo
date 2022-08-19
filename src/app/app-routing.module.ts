@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UrlPaths } from './_common/constants/url-paths';
+import { UrlPaths } from './url-paths';
 
-const defaultPath = `/${UrlPaths.cssLibrary}/${UrlPaths.cssLibraryComponents}`;
+const defaultPath = `/${UrlPaths.developer}/${UrlPaths.components}`;
 
 const routes: Routes = [{
   path: '',
   pathMatch: 'full',
   redirectTo: defaultPath
 }, {
-  path: UrlPaths.cssLibrary,
-  loadChildren: () => import('./library-css/library-css.module').then(m => m.LibraryCssModule)
+  path: UrlPaths.developer,
+  loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)
 }, {
   path: '**',
   redirectTo: defaultPath

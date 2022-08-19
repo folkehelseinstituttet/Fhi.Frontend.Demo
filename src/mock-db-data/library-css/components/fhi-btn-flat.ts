@@ -1,7 +1,4 @@
-import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const FhiBtnFlat: LibraryItem[] = [{
   title: 'Transparent button',
@@ -21,6 +18,5 @@ export const FhiBtnFlat: LibraryItem[] = [{
 <button type="button" class="btn btn-lg fhi-btn-flat">Large, 280px</button>
 
 <button type="button" class="btn fhi-btn-flat">Dynamic width</button>
-`,
-  category: categoryNames.buttons
+`
 }];

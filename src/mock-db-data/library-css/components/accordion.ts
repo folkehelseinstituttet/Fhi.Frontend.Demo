@@ -1,8 +1,5 @@
-import { LibraryItem, LibraryItemType } from 'src/app/shared/models/library-item.model';
-import { LibraryMenuLevel2Categories } from 'src/app/_common/constants/library-menu-level-2-categories';
-import { BootstrapBaseUrl, NgBootstrapBaseUrl } from 'src/app/library-css/constants/bootstrap-base-urls';
-
-const categoryNames = LibraryMenuLevel2Categories.cssComponentCategories;
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { BootstrapBaseUrl, NgBootstrapBaseUrl } from '../../bootstrap-base-urls';
 
 const itemTitle = 'Accordion';
 
@@ -40,6 +37,5 @@ export const Accordion: LibraryItem[] = [{
 </p>
 <p>
   If you use another Javascript framework, you will have to find a suitable 3. party library.
-</p>`,
-  category: categoryNames.structuredContent
+</p>`
 }];
