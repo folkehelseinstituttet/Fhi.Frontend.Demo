@@ -9,10 +9,7 @@
         <ng-container *ngIf="menuItem.name === 'Example'">
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__example">
-              <!-- <div *ngIf="type === itemTypeHtml; else angularExample"
-                   [innerHtml]="exampleHtml | safe: 'html'">
-              </div> -->
-              <div *ngIf="type === itemTypeHtml"
+              <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"
                    [innerHtml]="exampleHtml | safe: 'html'">
               </div>
             </div>
@@ -43,7 +40,7 @@
 </article>
 
 
-<!-- <ng-template #angularExample>
-  <app-angular-example [itemTitle]="title"></app-angular-example>
+<ng-template #dynamicLibraryExample>
+  <app-dynamic-library-example [itemTitle]="title"></app-dynamic-library-example>
 </ng-template>
- -->
+

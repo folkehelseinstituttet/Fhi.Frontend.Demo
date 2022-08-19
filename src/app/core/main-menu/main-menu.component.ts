@@ -18,7 +18,7 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MenuItem[] = [{
-    name: 'CSS library',
+    name: 'CSS library', // TODO: 'For developers', or something like that?
     link: `/${UrlPaths.developer}`
   }];
 

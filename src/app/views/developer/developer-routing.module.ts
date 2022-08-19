@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DeveloperComponent } from './developer.component';
 import { UrlPaths } from 'src/app/url-paths';
+
+import { DeveloperComponent } from './developer.component';
+import { LibraryItemComponent } from './library-item/library-item.component';
 
 const routes: Routes = [{
   path: ':param',
@@ -18,5 +20,8 @@ const routes: Routes = [{
   exports: [RouterModule]
 })
 export class DeveloperRoutingModule {
-  static components = [DeveloperComponent];
+  static components = [
+    DeveloperComponent,
+    LibraryItemComponent
+  ];
 }

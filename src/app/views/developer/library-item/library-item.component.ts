@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
-import { LibraryItem, LibraryItemType } from '../models/library-item.model';
+import { LibraryItem, LibraryItemType } from '../../shared/library/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
 
 @Component({
