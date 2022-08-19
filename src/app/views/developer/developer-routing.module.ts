@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DeveloperComponent } from './developer.component';
-import { UrlPaths } from 'src/app/_common/constants/url-paths';
+import { UrlPaths } from 'src/app/url-paths';
 
 const routes: Routes = [{
   path: ':param',

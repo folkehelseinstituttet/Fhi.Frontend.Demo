@@ -1,4 +1,4 @@
-import { UrlPaths } from '../../_common/constants/url-paths';
+import { UrlPaths } from '../../url-paths';
 
 import { MenuItem } from 'src/app/models/menu-item.model';
 

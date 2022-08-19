@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UrlPaths } from './_common/constants/url-paths';
+import { UrlPaths } from './url-paths';
 
 const defaultPath = `/${UrlPaths.developer}/${UrlPaths.components}`;
 

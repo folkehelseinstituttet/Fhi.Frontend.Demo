@@ -3,7 +3,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { MenuItem } from '../../models/menu-item.model';
-import { UrlPaths } from '../../_common/constants/url-paths';
+import { UrlPaths } from '../../url-paths';
 
 @Component({
   selector: 'app-main-menu',
