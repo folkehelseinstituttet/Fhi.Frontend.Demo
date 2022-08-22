@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { UrlService } from 'src/app/services/url.service';
+import { ListOfVariationsDataService } from '../../shared/list-of-variations-data.service';
+import { LibraryItem } from '../../shared/library/models/library-item.model';
 
 @Component({
   selector: 'app-list-of-variations',
@@ -8,9 +13,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListOfVariationsComponent implements OnInit {
 
-  constructor() { }
+  libraryItems!: LibraryItem[];
+  libraryItemsLoaded = false;
 
-  ngOnInit(): void {
+  private subscription: Subscription = new Subscription();
+
+  constructor(
+    private urlService: UrlService,
+    private listOfVariationsDataService: ListOfVariationsDataService
+  ) { }
+
+  ngOnInit() {
+    this.subscription.add(this.urlService.URL$
+      .subscribe(() => {
+        this.getLibraryItems();
+      }));
+  }
+
+  private getLibraryItems() {
+    const currentSegmentPath = this.urlService.getCurrentSegmentPath();
+    this.libraryItemsLoaded = false;
+    this.listOfVariationsDataService.getLibraryItems(currentSegmentPath)
+      .subscribe(libraryItems => {
+        this.libraryItems = libraryItems;
+        this.libraryItemsLoaded = true;
+      },
+      error => this.getErrorMessage(error));
+  }
+
+  private getErrorMessage(error: object) {
+    console.log(error);
   }
 
 }

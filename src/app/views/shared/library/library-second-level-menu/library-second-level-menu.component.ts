@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 
 import { LibrarySecondLevelMenuDataService } from './library-second-level-menu-data.service';
 
@@ -17,19 +16,17 @@ export class LibrarySecondLevelMenuComponent implements OnInit {
   activeNavTab = 0;
   libraryItemFilter: LibraryItemFilter = { name: '' };
 
-  private subscription: Subscription = new Subscription();
-
   constructor(
     private menuDataService: LibrarySecondLevelMenuDataService
   ) { }
 
   ngOnInit() {
-    this.subscription.add(this.menuDataService.getMenuItems()
+    this.menuDataService.getMenuItems()
       .subscribe(menuItems => {
         this.menuItems = menuItems;
         this.menuItemsLoaded = true;
       },
-      error => this.getErrorMessage(error)));
+      error => this.getErrorMessage(error));
   }
 
   private getErrorMessage(error: object) {
