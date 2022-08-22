@@ -25,12 +25,12 @@
     &__info-text {
         margin-bottom: 0;
     }
-    &__example-container {
+    &__item-container {
         background-color: $fhi-bg-color-3;
         margin: 0 (-$fhi-container-padding-xs);
         padding: $fhi-space-3 $fhi-px * 5;
     }
-    &__example {
+    &__item {
         background-color: $fhi-bg-color-1;
         border-radius: $border-radius;
         margin-bottom: $fhi-space-3;
