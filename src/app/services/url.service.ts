@@ -100,7 +100,6 @@ export class UrlService {
     return this.urlTree.fragment;
   }
 
-
   deleteParam(paramName: string) {
     delete this.urlTree.queryParams[paramName];
   }

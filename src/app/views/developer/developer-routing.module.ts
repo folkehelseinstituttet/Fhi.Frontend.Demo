@@ -9,7 +9,11 @@ import { LibraryItemComponent } from './library-item/library-item.component';
 
 const routes: Routes = [{
   path: ':param',
-  component: DeveloperComponent
+  component: DeveloperComponent,
+  children: [{
+    path: ':param',
+    component: ListOfVariationsComponent
+  }]
 }, {
   path: '',
   pathMatch: 'full',

@@ -34,10 +34,14 @@ export class DeveloperComponent implements OnInit {
     this.topLevelMenuItems = this.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
-          const currentTopLevelSegementPath = this.urlService.getCurrentSegmentPath();
-          this.getLibraryItems(currentTopLevelSegementPath);
-        }
+
+
+        // TODO: new test for not loadin data twice
+
+        // if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
+        // }
+        const currentTopLevelSegementPath = this.urlService.getSegmentPath(1);
+        this.getLibraryItems(currentTopLevelSegementPath);
       }));
   }
 
