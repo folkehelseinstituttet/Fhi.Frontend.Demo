@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LibraryItem } from './library/models/library-item.model';
+import { LibraryItem } from '../models/library-item.model';
 
 @Injectable({
   providedIn: 'root'

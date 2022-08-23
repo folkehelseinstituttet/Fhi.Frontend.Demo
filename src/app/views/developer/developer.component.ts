@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
-import { DeveloperDataService } from './developer-data.service';
-import { SecondLevelMenuService } from '../shared/second-level-menu.service';
-import { LibraryItemIdService } from '../shared/library-item-id.service';
 import { UrlPaths } from '../../url-paths';
 
-import { LibraryItem } from '../shared/library/models/library-item.model';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
@@ -16,18 +12,14 @@ import { MenuItem } from '../../models/menu-item.model';
 })
 export class DeveloperComponent implements OnInit {
 
-  libraryItems!: LibraryItem[];
-  libraryItemsLoaded = false;
   topLevelMenuItems!: MenuItem[];
+  currentTopLevelMenuItem!: MenuItem;
   secondLevelMenuItems!: MenuItem[];
 
   private subscription: Subscription = new Subscription();
 
   constructor(
     private urlService: UrlService,
-    private developerDataService: DeveloperDataService,
-    private secondLevelMenuService: SecondLevelMenuService,
-    private libraryItemIdService: LibraryItemIdService
   ) { }
 
   ngOnInit() {
@@ -35,29 +27,23 @@ export class DeveloperComponent implements OnInit {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
 
-
-        // TODO: new test for not loadin data twice
-
-        // if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
+        // TODO: Need a test that works...
+        // if (this.currentTopLevelMenuItem.name.toLocaleLowerCase() !== this.urlService.getSegmentPath(1)) {
         // }
-        const currentTopLevelSegementPath = this.urlService.getSegmentPath(1);
-        this.getLibraryItems(currentTopLevelSegementPath);
+        this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
+        this.secondLevelMenuItems = this.getSecondLevelMenuItems();
+
       }));
   }
 
-  private getLibraryItems(path: string) {
-    this.libraryItemsLoaded = false;
-    this.subscription.add(this.developerDataService.getLibraryItems(path)
-      .subscribe(libraryItemsWithoutId => {
-        this.libraryItems = this.libraryItemIdService.addItemId(libraryItemsWithoutId);
-        this.secondLevelMenuItems = this.secondLevelMenuService.getSecondLevelMenuItems(this.libraryItems);
-        this.libraryItemsLoaded = true;
-      },
-      error => this.getErrorMessage(error)));
-  }
-
-  private getErrorMessage(error: object) {
-    console.log(error);
+  private getCurrentTopLevelMenuItem(): MenuItem {
+    const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
+      return item.name.toLocaleLowerCase() === this.urlService.getSegmentPath(1)
+    });
+    if (topLevelMenuItem !== undefined) {
+      return topLevelMenuItem;
+    }
+    console.info('Current path givs no match for existing menu items.')
   }
 
   private getTopLevelMenuItems(): MenuItem[] {
@@ -65,18 +51,36 @@ export class DeveloperComponent implements OnInit {
       name: 'Components',
       link: `/${UrlPaths.developer}/${UrlPaths.components}`
     }, {
-      name: 'Colors, fonts',
-      link: `/${UrlPaths.developer}/${UrlPaths.colorsAndFonts}`
+      name: 'Modules',
+      link: `/${UrlPaths.developer}/${UrlPaths.modules}`
     }, {
-      name: 'Icons',
-      link: `/${UrlPaths.developer}/${UrlPaths.icons}`
-    // }, {
-    //   name: 'Typography',
-    //   link: `/${UrlPaths.developer}/${UrlPaths.typography}`
-    // }, {
-    //   name: 'Colors',
-    //   link: `/${UrlPaths.developer}/${UrlPaths.colors}`
+      name: 'Page templates',
+      link: `/${UrlPaths.developer}/${UrlPaths.pageTemplates}`
+    }, {
+      name: '...and some more stuff',
+      link: `/${UrlPaths.developer}/${UrlPaths.stuff}`
     }];
+  }
+
+  private getSecondLevelMenuItems(): MenuItem[] {
+    switch (this.currentTopLevelMenuItem.name) {
+      case 'Components':
+        return [{
+          name: 'Accordion',
+          link: 'accordion'
+        }, {
+          name: 'Table',
+          link: 'table'
+        }]
+      case 'Modules':
+        return [{
+          name: 'Accordion (dummy)',
+          link: 'accordion'
+        }, {
+          name: 'Table (dummy)',
+          link: 'table'
+        }]
+    }
   }
 
 }

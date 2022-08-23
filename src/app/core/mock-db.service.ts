@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-import { LibrarySecondLevelMenuData } from 'src/MOCK_DB_DATA/library-second-level-menu/library-second-level-menu.data';
-
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 
@@ -19,8 +17,6 @@ import { CssIconsData } from 'src/MOCK_DB_DATA/library-css/css-icons.data';
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
-      LibrarySecondLevelMenuData,
-
       AccordionData,
       TableData,
 

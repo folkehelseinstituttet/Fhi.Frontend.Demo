@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { MenuItem } from 'src/app/models/menu-item.model';
-import { LibraryItem } from './library/models/library-item.model';
+import { LibraryItem } from '../models/library-item.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SecondLevelMenuService {
+export class ListOfVariatonsMenuService {
 
-  getSecondLevelMenuItems(libraryItems: LibraryItem[]): MenuItem[] {
+  getVariationsListMenuItems(libraryItems: LibraryItem[]): MenuItem[] {
     let i = 0;
     const items: MenuItem[] = [];
     libraryItems.forEach(item => {

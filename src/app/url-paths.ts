@@ -3,9 +3,7 @@ export class UrlPaths {
 
   static colorsAndFonts = 'colors-fonts';
 
-  static colors = 'colors';
-  static typography = 'typography';
-  static icons = 'icons';
+  static stuff = 'stuff'; // Need a better lable for this one ;)
   static components = 'components';
   static modules = 'modules';
   static pageTemplates = 'page-templates';
