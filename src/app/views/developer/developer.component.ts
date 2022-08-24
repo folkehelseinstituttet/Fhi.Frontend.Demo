@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
@@ -10,7 +10,7 @@ import { MenuItem } from '../../models/menu-item.model';
   selector: 'app-developer',
   templateUrl: './developer.component.html'
 })
-export class DeveloperComponent implements OnInit {
+export class DeveloperComponent implements OnInit, OnDestroy {
 
   topLevelMenuItems!: MenuItem[];
   currentTopLevelMenuItem!: MenuItem;
@@ -18,9 +18,7 @@ export class DeveloperComponent implements OnInit {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private urlService: UrlService,
-  ) { }
+  constructor(private urlService: UrlService) { }
 
   ngOnInit() {
     this.topLevelMenuItems = this.getTopLevelMenuItems();
@@ -34,6 +32,10 @@ export class DeveloperComponent implements OnInit {
           this.secondLevelMenuItems = this.getSecondLevelMenuItems();
         }
       }));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private getCurrentTopLevelMenuItem(): MenuItem {

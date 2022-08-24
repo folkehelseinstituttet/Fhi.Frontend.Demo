@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -11,7 +11,7 @@ import { LibraryItem } from '../../shared/library/models/library-item.model';
   styles: [
   ]
 })
-export class ListOfVariationsComponent implements OnInit {
+export class ListOfVariationsComponent implements OnInit, OnDestroy {
 
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
@@ -28,6 +28,10 @@ export class ListOfVariationsComponent implements OnInit {
       .subscribe(() => {
         this.getLibraryItems();
       }));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   private getLibraryItems() {
