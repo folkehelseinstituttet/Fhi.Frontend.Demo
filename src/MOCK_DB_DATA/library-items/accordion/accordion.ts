@@ -1,10 +1,8 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { BootstrapBaseUrl, NgBootstrapBaseUrl } from '../../bootstrap-base-urls';
-
-const itemTitle = 'Accordion';
+import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Accordion: LibraryItem[] = [{
-  title: itemTitle,
+  title: 'Accordion',
   type: LibraryItemType.ngBootstrap,
   codeHtml: `
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion"
@@ -28,11 +26,11 @@ export const Accordion: LibraryItem[] = [{
   documentationHtml: `
 <p>
   Bootstrap documentation for
-  <a href="${BootstrapBaseUrl}/${itemTitle.toLocaleLowerCase()}">Accordion</a>
+  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>
 </p>
 <p>
   The accordion is implemented as a
-  <a href="${NgBootstrapBaseUrl}/${itemTitle.toLocaleLowerCase()}">ngBootstrap Accordion</a>
+  <a href="${NgBootstrapComponentsBaseUrl}/accordion">ngBootstrap Accordion</a>
   in the FHI Designsystem.
 </p>
 <p>
