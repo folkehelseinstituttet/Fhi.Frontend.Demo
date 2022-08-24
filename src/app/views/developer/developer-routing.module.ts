@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { UrlPaths } from 'src/app/url-paths';
+import { SegmentPaths } from 'src/app/segment-paths';
 
 import { DeveloperComponent } from './developer.component';
 import { ListOfVariationsComponent } from './list-of-variations/list-of-variations.component';
@@ -17,7 +17,7 @@ const routes: Routes = [{
 }, {
   path: '',
   pathMatch: 'full',
-  redirectTo: `${UrlPaths.components}`
+  redirectTo: `${SegmentPaths.components}`
 }];
 
 @NgModule({

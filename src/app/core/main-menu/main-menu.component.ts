@@ -3,7 +3,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { MenuItem } from '../../models/menu-item.model';
-import { UrlPaths } from '../../url-paths';
+import { SegmentPaths } from '../../segment-paths';
 
 @Component({
   selector: 'app-main-menu',
@@ -19,7 +19,7 @@ export class MainMenuComponent {
 
   mainMenuItems: MenuItem[] = [{
     name: 'CSS library', // TODO: 'For developers', or something like that?
-    link: `/${UrlPaths.developer}`
+    link: `/${SegmentPaths.developer}`
   }];
 
   mainMenuClose(): void {

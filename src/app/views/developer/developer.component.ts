@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
-import { UrlPaths } from '../../url-paths';
+import { SegmentPaths } from '../../segment-paths';
 
 import { MenuItem } from '../../models/menu-item.model';
 
@@ -51,38 +51,46 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   private getTopLevelMenuItems(): MenuItem[] {
     return [{
       name: 'Components',
-      link: `/${UrlPaths.developer}/${UrlPaths.components}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.components}`
     }, {
       name: 'Modules',
-      link: `/${UrlPaths.developer}/${UrlPaths.modules}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.modules}`
     }, {
       name: 'Page templates',
-      link: `/${UrlPaths.developer}/${UrlPaths.pageTemplates}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.pageTemplates}`
     }, {
       name: '...and some more stuff',
-      link: `/${UrlPaths.developer}/${UrlPaths.stuff}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.stuff}`
     }];
   }
 
   private getSecondLevelMenuItems(): MenuItem[] {
     switch (this.currentTopLevelMenuItem.name) {
       case 'Components':
-        return [{
-          name: 'Accordion',
-          link: 'accordion'
-        }, {
-          name: 'Table',
-          link: 'table'
-        }]
+        return this.getComponensMenu();
       case 'Modules':
-        return [{
-          name: 'Accordion (dummy)',
-          link: 'accordion'
-        }, {
-          name: 'Table (dummy)',
-          link: 'table'
-        }]
+        return this.getModulesMenu();
     }
+  }
+
+  private getComponensMenu(): MenuItem[] {
+    return [{
+      name: 'Accordion',
+      link: 'accordion'
+    }, {
+      name: 'Table',
+      link: 'table'
+    }]
+  }
+
+  private getModulesMenu(): MenuItem[] {
+    return [{
+      name: 'Accordion (dummy)',
+      link: 'accordion'
+    }, {
+      name: 'Table (dummy)',
+      link: 'table'
+    }];
   }
 
 }
