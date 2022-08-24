@@ -2,7 +2,7 @@
 const bootstrapVersion = '5.2';
 
 export const BootstrapComponentsBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}/components`;
-export const BootstrapcontentBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}/content`;
+export const BootstrapContentBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}/content`;
 export const BootstrapFormsBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}/forms`;
 
 // NgBootstrap
