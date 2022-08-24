@@ -12,8 +12,8 @@ export class ListOfVariationsDataService {
 
   constructor(private http: HttpClient) { }
 
-  getLibraryItems(currentSegmentPath: string): Observable<LibraryItem[]> {
-    const mockDataSetName = this.capitalizeFirstLetter(currentSegmentPath) + 'Data';
+  getLibraryItems(lastSegmentPath: string): Observable<LibraryItem[]> {
+    const mockDataSetName = this.capitalizeFirstLetter(lastSegmentPath) + 'Data';
     let serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
     return this.http.get<LibraryItem[]>(serverUrl);
   }

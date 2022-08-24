@@ -31,9 +31,9 @@ export class ListOfVariationsComponent implements OnInit {
   }
 
   private getLibraryItems() {
-    const currentSegmentPath = this.urlService.getCurrentSegmentPath();
+    const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
-    this.listOfVariationsDataService.getLibraryItems(currentSegmentPath)
+    this.listOfVariationsDataService.getLibraryItems(lastSegmentPath)
       .subscribe(libraryItems => {
         this.libraryItems = libraryItems;
         this.libraryItemsLoaded = true;

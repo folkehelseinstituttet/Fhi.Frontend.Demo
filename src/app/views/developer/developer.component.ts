@@ -26,13 +26,13 @@ export class DeveloperComponent implements OnInit {
     this.topLevelMenuItems = this.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
+        const previousSegmentPath1 = this.urlService.getPreviousSegmentPath(1);
+        const currentSegmentPath1 = this.urlService.getSegmentPath(1);
 
-        // TODO: Need a test that works...
-        // if (this.currentTopLevelMenuItem.name.toLocaleLowerCase() !== this.urlService.getSegmentPath(1)) {
-        // }
-        this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
-        this.secondLevelMenuItems = this.getSecondLevelMenuItems();
-
+        if (previousSegmentPath1 === undefined || previousSegmentPath1 !== currentSegmentPath1) {
+          this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
+          this.secondLevelMenuItems = this.getSecondLevelMenuItems();
+        }
       }));
   }
 
