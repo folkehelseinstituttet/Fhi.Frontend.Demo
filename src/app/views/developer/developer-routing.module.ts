@@ -17,7 +17,7 @@ const routes: Routes = [{
 }, {
   path: '',
   pathMatch: 'full',
-  redirectTo: `${SegmentPaths.components}`
+  redirectTo: SegmentPaths.components
 }];
 
 @NgModule({

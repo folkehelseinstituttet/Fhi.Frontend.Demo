@@ -6,6 +6,12 @@ import { SegmentPaths } from '../../segment-paths';
 
 import { MenuItem } from '../../models/menu-item.model';
 
+const TopLevelMenuItemName = {
+  components: 'Components',
+  colorsAndFonts: 'Colors, Fonts',
+  icons: 'Icons'
+};
+
 @Component({
   selector: 'app-developer',
   templateUrl: './developer.component.html'
@@ -40,56 +46,67 @@ export class DeveloperComponent implements OnInit, OnDestroy {
 
   private getCurrentTopLevelMenuItem(): MenuItem {
     const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
-      return item.name.toLocaleLowerCase() === this.urlService.getSegmentPath(1)
+      return item.link.split('/')[2] === this.urlService.getSegmentPath(1)
     });
     if (topLevelMenuItem !== undefined) {
       return topLevelMenuItem;
     }
-    console.info('Current path givs no match for existing menu items.')
+    console.error('Current path is not matching any menu items.')
   }
 
   private getTopLevelMenuItems(): MenuItem[] {
     return [{
-      name: 'Components',
+      name: TopLevelMenuItemName.components,
       link: `/${SegmentPaths.developer}/${SegmentPaths.components}`
     }, {
-      name: 'Modules',
-      link: `/${SegmentPaths.developer}/${SegmentPaths.modules}`
+      name: TopLevelMenuItemName.colorsAndFonts,
+      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}`
     }, {
-      name: 'Page templates',
-      link: `/${SegmentPaths.developer}/${SegmentPaths.pageTemplates}`
-    }, {
-      name: '...and some more stuff',
-      link: `/${SegmentPaths.developer}/${SegmentPaths.stuff}`
+      name: TopLevelMenuItemName.icons,
+      link: `/${SegmentPaths.developer}/${SegmentPaths.icons}`
     }];
   }
 
   private getSecondLevelMenuItems(): MenuItem[] {
+    if (this.currentTopLevelMenuItem === undefined) {
+      return;
+    }
     switch (this.currentTopLevelMenuItem.name) {
-      case 'Components':
+      case TopLevelMenuItemName.components:
         return this.getComponensMenu();
-      case 'Modules':
-        return this.getModulesMenu();
+
+      case TopLevelMenuItemName.colorsAndFonts:
+        return this.getColorsAndFontsMenu();
+
+      case TopLevelMenuItemName.icons:
+        return this.getIconsMenu();
     }
   }
 
   private getComponensMenu(): MenuItem[] {
     return [{
       name: 'Accordion',
-      link: 'accordion'
+      link: SegmentPaths.accordion
     }, {
       name: 'Table',
-      link: 'table'
+      link: SegmentPaths.table
     }]
   }
 
-  private getModulesMenu(): MenuItem[] {
+  private getColorsAndFontsMenu(): MenuItem[] {
     return [{
-      name: 'Accordion (dummy)',
-      link: 'accordion'
+      name: 'Colors',
+      link: SegmentPaths.accordion
     }, {
-      name: 'Table (dummy)',
-      link: 'table'
+      name: 'Fonts',
+      link: SegmentPaths.table
+    }];
+  }
+
+  private getIconsMenu(): MenuItem[] {
+    return [{
+      name: 'Icon set',
+      link: SegmentPaths.accordion
     }];
   }
 

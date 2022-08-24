@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SegmentPaths } from './segment-paths';
 
-const defaultPath = `/${SegmentPaths.developer}/${SegmentPaths.components}`;
+const defaultPath = `/${SegmentPaths.developer}/${SegmentPaths.components}/${SegmentPaths.accordion}`;
 
 const routes: Routes = [{
   path: '',
