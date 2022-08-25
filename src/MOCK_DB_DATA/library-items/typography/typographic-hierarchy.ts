@@ -18,7 +18,7 @@ function getExampleHtml(): string {
 }
 
 function getCodeHtml(): string | null {
-  return ``; // Return null to remove Code from library-item
+  return ``;
 }
 
 function getDocumentationHtml(): string | null {

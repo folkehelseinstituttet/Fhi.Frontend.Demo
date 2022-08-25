@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Template: LibraryItem[] = [{
-  id: 'title',
-  title: 'Title',
+export const Select: LibraryItem[] = [{
+  id: 'select',
+  title: 'Select',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -12,7 +12,13 @@ export const Template: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return ``;
+  return `
+<label for="FormSelect" class="form-label">Select w/options</label>
+<select class="form-select" id="FormSelect">
+  <option>Open to make selection</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+</select>`;
 }
 
 /*
@@ -27,5 +33,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }

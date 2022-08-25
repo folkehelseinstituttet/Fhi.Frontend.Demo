@@ -1,5 +1,4 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const HeadingLevels: LibraryItem[] = [{
   id: 'headinglevels',
@@ -21,7 +20,7 @@ function getExampleHtml(): string {
 }
 
 function getCodeHtml(): string | null {
-  return ``; // Return null to remove Code from library-item
+  return ``;
 }
 
 function getDocumentationHtml(): string | null {

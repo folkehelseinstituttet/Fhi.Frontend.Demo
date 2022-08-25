@@ -85,10 +85,16 @@ export class DeveloperComponent implements OnInit, OnDestroy {
 
   private getComponensMenu(): MenuItem[] {
     return [{
-      name: 'Accordion',
+      name: 'Accordions',
       link: SegmentPaths.accordion
     }, {
-      name: 'Table',
+      name: 'Buttons',
+      link: SegmentPaths.buttons
+    }, {
+      name: 'Forms',
+      link: SegmentPaths.forms
+    }, {
+      name: 'Tables',
       link: SegmentPaths.table
     }]
   }

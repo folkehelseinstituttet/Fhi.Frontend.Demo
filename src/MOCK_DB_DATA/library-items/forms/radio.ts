@@ -1,9 +1,18 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const FormRadio: LibraryItem[] = [{
-  title: 'Radios',
+export const Radio: LibraryItem[] = [{
+  id: 'radio',
+  title: 'Radio',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+function getExampleHtml(): string {
+  return `
 <div class="form-check mb-2">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
   <label class="form-check-label" for="customRadio1">
@@ -27,13 +36,26 @@ export const FormRadio: LibraryItem[] = [{
   <label class="form-check-label" for="customRadio4">
     Checked disabled radio
   </label>
-</div>
-`,
-  codeHtml: `
+</div>`;
+}
+
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
 <div class="form-check">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInput">
   <label class="form-check-label" for="radioInput">
     Label for radio
   </label>
-</div>`
-}];
+</div>`;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
+}

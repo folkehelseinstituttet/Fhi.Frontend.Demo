@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Template: LibraryItem[] = [{
-  id: 'title',
-  title: 'Title',
+export const Validation: LibraryItem[] = [{
+  id: 'validation',
+  title: 'Validation',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -12,7 +12,12 @@ export const Template: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return ``;
+  return `
+<div>
+  <label for="FormInputValidation" class="form-label">Text input w/validation</label>
+  <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
+  <div class="invalid-feedback">Understandable error message.</div>
+</div>`;
 }
 
 /*
@@ -20,12 +25,15 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<label for="FormInputValidation" class="form-label">Text input w/validation</label>
+<input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
+<div class="invalid-feedback">Understandable error message.</div>`;
 }
 
 /*
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }

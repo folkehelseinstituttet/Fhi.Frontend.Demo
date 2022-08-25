@@ -1,9 +1,18 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const FormChecks: LibraryItem[] = [{
-  title: 'Checks',
+export const Checkbox: LibraryItem[] = [{
+  id: 'checkbox',
+  title: 'Checkbox',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+function getExampleHtml(): string {
+  return `
 <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="" id="customCheck">
   <label class="form-check-label" for="customCheck">
@@ -27,13 +36,26 @@ export const FormChecks: LibraryItem[] = [{
   <label class="form-check-label" for="customCheck3">
     Disabled checked checkbox
   </label>
-</div>
-`,
-  codeHtml: `
+</div>`;
+}
+
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="customCheck">
   <label class="form-check-label" for="customCheck">
     Label for checkbox
   </label>
-</div>`
-}];
+</div>`;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
+}

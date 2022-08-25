@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Template: LibraryItem[] = [{
-  id: 'title',
-  title: 'Title',
+export const Textarea: LibraryItem[] = [{
+  id: 'textarea',
+  title: 'Textarea',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -12,7 +12,9 @@ export const Template: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return ``;
+  return `
+<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>`;
 }
 
 /*
@@ -27,5 +29,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
