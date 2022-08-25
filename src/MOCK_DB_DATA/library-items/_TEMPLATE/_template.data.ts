@@ -2,7 +2,7 @@ import { LibraryItem } from 'src/app/views/shared/library/models/library-item.mo
 
 import { Template } from './template';
 
-export const AccordionData: LibraryItem[] = [
+export const TemplateData: LibraryItem[] = [
   ...Template
 ];
 

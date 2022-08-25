@@ -5,9 +5,9 @@ import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordi
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
+import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 import { CssComponentsData } from 'src/MOCK_DB_DATA/library-css/css-components.data';
-import { CssColorsFontsData } from 'src/MOCK_DB_DATA/library-css/css-colors-fonts.data';
 
 
 @Injectable({
@@ -20,9 +20,9 @@ export class MockDbService implements InMemoryDbService {
       ColorData,
       IconsData,
       TableData,
+      TypographyData,
 
       CssComponentsData,
-      CssColorsFontsData
     };
   }
 }
