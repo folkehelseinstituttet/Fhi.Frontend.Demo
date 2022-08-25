@@ -1,9 +1,17 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
-export const FhiFontColors: LibraryItem[] = [{
+export const FontColors: LibraryItem[] = [{
+  id: 'fontcolors',
   title: 'Font colors',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+function getExampleHtml(): string {
+  return `
 <!--
   NB! This code is not concidered best practice, but is an attempt to
   show a few different strategies related to the Bootstrap framework.
@@ -28,4 +36,12 @@ export const FhiFontColors: LibraryItem[] = [{
     <p class="text-white"><strong>Regular text</strong></p>
   </div>
 </div>`
-}];
+}
+
+function getCodeHtml(): string | null {
+  return '';
+}
+
+function getDocumentationHtml(): string | null {
+  return null;
+}

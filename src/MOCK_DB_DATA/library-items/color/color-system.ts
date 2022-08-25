@@ -1,22 +1,18 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-const colorHtml = (hex: string, color: string) => {
-  return `
-<div class="ds-color-palette d-flex flex-row">
-  <div class="ds-color-palette__color ds-color-palette__color--${color}"></div>
-  <div class="ds-color-palette__code ms-4 p-2">
-    ${hex}
-  </div>
-  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
-    $${color}
-  </div>
-</div>`;
-};
-
-export const FhiColors: LibraryItem[] = [{
-  title: 'Color palette',
+export const ColorSystem: LibraryItem[] = [{
+  id: 'colorsystem',
+  title: 'Color System',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+function getExampleHtml(): string {
+  return `
 <p class="text-muted small mt-2 mb-0">Light grey</p>
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1')}
 ${colorHtml('#f7f6f5', 'fhi-grey-light-2')}
@@ -76,7 +72,26 @@ ${colorHtml('#b10640', 'fhi-pink-dark-3')}
 <p class="text-muted small mt-2 mb-0">Light pink</p>
 ${colorHtml('#fdf7f6', 'fhi-pink-light-1')}
 ${colorHtml('#faedec', 'fhi-pink-light-2')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-3')}`,
-  codeHtml: `
-<!-- NA -->`
-}];
+${colorHtml('#ffe3e2', 'fhi-pink-light-3')}`;
+}
+
+function getCodeHtml(): string | null {
+  return null;
+}
+
+function getDocumentationHtml(): string | null {
+  return null;
+}
+
+function colorHtml(hex: string, color: string) {
+  return `
+<div class="ds-color-palette d-flex flex-row">
+  <div class="ds-color-palette__color ds-color-palette__color--${color}"></div>
+  <div class="ds-color-palette__code ms-4 p-2">
+    ${hex}
+  </div>
+  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
+    $${color}
+  </div>
+</div>`;
+}

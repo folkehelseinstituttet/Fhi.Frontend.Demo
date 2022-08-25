@@ -95,11 +95,11 @@ export class DeveloperComponent implements OnInit, OnDestroy {
 
   private getColorsAndFontsMenu(): MenuItem[] {
     return [{
-      name: 'Colors',
-      link: SegmentPaths.accordion
+      name: 'Color',
+      link: SegmentPaths.color
     }, {
-      name: 'Fonts',
-      link: SegmentPaths.table
+      name: 'Typography',
+      link: SegmentPaths.typography
     }];
   }
 

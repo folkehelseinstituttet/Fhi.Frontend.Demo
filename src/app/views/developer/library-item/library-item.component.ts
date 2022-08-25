@@ -57,13 +57,13 @@ export class LibraryItemComponent implements OnInit {
   }
 
   private getCodeHtml(item: LibraryItem): string {
-    if (item.codeHtml !== undefined) {
+    if (item.codeHtml !== null && item.codeHtml !== '') {
       return item.codeHtml.trim();
     }
-    if (item.exampleHtml !== undefined) {
+    if (item.exampleHtml !== '' && item.codeHtml === '') {
       return item.exampleHtml.trim();
     }
-    return '<!-- codeHtml === undefined -->';
+    return null;
   }
 
   private navTabMenuItemsArray(): MenuItem[] {
@@ -74,16 +74,18 @@ export class LibraryItemComponent implements OnInit {
       name: MenuItemName.example,
       link: null
     };
-    if (this.documentationHtml !== undefined) {
+    if (this.documentationHtml !== null) {
       menuItems[n++] = {
         name: MenuItemName.documentation,
         link: null
       };
     }
-    menuItems[n++] = {
-      name: MenuItemName.code,
-      link: null
-    };
+    if (this.codeHtml !== null) {
+      menuItems[n++] = {
+        name: MenuItemName.code,
+        link: null
+      };
+    }
     return menuItems;
   }
 

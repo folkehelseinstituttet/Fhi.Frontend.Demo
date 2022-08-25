@@ -11,12 +11,12 @@ export class SegmentPaths {
    * Library top level menu
    */
 
-  static iconsDeprecated = 'icons'; // Deprecated?
-  static colorsAndFonts = 'colors-fonts'; // Deprecated?
-
   static components = 'components';
-  static modules = 'modules';
-  static pageTemplates = 'page-templates';
+
+  // Deprecated?
+  static colorsAndFonts = 'colors-fonts';
+  static iconsDeprecated = 'icons';
+
 
 
   /*
@@ -24,7 +24,9 @@ export class SegmentPaths {
    */
 
   static accordion = 'accordion';
+  static color = 'color';
   static icons = 'icons';
   static table = 'table';
+  static typography = 'typography';
 
 }

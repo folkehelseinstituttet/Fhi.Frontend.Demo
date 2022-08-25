@@ -15,11 +15,11 @@ function getExampleHtml(): string {
   return ``;
 }
 
-function getCodeHtml(): string {
-  return ``;
+function getCodeHtml(): string | null {
+  return ``; // Return null to remove Code from library-item
 }
 
-function getDocumentationHtml(): string {
-  return ``;
+function getDocumentationHtml(): string | null {
+  return ``; // Return null to remove Documentation from library-item
 }
 
