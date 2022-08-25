@@ -8,7 +8,7 @@ export class SegmentPaths {
 
 
   /*
-   * Library top level
+   * Library top level menu
    */
 
   static icons = 'icons'; // Deprecated?
@@ -20,14 +20,7 @@ export class SegmentPaths {
 
 
   /*
-   * Library second level
-   *
-   * NB! These constants has a coupling to the mock data!
-   *
-   *   static foo = 'foo'; (in this file) corresponds to:
-   *
-   *   export const FooData: LibraryItem[] = [{...}];
-   *     (in file src/MOCK_DB_DATA/library-items/foo/_foo.data)
+   * Library second level menu
    */
 
   static accordion = 'accordion';
