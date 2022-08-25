@@ -5,10 +5,10 @@ export enum LibraryItemType {
 }
 
 export interface LibraryItem {
-  id?: string;
+  id: string;
   title: string;
   type: number;
-  exampleHtml?: string;
-  documentationHtml?: string;
-  codeHtml?: string; // If an item should show different html under the "Code" tab than the html used in exampleHtml
+  exampleHtml: string;
+  codeHtml: string;
+  documentationHtml: string;
 }

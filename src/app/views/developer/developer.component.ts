@@ -60,10 +60,10 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       link: `/${SegmentPaths.developer}/${SegmentPaths.components}/${SegmentPaths.accordion}`
     }, {
       name: TopLevelMenuItemName.colorsAndFonts,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}/${SegmentPaths.color}`
     }, {
       name: TopLevelMenuItemName.icons,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}/${SegmentPaths.icons}`
     }];
   }
 

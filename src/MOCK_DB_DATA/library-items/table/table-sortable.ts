@@ -1,9 +1,20 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const TableSortable: LibraryItem[] = [{
+  id: 'tablesortable',
   title: 'Table - sortable',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
+function getExampleHtml(): string {
+  return `
 <div class="table-responsive mb-5">
   <table class="table table-striped table-bordered" data-sort-column="1">
     <thead>
@@ -94,9 +105,15 @@ export const TableSortable: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>`,
+</div>`;
+}
 
-  codeHtml: `
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
 <div class="table-responsive">
   <!-- Note the [data-sort-column] attribute that is used to set the currently sorted column style -->
   <table class="table table-striped table-bordered" data-sort-column="3">
@@ -142,5 +159,12 @@ export const TableSortable: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>`
-}];
+</div>`;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
+}

@@ -1,9 +1,20 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const Table: LibraryItem[] = [{
+  id: 'table',
   title: 'Table',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
+function getExampleHtml(): string {
+  return `
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -47,9 +58,15 @@ export const Table: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>`,
+</div>`;
+}
 
-  codeHtml: `
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
@@ -69,5 +86,12 @@ export const Table: LibraryItem[] = [{
       </tr>
     </tbody>
   </table>
-</div>`
-}];
+</div>`;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
+}

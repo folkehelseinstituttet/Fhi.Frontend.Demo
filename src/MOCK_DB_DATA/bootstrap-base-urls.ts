@@ -7,9 +7,3 @@ export const BootstrapFormsBaseUrl = `https://getbootstrap.com/docs/${bootstrapV
 
 // NgBootstrap
 export const NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
-
-
-
-// TODO: DEPRECATED
-export const BootstrapBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}/components`;
-export const NgBootstrapBaseUrl = 'https://ng-bootstrap.github.io/#/components';

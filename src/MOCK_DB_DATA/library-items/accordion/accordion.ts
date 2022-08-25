@@ -2,9 +2,28 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Accordion: LibraryItem[] = [{
+  id: 'Accordion',
   title: 'Accordion',
   type: LibraryItemType.ngBootstrap,
-  codeHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
+function getExampleHtml(): string {
+  return ``;
+}
+
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
 <ngb-accordion [closeOthers]="true" #acc="ngbAccordion"
                class="accordion-flush" activeIds="custom-id-0">
   <ngb-panel id="custom-id-0" title="Item #1">
@@ -22,8 +41,14 @@ export const Accordion: LibraryItem[] = [{
       <p>Item #3 content</p>
     </ng-template>
   </ngb-panel>
-</ngb-accordion>`,
-  documentationHtml: `
+</ngb-accordion>`;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return `
 <p>
   Bootstrap documentation for
   <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>
@@ -35,5 +60,5 @@ export const Accordion: LibraryItem[] = [{
 </p>
 <p>
   If you use another Javascript framework, you will have to find a suitable 3. party library.
-</p>`
-}];
+</p>`;
+}
