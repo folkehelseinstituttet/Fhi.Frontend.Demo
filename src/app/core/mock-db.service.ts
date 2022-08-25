@@ -6,6 +6,7 @@ import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.dat
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
+import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
@@ -23,6 +24,7 @@ export class MockDbService implements InMemoryDbService {
       ColorData,
       FormsData,
       IconsData,
+      PaginationData,
       TableData,
       TypographyData,
 

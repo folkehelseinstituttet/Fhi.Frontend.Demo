@@ -28,6 +28,7 @@ export class SegmentPaths {
   static color = 'color';
   static forms = 'forms';
   static icons = 'icons';
+  static pagination = 'pagination';
   static table = 'table';
   static typography = 'typography';
 

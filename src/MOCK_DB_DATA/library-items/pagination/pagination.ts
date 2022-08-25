@@ -1,9 +1,18 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Pagination: LibraryItem[] = [{
+  id: 'pagination',
   title: 'Pagination',
   type: LibraryItemType.html,
-  exampleHtml: `
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
+}];
+
+
+function getExampleHtml(): string {
+  return `
 <nav aria-label="Sidenavigasjon">
   <ul class="pagination">
     <li class="page-item disabled">
@@ -28,5 +37,20 @@ export const Pagination: LibraryItem[] = [{
       </a>
     </li>
   </ul>
-</nav>`
-}];
+</nav>`;
+}
+
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return ``;
+}
+
+/*
+ * Return null to remove Code from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
+}

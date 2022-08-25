@@ -9,13 +9,13 @@ import { Switch } from './switch';
 import { Textarea } from './textarea';
 
 export const FormsData: LibraryItem[] = [
-  ...Textarea,
-  ...Switch,
-  ...Select,
-  ...Radio,
   ...Input,
+  ...Validation,
+  ...Textarea,
+  ...Select,
   ...Checkbox,
-  ...Validation
+  ...Radio,
+  ...Switch
 ];
 
 
