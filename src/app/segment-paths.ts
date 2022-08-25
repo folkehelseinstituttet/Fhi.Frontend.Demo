@@ -31,6 +31,7 @@ export class SegmentPaths {
   static pagination = 'pagination';
   static table = 'table';
   static toast = 'toast';
+  static tooltip = 'tooltip';
   static typography = 'typography';
 
 }
