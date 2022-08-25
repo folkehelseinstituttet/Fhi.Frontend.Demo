@@ -99,6 +99,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }, {
       name: 'Tables',
       link: SegmentPaths.table
+    }, {
+      name: 'Toast',
+      link: SegmentPaths.toast
     }]
   }
 

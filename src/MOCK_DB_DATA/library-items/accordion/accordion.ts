@@ -30,7 +30,7 @@ export const Accordion: LibraryItem[] = [{
 </p>
 <p>
   The accordion is implemented as a
-  <a href="${NgBootstrapComponentsBaseUrl}/accordion">ngBootstrap Accordion</a>
+  <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
   in the FHI Designsystem.
 </p>
 <p>
