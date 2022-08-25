@@ -63,7 +63,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}`
     }, {
       name: TopLevelMenuItemName.icons,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.icons}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}`
     }];
   }
 
@@ -106,7 +106,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   private getIconsMenu(): MenuItem[] {
     return [{
       name: 'Icon set',
-      link: SegmentPaths.accordion
+      link: SegmentPaths.icons
     }];
   }
 

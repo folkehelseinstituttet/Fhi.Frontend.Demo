@@ -11,7 +11,7 @@ export class SegmentPaths {
    * Library top level menu
    */
 
-  static icons = 'icons'; // Deprecated?
+  static iconsDeprecated = 'icons'; // Deprecated?
   static colorsAndFonts = 'colors-fonts'; // Deprecated?
 
   static components = 'components';
@@ -24,6 +24,7 @@ export class SegmentPaths {
    */
 
   static accordion = 'accordion';
+  static icons = 'icons';
   static table = 'table';
 
 }
