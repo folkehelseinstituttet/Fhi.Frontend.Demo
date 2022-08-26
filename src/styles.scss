@@ -1,7 +1,2 @@
-@import "~@folkehelseinstituttet/style/scss/style.scss";
-
-// FHI Frontend library
-@import "~prismjs/themes/prism-solarizedlight.css";
-@import "~src/styles/fhi-frontend-library/ds.markdown";
-@import "~src/styles/fhi-frontend-library/ds-ui-documentation.block";
-@import "~src/styles/fhi-frontend-library/ds-tmp.block";
+@import "../Fhi.Frontend.Style/import/all";
+@import "~src/styles/fhi-frontend-library/_ds-all";
