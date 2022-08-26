@@ -2,21 +2,14 @@
 
   <app-library-top-level-menu [menuItems]="topLevelMenuItems"></app-library-top-level-menu>
 
-  <ng-container *ngIf="libraryItemsLoaded else spinner">
+  <ng-container>
     <div class="row">
       <div class="col-md-4 col-lg-3 col-xxl-3">
         <app-library-second-level-menu [menuItems]="secondLevelMenuItems"></app-library-second-level-menu>
       </div>
       <div class="col-md-8 col-lg-9 col-xxl-7">
-        <section>
-          <app-library-item *ngFor="let libraryItem of libraryItems" [libraryItem]="libraryItem"></app-library-item>
-        </section>
+        <router-outlet></router-outlet>
       </div>
     </div>
   </ng-container>
 </div>
-
-
-<ng-template #spinner>
-  <!-- <app-spinner></app-spinner> -->
-</ng-template>

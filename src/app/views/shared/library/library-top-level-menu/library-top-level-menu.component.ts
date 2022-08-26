@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { BrowserViewportService } from 'src/app/services/browser-viewport.service';
@@ -8,7 +8,7 @@ import { MenuItem } from 'src/app/models/menu-item.model';
   selector: 'app-library-top-level-menu',
   templateUrl: './library-top-level-menu.component.html'
 })
-export class LibraryTopLevelMenuComponent implements OnInit {
+export class LibraryTopLevelMenuComponent implements OnInit, OnDestroy {
 
   @Input() menuItems: MenuItem[];
 
@@ -23,6 +23,10 @@ export class LibraryTopLevelMenuComponent implements OnInit {
       .subscribe(isMobile => {
         this.isMobile = isMobile;
       }));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

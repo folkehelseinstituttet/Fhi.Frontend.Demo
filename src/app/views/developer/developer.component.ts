@@ -1,77 +1,127 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
-import { DeveloperDataService } from './developer-data.service';
-import { SecondLevelMenuService } from '../shared/second-level-menu.service';
-import { LibraryItemIdService } from '../shared/library-item-id.service';
-import { UrlPaths } from '../../url-paths';
+import { SegmentPaths } from '../../segment-paths';
 
-import { LibraryItem } from '../shared/library/models/library-item.model';
 import { MenuItem } from '../../models/menu-item.model';
+
+const TopLevelMenuItemName = {
+  components: 'Components',
+  colorsAndFonts: 'Colors, Fonts',
+  icons: 'Icons'
+};
 
 @Component({
   selector: 'app-developer',
   templateUrl: './developer.component.html'
 })
-export class DeveloperComponent implements OnInit {
+export class DeveloperComponent implements OnInit, OnDestroy {
 
-  libraryItems!: LibraryItem[];
-  libraryItemsLoaded = false;
   topLevelMenuItems!: MenuItem[];
+  currentTopLevelMenuItem!: MenuItem;
   secondLevelMenuItems!: MenuItem[];
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private urlService: UrlService,
-    private developerDataService: DeveloperDataService,
-    private secondLevelMenuService: SecondLevelMenuService,
-    private libraryItemIdService: LibraryItemIdService
-  ) { }
+  constructor(private urlService: UrlService) { }
 
   ngOnInit() {
     this.topLevelMenuItems = this.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (!this.libraryItemsLoaded || this.urlService.getFragment() === null) {
-          const currentTopLevelSegementPath = this.urlService.getCurrentSegmentPath();
-          this.getLibraryItems(currentTopLevelSegementPath);
+        const previousSegmentPath1 = this.urlService.getPreviousSegmentPath(1);
+        const currentSegmentPath1 = this.urlService.getSegmentPath(1);
+
+        if (previousSegmentPath1 === undefined || previousSegmentPath1 !== currentSegmentPath1) {
+          this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
+          this.secondLevelMenuItems = this.getSecondLevelMenuItems();
         }
       }));
   }
 
-  private getLibraryItems(path: string) {
-    this.libraryItemsLoaded = false;
-    this.subscription.add(this.developerDataService.getLibraryItems(path)
-      .subscribe(libraryItemsWithoutId => {
-        this.libraryItems = this.libraryItemIdService.addItemId(libraryItemsWithoutId);
-        this.secondLevelMenuItems = this.secondLevelMenuService.getSecondLevelMenuItems(this.libraryItems);
-        this.libraryItemsLoaded = true;
-      },
-      error => this.getErrorMessage(error)));
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
-  private getErrorMessage(error: object) {
-    console.log(error);
+  private getCurrentTopLevelMenuItem(): MenuItem {
+    const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
+      return item.link.split('/')[2] === this.urlService.getSegmentPath(1)
+    });
+    if (topLevelMenuItem !== undefined) {
+      return topLevelMenuItem;
+    }
+    console.error('Current path is not matching any menu items.')
   }
 
   private getTopLevelMenuItems(): MenuItem[] {
     return [{
-      name: 'Components',
-      link: `/${UrlPaths.developer}/${UrlPaths.components}`
+      name: TopLevelMenuItemName.components,
+      link: `/${SegmentPaths.developer}/${SegmentPaths.components}/${SegmentPaths.accordion}`
     }, {
-      name: 'Colors, fonts',
-      link: `/${UrlPaths.developer}/${UrlPaths.colorsAndFonts}`
+      name: TopLevelMenuItemName.colorsAndFonts,
+      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}/${SegmentPaths.color}`
     }, {
-      name: 'Icons',
-      link: `/${UrlPaths.developer}/${UrlPaths.icons}`
-    // }, {
-    //   name: 'Typography',
-    //   link: `/${UrlPaths.developer}/${UrlPaths.typography}`
-    // }, {
-    //   name: 'Colors',
-    //   link: `/${UrlPaths.developer}/${UrlPaths.colors}`
+      name: TopLevelMenuItemName.icons,
+      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}/${SegmentPaths.icons}`
+    }];
+  }
+
+  private getSecondLevelMenuItems(): MenuItem[] {
+    if (this.currentTopLevelMenuItem === undefined) {
+      return;
+    }
+    switch (this.currentTopLevelMenuItem.name) {
+      case TopLevelMenuItemName.components:
+        return this.getComponensMenu();
+
+      case TopLevelMenuItemName.colorsAndFonts:
+        return this.getColorsAndFontsMenu();
+
+      case TopLevelMenuItemName.icons:
+        return this.getIconsMenu();
+    }
+  }
+
+  private getComponensMenu(): MenuItem[] {
+    return [{
+      name: 'Accordions',
+      link: SegmentPaths.accordion
+    }, {
+      name: 'Buttons',
+      link: SegmentPaths.buttons
+    }, {
+      name: 'Forms',
+      link: SegmentPaths.forms
+    }, {
+      name: 'Pagination',
+      link: SegmentPaths.pagination
+    }, {
+      name: 'Tables',
+      link: SegmentPaths.table
+    }, {
+      name: 'Toast',
+      link: SegmentPaths.toast
+    }, {
+      name: 'Tooltip',
+      link: SegmentPaths.tooltip
+    }]
+  }
+
+  private getColorsAndFontsMenu(): MenuItem[] {
+    return [{
+      name: 'Color',
+      link: SegmentPaths.color
+    }, {
+      name: 'Typography',
+      link: SegmentPaths.typography
+    }];
+  }
+
+  private getIconsMenu(): MenuItem[] {
+    return [{
+      name: 'Icon set',
+      link: SegmentPaths.icons
     }];
   }
 

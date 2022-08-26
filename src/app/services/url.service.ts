@@ -72,7 +72,16 @@ export class UrlService {
     }
   }
 
-  getCurrentSegmentPath(): string {
+  getPreviousSegmentPath(segmentIndex: number): string {
+    const root = this.previousUrlTree?.root;
+    if (root !== undefined && root.numberOfChildren !== 0) {
+      return root.children.primary.segments[segmentIndex]?.path;
+    } else {
+      return undefined;
+    }
+  }
+
+  getLastSegmentPath(): string {
     const root = this.urlTree.root;
     let segments: Array<UrlSegment>;
     if (root.numberOfChildren !== 0) {
@@ -99,7 +108,6 @@ export class UrlService {
   getFragment(): string | null {
     return this.urlTree.fragment;
   }
-
 
   deleteParam(paramName: string) {
     delete this.urlTree.queryParams[paramName];
