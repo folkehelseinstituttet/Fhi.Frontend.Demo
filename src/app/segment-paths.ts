@@ -29,6 +29,7 @@ export class SegmentPaths {
   static color = 'color';
   static forms = 'forms';
   static icons = 'icons';
+  static modal = 'modal';
   static pagination = 'pagination';
   static table = 'table';
   static toast = 'toast';

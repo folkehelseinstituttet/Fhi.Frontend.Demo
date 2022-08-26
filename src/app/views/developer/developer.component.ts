@@ -97,6 +97,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Forms',
       link: SegmentPaths.forms
     }, {
+      name: 'Modal',
+      link: SegmentPaths.modal
+    }, {
       name: 'Pagination',
       link: SegmentPaths.pagination
     }, {

@@ -6,12 +6,14 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example/dynami
 
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
+import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example/tooltip-example.component';
 
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
   AlertDismissibleExampleComponent,
+  ModalExampleComponent,
   ToastExampleComponent,
   TooltipExampleComponent
 ];
