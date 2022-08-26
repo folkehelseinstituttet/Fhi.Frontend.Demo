@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Accordion: LibraryItem[] = [{
-  id: 'Accordion',
-  title: 'Accordion',
+export const AccordionFlush: LibraryItem[] = [{
+  id: 'accordionflush',
+  title: 'Accordion - Flush',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,7 +24,8 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-accordion>
+<ngb-accordion [closeOthers]="true" activeIds="custom-id-0"
+                 class="accordion-flush">
   <ngb-panel id="custom-id-0" title="Item #1">
     <ng-template ngbPanelContent>
       <p>Item #1 content</p>

@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Accordion: LibraryItem[] = [{
-  id: 'Accordion',
-  title: 'Accordion',
+export const AlertDismissible: LibraryItem[] = [{
+  id: 'alertdismissible',
+  title: 'Alert - dismissible',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,23 +24,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-accordion>
-  <ngb-panel id="custom-id-0" title="Item #1">
-    <ng-template ngbPanelContent>
-      <p>Item #1 content</p>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel id="custom-id-1" title="Item #2">
-    <ng-template ngbPanelContent>
-      <p>Item #2 content</p>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel id="custom-id-2" title="Item #3">
-    <ng-template ngbPanelContent>
-      <p>Item #3 content</p>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>`;
+<ngb-alert [class]="bordered" [type]="type" (closed)="close(alert)">
+  <i class="icon-..."></i>
+  {{ message }}
+</ngb-alert>`;
 }
 
 /*
@@ -49,12 +36,8 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
-  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>
-</p>
-<p>
-  The accordion is implemented as a
-  <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
+  The alert - dismissible is implemented as a
+  <a href="${NgBootstrapComponentsBaseUrl}/alert">NgBootstrap alert</a>
   in the FHI Designsystem.
 </p>
 <p>

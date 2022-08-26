@@ -57,13 +57,13 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   private getTopLevelMenuItems(): MenuItem[] {
     return [{
       name: TopLevelMenuItemName.components,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.components}/${SegmentPaths.accordion}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.components}`
     }, {
       name: TopLevelMenuItemName.colorsAndFonts,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}/${SegmentPaths.color}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.colorsAndFonts}`
     }, {
       name: TopLevelMenuItemName.icons,
-      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}/${SegmentPaths.icons}`
+      link: `/${SegmentPaths.developer}/${SegmentPaths.iconsDeprecated}`
     }];
   }
 
@@ -88,11 +88,17 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Accordions',
       link: SegmentPaths.accordion
     }, {
+      name: 'Alerts',
+      link: SegmentPaths.alerts
+    }, {
       name: 'Buttons',
       link: SegmentPaths.buttons
     }, {
       name: 'Forms',
       link: SegmentPaths.forms
+    }, {
+      name: 'Modal',
+      link: SegmentPaths.modal
     }, {
       name: 'Pagination',
       link: SegmentPaths.pagination
