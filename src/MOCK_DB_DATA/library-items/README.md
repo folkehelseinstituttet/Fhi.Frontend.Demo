@@ -2,7 +2,7 @@
 
 ## File structure
 
-I more than one variation of component i needed, the file structure will be:
+If more than one variation of component i needed, the file structure will be:
 
 ```bash
 library-items/
