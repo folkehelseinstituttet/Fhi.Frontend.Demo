@@ -88,6 +88,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Accordions',
       link: SegmentPaths.accordion
     }, {
+      name: 'Alerts',
+      link: SegmentPaths.alerts
+    }, {
       name: 'Buttons',
       link: SegmentPaths.buttons
     }, {

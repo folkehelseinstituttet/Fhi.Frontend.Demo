@@ -24,6 +24,7 @@ export class SegmentPaths {
    */
 
   static accordion = 'accordion';
+  static alerts = 'alerts';
   static buttons = 'buttons';
   static color = 'color';
   static forms = 'forms';
