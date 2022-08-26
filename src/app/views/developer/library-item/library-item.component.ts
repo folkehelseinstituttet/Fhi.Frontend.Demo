@@ -5,6 +5,12 @@ import { ViewportScroller } from '@angular/common';
 import { LibraryItem, LibraryItemType } from '../../shared/library/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
 
+const MenuItemName = {
+  example: 'Example',
+  documentation: 'Documentation',
+  code: 'Code'
+};
+
 @Component({
   selector: 'app-library-item',
   templateUrl: './library-item.component.html'
@@ -23,6 +29,7 @@ export class LibraryItemComponent implements OnInit {
   itemTypeHtml = LibraryItemType.html;
   activeMenuItemByDefault = 0;
   navTabMenuItems: MenuItem[];
+  MenuItemName = MenuItemName;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,22 +48,22 @@ export class LibraryItemComponent implements OnInit {
   }
 
   private setItemData(item: LibraryItem) {
+    this.id = item.id;
     this.title = item.title;
     this.type = item.type;
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);
     this.documentationHtml = item.documentationHtml;
-    this.id = item.id;
   }
 
   private getCodeHtml(item: LibraryItem): string {
-    if (item.codeHtml !== undefined) {
+    if (item.codeHtml !== null && item.codeHtml !== '') {
       return item.codeHtml.trim();
     }
-    if (item.exampleHtml !== undefined) {
+    if (item.exampleHtml !== '' && item.codeHtml === '') {
       return item.exampleHtml.trim();
     }
-    return '<!-- codeHtml === undefined -->';
+    return null;
   }
 
   private navTabMenuItemsArray(): MenuItem[] {
@@ -64,19 +71,21 @@ export class LibraryItemComponent implements OnInit {
     const menuItems: MenuItem[] = [];
 
     menuItems[n++] = {
-      name: 'Example',
+      name: MenuItemName.example,
       link: null
     };
-    if (this.documentationHtml !== undefined) {
+    if (this.documentationHtml !== null) {
       menuItems[n++] = {
-        name: 'Documentation',
+        name: MenuItemName.documentation,
         link: null
       };
     }
-    menuItems[n++] = {
-      name: 'Code',
-      link: null
-    };
+    if (this.codeHtml !== null) {
+      menuItems[n++] = {
+        name: MenuItemName.code,
+        link: null
+      };
+    }
     return menuItems;
   }
 

@@ -1,14 +1,14 @@
 <article class="ds-ui-documentation" id="{{ id }}">
   <h1 class="ds-ui-documentation__title">{{ title }}</h1>
 
-  <div class="ds-ui-documentation__example-container">
-    <ul ngbNav #exampleDetailNav="ngbNav" [(activeId)]="activeMenuItemByDefault" class="nav-tabs" [animation]="false">
+  <div class="ds-ui-documentation__item-container">
+    <ul ngbNav #itemNav="ngbNav" [(activeId)]="activeMenuItemByDefault" class="nav-tabs" [animation]="false">
       <li *ngFor="let menuItem of navTabMenuItems; let i = index" [ngbNavItem]="i">
         <a ngbNavLink>{{ menuItem.name }}</a>
 
-        <ng-container *ngIf="menuItem.name === 'Example'">
+        <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent>
-            <div class="ds-ui-documentation__example">
+            <div class="ds-ui-documentation__item">
               <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"
                    [innerHtml]="exampleHtml | safe: 'html'">
               </div>
@@ -16,18 +16,18 @@
           </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="menuItem.name === 'Documentation'">
+        <ng-container *ngIf="menuItem.name === MenuItemName.documentation">
           <ng-template ngbNavContent>
-            <div class="ds-ui-documentation__example">
+            <div class="ds-ui-documentation__item">
               <div [innerHtml]="documentationHtml | safe: 'html'"></div>
             </div>
           </ng-template>
         </ng-container>
 
-        <ng-container *ngIf="menuItem.name === 'Code'">
+        <ng-container *ngIf="menuItem.name === MenuItemName.code">
           <ng-template ngbNavContent>
             <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
-            <div class="ds-ui-documentation__example">
+            <div class="ds-ui-documentation__item">
               <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>
@@ -35,7 +35,7 @@
 
       </li>
     </ul>
-    <div [ngbNavOutlet]="exampleDetailNav"></div>
+    <div [ngbNavOutlet]="itemNav"></div>
   </div>
 </article>
 
@@ -43,4 +43,3 @@
 <ng-template #dynamicLibraryExample>
   <app-dynamic-library-example [itemTitle]="title"></app-dynamic-library-example>
 </ng-template>
-
