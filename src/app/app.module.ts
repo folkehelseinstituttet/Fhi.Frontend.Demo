@@ -13,7 +13,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })

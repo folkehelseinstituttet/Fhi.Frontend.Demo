@@ -11,25 +11,12 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 
 import { SafePipe } from './pipes/safe.pipe';
-
-import { LibraryMenuLevel1Component } from './library-menu-level-1/library-menu-level-1.component';
-import { LibraryMenuLevel2Component } from './library-menu-level-2/library-menu-level-2.component';
-import { LibraryExampleDetailComponent } from './library-example-detail/library-example-detail.component';
-import { LibraryCopyButtonComponent } from './library-copy-button/library-copy-button.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { AngularExampleComponent } from './library-example-detail/angular-example.component';
-import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap-examples/accordion-example/accordion-example.component';
 
 @NgModule({
   declarations: [
     SafePipe,
-    LibraryMenuLevel1Component,
-    LibraryMenuLevel2Component,
-    LibraryExampleDetailComponent,
-    LibraryCopyButtonComponent,
-    SpinnerComponent,
-    AngularExampleComponent,
-    AccordionExampleComponent
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -44,10 +31,6 @@ import { AccordionExampleComponent } from './library-example-detail/ng-bootstrap
   ],
   exports: [
     SafePipe,
-    LibraryMenuLevel1Component,
-    LibraryMenuLevel2Component,
-    LibraryExampleDetailComponent,
-    LibraryCopyButtonComponent,
     SpinnerComponent,
     CommonModule,
     RouterModule,

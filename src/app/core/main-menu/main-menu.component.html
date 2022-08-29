@@ -12,7 +12,7 @@
     <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
       <ul class="nav flex-column flex-xl-row fhi-main-menu__nav">
         <li class="nav-item" *ngFor="let menuItem of mainMenuItems">
-          <a class="nav-link fhi-main-menu__nav-link" [routerLink]="menuItem.routerLink" routerLinkActive="active"
+          <a class="nav-link fhi-main-menu__nav-link" [routerLink]="menuItem.link" routerLinkActive="active"
              (click)="mainMenuToggle()">
             <span class="fhi-main-menu__nav-link-text">{{ menuItem.name }}</span>
           </a>

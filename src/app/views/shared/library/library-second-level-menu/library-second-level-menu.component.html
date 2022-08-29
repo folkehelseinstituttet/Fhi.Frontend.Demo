@@ -1,0 +1,14 @@
+<div class="ds-left-menu">
+  <div class="mb-3">
+    <input class="form-control form-control-lg" type="text"
+          [(ngModel)]="libraryItemFilter.name" placeholder="Search" autofocus>
+    <p class="p-3" *ngIf="(menuItems | filterBy: libraryItemFilter)?.length === 0">
+      Søket gir ingen treff <br><br>
+    </p>
+  </div>
+  <ul class="nav flex-column d-inline-block mb-7 pb-2">
+    <li class="nav-item" *ngFor="let menuItem of menuItems | filterBy: libraryItemFilter">
+      <a class="nav-link" [routerLink]="'./' + menuItem.link">{{ menuItem.name }}</a>
+    </li>
+  </ul>
+</div>

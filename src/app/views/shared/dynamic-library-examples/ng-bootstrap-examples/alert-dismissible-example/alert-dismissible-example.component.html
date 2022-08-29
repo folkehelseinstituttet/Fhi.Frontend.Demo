@@ -1,0 +1,6 @@
+<div *ngFor="let alert of alerts">
+  <ngb-alert [ngClass]="{ 'fhi-alert-bordered': alert.bordered }" [type]="alert.type" (closed)="close(alert)">
+    <i [class]="alert.icon"></i>
+    {{ alert.message }}
+  </ngb-alert>
+</div>
