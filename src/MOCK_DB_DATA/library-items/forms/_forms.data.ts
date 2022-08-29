@@ -1,5 +1,7 @@
 import { LibraryItem } from 'src/app/views/shared/library/models/library-item.model';
 
+import { DateInput } from './form-input-date';
+
 import { Checkbox } from './checkbox';
 import { Validation } from './valdation';
 import { Input } from './input';
@@ -9,6 +11,7 @@ import { Switch } from './switch';
 import { Textarea } from './textarea';
 
 export const FormsData: LibraryItem[] = [
+  ...DateInput,
   ...Input,
   ...Validation,
   ...Textarea,
