@@ -44,6 +44,21 @@
     margin-right: -6px;
     padding: 6px;
     overflow-y: auto;
+
+    .active {
+        position: relative;
+
+        &::before {
+            background-color: var(--bs-nav-link-hover-color);
+            content: "";
+            display: block;
+            height: 1.25em;
+            left: 0;
+            position: absolute;
+            top: calc(#{$fhi-space-3} - #{$fhi-px * 7});
+            width: 2px;
+        }
+    }
 }
 
 .ds-scroll-to-top {
