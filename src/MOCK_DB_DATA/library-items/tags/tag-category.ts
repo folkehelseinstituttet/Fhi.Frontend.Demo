@@ -17,10 +17,10 @@ export const TagCategory: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <p>
-  <a href="javascript:void()" class="fhi-tag fhi-tag--category">Category name</a>
+  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">Category name</a>
 </p>
 <p>
-  <a href="javascript:void()" class="fhi-tag fhi-tag--category">
+  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">
     <i class="icon-arrow-left-long"></i>
     Category name
   </a>
