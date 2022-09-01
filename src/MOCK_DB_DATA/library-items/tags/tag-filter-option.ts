@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<button class="fhi-tag fhi-tag--filter-option" *ngIf="filterActive" (click)="filterActive = false">
+<button class="fhi-tag fhi-tag--filter-option">
   Filter option
   <i class="icon-xmark"></i>
 </button>
@@ -35,5 +35,7 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Filter options should always be possible to remove (reset filter).</p>
+`;
 }
