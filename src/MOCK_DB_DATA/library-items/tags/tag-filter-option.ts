@@ -36,6 +36,6 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Filter options should always be possible to remove (reset filter).</p>
+<p>Filter options should always be possible to remove (to reset filter).</p>
 `;
 }
