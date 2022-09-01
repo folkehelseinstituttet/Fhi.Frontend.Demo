@@ -45,7 +45,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>Single selection may only be used if there are <strong>more than</strong> two options.</p>
-`;
+  return null;
 }
