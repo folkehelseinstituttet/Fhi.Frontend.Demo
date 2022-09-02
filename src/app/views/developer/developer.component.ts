@@ -91,6 +91,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Alerts',
       link: SegmentPaths.alerts
     }, {
+      name: 'Badge',
+      link: SegmentPaths.badge
+    }, {
       name: 'Buttons',
       link: SegmentPaths.buttons
     }, {
