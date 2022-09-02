@@ -15,7 +15,13 @@ export const BadgeCircular: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<p>
+  <span class="badge">25</span>
+</p>
+<p>
+  <span class="badge">25</span>
+</p>`;
 }
 
 /*

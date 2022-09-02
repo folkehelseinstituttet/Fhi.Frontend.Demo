@@ -15,7 +15,8 @@ export const BadgeRounded: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<span class="badge rounded-pill text-bg-primary">Primary</span>`;
 }
 
 /*
