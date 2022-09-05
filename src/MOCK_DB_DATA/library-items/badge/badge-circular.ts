@@ -16,12 +16,12 @@ export const BadgeCircular: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<span class="badge fhi-badge fhi-badge--context1">
+<span class="badge fhi-badge fhi-badge--circle-dark">
   25
   <span class="visually-hidden">text explaining what's counted</span>
 </span>
 
-<span class="badge fhi-badge fhi-badge--context2">
+<span class="badge fhi-badge fhi-badge--circle-light">
   25
   <span class="visually-hidden">text explaining what's counted</span>
 </span>
@@ -31,7 +31,7 @@ function getExampleHtml(): string {
 
 <p class="d-inline-block position-relative">
   <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
-  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--context1">
+  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
     <span class="visually-hidden">new emails</span>
   </span>
@@ -39,7 +39,7 @@ function getExampleHtml(): string {
 <p>
   <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
     Show more
-    <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--context2">
+    <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--circle-light">
       25
       <span class="visually-hidden">more to show</span>
     </span>
@@ -55,7 +55,7 @@ function getCodeHtml(): string | null {
   return `
 <p class="d-inline-block position-relative">
   <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
-  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--context1">
+  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
     <span class="visually-hidden">new emails</span>
   </span>
@@ -63,7 +63,7 @@ function getCodeHtml(): string | null {
 
 <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
   Show more
-  <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--context2">
+  <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--circle-light">
     25
     <span class="visually-hidden">more to show</span>
   </span>

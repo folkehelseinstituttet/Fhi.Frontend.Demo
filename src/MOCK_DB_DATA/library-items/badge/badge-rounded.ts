@@ -17,7 +17,7 @@ export const BadgeRounded: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<span class="badge rounded-pill fhi-badge fhi-badge--context3">
+<span class="badge rounded-pill fhi-badge fhi-badge--rounded">
   100
   <span class="visually-hidden">text explaining what's counted</span>
 </span>
@@ -28,7 +28,7 @@ function getExampleHtml(): string {
 <ul>
   <li>
     <a href="${SegmentPaths.developer}/${SegmentPaths.components}/badge#badgerounded">Research summaries</a>
-    <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--context3">
+    <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
       100
       <span class="visually-hidden">summaries availale</span>
     </span>
@@ -42,7 +42,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<span class="badge rounded-pill fhi-badge fhi-badge--context3">
+<span class="badge rounded-pill fhi-badge fhi-badge--rounded">
   100
   <span class="visually-hidden">text explaining what's counted</span>
 </span>`;
