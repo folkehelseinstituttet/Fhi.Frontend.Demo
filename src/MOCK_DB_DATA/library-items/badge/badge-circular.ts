@@ -16,36 +16,34 @@ export const BadgeCircular: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<p>
-  <span class="badge fhi-badge fhi-badge--context1">
+<span class="badge fhi-badge fhi-badge--context1">
+  25
+  <span class="visually-hidden">text explaining what's counted</span>
+</span>
+
+<span class="badge fhi-badge fhi-badge--context2">
+  25
+  <span class="visually-hidden">text explaining what's counted</span>
+</span>
+
+<hr>
+<h2 class="h5 mt-6 mb-4">Use cases</h2>
+
+<p class="d-inline-block position-relative">
+  <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
+  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--context1">
     25
-    <span class="visually-hidden">tekst som forklarer hva tallet står for</span>
+    <span class="visually-hidden">new emails</span>
   </span>
 </p>
 <p>
-  <span class="badge fhi-badge fhi-badge--context1">
-    25
-    <span class="visually-hidden">tekst som forklarer hva tallet står for</span>
-  </span>
-</p>
-
-
-
-<p>
-  <button type="button" class="btn btn-md fhi-btn-outline-secondary position-relative">
-    Vis flere
-    <span class="position-absolute top-0 start-100 translate-middle badge rounded-circle bg-primary">
-      5
-      <span class="visually-hidden">flere å vise</span>
+  <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
+    Show more
+    <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--context2">
+      25
+      <span class="visually-hidden">more to show</span>
     </span>
   </button>
-</p>
-<p class="position-relative">
-  <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
-  <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning rounded-circle">
-    25
-    <span class="visually-hidden">New alerts</span>
-  </span>
 </p>`;
 }
 
@@ -54,12 +52,35 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<p class="d-inline-block position-relative">
+  <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
+  <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--context1">
+    25
+    <span class="visually-hidden">new emails</span>
+  </span>
+</p>
+
+<button type="button" class="btn btn-md fhi-btn-secondary position-relative">
+  Show more
+  <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--context2">
+    25
+    <span class="visually-hidden">more to show</span>
+  </span>
+</button>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>
+  Only use for numerical values. Never use as a stand-alone.
+</p>
+<p>
+  Bootstrap documentation for
+  <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
+</p>
+`;
 }
