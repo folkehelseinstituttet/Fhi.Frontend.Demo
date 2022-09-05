@@ -3,8 +3,8 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const SearchBar: LibraryItem[] = [{
   id: 'searchbar',
-  title: 'Searchbar',
-  type: LibraryItemType.html,
+  title: 'Search bar',
+  type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -15,12 +15,7 @@ export const SearchBar: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<label for="searchBox">Search</label>
-<div>
-  <input class="form-control" id="searchBox" type="search" />
-</div>
-`;
+  return ``;
 }
 
 /*
