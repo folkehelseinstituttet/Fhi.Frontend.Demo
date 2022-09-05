@@ -16,7 +16,12 @@ export const BadgeRounded: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<span class="badge rounded-pill text-bg-primary">Primary</span>`;
+<p>
+  <span class="badge rounded-pill fhi-badge fhi-badge--context3">
+    100
+    <span class="visually-hidden">tekst som forklarer hva tallet står for</span>
+  </span>
+</p>`;
 }
 
 /*
