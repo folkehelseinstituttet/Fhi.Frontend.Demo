@@ -2,7 +2,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const TagCategory: LibraryItem[] = [{
-  id: 'tag',
+  id: 'tagcategory',
   title: 'Tag - category',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

@@ -2,7 +2,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const TagMultipleSelection: LibraryItem[] = [{
-  id: 'tag',
+  id: 'tagmultipleselector',
   title: 'Tag - multiple selection',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

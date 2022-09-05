@@ -2,7 +2,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const TagFilterOption: LibraryItem[] = [{
-  id: 'tag',
+  id: 'tagfilteroptions',
   title: 'Tag - filter option',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
