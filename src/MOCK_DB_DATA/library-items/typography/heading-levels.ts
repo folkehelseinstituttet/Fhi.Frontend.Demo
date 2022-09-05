@@ -12,11 +12,11 @@ export const HeadingLevels: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
-<h1>Level 1</h1>
-<h2>Level 2</h1>
-<h3>Level 3</h1>
-<h4>Level 4</h1>
-<h5>Level 5</h1>`;
+<h1>Heading level 1</h1>
+<h2>Heading level 2</h1>
+<h3>Heading level 3</h1>
+<h4>Heading level 4</h1>
+<h5>Heading level 5</h1>`;
 }
 
 function getCodeHtml(): string | null {
