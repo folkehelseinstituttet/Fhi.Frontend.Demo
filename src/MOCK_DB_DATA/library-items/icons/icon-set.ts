@@ -20,12 +20,14 @@ function getExampleHtml(): string {
 function getCodeHtml(): string {
   return `
 <i class="icon-alcohol-drugs"></i>
+<i class="icon-arrow-left-long"></i>
 <i class="icon-bell-regular"></i>
 <i class="icon-cancer"></i>
 <i class="icon-cancer-cell"></i>
 <i class="icon-cancer-cell-2"></i>
 <i class="icon-cardio"></i>
 <i class="icon-cards"></i>
+<i class="icon-check"></i>
 <i class="icon-check-circle-regular"></i>
 <i class="icon-chevron-down"></i>
 <i class="icon-chevron-down-fat"></i>
