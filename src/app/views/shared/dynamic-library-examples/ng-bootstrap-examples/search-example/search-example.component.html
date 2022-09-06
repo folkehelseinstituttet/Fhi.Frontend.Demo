@@ -1,1 +1,14 @@
-<div>Search bar</div>
+<div class="fhi-search-bar">
+  <label for="typeahead-basic" class="form-label">Search for a country (or territories):</label>
+
+  <div class="d-flex">
+    <div class="fhi-search-bar__text w-100 position-relative">
+      <input id="typeahead-basic" type="search" class="form-control fhi-search-bar__form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+    </div>
+
+    <button type="button" class="btn fhi-btn-secondary fhi-search-bar__btn ms-2">
+      <i class="fhi-search-bar__btn-icon"></i>
+      Search
+    </button>
+  </div>
+</div>

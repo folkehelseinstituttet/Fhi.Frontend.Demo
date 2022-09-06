@@ -42,6 +42,7 @@ function getCodeHtml(): string {
 <i class="icon-environment"></i>
 <i class="icon-file-excel-regular"></i>
 <i class="icon-insight"></i>
+<i class="icon-magnifying-glass"></i>
 <i class="icon-muscle"></i>
 <i class="icon-no-handwash"></i>
 <i class="icon-population"></i>

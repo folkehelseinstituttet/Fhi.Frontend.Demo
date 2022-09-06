@@ -23,12 +23,12 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `<div>Search bar</div>`;
 }
 
 /*
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
