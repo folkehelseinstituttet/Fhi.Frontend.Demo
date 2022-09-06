@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Template: LibraryItem[] = [{
-  id: 'title',
-  title: 'Title',
+export const TagState: LibraryItem[] = [{
+  id: 'tagstate',
+  title: 'Tag - state',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -15,7 +15,20 @@ export const Template: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<p>
+  <span class="fhi-tag text-bg-info">Info tag</span>
+</p>
+<p>
+  <span class="fhi-tag text-bg-success">Success tag</span>
+</p>
+<p>
+  <span class="fhi-tag text-bg-warning">Warning tag</span>
+</p>
+<p>
+  <span class="fhi-tag text-bg-error">Error tag</span>
+</p>
+`;
 }
 
 /*
@@ -23,12 +36,17 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<span class="fhi-tag text-bg-info">Info tag</span>
+<span class="fhi-tag text-bg-success">Success tag</span>
+<span class="fhi-tag text-bg-warning">Warning tag</span>
+<span class="fhi-tag text-bg-error">Error tag</span>
+`;
 }
 
 /*
- * Return null to remove Documentation from library-item.
+ * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }

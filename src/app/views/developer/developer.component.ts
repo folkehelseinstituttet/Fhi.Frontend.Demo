@@ -91,6 +91,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Alerts',
       link: SegmentPaths.alerts
     }, {
+      name: 'Badge',
+      link: SegmentPaths.badge
+    }, {
       name: 'Buttons',
       link: SegmentPaths.buttons
     }, {
@@ -108,6 +111,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }, {
       name: 'Tables',
       link: SegmentPaths.table
+    }, {
+      name: 'Tags',
+      link: SegmentPaths.tags
     }, {
       name: 'Toast',
       link: SegmentPaths.toast
