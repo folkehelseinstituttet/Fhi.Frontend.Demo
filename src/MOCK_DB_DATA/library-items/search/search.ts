@@ -1,7 +1,7 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const SearchBar: LibraryItem[] = [{
+export const Search: LibraryItem[] = [{
   id: 'searchbar',
   title: 'Search bar',
   type: LibraryItemType.ngBootstrap,

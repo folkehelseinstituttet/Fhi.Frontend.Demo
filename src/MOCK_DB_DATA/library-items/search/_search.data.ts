@@ -1,9 +1,9 @@
 import { LibraryItem } from 'src/app/views/shared/library/models/library-item.model';
 
-import { SearchBar } from './search-bar';
+import { Search } from './search'
 
 export const SearchData: LibraryItem[] = [
-  ...SearchBar
+  ...Search
 ];
 
 

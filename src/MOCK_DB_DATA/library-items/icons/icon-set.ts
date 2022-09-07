@@ -51,6 +51,7 @@ function getCodeHtml(): string {
 <i class="icon-swap"></i>
 <i class="icon-trash-alt-regular"></i>
 <i class="icon-user-regular"></i>
+<i class="icon-xmark"></i>
 `;
 }
 
