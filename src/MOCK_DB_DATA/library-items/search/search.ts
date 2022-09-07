@@ -23,12 +23,37 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<div>Search bar</div>`;
+  return `
+<div class="fhi-search">
+  <label for="searchField" class="form-label">Search for something</label>
+
+  <div class="d-flex">
+    <div class="w-100 position-relative">
+      <input id="searchField" type="search" class="form-control fhi-search__form-control" placeholder="Start searching..."/>
+    </div>
+
+    <button type="button" class="btn fhi-btn-secondary fhi-search__btn ms-2">
+      <i class="fhi-search__btn-icon"></i>
+      Search
+    </button>
+  </div>
+</div>`;
 }
 
 /*
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>
+  The autosuggest in the search field is implemented as a
+  <a href="${NgBootstrapComponentsBaseUrl}/typeahead">NgBootstrap Typeahead</a>
+  in the FHI Designsystem.
+</p>
+<p>
+  Bootstrap documentation for
+  <a href="${BootstrapComponentsBaseUrl}/dropdowns">Dropdowns</a>
+  which is the base for the NgBootstrap Typeahead.
+</p>
+`;
 }

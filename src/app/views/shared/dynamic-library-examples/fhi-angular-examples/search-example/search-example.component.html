@@ -1,9 +1,9 @@
 <div class="fhi-search mb-5">
-  <label for="typeahead-basic" class="form-label">Search for a country (or territory):</label>
+  <label for="typeahead-basic" class="form-label">Search for a country (or territory)</label>
 
   <div class="d-flex">
-    <div class="fhi-search__text w-100 position-relative">
-      <input id="typeahead-basic" type="search" class="form-control fhi-search__form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+    <div class="w-100 position-relative">
+      <input id="typeahead-basic" type="search" class="form-control fhi-search__form-control" placeholder="Start searching..." [(ngModel)]="model" [ngbTypeahead]="search"/>
     </div>
 
     <button type="button" class="btn fhi-btn-secondary fhi-search__btn ms-2">
@@ -13,12 +13,12 @@
   </div>
 </div>
 
-<div class="fhi-search fhi-search--tall">
-  <label for="typeahead-basic" class="form-label">Search for a country (or territory):</label>
+<div class="fhi-search fhi-search--xl">
+  <label for="typeahead-basic2" class="form-label">XL search</label>
 
   <div class="d-flex">
-    <div class="fhi-search__text w-100 position-relative">
-      <input id="typeahead-basic" type="search" class="form-control fhi-search__form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+    <div class="w-100 position-relative">
+      <input id="typeahead-basic2" type="search" class="form-control fhi-search__form-control" placeholder="Start searching..." [(ngModel)]="model2" [ngbTypeahead]="search2"/>
     </div>
 
     <button type="button" class="btn fhi-btn-secondary fhi-search__btn ms-2">
