@@ -11,9 +11,6 @@ const countries = ['Afghanistan', 'Albania', 'Algeria', 'American Samoa', 'Andor
   templateUrl: './search-example.component.html',
 })
 export class SearchExampleComponent {
-  public model: any;
-  public model2: any;
-
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
@@ -23,11 +20,11 @@ export class SearchExampleComponent {
     );
 
   search2: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-  text$.pipe(
-    debounceTime(200),
-    distinctUntilChanged(),
-    map(term => term.length < 2 ? []
-      : countries.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 7))
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? []
+        : countries.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 7))
   );
 
 }

@@ -25,11 +25,16 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="fhi-search"><!-- add fhi-search--xl for tall search field -->
-  <label for="searchField" class="form-label">Search for something</label>
+  <label for="typeahead-basic" class="form-label">Search for a country (or territory)</label>
 
   <div class="d-flex">
     <div class="w-100 position-relative">
-      <input id="searchField" type="search" class="form-control fhi-search__form-control" placeholder="Start searching..."/>
+      <input
+        id="typeahead-basic"
+        type="search"
+        class="form-control fhi-search__form-control"
+        placeholder="Start searching..."
+        [ngbTypeahead]="search"/>
     </div>
 
     <button type="button" class="btn fhi-btn-secondary fhi-search__btn">
@@ -54,6 +59,5 @@ function getDocumentationHtml(): string | null {
   Bootstrap documentation for
   <a href="${BootstrapComponentsBaseUrl}/dropdowns">Dropdowns</a>
   which is the base for the NgBootstrap Typeahead.
-</p>
-`;
+</p>`;
 }
