@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="fhi-search">
+<div class="fhi-search"><!-- add fhi-search--xl for tall search field -->
   <label for="searchField" class="form-label">Search for something</label>
 
   <div class="d-flex">
