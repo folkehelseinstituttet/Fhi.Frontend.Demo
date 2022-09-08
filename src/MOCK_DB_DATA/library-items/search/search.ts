@@ -3,7 +3,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const Search: LibraryItem[] = [{
   id: 'searchbar',
-  title: 'Search bar',
+  title: 'Search',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -32,7 +32,7 @@ function getCodeHtml(): string | null {
       <input id="searchField" type="search" class="form-control fhi-search__form-control" placeholder="Start searching..."/>
     </div>
 
-    <button type="button" class="btn fhi-btn-secondary fhi-search__btn ms-2">
+    <button type="button" class="btn fhi-btn-secondary fhi-search__btn">
       <i class="fhi-search__btn-icon"></i>
       Search
     </button>
