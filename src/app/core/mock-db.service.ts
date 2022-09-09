@@ -10,6 +10,7 @@ import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
+import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
@@ -31,6 +32,7 @@ export class MockDbService implements InMemoryDbService {
       IconsData,
       ModalData,
       PaginationData,
+      SearchData,
       TableData,
       TagsData,
       ToastData,

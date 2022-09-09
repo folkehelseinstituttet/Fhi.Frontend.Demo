@@ -73,7 +73,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }
     switch (this.currentTopLevelMenuItem.name) {
       case TopLevelMenuItemName.components:
-        return this.getComponensMenu();
+        return this.getComponentsMenu();
 
       case TopLevelMenuItemName.colorsAndFonts:
         return this.getColorsAndFontsMenu();
@@ -83,7 +83,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }
   }
 
-  private getComponensMenu(): MenuItem[] {
+  private getComponentsMenu(): MenuItem[] {
     return [{
       name: 'Accordions',
       link: SegmentPaths.accordion
@@ -105,6 +105,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }, {
       name: 'Pagination',
       link: SegmentPaths.pagination
+    }, {
+      name: 'Search',
+      link: SegmentPaths.search
     }, {
       name: 'Tables',
       link: SegmentPaths.table
