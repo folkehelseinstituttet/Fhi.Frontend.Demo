@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Tile: LibraryItem[] = [{
-    id: 'tile',
-    title: 'Tile',
+export const NavigationTile: LibraryItem[] = [{
+    id: 'navigationtile',
+    title: 'Navigation tile',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -16,9 +16,9 @@ export const Tile: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
     return `
-<div class="row">
-    <div class="col-auto col-xl-6">
-        <a href="/developer/components/tile" class="fhi-tile">
+<div class="row gx-3 gx-sm-5">
+    <div class="col-auto col-sm-12 col-xl-6 gx-3 gx-sm-5 gy-3 gy-sm-5">
+        <a href="/developer/components/navigationtile" class="fhi-tile">
             <span class="fhi-tile__icon">
                 <i class="icon-environment"></i>
             </span>
@@ -26,18 +26,6 @@ function getExampleHtml(): string {
             <p class="fhi-tile__heading">Tile Heading</p>
 
             <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
-        </a>
-    </div>
-
-    <div class="col-auto col-xl-6">
-        <a href="/developer/components/tile" class="fhi-tile">
-            <span class="fhi-tile__icon">
-                <i class="icon-diabetes"></i>
-            </span>
-
-            <p class="fhi-tile__heading">Tile Heading</p>
-
-            <p class="fhi-tile__description">Short descriptive text.</p>
         </a>
     </div>
 </div>
@@ -50,7 +38,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `
-<a href="/developer/components/tile" class="fhi-tile">
+<a href="/url" class="fhi-tile">
     <span class="fhi-tile__icon">
         <i class="icon-environment"></i>
     </span>

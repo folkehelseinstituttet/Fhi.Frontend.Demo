@@ -13,7 +13,7 @@ import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagin
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
-import { TileData } from 'src/MOCK_DB_DATA/library-items/tile/_tile.data';
+import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
 import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
@@ -36,7 +36,7 @@ export class MockDbService implements InMemoryDbService {
       SearchData,
       TableData,
       TagsData,
-      TileData,
+      NavigationtileData,
       ToastData,
       TooltipData,
       TypographyData

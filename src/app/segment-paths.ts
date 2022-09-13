@@ -35,7 +35,7 @@ export class SegmentPaths {
   static search = 'search';
   static table = 'table';
   static tags = 'tags';
-  static tile = 'tile';
+  static navigationtile = 'navigationtile';
   static toast = 'toast';
   static tooltip = 'tooltip';
   static typography = 'typography';
