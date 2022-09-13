@@ -19,9 +19,9 @@ const TopLevelMenuItemName = {
 export class DeveloperComponent implements OnInit, OnDestroy {
 
   topLevelMenuItems!: MenuItem[];
-  currentTopLevelMenuItem!: MenuItem;
   secondLevelMenuItems!: MenuItem[];
 
+  private currentTopLevelMenuItem!: MenuItem;
   private subscription: Subscription = new Subscription();
 
   constructor(private urlService: UrlService) { }
