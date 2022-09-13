@@ -3,7 +3,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const BadgeCircular: LibraryItem[] = [{
   id: 'badgecircular',
-  title: 'Badge - Circular',
+  title: 'Badge - circular',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

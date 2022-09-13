@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BadgeRounded: LibraryItem[] = [{
   id: 'badgerounded',
-  title: 'Badge - Rounded',
+  title: 'Badge - rounded',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

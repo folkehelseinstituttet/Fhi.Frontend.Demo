@@ -3,7 +3,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const AccordionFlush: LibraryItem[] = [{
   id: 'accordionflush',
-  title: 'Accordion - Flush',
+  title: 'Accordion - flush',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
