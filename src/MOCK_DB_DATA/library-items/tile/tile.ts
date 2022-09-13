@@ -16,15 +16,31 @@ export const Tile: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
     return `
-<a href="/developer/components/tile" class="fhi-tile">
-    <span class="fhi-tile__icon">
-        <i class="icon-environment"></i>
-    </span>
+<div class="row">
+    <div class="col-auto col-xl-6">
+        <a href="/developer/components/tile" class="fhi-tile">
+            <span class="fhi-tile__icon">
+                <i class="icon-environment"></i>
+            </span>
 
-    <h2 class="h3">Tile Heading</h2>
+            <p class="fhi-tile__heading">Tile Heading</p>
 
-    <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
-</a>
+            <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+        </a>
+    </div>
+
+    <div class="col-auto col-xl-6">
+        <a href="/developer/components/tile" class="fhi-tile">
+            <span class="fhi-tile__icon">
+                <i class="icon-diabetes"></i>
+            </span>
+
+            <p class="fhi-tile__heading">Tile Heading</p>
+
+            <p class="fhi-tile__description">Short descriptive text.</p>
+        </a>
+    </div>
+</div>
 `;
 }
 
@@ -33,7 +49,16 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return ``;
+    return `
+<a href="/developer/components/tile" class="fhi-tile">
+    <span class="fhi-tile__icon">
+        <i class="icon-environment"></i>
+    </span>
+
+    <p class="fhi-tile__heading">Tile Heading</p>
+
+    <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+</a>`;
 }
 
 /*
