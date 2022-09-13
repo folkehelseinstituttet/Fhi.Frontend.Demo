@@ -5,6 +5,7 @@ export class SegmentPaths {
    */
 
   static developer = 'developer';
+  static designer = 'designer';
 
 
   /*

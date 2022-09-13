@@ -3,10 +3,23 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SegmentPaths } from 'src/app/segment-paths';
 
-const routes: Routes = [];
+import { DesignerComponent } from './designer.component';
+
+const routes: Routes = [{
+  path: ':param',
+  component: DesignerComponent,
+}, {
+  path: '',
+  pathMatch: 'full',
+  redirectTo: SegmentPaths.components
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DesignerRoutingModule { }
+export class DesignerRoutingModule {
+  static components = [
+    DesignerComponent
+  ];
+}

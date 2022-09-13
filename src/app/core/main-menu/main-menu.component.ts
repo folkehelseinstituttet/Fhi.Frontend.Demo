@@ -20,6 +20,9 @@ export class MainMenuComponent {
   mainMenuItems: MenuItem[] = [{
     name: 'CSS library', // TODO: 'For developers', or something like that?
     link: `/${SegmentPaths.developer}`
+  }, {
+    name: 'For designere',
+    link: `/${SegmentPaths.designer}`
   }];
 
   mainMenuClose(): void {
