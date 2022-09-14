@@ -25,4 +25,6 @@ export class LibraryItemIds {
   static FormSelect = 'formselect';
   static FormSwitch = 'formswitch';
 
+  static IconSet = 'iconset';
+
 }
