@@ -33,4 +33,8 @@ export class LibraryItemIds {
 
   static SearchDefault = 'searchdefault';
 
+  static TableDefault = 'tabledefault';
+  static TableSelectableRow = 'searchdefault';
+  static TableSortable = 'tablesortable';
+
 }
