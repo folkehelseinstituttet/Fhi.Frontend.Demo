@@ -17,15 +17,15 @@ export const NavigationTile: LibraryItem[] = [{
 function getExampleHtml(): string {
     return `
 <div class="row gx-3 gx-sm-5">
-    <div class="col-auto col-sm-12 col-xl-6 gx-3 gx-sm-5 gy-3 gy-sm-5">
-        <a href="/developer/components/navigationtile" class="fhi-tile">
-            <span class="fhi-tile__icon">
+    <div class="col-auto col-sm-12 col-xl-6">
+        <a href="/developer/components/navigationtile" class="fhi-navigation-tile">
+            <span class="fhi-navigation-tile__icon">
                 <i class="icon-environment"></i>
             </span>
 
-            <p class="fhi-tile__heading">Tile Heading</p>
+            <p class="fhi-navigation-tile__heading">Tile Heading</p>
 
-            <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+            <p class="fhi-navigation-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
         </a>
     </div>
 </div>
@@ -38,14 +38,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `
-<a href="/url" class="fhi-tile">
-    <span class="fhi-tile__icon">
+<a href="/url" class="fhi-navigation-tile">
+    <span class="fhi-navigation-tile__icon">
         <i class="icon-environment"></i>
     </span>
 
-    <p class="fhi-tile__heading">Tile Heading</p>
+    <p class="fhi-navigation-tile__heading">Tile Heading</p>
 
-    <p class="fhi-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+    <p class="fhi-navigation-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
 </a>`;
 }
 

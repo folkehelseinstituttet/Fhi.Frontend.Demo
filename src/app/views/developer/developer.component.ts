@@ -103,6 +103,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
       name: 'Modal',
       link: SegmentPaths.modal
     }, {
+      name: 'Navigation tile',
+      link: SegmentPaths.navigationtile
+    }, {
       name: 'Pagination',
       link: SegmentPaths.pagination
     }, {
@@ -114,9 +117,6 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     }, {
       name: 'Tags',
       link: SegmentPaths.tags
-    }, {
-      name: 'Navigation tile',
-      link: SegmentPaths.navigationtile
     }, {
       name: 'Toast',
       link: SegmentPaths.toast
