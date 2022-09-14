@@ -43,4 +43,11 @@ export class LibraryItemIds {
   static TagSingleSelection = 'tagsingleselection';
   static TagState = 'tagstate';
 
+  static Toast = 'toast';
+
+  static Tooltip = 'tooltip';
+
+  static HeadingLevels = 'headinglevels';
+  static TypographicHierarchy = 'typographichierarchy';
+
 }
