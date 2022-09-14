@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { MenuItem } from 'src/app/models/menu-item.model';
 import { SegmentPaths } from 'src/app/segment-paths';
 
-const TopLevelMenuItemName = {
-  components: 'Components',
-  colorsAndFonts: 'Colors, Fonts',
-  icons: 'Icons'
+const TopLevelMenuItemNames = {
+  visualIdentity: 'Visuell identitet',
+  components: 'Komponenter',
+  modules: 'Moduler'
 };
 
 @Injectable({
@@ -16,25 +15,23 @@ const TopLevelMenuItemName = {
 })
 export class LibraryMenuService {
 
-  constructor(private urlService: UrlService) { }
-
-  // private urlSubject = new ReplaySubject<void>(1);
-
   topLevelMenuItems!: MenuItem[];
 
   private currentTopLevelMenuItem!: MenuItem;
 
+  constructor(private urlService: UrlService) { }
+
   getTopLevelMenuItems(): MenuItem[] {
     const currentSegmentPath0 = this.urlService.getSegmentPath(0);
     this.topLevelMenuItems = [{
-      name: TopLevelMenuItemName.components,
+      name: TopLevelMenuItemNames.visualIdentity,
+      link: `/${currentSegmentPath0}/${SegmentPaths.visualIdentity}`
+    }, {
+      name: TopLevelMenuItemNames.components,
       link: `/${currentSegmentPath0}/${SegmentPaths.components}`
     }, {
-      name: TopLevelMenuItemName.colorsAndFonts,
-      link: `/${currentSegmentPath0}/${SegmentPaths.colorsAndFonts}`
-    }, {
-      name: TopLevelMenuItemName.icons,
-      link: `/${currentSegmentPath0}/${SegmentPaths.iconsDeprecated}`
+      name: TopLevelMenuItemNames.modules,
+      link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
     }];
     return this.topLevelMenuItems;
   }
@@ -57,14 +54,14 @@ export class LibraryMenuService {
       return;
     }
     switch (this.currentTopLevelMenuItem.name) {
-      case TopLevelMenuItemName.components:
+      case TopLevelMenuItemNames.visualIdentity:
+        return this.getVisualIdentityMenu();
+
+      case TopLevelMenuItemNames.components:
         return this.getComponentsMenu();
 
-      case TopLevelMenuItemName.colorsAndFonts:
-        return this.getColorsAndFontsMenu();
-
-      case TopLevelMenuItemName.icons:
-        return this.getIconsMenu();
+      case TopLevelMenuItemNames.modules:
+        return this.getModulesMenu();
     }
   }
 
@@ -76,6 +73,19 @@ export class LibraryMenuService {
       return topLevelMenuItem;
     }
     console.error('Current path is not matching any menu items.')
+  }
+
+  private getVisualIdentityMenu(): MenuItem[] {
+    return [{
+      name: 'Color',
+      link: SegmentPaths.color
+    }, {
+      name: 'Icon set',
+      link: SegmentPaths.icons
+    }, {
+      name: 'Typography',
+      link: SegmentPaths.typography
+    }];
   }
 
   private getComponentsMenu(): MenuItem[] {
@@ -118,20 +128,10 @@ export class LibraryMenuService {
     }]
   }
 
-  private getColorsAndFontsMenu(): MenuItem[] {
+  private getModulesMenu(): MenuItem[] {
     return [{
-      name: 'Color',
-      link: SegmentPaths.color
-    }, {
-      name: 'Typography',
-      link: SegmentPaths.typography
-    }];
-  }
-
-  private getIconsMenu(): MenuItem[] {
-    return [{
-      name: 'Icon set',
-      link: SegmentPaths.icons
+      name: 'Første modul kommer snart',
+      link: '.'
     }];
   }
 
