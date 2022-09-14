@@ -2,12 +2,12 @@ import { LibraryItem } from 'src/app/views/shared/library/models/library-item.mo
 
 import { BtnPrimary } from './btn-primary';
 import { BtnSecondary } from './btn-secondary';
-import { BtnFlat } from './btn-flat';
+import { BtnLink } from './btn-link';
 
 export const ButtonsData: LibraryItem[] = [
   ...BtnPrimary,
   ...BtnSecondary,
-  ...BtnFlat
+  ...BtnLink
 ];
 
 
