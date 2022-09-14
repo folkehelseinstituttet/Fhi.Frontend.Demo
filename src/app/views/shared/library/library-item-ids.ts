@@ -8,4 +8,9 @@ export class LibraryItemIds {
 
   static BadgeCircular = 'badgecircular';
   static BadgeRounded = 'badgerounded';
+
+  static ButtonPrimary = 'buttonprimary';
+  static ButtonSecondary = 'buttonsecondary';
+  static ButtonFlat = 'buttonflat';
+
 }
