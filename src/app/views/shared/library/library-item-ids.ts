@@ -27,4 +27,10 @@ export class LibraryItemIds {
 
   static IconSet = 'iconset';
 
+  static ModalDefault = 'modaldefault';
+
+  static PaginationDefault = 'paginationdefault';
+
+  static SearchDefault = 'searchdefault';
+
 }
