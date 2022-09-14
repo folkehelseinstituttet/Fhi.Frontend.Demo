@@ -5,4 +5,7 @@ export class LibraryItemIds {
 
   static AlertDefault = 'alertdefault';
   static AlertDismissible = 'alertdismissible';
+
+  static BadgeCircular = 'badgecircular';
+  static BadgeRounded = 'badgerounded';
 }
