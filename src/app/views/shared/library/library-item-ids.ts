@@ -17,4 +17,12 @@ export class LibraryItemIds {
   static ColorBootstrap = 'colorbootstrap';
   static FontColors = 'fontcolors';
 
+  static FormInput = 'forminput';
+  static FormTextarea = 'formtextarea';
+  static FormValidation = 'formvalidation';
+  static FormCheckbox = 'formcheckbox';
+  static FormRadio = 'formradio';
+  static FormSelect = 'formselect';
+  static FormSwitch = 'formswitch';
+
 }
