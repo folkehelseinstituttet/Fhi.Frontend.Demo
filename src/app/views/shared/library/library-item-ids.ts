@@ -37,4 +37,10 @@ export class LibraryItemIds {
   static TableSelectableRow = 'searchdefault';
   static TableSortable = 'tablesortable';
 
+  static TagCategory = 'tagcategory';
+  static TagFilterOption = 'tagfilteroption';
+  static TagMultipleSelection = 'tagmultipleselection';
+  static TagSingleSelection = 'tagsingleselection';
+  static TagState = 'tagstate';
+
 }
