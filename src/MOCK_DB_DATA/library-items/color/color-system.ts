@@ -1,8 +1,9 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const ColorSystem: LibraryItem[] = [{
-  id: 'colorsystem',
+  id: LibraryItemIds.ColorSystem,
   title: 'Color System',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

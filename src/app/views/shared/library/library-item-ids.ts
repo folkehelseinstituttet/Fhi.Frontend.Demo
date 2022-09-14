@@ -13,4 +13,8 @@ export class LibraryItemIds {
   static ButtonSecondary = 'buttonsecondary';
   static ButtonFlat = 'buttonflat';
 
+  static ColorSystem = 'colorsystem';
+  static ColorBootstrap = 'colorbootstrap';
+  static FontColors = 'fontcolors';
+
 }
