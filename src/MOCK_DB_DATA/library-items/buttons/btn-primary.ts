@@ -1,32 +1,28 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnPrimary: LibraryItem[] = [{
-    id: 'primarybutton',
-    title: 'Primary button',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.ButtonPrimary,
+  title: 'Primary button',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
 function getExampleHtml(): string {
-    return `
-<p>"Old" FHI button:</p>
+  return `
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
-  <button type="button" class="btn fhi-btn-primary mb-3 me-3">Standard</button>
+  <button type="button" class="btn btn-sm fhi-btn-primary mb-3 me-3">Small, 120px</button>
+  <button type="button" class="btn btn-md fhi-btn-primary mb-3 me-3">Standard, 170px</button>
+  <button type="button" class="btn btn-lg fhi-btn-primary mb-3">Large, 280px</button>
 </div>
-<div class="d-flex flex-column flex-lg-row mb-6">
-  <button type="button" class="btn fhi-btn-outline-primary mb-3 mb-lg-0 me-3">Standard</button>
-</div>
-
-<p>Bootstrap buttons:</p>
-<div class="mb-3">
-  <button type="button" class="btn btn-primary">Primary button</button>
-</div>
-<div>
-  <button type="button" class="btn btn-outline-primary">Primary button outlined</button>
+<div class="d-flex flex-column flex-lg-row">
+  <button type="button" class="btn btn-sm fhi-btn-outline-primary mb-3 mb-lg-0 me-3">Small, 120px</button>
+  <button type="button" class="btn btn-md fhi-btn-outline-primary mb-3 mb-lg-0 me-3">Standard, 170px</button>
+  <button type="button" class="btn btn-lg fhi-btn-outline-primary">Large, 280px</button>
 </div>`;
 }
 
@@ -35,7 +31,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `
+  return `
 <button type="button" class="btn btn-sm fhi-btn-primary">Small, 120px</button>
 <button type="button" class="btn btn-md fhi-btn-primary">Standard, 170px</button>
 <button type="button" class="btn btn-lg fhi-btn-primary">Large, 280px</button>
@@ -49,5 +45,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+  return null;
 }

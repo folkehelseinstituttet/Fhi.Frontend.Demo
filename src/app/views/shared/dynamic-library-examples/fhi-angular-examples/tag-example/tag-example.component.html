@@ -1,8 +1,7 @@
-<div *ngIf="title === 'Tag - filter option'" style="min-height: 50px;">
+<div style="min-height: 50px;">
   <button class="fhi-tag fhi-tag--filter-option" *ngIf="filterActive" (click)="filterActive = false">
     Filter option
     <i class="icon-xmark"></i>
   </button>
   <button class="btn fhi-btn-flat" *ngIf="!filterActive" (click)="filterActive = true">Set filter option</button>
 </div>
-  

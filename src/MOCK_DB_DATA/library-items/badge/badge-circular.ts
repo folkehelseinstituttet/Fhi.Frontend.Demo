@@ -1,9 +1,10 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BadgeCircular: LibraryItem[] = [{
-  id: 'badgecircular',
-  title: 'Badge - Circular',
+  id: LibraryItemIds.BadgeCircular,
+  title: 'Badge - circular',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -1,9 +1,10 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const FhiAccordionFlush: LibraryItem[] = [{
-  id: 'fhiaccordionflush',
-  title: 'Accordion - Flush (fhi)',
+  id: LibraryItemIds.FhiAccordionFlush,
+  title: 'Accordion - flush (FHI)',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

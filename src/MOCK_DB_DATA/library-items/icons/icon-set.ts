@@ -1,7 +1,8 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const IconSet: LibraryItem[] = [{
-  id: 'icon-set',
+  id: LibraryItemIds.IconSet,
   title: 'Icon set',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
