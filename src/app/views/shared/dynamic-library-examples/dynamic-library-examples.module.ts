@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { DynamicLibraryExampleComponent } from './dynamic-library-example/dynamic-library-example.component';
+import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
 
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
