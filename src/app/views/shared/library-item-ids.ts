@@ -1,86 +1,18 @@
-
-// The id value is set in const LibraryItemIds at the bottom of this file
-
-const AccordionIds = {
-  Accordion: undefined,
-  AccordionFlush: undefined,
-  AccordionFlushFhi: undefined
-}
-
-const AlertsIds = {
-  Alert: undefined,
-  AlertDismissible: undefined
-}
-
-const BadgeIds = {
-  BadgeCircular: undefined,
-  BadgeRounded: undefined
-}
-
-const ButtonsIds = {
-  ButtonPrimary: undefined,
-  ButtonSecondary: undefined,
-  ButtonFlat: undefined
-}
-
-const ColorIds = {
-  ColorSystem: undefined,
-  ColorBootstrap: undefined,
-  ColorFonts: undefined
-}
-
-const FormsIds = {
-  FormInput: undefined,
-  FormTextarea: undefined,
-  FormValidation: undefined,
-  FormCheckbox: undefined,
-  FormRadio: undefined,
-  FormSelect: undefined,
-  FormSwitch: undefined
-}
-
-export const IconsIds = {
-  IconSet: undefined
-}
-
-export const ModalIds = {
-  Modal: undefined
-}
-
-export const PaginationIds = {
-  Pagination: undefined
-}
-
-export const SearchIds = {
-  Search: undefined
-}
-
-export const TableIds = {
-  Table: undefined,
-  TableSelectableRow: undefined,
-  TableSortable: undefined
-}
-
-export const TagsIds = {
-  TagCategory: undefined,
-  TagFilterOption: undefined,
-  TagMultipleSelection: undefined,
-  TagSingleSelection: undefined,
-  TagState: undefined
-}
-
-export const ToastIds = {
-  Toast: undefined
-}
-
-export const TooltipIds = {
-  Tooltip: undefined
-}
-
-export const TypographyIds = {
-  HeadingLevels: undefined,
-  TypographicHierarchy: undefined
-}
+import { AccordionIds } from "src/MOCK_DB_DATA/library-items/accordion/_accordion.ids"
+import { AlertsIds } from "src/MOCK_DB_DATA/library-items/alerts/_alerts.ids"
+import { BadgeIds } from "src/MOCK_DB_DATA/library-items/badge/_badge.ids"
+import { ButtonsIds } from "src/MOCK_DB_DATA/library-items/buttons/_buttons.ids"
+import { ColorIds } from "src/MOCK_DB_DATA/library-items/color/_color.ids"
+import { FormsIds } from "src/MOCK_DB_DATA/library-items/forms/_forms.ids"
+import { IconsIds } from "src/MOCK_DB_DATA/library-items/icons/_icons.ids"
+import { ModalIds } from "src/MOCK_DB_DATA/library-items/modal/_modal.ids"
+import { PaginationIds } from "src/MOCK_DB_DATA/library-items/pagination/_pagination.ids"
+import { SearchIds } from "src/MOCK_DB_DATA/library-items/search/_search.ids"
+import { TableIds } from "src/MOCK_DB_DATA/library-items/table/_table.ids"
+import { TagsIds } from "src/MOCK_DB_DATA/library-items/tags/_tags.ids"
+import { ToastIds } from "src/MOCK_DB_DATA/library-items/toast/_toast.ids"
+import { TooltipIds } from "src/MOCK_DB_DATA/library-items/tooltip/_tooltip.ids"
+import { TypographyIds } from "src/MOCK_DB_DATA/library-items/typography/_typography.ids"
 
 const libraryItemIds = {
   ...AccordionIds,
@@ -99,7 +31,6 @@ const libraryItemIds = {
   ...TooltipIds,
   ...TypographyIds
 }
-
 
 export const LibraryItemIds = (() => {
   let n = 0;
