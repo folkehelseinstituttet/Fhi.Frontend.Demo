@@ -2,8 +2,8 @@ import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const BtnFlat: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonFlat,
+export const BtnLink: LibraryItem[] = [{
+  id: LibraryItemIds.ButtonLink,
   title: 'Transparent button',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
@@ -15,9 +15,7 @@ export const BtnFlat: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
-  <button type="button" class="btn btn-sm fhi-btn-flat mb-3 me-3">Small, 120px</button>
-  <button type="button" class="btn btn-md fhi-btn-flat mb-3 me-3">Standard, 170px</button>
-  <button type="button" class="btn btn-lg fhi-btn-flat mb-3">Large, 280px</button>
+  <button type="button" class="btn fhi-btn-flat mb-3 me-3">Standard</button>
 </div>
 <div>
   <button type="button" class="btn fhi-btn-flat">Dynamic width</button>
