@@ -15,10 +15,10 @@ function getExampleHtml(): string {
     return `
 <p>"Old" FHI button:</p>
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
-    <button type="button" class="btn btn-md fhi-btn-secondary mb-3 me-3">Standard</button>
+    <button type="button" class="btn fhi-btn-secondary mb-3 me-3">Standard</button>
 </div>
 <div class="d-flex flex-column flex-lg-row mb-6">
-    <button type="button" class="btn btn-md fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Standard</button>
+    <button type="button" class="btn fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Standard</button>
 </div>
 
 <p>Bootstrap buttons:</p>
