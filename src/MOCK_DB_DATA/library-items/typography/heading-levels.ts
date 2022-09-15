@@ -1,7 +1,8 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const HeadingLevels: LibraryItem[] = [{
-  id: 'headinglevels',
+  id: LibraryItemIds.HeadingLevels,
   title: 'Heading levels',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

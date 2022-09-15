@@ -5,31 +5,33 @@ export class SegmentPaths {
    */
 
   static developer = 'developer';
+  static designer = 'designer';
 
 
   /*
    * Library top level menu
    */
 
+  static visualIdentity = 'visual-identity';
   static components = 'components';
-
-  // Deprecated?
-  static colorsAndFonts = 'colors-fonts';
-  static iconsDeprecated = 'icons';
-
+  static modules = 'modules';
 
 
   /*
-   * Library second level menu
+   * Library second level menus
    */
 
+  // Visual identity
+  static color = 'color';
+  static icons = 'icons';
+  static typography = 'typography';
+
+  // Components
   static accordion = 'accordion';
   static alerts = 'alerts';
   static badge = 'badge';
   static buttons = 'buttons';
-  static color = 'color';
   static forms = 'forms';
-  static icons = 'icons';
   static modal = 'modal';
   static pagination = 'pagination';
   static search = 'search';
@@ -38,6 +40,5 @@ export class SegmentPaths {
   static navigationtile = 'navigationtile';
   static toast = 'toast';
   static tooltip = 'tooltip';
-  static typography = 'typography';
 
 }

@@ -1,7 +1,8 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const TableSelectableRow: LibraryItem[] = [{
-  id: 'tableselectablerow',
+  id: LibraryItemIds.TableSelectableRow,
   title: 'Table - selectable row',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

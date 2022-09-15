@@ -1,8 +1,9 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Select: LibraryItem[] = [{
-  id: 'select',
+  id: LibraryItemIds.FormSelect,
   title: 'Select',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

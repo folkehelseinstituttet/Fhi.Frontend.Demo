@@ -1,10 +1,11 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 const itemTitle = 'Modal';
 
 export const Modal: LibraryItem[] = [{
-  id: itemTitle.toLocaleLowerCase(),
+  id: LibraryItemIds.ModalDefault,
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
