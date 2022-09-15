@@ -33,11 +33,11 @@ export class SegmentPaths {
   static buttons = 'buttons';
   static forms = 'forms';
   static modal = 'modal';
+  static navigationtile = 'navigationtile';
   static pagination = 'pagination';
   static search = 'search';
   static table = 'table';
   static tags = 'tags';
-  static navigationtile = 'navigationtile';
   static toast = 'toast';
   static tooltip = 'tooltip';
 

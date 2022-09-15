@@ -29,6 +29,8 @@ export class LibraryItemIds {
 
   static ModalDefault = 'modaldefault';
 
+  static NavigationTile = 'navigationtile';
+
   static PaginationDefault = 'paginationdefault';
 
   static SearchDefault = 'searchdefault';
