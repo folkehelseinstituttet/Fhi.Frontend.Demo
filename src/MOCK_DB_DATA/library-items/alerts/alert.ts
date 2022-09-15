@@ -1,9 +1,9 @@
-import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/views/shared/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Alert: LibraryItem[] = [{
-  id: LibraryItemIds.AlertDefault,
+  id: LibraryItemIds.Alert,
   title: 'Alert',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

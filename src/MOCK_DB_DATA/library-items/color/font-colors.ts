@@ -1,8 +1,8 @@
-import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/views/shared/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const FontColors: LibraryItem[] = [{
-  id: LibraryItemIds.FontColors,
+  id: LibraryItemIds.ColorFonts,
   title: 'Font colors',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { LibraryItemIds } from '../../../library/library-item-ids';
+import { LibraryItemIds } from '../../../library-item-ids';
 
 @Component({
   selector: 'app-accordion-example',

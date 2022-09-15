@@ -21,17 +21,19 @@ library-items/
 2. Rename new folder and files (keep prefix `_` and postfix `.data`)
 3. Rename `const Template` in `./your-new-items/your-new-item.ts`
 4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep postfix `Data`)
-5. Add a constant in `src/app/segment-paths.ts`, under `Library second level menu`
-6. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
-7. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
+5. Add a new property in object `libraryItemIds`, in `src/app/views/shared/library-item-ids.ts`
+6. Add a constant in `src/app/segment-paths.ts`, under `Library second level menu`
+7. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
+8. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
 
 ### How to create a new library item in an exsisting mock-db data file
 
 1. Copy/paste `./existing-items/existing-item.ts`
 2. Rename new file: `./existing-items/your-new-item.ts`
 3. Rename the exported constant in `./existing-items/your-new-item.ts`
-4. Update all data in the `LibraryItem`-object
-5. Add your new item to exported constant in `./existing-items/existing-items.data.ts`
+4. Add a new property in object `libraryItemIds`, in `src/app/views/shared/library-item-ids.ts`
+5. Update all data in the `LibraryItem`-object
+6. Add your new item to exported constant in `./existing-items/existing-items.data.ts`
 
 ## NB! An important relation between two constants
 
