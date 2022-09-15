@@ -13,6 +13,9 @@ const routes: Routes = [{
   path: SegmentPaths.developer,
   loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)
 }, {
+  path: SegmentPaths.designer,
+  loadChildren: () => import('./views/designer/designer.module').then(m => m.DesignerModule)
+}, {
   path: '**',
   redirectTo: defaultPath
 }];

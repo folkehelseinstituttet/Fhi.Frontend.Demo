@@ -1,7 +1,8 @@
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 
 export const TypographicHierarchy: LibraryItem[] = [{
-  id: 'typographicalhierarchy',
+  id: LibraryItemIds.TypographicHierarchy,
   title: 'Typographical hierarchy',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

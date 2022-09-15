@@ -1,10 +1,11 @@
 import { SegmentPaths } from 'src/app/segment-paths';
+import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BadgeRounded: LibraryItem[] = [{
-  id: 'badgerounded',
-  title: 'Badge - Rounded',
+  id: LibraryItemIds.BadgeRounded,
+  title: 'Badge - rounded',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -6,10 +6,10 @@ import { LibraryMenuService } from '../shared/library/library-menu.service';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
-  selector: 'app-developer',
-  templateUrl: './developer.component.html'
+  selector: 'app-designer',
+  templateUrl: './designer.component.html'
 })
-export class DeveloperComponent implements OnInit, OnDestroy {
+export class DesignerComponent implements OnInit, OnDestroy {
 
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
@@ -26,7 +26,8 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
         if (this.libraryMenuService.updateSecondLevelMenu()) {
-          this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
+          console.log(this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems());
+          // this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }
       }));
   }

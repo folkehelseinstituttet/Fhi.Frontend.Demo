@@ -4,15 +4,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LibraryModule } from '../shared/library/library.module';
 import { DynamicLibraryExamplesModule } from '../shared/dynamic-library-examples/dynamic-library-examples.module';
 
-import { DeveloperRoutingModule } from './developer-routing.module';
+import { DesignerRoutingModule } from './designer-routing.module';
 
 @NgModule({
-  declarations: DeveloperRoutingModule.components,
+  declarations: DesignerRoutingModule.components,
   imports: [
     SharedModule,
     LibraryModule,
     DynamicLibraryExamplesModule,
-    DeveloperRoutingModule
+    DesignerRoutingModule
   ]
 })
-export class DeveloperModule { }
+export class DesignerModule { }
