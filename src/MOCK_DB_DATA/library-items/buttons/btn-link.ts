@@ -3,22 +3,22 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnLink: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonLink,
-  title: 'Transparent button',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+    id: LibraryItemIds.ButtonLink,
+    title: 'Transparent button',
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml()
 }];
 
 
 function getExampleHtml(): string {
-  return `
-<div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
-  <button type="button" class="btn fhi-btn-flat mb-3 me-3">Standard</button>
+    return `
+<div>
+    <button type="button" class="btn fhi-btn-flat">Dynamic width</button>
 </div>
 <div>
-  <button type="button" class="btn fhi-btn-flat">Dynamic width</button>
+    <button type="button" class="btn btn-link">Button link</button>
 </div>`;
 }
 
@@ -27,7 +27,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
+    return `
 <button type="button" class="btn btn-sm fhi-btn-flat">Small, 120px</button>
 <button type="button" class="btn btn-md fhi-btn-flat">Standard, 170px</button>
 <button type="button" class="btn btn-lg fhi-btn-flat">Large, 280px</button>
@@ -39,6 +39,6 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+    return null;
 }
 

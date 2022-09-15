@@ -14,15 +14,20 @@ export const BtnSecondary: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
+<p>"Old" FHI button:</p>
 <div class="d-flex flex-column flex-lg-row mb-4 mb-lg-0">
-  <button type="button" class="btn btn-sm fhi-btn-secondary mb-3 me-3">Small, 120px</button>
-  <button type="button" class="btn btn-md fhi-btn-secondary mb-3 me-3">Standard, 170px</button>
-  <button type="button" class="btn btn-lg fhi-btn-secondary mb-3">Large, 280px</button>
+    <button type="button" class="btn btn-md fhi-btn-secondary mb-3 me-3">Standard</button>
 </div>
-<div class="d-flex flex-column flex-lg-row">
-  <button type="button" class="btn btn-sm fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Small, 120px</button>
-  <button type="button" class="btn btn-md fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Standard, 170px</button>
-  <button type="button" class="btn btn-lg fhi-btn-outline-secondary">Large, 280px</button>
+<div class="d-flex flex-column flex-lg-row mb-6">
+    <button type="button" class="btn btn-md fhi-btn-outline-secondary mb-3 mb-lg-0 me-3">Standard</button>
+</div>
+
+<p>Bootstrap buttons:</p>
+<div class="mb-3">
+    <button type="button" class="btn btn-secondary">Secondary button</button>
+</div>
+<div>
+    <button type="button" class="btn btn-outline-secondary">Secondary button outlined</button>
 </div>`;
 }
 
