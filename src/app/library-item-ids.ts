@@ -1,4 +1,5 @@
 import { AccordionIds } from "src/MOCK_DB_DATA/library-items/accordion/_accordion.ids"
+import { AdvancedSelectIds } from "src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.ids"
 import { AlertsIds } from "src/MOCK_DB_DATA/library-items/alerts/_alerts.ids"
 import { BadgeIds } from "src/MOCK_DB_DATA/library-items/badge/_badge.ids"
 import { ButtonsIds } from "src/MOCK_DB_DATA/library-items/buttons/_buttons.ids"
@@ -16,6 +17,7 @@ import { TypographyIds } from "src/MOCK_DB_DATA/library-items/typography/_typogr
 
 const libraryItemIds = {
   ...AccordionIds,
+  ...AdvancedSelectIds,
   ...AlertsIds,
   ...BadgeIds,
   ...ButtonsIds,

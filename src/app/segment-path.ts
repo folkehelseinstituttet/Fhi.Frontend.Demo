@@ -1,4 +1,5 @@
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
+import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
@@ -15,7 +16,12 @@ import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.dat
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
-  return objectNameAsString.toLocaleLowerCase().slice(0, -4);
+
+  // TODO: is it necessary to have lover case... need better algorithm to chatch two words, eg. AdvancedSelect
+  //       and a better algorithm to get it back to a valid mock db source.
+  // return objectNameAsString.toLocaleLowerCase().slice(0, -4);
+
+  return objectNameAsString.slice(0, -4);
 }
 
 export class SegmentPaths {
@@ -47,6 +53,7 @@ export class SegmentPaths {
 
   // Components
   static accordion = stringTransform(Object.keys({ AccordionData })[0]);
+  static advancedSelect = stringTransform(Object.keys({ AdvancedSelectData })[0]);
   static alerts = stringTransform(Object.keys({ AlertsData })[0]);
   static badge = stringTransform(Object.keys({ BadgeData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
