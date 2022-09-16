@@ -1,4 +1,3 @@
-import { SegmentPaths } from 'src/app/segment-paths';
 import { LibraryItemIds } from 'src/app/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
@@ -28,7 +27,7 @@ function getExampleHtml(): string {
 
 <ul>
   <li>
-    <a href="${SegmentPaths.developer}/${SegmentPaths.components}/badge#badgerounded">Research summaries</a>
+    <a href="developer/components/badge#badgerounded">Research summaries</a>
     <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
       100
       <span class="visually-hidden">summaries availale</span>

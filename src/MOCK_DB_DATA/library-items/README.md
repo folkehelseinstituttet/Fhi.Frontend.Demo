@@ -23,8 +23,8 @@ library-items/
 3. Rename `const Template` in `./your-new-items/your-new-item.ts`
 4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep postfix `Data`)
 5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep postfix `Ids`)
-6. Add a new import in `src/app/library-item-ids.ts`
-7. Add a constant in `src/app/segment-paths.ts`, under `Library second level menu`
+6. Add a new import and add imported object to `libraryItemIds` in `src/app/library-item-ids.ts`
+7. Add a new import and constant in `src/app/segment-paths.ts`, under `Library second level menu`
 8. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
 9. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
 
@@ -36,21 +36,3 @@ library-items/
 4. Add a new property in object `ExistingItemsIds`, in `./existing-items.ids.ts`
 5. Add your new item to exported constant in `./existing-items/existing-items.data.ts`
 6. Update all data in the `YourNewItem`-object in `./existing-items/your-new-item.ts`
-
-## NB! An important relation between two constants
-
-Following the first "how to" result in two constant which has a strong coupling to each other. Not optimal, but a way to make this simple app work ;)
-
-```ts
-static foo = 'foo';
-```
-
-in `src/app/segment-paths.ts` corresponds to
-
-```ts
-export const FooData: LibraryItem[] = [{...}];
-```
-
-in file `src/MOCK_DB_DATA/library-items/foo/_foo.data.ts`.
-
-The last segment in the links in "Library second level menu" is used to call `getLibraryItems()` in `ListOfVariationsDataService`.

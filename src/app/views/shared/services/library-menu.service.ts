@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { UrlService } from 'src/app/services/url.service';
+import { SegmentPaths } from 'src/app/segment-path';
 import { MenuItem } from 'src/app/models/menu-item.model';
-import { SegmentPaths } from 'src/app/segment-paths';
 
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
