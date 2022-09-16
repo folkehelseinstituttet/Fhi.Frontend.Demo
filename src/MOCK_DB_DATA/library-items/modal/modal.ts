@@ -37,7 +37,7 @@ function getCodeHtml(): string | null {
     <p>This may be any kind of content.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-outline-secondary" (click)="modal.close()">Cancel</button>
+    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Cancel</button>
     <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>

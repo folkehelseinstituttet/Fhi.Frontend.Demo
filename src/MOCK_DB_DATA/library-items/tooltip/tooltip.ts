@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<button type="button" class="btn fhi-btn-outline-secondary" ngbTooltip="This is the tooltip.">
+<button type="button" class="btn fhi-btn-secondary" ngbTooltip="This is the tooltip.">
   Hover for tooltip
 </button>`;
 }
