@@ -1,5 +1,5 @@
 import { SegmentPaths } from 'src/app/segment-paths';
-import { LibraryItemIds } from 'src/app/views/shared/library-item-ids';
+import { LibraryItemIds } from 'src/app/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
