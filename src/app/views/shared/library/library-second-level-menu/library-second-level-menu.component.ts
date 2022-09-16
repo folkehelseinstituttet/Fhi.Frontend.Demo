@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { MenuItem } from 'src/app/models/menu-item.model';
-import { LibraryItemFilter } from '../models/library-item-filter.model';
+import { LibraryItemFilter } from '../../models/library-item-filter.model';
 
 @Component({
   selector: 'app-library-second-level-menu',
