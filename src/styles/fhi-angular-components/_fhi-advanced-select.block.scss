@@ -1,0 +1,9 @@
+// @import "~@ng-select/ng-select/themes/default.theme.css";
+.fhi-advanced-select {
+    &.ng-select {
+        .ng-select-container .ng-value-container .ng-input > input {
+            @extend .form-control;
+            box-sizing: border-box;
+        }
+    }
+}

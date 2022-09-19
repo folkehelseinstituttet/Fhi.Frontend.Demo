@@ -38,4 +38,11 @@ export class AdvancedSelectExampleComponent {
       });
   }
 
+  unselect(id: number) {
+    if (!id) {
+      return;
+    }
+    this.selectedPeople =  this.selectedPeople.filter(x => x !== id);
+  }
+
 }

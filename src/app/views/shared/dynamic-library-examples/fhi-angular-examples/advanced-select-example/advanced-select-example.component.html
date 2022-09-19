@@ -5,14 +5,30 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
-  <ng-select [items]="people"
+  <ng-select class="fhi-advanced-select" #ngSelect
+             [items]="people"
              [multiple]="true"
              bindLabel="name"
              [closeOnSelect]="false"
              bindValue="id"
              [(ngModel)]="selectedPeople">
+
+    <ng-template ng-label-tmp let-item="item"></ng-template>
+
     <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-      <input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected"/> {{ item.name }}
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="item-{{ index }}" id="item-{{ index }}" [ngModel]="item$.selected">
+        {{ item.name }}
+      </div>
     </ng-template>
+
   </ng-select>
+
+  <div>
+    <button class="fhi-tag fhi-tag--filter-option"
+            *ngFor="let selected of selectedPeople" (click)="unselect(selected);">
+      {{ "selected.name" }}
+      <i class="icon-xmark"></i>
+    </button>
+  </div>
 </ng-container>
