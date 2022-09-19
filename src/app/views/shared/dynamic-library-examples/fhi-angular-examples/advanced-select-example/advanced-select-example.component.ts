@@ -3,10 +3,12 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemIds } from 'src/app/library-item-ids';
 
 @Component({
-  selector: 'app-accordion-example',
-  templateUrl: './accordion-example.component.html'
+  selector: 'app-advanced-select-example',
+  templateUrl: './advanced-select-example.component.html',
+  styles: [
+  ]
 })
-export class AccordionExampleComponent {
+export class AdvancedSelectExampleComponent {
 
   @Input() itemId!: string;
 
