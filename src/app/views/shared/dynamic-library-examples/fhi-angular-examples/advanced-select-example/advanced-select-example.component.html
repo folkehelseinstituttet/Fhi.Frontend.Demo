@@ -1,7 +1,18 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
-  AdvancedSelectAutosuggest
+  <ng-select [(ngModel)]="selectedCar">
+    <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
+  </ng-select>
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
-  AdvancedSelectMultiselect
+  <ng-select [items]="people"
+             [multiple]="true"
+             bindLabel="name"
+             [closeOnSelect]="false"
+             bindValue="id"
+             [(ngModel)]="selectedPeople">
+    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+      <input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected"/> {{ item.name }}
+    </ng-template>
+  </ng-select>
 </ng-container>

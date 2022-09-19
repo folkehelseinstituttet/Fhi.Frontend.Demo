@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -35,9 +36,11 @@ const FHI_EXAMPLES = [
     ...FHI_EXAMPLES
   ],
   imports: [
+    NgSelectModule,
     SharedModule,
   ],
   exports: [
+    NgSelectModule,
     DynamicLibraryExampleComponent,
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES
