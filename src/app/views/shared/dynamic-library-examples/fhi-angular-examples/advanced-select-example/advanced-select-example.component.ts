@@ -42,7 +42,11 @@ export class AdvancedSelectExampleComponent {
     if (!id) {
       return;
     }
-    this.selectedPeople =  this.selectedPeople.filter(x => x !== id);
+    this.selectedPeople = this.selectedPeople.filter(x => x !== id);
+  }
+
+  unselectAll() {
+    this.selectedPeople = [];
   }
 
 }
