@@ -38,7 +38,7 @@ export class AdvancedSelectExampleComponent {
       });
   }
 
-  unselect(id: number) {
+  unselect(id: string) {
     if (!id) {
       return;
     }
@@ -47,6 +47,10 @@ export class AdvancedSelectExampleComponent {
 
   unselectAll() {
     this.selectedPeople = [];
+  }
+
+  getSelectedName(selected: string) {
+    return this.people.find(x => x.id === selected).name;
   }
 
 }

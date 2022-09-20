@@ -1,16 +1,20 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
-  <ng-select [(ngModel)]="selectedCar">
-    <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
-  </ng-select>
+  <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
+    <ng-select placeholder="Search for cars"
+               [(ngModel)]="selectedCar">
+      <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
+    </ng-select>
+  </div>
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
-  <div class="fhi-advanced-select">
+  <div class="fhi-advanced-select fhi-advanced-select--multiselect">
     <ng-select [items]="people"
                [multiple]="true"
                bindLabel="name"
                [closeOnSelect]="false"
                bindValue="id"
+               placeholder="Search for names"
                [(ngModel)]="selectedPeople">
       <ng-template ng-label-tmp let-item="item"></ng-template>
       <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
@@ -23,7 +27,7 @@
     <div class="fhi-advanced-select__selected">
       <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
               *ngFor="let selected of selectedPeople" (click)="unselect(selected)">
-        {{ "selected.name" }}
+        {{ getSelectedName(selected) }}
         <i class="icon-xmark"></i>
       </button>
       <button type="button" class="btn fhi-btn-flat"
@@ -32,5 +36,4 @@
       </button>
     </div>
   </div>
-
 </ng-container>
