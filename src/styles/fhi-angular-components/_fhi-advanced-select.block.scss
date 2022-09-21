@@ -1,4 +1,4 @@
-
+// @import "~@ng-select/ng-select/themes/default.theme.css";
 
 .fhi-advanced-select {
     .ng-select {
@@ -9,6 +9,56 @@
 
 .fhi-advanced-select--autosuggest {
     .ng-select {
+        .ng-select-container {
+            display: block;
+            overflow: unset;
+
+            .ng-value-container {
+                // .ng-input {
+                //     margin: $fhi-px * -4;
+                //     padding: $fhi-px * 4;
+                // }
+
+                .ng-input > input,
+                .ng-input > input:focus {
+                    @extend .form-control;
+                    background: none transparent;
+                    box-sizing: border-box;
+                }
+
+                .ng-placeholder {
+                    color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
+                    // top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
+                    // left: .75rem; // TODO: dependeant on default .form-control padding
+                }
+
+            }
+        }
+
+        .ng-select-container.ng-has-value {
+            .ng-placeholder {
+                display: none;
+            }
+        }
+
+        .ng-clear-wrapper {
+            display: none;
+        }
+
+        // .ng-arrow-wrapper {
+        //     position: absolute;
+        //     top: $fhi-px * 10;
+        //     right: $fhi-px * 12;
+        //     z-index: 2;
+        //     height: $fhi-px * 16;
+        //     width: $fhi-px * 16;
+
+        //     .ng-arrow {
+        //         background-color: $fhi-grey-2;
+        //         height: $fhi-px * 16;
+        //         width: $fhi-px * 16;
+        //     }
+        // }
     }
 }
 
@@ -25,6 +75,7 @@
                     margin: $fhi-px * -4;
                     padding: $fhi-px * 4;
                 }
+
                 .ng-input > input,
                 .ng-input > input:focus {
                     @extend .form-control;
