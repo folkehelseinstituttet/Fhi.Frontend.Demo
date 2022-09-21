@@ -12,6 +12,8 @@ export class LibraryItemIds {
   static ButtonPrimary = 'buttonprimary';
   static ButtonSecondary = 'buttonsecondary';
   static ButtonLink = 'buttonlink';
+  static ButtonIcon = 'buttonicon';
+  static ButtonShortcut = 'buttonshortcut';
 
   static ColorSystem = 'colorsystem';
   static ColorBootstrap = 'colorbootstrap';
