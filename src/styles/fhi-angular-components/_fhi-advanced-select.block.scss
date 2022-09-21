@@ -1,156 +1,157 @@
-// @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
-.fhi-advanced-select {
-    .ng-select {
-    }
-}
+// .fhi-advanced-select {
+//     .ng-select {
+//         .ng-select-container {
+//             display: block;
+//             overflow: unset;
 
-// autosuggest
+//             .ng-value-container {
+//                 height: $fhi-px * 48;
 
-.fhi-advanced-select--autosuggest {
-    .ng-select {
-        .ng-select-container {
-            display: block;
-            overflow: unset;
+//                 .ng-input > input,
+//                 .ng-input > input:focus {
+//                     @extend .form-control;
+//                     background: none transparent;
+//                     box-sizing: border-box;
+//                 }
 
-            .ng-value-container {
-                // .ng-input {
-                //     margin: $fhi-px * -4;
-                //     padding: $fhi-px * 4;
-                // }
+//                 .ng-placeholder {
+//                     color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
+//                 }
+//             }
+//         }
 
-                .ng-input > input,
-                .ng-input > input:focus {
-                    @extend .form-control;
-                    background: none transparent;
-                    box-sizing: border-box;
-                }
+//         .ng-clear-wrapper {
+//             display: none;
+//         }
 
-                .ng-placeholder {
-                    color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
-                    // top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
-                    // left: .75rem; // TODO: dependeant on default .form-control padding
-                }
+//         .ng-arrow-wrapper {
+//             position: absolute;
+//             top: $fhi-px * 10;
+//             right: $fhi-px * 12;
+//             z-index: 2;
+//             height: $fhi-px * 16;
+//             width: $fhi-px * 16;
 
-            }
-        }
+//             .ng-arrow {
+//                 // TODO: arrow styling
+//                 background-color: $fhi-grey-2;
+//                 height: $fhi-px * 16;
+//                 width: $fhi-px * 16;
+//             }
+//         }
+//     }
 
-        .ng-select-container.ng-has-value {
-            .ng-placeholder {
-                display: none;
-            }
-        }
+//     .ng-select-opened {
+//         .ng-arrow-wrapper {
+//             .ng-arrow {
+//                 // TODO: arrow styling
+//                 background-color: $fhi-grey-4;
+//             }
+//         }
+//     }
 
-        .ng-clear-wrapper {
-            display: none;
-        }
+//     .ng-dropdown-panel {
+//         background-color: $fhi-white;
+//         border: 1px solid $fhi-grey-3;
+//         border-radius: $fhi-px * 4; // TODO: lage core.variables for standard border radius
+//         box-shadow: 0 3px 6px rgba($fhi-grey-4, .16); // TODO: lage core.variables for de fire tilatte drop-shadows
+//         margin: $fhi-space-2 0 $fhi-space-3;
+//     }
 
-        // .ng-arrow-wrapper {
-        //     position: absolute;
-        //     top: $fhi-px * 10;
-        //     right: $fhi-px * 12;
-        //     z-index: 2;
-        //     height: $fhi-px * 16;
-        //     width: $fhi-px * 16;
+//     .ng-dropdown-panel-items {
+//         .ng-option {
+//             &:hover {
+//                 background-color: $fhi-hover; // TODO: add postfix -color core.variables
+//             }
+//             &:first-child {
+//                 margin-top: $fhi-space-2;
+//             }
+//             &:last-child {
+//                 margin-bottom: $fhi-space-2;
+//             }
+//         }
+//     }
+// }
 
-        //     .ng-arrow {
-        //         background-color: $fhi-grey-2;
-        //         height: $fhi-px * 16;
-        //         width: $fhi-px * 16;
-        //     }
-        // }
-    }
-}
+// // autosuggest
 
-// multiselect
+// .fhi-advanced-select--autosuggest {
+//     .ng-select {
+//         .ng-select-container {
+//             .ng-value-container {
+//                 .ng-value,
+//                 .ng-placeholder {
+//                     padding: $fhi-space-2 .75rem; // TODO: dependeant on default .form-control padding
+//                 }
+//             }
+//         }
 
-.fhi-advanced-select--multiselect {
-    .ng-select {
-        .ng-select-container {
-            display: block;
-            overflow: unset;
+//         .ng-select-container.ng-has-value {
+//             .ng-placeholder {
+//                 display: none;
+//             }
+//         }
+//     }
 
-            .ng-value-container {
-                .ng-input {
-                    margin: $fhi-px * -4;
-                    padding: $fhi-px * 4;
-                }
+//     .ng-dropdown-panel-items {
+//         .ng-option {
+//             padding: $fhi-space-2;
+//         }
+//     }
+// }
 
-                .ng-input > input,
-                .ng-input > input:focus {
-                    @extend .form-control;
-                    background: none transparent;
-                    box-sizing: border-box;
-                }
+// // multiselect
 
-                .ng-placeholder {
-                    color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
-                    top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
-                    left: .75rem; // TODO: dependeant on default .form-control padding
-                }
-            }
-        }
+// .fhi-advanced-select--multiselect {
+//     .ng-select {
+//         .ng-select-container {
+//             .ng-value-container {
+//                 .ng-input {
+//                     margin: $fhi-px * -4;
+//                     padding: $fhi-px * 4;
+//                 }
 
-       .ng-clear-wrapper {
-            display: none;
-        }
+//                 .ng-placeholder {
+//                     top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
+//                     left: .75rem; // TODO: dependeant on default .form-control padding
+//                 }
+//             }
+//         }
+//     }
 
-        .ng-arrow-wrapper {
-            position: absolute;
-            top: $fhi-px * 10;
-            right: $fhi-px * 12;
-            z-index: 2;
-            height: $fhi-px * 16;
-            width: $fhi-px * 16;
+//     .ng-dropdown-panel-items {
+//         .ng-option {
+//             padding: $fhi-space-2;
 
-            .ng-arrow {
-                background-color: $fhi-grey-2;
-                height: $fhi-px * 16;
-                width: $fhi-px * 16;
-            }
-        }
-    }
+//             .form-check-input {
+//                 margin-top: $fhi-px * 3;
+//             }
+//         }
+//     }
+// }
 
-    .ng-select-opened {
-        .ng-arrow-wrapper {
-            .ng-arrow {
-                background-color: $fhi-grey-4;
-            }
-        }
-    }
+// @include media-breakpoint-up(lg) {
+//     .fhi-advanced-select {
+//         .ng-select {
+//             .ng-select-container {
+//                 .ng-value-container {
+//                     height: $fhi-px * 40;
+//                 }
+//             }
+//         }
+//     }
 
-    .ng-dropdown-panel {
-        margin: $fhi-space-2 0 $fhi-space-3;
-    }
+//     .fhi-advanced-select--multiselect {
+//         .ng-dropdown-panel-items {
+//             .ng-option {
+//                 height: $fhi-px * 44;
 
-    .ng-dropdown-panel {
-        background-color: $fhi-white;
-        border: 1px solid $fhi-grey-3;
-        border-radius: $fhi-px * 4; // TODO: lage core.variables for standard border radius
-        box-shadow: 0 3px 6px rgba($fhi-grey-4, .16); // TODO: lage core.variables for de fire tilatte drop-shadows
-
-        .scroll-host {
-            margin-right: $fhi-space-1; // TODO: no marging if no scroll
-        }
-    }
-
-    .ng-dropdown-panel-items {
-        .ng-option {
-            padding: ($fhi-px * 9) ($fhi-px * 10) ($fhi-px * 6);
-
-            &:hover {
-                background-color: $fhi-hover; // TODO: add postfix -color core.variables
-            }
-        }
-    }
-}
-
-@include media-breakpoint-up(sm) {
-    .fhi-advanced-select--multiselect {
-        .ng-dropdown-panel-items {
-            .ng-option {
-                padding: ($fhi-px * 10) ($fhi-px * 10) ($fhi-px * 5);
-            }
-        }
-    }
-}
+//                 .form-check-input {
+//                     margin-top: $fhi-px * 2;
+//                 }
+//             }
+//         }
+//     }
+// }
