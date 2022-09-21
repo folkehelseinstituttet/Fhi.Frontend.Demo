@@ -33,6 +33,7 @@ export class SegmentPaths {
   static buttons = 'buttons';
   static forms = 'forms';
   static modal = 'modal';
+  static navigation = 'navigation';
   static pagination = 'pagination';
   static search = 'search';
   static table = 'table';

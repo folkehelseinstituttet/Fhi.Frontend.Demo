@@ -40,7 +40,7 @@ function getCodeHtml(): string | null {
 
     <button type="button" class="btn fhi-btn-secondary fhi-search__btn">
       <i class="fhi-search__btn-icon"></i>
-      Search
+      <span class="fhi-search__btn__text">Search</span>
     </button>
   </div>
 </div>`;

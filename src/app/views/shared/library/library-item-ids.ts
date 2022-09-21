@@ -13,7 +13,6 @@ export class LibraryItemIds {
   static ButtonSecondary = 'buttonsecondary';
   static ButtonLink = 'buttonlink';
   static ButtonIcon = 'buttonicon';
-  static ButtonShortcut = 'buttonshortcut';
 
   static ColorSystem = 'colorsystem';
   static ColorBootstrap = 'colorbootstrap';
@@ -30,6 +29,10 @@ export class LibraryItemIds {
   static IconSet = 'iconset';
 
   static ModalDefault = 'modaldefault';
+
+  static NavShortcut = 'navshortcut';
+  static NavShortcutBack = 'navshortcutback';
+  static NavShortcutBtn = 'navshortcutbtn';
 
   static PaginationDefault = 'paginationdefault';
 

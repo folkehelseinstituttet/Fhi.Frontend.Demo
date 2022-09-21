@@ -2,9 +2,9 @@ import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const BtnShortcut: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonShortcut,
-    title: 'Shortcut button',
+export const NavShortcut: LibraryItem[] = [{
+    id: LibraryItemIds.NavShortcut,
+    title: 'Snarvei',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -21,10 +21,10 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<button type="button" class="btn fhi-btn-shortcut">
+    return `<a href="/developer/components/navigation" class="btn fhi-nav-shortcut">
     <i class="icon-arrow-left-long"></i>
-    <span class="fhi-btn-shortcut__text">Snarveiknapp</span>
-</button>`;
+    <span class="fhi-nav-shortcut__text">Snarvei-lenke</span>
+</a>`;
 }
 
 /*
@@ -33,4 +33,3 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
     return null;
 }
-
