@@ -1,7 +1,17 @@
+<div class="alert alert-warning">
+  <i class="icon-bell-regular"></i>
+  <p>
+    <strong>Disclaimer!</strong><br>
+    This component is not ready for use. A npm package for FHI Angular Component will be available soon.
+  </p>
+</div>
+
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
   <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
-    <ng-select placeholder="Search for cars"
-               [editableSearchTerm]="true"
+    <label>Cars</label>
+    <p>Search for cars</p>
+    <!-- <ng-select placeholder="Search for cars" -->
+    <ng-select [editableSearchTerm]="true"
                [(ngModel)]="selectedCar">
       <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
     </ng-select>
@@ -10,12 +20,14 @@
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
   <div class="fhi-advanced-select fhi-advanced-select--multiselect">
+    <label>Names</label>
+    <p>Search for names</p>
+    <!-- <ng-select placeholder="Search for names" -->
     <ng-select [items]="people"
                [multiple]="true"
                bindLabel="name"
                [closeOnSelect]="false"
                bindValue="id"
-               placeholder="Search for names"
                [(ngModel)]="selectedPeople">
       <ng-template ng-label-tmp let-item="item"></ng-template>
       <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">

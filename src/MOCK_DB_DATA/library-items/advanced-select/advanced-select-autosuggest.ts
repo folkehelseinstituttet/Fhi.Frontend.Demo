@@ -16,7 +16,7 @@ export const AdvancedSelectAutosuggest: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `x`;
+  return ``;
 }
 
 /*
@@ -31,5 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }

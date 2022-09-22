@@ -5,6 +5,17 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
 
 .fhi-advanced-select {
+
+    // TODO: should be part of default form style
+    label {
+        font-weight: 600;
+    }
+    p {
+        font-size: $fhi-font-size-2;
+        margin: 0;
+    }
+    // /form style
+
     .ng-select {
         .ng-select-container {
             display: block;
