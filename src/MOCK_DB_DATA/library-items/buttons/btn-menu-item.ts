@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/model
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const NavMenuBtn: LibraryItem[] = [{
-    id: LibraryItemIds.BtnMenuItem,
+    id: LibraryItemIds.ButtonMenuItem,
     title: 'Menyknapp',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
