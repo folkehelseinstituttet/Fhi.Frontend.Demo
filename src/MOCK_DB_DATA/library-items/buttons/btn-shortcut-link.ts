@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const ButtonShortcutLink: LibraryItem[] = [{
     id: LibraryItemIds.ButtonShortcutLink,
-    title: 'Snarvei',
+    title: 'Snarvei-lenke',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
