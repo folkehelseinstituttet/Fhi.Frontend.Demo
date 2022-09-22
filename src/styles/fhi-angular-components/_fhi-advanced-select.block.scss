@@ -32,7 +32,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
         .ng-arrow-wrapper {
             position: absolute;
-            top: $fhi-px * 11;
+            top: $fhi-px * 15;
             right: $fhi-px * 12;
             z-index: 2;
             line-height: $fhi-px * 16;
@@ -159,6 +159,10 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
                 .ng-value-container {
                     height: $fhi-px * 40;
                 }
+            }
+
+            .ng-arrow-wrapper {
+                top: $fhi-px * 11;
             }
         }
     }
