@@ -2,10 +2,10 @@ import { LibraryItemIds } from 'src/app/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Template: LibraryItem[] = [{
-  id: LibraryItemIds.Template,
-  title: 'Title',
-  type: LibraryItemType.html,
+export const AdvancedSelectAutosuggest: LibraryItem[] = [{
+  id: LibraryItemIds.AdvancedSelectAutosuggest,
+  title: 'Advanced select - autosuggest',
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -31,5 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }

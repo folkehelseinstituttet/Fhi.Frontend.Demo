@@ -93,6 +93,9 @@ export class LibraryMenuService {
       name: 'Accordions',
       link: SegmentPaths.accordion
     }, {
+      name: 'Advanced select',
+      link: SegmentPaths.advancedSelect
+    }, {
       name: 'Alerts',
       link: SegmentPaths.alerts
     }, {
