@@ -4,12 +4,16 @@ import { BtnPrimary } from './btn-primary';
 import { BtnSecondary } from './btn-secondary';
 import { BtnFlat } from './btn-flat';
 import { BtnIcon } from './btn-icon';
+import { BtnShortcut } from './btn-shortcut';
+import { BtnShortcutLink } from './btn-shortcut-link';
 
 export const ButtonsData: LibraryItem[] = [
   ...BtnPrimary,
   ...BtnSecondary,
   ...BtnFlat,
-  ...BtnIcon
+  ...BtnIcon,
+  ...BtnShortcut,
+  ...BtnShortcutLink
 ];
 
 

@@ -2,8 +2,8 @@ import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const NavShortcut: LibraryItem[] = [{
-    id: LibraryItemIds.NavShortcut,
+export const BtnShortcutLink: LibraryItem[] = [{
+    id: LibraryItemIds.BtnShortcutLink,
     title: 'Snarvei',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),

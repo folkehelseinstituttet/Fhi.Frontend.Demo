@@ -30,9 +30,9 @@ export class LibraryItemIds {
 
   static ModalDefault = 'modaldefault';
 
-  static NavShortcut = 'navshortcut';
-  static NavShortcutBack = 'navshortcutback';
-  static NavShortcutBtn = 'navshortcutbtn';
+  static BtnShortcut = 'btnshortcut';
+  static BtnShortcutLink = 'btnshortcutlink';
+  static BtnMenuItem = 'btnmenuitem';
 
   static PaginationDefault = 'paginationdefault';
 

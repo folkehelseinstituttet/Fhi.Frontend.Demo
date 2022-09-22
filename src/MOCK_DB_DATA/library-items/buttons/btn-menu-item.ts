@@ -2,9 +2,9 @@ import { LibraryItemIds } from 'src/app/views/shared/library/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const NavShortcutBack: LibraryItem[] = [{
-    id: LibraryItemIds.NavShortcutBack,
-    title: 'Snarvei tilbake',
+export const NavMenuBtn: LibraryItem[] = [{
+    id: LibraryItemIds.BtnMenuItem,
+    title: 'Menyknapp',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -21,9 +21,14 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/developer/components/navigation" class="btn fhi-nav-shortcut fhi-nav-shortcut--back">
-    <i class="icon-arrow-left-long"></i>
-    <span class="fhi-nav-shortcut__text">Snarvei-lenke</span>
+    return `<a href="/developer/components/navigation" class="btn fhi-nav-menu-btn">
+    <i class="icon-population"></i>
+    <span class="fhi-nav-menu-btn__text">Menyknapp</span>
+</a>
+<br><br>
+<a href="/developer/components/navigation" class="btn fhi-nav-menu-btn fhi-nav-menu-btn--active">
+    <i class="icon-population"></i>
+    <span class="fhi-nav-menu-btn__text">Menyknapp</span>
 </a>`;
 }
 
