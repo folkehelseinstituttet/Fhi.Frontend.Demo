@@ -71,6 +71,7 @@
             max-height: $fhi-px * 480;
 
             .ng-option {
+                &.ng-option-marked,
                 &:hover {
                     background-color: $fhi-hover; // TODO: add postfix -color core.variables
                 }
