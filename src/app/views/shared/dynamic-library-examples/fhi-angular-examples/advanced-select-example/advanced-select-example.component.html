@@ -1,6 +1,7 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
   <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
     <ng-select placeholder="Search for cars"
+               [editableSearchTerm]="true"
                [(ngModel)]="selectedCar">
       <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
     </ng-select>
