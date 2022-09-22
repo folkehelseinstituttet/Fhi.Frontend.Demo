@@ -1,5 +1,9 @@
 // @import "~@ng-select/ng-select/themes/default.theme.css";
 
+// TODO: core variable for chevron (accordion, dropdown, fhi-advanced-select, ...?)
+$fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#{$body-color}"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
+
+
 .fhi-advanced-select {
     .ng-select {
         .ng-select-container {
@@ -28,17 +32,21 @@
 
         .ng-arrow-wrapper {
             position: absolute;
-            top: $fhi-px * 10;
+            top: $fhi-px * 11;
             right: $fhi-px * 12;
             z-index: 2;
-            height: $fhi-px * 16;
-            width: $fhi-px * 16;
+            line-height: $fhi-px * 16;
 
             .ng-arrow {
-                // TODO: arrow styling
-                background-color: $fhi-grey-2;
                 height: $fhi-px * 16;
                 width: $fhi-px * 16;
+                line-height: inherit;
+
+                // TODO: mixing ?
+                background-image: escape-svg($fhi-advanced-select-chevron);
+                background-repeat: no-repeat;
+                background-size: $fhi-px * 16;
+                transition: all 0.2s ease-in-out;
             }
         }
     }
@@ -46,8 +54,7 @@
     .ng-select-opened {
         .ng-arrow-wrapper {
             .ng-arrow {
-                // TODO: arrow styling
-                background-color: $fhi-grey-4;
+                transform: rotate(-180deg);
             }
         }
     }
