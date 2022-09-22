@@ -23,7 +23,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
     return `<button type="button" class="btn fhi-btn-icon">
     <i class="icon-bell-regular"></i>
-    <span class="fhi-btn-icon__text">Ikon-knapp</span>
+    <span class="btn__text">Ikon-knapp</span>
 </button>`;
 }
 

@@ -22,6 +22,8 @@ function getCodeHtml(): string {
   return `
 <i class="icon-alcohol-drugs"></i>
 <i class="icon-arrow-left-long"></i>
+<i class="icon-arrow-left-long-red"></i>
+<i class="icon-arrow-right-long"></i>
 <i class="icon-bell-regular"></i>
 <i class="icon-cancer"></i>
 <i class="icon-cancer-cell"></i>

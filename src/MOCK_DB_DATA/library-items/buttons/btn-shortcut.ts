@@ -21,9 +21,9 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/developer/components/navigation" class="btn fhi-nav-shortcut fhi-nav-shortcut--btn">
-    <i class="icon-arrow-left-long"></i>
-    <span class="fhi-nav-shortcut__text">Snarvei-lenke</span>
+    return `<a href="/developer/components/navigation" class="btn fhi-btn-shortcut">
+    <i class="icon-arrow-right"></i>
+    <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
 
