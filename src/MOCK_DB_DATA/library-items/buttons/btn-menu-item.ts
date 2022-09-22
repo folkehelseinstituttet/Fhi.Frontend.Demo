@@ -14,7 +14,7 @@ export const BtnMenuItem: LibraryItem[] = [{
 
 function getExampleHtml(): string {
     return `<p class="mb-4">
-    <a href="/developer/components/buttons" class="btn fhi-nav-menu-btn">
+    <a href="/developer/components/buttons" class="btn fhi-btn-menu-item">
         <i class="icon-population"></i>
         <span class="btn__text">Menyknapp</span>
     </a>
@@ -22,7 +22,7 @@ function getExampleHtml(): string {
 
 <p>
     Aktivt meny-element:<br>
-    <a href="/developer/components/buttons" class="btn fhi-nav-menu-btn fhi-nav-menu-btn--active">
+    <a href="/developer/components/buttons" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
         <i class="icon-muscle"></i>
         <span class="btn__text">Menyknapp</span>
     </a>
@@ -34,12 +34,12 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/url" class="btn fhi-nav-menu-btn">
+    return `<a href="/url" class="btn fhi-btn-menu-item">
     <i class="icon-population"></i>
     <span class="btn__text">Menyknapp</span>
 </a>
 
-<a href="/url" class="btn fhi-nav-menu-btn fhi-nav-menu-btn--active">
+<a href="/url" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
     <i class="icon-muscle"></i>
     <span class="btn__text">Menyknapp</span>
 </a>`;
