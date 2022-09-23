@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnFlat: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonLink,
+    id: LibraryItemIds.ButtonFlat,
     title: 'Transparent button',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
