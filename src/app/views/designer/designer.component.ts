@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
-import { LibraryMenuService } from '../shared/library/library-menu.service';
+import { LibraryMenuService } from '../shared/services/library-menu.service';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({

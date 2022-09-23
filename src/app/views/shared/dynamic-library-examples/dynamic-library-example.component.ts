@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { LibraryItemIds } from '../library/library-item-ids';
+import { LibraryItemIds } from 'src/app/library-item-ids';
 
 @Component({
   selector: 'app-dynamic-library-example',
@@ -11,4 +11,5 @@ export class DynamicLibraryExampleComponent {
   @Input() itemId: string;
 
   itemIds = LibraryItemIds;
+
 }

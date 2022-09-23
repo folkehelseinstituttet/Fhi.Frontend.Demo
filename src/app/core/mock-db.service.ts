@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
+import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
@@ -24,6 +25,7 @@ export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
       AccordionData,
+      AdvancedSelectData,
       AlertsData,
       BadgeData,
       ButtonsData,

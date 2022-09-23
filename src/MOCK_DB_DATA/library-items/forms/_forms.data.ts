@@ -1,4 +1,4 @@
-import { LibraryItem } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { Checkbox } from './checkbox';
 import { Validation } from './valdation';
@@ -17,5 +17,3 @@ export const FormsData: LibraryItem[] = [
   ...Radio,
   ...Switch
 ];
-
-
