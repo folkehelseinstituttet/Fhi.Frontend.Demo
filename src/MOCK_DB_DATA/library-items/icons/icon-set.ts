@@ -56,7 +56,9 @@ function getCodeHtml(): string {
 `;
 }
 
-function getDocumentationHtml(): string {
-  return undefined;
+/*
+ * Return null to remove Documentation from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
 }
-

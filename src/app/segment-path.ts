@@ -7,6 +7,7 @@ import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
+import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
@@ -59,6 +60,7 @@ export class SegmentPaths {
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
   static forms = stringTransform(Object.keys({ FormsData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
+  static navigationtile = stringTransform(Object.keys({ NavigationtileData })[0]);
   static pagination = stringTransform(Object.keys({ PaginationData })[0]);
   static search = stringTransform(Object.keys({ SearchData })[0]);
   static table = stringTransform(Object.keys({ TableData })[0]);

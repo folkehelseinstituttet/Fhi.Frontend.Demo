@@ -111,6 +111,9 @@ export class LibraryMenuService {
       name: 'Modal',
       link: SegmentPaths.modal
     }, {
+      name: 'Navigation tile',
+      link: SegmentPaths.navigationtile
+    }, {
       name: 'Pagination',
       link: SegmentPaths.pagination
     }, {

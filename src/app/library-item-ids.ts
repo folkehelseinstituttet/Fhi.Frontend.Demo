@@ -7,6 +7,7 @@ import { ColorIds } from "src/MOCK_DB_DATA/library-items/color/_color.ids"
 import { FormsIds } from "src/MOCK_DB_DATA/library-items/forms/_forms.ids"
 import { IconsIds } from "src/MOCK_DB_DATA/library-items/icons/_icons.ids"
 import { ModalIds } from "src/MOCK_DB_DATA/library-items/modal/_modal.ids"
+import { NavigationTileIds } from "src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.ids"
 import { PaginationIds } from "src/MOCK_DB_DATA/library-items/pagination/_pagination.ids"
 import { SearchIds } from "src/MOCK_DB_DATA/library-items/search/_search.ids"
 import { TableIds } from "src/MOCK_DB_DATA/library-items/table/_table.ids"
@@ -25,6 +26,7 @@ const libraryItemIds = {
   ...FormsIds,
   ...IconsIds,
   ...ModalIds,
+  ...NavigationTileIds,
   ...PaginationIds,
   ...SearchIds,
   ...TableIds,
