@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SegmentPaths } from 'src/app/segment-paths';
+import { SegmentPaths } from 'src/app/segment-path';
 
 import { DeveloperComponent } from './developer.component';
 import { ListOfVariationsComponent } from './list-of-variations/list-of-variations.component';
