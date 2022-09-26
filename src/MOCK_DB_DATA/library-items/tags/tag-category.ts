@@ -22,7 +22,7 @@ function getExampleHtml(): string {
 </p>
 <p>
   <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">
-    <i class="icon-arrow-left-long"></i>
+    <i class="icon-arrow-left"></i>
     Category name
   </a>
 </p>
@@ -41,7 +41,7 @@ function getCodeHtml(): string | null {
 <a href="/url" class="fhi-tag fhi-tag--category">Category name</a>
 
 <a href="/url" class="fhi-tag fhi-tag--category">
-  <i class="icon-arrow-left-long"></i>
+  <i class="icon-arrow-left"></i>
   Category name
 </a>
 
