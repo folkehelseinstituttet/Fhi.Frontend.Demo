@@ -1,15 +1,15 @@
 <div class="alert alert-warning">
   <i class="icon-bell-regular"></i>
   <p>
-    <strong>Disclaimer!</strong><br>
-    This component is not ready for use. A npm package for FHI Angular Component will be available soon.
+    <strong>OBS!</strong><br>
+    Denne komponenten er ikke klar for bruk. En npm-pakke for FHI Angular Components vil bli klar om ikke lenge.
   </p>
 </div>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
   <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
-    <label>Cars</label>
-    <p>Search for cars</p>
+    <label>Biler</label>
+    <p>Velg/søk etter bilmerke</p>
     <!-- <ng-select placeholder="Search for cars" -->
     <ng-select [editableSearchTerm]="true"
                [(ngModel)]="selectedCar">
@@ -20,8 +20,8 @@
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
   <div class="fhi-advanced-select fhi-advanced-select--multiselect">
-    <label>Names</label>
-    <p>Search for names</p>
+    <label>Navn</label>
+    <p>Velg/søk etter navn</p>
     <!-- <ng-select placeholder="Search for names" -->
     <ng-select [items]="people"
                [multiple]="true"

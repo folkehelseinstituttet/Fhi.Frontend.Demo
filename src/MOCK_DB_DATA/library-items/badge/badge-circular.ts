@@ -19,30 +19,30 @@ function getExampleHtml(): string {
   return `
 <span class="badge fhi-badge fhi-badge--circle-dark">
   25
-  <span class="visually-hidden">text explaining what's counted</span>
+  <span class="visually-hidden">tekst som forklarer hva tallet er</span>
 </span>
 
 <span class="badge fhi-badge fhi-badge--circle-light">
   25
-  <span class="visually-hidden">text explaining what's counted</span>
+  <span class="visually-hidden">tekst som forklarer hva tallet er</span>
 </span>
 
 <hr>
-<h2 class="h5 mt-6 mb-4">Use cases</h2>
+<h2 class="h5 mt-6 mb-4">Brukerscenarier</h2>
 
 <p class="d-inline-block position-relative">
   <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
   <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
-    <span class="visually-hidden">new emails</span>
+    <span class="visually-hidden">nye e-poster</span>
   </span>
 </p>
 <p>
   <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
-    Show more
+    Vis flere
     <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--circle-light">
       25
-      <span class="visually-hidden">more to show</span>
+      <span class="visually-hidden">flere å vise</span>
     </span>
   </button>
 </p>`;
@@ -58,15 +58,15 @@ function getCodeHtml(): string | null {
   <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
   <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
-    <span class="visually-hidden">new emails</span>
+    <span class="visually-hidden">nye e-poster</span>
   </span>
 </p>
 
 <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
-  Show more
+  Vis flere
   <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--circle-light">
     25
-    <span class="visually-hidden">more to show</span>
+    <span class="visually-hidden">flere å vise</span>
   </span>
 </button>`;
 }
@@ -77,10 +77,10 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Only use for numerical values. Never use as a stand-alone.
+  Kun til bruk for nummeriske verdier. Aldri benytt en badge alene uten kontekst.
 </p>
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentation for
   <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
 </p>
 `;

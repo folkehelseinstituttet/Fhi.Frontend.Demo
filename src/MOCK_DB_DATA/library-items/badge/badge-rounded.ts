@@ -23,14 +23,14 @@ function getExampleHtml(): string {
 </span>
 
 <hr>
-<h2 class="h5 mt-6 mb-4">Use case</h2>
+<h2 class="h5 mt-6 mb-4">Brukerscenario</h2>
 
 <ul>
   <li>
-    <a href="developer/components/badge#badgerounded">Research summaries</a>
+    <a href="developer/components/badge#badgerounded">Forskningssammendrag</a>
     <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
       100
-      <span class="visually-hidden">summaries availale</span>
+      <span class="visually-hidden">sammendrag tilgjengelig</span>
     </span>
   </li>
 </ul>`;
@@ -44,7 +44,7 @@ function getCodeHtml(): string | null {
   return `
 <span class="badge rounded-pill fhi-badge fhi-badge--rounded">
   100
-  <span class="visually-hidden">text explaining what's counted</span>
+  <span class="visually-hidden">tekst som beskriver hva som telles</span>
 </span>`;
 }
 
@@ -54,14 +54,13 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Only use for numerical values. Never use as a stand-alone.
+Kun til bruk for nummeriske verdier. Aldri benytt en badge alene uten kontekst.
 </p>
 <p>
-  Typical use case is numer of sub items a list item refers to.
+  Typisk bruks-scenario: antall enheter en liste refererer til.
 </p>
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentation for
   <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
-</p>
-`;
+</p>`;
 }

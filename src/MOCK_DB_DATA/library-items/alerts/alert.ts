@@ -19,35 +19,35 @@ function getExampleHtml(): string {
   return `
 <div class="alert alert-info">
   <i class="icon-info-circle"></i>
-  Default alert.
+  Dette er en melding til informasjon.
 </div>
 <div class="alert alert-success">
   <i class="icon-check-circle-regular"></i>
-  Success!
+  Dette er en melding om success!
 </div>
 <div class="alert alert-warning">
   <i class="icon-bell-regular"></i>
-  Warning!
+  Dette er en advarel!
 </div>
 <div class="alert alert-error">
   <i class="icon-bell-regular"></i>
-  Error!
+  Dette er en feilmelding.
 </div>
 <div class="alert alert-info fhi-alert-bordered">
   <i class="icon-info-circle"></i>
-  Information.
+  Dette er en melding til informasjon.
 </div>
 <div class="alert alert-success fhi-alert-bordered">
   <i class="icon-check-circle-regular"></i>
-  Success!
+  Dette er en melding om success!
 </div>
 <div class="alert alert-warning fhi-alert-bordered">
   <i class="icon-bell-regular"></i>
-  Warning!
+  Dette er en advarel!
 </div>
 <div class="alert alert-error fhi-alert-bordered">
   <i class="icon-bell-regular"></i>
-  Error!
+  Dette er en feilmelding.
 </div>`;
 }
 
@@ -69,15 +69,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/alerts">Alerts</a>
 </p>
 <p>
-  Alerts are available as:
+  Alerts er tilgjengelige som:
 </p>
 <ul>
   <li>
-    <code>alert-info</code> (default, same as <code>alert</code>)
+    <code>alert-info</code> (standard, gir samme utseende som baseklassen <code>alert</code>)
   </li>
   <li>
     <code>alert-success</code>
@@ -90,6 +90,6 @@ function getDocumentationHtml(): string | null {
   </li>
 </ul>
 <p class="pt-3">
-  For bordered alerts with white background, add <code>fhi-alert-bordered</code> in addition to the state.
+  For innrammede alerts med hvit bakgrunn, legg til <code>fhi-alert-bordered</code> i tillegg til tilstands-klasse.
 </p>`;
 }

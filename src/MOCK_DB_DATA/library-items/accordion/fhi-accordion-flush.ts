@@ -50,15 +50,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
-  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>
+  Bootstrap-dokumentasjon for
+  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>.
 </p>
 <p>
-  The accordion is implemented as a
+  Accordion er implementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
-  in the FHI Designsystem.
+  i FHIs Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjeparts-komponent.
 </p>`;
 }
