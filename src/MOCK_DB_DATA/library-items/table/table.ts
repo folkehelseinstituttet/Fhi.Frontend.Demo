@@ -1,7 +1,8 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const Table: LibraryItem[] = [{
-  id: 'table',
+  id: LibraryItemIds.Table,
   title: 'Table',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

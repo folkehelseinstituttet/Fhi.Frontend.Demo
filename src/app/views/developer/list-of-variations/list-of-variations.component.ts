@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
-import { ListOfVariationsDataService } from '../../shared/list-of-variations-data.service';
-import { LibraryItem } from '../../shared/library/models/library-item.model';
+import { ListOfVariationsDataService } from '../../shared/services/list-of-variations-data.service';
+import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
   selector: 'app-list-of-variations',

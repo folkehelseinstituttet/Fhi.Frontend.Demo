@@ -1,8 +1,9 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Tooltip: LibraryItem[] = [{
-  id: 'tooltip',
+  id: LibraryItemIds.Tooltip,
   title: 'Tooltip',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
@@ -24,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<button type="button" class="btn fhi-btn-outline-secondary" ngbTooltip="This is the tooltip.">
+<button type="button" class="btn fhi-btn-secondary" ngbTooltip="This is the tooltip.">
   Hover for tooltip
 </button>`;
 }

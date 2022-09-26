@@ -14,8 +14,8 @@ import { UrlService } from './services/url.service';
 
 export class AppComponent implements OnInit {
 
-  projectName = 'Frontend library';
-  projectDescription = 'Reusable CSS';
+  projectName = 'Designsystem';
+  projectDescription = null;
 
   constructor(
     private router: Router,

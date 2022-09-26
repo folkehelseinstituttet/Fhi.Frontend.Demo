@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
+import { SegmentPaths } from 'src/app/segment-path';
 import { MenuItem } from '../../models/menu-item.model';
-import { SegmentPaths } from '../../segment-paths';
 
 @Component({
   selector: 'app-main-menu',
@@ -18,8 +18,11 @@ export class MainMenuComponent {
   mainMenuIsOpen = false;
 
   mainMenuItems: MenuItem[] = [{
-    name: 'CSS library', // TODO: 'For developers', or something like that?
+    name: 'For utviklere',
     link: `/${SegmentPaths.developer}`
+  }, {
+    name: 'For designere',
+    link: `/${SegmentPaths.designer}`
   }];
 
   mainMenuClose(): void {

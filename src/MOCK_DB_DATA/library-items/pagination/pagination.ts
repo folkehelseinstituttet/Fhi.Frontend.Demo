@@ -1,8 +1,9 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Pagination: LibraryItem[] = [{
-  id: 'pagination',
+  id: LibraryItemIds.Pagination,
   title: 'Pagination',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

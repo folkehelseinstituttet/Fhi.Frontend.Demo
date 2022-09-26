@@ -1,7 +1,8 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const IconSet: LibraryItem[] = [{
-  id: 'icon-set',
+  id: LibraryItemIds.IconSet,
   title: 'Icon set',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
@@ -20,12 +21,16 @@ function getExampleHtml(): string {
 function getCodeHtml(): string {
   return `
 <i class="icon-alcohol-drugs"></i>
+<i class="icon-arrow-left"></i>
+<i class="icon-arrow-left-red"></i>
+<i class="icon-arrow-right"></i>
 <i class="icon-bell-regular"></i>
 <i class="icon-cancer"></i>
 <i class="icon-cancer-cell"></i>
 <i class="icon-cancer-cell-2"></i>
 <i class="icon-cardio"></i>
 <i class="icon-cards"></i>
+<i class="icon-check"></i>
 <i class="icon-check-circle-regular"></i>
 <i class="icon-chevron-down"></i>
 <i class="icon-chevron-down-fat"></i>
@@ -40,6 +45,7 @@ function getCodeHtml(): string {
 <i class="icon-environment"></i>
 <i class="icon-file-excel-regular"></i>
 <i class="icon-insight"></i>
+<i class="icon-magnifying-glass"></i>
 <i class="icon-muscle"></i>
 <i class="icon-no-handwash"></i>
 <i class="icon-population"></i>
@@ -48,10 +54,13 @@ function getCodeHtml(): string {
 <i class="icon-swap"></i>
 <i class="icon-trash-alt-regular"></i>
 <i class="icon-user-regular"></i>
+<i class="icon-xmark"></i>
 `;
 }
 
-function getDocumentationHtml(): string {
-  return undefined;
+/*
+ * Return null to remove Documentation from library-item.
+ */
+function getDocumentationHtml(): string | null {
+  return null;
 }
-

@@ -1,7 +1,8 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const HeadingLevels: LibraryItem[] = [{
-  id: 'headinglevels',
+  id: LibraryItemIds.HeadingLevels,
   title: 'Heading levels',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
@@ -12,11 +13,11 @@ export const HeadingLevels: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
-<h1>Level 1</h1>
-<h2>Level 2</h1>
-<h3>Level 3</h1>
-<h4>Level 4</h1>
-<h5>Level 5</h1>`;
+<h1>Heading level 1</h1>
+<h2>Heading level 2</h1>
+<h3>Heading level 3</h1>
+<h4>Heading level 4</h1>
+<h5>Heading level 5</h1>`;
 }
 
 function getCodeHtml(): string | null {

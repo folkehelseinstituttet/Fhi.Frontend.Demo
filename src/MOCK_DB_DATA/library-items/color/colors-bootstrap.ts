@@ -1,7 +1,8 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const ColorsBootstrap: LibraryItem[] = [{
-  id: 'colorsbootstrap',
+  id: LibraryItemIds.ColorBootstrap,
   title: 'Color palette (Bootstrap)',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),

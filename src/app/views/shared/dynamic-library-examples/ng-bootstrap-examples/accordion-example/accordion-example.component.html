@@ -1,4 +1,4 @@
-<div class="pt-6 mb-6" *ngIf="title === 'Accordion'">
+<ng-container *ngIf="itemId === itemIds.Accordion">
   <ngb-accordion>
     <ngb-panel class="mb-3" title="Item #1">
       <ng-template ngbPanelContent>
@@ -16,9 +16,9 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-</div>
+</ng-container>
 
-<div class="mb-6" *ngIf="title === 'Accordion - Flush'">
+<ng-container *ngIf="itemId === itemIds.AccordionFlush">
   <ngb-accordion [closeOthers]="true" activeIds="custom-id-0"
                  class="accordion-flush">
     <ngb-panel class="mb-3" id="custom-id-0" title="Item #1">
@@ -37,9 +37,9 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-</div>
+</ng-container>
 
-<div class="pt-6" *ngIf="title === 'Accordion - Flush (fhi)'">
+<ng-container *ngIf="itemId=== itemIds.AccordionFlushFhi">
   <ngb-accordion class="accordion-flush fhi-accordion-flush">
     <ngb-panel class="mb-3" title="Item #1">
       <ng-template ngbPanelContent>
@@ -57,4 +57,4 @@
       </ng-template>
     </ngb-panel>
   </ngb-accordion>
-</div>
+</ng-container>

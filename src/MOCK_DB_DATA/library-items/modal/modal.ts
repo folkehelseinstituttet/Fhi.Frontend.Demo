@@ -1,10 +1,11 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/library/models/library-item.model';
+import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 const itemTitle = 'Modal';
 
 export const Modal: LibraryItem[] = [{
-  id: itemTitle.toLocaleLowerCase(),
+  id: LibraryItemIds.Modal,
   title: itemTitle,
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
@@ -36,7 +37,7 @@ function getCodeHtml(): string | null {
     <p>This may be any kind of content.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-outline-secondary" (click)="modal.close()">Cancel</button>
+    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Cancel</button>
     <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>
