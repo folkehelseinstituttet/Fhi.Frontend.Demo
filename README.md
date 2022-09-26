@@ -11,8 +11,24 @@ https://frontendbibliotek.fhi.no
 
 ## Working on Fhi.Frontend.Style
 
-If you cloned the repository with the `--recurse-submodules` flag, you already have a subdirectory named `Fhi.Frontend.Style` with all the css code present. If not, you have a empty subdirectory named `Fhi.Frontend.Style`. To initialize the submodule and clone its content, type: `git submodule update --init --recursive`
+**NB!** If you cloned the repository without the `--recurse-submodules` flag, the subdirectory named `Fhi.Frontend.Style` will be empty. To initialize the submodule and clone its content, run
 
-To get the latest updated from `Fhi.Frontend.Style`, run`git pull` and `git submodule update --remote`. Git will go into your submodule and fetch and update for you.
+- `git submodule update --init --recursive`
 
-It is now possible to work on a new branch in the submodule repo (Fhi.Frontend.Style), commit and push to remote, and then push a new commit, on a new branch in the parent repo (Fhi.Frontend.Demo) so that other developers has access to both. For more advanced use of git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+To get the latest updates from remote `Fhi.Frontend.Style`, run
+
+- `git pull`
+- `git submodule update --remote`
+
+Git will go into your submodule and fetch and update for you.
+
+### Workflow
+
+_This is just one of many ways to do it._
+
+1. Create a new branch in `Fhi.Frontend.Demo`-repo and a new branch in `Fhi.Frontend.Style`-repo with the same name
+2. Work on both parent and submodule kode, and commit changes in both repos
+3. When ready, push both brances from `Fhi.Frontend.Demo` with the command
+  `git push --recurse-submodules=on-demand`
+
+For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
