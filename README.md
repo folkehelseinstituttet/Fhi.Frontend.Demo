@@ -5,29 +5,18 @@ https://frontendbibliotek.fhi.no
 
 ## Get started
 
-- `git clone --recurse-submodules https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git`
-- `npm install`
-- `npm run start`
+>**NB!** If you clone the repository without the `--recurse-submodules` flag, the subdirectory named `Fhi.Frontend.Style` will be empty. If thats the case, you have to initialize the submodule and clone its content by running `git submodule update --init --recursive`
 
-## Working on Fhi.Frontend.Style
+1. `git clone --recurse-submodules https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git`
+2. `npm install`
+3. `npm start`
 
-**NB!** If you cloned the repository without the `--recurse-submodules` flag, the subdirectory named `Fhi.Frontend.Style` will be empty. To initialize the submodule and clone its content, run
+## Workflow
 
-- `git submodule update --init --recursive`
-
-To get the latest updates from remote `Fhi.Frontend.Style`, run
-
-- `git pull`
-- `git submodule update --remote`
-
-Git will go into your submodule and fetch and update for you.
-
-### Workflow
-
-_This is just one of many ways to do it._
+_This is just one way to do it. Feel free to find a workflow that works for you._
 
 1. Create a new branch in `Fhi.Frontend.Demo`-repo and a new branch in `Fhi.Frontend.Style`-repo with the same name
-2. Work on both parent and submodule kode, and commit changes in both repos
+2. Work on both parent and submodule code, and commit changes in both repos
 3. When ready
    1. Run `git push` in `Fhi.Frontend.Style`-repo
    2. Run `git push --recurse-submodules=check` in `Fhi.Frontend.Demo`-repo
