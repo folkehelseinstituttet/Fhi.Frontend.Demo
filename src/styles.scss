@@ -1,10 +1,5 @@
-@import "~@folkehelseinstituttet/style/scss/style.scss";
+@import "../Fhi.Frontend.Style/import/all";
+@import "~src/styles/fhi-frontend-library/_ds-all";
 
 // TODO: find best way to distribute styles for Fhi.AngularComponents
 @import "~src/styles/fhi-angular-components/fhi-advanced-select.block";
-
-// FHI Frontend library
-@import "~prismjs/themes/prism-solarizedlight.css";
-@import "~src/styles/fhi-frontend-library/ds.markdown";
-@import "~src/styles/fhi-frontend-library/ds-ui-documentation.block";
-@import "~src/styles/fhi-frontend-library/ds-tmp.block";
