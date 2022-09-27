@@ -5,18 +5,20 @@ https://frontendbibliotek.fhi.no
 
 ## Get started
 
-- `npm install`
-- `npm run start`
+>**NB!** If you clone the repository without the `--recurse-submodules` flag, the subdirectory named `Fhi.Frontend.Style` will be empty. If thats the case, you have to initialize the submodule and clone its content by running `git submodule update --init --recursive`
 
-## Working on Fhi.Frontend.Style
+1. `git clone --recurse-submodules https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git`
+2. `npm install`
+3. `npm start`
 
-When working on the Fhi.Frontend.Style framework you can live reload the Fhi.Frontend.Demo by linking the two like this:
+## Workflow
 
-- Clone [Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
-- Fhi.Frontend.Style:
-  - `npm install`
-  - `npm link`
-- Fhi.Frontend.Demo:
-  - `npm install`
-  - `npm link @folkehelseinstituttet/style` (dependency in package.json)
-  - `npm run start`
+_This is just one way to do it. Feel free to find a workflow that works for you._
+
+1. Create a new branch in `Fhi.Frontend.Demo`-repo and a new branch in `Fhi.Frontend.Style`-repo with the same name
+2. Work on both parent and submodule code, and commit changes in both repos
+3. When ready
+   1. Run `git push` in `Fhi.Frontend.Style`-repo
+   2. Run `git push --recurse-submodules=check` in `Fhi.Frontend.Demo`-repo
+
+For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
