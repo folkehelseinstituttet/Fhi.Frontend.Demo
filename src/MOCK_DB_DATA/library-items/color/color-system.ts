@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const ColorSystem: LibraryItem[] = [{
   id: LibraryItemIds.ColorSystem,
-  title: 'Color System',
+  title: 'Fargesystem',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const BtnFlat: LibraryItem[] = [{
     id: LibraryItemIds.ButtonFlat,
-    title: 'Transparent button',
+    title: 'Flat knapp',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

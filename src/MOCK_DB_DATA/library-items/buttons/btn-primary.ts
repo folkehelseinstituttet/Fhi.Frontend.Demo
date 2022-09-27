@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const BtnPrimary: LibraryItem[] = [{
     id: LibraryItemIds.ButtonPrimary,
-    title: 'Primary button',
+    title: 'Primærknapp',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -22,7 +22,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `<button type="button" class="btn fhi-btn-primary">
-    Standard knapp
+    Primærknapp
 </button>`;
 }
 
@@ -30,5 +30,6 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+    return `
+<p>Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.</p>`;
 }

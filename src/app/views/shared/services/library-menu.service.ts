@@ -77,13 +77,13 @@ export class LibraryMenuService {
 
   private getVisualIdentityMenu(): MenuItem[] {
     return [{
-      name: 'Color',
+      name: 'Farger',
       link: SegmentPaths.color
     }, {
-      name: 'Icon set',
+      name: 'Ikonsett',
       link: SegmentPaths.icons
     }, {
-      name: 'Typography',
+      name: 'Typografi',
       link: SegmentPaths.typography
     }];
   }
