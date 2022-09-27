@@ -29,20 +29,20 @@ function getCodeHtml(): string | null {
   return `
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h2 class="modal-title" id="modal-basic-title">Profile update</h2>
+    <h2 class="modal-title" id="modal-basic-title">Overskrift</h2>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
-    <p>Modal content.</p>
-    <p>This may be any kind of content.</p>
+    <p>Modalvindu innhold.</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Cancel</button>
-    <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Avbryt</button>
+    <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Lagre</button>
   </div>
 </ng-template>
+
 <p>
-  <button class="btn fhi-btn-primary" (click)="open(content)">Launch modal (default size)</button>
+  <button class="btn fhi-btn-flat" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
 </p>`;
 }
 
@@ -52,15 +52,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/${itemTitle.toLocaleLowerCase()}">${itemTitle}</a>
 </p>
 <p>
-  The ${itemTitle} is implemented as a
+  ${itemTitle} er implementert som
   <a href="${NgBootstrapComponentsBaseUrl}/${itemTitle.toLocaleLowerCase()}">ngBootstrap ${itemTitle}</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjeparts-komponent.
 </p>`;
 }

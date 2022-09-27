@@ -26,7 +26,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="fhi-search"><!-- add fhi-search--xl for tall search field -->
-  <label for="typeahead-basic" class="form-label">Search for a country (or territory)</label>
+  <label for="typeahead-basic" class="form-label">Søk etter et land (eller territorium)</label>
 
   <div class="d-flex">
     <div class="w-100 position-relative">
@@ -34,13 +34,13 @@ function getCodeHtml(): string | null {
         id="typeahead-basic"
         type="search"
         class="form-control fhi-search__form-control"
-        placeholder="Start searching..."
+        placeholder="Start søk..."
         [ngbTypeahead]="search"/>
     </div>
 
     <button type="button" class="btn fhi-btn-secondary fhi-search__btn">
       <i class="fhi-search__btn-icon"></i>
-      <span class="fhi-search__btn__text">Search</span>
+      <span class="fhi-search__btn__text">Søk</span>
     </button>
   </div>
 </div>`;
@@ -52,13 +52,13 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  The autosuggest in the search field is implemented as a
+  Autosuggest i søkefeltet er implementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/typeahead">NgBootstrap Typeahead</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/dropdowns">Dropdowns</a>
-  which is the base for the NgBootstrap Typeahead.
+  som er basen for NgBootstrap Typeahead.
 </p>`;
 }

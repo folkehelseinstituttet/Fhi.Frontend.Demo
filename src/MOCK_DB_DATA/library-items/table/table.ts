@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const Table: LibraryItem[] = [{
   id: LibraryItemIds.Table,
-  title: 'Table',
+  title: 'Tabell',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -21,9 +21,9 @@ function getExampleHtml(): string {
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Role</th>
+        <th scope="col">Fornavn</th>
+        <th scope="col">Etternavn</th>
+        <th scope="col">Rolle</th>
       </tr>
     </thead>
     <tbody>
@@ -73,9 +73,9 @@ function getCodeHtml(): string | null {
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">First name</th>
-        <th scope="col">Last name</th>
-        <th scope="col">Role</th>
+        <th scope="col">Fornavn</th>
+        <th scope="col">Etternavn</th>
+        <th scope="col">Rolle</th>
       </tr>
     </thead>
     <tbody>

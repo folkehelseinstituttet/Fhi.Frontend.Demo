@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const TableSortable: LibraryItem[] = [{
   id: LibraryItemIds.TableSortable,
-  title: 'Table - sortable',
+  title: 'Sorterbar tabell',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -20,20 +20,20 @@ function getExampleHtml(): string {
   <table class="table table-striped table-bordered" data-sort-column="1">
     <thead>
       <tr>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på ID, stigende">
           <span class="text-decoration-underline">ID</span>
           <i class="icon-chevron-down"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on First name">
-          <span class="text-decoration-underline">First name</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på Fornavn">
+          <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort table based on Last name, descending">
-          <span class="text-decoration-underline">Last name</span>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabell basert på Etternavn">
+          <span class="text-decoration-underline">Etternavn</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on Role">
-          <span class="text-decoration-underline">Role</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på Rolle">
+          <span class="text-decoration-underline">Rolle</span>
           <i class="icon-chevron-expand"></i>
         </th>
       </tr>
@@ -66,20 +66,20 @@ function getExampleHtml(): string {
   <table class="table table-striped table-bordered" data-sort-column="3">
     <thead>
       <tr>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på ID">
           <span class="text-decoration-underline">ID</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on First name">
-          <span class="text-decoration-underline">First name</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på Fornavn">
+          <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort table based on Last name, descending">
-          <span class="text-decoration-underline">Last name</span>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabell basert på Etternavn, synkende">
+          <span class="text-decoration-underline">Etternavn</span>
           <i class="icon-chevron-up"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on Role">
-          <span class="text-decoration-underline">Role</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabell basert på Rolle">
+          <span class="text-decoration-underline">Rolle</span>
           <i class="icon-chevron-expand"></i>
         </th>
       </tr>
