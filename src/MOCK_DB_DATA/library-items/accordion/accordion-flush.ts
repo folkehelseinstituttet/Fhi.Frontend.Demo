@@ -57,7 +57,7 @@ function getDocumentationHtml(): string | null {
 <p>
   Accordion er implementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
-  i FHIs Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
   Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjeparts-komponent.
