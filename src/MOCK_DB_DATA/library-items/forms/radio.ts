@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const Radio: LibraryItem[] = [{
   id: LibraryItemIds.FormRadio,
-  title: 'Radio',
+  title: 'Radioknapp',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
