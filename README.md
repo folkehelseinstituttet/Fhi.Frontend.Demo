@@ -28,7 +28,8 @@ _This is just one of many ways to do it._
 
 1. Create a new branch in `Fhi.Frontend.Demo`-repo and a new branch in `Fhi.Frontend.Style`-repo with the same name
 2. Work on both parent and submodule kode, and commit changes in both repos
-3. When ready, push both brances from `Fhi.Frontend.Demo` with the command
-  `git push --recurse-submodules=on-demand`
+3. When ready
+   1. Run `git push` in `Fhi.Frontend.Style`-repo
+   2. Run `git push --recurse-submodules=check` in `Fhi.Frontend.Demo`-repo
 
 For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
