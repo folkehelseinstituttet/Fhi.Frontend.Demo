@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const BtnMenuItem: LibraryItem[] = [{
     id: LibraryItemIds.ButtonMenuItem,
-    title: 'Menyknapp',
+    title: 'Menu button',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

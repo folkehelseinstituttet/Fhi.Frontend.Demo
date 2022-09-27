@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagSingleSelection: LibraryItem[] = [{
   id: LibraryItemIds.TagSingleSelection,
-  title: 'Tag - enkeltvalg',
+  title: 'Tag - single selection',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

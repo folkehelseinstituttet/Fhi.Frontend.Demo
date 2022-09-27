@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const TableSortable: LibraryItem[] = [{
   id: LibraryItemIds.TableSortable,
-  title: 'Sorterbar tabell',
+  title: 'Table - sortable',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const Accordion: LibraryItem[] = [{
   id: LibraryItemIds.Accordion,
-  title: 'Accordion (trekkspill)',
+  title: 'Accordion',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

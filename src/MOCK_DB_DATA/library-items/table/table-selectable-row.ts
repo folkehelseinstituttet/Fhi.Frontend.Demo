@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const TableSelectableRow: LibraryItem[] = [{
   id: LibraryItemIds.TableSelectableRow,
-  title: 'Tabell med mulighet for å velge rader',
+  title: 'Table - selectable row',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

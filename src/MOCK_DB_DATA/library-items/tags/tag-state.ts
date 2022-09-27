@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagState: LibraryItem[] = [{
   id: LibraryItemIds.TagState,
-  title: 'Tag - state/tilstand',
+  title: 'Tag - state',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

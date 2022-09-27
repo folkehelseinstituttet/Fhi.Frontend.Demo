@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const Input: LibraryItem[] = [{
   id: LibraryItemIds.FormInput,
-  title: 'Tekst-input',
+  title: 'Text input',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -22,8 +22,8 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<label for="FormInput" class="form-label">Tekst-input</label>
-<input type="text" id="FormInput" class="form-control" placeholder="Regular text input">`;
+<label for="FormInput" class="form-label">Tekstfelt</label>
+<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">`;
 }
 
 /*

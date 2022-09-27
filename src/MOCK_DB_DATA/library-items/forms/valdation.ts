@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const Validation: LibraryItem[] = [{
   id: LibraryItemIds.FormValidation,
-  title: 'Validering',
+  title: 'Validation',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -22,7 +22,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<label for="FormInputValidation" class="form-label">Tekst-input med validering</label>
+<label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
 <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
 <div class="invalid-feedback">En forståelig feilmelding.</div>`;
 }

@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagFilterOption: LibraryItem[] = [{
   id: LibraryItemIds.TagFilterOption,
-  title: 'Tag - filtervalg',
+  title: 'Tag - filter options',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

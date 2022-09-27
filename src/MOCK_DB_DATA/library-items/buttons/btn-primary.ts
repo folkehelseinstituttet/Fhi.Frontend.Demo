@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const BtnPrimary: LibraryItem[] = [{
     id: LibraryItemIds.ButtonPrimary,
-    title: 'Primærknapp',
+    title: 'Primary button',
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -22,7 +22,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `<button type="button" class="btn fhi-btn-primary">
-    Primærknapp
+    Hovedhandling
 </button>`;
 }
 

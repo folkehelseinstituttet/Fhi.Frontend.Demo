@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const AlertDismissible: LibraryItem[] = [{
   id: LibraryItemIds.AlertDismissible,
-  title: 'Alert - med lukkeknapp',
+  title: 'Alert - dismissable',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

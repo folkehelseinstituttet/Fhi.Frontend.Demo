@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagMultipleSelection: LibraryItem[] = [{
   id: LibraryItemIds.TagMultipleSelection,
-  title: 'Tag - flervalg',
+  title: 'Tag - multiple selection',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -14,7 +14,7 @@ export const Select: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
-<label for="FormSelect" class="form-label">Select med flervalg</label>
+<label for="FormSelect" class="form-label">Ledetekst for select</label>
 <select class="form-select" id="FormSelect">
   <option>Aktivér for å gjøre et valg</option>
   <option value="1">1</option>

@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagCategory: LibraryItem[] = [{
   id: LibraryItemIds.TagCategory,
-  title: 'Tag - kategori',
+  title: 'Tag - category',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

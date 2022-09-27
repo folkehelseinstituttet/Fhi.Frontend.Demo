@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const Table: LibraryItem[] = [{
   id: LibraryItemIds.Table,
-  title: 'Tabell',
+  title: 'Table',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
