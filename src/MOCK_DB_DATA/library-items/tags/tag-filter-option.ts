@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const TagFilterOption: LibraryItem[] = [{
   id: LibraryItemIds.TagFilterOption,
-  title: 'Tag - filter option',
+  title: 'Tag - filtervalg',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -26,7 +26,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <button class="fhi-tag fhi-tag--filter-option">
-  Filter option
+  Filtervalg
   <i class="icon-xmark"></i>
 </button>
 `;
@@ -37,6 +37,6 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Filter options should always be possible to remove (to reset filter).</p>
+<p>Filtervalg-tag skal alltid kunne fjernes / resette filter.</p>
 `;
 }

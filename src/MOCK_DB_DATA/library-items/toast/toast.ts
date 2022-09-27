@@ -27,7 +27,7 @@ function getCodeHtml(): string | null {
   return `
 <div class="toast-container">
   <ngb-toast *ngIf="show" header="Toast title" [autohide]="true" (hidden)="show=false">
-    Standard toast. This instance is automatically hidden.
+    Standard toast.
   </ngb-toast>
 </div>`;
 }
@@ -38,15 +38,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/toasts">Toast</a>
 </p>
 <p>
-  The toast is implemented as a
+  Toast er impolementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/toast">NgBootstrap Toast</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjeparts-komponent.
 </p>`;
 }
