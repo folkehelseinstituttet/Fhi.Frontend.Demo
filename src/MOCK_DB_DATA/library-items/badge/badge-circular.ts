@@ -77,7 +77,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Kun til bruk for nummeriske verdier. Aldri benytt en badge alene uten kontekst.
+  Kun til bruk for numeriske verdier. En badge gir ikke mening uten en kontekst og skal derfor aldri brukes alene.
 </p>
 <p>
   Bootstrap-dokumentation for
