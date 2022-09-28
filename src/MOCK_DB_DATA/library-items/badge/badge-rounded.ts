@@ -23,7 +23,7 @@ function getExampleHtml(): string {
 </span>
 
 <hr>
-<h2 class="h5 mt-6 mb-4">Brukerscenario</h2>
+<h2 class="h5 mt-6 mb-4">Bruksscenario</h2>
 
 <ul>
   <li>
@@ -57,10 +57,10 @@ function getDocumentationHtml(): string | null {
 Kun til bruk for numeriske verdier. En badge gir ikke mening uten en kontekst og skal derfor aldri brukes alene.
 </p>
 <p>
-  Typisk bruks-scenario: antall enheter en liste refererer til.
+  Typisk bruksscenario: antall enheter en liste refererer til.
 </p>
 <p>
-  Bootstrap-dokumentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
 </p>`;
 }

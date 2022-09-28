@@ -80,7 +80,7 @@ function getDocumentationHtml(): string | null {
   Kun til bruk for numeriske verdier. En badge gir ikke mening uten en kontekst og skal derfor aldri brukes alene.
 </p>
 <p>
-  Bootstrap-dokumentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
 </p>
 `;
