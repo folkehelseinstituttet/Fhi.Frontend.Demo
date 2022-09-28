@@ -13,11 +13,11 @@ const ALERTS: Alert[] = [{
     icon: 'icon-info-circle',
   }, {
     type: 'success',
-    message: 'Dette er en melding om success!',
+    message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle-regular',
   }, {
     type: 'warning',
-    message: 'Dette er en advarel!',
+    message: 'Dette er en advarsel!',
     icon: 'icon-bell-regular',
   }, {
     type: 'error',
@@ -30,12 +30,12 @@ const ALERTS: Alert[] = [{
     bordered: true,
   }, {
     type: 'success',
-    message: 'Dette er en melding om success!',
+    message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle-regular',
     bordered: true,
   }, {
     type: 'warning',
-    message: 'Dette er en advarel!',
+    message: 'Dette er en advarsel!',
     icon: 'icon-bell-regular',
     bordered: true,
   }, {

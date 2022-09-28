@@ -23,11 +23,11 @@ function getExampleHtml(): string {
 </div>
 <div class="alert alert-success">
   <i class="icon-check-circle-regular"></i>
-  Dette er en melding om success!
+  Dette er en melding om suksess!
 </div>
 <div class="alert alert-warning">
   <i class="icon-bell-regular"></i>
-  Dette er en advarel!
+  Dette er en advarsel!
 </div>
 <div class="alert alert-error">
   <i class="icon-bell-regular"></i>
@@ -39,11 +39,11 @@ function getExampleHtml(): string {
 </div>
 <div class="alert alert-success fhi-alert-bordered">
   <i class="icon-check-circle-regular"></i>
-  Dette er en melding om success!
+  Dette er en melding om suksess!
 </div>
 <div class="alert alert-warning fhi-alert-bordered">
   <i class="icon-bell-regular"></i>
-  Dette er en advarel!
+  Dette er en advarsel!
 </div>
 <div class="alert alert-error fhi-alert-bordered">
   <i class="icon-bell-regular"></i>
