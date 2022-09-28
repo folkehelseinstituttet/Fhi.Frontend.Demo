@@ -16,7 +16,7 @@ export const TableSelectableRow: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<p>(Ingen funksjonalitet på eksampeltabell for øyeblikket. Dette kommer siden.)</p>
+<p>(Funksjonalitet på eksempeltabell kommer etter hvert.)</p>
 
 <div class="table-responsive">
   <table class="table table-striped" data-sort-column="2">

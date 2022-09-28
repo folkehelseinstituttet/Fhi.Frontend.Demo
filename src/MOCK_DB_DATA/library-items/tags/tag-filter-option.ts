@@ -37,6 +37,6 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Filtervalg-tag skal alltid kunne fjernes / resette filter.</p>
+<p>Filtervalg-tag skal alltid kunne fjernes/nullstilles.</p>
 `;
 }

@@ -36,7 +36,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap-documentasjon for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/tooltips">Tooltip</a>
 </p>
 <p>

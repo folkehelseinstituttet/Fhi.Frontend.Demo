@@ -27,7 +27,7 @@ function getExampleHtml(): string {
   </a>
 </p>
 <p class="mb-0">
-  <span class="fhi-tag fhi-tag--category">Kategori (uten lenke)</span>
+  <span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
 </p>
 `;
 }
@@ -45,7 +45,7 @@ function getCodeHtml(): string | null {
   Kategorinavn
 </a>
 
-<span class="fhi-tag fhi-tag--category">Kategori (uten lenke)</span>
+<span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
 `;
 }
 
