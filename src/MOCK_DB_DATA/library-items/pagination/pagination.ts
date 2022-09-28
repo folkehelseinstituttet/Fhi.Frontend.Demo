@@ -17,24 +17,26 @@ function getExampleHtml(): string {
 <nav aria-label="Sidenavigasjon">
   <ul class="pagination">
     <li class="page-item disabled">
-      <a class="page-link" href="#">
-        <span class="visually-hidden">Previous</span>
-        &laquo;
+      <a class="page-link" href="/developer/components/Pagination" disabled>
+        <i class="icon-arrow-left"></i>
+        Forrige
       </a>
     </li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#">1</a>
+    <li class="page-item" aria-current="page">
+      <a class="page-link" href="/developer/components/Pagination">1</a>
+    </li>
+    <li class="page-item active">
+      <span class="page-item__ellipsis">&#8230;</span>
+      <a class="page-link">3</a>
+      <span class="page-item__ellipsis">&#8230;</span>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">2</a>
+      <a class="page-link" href="/developer/components/Pagination">31</a>
     </li>
     <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">
-        <span class="visually-hidden">Next</span>
-        &raquo;
+      <a class="page-link" href="/developer/components/Pagination">
+        Neste
+        <i class="icon-arrow-right"></i>
       </a>
     </li>
   </ul>
