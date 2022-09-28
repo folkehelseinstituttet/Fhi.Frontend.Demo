@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const ColorSystem: LibraryItem[] = [{
   id: LibraryItemIds.ColorSystem,
-  title: 'Fargesystem',
+  title: 'Fargepalett',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -29,7 +29,7 @@ ${colorHtml('#222222', 'fhi-grey-4')}
 <p class="text-muted small mt-2 mb-0">Charcoal/Antrasitt</p>
 ${colorHtml('#333841', 'fhi-charcoal-1')}
 
-<p class="text-muted small mt-2 mb-0">Blå/grå</p>
+<p class="text-muted small mt-2 mb-0">Blågrå</p>
 ${colorHtml('#f5f8fb', 'fhi-blue-grey-1')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2')}
 ${colorHtml('#cbd9df', 'fhi-blue-grey-3')}
@@ -65,12 +65,12 @@ ${colorHtml('#fd7065', 'fhi-red-1')}
 ${colorHtml('#d14641', 'fhi-red-2')}
 ${colorHtml('#9f2b26', 'fhi-red-3')}
 
-<p class="text-muted small mt-2 mb-0">Mørk rosa</p>
+<p class="text-muted small mt-2 mb-0">Mørkerosa</p>
 ${colorHtml('#fba39b', 'fhi-pink-dark-1')}
 ${colorHtml('#e22867', 'fhi-pink-dark-2')}
 ${colorHtml('#b10640', 'fhi-pink-dark-3')}
 
-<p class="text-muted small mt-2 mb-0">Lys rosa</p>
+<p class="text-muted small mt-2 mb-0">Lyserosa</p>
 ${colorHtml('#fdf7f6', 'fhi-pink-light-1')}
 ${colorHtml('#faedec', 'fhi-pink-light-2')}
 ${colorHtml('#ffe3e2', 'fhi-pink-light-3')}`;

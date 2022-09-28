@@ -14,9 +14,9 @@ export const FontColors: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <!--
-  NB! Denne koden er ikke regnet som "best practice", men er et forsøk
+  NB! Denne koden er ikke regnet som beste praksis, men er et forsøk
   på å vise noen ulike strategier på bruk av Bootstrap-rammeverket.
-  Når FHI "best practice" er definert vil denne koden bli endret.
+  Når FHI retningslinjer er definert vil denne koden bli endret.
 -->
 <div class="row">
   <div class="col-sm p-3 pt-5">

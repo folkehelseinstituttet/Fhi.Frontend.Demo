@@ -17,13 +17,13 @@ function getExampleHtml(): string {
 <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="" id="customCheck">
   <label class="form-check-label" for="customCheck">
-    Sjekk denne checkboxen
+    Huk av sjekkboksen
   </label>
 </div>
 <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="" id="customCheck1" checked>
   <label class="form-check-label" for="customCheck1">
-    Sjekk denne avkryssede checkboxen
+    Fjern avhuking i denne sjekkboksen
   </label>
 </div>
 
@@ -31,13 +31,13 @@ function getExampleHtml(): string {
 <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="" id="customCheck2" disabled>
   <label class="form-check-label" for="customCheck2">
-    Deaktivert checkbox
+    Deaktivert sjekkboks
   </label>
 </div>
 <div class="form-check mb-2">
   <input class="form-check-input" type="checkbox" value="" id="customCheck3" checked disabled>
   <label class="form-check-label" for="customCheck3">
-    Deaktivert avkrysset checkbox
+    Deaktivert avkrysset sjekkboks
   </label>
 </div>`;
 }
@@ -51,7 +51,7 @@ function getCodeHtml(): string | null {
 <div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="customCheck">
   <label class="form-check-label" for="customCheck">
-    Ledetekst for checkbox
+    Ledetekst for sjekkboks
   </label>
 </div>`;
 }
