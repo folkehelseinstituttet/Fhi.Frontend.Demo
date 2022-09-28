@@ -6,9 +6,9 @@ import { LibraryItem, LibraryItemType } from '../../shared/models/library-item.m
 import { MenuItem } from 'src/app/models/menu-item.model';
 
 const MenuItemName = {
-  example: 'Example',
-  documentation: 'Documentation',
-  code: 'Code'
+  example: 'Eksempel',
+  documentation: 'Dokumentasjon',
+  code: 'Kode'
 };
 
 @Component({

@@ -17,25 +17,27 @@ function getExampleHtml(): string {
 <div class="form-check form-switch mb-2">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
   <label class="form-check-label" for="flexSwitchCheckDefault">
-    Toggle this switch element
+    Skru på/av denne bryteren
   </label>
 </div>
 <div class="form-check form-switch mb-2">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckChecked2" checked>
   <label class="form-check-label" for="flexSwitchCheckChecked2">
-    Toggle this switched on switch element
+    Skru av/på denne bryteren
   </label>
 </div>
+
+<p class="pt-5">Deaktiverte brytere</p>
 <div class="form-check form-switch mb-2">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckChecked3" disabled>
   <label class="form-check-label" for="flexSwitchCheckChecked3">
-    Disabled switch element
+    Deaktivert bryter
   </label>
 </div>
 <div class="form-check form-switch">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckChecked4" checked disabled>
   <label class="form-check-label" for="flexSwitchCheckChecked4">
-    Checked and disabled switch element
+    Deaktivert bryter som er påskrudd
   </label>
 </div>`;
 }
@@ -49,7 +51,7 @@ function getCodeHtml(): string | null {
 <div class="form-check form-switch">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
   <label class="form-check-label" for="flexSwitchCheckDefault">
-    Label for switch element
+    Ledetekst for switch-element
   </label>
 </div>`;
 }

@@ -18,7 +18,7 @@ function getExampleHtml(): string {
   <ul class="pagination">
     <li class="page-item disabled">
       <a class="page-link" href="#">
-        <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Forrige</span>
         &laquo;
       </a>
     </li>
@@ -33,7 +33,7 @@ function getExampleHtml(): string {
     </li>
     <li class="page-item">
       <a class="page-link" href="#">
-        <span class="visually-hidden">Next</span>
+        <span class="visually-hidden">Neste</span>
         &raquo;
       </a>
     </li>

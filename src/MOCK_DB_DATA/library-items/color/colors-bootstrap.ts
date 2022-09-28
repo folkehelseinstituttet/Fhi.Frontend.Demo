@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const ColorsBootstrap: LibraryItem[] = [{
   id: LibraryItemIds.ColorBootstrap,
-  title: 'Color palette (Bootstrap)',
+  title: 'Fargepalett (Bootstrap)',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

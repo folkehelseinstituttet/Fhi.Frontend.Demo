@@ -1,28 +1,28 @@
-<p><button class="btn fhi-btn-flat" (click)="show1=true">Open Standard toast</button></p>
-<p><button class="btn fhi-btn-flat" (click)="show2=true">Open Success toast</button></p>
-<p><button class="btn fhi-btn-flat" (click)="show3=true">Open Warning toast</button></p>
-<p><button class="btn fhi-btn-flat" (click)="show4=true">Open Danger toast</button></p>
+<p><button class="btn fhi-btn-flat" (click)="show1=true">Åpne standard melding</button></p>
+<p><button class="btn fhi-btn-flat" (click)="show2=true">Åpne suksessmelding</button></p>
+<p><button class="btn fhi-btn-flat" (click)="show3=true">Åpne advarsel</button></p>
+<p><button class="btn fhi-btn-flat" (click)="show4=true">Åpne feilmelding</button></p>
 
 <div class="position-fixed top-0 start-0 end-0">
   <div class="toast-container p-3">
-    <ngb-toast *ngIf="show1" header="Hello" [autohide]="true" (hidden)="show1=false">
-      Standard toast. This instance is automatically hidden.
+    <ngb-toast *ngIf="show1" header="Halloien" [autohide]="true" (hidden)="show1=false">
+      Standard melding. Denne meldingen lukkes automatisk.
     </ngb-toast>
 
-    <ngb-toast *ngIf="show2" header="Success toast" class="text-bg-success-light" [autohide]="true" (hidden)="show2=false">
-      This instance is automatically hidden.
+    <ngb-toast *ngIf="show2" header="Suksess" class="text-bg-success-light" [autohide]="true" (hidden)="show2=false">
+      Denne meldingen lukkes automatisk.
     </ngb-toast>
 
     <ngb-toast *ngIf="show3" class="text-bg-warning-light" [autohide]="false" (hidden)="show3=false">
       <ng-template ngbToastHeader>
-        <strong class="me-auto">Warning toast</strong>
-        <small>Just now</small>
+        <strong class="me-auto">Advarsel</strong>
+        <small>Akkurat nå</small>
       </ng-template>
-      Warning toasts should not be automatically hidden.
+      Advarsler bør ikke lukkes automatisk.
     </ngb-toast>
 
-    <ngb-toast *ngIf="show4" header="Danger toast" class="text-bg-danger-light" [autohide]="false" (hidden)="show4=false">
-      Danger toasts should not be automatically hidden.
+    <ngb-toast *ngIf="show4" header="Fare!" class="text-bg-danger-light" [autohide]="false" (hidden)="show4=false">
+      Feilmeldinger (fare) bør ikke lukkes automatisk.
     </ngb-toast>
   </div>
 </div>

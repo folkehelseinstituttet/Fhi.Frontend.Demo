@@ -13,9 +13,7 @@ export const Input: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return `
-<label for="FormInput" class="form-label">Text input</label>
-<input type="text" id="FormInput" class="form-control" placeholder="Regular text input">`;
+  return getCodeHtml();
 }
 
 /*
@@ -24,8 +22,8 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<label for="FormInput" class="form-label">Text input</label>
-<input type="text" id="FormInput" class="form-control" placeholder="Regular text input">`;
+<label for="FormInput" class="form-label">Tekstfelt</label>
+<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">`;
 }
 
 /*

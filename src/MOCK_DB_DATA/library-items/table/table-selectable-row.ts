@@ -16,7 +16,7 @@ export const TableSelectableRow: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<p>(Example is just showing visuals for current state, there's no toggle functionality here.)</p>
+<p>(Funksjonalitet på eksempeltabell kommer etter hvert.)</p>
 
 <div class="table-responsive">
   <table class="table table-striped" data-sort-column="2">
@@ -26,16 +26,16 @@ function getExampleHtml(): string {
           <input class="form-check-input" id="selectAllRows" type="checkbox" />
           <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
         </th>
-        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort the table descending based on First name">
-          <span class="text-decoration-underline">First name</span>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen basert på Fornavn, synkende">
+          <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-up"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort the table ascending based on Last name">
-          <span class="text-decoration-underline">Last name</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen basert på Etternavn, stigende">
+          <span class="text-decoration-underline">Etternavn</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort the table ascending based on Role">
-          <span class="text-decoration-underline">Role</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen basert på Rolle, stigende">
+          <span class="text-decoration-underline">Rolle</span>
           <i class="icon-chevron-expand"></i>
         </th>
       </tr>
@@ -45,7 +45,7 @@ function getExampleHtml(): string {
       <tr>
         <th>
           <input class="form-check-input" id="row1" type="checkbox" />
-          <label for="row1" class="visually-hidden">Select this row</label>
+          <label for="row1" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Elida</td>
         <td>Egge</td>
@@ -54,7 +54,7 @@ function getExampleHtml(): string {
       <tr aria-selected="true">
         <th>
           <input class="form-check-input" id="row2" type="checkbox" checked />
-          <label for="row2" class="visually-hidden">Select this row</label>
+          <label for="row2" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Elisabeth</td>
         <td>Kristiansen</td>
@@ -63,7 +63,7 @@ function getExampleHtml(): string {
       <tr aria-selected="true">
         <th>
           <input class="form-check-input" id="row3" type="checkbox" checked />
-          <label for="row3" class="visually-hidden">Select this row</label>
+          <label for="row3" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Henrik</td>
         <td>Olsen</td>
@@ -72,7 +72,7 @@ function getExampleHtml(): string {
       <tr>
         <th>
           <input class="form-check-input" id="row4" type="checkbox" />
-          <label for="row4" class="visually-hidden">Select this row</label>
+          <label for="row4" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Marie</td>
         <td>Mul</td>
@@ -81,7 +81,7 @@ function getExampleHtml(): string {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Sigurd</td>
         <td>Bråten</td>
@@ -90,7 +90,7 @@ function getExampleHtml(): string {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Tore</td>
         <td>Gudmundsen</td>
@@ -99,7 +99,7 @@ function getExampleHtml(): string {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Vegard</td>
         <td>Bugge-Berntsen</td>
@@ -124,16 +124,16 @@ function getCodeHtml(): string | null {
           <input class="form-check-input" id="selectAllRows" type="checkbox" />
           <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
         </th>
-        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort the table descending based on First name">
-          <span class="text-decoration-underline">First name</span>
+        <th scope="col" tabindex="0" aria-sort="ascending" aria-label="Sorter tabellen basert på Fornavn, synkende">
+          <span class="text-decoration-underline">Fornavn</span>
           <i class="icon-chevron-up"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort the table ascending based on Last name">
-          <span class="text-decoration-underline">Last name</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen basert på Etternavn, stigende">
+          <span class="text-decoration-underline">Etternavn</span>
           <i class="icon-chevron-expand"></i>
         </th>
-        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort the table ascending based on Role">
-          <span class="text-decoration-underline">Role</span>
+        <th scope="col" tabindex="0" aria-sort="none" aria-label="Sorter tabellen basert på Rolle, stigende">
+          <span class="text-decoration-underline">Rolle</span>
           <i class="icon-chevron-expand"></i>
         </th>
       </tr>
@@ -143,7 +143,7 @@ function getCodeHtml(): string | null {
       <tr>
         <th>
           <input class="form-check-input" id="row1" type="checkbox" />
-          <label for="row1" class="visually-hidden">Select this row</label>
+          <label for="row1" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Elida</td>
         <td>Egge</td>
@@ -152,7 +152,7 @@ function getCodeHtml(): string | null {
       <tr aria-selected="true">
         <th>
           <input class="form-check-input" id="row2" type="checkbox" checked />
-          <label for="row2" class="visually-hidden">Select this row</label>
+          <label for="row2" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Elisabeth</td>
         <td>Kristiansen</td>
@@ -161,7 +161,7 @@ function getCodeHtml(): string | null {
       <tr aria-selected="true">
         <th>
           <input class="form-check-input" id="row3" type="checkbox" checked />
-          <label for="row3" class="visually-hidden">Select this row</label>
+          <label for="row3" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Henrik</td>
         <td>Olsen</td>
@@ -170,7 +170,7 @@ function getCodeHtml(): string | null {
       <tr>
         <th>
           <input class="form-check-input" id="row4" type="checkbox" />
-          <label for="row4" class="visually-hidden">Select this row</label>
+          <label for="row4" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Marie</td>
         <td>Mul</td>
@@ -179,7 +179,7 @@ function getCodeHtml(): string | null {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Sigurd</td>
         <td>Bråten</td>
@@ -188,7 +188,7 @@ function getCodeHtml(): string | null {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Tore</td>
         <td>Gudmundsen</td>
@@ -197,7 +197,7 @@ function getCodeHtml(): string | null {
       <tr>
         <th>
           <input class="form-check-input" id="row5" type="checkbox" />
-          <label for="row5" class="visually-hidden">Select this row</label>
+          <label for="row5" class="visually-hidden">Velg denne raden</label>
         </th>
         <td>Vegard</td>
         <td>Bugge-Berntsen</td>

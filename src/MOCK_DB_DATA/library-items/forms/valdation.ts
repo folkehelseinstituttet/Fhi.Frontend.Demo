@@ -13,12 +13,7 @@ export const Validation: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return `
-<div>
-  <label for="FormInputValidation" class="form-label">Text input w/validation</label>
-  <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
-  <div class="invalid-feedback">Understandable error message.</div>
-</div>`;
+  return getCodeHtml();
 }
 
 /*
@@ -27,9 +22,9 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<label for="FormInputValidation" class="form-label">Text input w/validation</label>
+<label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
 <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
-<div class="invalid-feedback">Understandable error message.</div>`;
+<div class="invalid-feedback">En forståelig feilmelding.</div>`;
 }
 
 /*

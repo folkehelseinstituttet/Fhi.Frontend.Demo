@@ -18,16 +18,16 @@ export const TagCategory: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <p>
-  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">Category name</a>
+  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">Kategorinavn</a>
 </p>
 <p>
   <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">
-    <i class="icon-arrow-left-long"></i>
-    Category name
+    <i class="icon-arrow-left"></i>
+    Kategorinavn
   </a>
 </p>
 <p class="mb-0">
-  <span class="fhi-tag fhi-tag--category">Category (no link)</span>
+  <span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
 </p>
 `;
 }
@@ -38,14 +38,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<a href="/url" class="fhi-tag fhi-tag--category">Category name</a>
+<a href="/url" class="fhi-tag fhi-tag--category">Kategorinavn</a>
 
 <a href="/url" class="fhi-tag fhi-tag--category">
-  <i class="icon-arrow-left-long"></i>
-  Category name
+  <i class="icon-arrow-left"></i>
+  Kategorinavn
 </a>
 
-<span class="fhi-tag fhi-tag--category">Category (no link)</span>
+<span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
 `;
 }
 

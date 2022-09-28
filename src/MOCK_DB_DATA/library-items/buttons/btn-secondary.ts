@@ -22,7 +22,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `<button type="button" class="btn fhi-btn-secondary">
-    Sekundær knapp
+    Sekundær handling
 </button>`;
 }
 

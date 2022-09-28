@@ -18,16 +18,16 @@ export const TagState: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <p>
-  <span class="fhi-tag text-bg-info">Info tag</span>
+  <span class="fhi-tag text-bg-info">Til informasjon.</span>
 </p>
 <p>
-  <span class="fhi-tag text-bg-success">Success tag</span>
+  <span class="fhi-tag text-bg-success">Suksess!</span>
 </p>
 <p>
-  <span class="fhi-tag text-bg-warning">Warning tag</span>
+  <span class="fhi-tag text-bg-warning">Advarsel!</span>
 </p>
 <p>
-  <span class="fhi-tag text-bg-error">Error tag</span>
+  <span class="fhi-tag text-bg-error">Feilmelding.</span>
 </p>
 `;
 }
@@ -38,10 +38,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<span class="fhi-tag text-bg-info">Info tag</span>
-<span class="fhi-tag text-bg-success">Success tag</span>
-<span class="fhi-tag text-bg-warning">Warning tag</span>
-<span class="fhi-tag text-bg-error">Error tag</span>
+<span class="fhi-tag text-bg-info">Til informasjon.</span>
+<span class="fhi-tag text-bg-success">Suksess!</span>
+<span class="fhi-tag text-bg-warning">Advarsel!</span>
+<span class="fhi-tag text-bg-error">Feilmelding.</span>
 `;
 }
 
