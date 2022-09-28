@@ -26,7 +26,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="fhi-search"><!-- add fhi-search--xl for tall search field -->
-  <label for="typeahead-basic" class="form-label">Søk etter et land (eller territorium)</label>
+  <label for="typeahead-basic" class="form-label">Søk etter et land eller territorium</label>
 
   <div class="d-flex">
     <div class="w-100 position-relative">
@@ -34,7 +34,7 @@ function getCodeHtml(): string | null {
         id="typeahead-basic"
         type="search"
         class="form-control fhi-search__form-control"
-        placeholder="Start søk..."
+        placeholder="Søk her..."
         [ngbTypeahead]="search"/>
     </div>
 

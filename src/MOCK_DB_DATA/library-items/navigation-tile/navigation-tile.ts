@@ -26,7 +26,7 @@ function getExampleHtml(): string {
 
             <p class="fhi-navigation-tile__heading">Overskrift</p>
 
-            <p class="fhi-navigation-tile__description">Kort, beskrivende tekst, som ikke går over mer enn tre linjer.</p>
+            <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
         </a>
     </div>
 </div>
@@ -46,7 +46,7 @@ function getCodeHtml(): string | null {
 
     <p class="fhi-navigation-tile__heading">Overskrift</p>
 
-    <p class="fhi-navigation-tile__description">Kort, beskrivende tekst, som ikke går over mer enn tre linjer.</p>
+    <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
 </a>`;
 }
 
