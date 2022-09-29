@@ -13,9 +13,9 @@ export const TypographicHierarchy: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
-<p class="small">Small text. The element <code>&lt;small&gt;</code> also inherits this font size.</p>
-<p>Standard body text. The css class <code>.p</code> may also be used.</p>
-<p class="lead">Lead text / intro text.</p>`;
+<p class="small"><code>.small</code> - liten tekst. Elementet <code>&lt;small&gt;</code> arver også denne fontstørrelseen.</p>
+<p>Standard brødtekst. Css-klassen <code>.p</code> kan også benyttes.</p>
+<p class="lead"><code>.lead</code> benyttes for ingress.</p>`;
 }
 
 function getCodeHtml(): string | null {

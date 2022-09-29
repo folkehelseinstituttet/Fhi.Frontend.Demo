@@ -1,7 +1,7 @@
 <div class="ds-left-menu">
   <div class="mb-3">
     <input class="form-control form-control-lg" type="text"
-          [(ngModel)]="libraryItemFilter.name" placeholder="Search" autofocus>
+          [(ngModel)]="libraryItemFilter.name" placeholder="Søk" autofocus>
     <p class="p-3" *ngIf="(menuItems | filterBy: libraryItemFilter)?.length === 0">
       Søket gir ingen treff <br><br>
     </p>

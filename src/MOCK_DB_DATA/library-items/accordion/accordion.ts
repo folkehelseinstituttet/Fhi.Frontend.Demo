@@ -26,19 +26,19 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <ngb-accordion>
-  <ngb-panel id="custom-id-0" title="Item #1">
+  <ngb-panel id="custom-id-0" title="Element #1">
     <ng-template ngbPanelContent>
-      <p>Item #1 content</p>
+      <p>Innhold for element #1</p>
     </ng-template>
   </ngb-panel>
-  <ngb-panel id="custom-id-1" title="Item #2">
+  <ngb-panel id="custom-id-1" title="Element #2">
     <ng-template ngbPanelContent>
-      <p>Item #2 content</p>
+      <p>Innhold for element #2</p>
     </ng-template>
   </ngb-panel>
-  <ngb-panel id="custom-id-2" title="Item #3">
+  <ngb-panel id="custom-id-2" title="Element #3">
     <ng-template ngbPanelContent>
-      <p>Item #3 content</p>
+      <p>Innhold for element #3</p>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>`;
@@ -50,15 +50,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
-  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>
+  Bootstrap-dokumentasjon for
+  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>.
 </p>
 <p>
-  The accordion is implemented as a
+  Accordion er implementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
 </p>`;
 }

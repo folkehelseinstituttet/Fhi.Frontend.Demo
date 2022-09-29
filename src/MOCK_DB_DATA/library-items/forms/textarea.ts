@@ -14,7 +14,7 @@ export const Textarea: LibraryItem[] = [{
 
 function getExampleHtml(): string {
   return `
-<label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+<label for="exampleFormControlTextarea1" class="form-label">Tekstfelt med flere linjer</label>
 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>`;
 }
 

@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<button type="button" class="btn fhi-btn-secondary" ngbTooltip="This is the tooltip.">
+<button type="button" class="btn fhi-btn-secondary" ngbTooltip="Dette er tooltip-teksten.">
   Hover for tooltip
 </button>`;
 }
@@ -36,15 +36,15 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Bootstrap documentation for
+  Bootstrap-dokumentasjon for
   <a href="${BootstrapComponentsBaseUrl}/tooltips">Tooltip</a>
 </p>
 <p>
-  The Tooltip is implemented as a
+  Tooltip er implementert som
   <a href="${NgBootstrapComponentsBaseUrl}/tooltip">NgBootstrap Tooltip</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
 </p>`;
 }

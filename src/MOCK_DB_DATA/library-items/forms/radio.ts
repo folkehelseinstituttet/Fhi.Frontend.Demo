@@ -17,25 +17,27 @@ function getExampleHtml(): string {
 <div class="form-check mb-2">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
   <label class="form-check-label" for="customRadio1">
-    Label for radio
+    Ledetekst for radioknapp, valg 1
   </label>
 </div>
 <div class="form-check mb-2">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2" checked>
   <label class="form-check-label" for="customRadio2">
-    Label for checked radio
+    Ledetekst for forhåndsvalgt radioknapp, valg 2
   </label>
 </div>
+
+<p class="pt-5">Deaktiverte radioknapper</p>
 <div class="form-check mb-2">
   <input class="form-check-input" type="radio" name="flexRadioDefault2" id="customRadio3" disabled>
   <label class="form-check-label" for="customRadio3">
-    Disabled radio
+    Deaktivert radioknapp
   </label>
 </div>
 <div class="form-check">
   <input class="form-check-input" type="radio" name="flexRadioDefault2" id="customRadio4" checked disabled>
   <label class="form-check-label" for="customRadio4">
-    Checked disabled radio
+    Deaktivert forhåndsvalgt radioknapp
   </label>
 </div>`;
 }
@@ -49,7 +51,7 @@ function getCodeHtml(): string | null {
 <div class="form-check">
   <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInput">
   <label class="form-check-label" for="radioInput">
-    Label for radio
+    Ledetekst for radioknapp
   </label>
 </div>`;
 }

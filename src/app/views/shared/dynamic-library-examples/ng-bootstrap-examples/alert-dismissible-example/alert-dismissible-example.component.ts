@@ -9,38 +9,38 @@ interface Alert {
 
 const ALERTS: Alert[] = [{
     type: 'info',
-    message: 'This is an info alert.',
+    message: 'Dette er en melding til informasjon.',
     icon: 'icon-info-circle',
   }, {
     type: 'success',
-    message: 'This is a success alert.',
+    message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle-regular',
   }, {
     type: 'warning',
-    message: 'This is a warning alert.',
+    message: 'Dette er en advarsel!',
     icon: 'icon-bell-regular',
   }, {
     type: 'error',
-    message: 'This is an error alert.',
+    message: 'Dette er en feilmelding.',
     icon: 'icon-bell-regular',
   }, {
     type: 'info',
-    message: 'This is an info alert.',
+    message: 'Dette er en melding til informasjon.',
     icon: 'icon-info-circle',
     bordered: true,
   }, {
     type: 'success',
-    message: 'This is a success alert.',
+    message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle-regular',
     bordered: true,
   }, {
     type: 'warning',
-    message: 'This is a warning alert.',
+    message: 'Dette er en advarsel!',
     icon: 'icon-bell-regular',
     bordered: true,
   }, {
     type: 'error',
-    message: 'This is an error alert.',
+    message: 'Dette er en feilmelding.',
     icon: 'icon-bell-regular',
     bordered: true,
   }

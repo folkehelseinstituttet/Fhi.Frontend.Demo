@@ -24,9 +24,9 @@ function getExampleHtml(): string {
                 <i class="icon-environment"></i>
             </span>
 
-            <p class="fhi-navigation-tile__heading">Tile Heading</p>
+            <p class="fhi-navigation-tile__heading">Overskrift</p>
 
-            <p class="fhi-navigation-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+            <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
         </a>
     </div>
 </div>
@@ -39,14 +39,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `
-<a href="/url" class="fhi-navigation-tile">
+<a href="/developer/components/navigationtile" class="fhi-navigation-tile">
     <span class="fhi-navigation-tile__icon">
         <i class="icon-environment"></i>
     </span>
 
-    <p class="fhi-navigation-tile__heading">Tile Heading</p>
+    <p class="fhi-navigation-tile__heading">Overskrift</p>
 
-    <p class="fhi-navigation-tile__description">Short descriptive text, that stretches no longer than over three lines.</p>
+    <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
 </a>`;
 }
 

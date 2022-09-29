@@ -22,7 +22,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `<button type="button" class="btn fhi-btn-primary">
-    Standard knapp
+    Hovedhandling
 </button>`;
 }
 
@@ -30,5 +30,6 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+    return `
+<p>Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.</p>`;
 }

@@ -4,7 +4,7 @@ import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../
 
 export const AlertDismissible: LibraryItem[] = [{
   id: LibraryItemIds.AlertDismissible,
-  title: 'Alert - dismissible',
+  title: 'Alert - dismissable',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -37,11 +37,11 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  The alert - dismissible is implemented as a
+  Alert med lukkeknapp er implementert som en
   <a href="${NgBootstrapComponentsBaseUrl}/alert">NgBootstrap alert</a>
-  in the FHI Designsystem.
+  i FHI Designsystem.
 </p>
 <p>
-  If you use another Javascript framework, you will have to find a suitable 3. party library.
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
 </p>`;
 }
