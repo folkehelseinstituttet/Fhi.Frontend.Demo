@@ -12,7 +12,7 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.PaginationCollectionCounter">
-    <ngb-pagination [collectionSize]="70" [(page)]="page" class="fhi-pagination d-flex justify-content-end">
+    <ngb-pagination [collectionSize]="currentCollectionSize" [pageSize]="currentPageSize" (page)="page" class="fhi-pagination d-flex justify-content-end">
         <ng-template ngbPaginationPrevious>
             <i class="icon-chevron-left"></i>
             <span class="visually-hidden">Forrige</span>
@@ -24,7 +24,14 @@
         <ng-template ngbPaginationPages let-page let-pages="pages">
             <li class="fhi-custom-page-item" *ngIf="pages.length > 0">
                 <span class="page-link">
-                    {{ page }} av {{pages.length}}
+                    <span class="fhi-custom-page-item__number">
+                        {{ page * currentPageSize - (currentPageSize - 1) }}
+                        -
+                        <span *ngIf="page * currentPageSize <= currentCollectionSize">{{ page * currentPageSize }}</span>
+                        <span *ngIf="page * currentPageSize > currentCollectionSize">{{ currentCollectionSize }}</span>
+                    </span>
+                    av
+                    <span class="fhi-custom-page-item__number">{{ currentCollectionSize }}</span>
                 </span>
             </li>
         </ng-template>

@@ -8,11 +8,10 @@ import { LibraryItemIds } from 'src/app/library-item-ids';
 })
 export class PaginationExampleComponent {
   @Input() itemId!: string;
-  page = 1;
 
   itemIds = LibraryItemIds;
-  
-  selectPage(page: string) {
-    this.page = parseInt(page, 10) || 1;
-  }
+
+  page = 1;
+  currentCollectionSize = 1000;
+  currentPageSize = 50;
 }
