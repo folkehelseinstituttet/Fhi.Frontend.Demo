@@ -22,16 +22,16 @@
             <i class="icon-chevron-right"></i>
         </ng-template>
         <ng-template ngbPaginationPages let-page let-pages="pages">
-            <li class="fhi-custom-page-item" *ngIf="pages.length > 0">
+            <li class="fhi-pagination__page-item" *ngIf="pages.length > 0">
                 <span class="page-link">
-                    <span class="fhi-custom-page-item__number">
+                    <span class="fhi-pagination__page-item-number">
                         {{ page * currentPageSize - (currentPageSize - 1) }}
                         -
                         <span *ngIf="page * currentPageSize <= currentCollectionSize">{{ page * currentPageSize }}</span>
                         <span *ngIf="page * currentPageSize > currentCollectionSize">{{ currentCollectionSize }}</span>
                     </span>
                     av
-                    <span class="fhi-custom-page-item__number">{{ currentCollectionSize }}</span>
+                    <span class="fhi-pagination__page-item-number">{{ currentCollectionSize }}</span>
                 </span>
             </li>
         </ng-template>
