@@ -35,6 +35,8 @@ function getCodeHtml(): string {
 <i class="icon-chevron-down"></i>
 <i class="icon-chevron-down-fat"></i>
 <i class="icon-chevron-expand"></i>
+<i class="icon-chevron-left"></i>
+<i class="icon-chevron-right"></i>
 <i class="icon-chevron-up"></i>
 <i class="icon-circle-regular"></i>
 <i class="icon-clap"></i>
