@@ -62,26 +62,6 @@
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
-    .nav-tabs {
-        border: unset;
-
-        .nav-link {
-            font-size: $fhi-font-size-1;
-        }
-        .nav-link:hover,
-        .nav-link:focus {
-            border-color: transparent;
-            text-decoration: none;
-        }
-        .nav-link.active,
-        .nav-link.active:hover,
-        .nav-link.active:focus {
-            border-color: transparent;
-            color: $body-color;
-            font-family: $fhi-font-family-sans-serif-bold;
-            text-decoration: none;
-        }
-    }
 }
 
 @include media-breakpoint-up(sm) {

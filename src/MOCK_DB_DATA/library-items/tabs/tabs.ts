@@ -3,12 +3,12 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Tabs: LibraryItem[] = [{
-  id: LibraryItemIds.Tabs,
-  title: 'Tabs',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+    id: LibraryItemIds.Tabs,
+    title: 'Tabs',
+    type: LibraryItemType.ngBootstrap,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml()
 }];
 
 
@@ -16,18 +16,7 @@ export const Tabs: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="/developer/components/Tabs">Aktiv lenke</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/developer/components/Tabs">Lenke 2</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="/developer/components/Tabs">Lenke 3</a>
-  </li>
-</ul>`;
+    return ``;
 }
 
 /*
@@ -35,12 +24,46 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+    return `
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+        <a ngbNavLink>Fane nummer 1</a>
+        <ng-template ngbNavContent>
+            <p>Dette er innhold for fane nummer 1.</p>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+        <a ngbNavLink>Fane nummer 2</a>
+        <ng-template ngbNavContent>
+            <p>Dette er innhold for fane nummer 2.</p>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+        <a ngbNavLink>Fane nummer 3</a>
+        <ng-template ngbNavContent>
+            <p>Dette er innhold for fane nummer 3.</p>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+        <a ngbNavLink>Fane nummer 4</a>
+        <ng-template ngbNavContent>
+            <p>Dette er innhold for fane nummer 4.</p>
+        </ng-template>
+    </li>
+    <li [ngbNavItem]="5">
+        <a ngbNavLink>Fane nummer 5</a>
+        <ng-template ngbNavContent>
+            <p>Dette er innhold for fane nummer 5.</p>
+        </ng-template>
+    </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+    return ``;
 }
