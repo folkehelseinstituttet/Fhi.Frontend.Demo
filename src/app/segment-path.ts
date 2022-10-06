@@ -11,6 +11,7 @@ import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-ti
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
+import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
 import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.data';
@@ -64,6 +65,7 @@ export class SegmentPaths {
   static pagination = stringTransform(Object.keys({ PaginationData })[0]);
   static search = stringTransform(Object.keys({ SearchData })[0]);
   static table = stringTransform(Object.keys({ TableData })[0]);
+  static tabs = stringTransform(Object.keys({ TabsData })[0]);
   static tags = stringTransform(Object.keys({ TagsData })[0]);
   static toast = stringTransform(Object.keys({ ToastData })[0]);
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
