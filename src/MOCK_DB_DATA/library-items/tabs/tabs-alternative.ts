@@ -2,9 +2,9 @@ import { LibraryItemIds } from 'src/app/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Tabs: LibraryItem[] = [{
-    id: LibraryItemIds.Tabs,
-    title: 'Tabs',
+export const TabsAlternative: LibraryItem[] = [{
+    id: LibraryItemIds.TabsAlternative,
+    title: 'Tabs alternative',
     type: LibraryItemType.ngBootstrap,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
