@@ -59,5 +59,20 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return ``;
+    return `
+<p>
+    Bootstrap-dokumentasjon for
+    <a href="${BootstrapComponentsBaseUrl}/navs-tabs">Navs and tabs</a>.
+</p>
+<p>
+    Tabs er implementert som en
+    <a href="${NgBootstrapComponentsBaseUrl}/nav">NgBootstrap Nav</a>
+    i FHI Designsystem.
+</p>
+<p>
+    Det er altså css-klassen <code>fhi-nav-tabs</code> som gir den visuelle varianten.
+</p>
+<p>
+    Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+</p>`;
 }

@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs fhi-nav-tabs">
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <li [ngbNavItem]="1">
         <a ngbNavLink>Fane 1</a>
         <ng-template ngbNavContent>
@@ -59,5 +59,17 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return ``;
+    return `
+<p>
+    Bootstrap-dokumentasjon for
+    <a href="${BootstrapComponentsBaseUrl}/navs-tabs">Navs and tabs</a>.
+</p>
+<p>
+    Tabs er implementert som en
+    <a href="${NgBootstrapComponentsBaseUrl}/nav">NgBootstrap Nav</a>
+    i FHI Designsystem.
+</p>
+<p>
+    Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+</p>`;
 }
