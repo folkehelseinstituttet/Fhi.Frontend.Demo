@@ -14,6 +14,7 @@ import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
+import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
@@ -39,6 +40,7 @@ export class MockDbService implements InMemoryDbService {
       PaginationData,
       SearchData,
       TableData,
+      TabsData,
       TagsData,
       NavigationtileData,
       ToastData,

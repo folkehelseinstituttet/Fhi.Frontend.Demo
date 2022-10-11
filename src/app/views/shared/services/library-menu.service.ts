@@ -126,6 +126,9 @@ export class LibraryMenuService {
       name: 'Tables',
       link: SegmentPaths.table
     }, {
+      name: 'Tabs',
+      link: SegmentPaths.tabs
+    }, {
       name: 'Tags',
       link: SegmentPaths.tags
     }, {

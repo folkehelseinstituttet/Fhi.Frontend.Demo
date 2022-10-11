@@ -1,20 +1,3 @@
-.nav-tabs {
-    border-bottom: 1px solid $fhi-grey-1;
-
-    .nav-link:hover,
-    .nav-link:focus {
-        border-color: $white $white $fhi-grey-1;
-        text-decoration: none;
-    }
-    .nav-link.active,
-    .nav-link.active:hover,
-    .nav-link.active:focus {
-        color: $body-color;
-        border-color: $fhi-grey-1 $fhi-grey-1 $white;
-        text-decoration: none;
-    }
-}
-
 .nav-pills {
     .nav-link {
         font-size: $fhi-font-size-2;

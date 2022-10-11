@@ -29,6 +29,22 @@
         background-color: $fhi-bg-color-3;
         margin: 0 (-$fhi-container-padding-xs);
         padding: $fhi-space-3 $fhi-px * 5;
+
+        > .nav-tabs {
+            .nav-link {
+                font-size: $fhi-font-size-1;
+                border-color: transparent;
+
+                &:not(.active) {
+                    color: $fhi-blue-1;
+
+                    &:hover {
+                        background-color: transparent;
+                        color: $fhi-red-2;
+                    }
+                }
+            }
+        }
     }
     &__item {
         background-color: $fhi-bg-color-1;
@@ -61,26 +77,6 @@
     }
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
-    }
-    .nav-tabs {
-        border: unset;
-
-        .nav-link {
-            font-size: $fhi-font-size-1;
-        }
-        .nav-link:hover,
-        .nav-link:focus {
-            border-color: transparent;
-            text-decoration: none;
-        }
-        .nav-link.active,
-        .nav-link.active:hover,
-        .nav-link.active:focus {
-            border-color: transparent;
-            color: $body-color;
-            font-family: $fhi-font-family-sans-serif-bold;
-            text-decoration: none;
-        }
     }
 }
 

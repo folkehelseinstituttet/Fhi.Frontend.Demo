@@ -12,6 +12,7 @@ import { NavigationTileIds } from "src/MOCK_DB_DATA/library-items/navigation-til
 import { PaginationIds } from "src/MOCK_DB_DATA/library-items/pagination/_pagination.ids"
 import { SearchIds } from "src/MOCK_DB_DATA/library-items/search/_search.ids"
 import { TableIds } from "src/MOCK_DB_DATA/library-items/table/_table.ids"
+import { TabsIds } from "src/MOCK_DB_DATA/library-items/tabs/_tabs.ids"
 import { TagsIds } from "src/MOCK_DB_DATA/library-items/tags/_tags.ids"
 import { ToastIds } from "src/MOCK_DB_DATA/library-items/toast/_toast.ids"
 import { TooltipIds } from "src/MOCK_DB_DATA/library-items/tooltip/_tooltip.ids"
@@ -32,6 +33,7 @@ const libraryItemIds = {
   ...PaginationIds,
   ...SearchIds,
   ...TableIds,
+  ...TabsIds,
   ...TagsIds,
   ...ToastIds,
   ...TooltipIds,
