@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: false
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -30,6 +30,7 @@ jobs:
           app_location: "/" # App source code path
           api_location: "api" # Api source code path - optional
           output_location: "dist/fhi-frontend-library-web-client" # Built app content directory - optional
+          app_build_command: "npm run build-prod"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
