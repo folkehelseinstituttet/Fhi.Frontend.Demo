@@ -2,6 +2,7 @@ import { AccordionIds } from "src/MOCK_DB_DATA/library-items/accordion/_accordio
 import { AdvancedSelectIds } from "src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.ids"
 import { AlertsIds } from "src/MOCK_DB_DATA/library-items/alerts/_alerts.ids"
 import { BadgeIds } from "src/MOCK_DB_DATA/library-items/badge/_badge.ids"
+import { BreadcrumbIds } from "src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.ids"
 import { ButtonsIds } from "src/MOCK_DB_DATA/library-items/buttons/_buttons.ids"
 import { ColorIds } from "src/MOCK_DB_DATA/library-items/color/_color.ids"
 import { FormsIds } from "src/MOCK_DB_DATA/library-items/forms/_forms.ids"
@@ -22,6 +23,7 @@ const libraryItemIds = {
   ...AdvancedSelectIds,
   ...AlertsIds,
   ...BadgeIds,
+  ...BreadcrumbIds,
   ...ButtonsIds,
   ...ColorIds,
   ...FormsIds,

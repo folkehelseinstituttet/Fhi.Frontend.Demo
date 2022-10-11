@@ -2,9 +2,9 @@ import { LibraryItemIds } from 'src/app/library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
-export const Pagination: LibraryItem[] = [{
-  id: LibraryItemIds.Pagination,
-  title: 'Pagination',
+export const PaginationCollectionCounter: LibraryItem[] = [{
+  id: LibraryItemIds.PaginationCollectionCounter,
+  title: 'Pagination - Collection Counter',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -13,17 +13,7 @@ export const Pagination: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-  return `
-<ngb-pagination [collectionSize]="120" [maxSize]="1" class="d-flex justify-content-end">
-  <ng-template ngbPaginationPrevious>
-      <i class="icon-arrow-left"></i>
-      <span class="page-item__text ms-1">Forrige</span>
-  </ng-template>
-  <ng-template ngbPaginationNext>
-      <span class="page-item__text me-1">Neste</span>
-      <i class="icon-arrow-right"></i>
-  </ng-template>
-</ngb-pagination>`;
+  return ``;
 }
 
 /*
@@ -31,7 +21,23 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `<ngb-pagination [collectionSize]="70" [(page)]="page" class="fhi-pagination d-flex justify-content-end">
+  <ng-template ngbPaginationPrevious>
+      <i class="icon-chevron-left"></i>
+      <span class="visually-hidden">Forrige</span>
+  </ng-template>
+  <ng-template ngbPaginationNext>
+      <span class="visually-hidden">Neste</span>
+      <i class="icon-chevron-right"></i>
+  </ng-template>
+  <ng-template ngbPaginationPages let-page let-pages="pages">
+      <li class="fhi-custom-page-item" *ngIf="pages.length > 0">
+          <span class="page-link">
+              {{ page }} av {{pages.length}}
+          </span>
+      </li>
+  </ng-template>
+</ngb-pagination>`;
 }
 
 /*
@@ -40,11 +46,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
   <p>
-    Bootstrap-dokumentasjon for
-    <a href="${BootstrapComponentsBaseUrl}/pagination">Pagination</a>.
-  </p>
-  <p>
-    Pagination er implementert som en
+    Pagination - Collection Counter er implementert som en
     <a href="${NgBootstrapComponentsBaseUrl}/pagination">NgBootstrap Pagination</a>
     i FHI Designsystem.
   </p>

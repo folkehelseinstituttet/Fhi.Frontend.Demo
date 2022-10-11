@@ -102,6 +102,9 @@ export class LibraryMenuService {
       name: 'Badge',
       link: SegmentPaths.badge
     }, {
+      name: 'Breadcrumb',
+      link: SegmentPaths.breadcrumb
+    }, {
       name: 'Buttons',
       link: SegmentPaths.buttons
     }, {

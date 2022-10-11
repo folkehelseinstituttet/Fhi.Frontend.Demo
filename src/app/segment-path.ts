@@ -2,6 +2,7 @@ import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordi
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
+import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
@@ -58,6 +59,7 @@ export class SegmentPaths {
   static advancedSelect = stringTransform(Object.keys({ AdvancedSelectData })[0]);
   static alerts = stringTransform(Object.keys({ AlertsData })[0]);
   static badge = stringTransform(Object.keys({ BadgeData })[0]);
+  static breadcrumb = stringTransform(Object.keys({ BreadcrumbData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
   static forms = stringTransform(Object.keys({ FormsData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
