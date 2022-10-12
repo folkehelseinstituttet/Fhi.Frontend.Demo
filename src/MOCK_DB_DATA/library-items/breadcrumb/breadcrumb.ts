@@ -19,8 +19,8 @@ function getExampleHtml(): string {
     return `
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Hjem</a></li>
-    <li class="breadcrumb-item"><a href="#">Seksjonsside</a></li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)">Hjem</a></li>
+    <li class="breadcrumb-item"><a href="javascript:void(0)">Seksjonsside</a></li>
     <li class="breadcrumb-item active" aria-current="page">Siden du er på</li>
   </ol>
 </nav>`;
@@ -31,7 +31,14 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return ``;
+    return `
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Hjem</a></li>
+    <li class="breadcrumb-item"><a href="#">Seksjonsside</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Siden du er på</li>
+  </ol>
+</nav>`;
 }
 
 /*
