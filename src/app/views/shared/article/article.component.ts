@@ -65,7 +65,7 @@ export class ArticleComponent implements OnInit {
 
 <p>Alle løsninger kan konsumere stilsettet uavhengig av hvilket rammeverk som er benyttet. Legg til CSS fra FHI Designsystem: <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">@folkehelseinstituttet/style</a>.</p>
 
-<p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk og konsumerer stilsettet er da ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
+<p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
 
 <p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
   }
