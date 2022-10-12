@@ -3,26 +3,27 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnShortcutLink: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonShortcutLink,
-    title: 'Shortcut link',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.ButtonShortcutLink,
+  title: 'Shortcut link',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
 function getExampleHtml(): string {
-    return `<a href="/developer/components/buttons" class="btn fhi-btn-shortcut-link">
-    <i class="icon-arrow-right"></i>
-    <span class="btn__text">Snarvei-lenke</span>
+  return `
+<a class="btn fhi-btn-shortcut-link">
+  <i class="icon-arrow-right"></i>
+  <span class="btn__text">Snarvei-lenke</span>
 </a>
 
 <br>
 
-<a href="/developer/components/buttons" class="btn fhi-btn-shortcut-link">
-    <i class="icon-arrow-left-red"></i>
-    <span class="btn__text">Snarvei-lenke</span>
+<a class="btn fhi-btn-shortcut-link">
+  <i class="icon-arrow-left-red"></i>
+  <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
 
@@ -31,14 +32,15 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/url" class="btn fhi-btn-shortcut-link">
-    <i class="icon-arrow-right"></i>
-    <span class="btn__text">Snarvei-lenke</span>
+  return `
+<a href="/url" class="btn fhi-btn-shortcut-link">
+  <i class="icon-arrow-right"></i>
+  <span class="btn__text">Snarvei-lenke</span>
 </a>
 
 <a href="/url" class="btn fhi-btn-shortcut-link">
-    <i class="icon-arrow-left-red"></i>
-    <span class="btn__text">Snarvei-lenke</span>
+  <i class="icon-arrow-left-red"></i>
+  <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
 
@@ -46,5 +48,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+  return null;
 }
