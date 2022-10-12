@@ -3,17 +3,17 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnShortcut: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonShortcut,
-    title: 'Shortcut button',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.ButtonShortcut,
+  title: 'Shortcut button',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
 function getExampleHtml(): string {
-    return getCodeHtml();
+  return getCodeHtml();
 }
 
 /*
@@ -21,9 +21,10 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/developer/components/buttons" class="btn fhi-btn-shortcut">
-    <i class="icon-arrow-right"></i>
-    <span class="btn__text">Snarvei-lenke</span>
+  return `
+<a class="btn fhi-btn-shortcut">
+  <i class="icon-arrow-right"></i>
+  <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
 
@@ -31,5 +32,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Code from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+  return null;
 }
