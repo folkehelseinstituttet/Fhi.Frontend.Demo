@@ -19,7 +19,7 @@ function getExampleHtml(): string {
     return `
 <div class="row gx-3 gx-sm-5">
     <div class="col-auto col-sm-12 col-xl-6">
-        <a href="/developer/components/navigationtile" class="fhi-navigation-tile">
+        <a href="javascript:void(0)" class="fhi-navigation-tile">
             <span class="fhi-navigation-tile__icon">
                 <i class="icon-environment"></i>
             </span>
@@ -39,7 +39,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
     return `
-<a href="/developer/components/navigationtile" class="fhi-navigation-tile">
+<a href="" class="fhi-navigation-tile">
     <span class="fhi-navigation-tile__icon">
         <i class="icon-environment"></i>
     </span>

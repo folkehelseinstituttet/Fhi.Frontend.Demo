@@ -27,9 +27,16 @@ function getExampleHtml(): string {
 
 <ul>
   <li>
-    <a href="developer/components/badge#badgerounded">Forskningssammendrag</a>
+    Forskningssammendrag
     <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
       100
+      <span class="visually-hidden">sammendrag tilgjengelig</span>
+    </span>
+  </li>
+  <li>
+    Andre
+    <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
+      23
       <span class="visually-hidden">sammendrag tilgjengelig</span>
     </span>
   </li>
