@@ -7,9 +7,7 @@ import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
   selector: 'app-list-of-variations',
-  templateUrl: './list-of-variations.component.html',
-  styles: [
-  ]
+  templateUrl: './list-of-variations.component.html'
 })
 export class ListOfVariationsComponent implements OnInit, OnDestroy {
 
