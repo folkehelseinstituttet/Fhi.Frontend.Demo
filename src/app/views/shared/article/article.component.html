@@ -1,1 +1,4 @@
-<p>article works!</p>
+<article class="">
+  <h1 class="">{{ title }}</h1>
+  <div [innerHtml]="articleHtml | safe: 'html'"></div>
+</article>

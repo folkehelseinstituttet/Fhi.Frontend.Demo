@@ -10,6 +10,9 @@ import { SegmentPaths } from 'src/app/segment-path';
 })
 export class ArticleComponent implements OnInit {
 
+  title: string;
+  articleHtml: any;
+
   private subscription: Subscription = new Subscription();
 
   constructor(private urlService: UrlService) { }
@@ -28,27 +31,41 @@ export class ArticleComponent implements OnInit {
   private findTopLevel() {
     switch (this.urlService.getSegmentPath(0)) {
       case SegmentPaths.developer:
-        this.findSecondLevel(SegmentPaths.developer);
+        this.findSecondLevelDeveloper();
         break;
 
       case SegmentPaths.designer:
-        this.findSecondLevel(SegmentPaths.designer);
+        this.findSecondLevelDesigner();
     }
   }
-
-  private findSecondLevel(topLevel: string) {
+  private findSecondLevelDeveloper() {
     switch (this.urlService.getSegmentPath(1)) {
       case SegmentPaths.visualIdentity:
-        console.log(topLevel + ': visualIdentity');
+        this.title = 'Visuell identitet';
+        this.articleHtml = this.getArticleHtmlForDeveloperVisualIdentity();
         break;
 
       case SegmentPaths.components:
-        console.log(topLevel + ': components');
-        break;
-
-      case SegmentPaths.modules:
-        console.log(topLevel + ': modules');
+        this.title = 'Komponenter';
+        this.articleHtml = this.getArticleHtmlForDeveloperComponents();
     }
+  }
+  private findSecondLevelDesigner() {
+    console.log('findSecondLevelDesigner() not implemented...');
+  }
+
+  private getArticleHtmlForDeveloperVisualIdentity(): any {
+    return `
+<p>
+  Her er det bare å fylle på med markup...
+</p>
+<p>
+  <a href="">Lenker og what not...</a>
+</p>`;
+  }
+
+  private getArticleHtmlForDeveloperComponents(): any {
+    return;
   }
 
 }
