@@ -65,7 +65,14 @@ export class ArticleComponent implements OnInit {
   }
 
   private getArticleHtmlForDeveloperComponents(): any {
-    return;
+    return `
+<p>Komponentbiblioteket i FHI Designsystem baserer seg på <a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">Bootstrap 5</a>. Interaktive komponenter benytter <a href="https://ng-bootstrap.github.io/" class="text-nowrap">ng-bootstrap</a> og andre tredjeparts-komponenter der disse finnes. I tillegg er noen skreddersydde Angular-komponenter produsert av FHI.</p>
+
+<p>Alle løsninger kan konsumere stilsettet uavhengig av benyttet rammeverk i enhver løsning. Legg til CSS fra FHI Designsystem: <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">@folkehelseinstituttet/style</a>.</p>
+
+<p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontend-rammeverk og konsumerer stilsettet er da ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
+
+<p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
   }
 
 }
