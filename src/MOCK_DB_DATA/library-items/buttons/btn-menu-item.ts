@@ -13,19 +13,20 @@ export const BtnMenuItem: LibraryItem[] = [{
 
 
 function getExampleHtml(): string {
-    return `<p class="mb-4">
-    <a href="/developer/components/buttons" class="btn fhi-btn-menu-item">
-        <i class="icon-population"></i>
-        <span class="btn__text">Menyknapp</span>
-    </a>
+  return `
+<p class="mb-4">
+  <a class="btn fhi-btn-menu-item">
+    <i class="icon-population"></i>
+    <span class="btn__text">Menyknapp</span>
+  </a>
 </p>
 
 <p>
-    Aktivt meny-element:<br>
-    <a href="/developer/components/buttons" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
-        <i class="icon-muscle"></i>
-        <span class="btn__text">Menyknapp</span>
-    </a>
+  Aktivt meny-element:<br>
+  <a class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
+    <i class="icon-muscle"></i>
+    <span class="btn__text">Menyknapp</span>
+  </a>
 </p>`;
 }
 
@@ -34,14 +35,15 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<a href="/url" class="btn fhi-btn-menu-item">
-    <i class="icon-population"></i>
-    <span class="btn__text">Menyknapp</span>
+    return `
+<a href="/url" class="btn fhi-btn-menu-item">
+  <i class="icon-population"></i>
+  <span class="btn__text">Menyknapp</span>
 </a>
 
-<a href="/url" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
-    <i class="icon-muscle"></i>
-    <span class="btn__text">Menyknapp</span>
+<a class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
+  <i class="icon-muscle"></i>
+  <span class="btn__text">Menyknapp</span>
 </a>`;
 }
 
