@@ -1,6 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const AlertDismissible: LibraryItem[] = [{
   id: LibraryItemIds.AlertDismissible,
@@ -38,7 +38,7 @@ function getDocumentationHtml(): string | null {
   return `
 <p>
   Alert med lukkeknapp er implementert som en
-  <a href="${NgBootstrapComponentsBaseUrl}/alert">NgBootstrap alert</a>
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/alert">NgBootstrap alert</a>
   i FHI Designsystem.
 </p>
 <p>

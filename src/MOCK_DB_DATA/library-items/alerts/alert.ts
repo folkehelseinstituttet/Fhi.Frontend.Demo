@@ -1,6 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const Alert: LibraryItem[] = [{
   id: LibraryItemIds.Alert,
@@ -70,7 +70,7 @@ function getDocumentationHtml(): string | null {
   return `
 <p>
   Bootstrap-dokumentasjon for
-  <a href="${BootstrapComponentsBaseUrl}/alerts">Alerts</a>
+  <a href="${CONST.BootstrapComponentsBaseUrl}/alerts">Alerts</a>
 </p>
 <p>
   Alerts er tilgjengelige som:
