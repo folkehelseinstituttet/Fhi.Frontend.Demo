@@ -1,6 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { BootstrapComponentsBaseUrl } from '../../library-item-constants';
 
 export const BadgeRounded: LibraryItem[] = [{
   id: LibraryItemIds.BadgeRounded,

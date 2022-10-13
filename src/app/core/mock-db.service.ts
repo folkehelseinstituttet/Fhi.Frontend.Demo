@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-// All item ids and segment paths
+// All item ids
 import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids';
-import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-item-segment-paths';
 
 // Items
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
@@ -33,7 +32,6 @@ export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
       LibraryItemIds,
-      LibraryItemSegmentPaths,
 
       // Items
       AccordionData,

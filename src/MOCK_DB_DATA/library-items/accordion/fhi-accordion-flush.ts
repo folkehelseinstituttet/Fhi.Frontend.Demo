@@ -1,9 +1,9 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const FhiAccordionFlush: LibraryItem[] = [{
-  id: LibraryItemIds.AccordionFlushFhi,
+  id: LibraryItemIds.FhiAccordionFlush,
   title: 'Accordion - flush (FHI)',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
@@ -51,11 +51,11 @@ function getDocumentationHtml(): string | null {
   return `
 <p>
   Bootstrap-dokumentasjon for
-  <a href="${BootstrapComponentsBaseUrl}/accordion">Accordion</a>.
+  <a href="${CONST.BootstrapComponentsBaseUrl}/accordion">Accordion</a>.
 </p>
 <p>
   Accordion er implementert som en
-  <a href="${NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/accordion">NgBootstrap Accordion</a>
   i FHI Designsystem.
 </p>
 <p>

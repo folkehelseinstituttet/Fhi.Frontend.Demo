@@ -34,4 +34,3 @@ library-items/
         foo-baz.data.ts
         etc.
 ```
-

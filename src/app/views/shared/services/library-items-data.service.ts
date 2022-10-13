@@ -23,11 +23,6 @@ export class LibraryItemsDataService {
     return this.http.get<any>(serverUrl);
   }
 
-  getLibraryItemSegmentPaths(): Observable<any> {
-    let serverUrl = `${environment.apiBaseUrl}/LibraryItemSegmentPaths`;
-    return this.http.get<any>(serverUrl);
-  }
-
   private capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

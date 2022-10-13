@@ -1,6 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const Template2: LibraryItem[] = [{
   id: LibraryItemIds.Template,
