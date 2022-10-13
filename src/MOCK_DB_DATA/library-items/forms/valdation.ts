@@ -1,6 +1,5 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
 
 export const Validation: LibraryItem[] = [{
   id: LibraryItemIds.FormValidation,
@@ -11,16 +10,10 @@ export const Validation: LibraryItem[] = [{
   documentationHtml: getDocumentationHtml()
 }];
 
-
-function getExampleHtml(): string {
-  return getCodeHtml();
-}
-
 /*
- * Return empty string to use a copy of exampleHtml as codeHtml.
- * Return null to remove Code from library-item.
+ * Return value is ignored if LibraryItemType is not html
  */
-function getCodeHtml(): string | null {
+function getExampleHtml(): string {
   return `
 <label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
 <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
@@ -28,7 +21,15 @@ function getCodeHtml(): string | null {
 }
 
 /*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
  * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return ``;
+}
+
+/*
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

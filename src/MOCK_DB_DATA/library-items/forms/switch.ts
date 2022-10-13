@@ -1,6 +1,5 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
 
 export const Switch: LibraryItem[] = [{
   id: LibraryItemIds.FormSwitch,
@@ -12,6 +11,9 @@ export const Switch: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <div class="form-check form-switch mb-2">
@@ -26,7 +28,6 @@ function getExampleHtml(): string {
     Skru av/på denne bryteren
   </label>
 </div>
-
 <p class="pt-5">Deaktiverte brytere</p>
 <div class="form-check form-switch mb-2">
   <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckChecked3" disabled>
@@ -57,7 +58,7 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;
