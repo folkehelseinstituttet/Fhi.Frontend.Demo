@@ -19,35 +19,16 @@ import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.dat
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
-
-  // TODO: is it necessary to have lover case... need better algorithm to chatch two words, eg. AdvancedSelect
-  //       and a better algorithm to get it back to a valid mock db source.
-  // return objectNameAsString.toLocaleLowerCase().slice(0, -4);
-
   return objectNameAsString.slice(0, -4);
 }
 
-export class SegmentPaths {
 
-  /*
-   * Main menu
-   */
-  static developer = 'developer';
-  static designer = 'designer';
+/*
+ * LibraryItemSegmentPaths
+ *  - corresponds to library second level menus
+ */
+export class LibraryItemSegmentPaths {
 
-
-  /*
-   * Library top level menu
-   */
-
-  static visualIdentity = 'visual-identity';
-  static components = 'components';
-  static modules = 'modules';
-
-
-  /*
-   * Library second level menus
-   */
 
   // Visual identity
   static color = stringTransform(Object.keys({ ColorData })[0]);

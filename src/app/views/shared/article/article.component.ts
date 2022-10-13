@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
-import { SegmentPaths } from 'src/app/segment-path';
+import { SegmentPaths } from 'src/app/segment-paths';
 
 @Component({
   selector: 'app-article',
