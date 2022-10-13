@@ -11,6 +11,9 @@ export const IconSet: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <div class="flex flex-wrap ds-icons-wrapper">
@@ -18,6 +21,10 @@ function getExampleHtml(): string {
 </div>`;
 }
 
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
 function getCodeHtml(): string {
   return `
 <i class="icon-alcohol-drugs"></i>
@@ -56,8 +63,7 @@ function getCodeHtml(): string {
 <i class="icon-swap"></i>
 <i class="icon-trash-alt-regular"></i>
 <i class="icon-user-regular"></i>
-<i class="icon-xmark"></i>
-`;
+<i class="icon-xmark"></i>`;
 }
 
 /*
