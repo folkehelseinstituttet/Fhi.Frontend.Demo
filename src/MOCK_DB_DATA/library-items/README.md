@@ -23,7 +23,7 @@ library-items/
 3. Rename `const Template` in `./your-new-items/your-new-item.ts`
 4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep postfix `Data`)
 5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep postfix `Ids`)
-6. Add a new import and add imported object to `libraryItemIds` in `src/app/library-item-ids.ts`
+6. Add a new import and add imported object to `libraryItemIds` in `../library-item-ids.ts`
 7. Add a new import and constant in `src/app/segment-paths.ts`, under `Library second level menu`
 8. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
 9. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
