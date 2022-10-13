@@ -1,7 +1,9 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { Template } from './template';
+import { Template1 } from './template1';
+import { Template2 } from './template2';
 
 export const TemplateData: LibraryItem[] = [
-  ...Template
+  ...Template1,
+  ...Template2
 ];
