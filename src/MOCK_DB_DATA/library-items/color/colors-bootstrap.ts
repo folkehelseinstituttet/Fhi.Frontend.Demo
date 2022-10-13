@@ -10,7 +10,27 @@ export const ColorsBootstrap: LibraryItem[] = [{
   documentationHtml: getDocumentationHtml()
 }];
 
+
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
+  const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?: string) => {
+    const textClass = (textColor === 'black') ? '' : ' class="text-white"';
+    return `
+<div class="ds-color-palette d-flex flex-row">
+  <div class="ps-3 pt-2 ds-color-palette__color ds-color-palette__color--${color}">
+    <p${textClass}>${bootstrapName}</p>
+  </div>
+  <div class="ds-color-palette__code ms-4 p-2">
+    ${hex}
+  </div>
+  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
+    $${color}
+  </div>
+</div>`;
+  }
+
   return `
 ${colorHtml('#d14641', 'fhi-red-2', 'Primary')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2', 'Secondary', 'black')}
@@ -23,26 +43,17 @@ ${colorHtml('#393c61', 'fhi-blue-dark-1', 'Dark')}
 ${colorHtml('#ffffff', 'white', 'White', 'black')}`;
 }
 
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
 function getCodeHtml(): string | null {
   return null;
 }
 
+/*
+ * Return null to remove Documentation from library-item.
+ */
 function getDocumentationHtml(): string | null {
   return null;
-}
-
-function colorHtml(hex: string, color: string, bootstrapName: string, textColor?: string) {
-  const textClass = (textColor === 'black') ? '' : ' class="text-white"';
-  return `
-<div class="ds-color-palette d-flex flex-row">
-  <div class="ps-3 pt-2 ds-color-palette__color ds-color-palette__color--${color}">
-    <p${textClass}>${bootstrapName}</p>
-  </div>
-  <div class="ds-color-palette__code ms-4 p-2">
-    ${hex}
-  </div>
-  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
-    $${color}
-  </div>
-</div>`;
 }

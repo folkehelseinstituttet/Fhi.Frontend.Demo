@@ -11,6 +11,9 @@ export const FontColors: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <!--
@@ -36,13 +39,20 @@ function getExampleHtml(): string {
   <div class="col-sm p-3 pt-5 bg-primary">
     <p class="text-white"><strong>Normal brødtekst</strong></p>
   </div>
-</div>`
+</div>`;
 }
 
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
 function getCodeHtml(): string | null {
-  return '';
+  return ``;
 }
 
+/*
+ * Return null to remove Documentation from library-item.
+ */
 function getDocumentationHtml(): string | null {
   return null;
 }
