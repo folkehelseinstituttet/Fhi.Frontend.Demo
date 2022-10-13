@@ -58,6 +58,7 @@ function getCodeHtml(): string | null {
     <span class="visually-hidden">nye e-poster</span>
   </span>
 </p>
+
 <button type="button" class="btn btn-md fhi-btn-secondary position-relative">
   Vis flere
   <span class="position-absolute top-0 start-100 translate-middle badge fhi-badge fhi-badge--circle-light">
