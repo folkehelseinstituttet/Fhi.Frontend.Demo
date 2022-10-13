@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-import { LibraryItemIds } from 'src/app/library-item-ids';
 import { AdvancedSelectExampleDataService, Person } from './advanced-select-example-data.service';
 
 @Component({
@@ -11,8 +10,7 @@ import { AdvancedSelectExampleDataService, Person } from './advanced-select-exam
 export class AdvancedSelectExampleComponent {
 
   @Input() itemId!: string;
-
-  itemIds = LibraryItemIds;
+  @Input() itemIds!: any;
 
   // Autosuggest
   selectedCar: number;
