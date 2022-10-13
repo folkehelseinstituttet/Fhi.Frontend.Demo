@@ -25,11 +25,13 @@ export class LibraryItemComponent implements OnInit {
   exampleHtml: string;
   documentationHtml: string;
   codeHtml: string;
+  hasPreviewButtons: boolean;
 
   itemTypeHtml = LibraryItemType.html;
   activeMenuItemByDefault = 0;
   navTabMenuItems: MenuItem[];
   MenuItemName = MenuItemName;
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -54,6 +56,7 @@ export class LibraryItemComponent implements OnInit {
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);
     this.documentationHtml = item.documentationHtml;
+    this.hasPreviewButtons = item.hasPreviewButtons;
   }
 
   private getCodeHtml(item: LibraryItem): string {

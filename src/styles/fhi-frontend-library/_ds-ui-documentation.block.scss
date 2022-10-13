@@ -78,6 +78,29 @@
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
+    &__preview-options {
+        background-color: $fhi-grey-light-1;
+        border-left: 1px solid $fhi-grey-light-2;
+        border-bottom: 1px solid $fhi-grey-light-2;
+        border-bottom-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        padding-left: $fhi-space-2;
+        p {
+            font-size: $fhi-px * 12;
+        }
+    }
+    &__preview-trigger {
+        border: 0;
+        line-height: .5;
+        padding: 0 $fhi-space-2;
+        &:hover {
+            background-color: transparent;
+        }
+        small {
+            font-family: $fhi-font-family-sans-serif-regular;
+            font-size: 12px;
+        }
+    }
 }
 
 @include media-breakpoint-up(sm) {
@@ -97,6 +120,29 @@
         }
         &__item {
             padding: $fhi-space-5;
+
+            &.has-preview-buttons {
+                padding-top: $fhi-px * 75;
+            }
+        }
+        &__modal-window {
+            background-color: $fhi-grey-1;
+
+            .modal-content {
+                background-color: transparent;
+            }
+
+            .modal-dialog {
+                margin-top: 0;
+            }
+
+            .modal-sm {
+                max-width: 391px;
+            }
+        }
+        &__modal-body {
+            background-color: $fhi-white;
+            padding: 0;
         }
     }
 }

@@ -6,6 +6,7 @@ import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_bread
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
+import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
@@ -71,5 +72,8 @@ export class SegmentPaths {
   static tags = stringTransform(Object.keys({ TagsData })[0]);
   static toast = stringTransform(Object.keys({ ToastData })[0]);
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
+
+  // Modules
+  static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
 
 }

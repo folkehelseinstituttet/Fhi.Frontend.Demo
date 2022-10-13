@@ -6,6 +6,7 @@ import { BreadcrumbIds } from "src/MOCK_DB_DATA/library-items/breadcrumb/_breadc
 import { ButtonsIds } from "src/MOCK_DB_DATA/library-items/buttons/_buttons.ids"
 import { ColorIds } from "src/MOCK_DB_DATA/library-items/color/_color.ids"
 import { FormsIds } from "src/MOCK_DB_DATA/library-items/forms/_forms.ids"
+import { GlobalHeaderIds } from "src/MOCK_DB_DATA/library-items/global-header/_global-header.ids"
 import { IconsIds } from "src/MOCK_DB_DATA/library-items/icons/_icons.ids"
 import { ModalIds } from "src/MOCK_DB_DATA/library-items/modal/_modal.ids"
 import { NavigationTileIds } from "src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.ids"
@@ -27,6 +28,7 @@ const libraryItemIds = {
   ...ButtonsIds,
   ...ColorIds,
   ...FormsIds,
+  ...GlobalHeaderIds,
   ...IconsIds,
   ...ModalIds,
   ...NavigationTileIds,

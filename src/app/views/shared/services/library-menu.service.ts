@@ -29,9 +29,9 @@ export class LibraryMenuService {
     }, {
       name: TopLevelMenuItemNames.components,
       link: `/${currentSegmentPath0}/${SegmentPaths.components}`
-    // }, {
-    //   name: TopLevelMenuItemNames.modules,
-    //   link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
+    }, {
+      name: TopLevelMenuItemNames.modules,
+      link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
     }];
     return this.topLevelMenuItems;
   }
@@ -142,8 +142,8 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
-      name: 'Første modul kommer snart',
-      link: '.'
+      name: 'Global header',
+      link: SegmentPaths.globalheader
     }];
   }
 
