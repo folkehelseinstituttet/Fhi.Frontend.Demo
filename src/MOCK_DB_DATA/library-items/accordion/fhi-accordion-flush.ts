@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const FhiAccordionFlush: LibraryItem[] = [{
   id: LibraryItemIds.FhiAccordionFlush,
-  title: 'Accordion - flush (FHI)',
+  title: 'Accordion - flush alternative',
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
