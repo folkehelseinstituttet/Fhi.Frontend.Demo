@@ -1,4 +1,4 @@
-import { AccordionIds } from "src/MOCK_DB_DATA/library-items/accordion/_accordion.data"
+import { AccordionIds } from "src/MOCK_DB_DATA/library-items/accordion/_accordion.ids"
 import { AdvancedSelectIds } from "src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.ids"
 import { AlertsIds } from "src/MOCK_DB_DATA/library-items/alerts/_alerts.ids"
 import { BadgeIds } from "src/MOCK_DB_DATA/library-items/badge/_badge.ids"
