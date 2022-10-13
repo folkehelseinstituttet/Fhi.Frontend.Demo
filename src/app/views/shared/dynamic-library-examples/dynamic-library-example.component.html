@@ -1,15 +1,19 @@
 <div [ngSwitch]="itemId">
+
   <app-accordion-example
     *ngSwitchCase="itemIds.Accordion"
-    [itemId]="itemIds.Accordion">
+    [itemId]="itemIds.Accordion"
+    [itemIds]="itemIds">
   </app-accordion-example>
   <app-accordion-example
     *ngSwitchCase="itemIds.AccordionFlush"
-    [itemId]="itemIds.AccordionFlush">
+    [itemId]="itemIds.AccordionFlush"
+    [itemIds]="itemIds">
   </app-accordion-example>
   <app-accordion-example
     *ngSwitchCase="itemIds.AccordionFlushFhi"
-    [itemId]="itemIds.AccordionFlushFhi">
+    [itemId]="itemIds.AccordionFlushFhi"
+    [itemIds]="itemIds">
   </app-accordion-example>
 
   <app-advanced-select-example
@@ -48,4 +52,5 @@
   <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
 
   <div *ngSwitchDefault>No component matches given id...</div>
+
 </div>
