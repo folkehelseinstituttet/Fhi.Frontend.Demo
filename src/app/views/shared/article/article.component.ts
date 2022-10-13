@@ -48,6 +48,11 @@ export class ArticleComponent implements OnInit {
       case SegmentPaths.components:
         this.title = 'Komponenter';
         this.articleHtml = this.getArticleHtmlForDeveloperComponents();
+        break;
+
+      case SegmentPaths.modules:
+        this.title = 'Moduler';
+        this.articleHtml = this.getArticleHtmlForDeveloperModules();
     }
   }
   private findSecondLevelDesigner() {
@@ -68,6 +73,11 @@ export class ArticleComponent implements OnInit {
 <p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
 
 <p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
+  }
+
+  private getArticleHtmlForDeveloperModules(): any {
+    return `
+<p>Moduler er større komponenter som er avhengig av en eller flere andre komponenter.</p>`;
   }
 
 }
