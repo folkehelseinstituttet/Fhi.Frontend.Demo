@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HtmlParser } from '@angular/compiler';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,16 +9,19 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LibraryItemFullScreenButtonComponent implements OnInit {
 
+  @Input() itemMarkup: any;
+
   constructor(private modal: NgbModal) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  previewMobile(modalContent: any) {
+  previewItemInContext(modalContent: any, size: string, fullscreen: boolean) {
     this.modal.open(modalContent, {
       windowClass: 'ds-ui-documentation__modal-window',
       scrollable: true,
-      size: 'sm'
+      size: size,
+      fullscreen: fullscreen
     });
   }
 }
