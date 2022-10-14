@@ -1,22 +1,22 @@
-import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
-import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
-import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
-import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
-import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
-import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
-import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
-import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
-import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
-import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
-import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
-import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
-import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
-import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
-import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
-import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
-import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
-import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.data';
-import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
+import { AccordionData } from './accordion/_accordion.data';
+import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
+import { AlertsData } from './alerts/_alerts.data';
+import { BadgeData } from './badge/_badge.data';
+import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
+import { ButtonsData } from './buttons/_buttons.data';
+import { ColorData } from './color/_color.data';
+import { FormsData } from './forms/_forms.data';
+import { IconsData } from './icons/_icons.data';
+import { ModalData } from './modal/_modal.data';
+import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
+import { PaginationData } from './pagination/_pagination.data';
+import { SearchData } from './search/_search.data';
+import { TableData } from './table/_table.data';
+import { TabsData } from './tabs/_tabs.data';
+import { TagsData } from './tags/_tags.data';
+import { ToastData } from './toast/_toast.data';
+import { TooltipData } from './tooltip/_tooltip.data';
+import { TypographyData } from './typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
   return objectNameAsString.slice(0, -4);
@@ -28,7 +28,6 @@ function stringTransform(objectNameAsString: string) {
  *  - corresponds to library second level menus
  */
 export class LibraryItemSegmentPaths {
-
 
   // Visual identity
   static color = stringTransform(Object.keys({ ColorData })[0]);
