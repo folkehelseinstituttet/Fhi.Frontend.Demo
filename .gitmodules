@@ -1,3 +1,6 @@
 [submodule "Fhi.Frontend.Style"]
 	path = Fhi.Frontend.Style
 	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.Style.git
+[submodule "Fhi.Frontend.AngularComponents"]
+	path = Fhi.Frontend.AngularComponents
+	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents.git
