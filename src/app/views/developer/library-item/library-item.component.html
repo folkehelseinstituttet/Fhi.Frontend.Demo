@@ -9,7 +9,7 @@
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent [ngClass]="">
             <app-library-item-full-screen-button
-              *ngIf="hasPreviewButtons && type === itemTypeHtml; else dynamicLibraryExample"
+              *ngIf="hasPreviewButtons && type === itemTypeHtml; else hasPreviewButtons && dynamicLibraryExample"
               [itemMarkup]="exampleHtml">
             </app-library-item-full-screen-button>
             <div class="ds-ui-documentation__item" [ngClass]="{'has-preview-buttons': hasPreviewButtons}">

@@ -145,7 +145,7 @@ export class LibraryMenuService {
   private getModulesMenu(): MenuItem[] {
     return [{
       name: 'Global header',
-      link: SegmentPaths.globalheader
+      link: LibraryItemSegmentPaths.globalheader
     }];
   }
 

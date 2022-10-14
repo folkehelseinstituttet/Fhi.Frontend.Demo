@@ -6,6 +6,7 @@ import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { FormsData } from './forms/_forms.data';
+import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
@@ -51,5 +52,8 @@ export class LibraryItemSegmentPaths {
   static tags = stringTransform(Object.keys({ TagsData })[0]);
   static toast = stringTransform(Object.keys({ ToastData })[0]);
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
+
+  // Modules
+  static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
 
 }
