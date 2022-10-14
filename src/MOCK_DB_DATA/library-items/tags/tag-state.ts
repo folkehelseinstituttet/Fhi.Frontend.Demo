@@ -1,6 +1,5 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const TagState: LibraryItem[] = [{
   id: LibraryItemIds.TagState,
@@ -28,8 +27,7 @@ function getExampleHtml(): string {
 </p>
 <p>
   <span class="fhi-tag text-bg-error">Feilmelding.</span>
-</p>
-`;
+</p>`;
 }
 
 /*
@@ -41,12 +39,11 @@ function getCodeHtml(): string | null {
 <span class="fhi-tag text-bg-info">Til informasjon.</span>
 <span class="fhi-tag text-bg-success">Suksess!</span>
 <span class="fhi-tag text-bg-warning">Advarsel!</span>
-<span class="fhi-tag text-bg-error">Feilmelding.</span>
-`;
+<span class="fhi-tag text-bg-error">Feilmelding.</span>`;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

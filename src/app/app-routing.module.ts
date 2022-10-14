@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SegmentPaths } from './segment-path';
+import { SegmentPaths } from './segment-paths';
 
-const defaultPath = `/${SegmentPaths.developer}/${SegmentPaths.components}/${SegmentPaths.accordion}`;
+const defaultPath = `/${SegmentPaths.developer}/${SegmentPaths.components}`;
 
 const routes: Routes = [{
   path: '',
