@@ -26,7 +26,7 @@ export class LibraryItemComponent implements OnInit {
   exampleHtml: string;
   documentationHtml: string;
   codeHtml: string;
-  hasPreviewButtons: boolean;
+  hasPreviewButton: boolean;
 
   itemTypeHtml = LibraryItemType.html;
   activeMenuItemByDefault = 0;
@@ -57,7 +57,7 @@ export class LibraryItemComponent implements OnInit {
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);
     this.documentationHtml = item.documentationHtml;
-    this.hasPreviewButtons = item.hasPreviewButtons;
+    this.hasPreviewButton = item.hasPreviewButton;
   }
 
   private getCodeHtml(item: LibraryItem): string {

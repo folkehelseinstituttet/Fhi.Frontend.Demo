@@ -9,7 +9,7 @@ export const GlobalHeader: LibraryItem[] = [{
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml(),
-  hasPreviewButtons: true
+  hasPreviewButton: true
 }];
 
 
