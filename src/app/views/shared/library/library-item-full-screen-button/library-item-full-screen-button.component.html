@@ -36,7 +36,6 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body ds-ui-documentation__modal-body">
-    <div [innerHtml]="itemMarkup | safe: 'html'"></div>
-    <ng-content></ng-content>
+    <div [innerHtml]="itemMarkup"></div>
   </div>
 </ng-template>
