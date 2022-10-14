@@ -1,6 +1,6 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Tooltip: LibraryItem[] = [{
   id: LibraryItemIds.Tooltip,
@@ -31,17 +31,17 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return `
 <p>
   Bootstrap-dokumentasjon for
-  <a href="${BootstrapComponentsBaseUrl}/tooltips">Tooltip</a>
+  <a href="${CONST.BootstrapComponentsBaseUrl}/tooltips">Tooltip</a>
 </p>
 <p>
   Tooltip er implementert som
-  <a href="${NgBootstrapComponentsBaseUrl}/tooltip">NgBootstrap Tooltip</a>
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/tooltip">NgBootstrap Tooltip</a>
   i FHI Designsystem.
 </p>
 <p>

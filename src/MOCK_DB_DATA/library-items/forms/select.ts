@@ -1,6 +1,5 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Select: LibraryItem[] = [{
   id: LibraryItemIds.FormSelect,
@@ -12,11 +11,14 @@ export const Select: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <label for="FormSelect" class="form-label">Ledetekst for select</label>
 <select class="form-select" id="FormSelect">
-  <option>Aktivér for å gjøre et valg</option>
+  <option>Aktiver for å gjøre et valg</option>
   <option value="1">1</option>
   <option value="2">2</option>
 </select>`;
@@ -31,7 +33,7 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

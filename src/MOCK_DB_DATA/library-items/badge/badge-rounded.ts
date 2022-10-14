@@ -1,6 +1,6 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const BadgeRounded: LibraryItem[] = [{
   id: LibraryItemIds.BadgeRounded,
@@ -21,15 +21,20 @@ function getExampleHtml(): string {
   100
   <span class="visually-hidden">text explaining what's counted</span>
 </span>
-
 <hr>
 <h2 class="h5 mt-6 mb-4">Bruksscenario</h2>
-
 <ul>
   <li>
-    <a href="developer/components/badge#badgerounded">Forskningssammendrag</a>
+    Forskningssammendrag
     <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
       100
+      <span class="visually-hidden">sammendrag tilgjengelig</span>
+    </span>
+  </li>
+  <li>
+    Andre
+    <span class="ms-4 badge rounded-pill fhi-badge fhi-badge--rounded">
+      23
       <span class="visually-hidden">sammendrag tilgjengelig</span>
     </span>
   </li>
@@ -61,6 +66,6 @@ Kun til bruk for numeriske verdier. En badge gir ikke mening uten en kontekst og
 </p>
 <p>
   Bootstrap-dokumentasjon for
-  <a href="${BootstrapComponentsBaseUrl}/badge">Badge</a>
+  <a href="${CONST.BootstrapComponentsBaseUrl}/badge">Badge</a>
 </p>`;
 }

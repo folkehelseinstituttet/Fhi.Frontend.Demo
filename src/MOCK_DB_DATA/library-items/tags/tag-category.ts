@@ -1,6 +1,5 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const TagCategory: LibraryItem[] = [{
   id: LibraryItemIds.TagCategory,
@@ -18,18 +17,17 @@ export const TagCategory: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <p>
-  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">Kategorinavn</a>
+  <a href="javascript:void(0)" class="fhi-tag fhi-tag--category">Kategorinavn</a>
 </p>
 <p>
-  <a href="/developer/components/tags" class="fhi-tag fhi-tag--category">
+  <a href="javascript:void(0)" class="fhi-tag fhi-tag--category">
     <i class="icon-arrow-left"></i>
     Kategorinavn
   </a>
 </p>
 <p class="mb-0">
-  <span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
-</p>
-`;
+  <span class="fhi-tag fhi-tag--category">Kategorinavn uten lenke</span>
+</p>`;
 }
 
 /*
@@ -45,12 +43,11 @@ function getCodeHtml(): string | null {
   Kategorinavn
 </a>
 
-<span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
-`;
+<span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>`;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

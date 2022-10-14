@@ -1,14 +1,13 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const NavigationTile: LibraryItem[] = [{
-    id: LibraryItemIds.NavigationTile,
-    title: 'Navigation tile',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.NavigationTile,
+  title: 'Navigation tile',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
@@ -16,21 +15,18 @@ export const NavigationTile: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-    return `
+  return `
 <div class="row gx-3 gx-sm-5">
-    <div class="col-auto col-sm-12 col-xl-6">
-        <a href="/developer/components/navigationtile" class="fhi-navigation-tile">
-            <span class="fhi-navigation-tile__icon">
-                <i class="icon-environment"></i>
-            </span>
-
-            <p class="fhi-navigation-tile__heading">Overskrift</p>
-
-            <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
-        </a>
-    </div>
-</div>
-`;
+  <div class="col-auto col-sm-12 col-xl-6">
+    <a href="javascript:void(0)" class="fhi-navigation-tile">
+      <span class="fhi-navigation-tile__icon">
+        <i class="icon-environment"></i>
+      </span>
+      <p class="fhi-navigation-tile__heading">Overskrift</p>
+      <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
+    </a>
+  </div>
+</div>`;
 }
 
 /*
@@ -38,15 +34,13 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `
-<a href="/developer/components/navigationtile" class="fhi-navigation-tile">
-    <span class="fhi-navigation-tile__icon">
-        <i class="icon-environment"></i>
-    </span>
-
-    <p class="fhi-navigation-tile__heading">Overskrift</p>
-
-    <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
+  return `
+<a href="" class="fhi-navigation-tile">
+  <span class="fhi-navigation-tile__icon">
+    <i class="icon-environment"></i>
+  </span>
+  <p class="fhi-navigation-tile__heading">Overskrift</p>
+  <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
 </a>`;
 }
 
@@ -54,5 +48,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+  return null;
 }

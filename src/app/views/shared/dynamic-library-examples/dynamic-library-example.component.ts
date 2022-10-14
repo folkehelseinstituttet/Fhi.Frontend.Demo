@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemsDataService } from '../services/library-items-data.service';
 
 @Component({
   selector: 'app-dynamic-library-example',
@@ -10,6 +10,27 @@ export class DynamicLibraryExampleComponent {
 
   @Input() itemId: string;
 
-  itemIds = LibraryItemIds;
+  itemIds: any;
+  itemIdsLoaded = false;
+
+  constructor(private libraryItemsDataService: LibraryItemsDataService) { }
+
+  ngOnInit() {
+    this.getLibraryItemIds();
+  }
+
+  private getLibraryItemIds() {
+    this.itemIdsLoaded = false;
+    this.libraryItemsDataService.getLibraryItemIds()
+      .subscribe(libraryItemIds => {
+        this.itemIds = libraryItemIds;
+        this.itemIdsLoaded = true;
+      },
+      error => this.getErrorMessage(error));
+  }
+
+  private getErrorMessage(error: object) {
+    console.log(error);
+  }
 
 }
