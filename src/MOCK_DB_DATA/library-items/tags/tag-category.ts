@@ -1,6 +1,5 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
 
 export const TagCategory: LibraryItem[] = [{
   id: LibraryItemIds.TagCategory,
@@ -27,7 +26,7 @@ function getExampleHtml(): string {
   </a>
 </p>
 <p class="mb-0">
-  <span class="fhi-tag fhi-tag--category">Kategori uten lenke</span>
+  <span class="fhi-tag fhi-tag--category">Kategorinavn uten lenke</span>
 </p>`;
 }
 
@@ -48,7 +47,7 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

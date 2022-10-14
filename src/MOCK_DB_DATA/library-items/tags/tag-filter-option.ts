@@ -1,6 +1,5 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
 
 export const TagFilterOption: LibraryItem[] = [{
   id: LibraryItemIds.TagFilterOption,
@@ -28,15 +27,13 @@ function getCodeHtml(): string | null {
 <button class="fhi-tag fhi-tag--filter-option">
   Filtervalg
   <i class="icon-xmark"></i>
-</button>
-`;
+</button>`;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Filtervalg-tag skal alltid kunne fjernes/nullstilles.</p>
-`;
+<p>Filtervalg-tag skal alltid kunne fjernes/nullstilles.</p>`;
 }
