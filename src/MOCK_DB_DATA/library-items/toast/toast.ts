@@ -1,6 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../library-item-constants';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
 export const Toast: LibraryItem[] = [{
   id: LibraryItemIds.Toast,
@@ -33,17 +33,17 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return `
 <p>
   Bootstrap-dokumentasjon for
-  <a href="${BootstrapComponentsBaseUrl}/toasts">Toast</a>
+  <a href="${CONST.BootstrapComponentsBaseUrl}/toasts">Toast</a>
 </p>
 <p>
   Toast er impolementert som en
-  <a href="${NgBootstrapComponentsBaseUrl}/toast">NgBootstrap Toast</a>
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/toast">NgBootstrap Toast</a>
   i FHI Designsystem.
 </p>
 <p>
