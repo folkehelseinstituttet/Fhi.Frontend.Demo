@@ -3,8 +3,8 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Template1: LibraryItem[] = [{
-  id: LibraryItemIds.Template,
-  title: 'Title',
+  id: LibraryItemIds.Template1,
+  title: 'Template 1',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
