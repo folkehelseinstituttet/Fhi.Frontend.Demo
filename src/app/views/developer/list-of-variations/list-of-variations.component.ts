@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
-import { ListOfVariationsDataService } from '../../shared/services/list-of-variations-data.service';
+import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
 import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class ListOfVariationsComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
-    private listOfVariationsDataService: ListOfVariationsDataService
+    private libraryItemsDataService: LibraryItemsDataService
   ) { }
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class ListOfVariationsComponent implements OnInit, OnDestroy {
   private getLibraryItems() {
     const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
-    this.listOfVariationsDataService.getLibraryItems(lastSegmentPath)
+    this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
       .subscribe(libraryItems => {
         this.libraryItems = libraryItems;
         this.libraryItemsLoaded = true;

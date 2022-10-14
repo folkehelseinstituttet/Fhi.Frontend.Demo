@@ -1,4 +1,4 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const HeadingLevels: LibraryItem[] = [{
@@ -11,6 +11,9 @@ export const HeadingLevels: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <h1>Overskriftsnivå 1</h1>
@@ -20,10 +23,17 @@ function getExampleHtml(): string {
 <h5>Overskriftsnivå 5</h1>`;
 }
 
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
 function getCodeHtml(): string | null {
   return ``;
 }
 
+/*
+ * Return null to remove Documentation from library-item.
+ */
 function getDocumentationHtml(): string | null {
   return null;
 }

@@ -1,6 +1,5 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const Input: LibraryItem[] = [{
   id: LibraryItemIds.FormInput,
@@ -12,8 +11,13 @@ export const Input: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
-  return getCodeHtml();
+  return `
+<label for="FormInput" class="form-label">Tekstfelt</label>
+<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">`;
 }
 
 /*
@@ -21,13 +25,11 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<label for="FormInput" class="form-label">Tekstfelt</label>
-<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">`;
+  return ``;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
   return null;

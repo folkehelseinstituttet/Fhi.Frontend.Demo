@@ -1,19 +1,24 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnPrimary: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonPrimary,
-    title: 'Primary button',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.ButtonPrimary,
+  title: 'Primary button',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
-    return getCodeHtml();
+  return `
+<button type="button" class="btn fhi-btn-primary">
+  Hovedhandling
+</button>`;
 }
 
 /*
@@ -21,15 +26,15 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<button type="button" class="btn fhi-btn-primary">
-    Hovedhandling
-</button>`;
+  return ``;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return `
-<p>Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.</p>`;
+  return `
+<p>
+  Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.
+</p>`;
 }

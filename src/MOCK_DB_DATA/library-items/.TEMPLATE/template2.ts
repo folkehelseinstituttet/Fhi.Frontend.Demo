@@ -1,9 +1,10 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemConstants as CONST } from '../../library-item-constants';
 
-export const BtnSecondary: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonSecondary,
-  title: 'Secondary button',
+export const Template2: LibraryItem[] = [{
+  id: LibraryItemIds.Template2,
+  title: 'Template 2',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -15,10 +16,7 @@ export const BtnSecondary: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<button type="button" class="btn fhi-btn-secondary">
-  Sekundær handling
-</button>`;
+  return ``;
 }
 
 /*
@@ -33,5 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return ``;
 }
