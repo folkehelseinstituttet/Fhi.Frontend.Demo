@@ -5,7 +5,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const GlobalHeaderWithMenu: LibraryItem[] = [{
   id: LibraryItemIds.GlobalHeaderWithMenu,
   title: 'Global header w/menu',
-  type: LibraryItemType.html,
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml(),
