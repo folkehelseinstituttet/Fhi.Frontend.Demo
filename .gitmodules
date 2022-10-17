@@ -2,13 +2,6 @@
 	path = Fhi.Frontend.Style
 	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.Style.git
 
-# [submodule "Fhi.Frontend.AngularComponents"]
-# 	path = projects/fhi-frontend-angular-components
-#  	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents.git
-
-#[submodule "projects/fhi-frontend-angular-components/Fhi.Frontend.AngularComponents"]
-#	path = projects/fhi-frontend-angular-components/Fhi.Frontend.AngularComponents
-#	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents.git
 [submodule "projects/fhi-frontend-angular-components"]
 	path = projects/fhi-frontend-angular-components
 	url = https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents.git
