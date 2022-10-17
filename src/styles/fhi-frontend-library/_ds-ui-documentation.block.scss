@@ -157,9 +157,9 @@
         &__item {
             padding: $fhi-space-5;
 
-            &.has-preview-buttons {
-                padding-top: $fhi-px * 75;
-            }
+        }
+        &__item--has-preview-buttons {
+            padding-top: $fhi-px * 75;
         }
     }
 }

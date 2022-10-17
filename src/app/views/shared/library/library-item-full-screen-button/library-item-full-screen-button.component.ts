@@ -6,8 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-library-item-full-screen-button',
-  templateUrl: './library-item-full-screen-button.component.html',
-  styleUrls: ['./library-item-full-screen-button.component.scss']
+  templateUrl: './library-item-full-screen-button.component.html'
 })
 export class LibraryItemFullScreenButtonComponent implements OnInit {
 

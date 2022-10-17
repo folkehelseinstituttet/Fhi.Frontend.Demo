@@ -8,18 +8,14 @@
 
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent [ngClass]="">
-            <app-library-item-full-screen-button
-              *ngIf="hasPreviewButton && dynamicLibraryExample"
-              [itemMarkup]="dynamicLibraryExample">
-            </app-library-item-full-screen-button>
-            <app-library-item-full-screen-button
-              *ngIf="hasPreviewButton && type === itemTypeHtml"
-              [itemMarkup]="exampleHtml">
-            </app-library-item-full-screen-button>
-            <div class="ds-ui-documentation__item" [ngClass]="{'has-preview-buttons': hasPreviewButton}">
-              <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"
-                   [innerHtml]="exampleHtml | safe: 'html'">
-              </div>
+            <app-library-item-full-srceen>
+              <ng-container library-item-full-screen.body-content>
+                <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
+              </ng-container>
+            </app-library-item-full-srceen>
+            <div class="ds-ui-documentation__item"
+                 [ngClass]="{'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton}">
+              <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
             </div>
           </ng-template>
         </ng-container>
@@ -47,6 +43,12 @@
   </div>
 </article>
 
+
+<ng-template #libraryExample>
+  <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"
+        [innerHtml]="exampleHtml | safe: 'html'">
+  </div>
+</ng-template>
 
 <ng-template #dynamicLibraryExample>
   <app-dynamic-library-example [itemId]="id"></app-dynamic-library-example>
