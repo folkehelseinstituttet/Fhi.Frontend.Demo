@@ -16,7 +16,15 @@
               *ngIf="hasPreviewButton && type === itemTypeHtml"
               [itemMarkup]="exampleHtml">
             </app-library-item-full-screen-button> -->
-            <app-library-item-full-screen-button *ngIf="hasPreviewButton"></app-library-item-full-screen-button>
+            <!-- <app-library-item-full-screen-button *ngIf="hasPreviewButton"></app-library-item-full-screen-button> -->
+
+
+            <app-library-item-full-srceen>
+              <ng-container library-item-full-screen.body-content>
+                Hello!
+              </ng-container>
+            </app-library-item-full-srceen>
+
             <div class="ds-ui-documentation__item"
                  [ngClass]="{'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton}">
               <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"

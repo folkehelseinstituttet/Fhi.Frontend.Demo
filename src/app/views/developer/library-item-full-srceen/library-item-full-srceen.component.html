@@ -1,1 +1,18 @@
-<p>library-item-full-srceen works!</p>
+<div class="position-relative" style="z-index: 1">
+  <div class="ds-ui-documentation__preview-options position-absolute d-flex end-0">
+    <button class="btn ds-ui-documentation__preview-trigger" (click)="openModal(content)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="mx-1" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header px-3">
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body ds-ui-documentation__modal-body">
+    <ng-content select="[library-item-full-screen.body-content]"></ng-content>
+  </div>
+</ng-template>
