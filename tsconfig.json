@@ -3,7 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@folkehelseinstituttet/fhi-frontend-angular-components": [
+      "@folkehelseinstituttet/angular-components": [
         "dist/fhi-frontend-angular-components"
       ]
     },
