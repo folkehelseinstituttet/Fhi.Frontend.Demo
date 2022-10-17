@@ -164,7 +164,6 @@
       "projectType": "library",
       "root": "projects/fhi-frontend-angular-components",
       "sourceRoot": "projects/fhi-frontend-angular-components/src",
-      "prefix": "fhi",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

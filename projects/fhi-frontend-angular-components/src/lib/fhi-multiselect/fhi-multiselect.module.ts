@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FhiTableComponent } from './fhi-table.component';
 
+import { FhiMultiselectComponent } from './fhi-multiselect.component';
 
 
 @NgModule({
   declarations: [
-    FhiTableComponent
+    FhiMultiselectComponent
   ],
-  imports: [
-    CommonModule
+  exports: [
+    FhiMultiselectComponent
   ]
 })
 export class FhiMultiselectModule { }
