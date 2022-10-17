@@ -6,9 +6,14 @@ import { DynamicLibraryExamplesModule } from '../shared/dynamic-library-examples
 
 import { DeveloperRoutingModule } from './developer-routing.module';
 
+import { FhiFrontendAngularComponentsModule } from '@folkehelseinstituttet/fhi-frontend-angular-components';
+
 @NgModule({
   declarations: DeveloperRoutingModule.components,
   imports: [
+
+    FhiFrontendAngularComponentsModule,
+
     SharedModule,
     LibraryModule,
     DynamicLibraryExamplesModule,
