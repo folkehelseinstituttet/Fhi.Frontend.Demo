@@ -11,8 +11,10 @@ export class LibraryItemFullSrceenComponent {
 
   openModal(conten: any) {
     this.modal.open(conten, {
-      backdropClass: 'ds-ngb-modal-backdrop',
-      windowClass: 'ds-ui-documentation__modal-window', // TODO: BEM-block
+
+       // TODO: BEM-block, eg.: ds-library-item-full-srceen
+      windowClass: 'ds-ui-documentation__modal-window',
+
       scrollable: true,
       fullscreen: true
     });
