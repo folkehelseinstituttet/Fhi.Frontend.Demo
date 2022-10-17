@@ -35,6 +35,12 @@
                 font-size: $fhi-font-size-1;
                 border-color: transparent;
 
+                &.active {
+                    &::before {
+                        content: none;
+                    }
+                }
+
                 &:not(.active) {
                     color: $fhi-blue-1;
 
