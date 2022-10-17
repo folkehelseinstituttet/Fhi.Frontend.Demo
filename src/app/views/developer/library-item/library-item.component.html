@@ -7,14 +7,14 @@
         <a ngbNavLink>{{ menuItem.name }}</a>
 
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
-          <ng-template ngbNavContent [ngClass]="">
-            <app-library-item-full-srceen>
+          <ng-template ngbNavContent>
+            <app-library-item-full-srceen *ngIf="hasPreviewButton">
               <ng-container library-item-full-screen.body-content>
                 <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
               </ng-container>
             </app-library-item-full-srceen>
             <div class="ds-ui-documentation__item"
-                 [ngClass]="{'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton}">
+                 [ngClass]="{ 'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton }">
               <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
             </div>
           </ng-template>
