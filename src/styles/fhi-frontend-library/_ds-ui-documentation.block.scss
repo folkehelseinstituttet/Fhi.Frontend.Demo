@@ -130,6 +130,11 @@
             padding-right: 0;
             padding-left: 0;
         }
+
+        .modal-fullscreen {
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
     &__modal-body {
         background-color: $fhi-white;
