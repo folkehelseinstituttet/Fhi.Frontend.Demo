@@ -5,6 +5,9 @@
     "paths": {
       "angular-components": [
         "dist/angular-components"
+      ],
+      "fhi-frontend-angular-components": [
+        "dist/fhi-frontend-angular-components"
       ]
     },
     "baseUrl": "./",
