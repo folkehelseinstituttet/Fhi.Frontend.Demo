@@ -99,49 +99,6 @@
             font-size: 12px;
         }
     }
-    &__modal-window {
-        background-color: $fhi-grey-1;
-
-        .modal-content {
-            background-color: transparent;
-        }
-
-        .modal-dialog {
-            margin-top: 0;
-        }
-
-        // .modal-sm {
-        //     max-width: 391px;
-
-        //     .modal-content {
-        //         height: 714px;
-        //     }
-        // }
-
-        // .modal-md {
-        //     max-width: 784px;
-
-        //     .modal-content {
-        //         height: 1071px;
-        //     }
-        // }
-
-        .modal-xl {
-            padding-right: 0;
-            padding-left: 0;
-        }
-
-        .modal-fullscreen {
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
-    &__modal-body {
-        background-color: $fhi-white;
-        border-top-left-radius: .25rem;
-        border-top-right-radius: .25rem;
-        padding: 0;
-    }
 }
 
 @include media-breakpoint-up(sm) {

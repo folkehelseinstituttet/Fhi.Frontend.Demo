@@ -1,0 +1,56 @@
+.ds-modal {
+    background-color: $fhi-grey-1;
+
+    .modal-content {
+        background-color: transparent;
+    }
+
+    .modal-dialog {
+        margin-top: 0;
+    }
+
+    // When or if we get the triggers for preview of mobile and tablet views
+
+    // .modal-sm {
+    //     max-width: 391px;
+
+    //     .modal-content {
+    //         height: 714px;
+    //     }
+    // }
+
+    // .modal-md {
+    //     max-width: 784px;
+
+    //     .modal-content {
+    //         height: 1071px;
+    //     }
+    // }
+
+    .modal-xl {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .modal-fullscreen {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .btn-close::after {
+        content: "";
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+
+    &__modal-body {
+        background-color: $fhi-white;
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        padding: 0;
+    }
+}
