@@ -8,8 +8,7 @@
 
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent>
-            <div class="ds-ui-documentation__item"
-                 >
+            <div class="ds-ui-documentation__item">
               <div *ngIf="type === itemTypeHtml; else dynamicLibraryExample"
                    [innerHtml]="exampleHtml | safe: 'html'">
               </div>
