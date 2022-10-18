@@ -13,7 +13,7 @@ export class LibraryItemFullSrceenComponent {
     this.modal.open(conten, {
 
        // TODO: BEM-block, eg.: ds-library-item-full-srceen
-      windowClass: 'ds-ui-documentation__modal-window',
+      windowClass: 'ds-modal',
 
       scrollable: true,
       fullscreen: true
