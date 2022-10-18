@@ -4,7 +4,7 @@
       <img class="fhi-main-menu__home-link-img" alt="FHI-logo"
            src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-hvit-uten-luft-rundt.svg">
     </a>
-    <button class=" fhi-main-menu__toggler" type="button" aria-controls="fhi-main-menu"
+    <button class="fhi-main-menu__toggler" type="button" aria-controls="fhi-main-menu"
             [attr.aria-expanded]="mainMenuIsOpen" (click)="mainMenuToggle()">
       <fa-icon [icon]="mainMenuIsOpen ? faTimes : faBars" class="fhi-main-menu__toggler-icon"></fa-icon>
       <span class="fhi-main-menu__toggler-text">{{ !mainMenuIsOpen ? 'Meny' : 'Lukk meny' }}</span>
