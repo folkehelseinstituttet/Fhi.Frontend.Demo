@@ -31,10 +31,10 @@ function getCodeHtml(): string | null {
     <div class="container fhi-app__brand-container">
       <div class="fhi-app__brand-content">
         <a class="fhi-app__logo" href="/developer/modules/GlobalHeader">
-          <img src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI - navn på produkt">
+          <img src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI - produktnavn">
         </a>
         <div class="fhi-app__project">
-          <span class="fhi-app__project-name">Navn på produkt</span>
+          <span class="fhi-app__project-name">Produktnavn</span>
         </div>
       </div>
     </div>
