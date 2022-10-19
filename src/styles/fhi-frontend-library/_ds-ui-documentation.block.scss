@@ -1,3 +1,11 @@
+@include media-breakpoint-down(sm) {
+    .ds-ui-documentation__item-container {
+        > .nav-tabs .nav-link.active {
+            background-color: $fhi-white;
+        }
+    }
+}
+
 .ds-ui-documentation {
     margin-bottom: $fhi-space-7 * 1.7;
 

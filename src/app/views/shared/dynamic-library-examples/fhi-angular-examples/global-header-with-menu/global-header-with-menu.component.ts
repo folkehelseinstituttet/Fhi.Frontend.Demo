@@ -10,7 +10,21 @@ export class GlobalHeaderWithMenuExampleComponent implements OnInit {
 
   constructor() { }
 
+  activeLink = 1;
+  mainMenuIsOpen = false;
+
   ngOnInit() {
   }
 
+  linkSwitch(num) {
+    this.activeLink = num;
+  }
+
+  mainMenuClose(): void {
+    this.mainMenuIsOpen = false;
+  }
+
+  mainMenuToggle(): void {
+    this.mainMenuIsOpen = !this.mainMenuIsOpen;
+  }
 }
