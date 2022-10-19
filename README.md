@@ -1,11 +1,11 @@
 # Fhi.Frontend.Demo
 
-An Angular app with demos and documentation of CSS and Angular components with FHI-design.
-https://frontendbibliotek.fhi.no
+An Angular app with demos and documentation of CSS and Angular components with FHI-design. Visit
+[https://designsystem.fhi.no](https://designsystem.fhi.no) to see it in action.
 
 ## Get started
 
->**NB!** If you clone the repository without the `--recurse-submodules` flag, the subdirectory named `Fhi.Frontend.Style` will be empty. If thats the case, you have to initialize the submodule and clone its content by running `git submodule update --init --recursive`
+>**NB!** If you clone the repository without the `--recurse-submodules` flag, the subdirectories named `Fhi.Frontend.Style` and `projects/fhi-frontend-angular-components` will be empty. If thats the case, you have to initialize the submodules and clone their content by running `git submodule update --init --recursive`
 
 1. `git clone --recurse-submodules https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git`
 2. `npm install`
