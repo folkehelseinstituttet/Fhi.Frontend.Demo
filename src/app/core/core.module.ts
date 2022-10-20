@@ -10,8 +10,6 @@ registerLocaleData(localeNb, 'nb', localeNbExtra);
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { MockDbService } from './mock-db.service';
 
-import 'what-input';
-
 import { SharedModule } from '../shared/shared.module';
 import { MainMenuComponent } from '../core/main-menu/main-menu.component';
 
