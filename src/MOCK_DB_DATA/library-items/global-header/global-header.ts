@@ -17,7 +17,7 @@ export const GlobalHeader: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `<div class="position-relative">` + getCodeHtml() + `</div>`;
+  return getCodeHtml();
 }
 
 /*
@@ -26,15 +26,16 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<header class="fhi-app__header">
-  <div class="fhi-app__brand">
-    <div class="container fhi-app__brand-container">
-      <div class="fhi-app__brand-content">
-        <a class="fhi-app__logo" href="/developer/modules/GlobalHeader">
-          <img src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI - Produktnavn">
+<header class="fhi-header">
+  <div class="fhi-header__brand">
+    <div class="container fhi-header__brand-container">
+      <div class="fhi-header__brand-content">
+        <a class="fhi-header__logo" href="javascript:void(0)">
+          <i class="icon-fhi-logo fhi-header__logo-gfx"></i>
+          <span class="visually-hidden">FHI Produktnavn</span>
         </a>
-        <div class="fhi-app__project">
-          <span class="fhi-app__project-name">Produktnavn</span>
+        <div class="fhi-header__project">
+          <span class="fhi-header__project-name">Produktnavn</span>
         </div>
       </div>
     </div>
@@ -46,5 +47,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
