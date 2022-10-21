@@ -1,3 +1,11 @@
+@include media-breakpoint-down(sm) {
+    .ds-ui-documentation__item-container {
+        > .nav-tabs .nav-link.active {
+            background-color: $fhi-white;
+        }
+    }
+}
+
 .ds-ui-documentation {
     margin-bottom: $fhi-space-7 * 1.7;
 
@@ -62,6 +70,27 @@
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
+    &__preview-options {
+        background-color: $fhi-grey-light-1;
+        border-left: 1px solid $fhi-grey-light-2;
+        border-bottom: 1px solid $fhi-grey-light-2;
+        border-bottom-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        p {
+            font-size: $fhi-px * 12;
+        }
+    }
+    &__preview-trigger {
+        border: 0;
+        padding: 0 $fhi-space-2;
+        &:hover {
+            background-color: transparent;
+        }
+        small {
+            font-family: $fhi-font-family-sans-serif-regular;
+            font-size: 12px;
+        }
+    }
 }
 
 @include media-breakpoint-up(sm) {
@@ -81,6 +110,10 @@
         }
         &__item {
             padding: $fhi-space-5;
+
+        }
+        &__item--has-preview-buttons {
+            padding-top: $fhi-px * 75;
         }
     }
 }

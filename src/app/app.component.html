@@ -1,15 +1,15 @@
 <div class="fhi-app" id="top">
-  <header class="fhi-app__header">
+  <header class="fhi-header">
 
-    <div class="fhi-app__brand">
-      <div class="container fhi-app__brand-container">
-        <div class="fhi-app__brand-content">
-          <a class="fhi-app__logo" routerLink="/">
-            <img src="./assets/fhi-common/logos/logo-norsk-kun-forkortelse-svart-uten-luft-rundt.svg" alt="FHI-logo">
+    <div class="fhi-header__brand">
+      <div class="container fhi-header__brand-container">
+        <div class="fhi-header__brand-content">
+          <a class="fhi-header__logo" routerLink="/">
+            <i class="icon-fhi-logo fhi-header__logo-icon"></i>
           </a>
-          <div class="fhi-app__project">
-            <span class="fhi-app__project-name">{{ projectName }}</span>
-            <span class="fhi-app__project-description" *ngIf="projectDescription">
+          <div class="fhi-header__project">
+            <span class="fhi-header__project-name">{{ projectName }}</span>
+            <span class="fhi-header__project-description" *ngIf="projectDescription">
               &nbsp;&ndash;&nbsp;{{ projectDescription }}
             </span>
           </div>
@@ -17,19 +17,11 @@
       </div>
     </div>
 
-    <div class="fhi-app__main-menu">
-      <div class="container fhi-app__main-menu-container">
+    <div class="fhi-header__main-menu">
+      <div class="container fhi-header__main-menu-container">
         <app-main-menu [projectName]="projectName"></app-main-menu>
       </div>
     </div>
-
-    <!-- <div class="fhi-app__utility-menu">
-      <div class="container fhi-app__utility-menu-container">
-        <div class="fhi-app__utility-menu-content">
-          [...]
-        </div>
-      </div>
-    </div> -->
 
   </header>
 
