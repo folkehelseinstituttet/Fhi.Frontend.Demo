@@ -1,21 +1,6 @@
-@include media-breakpoint-down(sm) {
-    .ds-ui-documentation__item-container {
-        > .nav-tabs .nav-link.active {
-            background-color: $fhi-white;
-        }
-    }
-}
-
 .ds-ui-documentation {
     margin-bottom: $fhi-space-7 * 1.7;
 
-    &__title {
-        background-color: $fhi-bg-color-3;
-        font-family: $fhi-font-family-sans-serif-medium;
-        font-size: $fhi-font-size-5;
-        margin: 0 (-$fhi-container-padding-xs);
-        padding: $fhi-space-3 $fhi-container-padding-xs 0;
-    }
     &__description {
         margin-bottom: $fhi-space-3;
     }
@@ -35,7 +20,6 @@
     }
     &__item-container {
         background-color: $fhi-bg-color-3;
-        margin: 0 (-$fhi-container-padding-xs);
         padding: $fhi-space-3 $fhi-px * 5;
     }
     &__item {
@@ -89,6 +73,21 @@
         small {
             font-family: $fhi-font-family-sans-serif-regular;
             font-size: 12px;
+        }
+    }
+}
+
+@include media-breakpoint-up(xxs) {
+    .ds-ui-documentation {
+        &__item-container {
+            margin: 0 (-$fhi-container-padding-xxs);
+        }
+    }
+}
+@include media-breakpoint-up(xs) {
+    .ds-ui-documentation {
+        &__item-container {
+            margin: 0 (-$fhi-container-padding-xs);
         }
     }
 }
