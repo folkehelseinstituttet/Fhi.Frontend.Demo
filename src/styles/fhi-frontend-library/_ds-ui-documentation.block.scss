@@ -1,21 +1,6 @@
-@include media-breakpoint-down(sm) {
-    .ds-ui-documentation__item-container {
-        > .nav-tabs .nav-link.active {
-            background-color: $fhi-white;
-        }
-    }
-}
-
 .ds-ui-documentation {
     margin-bottom: $fhi-space-7 * 1.7;
 
-    &__title {
-        background-color: $fhi-bg-color-3;
-        font-family: $fhi-font-family-sans-serif-medium;
-        font-size: $fhi-font-size-5;
-        margin: 0 (-$fhi-container-padding-xs);
-        padding: $fhi-space-3 $fhi-container-padding-xs 0;
-    }
     &__description {
         margin-bottom: $fhi-space-3;
     }
@@ -35,7 +20,6 @@
     }
     &__item-container {
         background-color: $fhi-bg-color-3;
-        margin: 0 (-$fhi-container-padding-xs);
         padding: $fhi-space-3 $fhi-px * 5;
     }
     &__item {
@@ -56,30 +40,27 @@
             padding: ($fhi-px * 2) $fhi-space-2;
         }
     }
-    &__copy-btn {
-        float: right;
-        background-color: $fhi-grey-light-2;
-        margin: (-$fhi-space-1) (-$fhi-space-2) 0 $fhi-space-2;
-        &:focus {
-            box-shadow: none;
-        }
-        &:hover {
-            background-color: darken($fhi-grey-light-2, 10%);
-        }
-    }
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
+
+
+
+    // TODO: one generic button class
+
+    &__copy-btn-wrapper,
     &__preview-options {
         background-color: $fhi-grey-light-1;
         border-left: 1px solid $fhi-grey-light-2;
         border-bottom: 1px solid $fhi-grey-light-2;
         border-bottom-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
+        min-width: $fhi-px * 45;
         p {
             font-size: $fhi-px * 12;
         }
     }
+    &__copy-btn,
     &__preview-trigger {
         border: 0;
         padding: 0 $fhi-space-2;
@@ -89,6 +70,24 @@
         small {
             font-family: $fhi-font-family-sans-serif-regular;
             font-size: 12px;
+        }
+    }
+    &__copy-btn {
+        padding: 0 $fhi-px * 13.75;
+    }
+}
+
+@include media-breakpoint-up(xxs) {
+    .ds-ui-documentation {
+        &__item-container {
+            margin: 0 (-$fhi-container-padding-xxs);
+        }
+    }
+}
+@include media-breakpoint-up(xs) {
+    .ds-ui-documentation {
+        &__item-container {
+            margin: 0 (-$fhi-container-padding-xs);
         }
     }
 }
