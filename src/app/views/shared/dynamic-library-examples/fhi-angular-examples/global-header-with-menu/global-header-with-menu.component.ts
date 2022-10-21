@@ -1,20 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-global-header-with-menu',
-  templateUrl: './global-header-with-menu.component.html',
-  styles: [
-  ]
+  templateUrl: './global-header-with-menu.component.html'
 })
-export class GlobalHeaderWithMenuExampleComponent implements OnInit {
-
-  constructor() { }
-
+export class GlobalHeaderWithMenuExampleComponent {
   activeLink = 1;
   mainMenuIsOpen = false;
-
-  ngOnInit() {
-  }
 
   linkSwitch(num) {
     this.activeLink = num;

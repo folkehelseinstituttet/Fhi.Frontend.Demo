@@ -9,12 +9,9 @@ export class LibraryItemFullSrceenComponent {
 
   constructor(private modal: NgbModal) { }
 
-  openModal(conten: any) {
-    this.modal.open(conten, {
-
-       // TODO: BEM-block, eg.: ds-library-item-full-srceen
+  openModal(content: any) {
+    this.modal.open(content, {
       windowClass: 'ds-modal',
-
       scrollable: true,
       fullscreen: true
     });
