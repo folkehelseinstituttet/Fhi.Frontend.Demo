@@ -13,6 +13,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
 
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
+  isDebugging = false;
 
   private subscription: Subscription = new Subscription();
 
@@ -22,6 +23,9 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    if (this.urlService.getSegmentPath(1) === 'debug') {
+      this.isDebugging = true;
+    }
     this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {

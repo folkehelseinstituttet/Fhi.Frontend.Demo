@@ -68,11 +68,16 @@ export class LibraryMenuService {
   }
 
   private getCurrentTopLevelMenuItem(): MenuItem {
+    const currentSegmentPath1 = this.urlService.getSegmentPath(1);
     const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
-      return item.link.split('/')[2] === this.urlService.getSegmentPath(1)
+      return item.link.split('/')[2] === currentSegmentPath1;
     });
     if (topLevelMenuItem !== undefined) {
       return topLevelMenuItem;
+    }
+    if (currentSegmentPath1 === 'debug') {
+      console.log('DEBUG');
+      return;
     }
     console.error('Current path is not matching any menu items.')
   }
