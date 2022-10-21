@@ -31,7 +31,7 @@ function getCodeHtml(): string | null {
     <div class="container fhi-header__brand-container">
       <div class="fhi-header__brand-content">
         <a class="fhi-header__logo" href="javascript:void(0)">
-          <i class="icon-fhi-logo fhi-header__logo-gfx"></i>
+          <i class="icon-fhi-logo fhi-header__logo-icon"></i>
           <span class="visually-hidden">FHI Produktnavn</span>
         </a>
         <div class="fhi-header__project">
