@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SegmentPaths } from 'src/app/segment-path';
+import { SegmentPaths } from 'src/app/segment-paths';
 
+import { ArticleComponent } from '../shared/article/article.component';
 import { DeveloperComponent } from './developer.component';
 import { ListOfVariationsComponent } from './list-of-variations/list-of-variations.component';
 import { LibraryItemComponent } from './library-item/library-item.component';
+import { LibraryItemFullSrceenComponent } from './library-item-full-srceen/library-item-full-srceen.component';
 
 const routes: Routes = [{
   path: ':param',
   component: DeveloperComponent,
   children: [{
+    path: '',
+    component: ArticleComponent
+  }, {
     path: ':param',
     component: ListOfVariationsComponent
   }]
@@ -26,8 +31,10 @@ const routes: Routes = [{
 })
 export class DeveloperRoutingModule {
   static components = [
+    ArticleComponent,
     DeveloperComponent,
     ListOfVariationsComponent,
-    LibraryItemComponent
+    LibraryItemComponent,
+    LibraryItemFullSrceenComponent
   ];
 }

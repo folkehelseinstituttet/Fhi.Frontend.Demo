@@ -8,7 +8,7 @@ import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ListOfVariationsDataService {
+export class LibraryItemsDataService {
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,11 @@ export class ListOfVariationsDataService {
     const mockDataSetName = this.capitalizeFirstLetter(lastSegmentPath) + 'Data';
     let serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
     return this.http.get<LibraryItem[]>(serverUrl);
+  }
+
+  getLibraryItemIds(): Observable<any> {
+    let serverUrl = `${environment.apiBaseUrl}/LibraryItemIds`;
+    return this.http.get<any>(serverUrl);
   }
 
   private capitalizeFirstLetter(string: string) {

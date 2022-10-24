@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-item-segment-paths';
+
 import { UrlService } from 'src/app/services/url.service';
-import { SegmentPaths } from 'src/app/segment-path';
+import { SegmentPaths } from 'src/app/segment-paths';
 import { MenuItem } from 'src/app/models/menu-item.model';
 
 const TopLevelMenuItemNames = {
@@ -29,9 +31,9 @@ export class LibraryMenuService {
     }, {
       name: TopLevelMenuItemNames.components,
       link: `/${currentSegmentPath0}/${SegmentPaths.components}`
-    // }, {
-    //   name: TopLevelMenuItemNames.modules,
-    //   link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
+    }, {
+      name: TopLevelMenuItemNames.modules,
+      link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
     }];
     return this.topLevelMenuItems;
   }
@@ -78,66 +80,72 @@ export class LibraryMenuService {
   private getVisualIdentityMenu(): MenuItem[] {
     return [{
       name: 'Farger',
-      link: SegmentPaths.color
+      link: LibraryItemSegmentPaths.color
     }, {
       name: 'Ikonsett',
-      link: SegmentPaths.icons
+      link: LibraryItemSegmentPaths.icons
     }, {
       name: 'Typografi',
-      link: SegmentPaths.typography
+      link: LibraryItemSegmentPaths.typography
     }];
   }
 
   private getComponentsMenu(): MenuItem[] {
     return [{
       name: 'Accordions',
-      link: SegmentPaths.accordion
+      link: LibraryItemSegmentPaths.accordion
     }, {
       name: 'Advanced select',
-      link: SegmentPaths.advancedSelect
+      link: LibraryItemSegmentPaths.advancedSelect
     }, {
       name: 'Alerts',
-      link: SegmentPaths.alerts
+      link: LibraryItemSegmentPaths.alerts
     }, {
       name: 'Badge',
-      link: SegmentPaths.badge
+      link: LibraryItemSegmentPaths.badge
+    }, {
+      name: 'Breadcrumb',
+      link: LibraryItemSegmentPaths.breadcrumb
     }, {
       name: 'Buttons',
-      link: SegmentPaths.buttons
+      link: LibraryItemSegmentPaths.buttons
     }, {
       name: 'Forms',
-      link: SegmentPaths.forms
+      link: LibraryItemSegmentPaths.forms
     }, {
       name: 'Modal',
-      link: SegmentPaths.modal
+      link: LibraryItemSegmentPaths.modal
     }, {
       name: 'Navigation tile',
-      link: SegmentPaths.navigationtile
+      link: LibraryItemSegmentPaths.navigationtile
     }, {
       name: 'Pagination',
-      link: SegmentPaths.pagination
+      link: LibraryItemSegmentPaths.pagination
     }, {
       name: 'Search',
-      link: SegmentPaths.search
+      link: LibraryItemSegmentPaths.search
     }, {
       name: 'Tables',
-      link: SegmentPaths.table
+      link: LibraryItemSegmentPaths.table
+    }, {
+      name: 'Tabs',
+      link: LibraryItemSegmentPaths.tabs
     }, {
       name: 'Tags',
-      link: SegmentPaths.tags
+      link: LibraryItemSegmentPaths.tags
     }, {
       name: 'Toast',
-      link: SegmentPaths.toast
+      link: LibraryItemSegmentPaths.toast
     }, {
       name: 'Tooltip',
-      link: SegmentPaths.tooltip
+      link: LibraryItemSegmentPaths.tooltip
     }]
   }
 
   private getModulesMenu(): MenuItem[] {
     return [{
-      name: 'Første modul kommer snart',
-      link: '.'
+      name: 'Global header',
+      link: LibraryItemSegmentPaths.globalheader
     }];
   }
 

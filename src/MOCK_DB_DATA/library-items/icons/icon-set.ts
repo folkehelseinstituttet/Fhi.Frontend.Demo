@@ -1,4 +1,4 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
 export const IconSet: LibraryItem[] = [{
@@ -11,6 +11,9 @@ export const IconSet: LibraryItem[] = [{
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
 <div class="flex flex-wrap ds-icons-wrapper">
@@ -18,6 +21,10 @@ function getExampleHtml(): string {
 </div>`;
 }
 
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
 function getCodeHtml(): string {
   return `
 <i class="icon-alcohol-drugs"></i>
@@ -35,6 +42,8 @@ function getCodeHtml(): string {
 <i class="icon-chevron-down"></i>
 <i class="icon-chevron-down-fat"></i>
 <i class="icon-chevron-expand"></i>
+<i class="icon-chevron-left"></i>
+<i class="icon-chevron-right"></i>
 <i class="icon-chevron-up"></i>
 <i class="icon-circle-regular"></i>
 <i class="icon-clap"></i>
@@ -45,6 +54,7 @@ function getCodeHtml(): string {
 <i class="icon-environment"></i>
 <i class="icon-file-excel-regular"></i>
 <i class="icon-insight"></i>
+<i class="icon-list"></i>
 <i class="icon-magnifying-glass"></i>
 <i class="icon-muscle"></i>
 <i class="icon-no-handwash"></i>
@@ -54,8 +64,7 @@ function getCodeHtml(): string {
 <i class="icon-swap"></i>
 <i class="icon-trash-alt-regular"></i>
 <i class="icon-user-regular"></i>
-<i class="icon-xmark"></i>
-`;
+<i class="icon-xmark"></i>`;
 }
 
 /*

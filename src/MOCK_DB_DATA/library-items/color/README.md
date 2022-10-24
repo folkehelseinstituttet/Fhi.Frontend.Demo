@@ -20,7 +20,7 @@ export const NameOfConstantData: LibraryItem[] = [{...}];
 
 in file `src/MOCK_DB_DATA/library-items/foo/_foo.data.ts`.
 
-The constant in `src/app/segment-paths.ts` is used as part of "Library second level menu" in one of the lazy-loaded views, and the last segment in the link is used to call `getLibraryItems()` in `ListOfVariationsDataService`.
+The constant in `src/app/segment-paths.ts` is used as part of "Library second level menu" in one of the lazy-loaded views, and the last segment in the link is used to call `getLibraryItems()` in `LibraryItemsDataService`.
 
 ## File structure
 
@@ -34,4 +34,3 @@ library-items/
         foo-baz.data.ts
         etc.
 ```
-

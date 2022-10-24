@@ -1,3 +1,4 @@
 export const PaginationIds = {
-  Pagination: undefined
+  Pagination: undefined,
+  PaginationCollectionCounter: undefined
 }

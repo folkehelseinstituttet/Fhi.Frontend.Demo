@@ -1,44 +1,32 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Pagination: LibraryItem[] = [{
   id: LibraryItemIds.Pagination,
   title: 'Pagination',
-  type: LibraryItemType.html,
+  type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
   return `
-<nav aria-label="Sidenavigasjon">
-  <ul class="pagination">
-    <li class="page-item disabled">
-      <a class="page-link" href="#">
-        <span class="visually-hidden">Forrige</span>
-        &laquo;
-      </a>
-    </li>
-    <li class="page-item active" aria-current="page">
-      <a class="page-link" href="#">1</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">3</a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="#">
-        <span class="visually-hidden">Neste</span>
-        &raquo;
-      </a>
-    </li>
-  </ul>
-</nav>`;
+<ngb-pagination [collectionSize]="120" [maxSize]="1" class="d-flex justify-content-end">
+  <ng-template ngbPaginationPrevious>
+    <i class="icon-arrow-left"></i>
+    <span class="page-item__text ms-1">Forrige</span>
+  </ng-template>
+  <ng-template ngbPaginationNext>
+    <span class="page-item__text me-1">Neste</span>
+    <i class="icon-arrow-right"></i>
+  </ng-template>
+</ngb-pagination>`;
 }
 
 /*
@@ -50,8 +38,20 @@ function getCodeHtml(): string | null {
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>
+  Bootstrap-dokumentasjon for
+  <a href="${CONST.BootstrapComponentsBaseUrl}/pagination">Pagination</a>.
+</p>
+<p>
+  Pagination er implementert som en
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/pagination">NgBootstrap Pagination</a>
+  i FHI Designsystem.
+</p>
+<p>
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+</p>`;
 }

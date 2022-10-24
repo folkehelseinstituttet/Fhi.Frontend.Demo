@@ -1,3 +1,4 @@
 export const TemplateIds = {
-  Template: undefined,
+  Template1: undefined,
+  Template2: undefined
 }

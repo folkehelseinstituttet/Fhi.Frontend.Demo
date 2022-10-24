@@ -1,19 +1,24 @@
-import { LibraryItemIds } from 'src/app/library-item-ids';
+import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { BootstrapComponentsBaseUrl, NgBootstrapComponentsBaseUrl } from '../../bootstrap-base-urls';
 
 export const BtnSecondary: LibraryItem[] = [{
-    id: LibraryItemIds.ButtonSecondary,
-    title: 'Secondary button',
-    type: LibraryItemType.html,
-    exampleHtml: getExampleHtml(),
-    codeHtml: getCodeHtml(),
-    documentationHtml: getDocumentationHtml()
+  id: LibraryItemIds.ButtonSecondary,
+  title: 'Secondary button',
+  type: LibraryItemType.html,
+  exampleHtml: getExampleHtml(),
+  codeHtml: getCodeHtml(),
+  documentationHtml: getDocumentationHtml()
 }];
 
 
+/*
+ * Return value is ignored if LibraryItemType is not html
+ */
 function getExampleHtml(): string {
-    return getCodeHtml();
+  return `
+<button type="button" class="btn fhi-btn-secondary">
+  Sekundær handling
+</button>`;
 }
 
 /*
@@ -21,14 +26,12 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-    return `<button type="button" class="btn fhi-btn-secondary">
-    Sekundær handling
-</button>`;
+  return ``;
 }
 
 /*
- * Return null to remove Code from library-item.
+ * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-    return null;
+  return null;
 }

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { SegmentPaths } from 'src/app/segment-path';
+import { SegmentPaths } from 'src/app/segment-paths';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
