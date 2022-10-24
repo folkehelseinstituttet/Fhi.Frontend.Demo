@@ -34,10 +34,10 @@ function getExampleHtml(): string {
   return `
 ${colorHtml('#d14641', 'fhi-red-2', 'Primary')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2', 'Secondary', 'black')}
-${colorHtml('#04ab79', 'fhi-green-2', 'Success')}
-${colorHtml('#057e9a', 'fhi-blue-light-2', 'Info')}
-${colorHtml('#f7b665', 'fhi-orange-2', 'Warning', 'black')}
-${colorHtml('#d01858', 'fhi-pink-dark-2', 'Danger')}
+${colorHtml('#cceee4', 'fhi-green-1', 'Success', 'black')}
+${colorHtml('#dbe6ec', 'fhi-blue-grey-2', 'Info', 'black')}
+${colorHtml('#feeed9', 'fhi-orange-1', 'Warning', 'black')}
+${colorHtml('#ffe3e2', 'fhi-pink-light-3', 'Danger', 'black')}
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1', 'Light', 'black')}
 ${colorHtml('#393c61', 'fhi-blue-dark-1', 'Dark')}
 ${colorHtml('#ffffff', 'white', 'White', 'black')}`;

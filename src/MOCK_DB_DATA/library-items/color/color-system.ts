@@ -45,7 +45,7 @@ ${colorHtml('#222222', 'fhi-grey-4')}
 ${colorHtml('#333841', 'fhi-charcoal-1')}
 
 <p class="text-muted small mt-2 mb-0">Blågrå</p>
-${colorHtml('#f5f8fb', 'fhi-blue-grey-1')}
+${colorHtml('#edf4f7', 'fhi-blue-grey-1')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-2')}
 ${colorHtml('#cbd9df', 'fhi-blue-grey-3')}
 ${colorHtml('#afc0c7', 'fhi-blue-grey-4')}
@@ -69,7 +69,7 @@ ${colorHtml('#cceee4', 'fhi-green-1')}
 ${colorHtml('#04ab79', 'fhi-green-2')}
 
 <p class="text-muted small mt-2 mb-0">Gul</p>
-${colorHtml('#fffcce', 'fhi-yellow-1')}
+${colorHtml('#fffdce', 'fhi-yellow-1')}
 
 <p class="text-muted small mt-2 mb-0">Oransje</p>
 ${colorHtml('#feeed9', 'fhi-orange-1')}
@@ -86,9 +86,10 @@ ${colorHtml('#e22867', 'fhi-pink-dark-2')}
 ${colorHtml('#b10640', 'fhi-pink-dark-3')}
 
 <p class="text-muted small mt-2 mb-0">Lyserosa</p>
-${colorHtml('#fdf7f6', 'fhi-pink-light-1')}
+${colorHtml('#fdf4f2', 'fhi-pink-light-1')}
 ${colorHtml('#faedec', 'fhi-pink-light-2')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-3')}`;
+${colorHtml('#ffe3e2', 'fhi-pink-light-3')}
+${colorHtml('#fad1cd', 'fhi-pink-light-4')}`;
 }
 
 /*
