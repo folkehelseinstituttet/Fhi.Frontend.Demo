@@ -23,12 +23,10 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    if (this.urlService.getSegmentPath(1) === 'debug') {
-      this.isDebugging = true;
-    }
     this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
+        this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
         if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
           this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }

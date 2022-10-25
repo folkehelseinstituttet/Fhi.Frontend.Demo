@@ -23,11 +23,9 @@ export class ListOfVariationsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    if (this.urlService.getSegmentPath(1) === 'debug') {
-      this.isDebugging = true;
-    }
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
+        this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
         this.getLibraryItems();
       }));
   }
