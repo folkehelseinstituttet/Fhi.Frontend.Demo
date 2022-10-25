@@ -6,6 +6,7 @@ import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { FormsData } from './forms/_forms.data';
+import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
@@ -54,6 +55,7 @@ export class LibraryItemSegmentPaths {
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
 
   // Modules
+  static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
 
 }
