@@ -29,7 +29,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (this.libraryMenuService.updateSecondLevelMenu()) {
+        if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
           this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }
       }));
