@@ -21,7 +21,6 @@ function getExampleHtml(): string {
   <div class="row">
     <div class="col-12 border pt-3">
       <p>Innhold i innholdsfelt som går over hele bredden innenfor container.</p>
-      <p class="small">(Ramme for illustrasjon av layout.)</p>
     </div>
   </div>
 </div>`;
