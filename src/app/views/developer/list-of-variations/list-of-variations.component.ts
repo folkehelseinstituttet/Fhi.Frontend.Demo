@@ -13,6 +13,7 @@ export class ListOfVariationsComponent implements OnInit, OnDestroy {
 
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
+  isDebugging = false;
 
   private subscription: Subscription = new Subscription();
 
@@ -24,6 +25,7 @@ export class ListOfVariationsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
+        this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
         this.getLibraryItems();
       }));
   }

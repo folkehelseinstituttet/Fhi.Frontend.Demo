@@ -4,6 +4,9 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 // All item ids
 import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids';
 
+// All items for debuggings page
+import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
+
 // Items
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
@@ -33,6 +36,7 @@ export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
       LibraryItemIds,
+      AllData,
 
       // Items
       AccordionData,
