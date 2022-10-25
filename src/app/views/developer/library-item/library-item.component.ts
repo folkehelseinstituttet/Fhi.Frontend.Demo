@@ -17,7 +17,7 @@ const MenuItemName = {
 })
 export class LibraryItemComponent implements OnInit {
 
-  @Input() libraryItemIds: any;
+  @Input() isDebugging: boolean;
   @Input() libraryItem: LibraryItem;
 
   id: string;
