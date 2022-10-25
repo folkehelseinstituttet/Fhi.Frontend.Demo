@@ -20,12 +20,11 @@ function getExampleHtml(): string {
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-4 border pt-3">
-      <p>Venstrekolonne.</p>
-      <p class="small">Typisk til bruk for lokalmeny</p>
+      <p>Venstrekolonne</p>
     </div>
 
     <main class="col-12 col-lg-8 border pt-3">
-      <p>Hovedinnhold.</p>
+      <p>Hovedinnhold</p>
     </main>
   </div>
 </div>`;

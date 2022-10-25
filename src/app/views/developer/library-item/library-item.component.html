@@ -17,6 +17,10 @@
                  [ngClass]="{ 'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton }">
               <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
             </div>
+            <div class="ds-ui-documentation__code">
+              <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
+              <markdown [data]="codeHtml | language : 'html'"></markdown>
+            </div>
           </ng-template>
         </ng-container>
 
@@ -25,13 +29,8 @@
             <div class="ds-ui-documentation__item">
               <div [innerHtml]="documentationHtml | safe: 'html'"></div>
             </div>
-          </ng-template>
-        </ng-container>
-
-        <ng-container *ngIf="menuItem.name === MenuItemName.code">
-          <ng-template ngbNavContent>
-            <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
-            <div class="ds-ui-documentation__item">
+            <div class="ds-ui-documentation__code">
+              <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
               <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>

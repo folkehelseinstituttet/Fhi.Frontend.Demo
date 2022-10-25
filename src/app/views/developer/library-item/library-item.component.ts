@@ -7,8 +7,7 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 
 const MenuItemName = {
   example: 'Eksempel',
-  documentation: 'Dokumentasjon',
-  code: 'Kode'
+  documentation: 'Dokumentasjon'
 };
 
 @Component({
@@ -81,12 +80,6 @@ export class LibraryItemComponent implements OnInit {
     if (this.documentationHtml !== null) {
       menuItems[n++] = {
         name: MenuItemName.documentation,
-        link: null
-      };
-    }
-    if (this.codeHtml !== null) {
-      menuItems[n++] = {
-        name: MenuItemName.code,
         link: null
       };
     }
