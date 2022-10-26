@@ -1,9 +1,12 @@
 # How to contribute
 
+So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodules? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and all submodules) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
+
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
+- [Git submodules](#git-submodules)
 - [Submitting Issues](#submitting-issues)
   - [Before you submit an issue](#before-you-submit-an-issue)
   - [Submitting a good issue](#submitting-a-good-issue)
@@ -28,12 +31,14 @@
 
 <!-- /code_chunk_output -->
 
-So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodules? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and all submodules) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
+## Git submodules
 
 There are two submoduls in this repo:
 
 - `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
 - `./projects/fhi-frontend-angular-components`, [Github repo Fhi.Frontend.AngularComponents](https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents)
+
+The information in this file refers to this repo but also the submodules.
 
 ## Submitting Issues
 
