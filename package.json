@@ -7,7 +7,6 @@
     "build": "ng build",
     "build-prod": "ng build -c=production",
     "build-dev": "ng build -c=dev",
-    "build-lib-watch": "ng build @folkehelseinstituttet/angular-components --watch",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
