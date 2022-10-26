@@ -1,4 +1,4 @@
-<article class="ds-ui-documentation" id="{{ id }}">
+<article class="ds-ui-documentation" id="{{ id }}" *ngIf="!isDebugging else debugView">
   <h1 class="h3">{{ title }}</h1>
 
   <div class="ds-ui-documentation__item-container">
@@ -52,4 +52,11 @@
 
 <ng-template #dynamicLibraryExample>
   <app-dynamic-library-example [itemId]="id"></app-dynamic-library-example>
+</ng-template>
+
+<ng-template #debugView>
+  <article class="mt-7 pb-7">
+    <h1 class="h5 mb-4 p-1 ps-2 bg-light">{{ title }}</h1>
+    <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
+  </article>
 </ng-template>

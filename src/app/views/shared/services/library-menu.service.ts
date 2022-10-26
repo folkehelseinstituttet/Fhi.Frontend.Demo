@@ -69,7 +69,7 @@ export class LibraryMenuService {
 
   private getCurrentTopLevelMenuItem(): MenuItem {
     const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
-      return item.link.split('/')[2] === this.urlService.getSegmentPath(1)
+      return item.link.split('/')[2] === this.urlService.getSegmentPath(1);
     });
     if (topLevelMenuItem !== undefined) {
       return topLevelMenuItem;
