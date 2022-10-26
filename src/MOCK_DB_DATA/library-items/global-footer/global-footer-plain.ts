@@ -17,7 +17,41 @@ export const GlobalFooterPlain: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<footer class="fhi-footer">
+  <div class="container fhi-footer__container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="h3">Overskrift om ønskelig</h2>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 1</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 2</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 3</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 4</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>`;
 }
 
 /*
@@ -25,7 +59,41 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<footer class="fhi-footer">
+  <div class="container fhi-footer__container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="h3">Overskrift om ønskelig</h2>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 1</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 2</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 3</span>
+        </a>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
+          <i class="icon-arrow-right"></i>
+          <span class="btn__text">Snarvei 4</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>`;
 }
 
 /*
