@@ -9,6 +9,7 @@ import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
+import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
@@ -57,5 +58,8 @@ export class LibraryItemSegmentPaths {
   // Modules
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
+
+  // Layout and page templates
+  static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
 
 }

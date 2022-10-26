@@ -27,17 +27,17 @@
         border-radius: $border-radius;
         margin-bottom: $fhi-space-3;
         padding: $fhi-space-5 ($fhi-px * 15);
-
-        pre[class*="language-"] {
-            background-color: $fhi-white;
-            margin: 0;
-        }
         :not(pre) > code {
             background-color: $fhi-bg-color-4;
             border-radius: $fhi-px * 3;
             color: $body-color;
             font-size: $fhi-font-size-1;
             padding: ($fhi-px * 2) $fhi-space-2;
+        }
+    }
+    &__code {
+        code[class*="language-"] {
+            font-size: 11px;
         }
     }
     &__markdown {

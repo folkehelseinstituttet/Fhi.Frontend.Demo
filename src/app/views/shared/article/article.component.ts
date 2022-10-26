@@ -53,6 +53,11 @@ export class ArticleComponent implements OnInit {
       case SegmentPaths.modules:
         this.title = 'Moduler';
         this.articleHtml = this.getArticleHtmlForDeveloperModules();
+        break;
+
+      case SegmentPaths.layoutAndPageTemplates:
+        this.title = 'Layout og sidemaler';
+        this.articleHtml = this.getArticleHtmlForDeveloperLayoutAndPageTemplates();
     }
   }
   private findSecondLevelDesigner() {
@@ -78,6 +83,11 @@ export class ArticleComponent implements OnInit {
   private getArticleHtmlForDeveloperModules(): any {
     return `
 <p>Moduler er større komponenter som er avhengig av en eller flere andre komponenter.</p>`;
+  }
+
+  private getArticleHtmlForDeveloperLayoutAndPageTemplates(): any {
+    return `
+  <p>Her finner du eksempler på hvordan man plasserer innholdet på en side.</p>`;
   }
 
 }

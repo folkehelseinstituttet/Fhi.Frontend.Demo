@@ -9,6 +9,7 @@ import { FormsIds } from "./forms/_forms.ids"
 import { GlobalFooterIds } from "./global-footer/_global-footer.ids"
 import { GlobalHeaderIds } from "./global-header/_global-header.ids"
 import { IconsIds } from "./icons/_icons.ids"
+import { LayoutTemplatesIds } from "./layout-templates/_layout-templates.ids"
 import { ModalIds } from "./modal/_modal.ids"
 import { NavigationTileIds } from "./navigation-tile/_navigation-tile.ids"
 import { PaginationIds } from "./pagination/_pagination.ids"
@@ -32,6 +33,7 @@ const libraryItemIds = {
   ...GlobalFooterIds,
   ...GlobalHeaderIds,
   ...IconsIds,
+  ...LayoutTemplatesIds,
   ...ModalIds,
   ...NavigationTileIds,
   ...PaginationIds,
