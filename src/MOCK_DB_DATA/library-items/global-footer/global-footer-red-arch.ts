@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const GlobalFooterPlain: LibraryItem[] = [{
-  id: LibraryItemIds.GlobalFooterPlain,
-  title: 'Global footer - plain',
+export const GlobalFooterArch: LibraryItem[] = [{
+  id: LibraryItemIds.GlobalFooterArch,
+  title: 'Global footer - red arch',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -18,8 +18,8 @@ export const GlobalFooterPlain: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<footer class="fhi-footer">
-  <div class="container fhi-footer__container">
+<footer class="fhi-footer fhi-footer--arch">
+  <div class="container fhi-footer__container fhi-footer--arch__container">
     <div class="row">
       <div class="col-12 mb-3">
         <h2 class="h3">Overskrift om ønskelig</h2>

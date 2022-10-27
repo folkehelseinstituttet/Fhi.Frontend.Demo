@@ -52,5 +52,15 @@
         border-top-left-radius: .25rem;
         border-top-right-radius: .25rem;
         padding: 0;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+    }
+
+    .fhi-backdrop-responsive {
+        top: 47px;
     }
 }

@@ -6,7 +6,7 @@
       Søket gir ingen treff <br><br>
     </p>
   </div>
-  <ul class="nav flex-column d-inline-block mb-7 pb-2">
+  <ul class="nav flex-column d-inline-block pb-2">
     <li class="nav-item" *ngFor="let menuItem of menuItems | filterBy: libraryItemFilter">
       <a class="nav-link" routerLinkActive="active" [routerLink]="'./' + menuItem.link">{{ menuItem.name }}</a>
     </li>
