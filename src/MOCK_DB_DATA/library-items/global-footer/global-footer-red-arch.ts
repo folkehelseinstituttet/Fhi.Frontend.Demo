@@ -27,25 +27,25 @@ function getExampleHtml(): string {
 
       <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
+          <i class="icon-arrow-right icon-white"></i>
           <span class="btn__text">Snarvei 1</span>
         </a>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
+          <i class="icon-arrow-right icon-white"></i>
           <span class="btn__text">Snarvei 2</span>
         </a>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
+          <i class="icon-arrow-right icon-white"></i>
           <span class="btn__text">Snarvei 3</span>
         </a>
       </div>
       <div class="col-sm-6 col-md-4 col-lg-3">
         <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
+          <i class="icon-arrow-right icon-white"></i>
           <span class="btn__text">Snarvei 4</span>
         </a>
       </div>
