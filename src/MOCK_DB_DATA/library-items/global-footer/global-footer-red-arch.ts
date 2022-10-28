@@ -22,7 +22,7 @@ function getExampleHtml(): string {
   <div class="container fhi-footer__container fhi-footer--arch__container">
     <div class="row">
       <div class="col-12 mb-3">
-        <h2 class="h3">Overskrift om ønskelig</h2>
+        <h2 class="h3">Overskrift om nødvendig</h2>
       </div>
 
       <div class="col-sm-6 col-md-4 col-lg-3">
@@ -66,5 +66,19 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>Global footer skal alltid ligge på app-rot, slik:</p>
+<code class="d-block mb-3">
+  &lt;div class="fhi-app"&gt;
+    <br>
+    <span style="padding-left: 1rem;">...</span>
+    <br>
+
+    <span style="padding-left: 1rem;">&lt;footer class="fhi-footer fhi-footer--arch"&gt;</span><br>
+      <span style="padding-left: 2rem;">...</span><br>
+    <span style="padding-left: 1rem;">&lt;/footer&gt;</span><br>
+  &lt;/div&gt;
+</code>
+<p>Når man benytter global footer er det viktig å bruke Bootstraps grid system i henhold til innholdet man skal ha inn.</p>
+<p>Global footer <strong>- red arch</strong> har et smalere innholdsfelt enn <strong>- plain</strong> på store skjermer, og det er derfor ekstra viktig å ta hensyn til at det skal være lite innhold i footer.</p>`;
 }
