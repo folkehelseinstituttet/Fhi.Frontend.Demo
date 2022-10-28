@@ -153,6 +153,9 @@ export class LibraryMenuService {
     return [{
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
+    }, {
+      name: 'Drawer',
+      link: LibraryItemSegmentPaths.drawer
     }];
   }
 

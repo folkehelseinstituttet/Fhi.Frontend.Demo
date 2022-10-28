@@ -5,6 +5,7 @@ import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
+import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
@@ -56,6 +57,7 @@ export class LibraryItemSegmentPaths {
 
   // Modules
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
+  static drawer = stringTransform(Object.keys({ DrawerData })[0]);
 
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);

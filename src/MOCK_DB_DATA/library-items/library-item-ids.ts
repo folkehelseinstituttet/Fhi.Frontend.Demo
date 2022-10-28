@@ -5,6 +5,7 @@ import { BadgeIds } from "./badge/_badge.ids"
 import { BreadcrumbIds } from "./breadcrumb/_breadcrumb.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
 import { ColorIds } from "./color/_color.ids"
+import { DrawerIds } from "./drawer/_drawer.ids"
 import { FormsIds } from "./forms/_forms.ids"
 import { GlobalHeaderIds } from "./global-header/_global-header.ids"
 import { IconsIds } from "./icons/_icons.ids"
@@ -28,6 +29,7 @@ const libraryItemIds = {
   ...BreadcrumbIds,
   ...ButtonsIds,
   ...ColorIds,
+  ...DrawerIds,
   ...FormsIds,
   ...GlobalHeaderIds,
   ...IconsIds,
