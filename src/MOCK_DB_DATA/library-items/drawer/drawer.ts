@@ -5,10 +5,11 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const Drawer: LibraryItem[] = [{
   id: LibraryItemIds.Drawer,
   title: 'Drawer',
-  type: LibraryItemType.html,
+  type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+  documentationHtml: getDocumentationHtml(),
+  hasPreviewButton: true
 }];
 
 
@@ -16,10 +17,7 @@ export const Drawer: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<div>
-  Drawer
-</div>`;
+  return ``;
 }
 
 /*
@@ -27,12 +25,35 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<div class="position-relative">
+  <ng-template #content let-offcanvas>
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title">Offcanvas title</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Innhold</p>
+    </div>
+  </ng-template>
+</div>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>
+  Bootstrap-dokumentasjon for
+  <a href="${CONST.BootstrapComponentsBaseUrl}/offcanvas">Offcanvas</a>.
+</p>
+<p>
+  Drawer er implementert som en
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/offcanvas">NgBootstrap Offcanvas</a>
+  i FHI Designsystem.
+</p>
+<p>
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+</p>`;
 }
