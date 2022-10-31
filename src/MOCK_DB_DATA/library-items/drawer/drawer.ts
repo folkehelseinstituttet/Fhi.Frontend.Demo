@@ -26,16 +26,16 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="position-relative">
-  <ng-template #content let-offcanvas>
-    <div class="offcanvas-header">
-      <h4 class="offcanvas-title">Offcanvas title</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      drawer
     </div>
-    <div class="offcanvas-body">
-      <p>Innhold</p>
+
+    <div class="col-md-8">
+      <p>Hovedinnhold</p>
     </div>
-  </ng-template>
+  </div>
 </div>`;
 }
 

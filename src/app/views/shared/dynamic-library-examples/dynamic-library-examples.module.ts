@@ -8,7 +8,7 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example.compon
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
-import { OffcanvasExampleComponent } from './ng-bootstrap-examples/offcanvas-example/offcanvas-example.component';
+import { DrawerExampleComponent } from './ng-bootstrap-examples/drawer-example/drawer-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
 import { TabsExampleComponent } from './ng-bootstrap-examples/tabs-example/tabs-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
@@ -23,7 +23,7 @@ const NGB_EXAMPLES = [
   AccordionExampleComponent,
   AlertDismissibleExampleComponent,
   ModalExampleComponent,
-  OffcanvasExampleComponent,
+  DrawerExampleComponent,
   PaginationExampleComponent,
   TabsExampleComponent,
   ToastExampleComponent,
