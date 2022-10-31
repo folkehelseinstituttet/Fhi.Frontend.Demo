@@ -17,6 +17,7 @@ import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.dat
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
+import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
@@ -50,6 +51,7 @@ export class MockDbService implements InMemoryDbService {
       ColorData,
       DrawerData,
       FormsData,
+      GlobalFooterData,
       GlobalHeaderData,
       IconsData,
       LayoutTemplatesData,

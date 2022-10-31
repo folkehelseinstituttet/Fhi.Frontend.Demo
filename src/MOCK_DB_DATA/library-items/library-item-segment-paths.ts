@@ -7,6 +7,7 @@ import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
+import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
@@ -56,6 +57,7 @@ export class LibraryItemSegmentPaths {
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
 
   // Modules
+  static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
 

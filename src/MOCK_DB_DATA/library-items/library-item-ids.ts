@@ -7,6 +7,7 @@ import { ButtonsIds } from "./buttons/_buttons.ids"
 import { ColorIds } from "./color/_color.ids"
 import { DrawerIds } from "./drawer/_drawer.ids"
 import { FormsIds } from "./forms/_forms.ids"
+import { GlobalFooterIds } from "./global-footer/_global-footer.ids"
 import { GlobalHeaderIds } from "./global-header/_global-header.ids"
 import { IconsIds } from "./icons/_icons.ids"
 import { LayoutTemplatesIds } from "./layout-templates/_layout-templates.ids"
@@ -31,6 +32,7 @@ const libraryItemIds = {
   ...ColorIds,
   ...DrawerIds,
   ...FormsIds,
+  ...GlobalFooterIds,
   ...GlobalHeaderIds,
   ...IconsIds,
   ...LayoutTemplatesIds,
