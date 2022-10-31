@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const GlobalFooterArch: LibraryItem[] = [{
   id: LibraryItemIds.GlobalFooterArch,
-  title: 'Global footer - red arch',
+  title: 'Global footer - arch',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -80,5 +80,5 @@ function getDocumentationHtml(): string | null {
   &lt;/div&gt;
 </code>
 <p>Når man benytter global footer er det viktig å bruke Bootstraps grid system i henhold til innholdet man skal ha inn.</p>
-<p>Global footer <strong>- red arch</strong> har et smalere innholdsfelt enn <strong>- plain</strong> på store skjermer, og det er derfor ekstra viktig å ta hensyn til at det skal være lite innhold i footer.</p>`;
+<p>Global footer <strong>- arch</strong> har et smalere innholdsfelt enn vanlig footer på store skjermer, og det er derfor ekstra viktig å ta hensyn til at det skal være lite innhold i footer.</p>`;
 }

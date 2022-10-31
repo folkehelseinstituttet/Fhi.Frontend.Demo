@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const GlobalFooterPlain: LibraryItem[] = [{
-  id: LibraryItemIds.GlobalFooterPlain,
-  title: 'Global footer - plain',
+export const GlobalFooter: LibraryItem[] = [{
+  id: LibraryItemIds.GlobalFooter,
+  title: 'Global footer',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
