@@ -19,9 +19,9 @@ export const GlobalFooterArch: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <footer class="fhi-footer fhi-footer--arch">
-  <div class="container fhi-footer__container fhi-footer--arch__container">
+  <div class="container fhi-footer__container">
     <div class="row">
-      <div class="col-12 mb-3">
+      <div class="col-12 mb-2">
         <h2 class="h3">Overskrift om nødvendig</h2>
       </div>
 

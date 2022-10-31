@@ -21,7 +21,7 @@ function getExampleHtml(): string {
 <footer class="fhi-footer">
   <div class="container fhi-footer__container">
     <div class="row">
-      <div class="col-12 mb-3">
+      <div class="col-12 mb-2">
         <h2 class="h3">Overskrift om nødvendig</h2>
       </div>
 
