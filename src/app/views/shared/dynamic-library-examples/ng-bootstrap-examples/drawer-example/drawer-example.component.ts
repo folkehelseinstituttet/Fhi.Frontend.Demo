@@ -7,4 +7,10 @@ import { Component, Input } from '@angular/core';
 export class DrawerExampleComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
+
+  drawerIsOpen:boolean = false;
+
+  toggleDrawer() {
+    this.drawerIsOpen = !this.drawerIsOpen;
+  }
 }

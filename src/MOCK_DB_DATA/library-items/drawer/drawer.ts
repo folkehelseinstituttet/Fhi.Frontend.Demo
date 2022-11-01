@@ -26,16 +26,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      drawer
-    </div>
-
-    <div class="col-md-8">
-      <p>Hovedinnhold</p>
-    </div>
+<div class="fhi-drawer">
+  <div class="fhi-drawer__trigger-bar-vertical">
+    <button type="button" class="btn fhi-btn-flat">Åpne</button>
   </div>
+  
+  <div class="fhi-drawer__content">
+    <p>Skuffinnhold</p>
+  </div>					
 </div>`;
 }
 

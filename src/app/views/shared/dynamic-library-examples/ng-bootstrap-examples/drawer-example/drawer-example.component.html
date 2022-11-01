@@ -1,21 +1,25 @@
-<div class="position-relative">
+
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="fhi-drawer">
-					<div class="fhi-drawer__trigger-bar-vertical">
-						<button type="button" class="btn fhi-btn-flat">Åpne meny</button>
-					</div>
+			<div class="col-12 col-md-auto position-relative">
+				<div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
+					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
+						<i class="icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
+						<i class="icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
+						<span *ngIf="!drawerIsOpen">Åpne</span>
+						<span *ngIf="drawerIsOpen">Lukk</span>
+					</button>
 					
-					<div class="fhi-drawer__content">
+					<div class="fhi-drawer__content" style="background-color: yellow;" [attr.aria-hidden]="!drawerIsOpen">
 						<p>Skuffinnhold</p>
 					</div>
 				</div>
 			</div>
-
-			<div class="col-md-8">
-				<p>Hovedinnhold</p>
+				
+			<div class="col-12 col-md-auto mt-7 mt-md-0">
+				<main>
+					<h1>Hovedinnhold</h1>
+				</main>
 			</div>
 		</div>
 	</div>
-</div>
