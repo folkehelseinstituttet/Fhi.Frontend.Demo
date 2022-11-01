@@ -26,5 +26,7 @@ jobs:
         run: |
           echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
           npm install
-        # npm run build-ffac
+          var=$(pwd)
+          echo "The current working directory $var."
+        # npm run build:ffac
         # cd dist/fhi-frontend-angular-components
