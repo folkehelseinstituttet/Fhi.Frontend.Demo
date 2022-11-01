@@ -3,7 +3,7 @@ name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
 on:
   push:
     branches:
-      - main
+      -  new/npm-package-for-angular-components
     paths:
       - './projects/fhi-frontend-angular-components/package.json'
 
