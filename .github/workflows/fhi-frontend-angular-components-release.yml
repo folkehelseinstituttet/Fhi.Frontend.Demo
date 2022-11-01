@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - 'new/npm-package-for-angular-components'
-    paths:
-      - './projects/fhi-frontend-angular-components/package.json'
+    # paths:
+    #   - './projects/fhi-frontend-angular-components/package.json'
 
 jobs:
   publish:
