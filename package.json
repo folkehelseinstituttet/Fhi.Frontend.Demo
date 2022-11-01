@@ -9,7 +9,8 @@
     "build-dev": "ng build -c=dev && ng build @folkehelseinstituttet/angular-components",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "ffac-patch": "cd projects/fhi-frontend-angular-components && npm --no-git-tag-version version patch"
   },
   "private": true,
   "dependencies": {
