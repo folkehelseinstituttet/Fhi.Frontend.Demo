@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - uses: JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v1.4.3
         with:
           dry-run: true
           package: ./projects/fhi-frontend-angular-components/package.json
