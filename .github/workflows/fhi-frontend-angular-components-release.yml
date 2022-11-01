@@ -1,6 +1,11 @@
 name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
 
-on: push
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - './projects/fhi-frontend-angular-components/package.json'
 
 jobs:
   publish:
@@ -10,7 +15,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install
       - uses: JS-DevTools/npm-publish@v1
         with:
           dry-run: true
