@@ -6,7 +6,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - id: publish
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -17,6 +16,7 @@ jobs:
           dry-run: true
           package: ./projects/fhi-frontend-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
+        id: publish
 
       - if: steps.publish.outputs.type != 'none'
         run: |
