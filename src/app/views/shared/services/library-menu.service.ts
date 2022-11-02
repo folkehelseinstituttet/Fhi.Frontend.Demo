@@ -9,7 +9,8 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
   components: 'Komponenter',
-  modules: 'Moduler'
+  modules: 'Moduler',
+  layoutAndPageTemplates: 'Layout og sidemaler'
 };
 
 @Injectable({
@@ -34,6 +35,9 @@ export class LibraryMenuService {
     }, {
       name: TopLevelMenuItemNames.modules,
       link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
+    }, {
+      name: TopLevelMenuItemNames.layoutAndPageTemplates,
+      link: `/${currentSegmentPath0}/${SegmentPaths.layoutAndPageTemplates}`
     }];
     return this.topLevelMenuItems;
   }
@@ -64,6 +68,9 @@ export class LibraryMenuService {
 
       case TopLevelMenuItemNames.modules:
         return this.getModulesMenu();
+
+      case TopLevelMenuItemNames.layoutAndPageTemplates:
+        return this.getLayoutAndPageTemplatesMenu();
     }
   }
 
@@ -144,8 +151,18 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
+      name: 'Global footer',
+      link: LibraryItemSegmentPaths.globalfooter
+    }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
+    }];
+  }
+
+  private getLayoutAndPageTemplatesMenu(): MenuItem[] {
+    return [{
+      name: 'Layout',
+      link: LibraryItemSegmentPaths.layoutandpagetemplates
     }];
   }
 
