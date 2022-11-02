@@ -18,10 +18,11 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
   - [Pull request guidelines](#pull-request-guidelines)
     - [Fhi.Frontend.Demo](#fhifrontenddemo)
       - [Feature branches](#feature-branches)
-      - [Release branches](#release-branches)
-    - [Fhi.Frontend.Style and Fhi.Frontend.AngularComponents](#fhifrontendstyle-and-fhifrontendangularcomponents)
+      - [Release branches for demo app](#release-branches-for-demo-app)
+      - [Release branches for library projects](#release-branches-for-library-projects)
+    - [Fhi.Frontend.Style](#fhifrontendstyle)
       - [Feature branches](#feature-branches-1)
-      - [Release branches](#release-branches-1)
+      - [Release branches](#release-branches)
 - [Coding conventions](#coding-conventions)
   - [SASS](#sass)
   - [BEM](#bem)
@@ -108,11 +109,24 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
 2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
 3. Before pull request, remember to merge any changes made to submodules into branch `demo` in the submodule repo.
 
-##### Release branches
+##### Release branches for demo app
 
-Currently no need for release branch, we just merge `dev` into `main` when we release a new version og the app.
+Currently no need for release branch, we just merge `dev` into `main` when we release a new version of the app.
 
-#### Fhi.Frontend.Style and Fhi.Frontend.AngularComponents
+##### Release branches for library projects
+
+A library project is defined in `./angular.json` and the files are located in `./projects/[project]`
+
+1. Create a new branch from `dev` _[sic]_.
+2. Name it `release-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+    > _NB! Important to add `-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
+3. Change text `# Unreleased` to `# x.x.x` i `./projects/[project]/CHANGELOG.md`
+4. Change version in `./projects/[project]/package.json` to `x.x.x` manually.
+    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and automated, solution may come in the future :smile:_
+5. Push release branch and create pull request
+6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+
+#### Fhi.Frontend.Style
 
 ##### Feature branches
 
