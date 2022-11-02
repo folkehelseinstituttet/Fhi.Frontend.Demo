@@ -46,6 +46,7 @@ pre[class*="language-"] {
 code[class*="language-html"],
 pre[class*="language-html"] {
     color: darken($fhi-grey-2, 18%);
+    margin-right: $fhi-space-7;
 
     .token.property,
     .token.tag,

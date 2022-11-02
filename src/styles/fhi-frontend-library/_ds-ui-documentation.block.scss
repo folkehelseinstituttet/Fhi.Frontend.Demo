@@ -43,6 +43,9 @@
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
+    &__item--has-preview-buttons {
+        padding-top: $fhi-px * 75;
+    }
 
 
 
@@ -108,11 +111,8 @@
             padding: $fhi-space-3;
         }
         &__item {
-            padding: $fhi-space-5;
-
-        }
-        &__item--has-preview-buttons {
-            padding-top: $fhi-px * 75;
+            padding-right: $fhi-space-5;
+            padding-left: $fhi-space-5;
         }
     }
 }

@@ -1,6 +1,6 @@
 
-	<div class="container">
-		<div class="row">
+	<div class="container-fluid">
+		<div class="row bg-info">
 			<div class="col-12 col-md-auto position-relative">
 				<div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
 					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
@@ -10,15 +10,23 @@
 						<span *ngIf="drawerIsOpen">Lukk</span>
 					</button>
 					
-					<div class="fhi-drawer__content" style="background-color: yellow;" [attr.aria-hidden]="!drawerIsOpen">
-						<p>Skuffinnhold</p>
+					<div class="fhi-drawer__content bg-warning" [attr.aria-hidden]="!drawerIsOpen">
+						<p>Skuffinnhold.</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>Dette strekker seg høyere enn hovedinnholdet.</p>
 					</div>
 				</div>
 			</div>
 				
-			<div class="col-12 col-md-auto mt-7 mt-md-0">
+			<div class="col-12 col-md-auto bg-error">
 				<main>
 					<h1>Hovedinnhold</h1>
+					<p>&hellip;</p>
+					<p>&hellip;</p>
 				</main>
 			</div>
 		</div>
