@@ -38,6 +38,3 @@ jobs:
         if: steps.publish.outputs.type != 'none'
         run: |
           echo "New Version: ${{ steps.publish.outputs.version }} has replaced old version: ${{ steps.publish.outputs.old-version }}"
-        # if: steps.publish.outputs.type == 'none'
-        # run: |
-        #   echo "New Version: ${{ steps.publish.outputs.version }} did not pass the check!"
