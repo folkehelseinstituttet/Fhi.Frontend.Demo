@@ -1,13 +1,28 @@
 # FHI AngularComponents
 
-Contains frontend Angular components used by FHI
+Contains frontend Angular components used by FHI, based on [Bootstrap widgets (@ng-bootstrap)](https://ng-bootstrap.github.io) and [Fhi.Frontend.Style (@folkehelseinstituttet/style)](https://www.npmjs.com/package/@folkehelseinstituttet/style)
 
-[CHANGELOG](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/CHANGELOG.md)
+## Dependencies
 
-## CONTRIBUTING
+| FHI AngularComponents | Fhi.Frontend.Style | Bootstrap | NgBootstrap | Angular |
+| --------------------- | ------------------ | --------- | ----------- | ------- |
+| 0.0.1                 | 3.10.0             | 5         | 13          | 14      |
 
-Info about how to contribute: [Fhi.Frontend.Demo/CONTRIBUTING.md](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
+For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
 
-## Demo
+## Changelog
 
-Examples and documentation on how to use library in your own application (norwegian): [https://designsystem.fhi.no](https://designsystem.fhi.no/)
+You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/CHANGELOG.md).
+
+## Install
+
+Install with [npm](https://www.npmjs.com): `npm install @folkehelseinstituttet/angular-components`
+
+## Contribute
+
+Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
+
+## Demo and documentation
+
+Live examples in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no)
+Repo for demo app: [Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
