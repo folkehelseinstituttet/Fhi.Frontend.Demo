@@ -13,9 +13,9 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
   - [Confirming Issues](#confirming-issues)
 - [Fixing Bugs and Adding Features](#fixing-bugs-and-adding-features)
   - [Workflows](#workflows)
-    - [Work on Fhi.Frontend.Style](#work-on-fhifrontendstyle)
-    - [Work on Fhi.Frontend.AngularComponents](#work-on-fhifrontendangularcomponents)
-      - [Code scaffolding](#code-scaffolding)
+    - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
+    - [How to work on @folkehelseinstituttet/angular-components and Fhi.Frontend.Demo](#how-to-work-on-folkehelseinstituttetangular-components-and-fhifrontenddemo)
+      - [Code scaffolding in @folkehelseinstituttet/angular-components](#code-scaffolding-in-folkehelseinstituttetangular-components)
   - [Pull request guidelines](#pull-request-guidelines)
     - [Fhi.Frontend.Demo](#fhifrontenddemo)
       - [Feature branches](#feature-branches)
@@ -81,26 +81,24 @@ It is also a good idea to add a comment to an issue that you are working on to l
 _These are just examples. Feel free to find workflows that suites you._
 _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)_
 
-#### Work on Fhi.Frontend.Style
+#### How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo
 
-1. Create a new branch in this repo, and a new branch with the same name in the git submodule `./Fhi.Frontend.Style`.
+1. Create a new branch in this repo (from `dev`), and a new branch with the same name in the git submodule `./Fhi.Frontend.Style` (from `main`).
 2. Run `npm start`
 3. Work on both parent and submodule code, and commit changes in both repos.
 4. When ready
    1. Run `git push` in this repo
    2. Run `git push --recurse-submodules=check` in the submodule repo
 
-#### Work on Fhi.Frontend.AngularComponents
+#### How to work on @folkehelseinstituttet/angular-components and Fhi.Frontend.Demo
 
-1. Create a new branch in this repo, and a new branch with the same name in the git submodule `./projects/fhi-angular-components`.
+1. Create a new branch in this repo (from `dev`)
 2. Run `ng build @folkehelseinstituttet/angular-components --watch`
 3. In a new consol, run `npm start`
-4. Work on both parent and submodule code, and commit changes in both repos.
-5. When ready
-   1. Run `git push` in this repo
-   2. Run `git push --recurse-submodules=check` in the submodule repo
+4. Work on both library and app code simultanously
+5. When ready, run `git push` and follow the [pull request guidelines](#pull-request-guidelines)
 
-##### Code scaffolding
+##### Code scaffolding in @folkehelseinstituttet/angular-components
 
 Run `ng generate component component-name --project @folkehelseinstituttet/angular-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @folkehelseinstituttet/angular-components`.
 > Note: Don't forget to add `--project @folkehelseinstituttet/angular-components` or else it will be added to the default project in your `angular.json` file.
