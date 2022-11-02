@@ -9,7 +9,7 @@ on:
 
 jobs:
   publish:
-    name: Publish
+    name: Build and publish to NPM
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
