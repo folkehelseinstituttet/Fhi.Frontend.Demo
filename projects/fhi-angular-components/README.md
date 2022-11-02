@@ -1,12 +1,13 @@
-# Fhi.Frontend.AngularComponents
+# FHI AngularComponents
 
 Contains frontend Angular components used by FHI
 
-## Code scaffolding
+[CHANGELOG](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/CHANGELOG.md)
 
-Run `ng generate component component-name --project @folkehelseinstituttet/angular-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @folkehelseinstituttet/angular-components`.
-> Note: Don't forget to add `--project @folkehelseinstituttet/angular-components` or else it will be added to the default project in your `angular.json` file.
+## CONTRIBUTING
 
-## Build
+Info about how to contribute: [Fhi.Frontend.Demo/CONTRIBUTING.md](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
 
-Run `ng build @folkehelseinstituttet/angular-components` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Demo
+
+Examples and documentation on how to use library in your own application (norwegian): [https://designsystem.fhi.no](https://designsystem.fhi.no/)

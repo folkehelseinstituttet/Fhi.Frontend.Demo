@@ -15,6 +15,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
   - [Workflows](#workflows)
     - [Work on Fhi.Frontend.Style](#work-on-fhifrontendstyle)
     - [Work on Fhi.Frontend.AngularComponents](#work-on-fhifrontendangularcomponents)
+      - [Code scaffolding](#code-scaffolding)
   - [Pull request guidelines](#pull-request-guidelines)
     - [Fhi.Frontend.Demo](#fhifrontenddemo)
       - [Feature branches](#feature-branches)
@@ -98,6 +99,11 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
 5. When ready
    1. Run `git push` in this repo
    2. Run `git push --recurse-submodules=check` in the submodule repo
+
+##### Code scaffolding
+
+Run `ng generate component component-name --project @folkehelseinstituttet/angular-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @folkehelseinstituttet/angular-components`.
+> Note: Don't forget to add `--project @folkehelseinstituttet/angular-components` or else it will be added to the default project in your `angular.json` file.
 
 ### Pull request guidelines
 
