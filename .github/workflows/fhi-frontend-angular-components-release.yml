@@ -5,7 +5,7 @@ on:
     branches:
       - 'new/npm-package-for-angular-components'
     paths:
-      - 'projects/fhi-frontend-angular-components/package.json'
+      - 'projects/fhi-angular-components/package.json'
 
 jobs:
   publish:
@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 16
 
-      - name: Build fhi-frontend-angular-components
+      - name: Build fhi-angular-components
         run: |
          npm install
          npm run build-lib-ac
@@ -31,7 +31,7 @@ jobs:
           dry-run: true
           access: "public"
           check-version: true
-          package: dist/fhi-frontend-angular-components/package.json
+          package: dist/fhi-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Post publish status

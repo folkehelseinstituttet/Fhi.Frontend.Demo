@@ -1,5 +1,5 @@
 /*
- * Public API Surface of fhi-frontend-angular-components
+ * Public API Surface of fhi-angular-components
  */
 
 export * from './lib/fhi-angular-components.module';

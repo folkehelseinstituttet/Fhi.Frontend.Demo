@@ -1,10 +1,10 @@
 {
   "name": "@folkehelseinstituttet/angular-components",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git",
-    "directory": "projects/fhi-frontend-angular-components"
+    "directory": "projects/fhi-angular-components"
   },
   "peerDependencies": {
     "@angular/common": "^14.2.0",

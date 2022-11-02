@@ -36,7 +36,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 There are two submoduls in this repo:
 
 - `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
-- `./projects/fhi-frontend-angular-components`, [Github repo Fhi.Frontend.AngularComponents](https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents)
+- `./projects/fhi-angular-components`, [Github repo Fhi.Frontend.AngularComponents](https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents)
 
 The information in this file refers to this repo but also the submodules.
 
@@ -90,7 +90,7 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
 
 #### Work on Fhi.Frontend.AngularComponents
 
-1. Create a new branch in this repo, and a new branch with the same name in the git submodule `./projects/fhi-frontend-angular-components`.
+1. Create a new branch in this repo, and a new branch with the same name in the git submodule `./projects/fhi-angular-components`.
 2. Run `ng build @folkehelseinstituttet/angular-components --watch`
 3. In a new consol, run `npm start`
 4. Work on both parent and submodule code, and commit changes in both repos.
