@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 16
 
-      - name: Build (Prepublish check)
+      - name: Build fhi-frontend-angular-components
         run: |
          npm install
          npm run build-lib-ac
@@ -28,9 +28,9 @@ jobs:
         id: publish
         uses: JS-DevTools/npm-publish@v1.4.3
         with:
+          dry-run: true
           access: "public"
           check-version: true
-          dry-run: true
           package: dist/fhi-frontend-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
