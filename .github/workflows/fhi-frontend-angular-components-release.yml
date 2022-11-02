@@ -35,9 +35,9 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Post publish status
-      - if: steps.publish.outputs.type != 'none'
+        if: steps.publish.outputs.type != 'none'
         run: |
           echo "New Version: ${{ steps.publish.outputs.version }} has replaced old version: ${{ steps.publish.outputs.old-version }}"
-      - if: steps.publish.outputs.type == 'none'
-        run: |
-          echo "New Version: ${{ steps.publish.outputs.version }} did not pass the check!"
+        # if: steps.publish.outputs.type == 'none'
+        # run: |
+        #   echo "New Version: ${{ steps.publish.outputs.version }} did not pass the check!"
