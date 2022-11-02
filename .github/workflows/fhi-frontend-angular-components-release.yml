@@ -24,26 +24,20 @@ jobs:
          npm install
          npm run build-lib-ac
 
-      # Use JS-DevTools/npm-publish@v1 only for verification due to custom angular
-      - name: Verify new npm version and publish
+      - name: Check new npm version and publish
         id: publish
         uses: JS-DevTools/npm-publish@v1.4.3
         with:
           access: "public"
+          check-version: true
           dry-run: true
-          greater-version-only: true
           package: dist/fhi-frontend-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
-      # - name: Publish
-      #   if: steps.publish.outputs.type == 'none'
-      #   run: |
-      #     npm install
-      #     npm run build-lib-ac
-      #     npm publish dist/fhi-frontend-angular-components --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TULLETOKEN }}
-        # echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
-        #   npm install
-        #   npm run build:lib:ac
-        # # cd dist/fhi-frontend-angular-components
+      - name: Post publish status
+      - if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "New Version: ${{ steps.publish.outputs.version }} has replaced old version: ${{ steps.publish.outputs.old-version }}"
+      - if: steps.publish.outputs.type == 'none'
+        run: |
+          echo "New Version: ${{ steps.publish.outputs.version }} did not pass the check!"
