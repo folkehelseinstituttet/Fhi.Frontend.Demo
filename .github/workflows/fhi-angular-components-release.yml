@@ -1,0 +1,48 @@
+name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
+
+on:
+  # pull_request:
+  #   types:
+  #     - closed
+  #   branches:
+  #     - 'release-fhi-angular-components/**'
+  #   paths:
+  #     - 'projects/fhi-angular-components/package.json'
+
+  push:
+    branches:
+      - 'new/npm-package-for-angular-components'
+    paths:
+      - 'projects/fhi-angular-components/package.json'
+
+jobs:
+  publish:
+    name: Build and publish to NPM
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Build fhi-angular-components
+        run: |
+         npm install
+         npm run build-lib-ac
+
+      - name: Check new npm version and publish
+        id: publish
+        uses: JS-DevTools/npm-publish@v1.4.3
+        with:
+          dry-run: true
+          access: "public"
+          check-version: true
+          package: dist/fhi-angular-components/package.json
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - name: Post publish status
+        if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "New Version: ${{ steps.publish.outputs.version }} has replaced old version: ${{ steps.publish.outputs.old-version }}"
