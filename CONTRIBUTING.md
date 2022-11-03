@@ -1,12 +1,12 @@
 # How to contribute
 
-So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodules? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and all submodules) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
+So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodule? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and submodule) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
 
 <!-- code_chunk_output -->
 
-- [Git submodules](#git-submodules)
+- [Git submodule](#git-submodule)
 - [Submitting Issues](#submitting-issues)
   - [Before you submit an issue](#before-you-submit-an-issue)
   - [Submitting a good issue](#submitting-a-good-issue)
@@ -33,7 +33,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 
 <!-- /code_chunk_output -->
 
-## Git submodules
+## Git submodule
 
 There is a submodule in this repo:
 
@@ -47,7 +47,7 @@ Requests for new features and bug reports keep the project moving forward.
 
 ### Before you submit an issue
 
-- Ensure you are running the latest version of Fhi.Frontend.Demo and its submodules.
+- Ensure you are running the latest version of Fhi.Frontend.Demo and its submodule.
 - **Search** the issue lists (including closed issues) to make sure it hasn't already been reported.
   - [Issue list Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
   - [Issue list Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
@@ -129,7 +129,7 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum|
 
 1. Create a new branch from `dev`.
 2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to merge any changes made to submodules into branch `demo` in the submodule repo.
+3. Before pull request, remember to merge any changes made to the submodule into branch `demo` in the submodule repo.
 
 ##### Release branches for demo app
 
