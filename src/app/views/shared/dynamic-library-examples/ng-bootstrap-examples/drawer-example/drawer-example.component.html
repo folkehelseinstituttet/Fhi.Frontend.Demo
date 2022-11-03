@@ -1,8 +1,44 @@
-
-	<div class="container-fluid">
-		<div class="row bg-info">
+<div class="container-fluid" *ngIf="itemId === itemIds.Drawer">
+	<div class="fhi-drawer">
+		<div class="row">
 			<div class="col-12 col-md-auto position-relative">
-				<div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
+				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen }">
+					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()" #drawerTrigger>
+						<i class="icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
+						<i class="icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
+						<span *ngIf="!drawerIsOpen">Åpne</span>
+						<span *ngIf="drawerIsOpen">Lukk</span>
+					</button>
+					
+					<div class="fhi-drawer__content bg-white" [attr.aria-hidden]="!drawerIsOpen"  #drawerContent>
+						<p>Skuffinnhold.</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>Dette strekker seg høyere enn hovedinnholdet.</p>
+					</div>
+				</div>
+			</div>
+				
+			<div class="col-12 col-md" #mainContent>
+				<main>
+					<h1>Hovedinnhold</h1>
+					<p>&hellip;</p>
+					<p>&hellip;</p>
+				</main>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- <div class="container-fluid" *ngIf="itemId === itemIds.DrawerOverlayed">
+	<div class="fhi-drawer fhi-drawer--overlayed">
+		<div class="row bg-info">
+			<div class="fhi-drawer-overlayed-container position-relative">
+				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen }">
 					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
 						<i class="icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
 						<i class="icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
@@ -22,7 +58,7 @@
 				</div>
 			</div>
 				
-			<div class="col-12 col-md-auto bg-error">
+			<div class="col bg-error">
 				<main>
 					<h1>Hovedinnhold</h1>
 					<p>&hellip;</p>
@@ -31,3 +67,4 @@
 			</div>
 		</div>
 	</div>
+</div> -->

@@ -1,3 +1,4 @@
 export const DrawerIds = {
-  Drawer: undefined
+  Drawer: undefined,
+  DrawerOverlayed: undefined
 }

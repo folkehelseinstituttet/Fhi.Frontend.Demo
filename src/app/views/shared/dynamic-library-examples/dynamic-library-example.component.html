@@ -40,7 +40,17 @@
 
   <app-alert-dismissible-example *ngSwitchCase="itemIds.AlertDismissible"></app-alert-dismissible-example>
   <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
-  <app-drawer-example *ngSwitchCase="itemIds.Drawer"></app-drawer-example>
+
+  <app-drawer-example
+    *ngSwitchCase="itemIds.Drawer"
+    [itemId]="itemIds.Drawer"
+    [itemIds]="itemIds">
+  </app-drawer-example>
+  <app-drawer-example
+    *ngSwitchCase="itemIds.DrawerOverlayed"
+    [itemId]="itemIds.DrawerOverlayed"
+    [itemIds]="itemIds">
+  </app-drawer-example>
 
   <app-tabs-example
     *ngSwitchCase="itemIds.Tabs"
