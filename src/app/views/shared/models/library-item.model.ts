@@ -11,5 +11,5 @@ export interface LibraryItem {
   exampleHtml: string;
   codeHtml: string;
   documentationHtml: string;
-  hasPreviewButton?: boolean;
+  fullScreenEnabled?: boolean;
 }

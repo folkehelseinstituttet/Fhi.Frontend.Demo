@@ -1,10 +1,10 @@
 <div class="container" *ngIf="!isDebugging else debugView">
   <app-library-top-level-menu [menuItems]="topLevelMenuItems"></app-library-top-level-menu>
   <div class="row">
-    <div class="col-md-4 col-lg-3 col-xxl-3">
+    <div class="col-xl-3 col-xxl-3">
       <app-library-second-level-menu [menuItems]="secondLevelMenuItems"></app-library-second-level-menu>
     </div>
-    <div class="col-md-8 col-lg-9 col-xxl-7">
+    <div class="col-xl-9 col-xxl-7">
       <router-outlet></router-outlet>
     </div>
   </div>

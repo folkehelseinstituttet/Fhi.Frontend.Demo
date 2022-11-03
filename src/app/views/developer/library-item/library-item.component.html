@@ -8,13 +8,13 @@
 
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent>
-            <app-library-item-full-srceen *ngIf="hasPreviewButton">
+            <app-library-item-full-srceen *ngIf="fullScreenEnabled">
               <ng-container library-item-full-screen.body-content>
                 <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
               </ng-container>
             </app-library-item-full-srceen>
             <div class="ds-ui-documentation__item"
-                 [ngClass]="{ 'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton }">
+                 [ngClass]="{ 'ds-ui-documentation__item--has-full-screen-button': fullScreenEnabled }">
               <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
             </div>
             <div class="ds-ui-documentation__code">
