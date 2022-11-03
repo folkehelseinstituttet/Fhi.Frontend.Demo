@@ -4,11 +4,12 @@ Contains frontend Angular components used by FHI, based on [Bootstrap widgets (@
 
 ## Dependencies
 
-| FHI AngularComponents | Fhi.Frontend.Style | Bootstrap | NgBootstrap | Angular |
-| --------------------- | ------------------ | --------- | ----------- | ------- |
-| 0.0.1                 | 3.10.0             | 5         | 13          | 14      |
+| FHI AngularComponents | Fhi.Frontend.Style | Bootstrap | NgBootstrap | Angular | Node/NPM |
+| --------------------- | ------------------ | --------- | ----------- | ------- | -------- |
+| 0.0.1                 | 3.10.0             | 5         | 13          | 14      | 16/8 *    |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
+_* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then your on your own :wink:_
 
 ## Changelog
 

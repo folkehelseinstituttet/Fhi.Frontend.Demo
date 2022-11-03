@@ -14,16 +14,16 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 - [Fixing Bugs and Adding Features](#fixing-bugs-and-adding-features)
   - [Workflows](#workflows)
     - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
-    - [How to work on @folkehelseinstituttet/angular-components and Fhi.Frontend.Demo](#how-to-work-on-folkehelseinstituttetangular-components-and-fhifrontenddemo)
-      - [Code scaffolding in @folkehelseinstituttet/angular-components](#code-scaffolding-in-folkehelseinstituttetangular-components)
+    - [How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
+      - [How to do code scaffolding in an Angular library project](#how-to-do-code-scaffolding-in-an-angular-library-project)
   - [Pull request guidelines](#pull-request-guidelines)
-    - [Fhi.Frontend.Demo](#fhifrontenddemo)
+    - [Fhi.Frontend.Style](#fhifrontendstyle)
       - [Feature branches](#feature-branches)
+      - [Release branches](#release-branches)
+    - [Fhi.Frontend.Demo](#fhifrontenddemo)
+      - [Feature branches](#feature-branches-1)
       - [Release branches for demo app](#release-branches-for-demo-app)
       - [Release branches for library projects](#release-branches-for-library-projects)
-    - [Fhi.Frontend.Style](#fhifrontendstyle)
-      - [Feature branches](#feature-branches-1)
-      - [Release branches](#release-branches)
 - [Coding conventions](#coding-conventions)
   - [SASS](#sass)
   - [BEM](#bem)
@@ -35,12 +35,11 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 
 ## Git submodules
 
-There are two submoduls in this repo:
+There is a submoduls in this repo:
 
 - `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
-- `./projects/fhi-angular-components`, [Github repo Fhi.Frontend.AngularComponents](https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents)
 
-The information in this file refers to this repo but also the submodules.
+The information in this file refers to this repo but also the submodule.
 
 ## Submitting Issues
 
@@ -51,7 +50,6 @@ Requests for new features and bug reports keep the project moving forward.
 - Ensure you are running the latest version of Fhi.Frontend.Demo and its submodules.
 - **Search** the issue lists (including closed issues) to make sure it hasn't already been reported.
   - [Issue list Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
-  - [Issue list Fhi.Frontend.AngularComponents](https://github.com/folkehelseinstituttet/Fhi.Frontend.AngularComponents/issues?utf8=✓&q=is%3Aissue)
   - [Issue list Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
 
 ### Submitting a good issue
@@ -90,45 +88,21 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
    1. Run `git push` in this repo
    2. Run `git push --recurse-submodules=check` in the submodule repo
 
-#### How to work on @folkehelseinstituttet/angular-components and Fhi.Frontend.Demo
+#### How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo
 
 1. Create a new branch in this repo (from `dev`)
-2. Run `ng build @folkehelseinstituttet/angular-components --watch`
+2. Run `ng build @folkehelseinstituttet/fhi-[project] --watch`
 3. In a new consol, run `npm start`
 4. Work on both library and app code simultanously
 5. When ready, run `git push` and follow the [pull request guidelines](#pull-request-guidelines)
 
-##### Code scaffolding in @folkehelseinstituttet/angular-components
+##### How to do code scaffolding in an Angular library project
 
-Run `ng generate component component-name --project @folkehelseinstituttet/angular-components` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @folkehelseinstituttet/angular-components`.
-> Note: Don't forget to add `--project @folkehelseinstituttet/angular-components` or else it will be added to the default project in your `angular.json` file.
+Run `ng generate component component-name --project @folkehelseinstituttet/[project]` to generate a new component.
+You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project @folkehelseinstituttet/[project]`.
+> Note: Don't forget to add option `--project` or else it will be added to the default project in your `angular.json` file.
 
 ### Pull request guidelines
-
-#### Fhi.Frontend.Demo
-
-##### Feature branches
-
-1. Create a new branch from `dev`.
-2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to merge any changes made to submodules into branch `demo` in the submodule repo.
-
-##### Release branches for demo app
-
-Currently no need for release branch, we just merge `dev` into `main` when we release a new version of the app.
-
-##### Release branches for library projects
-
-A library project is defined in `./angular.json` and the files are located in `./projects/[project]`
-
-1. Create a new branch from `dev` _[sic]_.
-2. Name it `release-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-    > _NB! Important to add `-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
-3. Change text `# Unreleased` to `# x.x.x` i `./projects/[project]/CHANGELOG.md`
-4. Change version in `./projects/[project]/package.json` to `x.x.x` manually.
-    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and automated, solution may come in the future :smile:_
-5. Push release branch and create pull request
-6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
 #### Fhi.Frontend.Style
 
@@ -146,6 +120,31 @@ A library project is defined in `./angular.json` and the files are located in `.
 2. Name it `release/x.x.x`, where `x.x.x` is the version you're releasing.
 3. Change text `# Unreleased` to `# x.x.x` i `CHANGELOG.md`
 4. Run `npm version [patch, minor, major]` to upgrade `package.json` and automatically create a new commit.
+5. Push release branch and create pull request
+6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+
+#### Fhi.Frontend.Demo
+
+##### Feature branches
+
+1. Create a new branch from `dev`.
+2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
+3. Before pull request, remember to merge any changes made to submodules into branch `demo` in the submodule repo.
+
+##### Release branches for demo app
+
+Currently no need for release branch, we just merge `dev` into `main` when we release a new version of the app.
+
+##### Release branches for library projects
+
+A library project is defined in `./angular.json` and the files are located in `./projects/fhi-[project]`
+
+1. Create a new branch from `dev`.
+2. Name it `release-fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+    > _NB! Important to add `-fhi-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
+3. Change text `# Unreleased` to `# x.x.x` i `./projects/fhi-[project]/CHANGELOG.md`
+4. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
+    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and more automated, solution may come in the near future :smile:_
 5. Push release branch and create pull request
 6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
