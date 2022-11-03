@@ -16,7 +16,11 @@ export const SpinnerButton: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<button class="btn fhi-btn-primary" type="button">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Loading...
+</button>`;
 }
 
 /*
@@ -31,5 +35,12 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>
+  Bootstrap-dokumentasjon for
+  <a href="${CONST.BootstrapComponentsBaseUrl}/spinners/#buttons">Spinner - button</a>.
+</p>
+<p>
+  OBS! Vi bruker kun <i>Border spinner</i>, og den brukes kun med den fargen som vises her.
+</p>`;
 }

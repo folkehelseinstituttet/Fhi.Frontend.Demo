@@ -16,7 +16,10 @@ export const SpinnerMargin: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<div class="spinner-border m-5" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`;
 }
 
 /*
@@ -31,5 +34,17 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>
+  Bootstrap-dokumentasjon for
+  <a href="${CONST.BootstrapComponentsBaseUrl}/spinners/#margin">Spinner - margin</a>.
+</p>
+<p>
+  Eksemplet viser hvordan en kan bruke
+  <a href="${CONST.BootstrapUtilitiesBaseUrl}/spacing">Bootstrap spacing utilities</a>
+  til å plassere spinneren.
+</p>
+<p>
+  OBS! Vi bruker kun <i>Border spinner</i>, og den brukes kun med den fargen som vises her.
+</p>`;
 }

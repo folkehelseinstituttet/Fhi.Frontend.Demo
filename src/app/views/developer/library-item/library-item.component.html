@@ -17,7 +17,7 @@
                  [ngClass]="{ 'ds-ui-documentation__item--has-full-screen-button': fullScreenEnabled }">
               <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
             </div>
-            <div class="ds-ui-documentation__code">
+            <div class="ds-ui-documentation__code" *ngIf="codeHtml !== null">
               <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
               <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
@@ -28,10 +28,6 @@
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__item">
               <div [innerHtml]="documentationHtml | safe: 'html'"></div>
-            </div>
-            <div class="ds-ui-documentation__code">
-              <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
-              <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>

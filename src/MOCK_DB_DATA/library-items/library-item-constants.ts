@@ -7,6 +7,7 @@ export class LibraryItemConstants {
   static BootstrapComponentsBaseUrl = `${bootstrapDocBaseUrl}/components`;
   static BootstrapContentBaseUrl = `${bootstrapDocBaseUrl}/content`;
   static BootstrapFormsBaseUrl = `${bootstrapDocBaseUrl}/forms`;
+  static BootstrapUtilitiesBaseUrl = `${bootstrapDocBaseUrl}/utilities`;
 
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 
