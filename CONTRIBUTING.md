@@ -35,7 +35,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 
 ## Git submodules
 
-There is a submodul in this repo:
+There is a submodule in this repo:
 
 - `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
 
