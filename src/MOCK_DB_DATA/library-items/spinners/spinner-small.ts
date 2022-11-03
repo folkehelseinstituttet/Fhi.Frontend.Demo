@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Template2: LibraryItem[] = [{
-  id: LibraryItemIds.Template2,
-  title: 'Template 2',
+export const SpinnerSmall: LibraryItem[] = [{
+  id: LibraryItemIds.SpinnerSmall,
+  title: 'Spinner - small',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
