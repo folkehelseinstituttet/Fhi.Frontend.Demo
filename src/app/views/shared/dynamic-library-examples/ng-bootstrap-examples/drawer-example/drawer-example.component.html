@@ -10,7 +10,7 @@
 						<span *ngIf="drawerIsOpen">Lukk</span>
 					</button>
 					
-					<div class="fhi-drawer__content bg-white" [attr.aria-hidden]="!drawerIsOpen"  #drawerContent>
+					<div class="fhi-drawer__content bg-white" [attr.aria-hidden]="!drawerIsOpen" #drawerContent>
 						<p>Skuffinnhold.</p>
 						<p>&hellip;</p>
 						<p>&hellip;</p>
@@ -22,32 +22,219 @@
 				</div>
 			</div>
 				
-			<div class="col-12 col-md" #mainContent>
-				<main>
-					<h1>Hovedinnhold</h1>
-					<p>&hellip;</p>
-					<p>&hellip;</p>
-				</main>
+			<div class="col-12 col-md">
+				<div class="fhi-drawer__outside-content" [ngStyle]="{'min-height': drawerHeight + 'px'}">
+					<main>
+						<h1>Hovedinnhold</h1>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+					</main>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<!-- <div class="container-fluid" *ngIf="itemId === itemIds.DrawerOverlayed">
-	<div class="fhi-drawer fhi-drawer--overlayed">
-		<div class="row bg-info">
-			<div class="fhi-drawer-overlayed-container position-relative">
-				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen }">
-					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
-						<i class="icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
-						<i class="icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
-						<span *ngIf="!drawerIsOpen">Åpne</span>
-						<span *ngIf="drawerIsOpen">Lukk</span>
+<div class="container" *ngIf="itemId === itemIds.DrawerOverlayed">
+	<div class="fhi-drawer">
+		<div class="row">
+			<div class="col-12 col-md-auto position-relative">
+				<div class="fhi-drawer__drawer fhi-drawer__drawer--overlayed" [ngClass]="{ 'open' : drawerIsOpen2 }">
+					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer2()" #drawerTrigger2>
+						<i class="icon-chevron-double-right" *ngIf="!drawerIsOpen2"></i>
+						<i class="icon-chevron-double-left" *ngIf="drawerIsOpen2"></i>
+						<span *ngIf="!drawerIsOpen2">Åpne</span>
+						<span *ngIf="drawerIsOpen2">Lukk</span>
 					</button>
 					
-					<div class="fhi-drawer__content bg-warning" [attr.aria-hidden]="!drawerIsOpen">
+					<div class="fhi-drawer__content fhi-drawer__content--overlayed bg-white" [attr.aria-hidden]="!drawerIsOpen2" #drawerContent2>
 						<p>Skuffinnhold.</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
 						<p>&hellip;</p>
 						<p>&hellip;</p>
 						<p>&hellip;</p>
@@ -58,13 +245,15 @@
 				</div>
 			</div>
 				
-			<div class="col bg-error">
-				<main>
-					<h1>Hovedinnhold</h1>
-					<p>&hellip;</p>
-					<p>&hellip;</p>
-				</main>
+			<div class="col-12 col-md">
+				<div class="fhi-drawer__outside-content" [ngStyle]="{'min-height': drawerHeight2 + 'px'}">
+					<main>
+						<h1>Hovedinnhold</h1>
+						<p>&hellip;</p>
+						<p>&hellip;</p>
+					</main>
+				</div>
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>
