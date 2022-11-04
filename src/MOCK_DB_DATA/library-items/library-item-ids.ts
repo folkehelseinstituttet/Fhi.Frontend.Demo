@@ -15,6 +15,7 @@ import { ModalIds } from "./modal/_modal.ids"
 import { NavigationTileIds } from "./navigation-tile/_navigation-tile.ids"
 import { PaginationIds } from "./pagination/_pagination.ids"
 import { SearchIds } from "./search/_search.ids"
+import { SpinnersIds } from "./spinners/_spinners.ids"
 import { TableIds } from "./table/_table.ids"
 import { TabsIds } from "./tabs/_tabs.ids"
 import { TagsIds } from "./tags/_tags.ids"
@@ -40,6 +41,7 @@ const libraryItemIds = {
   ...NavigationTileIds,
   ...PaginationIds,
   ...SearchIds,
+  ...SpinnersIds,
   ...TableIds,
   ...TabsIds,
   ...TagsIds,
