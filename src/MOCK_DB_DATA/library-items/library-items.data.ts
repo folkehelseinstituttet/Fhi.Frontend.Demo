@@ -14,6 +14,7 @@ import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
 import { SearchData } from './search/_search.data';
+import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
@@ -36,6 +37,7 @@ export const AllData: LibraryItem[] = [
   ...NavigationtileData,
   ...PaginationData,
   ...SearchData,
+  ...SpinnersData,
   ...TableData,
   ...TabsData,
   ...TagsData,

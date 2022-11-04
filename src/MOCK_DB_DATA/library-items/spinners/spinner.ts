@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Template2: LibraryItem[] = [{
-  id: LibraryItemIds.Template2,
-  title: 'Template 2',
+export const Spinner: LibraryItem[] = [{
+  id: LibraryItemIds.Spinner,
+  title: 'Spinner',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,7 +16,10 @@ export const Template2: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`;
 }
 
 /*
@@ -31,5 +34,12 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>
+  Bootstrap-dokumentasjon for
+  <a href="${CONST.BootstrapComponentsBaseUrl}/spinners/#border-spinner">Spinner</a>.
+</p>
+<p>
+  OBS! Vi bruker kun <i>Border spinner</i>, og den brukes kun med den fargen som vises her.
+</p>`;
 }

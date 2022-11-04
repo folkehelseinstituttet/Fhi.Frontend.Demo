@@ -132,6 +132,9 @@ export class LibraryMenuService {
       name: 'Search',
       link: LibraryItemSegmentPaths.search
     }, {
+      name: 'Spinners',
+      link: LibraryItemSegmentPaths.spinners
+    }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.table
     }, {

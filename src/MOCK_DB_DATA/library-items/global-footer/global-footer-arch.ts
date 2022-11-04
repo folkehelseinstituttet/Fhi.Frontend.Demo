@@ -9,7 +9,7 @@ export const GlobalFooterArch: LibraryItem[] = [{
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml(),
-  hasPreviewButton: true
+  fullScreenEnabled: true
 }];
 
 
