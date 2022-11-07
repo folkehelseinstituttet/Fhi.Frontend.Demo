@@ -21,7 +21,7 @@
 					</div>
 				</div>
 			</div>
-				
+			
 			<div class="col-12 col-md">
 				<div class="fhi-drawer__outside-content" [ngStyle]="{'min-height': drawerHeight + 'px'}">
 					<main>
@@ -33,12 +33,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="fhi-drawer__backdrop display-md-none" *ngIf="drawerIsOpen" (click)="toggleDrawer()"></div>
 </div>
 
 
 <div class="container" *ngIf="itemId === itemIds.DrawerOverlayed">
 	<div class="fhi-drawer">
-		<div class="fhi-drawer__backdrop"></div>
 		<div class="row">
 			<div class="col-12 col-md-auto position-relative">
 				<div class="fhi-drawer__drawer fhi-drawer__drawer--overlayed" [ngClass]="{ 'open' : drawerIsOpen2 }">
@@ -70,6 +70,7 @@
 					</main>
 				</div>
 			</div>
+			<div class="fhi-drawer__backdrop" *ngIf="drawerIsOpen2" (click)="toggleDrawer2()"></div>
 		</div>
 	</div>
 </div>
