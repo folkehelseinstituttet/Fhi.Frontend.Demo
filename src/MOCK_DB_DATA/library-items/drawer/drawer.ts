@@ -5,11 +5,10 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const Drawer: LibraryItem[] = [{
   id: LibraryItemIds.Drawer,
   title: 'Drawer',
-  type: LibraryItemType.fhiAngular,
+  type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml(),
-  fullScreenEnabled: true
+  documentationHtml: getDocumentationHtml()
 }];
 
 
@@ -17,7 +16,13 @@ export const Drawer: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<div class="alert bg-warning">
+  <i class="icon-info-circle"></i>
+  <p>
+  	Denne komponenten er avhengig av å ligge i en spesifikk <a href="http://localhost:4200/developer/layout-and-page-templates/LayoutTemplates">layout med ekspanderbart innhold i første kolonne"</a>
+  </p>
+</div>`;
 }
 
 /*
@@ -26,33 +31,17 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="container">
-	<div class="fhi-drawer">
-		<div class="row">
-			<div class="col-12 col-md-auto">
-				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen }">
-					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
-						<p class="pt-3"><i class="icon-user-regular me-0"></i></p>
-						<p class="d-none d-md-block">Ikontekst</p>
-						<i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
-						<i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
-					</button>
-					
-					<div class="fhi-drawer__content fhi-drawer__content--wide bg-white mt-n6" [attr.aria-hidden]="!drawerIsOpen" #drawerContent>
-						<p>Skuffinnhold.</p>
-					</div>
-				</div>
-			</div>
-				
-			<div class="col-12 col-md">
-				<div class="fhi-drawer__outside-content mt-n6 ps-7 mt-md-0 ps-md-0" [ngStyle]="{'min-height': drawerHeight + 'px'}">
-					<main>
-						<h1>Hovedinnhold</h1>
-					</main>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
+  <button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
+	  <p class="pt-3"><i class="icon-user-regular me-0"></i></p>
+	  <p class="d-none d-md-block">Ikontekst</p>
+	  <i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
+	  <i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
+  </button>
+  
+  <div class="fhi-drawer__content bg-white mt-n6" [attr.aria-hidden]="!drawerIsOpen" #drawerContent>
+	  <p>Skuffinnhold.</p>
+  </div>
 </div>`;
 }
 

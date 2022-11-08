@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-drawer-example',
-  templateUrl: './drawer-example.component.html'
+  selector: 'app-layout-expandable-first-col-example',
+  templateUrl: './layout-expandable-first-col-example.component.html'
 })
-export class DrawerExampleComponent {
+export class LayoutExpandableFistColExampleComponent {
   @ViewChild('drawerContent') drawerContent: ElementRef;
 
   @Input() itemId!: string;
