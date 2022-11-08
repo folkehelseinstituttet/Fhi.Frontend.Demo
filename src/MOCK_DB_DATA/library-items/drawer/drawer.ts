@@ -62,6 +62,6 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Drawer er en skreddersydd komponent i FHI Angular Modules
+  Drawer kan benyttes i tilfeller der det er behov for at hovedinnholdsfeltet strekker seg over det meste av sidebredden og det kan tillattes at bruker selv må åpne/lukke lokalnavigasjon/-konfigurering.
 </p>`;
 }
