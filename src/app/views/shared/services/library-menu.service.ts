@@ -114,6 +114,9 @@ export class LibraryMenuService {
       name: 'Breadcrumb',
       link: LibraryItemSegmentPaths.breadcrumb
     }, {
+      name: 'Button group',
+      link: LibraryItemSegmentPaths.buttongroup
+    }, {
       name: 'Buttons',
       link: LibraryItemSegmentPaths.buttons
     }, {
