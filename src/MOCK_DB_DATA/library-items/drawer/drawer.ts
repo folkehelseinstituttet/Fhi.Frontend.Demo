@@ -20,7 +20,7 @@ function getExampleHtml(): string {
 <div class="alert bg-warning">
   <i class="icon-info-circle"></i>
   <p>
-  	Denne komponenten er avhengig av å ligge i en spesifikk <a href="http://localhost:4200/developer/layout-and-page-templates/LayoutTemplates">layout med ekspanderbart innhold i første kolonne"</a>
+  	Denne komponenten er avhengig av å ligge i en spesifikk <a href="/developer/layout-and-page-templates/LayoutTemplates">layout med ekspanderbart innhold i første kolonne"</a>
   </p>
 </div>`;
 }
