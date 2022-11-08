@@ -30,22 +30,22 @@ function getCodeHtml(): string | null {
 	<div class="fhi-drawer">
 		<div class="row">
 			<div class="col-12 col-md-auto">
-				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen3 }">
-					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer3()">
+				<div class="fhi-drawer__drawer" [ngClass]="{ 'open' : drawerIsOpen }">
+					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
 						<p class="pt-3"><i class="icon-user-regular me-0"></i></p>
 						<p class="d-none d-md-block">Ikontekst</p>
-						<i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen3"></i>
-						<i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen3"></i>
+						<i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
+						<i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
 					</button>
 					
-					<div class="fhi-drawer__content fhi-drawer__content--wide bg-white mt-n6" [attr.aria-hidden]="!drawerIsOpen3" #drawerContent3>
+					<div class="fhi-drawer__content fhi-drawer__content--wide bg-white mt-n6" [attr.aria-hidden]="!drawerIsOpen" #drawerContent>
 						<p>Skuffinnhold.</p>
 					</div>
 				</div>
 			</div>
 				
 			<div class="col-12 col-md">
-				<div class="fhi-drawer__outside-content mt-n6 ps-7 mt-md-0 ps-md-0" [ngStyle]="{'min-height': drawerHeight3 + 'px'}">
+				<div class="fhi-drawer__outside-content mt-n6 ps-7 mt-md-0 ps-md-0" [ngStyle]="{'min-height': drawerHeight + 'px'}">
 					<main>
 						<h1>Hovedinnhold</h1>
 					</main>
