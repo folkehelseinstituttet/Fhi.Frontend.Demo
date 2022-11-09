@@ -152,17 +152,23 @@ A library project is defined in `./angular.json` and the files are located in `.
 
 ### CSS/SASS
 
-This project is using
+The project is using
 
 1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
-2. [BEM](./doc/bem-in-a-nutshell.md), but only in the folder `style/blocks`
+2. [BEM](./doc/BEM-in-a-nutshell.md), but only in the folder `style/blocks`
 3. And some custom rules
 
-We maintain [an example file](./doc/scss-example.md) to show how the three play together.
+[SCSS example file](./doc/SCSS-example.scss)
 
 ### HTML (Angular templates)
 
+The project has also some custom rules for how we write markup:
+[HTML example file](./doc/HTML-example.html)
+
 ### TypeScript
+
+When it comes to TypeScript we adhere to [Angular coding style guide]([https://angular.io/guide/styleguide)
+[TypeScript example file](./doc/TypeScript-example.ts)
 
 ## Documentation
 
