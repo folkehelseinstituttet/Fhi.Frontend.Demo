@@ -20,7 +20,10 @@ function getExampleHtml(): string {
 <div class="alert bg-warning">
   <i class="icon-info-circle"></i>
   <p>
-  	Denne komponenten er avhengig av å ligge i en spesifikk <a href="/developer/layout-and-page-templates/LayoutTemplates">layout med ekspanderbart innhold i første kolonne"</a>
+  	Denne komponenten er avhengig av å ligge i en spesifikk
+    <a href="/developer/layout-and-page-templates/LayoutTemplates#${LibraryItemIds.LayoutTemplateExpandableFirstCol}">
+      layout med ekspanderbart innhold i første kolonne"
+    </a>
   </p>
 </div>`;
 }
@@ -38,7 +41,7 @@ function getCodeHtml(): string | null {
 	  <i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
 	  <i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
   </button>
-  
+
   <div class="fhi-drawer__content bg-white mt-n6" [attr.aria-hidden]="!drawerIsOpen" #drawerContent>
 	  <p>Skuffinnhold.</p>
   </div>
