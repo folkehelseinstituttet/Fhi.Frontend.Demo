@@ -25,9 +25,9 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
       - [Release branches for demo app](#release-branches-for-demo-app)
       - [Release branches for library projects](#release-branches-for-library-projects)
 - [Coding conventions](#coding-conventions)
-  - [SASS](#sass)
-  - [BEM](#bem)
-    - [BEM in a nutshell](#bem-in-a-nutshell)
+  - [CSS/SASS](#csssass)
+  - [HTML (Angular templates)](#html-angular-templates)
+  - [TypeScript](#typescript)
 - [Documentation](#documentation)
 - [License](#license)
 
@@ -144,36 +144,25 @@ A library project is defined in `./angular.json` and the files are located in `.
     > _NB! Important to add `-fhi-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
 3. Change text `# Unreleased` to `# x.x.x` i `./projects/fhi-[project]/CHANGELOG.md`
 4. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
-    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and more automated, solution may come in the near future :smile:_
+    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and more automated, solution may come in the near future._
 5. Push release branch and create pull request
 6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
 ## Coding conventions
 
-### SASS
+### CSS/SASS
 
-This project is using [SCSS syntax](http://sass-lang.com/documentation/file.SASS_REFERENCE.html#syntax).
+This project is using
 
-### BEM
+1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
+2. [BEM](./doc/bem-in-a-nutshell.md), but only in the folder `style/blocks`
+3. And some custom rules
 
-This project is using BEM syntax, but only in the folder `style/blocks`
+We maintain [an example file](./doc/scss-example.md) to show how the three play together.
 
-#### BEM in a nutshell
+### HTML (Angular templates)
 
-```css
-.person {}
-.person--female {}
-.person__hand {}
-.person__hand--left {}
-```
-
-```html
-<div class="person person--female">
-  <div class="person__hand person__hand--left"></div>
-</div>
-```
-
-More info about BEM: [getbem.com](http://getbem.com/introduction)
+### TypeScript
 
 ## Documentation
 
