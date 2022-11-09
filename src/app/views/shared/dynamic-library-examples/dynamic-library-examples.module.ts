@@ -8,8 +8,9 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example.compon
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
-import { TabsExampleComponent } from './ng-bootstrap-examples/tabs-example/tabs-example.component';
+import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
+import { TabsExampleComponent } from './ng-bootstrap-examples/tabs-example/tabs-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example/tooltip-example.component';
 
@@ -22,8 +23,9 @@ const NGB_EXAMPLES = [
   AccordionExampleComponent,
   AlertDismissibleExampleComponent,
   ModalExampleComponent,
-  TabsExampleComponent,
+  LayoutExpandableFistColExampleComponent,
   PaginationExampleComponent,
+  TabsExampleComponent,
   ToastExampleComponent,
   TooltipExampleComponent
 ];

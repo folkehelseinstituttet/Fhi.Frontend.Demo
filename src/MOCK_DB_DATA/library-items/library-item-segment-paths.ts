@@ -6,6 +6,7 @@ import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from './button-group/_button-group.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
+import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -62,6 +63,7 @@ export class LibraryItemSegmentPaths {
   // Modules
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
+  static drawer = stringTransform(Object.keys({ DrawerData })[0]);
 
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
