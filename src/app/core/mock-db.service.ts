@@ -13,6 +13,7 @@ import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-sele
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
+import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
@@ -47,6 +48,7 @@ export class MockDbService implements InMemoryDbService {
       AlertsData,
       BadgeData,
       BreadcrumbData,
+      ButtonGroupData,
       ButtonsData,
       ColorData,
       FormsData,

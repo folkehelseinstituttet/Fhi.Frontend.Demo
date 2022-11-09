@@ -3,6 +3,7 @@ import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { AlertsData } from './alerts/_alerts.data';
 import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
+import { ButtonGroupData } from './button-group/_button-group.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { FormsData } from './forms/_forms.data';
@@ -44,6 +45,7 @@ export class LibraryItemSegmentPaths {
   static alerts = stringTransform(Object.keys({ AlertsData })[0]);
   static badge = stringTransform(Object.keys({ BadgeData })[0]);
   static breadcrumb = stringTransform(Object.keys({ BreadcrumbData })[0]);
+  static buttongroup = stringTransform(Object.keys({ ButtonGroupData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
   static forms = stringTransform(Object.keys({ FormsData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
