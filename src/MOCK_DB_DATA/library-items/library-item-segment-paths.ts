@@ -21,6 +21,7 @@ import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
+import { TreeViewData } from './tree-view/_treeview.data';
 import { TypographyData } from './typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
@@ -62,6 +63,7 @@ export class LibraryItemSegmentPaths {
   // Modules
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
+  static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
 
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);

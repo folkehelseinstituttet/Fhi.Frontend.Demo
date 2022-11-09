@@ -55,6 +55,20 @@
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
   <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
+
+  <app-tree-view-example
+    *ngSwitchCase="itemIds.TreeView"
+    [itemId]="itemIds.TreeView"
+    [itemIds]="itemIds"></app-tree-view-example>
+  <app-tree-view-example
+    *ngSwitchCase="itemIds.TreeViewBuilder"
+    [itemId]="itemIds.TreeViewBuilder"
+    [itemIds]="itemIds"></app-tree-view-example>
+  <app-tree-view-example
+    *ngSwitchCase="itemIds.TreeViewCheckbox"
+    [itemId]="itemIds.TreeViewCheckbox"
+    [itemIds]="itemIds"></app-tree-view-example>
+
   <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
 
   <app-global-header-with-menu *ngSwitchCase="itemIds.GlobalHeaderWithMenu"></app-global-header-with-menu>
