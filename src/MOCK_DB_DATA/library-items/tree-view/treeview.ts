@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeViewNavigation: LibraryItem[] = [{
-  id: LibraryItemIds.TreeViewNavigation,
-  title: 'Tree view navigation',
+export const TreeView: LibraryItem[] = [{
+  id: LibraryItemIds.TreeView,
+  title: 'Tree view',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
