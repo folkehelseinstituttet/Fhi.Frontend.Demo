@@ -8,25 +8,61 @@ export class TreeViewExampleComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
-  nodes:any = [
+  simpleNodes:any = [
     {
-      name: 'root1',
+      name: 'rot 1',
       children: [
-        { name: 'child1' },
-        { name: 'child2' }
+        { name: 'barn 1.1' },
+        { name: 'barn 1.2' }
       ]
     },
     {
-      name: 'root2',
+      name: 'rot 2',
       children: [
-        { name: 'child2.1', children: [] },
-        { name: 'child2.2', children: [
-            {name: 'grandchild2.2.1'}
+        { name: 'barn 2.1', children: [] },
+        { name: 'barn 2.2', children: [
+            {name: 'barnebarn 2.2.1'}
           ] }
       ]
     },
-    { name: 'root3' },
-    { name: 'root4', children: [] },
-    { name: 'root5', children: null }
+    { name: 'rot 3' }
   ];
+
+  navigationNodes:any = [
+    {
+      name: 'Forsiden',
+      uri: '/',
+      children: [
+        {
+          name: 'For utviklere',
+          uri: '/developer/',
+          children: [
+            {
+              name: 'Visuell identitet',
+              uri: '/developer/visual-identity/'
+            },
+            {
+              name: 'Komponenter',
+              uri: '/developer/components/'
+            },
+            {
+              name: 'Moduler',
+              uri: '/developer/modules/'
+            },
+            {
+              name: 'Layout og sidemaler',
+              uri: '/developer/layout-and-page-templates/'
+            }
+          ]
+        },
+        {
+          name: 'For designere',
+          uri: '/designer/'
+        }
+      ]
+    }, {
+      name: 'FHI.no',
+      uri: 'https://fhi.no/'
+    }
+  ]
 }

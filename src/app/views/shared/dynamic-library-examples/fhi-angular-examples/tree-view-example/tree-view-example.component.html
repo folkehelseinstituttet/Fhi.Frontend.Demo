@@ -1,14 +1,14 @@
-<div *ngIf="itemId === itemIds.TreeView">
-  <tree-root [nodes]="nodes"></tree-root>
-</div>
+<tree-root [nodes]="simpleNodes" *ngIf="itemId === itemIds.TreeView"></tree-root>
 
 <div *ngIf="itemId === itemIds.TreeViewBuilder">
   <p>Tree view Builder</p>
 </div>
 
-<div *ngIf="itemId === itemIds.TreeViewNavigation">
-  <p>Tree view Navigation</p>
-</div>
+<tree-root class="fhi-angular-tree-navigation" *ngIf="itemId === itemIds.TreeViewNavigation" [nodes]="navigationNodes">
+  <ng-template #treeNodeTemplate let-node>
+    <a class="fhi-angular-tree-navigation__link" [href]="node.data.uri">{{ node.data.name }}</a>
+  </ng-template>
+</tree-root>
 
 <div *ngIf="itemId === itemIds.TreeViewCheckbox">
   <p>Tree view Checkbox</p>
