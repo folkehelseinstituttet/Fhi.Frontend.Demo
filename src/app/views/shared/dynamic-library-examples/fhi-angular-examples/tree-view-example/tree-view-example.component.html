@@ -4,11 +4,20 @@
   <p>Tree view Builder</p>
 </div>
 
-<tree-root class="fhi-angular-tree-navigation" *ngIf="itemId === itemIds.TreeViewNavigation" [nodes]="navigationNodes">
-  <ng-template #treeNodeTemplate let-node>
-    <a class="fhi-angular-tree-navigation__link" [href]="node.data.uri">{{ node.data.name }}</a>
-  </ng-template>
-</tree-root>
+<div *ngIf="itemId === itemIds.TreeViewNavigation" class="row">
+  <div class="col-md-8 col-lg-6">
+    <tree-root class="fhi-angular-tree-navigation fhi-angular-tree-no-drop-slots" [focused]="true" [nodes]="navigationNodes">
+      <ng-template #treeNodeTemplate let-node let-index="index">
+        <a class="fhi-angular-tree-navigation__link"
+          [routerLink]="node.data.uri"
+          *ngIf="node.data.uri.substr(0, 4) !== 'http'">{{ node.data.name }}</a>
+        <a class="fhi-angular-tree-navigation__link"
+          [href]="node.data.uri"
+          *ngIf="node.data.uri.substr(0, 4) === 'http'">{{ node.data.name }}</a>
+      </ng-template>
+    </tree-root>
+  </div>
+</div>
 
 <div *ngIf="itemId === itemIds.TreeViewCheckbox">
   <p>Tree view Checkbox</p>

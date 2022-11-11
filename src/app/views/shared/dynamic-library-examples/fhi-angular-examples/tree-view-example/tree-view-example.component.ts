@@ -46,7 +46,7 @@ export class TreeViewExampleComponent {
               uri: '/developer/components/'
             },
             {
-              name: 'Moduler',
+              name: 'Moduler - på dette menypunktet er det lagt inn en veldig lang tittel',
               uri: '/developer/modules/'
             },
             {
@@ -64,5 +64,5 @@ export class TreeViewExampleComponent {
       name: 'FHI.no',
       uri: 'https://fhi.no/'
     }
-  ]
+  ];
 }

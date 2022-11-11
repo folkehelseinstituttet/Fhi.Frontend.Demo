@@ -24,7 +24,17 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<tree-root class="fhi-angular-tree-navigation fhi-angular-tree-no-drop-slots" [nodes]="navigationNodes">
+  <ng-template #treeNodeTemplate let-node>
+    <a class="fhi-angular-tree-navigation__link"
+      [routerLink]="node.data.uri"
+      *ngIf="node.data.uri.substr(0, 4) !== 'http'">{{ node.data.name }}</a>
+    <a class="fhi-angular-tree-navigation__link"
+      [href]="node.data.uri"
+      *ngIf="node.data.uri.substr(0, 4) === 'http'">{{ node.data.name }}</a>
+  </ng-template>
+</tree-root>`;
 }
 
 /*
