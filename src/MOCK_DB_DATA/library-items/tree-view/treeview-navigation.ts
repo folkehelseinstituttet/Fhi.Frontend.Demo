@@ -60,5 +60,5 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Tree view navigation er bygget på <a href="https://material.angular.io/components/tree/overview">Angular Material</a>.</p>`;
+<p>Tree view navigation er bygget på <a href="https://material.angular.io/components/tree/overview">Angular Material Tree</a>.</p>`;
 }
