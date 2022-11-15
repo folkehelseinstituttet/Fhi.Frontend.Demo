@@ -1,6 +1,6 @@
 # HTML example
 
-This HTML example is an Angular template. It shows the spacing we use and how break linkes for attribures etc. in our projects.
+This HTML example is an Angular template. It shows the spacing we use and how to break lines for attributes etc. in our projects.
 
 ```html
 <div class="container">
