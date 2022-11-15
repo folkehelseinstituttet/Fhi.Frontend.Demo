@@ -1,6 +1,6 @@
 # BEM in a nutshell
 
-```css
+```scss
 .person {}
 .person--female {}
 .person__hand {}
