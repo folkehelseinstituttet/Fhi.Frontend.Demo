@@ -162,6 +162,9 @@ export class LibraryMenuService {
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
+    }, {
+      name: 'Drawer',
+      link: LibraryItemSegmentPaths.drawer
     }];
   }
 

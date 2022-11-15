@@ -6,6 +6,7 @@ import { BreadcrumbIds } from "./breadcrumb/_breadcrumb.ids"
 import { ButtonGroupIds } from "./button-group/_button-group.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
 import { ColorIds } from "./color/_color.ids"
+import { DrawerIds } from "./drawer/_drawer.ids"
 import { FormsIds } from "./forms/_forms.ids"
 import { GlobalFooterIds } from "./global-footer/_global-footer.ids"
 import { GlobalHeaderIds } from "./global-header/_global-header.ids"
@@ -33,6 +34,7 @@ const libraryItemIds = {
   ...BreadcrumbIds,
   ...ButtonsIds,
   ...ColorIds,
+  ...DrawerIds,
   ...FormsIds,
   ...GlobalFooterIds,
   ...GlobalHeaderIds,
