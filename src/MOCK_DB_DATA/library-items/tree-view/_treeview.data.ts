@@ -8,6 +8,6 @@ import { TreeViewCheckbox } from './treeview-checkbox';
 export const TreeViewData: LibraryItem[] = [
   ...TreeView,
   ...TreeViewNavigation,
-  ...TreeViewBuilder,
-  ...TreeViewCheckbox
+  ...TreeViewCheckbox,
+  ...TreeViewBuilder
 ];

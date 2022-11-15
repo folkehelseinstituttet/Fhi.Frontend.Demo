@@ -5,6 +5,7 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 interface NavigationNode {
   name: string;
+  id: string;
   uri?: string;
   children?: NavigationNode[];
 }
@@ -12,26 +13,30 @@ interface NavigationNode {
 const NAVIGATION_TREE_DATA: NavigationNode[] = [
   {
     name: 'For utviklere',
+    id: 'i_1',
     uri: '/developer',
     children: [
-      { name: 'Visuell identitet', uri: '/developer/visual-identity' },
-      { name: 'Komponenter', uri: '/developer/components' },
+      { name: 'Visuell identitet', id: 'i_1-1', uri: '/developer/visual-identity' },
+      { name: 'Komponenter', id: 'i_1-2', uri: '/developer/components' },
       {
         name: 'Moduler',
+        id: 'i_1-3',
         uri: '/developer/modules',
         children: [
-          { name: 'Tree view', uri: '/developer/modules/TreeView' }
+          { name: 'Tree view', id: 'i_1-3-1', uri: '/developer/modules/TreeView' }
         ]
       },
-      { name: 'Layout og sidemaler', uri: '/developer/layout-and-page-templates' }
+      { name: 'Layout og sidemaler', id: 'i_1-4', uri: '/developer/layout-and-page-templates' }
     ],
   },
   {
     name: 'For designere',
+    id: 'i_2',
     uri: '/designer',
   },
   {
     name: 'Fhi.no (ekstern lenke)',
+    id: 'i_3',
     uri: 'https://fhi.no/'
   }
 ];
