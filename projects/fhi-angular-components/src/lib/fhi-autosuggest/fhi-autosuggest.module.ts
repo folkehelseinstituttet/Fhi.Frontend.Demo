@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { FhiAutosuggestComponent } from './fhi-autosuggest.component';
 
@@ -8,7 +10,9 @@ import { FhiAutosuggestComponent } from './fhi-autosuggest.component';
     FhiAutosuggestComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    NgSelectModule
   ],
   exports: [
     FhiAutosuggestComponent

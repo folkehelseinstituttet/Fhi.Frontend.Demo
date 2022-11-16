@@ -8,6 +8,7 @@
              bindLabel="name"
              bindValue="id"
              labelForId="{{ forId }}"
+             placeholder="{{ placeholder !== undefined ? placeholder : '' }}"
              (change)="onChange()">
     <ng-template ng-label-tmp let-item="item"></ng-template>
     <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">

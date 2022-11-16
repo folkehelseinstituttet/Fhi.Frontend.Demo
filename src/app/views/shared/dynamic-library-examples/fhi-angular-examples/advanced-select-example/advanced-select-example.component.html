@@ -1,23 +1,12 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
-  <!-- <div class="alert alert-warning">
-    <i class="icon-bell-regular"></i>
-    <p>
-      <strong>OBS!</strong><br>
-      Denne komponenten er ikke klar for bruk. En npm-pakke for FHI Angular Components vil bli klar om ikke lenge.
-    </p>
-  </div> -->
-
-  <fhi-autosuggest></fhi-autosuggest>
-
-  <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
-    <label>Biler</label>
-    <p>Velg/søk etter bilmerke</p>
-    <!-- <ng-select placeholder="Search for cars" -->
-    <ng-select [editableSearchTerm]="true"
-               [(ngModel)]="selectedCar">
-      <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
-    </ng-select>
-  </div>
+  <fhi-autosuggest
+    [description]="'Velg/søk etter bilmerke'"
+    [forId]="'biler-1'"
+    [items]="cars"
+    [label]="'Biler'"
+    [placeholder]="'Søk...'"
+    [(selectedItem)]="selectedCar">
+  </fhi-autosuggest>
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
@@ -26,6 +15,7 @@
     [forId]="'navn-1'"
     [items]="people"
     [label]="'Navn'"
+    [placeholder]="'Søk...'"
     [(selectedItems)]="selectedPeople">
   </fhi-multiselect>
 </ng-container>

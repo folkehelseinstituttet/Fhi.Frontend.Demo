@@ -16,10 +16,9 @@ export class FhiMultiselectComponent {
   @Input() description: string = 'Description';
   @Input() forId!: string;
   @Input() label: string = 'Label';
+  @Input() placeholder: string = undefined;
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();
-
-  constructor() { }
 
   unselect(id: string) {
     if (!id) {

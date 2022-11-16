@@ -1,1 +1,14 @@
-<p>fhi-autosuggest works!</p>
+<div class="fhi-advanced-select fhi-advanced-select--autosuggest">
+  <label for="{{ forId }}">{{ label }}</label>
+  <p>{{ description }}</p>
+  <ng-select [items]="items"
+             [editableSearchTerm]="true"
+             [(ngModel)]="selectedItem"
+             bindLabel="name"
+             bindValue="id"
+             labelForId="{{ forId }}"
+             placeholder="{{ placeholder !== undefined ? placeholder : '' }}"
+             (change)="onChange()">
+    <ng-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</ng-option>
+  </ng-select>
+</div>
