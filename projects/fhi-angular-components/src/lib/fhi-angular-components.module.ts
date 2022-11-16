@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
-
+import { FhiAutosuggestModule } from './fhi-autosuggest/fhi-autosuggest.module';
 
 const FHI_ANGULAR_MODULES = [
+  FhiAutosuggestModule,
   FhiMultiselectModule
 ];
 

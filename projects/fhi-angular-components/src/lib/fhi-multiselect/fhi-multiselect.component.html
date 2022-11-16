@@ -1,5 +1,5 @@
 <div class="fhi-multiselect">
-  <label>{{ label }}</label>
+  <label for="{{ forId }}">{{ label }}</label>
   <p>{{ description }}</p>
   <ng-select [items]="items"
              [multiple]="true"
@@ -7,6 +7,7 @@
              [(ngModel)]="selectedItems"
              bindLabel="name"
              bindValue="id"
+             labelForId="{{ forId }}"
              (change)="onChange()">
     <ng-template ng-label-tmp let-item="item"></ng-template>
     <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">

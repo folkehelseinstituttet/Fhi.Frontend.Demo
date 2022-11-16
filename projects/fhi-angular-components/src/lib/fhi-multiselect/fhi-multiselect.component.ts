@@ -13,8 +13,9 @@ export class FhiMultiselectComponent {
   @Input() items: Array<FhiMultiselectItem> = [];
   @Input() selectedItems: Array<any> = [];
 
-  @Input() label: string = 'Label';
   @Input() description: string = 'Description';
+  @Input() forId!: string;
+  @Input() label: string = 'Label';
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();
 
