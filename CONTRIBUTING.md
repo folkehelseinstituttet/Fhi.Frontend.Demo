@@ -101,7 +101,8 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
 1. Run `ng generate module fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new module
 2. Add new module to `FhiAngularComponentsModule`
 3. Run `ng generate component fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new component
-4. Add both the new module and the new component to the public API Surface of fhi-angular-components
+4. Add new component to `exports` in new module
+5. Add both the new module and the new component to the public API Surface of fhi-angular-components
 
 You can also use `ng generate directive|pipe|service|class|guard|interface|enum --project @folkehelseinstituttet/[project]`.
 > Note: Don't forget to add option `--project` or else it will be added to the default project in your `angular.json` file.

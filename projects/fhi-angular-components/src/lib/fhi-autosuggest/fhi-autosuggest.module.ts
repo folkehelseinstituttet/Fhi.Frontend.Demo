@@ -9,6 +9,9 @@ import { FhiAutosuggestComponent } from './fhi-autosuggest.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    FhiAutosuggestComponent
   ]
 })
 export class FhiAutosuggestModule { }
