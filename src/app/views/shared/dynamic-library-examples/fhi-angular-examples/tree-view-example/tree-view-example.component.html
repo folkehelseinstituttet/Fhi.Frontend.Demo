@@ -14,7 +14,10 @@
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <div class="mat-tree-node">
           <a class="fhi-material-tree__link" [routerLink]="node.uri" routerLinkActive="active">{{ node.name }}</a>
-          <button class="fhi-material-tree__toggler fhi-material-tree__toggler--chevron" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+          <button class="fhi-material-tree__toggler fhi-material-tree__toggler--chevron"
+                  mat-icon-button
+                  matTreeNodeToggle
+                  [attr.aria-label]="'Vis/skjul undernivåer av ' + node.name">
             <i [ngClass]="{'icon-chevron-up' : treeControl.isExpanded(node), 'icon-chevron-down' : !treeControl.isExpanded(node)}"></i>
           </button>
         </div>
@@ -38,7 +41,12 @@
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
         <div class="d-flex flex-column justify-content-center">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" [id]="node.id">
+            <input class="form-check-input"
+                   type="checkbox"
+                   value=""
+                   [id]="node.id"
+                   [checked]="node.checked"
+                   (click)="checkTreeState(node.id)">
             <label class="form-check-label" [for]="node.id">
               {{ node.name }}
             </label>
@@ -48,12 +56,26 @@
 
       <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild; let i = index">
         <div class="mat-tree-node">
-          <button class="fhi-material-tree__toggler fhi-material-tree__toggler--plus" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-            <i [ngClass]="{'icon-dash-circle' : treeControl.isExpanded(node), 'icon-plus-circle' : !treeControl.isExpanded(node)}"></i>
+          <button class="fhi-material-tree__toggler fhi-material-tree__toggler--plus"
+                  mat-icon-button
+                  matTreeNodeToggle
+                  [attr.aria-label]="'Vis/skjul undernivåer av ' + node.name">
+            <i [ngClass]="
+               {
+                'icon-dash-circle' : treeControl.isExpanded(node) && !node.anyCheckedInSelection,
+                'icon-plus-circle' : !treeControl.isExpanded(node) && !node.anyCheckedInSelection,
+                'icon-dash-circle-fill' : treeControl.isExpanded(node) && node.anyCheckedInSelection,
+                'icon-plus-circle-fill' : !treeControl.isExpanded(node) && node.anyCheckedInSelection
+               }"></i>
           </button>
           <div class="d-flex flex-column justify-content-center">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" [id]="node.id">
+              <input class="form-check-input"
+                     type="checkbox"
+                     value=""
+                     [id]="node.id"
+                     [checked]="node.checked"
+                     (click)="checkTreeState(node.id)">
               <label class="form-check-label" [for]="node.id">
                 {{ node.name }}
               </label>
