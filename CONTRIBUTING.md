@@ -91,7 +91,7 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
 #### How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo
 
 1. Create a new branch in this repo (from `dev`)
-2. Run `ng build @folkehelseinstituttet/fhi-[project] --watch`
+2. Run `ng build @folkehelseinstituttet/[project] --watch`
 3. In a new consol, run `npm start`
 4. Work on both library and app code simultanously
 5. When ready, run `git push` and follow the [pull request guidelines](#pull-request-guidelines)

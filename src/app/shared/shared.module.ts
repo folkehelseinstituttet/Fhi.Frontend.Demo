@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
+import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { TreeModule } from '@circlon/angular-tree-component';
 import { MatTreeModule } from '@angular/material/tree';
 
@@ -30,6 +31,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ClipboardModule,
     FilterPipeModule,
     MarkdownModule.forRoot(),
+    FhiAngularComponentsModule,
     TreeModule,
     MatTreeModule
   ],
@@ -45,6 +47,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ClipboardModule,
     FilterPipeModule,
     MarkdownModule,
+    FhiAngularComponentsModule,
     TreeModule,
     MatTreeModule
   ]
