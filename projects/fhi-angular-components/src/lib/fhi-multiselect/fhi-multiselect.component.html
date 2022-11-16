@@ -1,4 +1,4 @@
-<div class="fhi-advanced-select fhi-advanced-select--multiselect">
+<div class="fhi-multiselect">
   <label>{{ label }}</label>
   <p>{{ description }}</p>
   <ng-select [items]="items"
@@ -18,7 +18,7 @@
       </div>
     </ng-template>
   </ng-select>
-  <div class="fhi-advanced-select__selected">
+  <div class="fhi-multiselect__selected">
     <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
             *ngFor="let selected of selectedItems" (click)="unselect(selected)">
       {{ getSelectedName(selected) }}
