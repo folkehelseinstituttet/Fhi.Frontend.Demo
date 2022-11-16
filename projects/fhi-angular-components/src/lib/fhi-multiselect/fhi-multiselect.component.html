@@ -1,12 +1,12 @@
 <div class="fhi-advanced-select fhi-advanced-select--multiselect">
-  <label>Navn</label>
-  <p>Velg/søk etter navn</p>
+  <label>{{ label }}</label>
+  <p>{{ description }}</p>
   <ng-select [items]="items"
              [multiple]="true"
-             bindLabel="name"
              [closeOnSelect]="false"
-             bindValue="id"
              [(ngModel)]="selectedItems"
+             bindLabel="name"
+             bindValue="id"
              (change)="onChange()">
     <ng-template ng-label-tmp let-item="item"></ng-template>
     <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">

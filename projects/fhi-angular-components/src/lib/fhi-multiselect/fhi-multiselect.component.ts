@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+import { FhiMultiselectItem } from './fhi-multiselect.model';
+
 @Component({
   selector: 'fhi-multiselect',
   templateUrl: './fhi-multiselect.component.html',
@@ -7,8 +9,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class FhiMultiselectComponent {
 
-  @Input() items: Array<any> = [];
+  @Input() items: Array<FhiMultiselectItem> = [];
   @Input() selectedItems: Array<any> = [];
+
+  @Input() label: string = 'Label';
+  @Input() description: string = 'Description';
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();
 
@@ -18,7 +23,7 @@ export class FhiMultiselectComponent {
     if (!id) {
       return;
     }
-    this.selectedItems = this.selectedItems.filter(x => x !== id);
+    this.selectedItems = this.selectedItems.filter(item => item !== id);
     this.selectedItemsChange.emit(this.selectedItems);
   }
 

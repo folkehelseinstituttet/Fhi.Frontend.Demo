@@ -19,8 +19,10 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
-  <fhi-multiselect [items]="people" [(selectedItems)]="selectedPeople"></fhi-multiselect>
-  <pre *ngFor="let item of selectedPeople">
-    {{ getSelectedName(item) }}
-  </pre>
+  <fhi-multiselect
+    [items]="people"
+    [label]="'Name'"
+    [description]="'Velg/søk etter navn'"
+    [(selectedItems)]="selectedPeople">
+  </fhi-multiselect>
 </ng-container>
