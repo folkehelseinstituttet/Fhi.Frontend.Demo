@@ -24,7 +24,7 @@ export class AdvancedSelectExampleDataService {
     if (term) {
       items = items.filter(item => item.name.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
     }
-    return of(items).pipe(delay(500));
+    return of(items);
   }
 
   private getMockPeople() {

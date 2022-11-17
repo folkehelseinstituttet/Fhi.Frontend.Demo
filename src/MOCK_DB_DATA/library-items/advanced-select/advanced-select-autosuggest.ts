@@ -38,5 +38,13 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  const apiUrl = 'https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/main/projects/fhi-angular-components/src/lib/fhi-autosuggest/API.md';
+  return `
+<p>
+  Autosuggest er bygget på
+  <a href="https://www.npmjs.com/package/@ng-select/ng-select">Angular ng-select</a>
+</p>
+<p>
+  Den er en wrapper for ng-select, med sitt eget begrensede API: <a href="${apiUrl}">FhiAutosuggest API</a>
+</p>`;
 }
