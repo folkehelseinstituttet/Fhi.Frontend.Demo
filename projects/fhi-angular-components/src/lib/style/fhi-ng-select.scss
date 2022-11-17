@@ -6,6 +6,9 @@
 //    todo's in this file can be removed. The Designsystem team is woring hard to get this
 //    done as soon as possible.
 //
+//    PS. Thsi file isnt't watched, it has to be buildt by building one of the consumers...
+//        We'r woring on a better solution for shared styles in the library.
+//
 
 @import "./node_modules/bootstrap/scss/functions";
 @import "./node_modules/bootstrap/scss/mixins";
@@ -17,7 +20,7 @@
 // TODO: core variable for chevron (accordion, dropdown, fhi-advanced-select, ...?)
 $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#{$body-color}"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
 
-.fhi-multiselect {
+.fhi-ng-select-wraper {
 
     // TODO: should be part of default form style
     label {
@@ -31,6 +34,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
     }
     // /form style
 
+
     .ng-select {
         .ng-select-container {
             display: block;
@@ -38,11 +42,6 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
             .ng-value-container {
                 height: $fhi-px * 48;
-
-                .ng-input {
-                    margin: $fhi-px * -4;
-                    padding: $fhi-px * 4;
-                }
 
                 .ng-input > input,
                 .ng-input > input:focus {
@@ -52,8 +51,6 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
                 }
 
                 .ng-placeholder {
-                    top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
-                    left: .75rem; // TODO: dependeant on default .form-control padding
                     color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
                 }
             }
@@ -111,8 +108,6 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
             max-height: $fhi-px * 480;
 
             .ng-option {
-                padding: $fhi-space-2;
-
                 &.ng-option-marked,
                 &:hover {
                     background-color: $fhi-hover; // TODO: add postfix -color core.variables
@@ -125,10 +120,6 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
                 &:last-child {
                     margin-bottom: $fhi-space-2;
                 }
-
-                .form-check-input {
-                    margin-top: $fhi-px * 3;
-                }
             }
         }
     }
@@ -136,7 +127,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
 
 @include media-breakpoint-up(lg) {
-    .fhi-multiselect {
+    .fhi-ng-select-wraper {
         .ng-select {
             .ng-select-container {
                 .ng-value-container {
@@ -146,16 +137,6 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
             .ng-arrow-wrapper {
                 top: $fhi-px * 11;
-            }
-        }
-
-        .ng-dropdown-panel-items {
-            .ng-option {
-                height: $fhi-px * 44;
-
-                .form-check-input {
-                    margin-top: $fhi-px * 2;
-                }
             }
         }
     }
