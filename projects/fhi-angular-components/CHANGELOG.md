@@ -1,14 +1,10 @@
 # Unreleased
 
-> Nov 2, 2022
+> Nov 17, 2022
 
-* :tada: **Enhancement** Update documentation
-
-## 0.0.0
-
-> Nov 2, 2022
-
-* :gift: **New** Created `@folkehelseinstituttet/angular-components`
+* :tada: **New** Add `FhiAutosuggestModule`
+* :tada: **New** Add `FhiMultiselectModule`
+* :gift: **New** Create `@folkehelseinstituttet/angular-components`
 
 ## Examples
 
