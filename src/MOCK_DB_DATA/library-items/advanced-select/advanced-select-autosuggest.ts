@@ -15,7 +15,15 @@ export const AdvancedSelectAutosuggest: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<fhi-autosuggest
+  [description]="'Velg/søk etter bilmerke'"
+  [forId]="'biler-1'"
+  [items]="cars"
+  [label]="'Biler'"
+  [placeholder]="'Søk'"
+  [(selectedItem)]="selectedCar">
+</fhi-autosuggest>`;
 }
 
 /*

@@ -15,7 +15,15 @@ export const AdvancedSelectMultiselect: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<fhi-multiselect
+  [description]="'Velg/søk etter navn'"
+  [forId]="'navn-1'"
+  [items]="people"
+  [label]="'Navn'"
+  [placeholder]="'Søk'"
+  [(selectedItems)]="selectedPeople">
+</fhi-multiselect>`;
 }
 
 /*
