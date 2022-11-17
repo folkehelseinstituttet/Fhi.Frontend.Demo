@@ -24,12 +24,36 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<div class="mb-2">
+  <button class="btn fhi-btn-flat-secondary p-0">
+    <i class="icon-plus-circle-fill"></i>
+    <span>Legg til element</span>
+  </button>
+</div>
+
+<tree-root [nodes]="treeViewSimpleNodes">
+  <ng-template #treeNodeTemplate let-node let-index="index">
+    <div class="tree-column">
+      <span>{{ node.data.name }}</span>
+      <button class="btn">
+        <i class="icon-pencil"></i>
+      </button>
+      <button class="btn">
+        <i class="icon-plus-circle"></i>
+      </button>
+      <button class="btn">
+        <i class="icon-trash-can"></i>
+      </button>
+    </div>
+  </ng-template>
+</tree-root>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return `
+<p>Tree view builder er bygget på <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a></p>`;
 }

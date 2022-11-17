@@ -1,9 +1,9 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
-export const BtnIcon: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonIcon,
-  title: 'Icon button',
+export const BtnFlatSecondary: LibraryItem[] = [{
+  id: LibraryItemIds.ButtonFlatSecondary,
+  title: 'Transparent button med ikon',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,8 +16,8 @@ export const BtnIcon: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-icon">
-  <i class="icon-bell-regular"></i><span class="btn__text">Ikon-knapp</span>
+<button type="button" class="btn fhi-btn-flat-secondary">
+  <i class="icon-plus-circle-fill"></i><span class="btn__text">Flat knapp med ikon</span>
 </button>`;
 }
 
