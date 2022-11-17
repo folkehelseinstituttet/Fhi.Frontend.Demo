@@ -1,17 +1,11 @@
 name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
 
 on:
-  # pull_request:
-  #   types:
-  #     - closed
-  #   branches:
-  #     - 'release-fhi-angular-components/**'
-  #   paths:
-  #     - 'projects/fhi-angular-components/package.json'
-
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - 'new/npm-package-for-angular-components'
+      - 'release-fhi-angular-components/**'
     paths:
       - 'projects/fhi-angular-components/package.json'
 
