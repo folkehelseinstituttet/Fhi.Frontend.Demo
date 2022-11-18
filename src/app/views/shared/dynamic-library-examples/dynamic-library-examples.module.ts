@@ -18,6 +18,7 @@ import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-
 import { GlobalHeaderWithMenuExampleComponent } from './fhi-angular-examples/global-header-with-menu/global-header-with-menu.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
+import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
@@ -34,7 +35,8 @@ const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   GlobalHeaderWithMenuExampleComponent,
   SearchExampleComponent,
-  TagExampleComponent
+  TagExampleComponent,
+  TreeViewExampleComponent
 ];
 
 @NgModule({
