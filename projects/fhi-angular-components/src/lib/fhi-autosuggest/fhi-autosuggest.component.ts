@@ -16,7 +16,7 @@ export class FhiAutosuggestComponent {
 
   @Input() description: string = undefined;
   @Input() label: string = 'Label';
-  @Input() selectedItem: number;
+  @Input() selectedItem: number = null;
 
   @Output() selectedItemChange = new EventEmitter<number>();
 

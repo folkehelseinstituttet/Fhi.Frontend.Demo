@@ -47,7 +47,7 @@ function getDocumentationHtml(): string | null {
   som en "dependency".
 </p>
 <p>
-  Autosuggest er en wrapper for ng-select, med sitt eget begrensede API:
+  Autosuggest er en wrapper for <i>ng&#45;select</i>, med sitt eget begrensede API:
 </p>
 <div class="table-responsive">
   <table class="table table-striped">
@@ -61,6 +61,48 @@ function getDocumentationHtml(): string | null {
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <th>[items]</th>
+        <td><code>Array<FhiAutosuggestItem></code></td>
+        <td><code>[]</code></td>
+        <td>yes</td>
+        <td>Items array (same as in <i>ng&#45;select</i> except for item type <code>FhiAutosuggestItem</code>).</td>
+      </tr>
+      <tr>
+        <th>[labelForId]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Id to associate control with label (same as in <i>ng&#45;select</i>).</td>
+      </tr>
+      <tr>
+        <th>[placeholder]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Placeholder text (same as in <i>ng&#45;select</i>).</td>
+      </tr>
+      <tr>
+        <th>[description]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Description below the label (custom for FhiAutosuggest).</td>
+      </tr>
+      <tr>
+        <th>[label]</th>
+        <td><code>string</code></td>
+        <td><code>Label</code></td>
+        <td>yes</td>
+        <td>Label above the <i>ng&#45;select</i> field (custom for FhiAutosuggest).</td>
+      </tr>
+      <tr>
+        <th>[(selectedItem)]</th>
+        <td><code>number</code></td>
+        <td><code>null</code></td>
+        <td>yes</td>
+        <td>A two way binding to access <i>ng&#45;select</i>'s <code>ngModel</code></td>
+      </tr>
     </tbody>
   </table>
 </div>`;
