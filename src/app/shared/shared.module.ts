@@ -10,6 +10,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
+import { TreeModule } from '@circlon/angular-tree-component';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { SafePipe } from './pipes/safe.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -29,7 +31,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ClipboardModule,
     FilterPipeModule,
     MarkdownModule.forRoot(),
-    FhiAngularComponentsModule
+    FhiAngularComponentsModule,
+    TreeModule,
+    MatTreeModule
   ],
   exports: [
     SafePipe,
@@ -43,7 +47,9 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ClipboardModule,
     FilterPipeModule,
     MarkdownModule,
-    FhiAngularComponentsModule
+    FhiAngularComponentsModule,
+    TreeModule,
+    MatTreeModule
   ]
 })
 export class SharedModule { }

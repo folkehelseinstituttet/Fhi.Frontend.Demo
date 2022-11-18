@@ -39,6 +39,7 @@ code[class*="language-"],
 pre[class*="language-"] {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px;
+    min-height: $fhi-px * 44;// sic
     padding: 0;
     margin: 0;
 }

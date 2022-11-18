@@ -31,6 +31,7 @@ function getCodeHtml(): string {
 <i class="icon-arrow-left"></i>
 <i class="icon-arrow-left-red"></i>
 <i class="icon-arrow-right"></i>
+<i class="icon-arrow-right-circle-fill"></i>
 <i class="icon-bell-regular"></i>
 <i class="icon-cancer"></i>
 <i class="icon-cancer-cell"></i>
@@ -47,6 +48,8 @@ function getCodeHtml(): string {
 <i class="icon-chevron-up"></i>
 <i class="icon-circle-regular"></i>
 <i class="icon-clap"></i>
+<i class="icon-dash-circle"></i>
+<i class="icon-dash-circle-fill"></i>
 <i class="icon-description"></i>
 <i class="icon-diabetes"></i>
 <i class="icon-ellipsis-v"></i>
@@ -58,11 +61,14 @@ function getCodeHtml(): string {
 <i class="icon-magnifying-glass"></i>
 <i class="icon-muscle"></i>
 <i class="icon-no-handwash"></i>
+<i class="icon-pencil"></i>
+<i class="icon-plus-circle"></i>
+<i class="icon-plus-circle-fill"></i>
 <i class="icon-population"></i>
 <i class="icon-question-circle-regular"></i>
 <i class="icon-suicide"></i>
 <i class="icon-swap"></i>
-<i class="icon-trash-alt-regular"></i>
+<i class="icon-trash-can"></i>
 <i class="icon-user-regular"></i>
 <i class="icon-xmark"></i>`;
 }

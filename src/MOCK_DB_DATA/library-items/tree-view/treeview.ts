@@ -1,10 +1,11 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const BtnIcon: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonIcon,
-  title: 'Icon button',
-  type: LibraryItemType.html,
+export const TreeView: LibraryItem[] = [{
+  id: LibraryItemIds.TreeView,
+  title: 'Tree view',
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -15,10 +16,7 @@ export const BtnIcon: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<button type="button" class="btn fhi-btn-icon">
-  <i class="icon-bell-regular"></i><span class="btn__text">Ikon-knapp</span>
-</button>`;
+  return ``;
 }
 
 /*
@@ -26,12 +24,13 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `<tree-root [nodes]="nodes"></tree-root>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Tree view er bygget på <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a></p>`;
 }
