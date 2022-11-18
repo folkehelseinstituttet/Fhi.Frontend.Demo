@@ -1,20 +1,38 @@
-// @import "~@ng-select/ng-select/themes/default.theme.css";
+//
+//    Disclaimer!
+//
+//    We need to make some changes to https://github.com/folkehelseinstituttet/Fhi.Frontend.Style
+//    (See https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/234) before all
+//    todo's in this file can be removed. The Designsystem team is woring hard to get this
+//    done as soon as possible.
+//
+//    OBS! This file isnt't watched, it has to be buildt by building one of the files it is imported into.
+//
+
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "./node_modules/@folkehelseinstituttet/style/import/variables";
+@import "./node_modules/bootstrap/scss/forms";
+@import "./node_modules/@folkehelseinstituttet/style/src/bootstrap-customisations/forms";
+
 
 // TODO: core variable for chevron (accordion, dropdown, fhi-advanced-select, ...?)
 $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#{$body-color}"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
 
-
-.fhi-advanced-select {
+.fhi-ng-select-wraper {
 
     // TODO: should be part of default form style
     label {
         font-weight: 600;
     }
+
     p {
+        color: $fhi-grey-3; // TODO: need $fhi-[skjemahjelpetekst?]-color in core.variables
         font-size: $fhi-font-size-2;
         margin: 0;
     }
     // /form style
+
 
     .ng-select {
         .ng-select-container {
@@ -106,65 +124,9 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
     }
 }
 
-// autosuggest
-
-.fhi-advanced-select--autosuggest {
-    .ng-select {
-        .ng-select-container {
-            .ng-value-container {
-                .ng-value,
-                .ng-placeholder {
-                    padding: $fhi-space-2 .75rem; // TODO: dependeant on default .form-control padding
-                }
-            }
-        }
-
-        .ng-select-container.ng-has-value {
-            .ng-placeholder {
-                display: none;
-            }
-        }
-    }
-
-    .ng-dropdown-panel-items {
-        .ng-option {
-            padding: $fhi-space-2;
-        }
-    }
-}
-
-// multiselect
-
-.fhi-advanced-select--multiselect {
-    .ng-select {
-        .ng-select-container {
-            .ng-value-container {
-                .ng-input {
-                    margin: $fhi-px * -4;
-                    padding: $fhi-px * 4;
-                }
-
-                .ng-placeholder {
-                    top: $fhi-space-2; // TODO: dependeant on default .form-control padding + border
-                    left: .75rem; // TODO: dependeant on default .form-control padding
-                }
-            }
-        }
-    }
-
-    .ng-dropdown-panel-items {
-        .ng-option {
-            padding: $fhi-space-2;
-
-            .form-check-input {
-                margin-top: $fhi-px * 3;
-            }
-        }
-    }
-}
 
 @include media-breakpoint-up(lg) {
-    .fhi-advanced-select {
+    .fhi-ng-select-wraper {
         .ng-select {
             .ng-select-container {
                 .ng-value-container {
@@ -177,16 +139,5 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
             }
         }
     }
-
-    .fhi-advanced-select--multiselect {
-        .ng-dropdown-panel-items {
-            .ng-option {
-                height: $fhi-px * 44;
-
-                .form-check-input {
-                    margin-top: $fhi-px * 2;
-                }
-            }
-        }
-    }
 }
+

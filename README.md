@@ -9,7 +9,7 @@ An Angular app with demos and documentation of CSS and Angular components with F
 
 1. `git clone --recurse-submodules https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git`
 2. `npm install`
-3. `npm run build-lib-ac`
+3. `npm run build-libs`
 4. `npm start`
 
 You find more info about working on this project in [CONTRIBUTING.md](CONTRIBUTING.md)

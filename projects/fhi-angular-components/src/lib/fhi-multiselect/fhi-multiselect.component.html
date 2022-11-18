@@ -1,12 +1,14 @@
-<div class="fhi-multiselect">
-  <label>{{ label }}</label>
-  <p>{{ description }}</p>
+<div class="fhi-ng-select-wraper fhi-multiselect">
+  <label for="{{ labelForId }}">{{ label }}</label>
+  <p *ngIf="description !== undefined">{{ description }}</p>
   <ng-select [items]="items"
              [multiple]="true"
              [closeOnSelect]="false"
              [(ngModel)]="selectedItems"
              bindLabel="name"
              bindValue="id"
+             labelForId="{{ labelForId }}"
+             placeholder="{{ placeholder !== undefined ? placeholder : '' }}"
              (change)="onChange()">
     <ng-template ng-label-tmp let-item="item"></ng-template>
     <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">

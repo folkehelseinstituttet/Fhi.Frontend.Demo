@@ -11,14 +11,14 @@ import { FhiMultiselectItem } from './fhi-multiselect.model';
 export class FhiMultiselectComponent {
 
   @Input() items: Array<FhiMultiselectItem> = [];
+  @Input() labelForId: string = undefined;
+  @Input() placeholder: string = undefined;
+
+  @Input() description: string = undefined;
+  @Input() label: string = 'Label';
   @Input() selectedItems: Array<any> = [];
 
-  @Input() label: string = 'Label';
-  @Input() description: string = 'Description';
-
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();
-
-  constructor() { }
 
   unselect(id: string) {
     if (!id) {
