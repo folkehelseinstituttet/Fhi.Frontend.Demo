@@ -1,7 +1,7 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
   <fhi-autosuggest
     [description]="'Velg/søk etter bilmerke'"
-    [forId]="'biler-1'"
+    [labelForId]="'biler-1'"
     [items]="cars"
     [label]="'Biler'"
     [placeholder]="'Søk'"
@@ -12,7 +12,7 @@
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
   <fhi-multiselect
     [description]="'Velg/søk etter navn'"
-    [forId]="'navn-1'"
+    [labelForId]="'navn-1'"
     [items]="people"
     [label]="'Navn'"
     [placeholder]="'Søk'"

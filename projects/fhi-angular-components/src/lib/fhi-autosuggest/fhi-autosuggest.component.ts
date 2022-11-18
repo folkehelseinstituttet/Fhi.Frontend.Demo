@@ -11,12 +11,12 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 export class FhiAutosuggestComponent {
 
   @Input() items: Array<FhiAutosuggestItem> = [];
-  @Input() selectedItem: number;
+  @Input() labelForId!: string;
 
   @Input() description: string = 'Description';
-  @Input() forId!: string;
   @Input() label: string = 'Label';
   @Input() placeholder: string = undefined;
+  @Input() selectedItem: number;
 
   @Output() selectedItemChange = new EventEmitter<number>();
 

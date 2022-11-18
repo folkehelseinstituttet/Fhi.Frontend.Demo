@@ -18,7 +18,7 @@ function getExampleHtml(): string {
   return `
 <fhi-autosuggest
   [description]="'Velg/søk etter bilmerke'"
-  [forId]="'biler-1'"
+  [labelForId]="'biler-1'"
   [items]="cars"
   [label]="'Biler'"
   [placeholder]="'Søk'"
@@ -38,13 +38,15 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  const apiUrl = 'https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/main/projects/fhi-angular-components/src/lib/fhi-autosuggest/API.md';
   return `
 <p>
   Autosuggest er bygget på
-  <a href="https://www.npmjs.com/package/@ng-select/ng-select">Angular ng-select</a>
+  <a href="https://www.npmjs.com/package/@ng-select/ng-select">Angular ng-select</a>,
+  og for å ta den i bruk i en app må en legge til
+  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-components">@folkehelseinstituttet/angular-components</a>
+  som en "dependency".
 </p>
 <p>
-  Den er en wrapper for ng-select, med sitt eget begrensede API: <a href="${apiUrl}">FhiAutosuggest API</a>
+  Autosuggest er en wrapper for ng-select, med sitt eget begrensede API:
 </p>`;
 }
