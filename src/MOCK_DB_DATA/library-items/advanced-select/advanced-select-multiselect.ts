@@ -47,7 +47,7 @@ function getDocumentationHtml(): string | null {
   som en "dependency".
 </p>
 <p>
-  Multiselect er en "wrapper" for ng-select, med sitt eget begrensede API:
+  Multiselect er en "wrapper" for <i>ng&#45;select</i>, med sitt eget begrensede API:
 </p>
 <div class="table-responsive">
   <table class="table table-striped">
@@ -62,10 +62,46 @@ function getDocumentationHtml(): string | null {
     </thead>
     <tbody>
       <tr>
-        <th>1202</th>
-        <td>Birger Henrik</td>
-        <td>Tybring-Gjedde Olssen</td>
-        <td>Assistant</td>
+        <th>[items]</th>
+        <td><code>Array<FhiMultiselectItem></code></td>
+        <td><code>[]</code></td>
+        <td>yes</td>
+        <td>Items array (same as in <i>ng&#45;select</i> except for item type <code>FhiMultiselectItem</code>).</td>
+      </tr>
+      <tr>
+        <th>[labelForId]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Id to associate control with label (same as in <i>ng&#45;select</i>).</td>
+      </tr>
+      <tr>
+        <th>[placeholder]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Placeholder text (same as in <i>ng&#45;select</i>).</td>
+      </tr>
+      <tr>
+        <th>[description]</th>
+        <td><code>string</code></td>
+        <td><code>undefined</code></td>
+        <td>no</td>
+        <td>Description below the label (custom for FhiMultiselect).</td>
+      </tr>
+      <tr>
+        <th>[label]</th>
+        <td><code>string</code></td>
+        <td><code>Label</code></td>
+        <td>yes</td>
+        <td>Label above the <i>ng&#45;select</i> field (custom for FhiMultiselect).</td>
+      </tr>
+      <tr>
+        <th>[(selectedItems)]</th>
+        <td><code>Array<any></code></td>
+        <td><code>[]</code></td>
+        <td>yes</td>
+        <td>A two way binding to access <i>ng&#45;select</i>'s <code>ngModel</code></td>
       </tr>
     </tbody>
   </table>

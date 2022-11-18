@@ -1,6 +1,6 @@
 <div class="fhi-ng-select-wraper fhi-multiselect">
   <label for="{{ labelForId }}">{{ label }}</label>
-  <p>{{ description }}</p>
+  <p *ngIf="description !== undefined">{{ description }}</p>
   <ng-select [items]="items"
              [multiple]="true"
              [closeOnSelect]="false"

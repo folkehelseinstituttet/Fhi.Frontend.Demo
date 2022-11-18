@@ -48,5 +48,20 @@ function getDocumentationHtml(): string | null {
 </p>
 <p>
   Autosuggest er en wrapper for ng-select, med sitt eget begrensede API:
-</p>`;
+</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Input</th>
+        <th scope="col">Type</th>
+        <th scope="col">Default</th>
+        <th scope="col">Required</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>`;
 }
