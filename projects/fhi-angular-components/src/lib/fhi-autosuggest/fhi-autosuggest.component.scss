@@ -1,27 +1,27 @@
-@import "../style/fhi-ng-select";
+// @import "../style/fhi-ng-select";
 
-.fhi-autosuggest {
+// .fhi-autosuggest {
 
-    .ng-select {
-        .ng-select-container {
-            .ng-value-container {
-                .ng-value,
-                .ng-placeholder {
-                    padding: $fhi-space-2 .75rem; // OBS! Is dependeant on default .form-control padding
-                }
-            }
-        }
+//     .ng-select {
+//         .ng-select-container {
+//             .ng-value-container {
+//                 .ng-value,
+//                 .ng-placeholder {
+//                     padding: $fhi-space-2 .75rem; // OBS! Is dependeant on default .form-control padding
+//                 }
+//             }
+//         }
 
-        .ng-select-container.ng-has-value {
-            .ng-placeholder {
-                display: none;
-            }
-        }
-    }
+//         .ng-select-container.ng-has-value {
+//             .ng-placeholder {
+//                 display: none;
+//             }
+//         }
+//     }
 
-    .ng-dropdown-panel-items {
-        .ng-option {
-            padding: $fhi-space-2;
-        }
-    }
-}
+//     .ng-dropdown-panel-items {
+//         .ng-option {
+//             padding: $fhi-space-2;
+//         }
+//     }
+// }
