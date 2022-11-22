@@ -22,7 +22,7 @@ function getExampleHtml(): string {
   <p>
   	Denne komponenten er avhengig av å ligge i en spesifikk
     <a href="/developer/layout-and-page-templates/LayoutTemplates#${LibraryItemIds.LayoutTemplateExpandableFirstCol}">
-      layout med ekspanderbart innhold i første kolonne"
+      layout med ekspanderbart innhold i første kolonne
     </a>
   </p>
 </div>`;

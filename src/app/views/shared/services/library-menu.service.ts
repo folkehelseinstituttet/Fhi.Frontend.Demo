@@ -163,6 +163,9 @@ export class LibraryMenuService {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
     }, {
+      name: 'Date & Time selectors',
+      link: LibraryItemSegmentPaths.dateandtimeselection
+    }, {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }];

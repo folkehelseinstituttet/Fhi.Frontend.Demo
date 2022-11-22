@@ -15,6 +15,7 @@ import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toa
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example/tooltip-example.component';
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
+import { DateAndTimeSelectionExampleComponent } from './fhi-angular-examples/date-and-time-selection-examples/date-and-time-selection-example.component';
 import { GlobalHeaderWithMenuExampleComponent } from './fhi-angular-examples/global-header-with-menu/global-header-with-menu.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
@@ -33,6 +34,7 @@ const NGB_EXAMPLES = [
 
 const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
+  DateAndTimeSelectionExampleComponent,
   GlobalHeaderWithMenuExampleComponent,
   SearchExampleComponent,
   TagExampleComponent,
