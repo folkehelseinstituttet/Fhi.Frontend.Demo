@@ -27,7 +27,7 @@ library-items/
 7. Add a new import and constant in `../library-item-segment-paths.ts`
 8. Add `YourNewItemsData` to `AllData` in `../library-items.data.ts`
 9. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
-10. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
+10. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in `src/app/shared/services/library-menu.service.ts`
 
 ### How to create a new library item in an exsisting mock-db data file
 
