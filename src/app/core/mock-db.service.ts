@@ -17,6 +17,7 @@ import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_bu
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DateAndTimeSelectionData } from 'src/MOCK_DB_DATA/library-items/date-and-time-selection/_date-and-time-selection.data';
+import { DatePickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
@@ -55,6 +56,7 @@ export class MockDbService implements InMemoryDbService {
       ButtonsData,
       ColorData,
       DateAndTimeSelectionData,
+      DatePickerData,
       DrawerData,
       FormsData,
       GlobalFooterData,

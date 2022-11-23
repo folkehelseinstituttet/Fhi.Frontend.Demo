@@ -53,6 +53,8 @@
     [itemIds]="itemIds">
   </app-date-and-time-selection-example>
 
+  <app-datepicker *ngSwitchCase="itemIds.DatePicker"></app-datepicker>
+
   <app-tabs-example
     *ngSwitchCase="itemIds.Tabs"
     [itemId]="itemIds.Tabs"

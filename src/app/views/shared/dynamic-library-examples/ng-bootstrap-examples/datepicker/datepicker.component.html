@@ -1,0 +1,24 @@
+<!-- <div class="mb-7">
+  <div class="fhi-datepicker">
+    <ngb-datepicker #d outsideDays="hidden"></ngb-datepicker>
+  </div>
+</div> -->
+
+<div class="fhi-datepicker">
+  <label class="form-label fhi-datepicker__label" for="datepicker-id">
+    Datovelger
+    <p class="fhi-text-ancillary mb-0">Format dd.mm.åååå</p>
+  </label>
+  
+  <button class="fhi-datepicker__toggler" (click)="datepicker1.toggle()" aria-hidden="true">
+    <i class="icon-calendar"></i>
+    <span class="visually-hidden">Åpne datovelger</span>
+  </button>
+
+  <input class="form-control fhi-datepicker__form-control"
+         id="datepicker-id"
+         type="text"
+         outsideDays="hidden"
+         ngbDatepicker
+         #datepicker1="ngbDatepicker"/>
+</div>

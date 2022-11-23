@@ -8,6 +8,7 @@ import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { DateAndTimeSelectionData } from './date-and-time-selection/_date-and-time-selection.data';
+import { DatePickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -33,6 +34,7 @@ export const AllData: LibraryItem[] = [
   ...ButtonsData,
   ...ColorData,
   ...DateAndTimeSelectionData,
+  ...DatePickerData,
   ...DrawerData,
   ...FormsData,
   ...GlobalHeaderData,
