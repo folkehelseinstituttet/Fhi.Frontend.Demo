@@ -31,6 +31,7 @@ function getCodeHtml(): string | null {
       [labelForId]="'year'"
       [items]="yearList"
       [label]="'År'"
+      [notFoundText]="'Ikke mulig'"
       [(selectedItem)]="selectedYear">
     </fhi-autosuggest>
   </div>
@@ -40,6 +41,7 @@ function getCodeHtml(): string | null {
       [labelForId]="'week'"
       [items]="weekList"
       [label]="'Uke'"
+      [notFoundText]="'Ikke mulig'"
       [(selectedItem)]="selectedWeek">
     </fhi-autosuggest>
   </div>
@@ -51,5 +53,5 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Årsintervall er bygget opp med to instanser av modulen <a href="/developer/components/AdvancedSelect#${LibraryItemIds.AdvancedSelectAutosuggest}">Advanced select - autosuggest</a>.</p>`;
+<p>Årsintervall er basert på modulen <a href="/developer/components/AdvancedSelect#${LibraryItemIds.AdvancedSelectAutosuggest}">Advanced select - autosuggest</a>.</p>`;
 }

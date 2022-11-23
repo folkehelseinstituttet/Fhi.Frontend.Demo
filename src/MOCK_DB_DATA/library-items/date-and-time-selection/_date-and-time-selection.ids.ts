@@ -1,4 +1,4 @@
 export const DateAndTimeSelectionIds = {
-  DateSelection: undefined,
+  YearSelection: undefined,
   WeekSelection: undefined
 }

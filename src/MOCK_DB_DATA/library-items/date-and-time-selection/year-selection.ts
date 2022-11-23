@@ -2,8 +2,8 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const DateSelection: LibraryItem[] = [{
-  id: LibraryItemIds.DateSelection,
+export const YearSelection: LibraryItem[] = [{
+  id: LibraryItemIds.YearSelection,
   title: 'Årsintervall',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
@@ -31,15 +31,19 @@ function getCodeHtml(): string | null {
       [labelForId]="'year-from'"
       [items]="yearList"
       [label]="'Fra år'"
+      [notFoundText]="'Ikke mulig'"
       [(selectedItem)]="selectedFromYear">
     </fhi-autosuggest>
   </div>
 
-  <div class="fhi-double-select__item fhi-double-select__item-w-interval-indicator">
+  <div class="fhi-double-select__item">
+    <span class="fhi-double-select__dash"></span>
+    
     <fhi-autosuggest [description]="'Årstall 4 siffer'"
       [labelForId]="'year-to'"
       [items]="yearList"
       [label]="'Til år'"
+      [notFoundText]="'Ikke mulig'"
       [(selectedItem)]="selectedToYear">
     </fhi-autosuggest>
   </div>
@@ -51,5 +55,5 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Årsintervall er bygget opp med to instanser av modulen <a href="/developer/components/AdvancedSelect#${LibraryItemIds.AdvancedSelectAutosuggest}">Advanced select - autosuggest</a>.</p>`;
+<p>Årsintervall er basert på modulen <a href="/developer/components/AdvancedSelect#${LibraryItemIds.AdvancedSelectAutosuggest}">Advanced select - autosuggest</a>.</p>`;
 }
