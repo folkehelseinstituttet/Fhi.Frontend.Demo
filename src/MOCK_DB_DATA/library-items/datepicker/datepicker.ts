@@ -25,7 +25,25 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-  <p>Date picker</p>`;
+<div class="fhi-datepicker">
+  <label class="form-label fhi-datepicker__label" for="datepicker_id">
+    Datovelger
+  </label>
+  
+  <button class="fhi-datepicker__toggler" (click)="datepicker_1.toggle()">
+    <i class="icon-calendar"></i>
+    <span class="visually-hidden">Åpne datovelger</span>
+  </button>
+
+  <input class="form-control fhi-datepicker__form-control"
+         id="datepicker_id"
+         outsideDays="hidden"
+         pattern=""
+         placeholder="dd.mm.åååå"
+         type="text"
+         ngbDatepicker
+         #datepicker_1="ngbDatepicker"/>
+</div>`;
 }
 
 /*
