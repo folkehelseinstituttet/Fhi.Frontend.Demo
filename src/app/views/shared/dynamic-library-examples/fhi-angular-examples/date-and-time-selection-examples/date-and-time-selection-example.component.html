@@ -1,7 +1,7 @@
 <div *ngIf="itemId === itemIds.YearSelection">
   <div class="fhi-double-select">
     <div class="fhi-double-select__item">
-      <fhi-autosuggest [description]="'Årstall 4 siffer'"
+      <fhi-autosuggest
         [labelForId]="'year-from'"
         [items]="yearList"
         [label]="'Fra år'"
@@ -13,7 +13,7 @@
     <div class="fhi-double-select__item">
       <span class="fhi-double-select__dash"></span>
       
-      <fhi-autosuggest [description]="'Årstall 4 siffer'"
+      <fhi-autosuggest
         [labelForId]="'year-to'"
         [items]="yearList"
         [label]="'Til år'"
@@ -28,7 +28,7 @@
 <div *ngIf="itemId === itemIds.WeekSelection">
   <div class="fhi-double-select">
     <div class="fhi-double-select__item">
-      <fhi-autosuggest [description]="'Årstall 4 siffer'"
+      <fhi-autosuggest
         [labelForId]="'year'"
         [items]="yearList"
         [label]="'År'"
@@ -38,7 +38,7 @@
     </div>
 
     <div class="fhi-double-select__item">
-      <fhi-autosuggest [description]="'Velg ukenummer'"
+      <fhi-autosuggest
         [labelForId]="'week'"
         [items]="weekList"
         [label]="'Uke'"
