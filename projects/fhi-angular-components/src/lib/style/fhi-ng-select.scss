@@ -109,7 +109,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
             .ng-option {
                 &.ng-option-marked,
                 &:hover {
-                    background-color: $fhi-hover; // TODO: add postfix -color core.variables
+                    background-color: $fhi-hover-color;
                 }
 
                 &:first-child {
