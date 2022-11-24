@@ -36,6 +36,7 @@ function getCodeHtml(): string | null {
   </button>
 
   <input class="form-control fhi-datepicker__form-control"
+         autocomplete="off"
          id="datepicker_id"
          outsideDays="hidden"
          pattern=""
@@ -51,5 +52,12 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Hoi!</p>`;
+<p>
+  Datepicker er implementert som en
+  <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>
+  i FHI Designsystem.
+</p>
+<p>
+  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+</p>`;
 }
