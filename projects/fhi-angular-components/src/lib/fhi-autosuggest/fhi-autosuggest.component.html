@@ -1,0 +1,14 @@
+<div class="fhi-ng-select-wraper fhi-autosuggest">
+  <label for="{{ labelForId }}">{{ label }}</label>
+  <p *ngIf="description !== undefined">{{ description }}</p>
+  <ng-select [items]="items"
+             [editableSearchTerm]="true"
+             [(ngModel)]="selectedItem"
+             bindLabel="name"
+             bindValue="id"
+             labelForId="{{ labelForId }}"
+             placeholder="{{ placeholder !== undefined ? placeholder : '' }}"
+             (change)="onChange()">
+    <ng-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</ng-option>
+  </ng-select>
+</div>

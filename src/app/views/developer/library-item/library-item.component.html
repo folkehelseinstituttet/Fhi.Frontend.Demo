@@ -1,4 +1,4 @@
-<article class="ds-ui-documentation" id="{{ id }}">
+<article class="ds-ui-documentation" id="{{ id }}" *ngIf="!isDebugging else debugView">
   <h1 class="h3">{{ title }}</h1>
 
   <div class="ds-ui-documentation__item-container">
@@ -8,14 +8,18 @@
 
         <ng-container *ngIf="menuItem.name === MenuItemName.example">
           <ng-template ngbNavContent>
-            <app-library-item-full-srceen *ngIf="hasPreviewButton">
+            <app-library-item-full-srceen *ngIf="fullScreenEnabled">
               <ng-container library-item-full-screen.body-content>
                 <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
               </ng-container>
             </app-library-item-full-srceen>
             <div class="ds-ui-documentation__item"
-                 [ngClass]="{ 'ds-ui-documentation__item--has-preview-buttons': hasPreviewButton }">
+                 [ngClass]="{ 'ds-ui-documentation__item--has-full-screen-button': fullScreenEnabled }">
               <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
+            </div>
+            <div class="ds-ui-documentation__code" *ngIf="codeHtml !== null">
+              <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
+              <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
@@ -24,15 +28,6 @@
           <ng-template ngbNavContent>
             <div class="ds-ui-documentation__item">
               <div [innerHtml]="documentationHtml | safe: 'html'"></div>
-            </div>
-          </ng-template>
-        </ng-container>
-
-        <ng-container *ngIf="menuItem.name === MenuItemName.code">
-          <ng-template ngbNavContent>
-            <app-library-copy-button [contentToCopy]="codeHtml"></app-library-copy-button>
-            <div class="ds-ui-documentation__item">
-              <markdown [data]="codeHtml | language : 'html'"></markdown>
             </div>
           </ng-template>
         </ng-container>
@@ -52,4 +47,11 @@
 
 <ng-template #dynamicLibraryExample>
   <app-dynamic-library-example [itemId]="id"></app-dynamic-library-example>
+</ng-template>
+
+<ng-template #debugView>
+  <article class="mt-7 pb-7">
+    <h1 class="h5 mb-4 p-1 ps-2 bg-light">{{ title }}</h1>
+    <ng-container *ngTemplateOutlet="libraryExample"></ng-container>
+  </article>
 </ng-template>

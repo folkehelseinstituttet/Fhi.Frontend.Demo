@@ -9,6 +9,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
+import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
+import { TreeModule } from '@circlon/angular-tree-component';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { SafePipe } from './pipes/safe.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -27,7 +30,10 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NgbModule,
     ClipboardModule,
     FilterPipeModule,
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    FhiAngularComponentsModule,
+    TreeModule,
+    MatTreeModule
   ],
   exports: [
     SafePipe,
@@ -40,7 +46,10 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NgbModule,
     ClipboardModule,
     FilterPipeModule,
-    MarkdownModule
+    MarkdownModule,
+    FhiAngularComponentsModule,
+    TreeModule,
+    MatTreeModule
   ]
 })
 export class SharedModule { }

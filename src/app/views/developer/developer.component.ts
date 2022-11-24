@@ -13,6 +13,7 @@ export class DeveloperComponent implements OnInit, OnDestroy {
 
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
+  isDebugging = false;
 
   private subscription: Subscription = new Subscription();
 
@@ -25,7 +26,8 @@ export class DeveloperComponent implements OnInit, OnDestroy {
     this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
-        if (this.libraryMenuService.updateSecondLevelMenu()) {
+        this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
+        if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
           this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }
       }));

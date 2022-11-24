@@ -14,5 +14,6 @@ export class SegmentPaths {
   static visualIdentity = 'visual-identity';
   static components = 'components';
   static modules = 'modules';
+  static layoutAndPageTemplates = 'layout-and-page-templates';
 
 }

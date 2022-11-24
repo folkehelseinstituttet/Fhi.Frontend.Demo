@@ -39,6 +39,7 @@ code[class*="language-"],
 pre[class*="language-"] {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px;
+    min-height: $fhi-px * 44;// sic
     padding: 0;
     margin: 0;
 }
@@ -46,6 +47,7 @@ pre[class*="language-"] {
 code[class*="language-html"],
 pre[class*="language-html"] {
     color: darken($fhi-grey-2, 18%);
+    margin-right: $fhi-space-7;
 
     .token.property,
     .token.tag,
@@ -81,7 +83,7 @@ pre[class*="language-html"] {
     .token.prolog,
     .token.doctype,
     .token.cdata {
-        color: darken($fhi-grey-1, 36%);
+        color: darken($fhi-grey-1, 38%);
     }
 }
 

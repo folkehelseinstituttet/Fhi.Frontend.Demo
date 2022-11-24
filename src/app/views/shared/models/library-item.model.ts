@@ -9,7 +9,7 @@ export interface LibraryItem {
   title: string;
   type: number;
   exampleHtml: string;
-  codeHtml: string;
-  documentationHtml: string;
-  hasPreviewButton?: boolean;
+  codeHtml: string | null;
+  documentationHtml: string | null;
+  fullScreenEnabled?: boolean;
 }
