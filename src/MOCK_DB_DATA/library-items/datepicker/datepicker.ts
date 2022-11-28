@@ -27,15 +27,16 @@ function getCodeHtml(): string | null {
   return `
 <div class="fhi-datepicker">
   <label class="form-label fhi-datepicker__label" for="datepicker_id">
-    Datovelger
+    Velg en dato
   </label>
   
-  <button class="fhi-datepicker__toggler" (click)="datepicker_1.toggle()">
+  <button class="fhi-datepicker__toggler" (click)="toggleDatePicker(datepicker_1)">
     <i class="icon-calendar"></i>
     <span class="visually-hidden">Åpne datovelger</span>
   </button>
 
   <input class="form-control fhi-datepicker__form-control"
+         [ngClass]="{'active' : datePickerActive}"
          autocomplete="off"
          id="datepicker_id"
          outsideDays="hidden"
@@ -43,7 +44,8 @@ function getCodeHtml(): string | null {
          placeholder="dd.mm.åååå"
          type="text"
          ngbDatepicker
-         #datepicker_1="ngbDatepicker"/>
+         #datepicker_1="ngbDatepicker"
+         (closed)="closingDatepicker()"/>
 </div>`;
 }
 
