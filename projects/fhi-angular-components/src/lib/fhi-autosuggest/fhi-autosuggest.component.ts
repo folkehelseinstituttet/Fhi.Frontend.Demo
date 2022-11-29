@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
 @Component({
   selector: 'fhi-autosuggest',
-  templateUrl: './fhi-autosuggest.component.html'
+  templateUrl: './fhi-autosuggest.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class FhiAutosuggestComponent {
 

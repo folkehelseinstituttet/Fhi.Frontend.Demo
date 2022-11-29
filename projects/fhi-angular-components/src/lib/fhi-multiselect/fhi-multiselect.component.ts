@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 import { FhiMultiselectItem } from './fhi-multiselect.model';
 
 @Component({
   selector: 'fhi-multiselect',
-  templateUrl: './fhi-multiselect.component.html'
+  templateUrl: './fhi-multiselect.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class FhiMultiselectComponent {
 
