@@ -1,25 +1,4 @@
-//
-//    Disclaimer!
-//
-//    We need to make some changes to https://github.com/folkehelseinstituttet/Fhi.Frontend.Style
-//    (See https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/234) before all
-//    todo's in this file can be removed. The Designsystem team is woring hard to get this
-//    done as soon as possible.
-//
-//    OBS! This file isnt't watched, it has to be buildt by building one of the files it is imported into.
-//
-
-@import "./node_modules/bootstrap/scss/functions";
-@import "./node_modules/bootstrap/scss/mixins";
-@import "./node_modules/@folkehelseinstituttet/style/import/variables";
-@import "./node_modules/bootstrap/scss/forms";
-@import "./node_modules/@folkehelseinstituttet/style/src/bootstrap-customisations/forms";
-
-
-// TODO: core variable for chevron (accordion, dropdown, fhi-advanced-select, ...?)
-$fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#{$body-color}"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
-
-.fhi-ng-select-wraper {
+.fhi-ng-select-wrapper {
 
     // TODO: should be part of default form style
     label {
@@ -60,22 +39,18 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
         }
 
         .ng-arrow-wrapper {
+            bottom: 0;
             position: absolute;
-            top: $fhi-px * 15;
-            right: $fhi-px * 12;
+            right: 0;
+            top: 0;
             z-index: 2;
-            line-height: $fhi-px * 16;
 
             .ng-arrow {
-                height: $fhi-px * 16;
-                width: $fhi-px * 16;
-                line-height: inherit;
-
-                // TODO: mixing ?
-                background-image: escape-svg($fhi-advanced-select-chevron);
+                @extend .icon-chevron-down;
+                background-position: center center;
                 background-repeat: no-repeat;
-                background-size: $fhi-px * 16;
-                transition: all 0.2s ease-in-out;
+                height: $fhi-px * 48;
+                width: $fhi-px * 40;
             }
         }
     }
@@ -111,31 +86,38 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
                 &:hover {
                     background-color: $fhi-hover; // TODO: add postfix -color core.variables
                 }
-
-                &:first-child {
-                    margin-top: $fhi-space-2;
-                }
-
-                &:last-child {
-                    margin-bottom: $fhi-space-2;
-                }
             }
+        }
+    }
+}
+
+.fhi-ng-select-has-connection-indicator {
+    .ng-select-container {
+        &::before {
+            content: "\2013";
+            left: ($fhi-space-3 * -1);
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, ($fhi-px * -2));
         }
     }
 }
 
 
 @include media-breakpoint-up(lg) {
-    .fhi-ng-select-wraper {
+    .fhi-ng-select-wrapper {
         .ng-select {
             .ng-select-container {
                 .ng-value-container {
                     height: $fhi-px * 40;
                 }
-            }
 
-            .ng-arrow-wrapper {
-                top: $fhi-px * 11;
+                .ng-arrow-wrapper {
+                    .ng-arrow {
+                        height: $fhi-px * 40;
+                    }
+                }
             }
         }
     }
