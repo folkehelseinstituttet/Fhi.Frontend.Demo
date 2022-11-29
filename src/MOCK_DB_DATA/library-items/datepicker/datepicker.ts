@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const DatePicker: LibraryItem[] = [{
   id: LibraryItemIds.DatePicker,
-  title: 'Date picker',
+  title: 'Datepicker',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
