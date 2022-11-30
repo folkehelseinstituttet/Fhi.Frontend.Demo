@@ -15,6 +15,7 @@ export class FhiMultiselectComponent {
 
   @Input() description: string = undefined;
   @Input() label: string = 'Label';
+  @Input() notFoundText: string = 'Ingen elementer funnet';
   @Input() selectedItems: Array<any> = [];
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();

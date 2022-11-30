@@ -7,6 +7,7 @@
              bindLabel="name"
              bindValue="id"
              labelForId="{{ labelForId }}"
+             notFoundText="{{ notFoundText }}"
              placeholder="{{ placeholder !== undefined ? placeholder : '' }}"
              (change)="onChange()">
     <ng-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</ng-option>
