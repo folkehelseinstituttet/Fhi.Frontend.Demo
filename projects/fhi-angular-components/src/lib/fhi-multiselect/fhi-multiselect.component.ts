@@ -11,7 +11,7 @@ export class FhiMultiselectComponent {
 
   @Input() items: Array<FhiMultiselectItem> = [];
   @Input() labelForId: string = undefined;
-  @Input() placeholder: string = undefined;
+  @Input() placeholder: string = '';
 
   @Input() description: string = undefined;
   @Input() label: string = 'Label';
