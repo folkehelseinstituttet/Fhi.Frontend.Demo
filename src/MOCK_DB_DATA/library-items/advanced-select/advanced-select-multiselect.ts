@@ -21,6 +21,7 @@ function getExampleHtml(): string {
   [labelForId]="'navn-1'"
   [items]="people"
   [label]="'Navn'"
+  [notFoundText]="'Ingen treff'"
   [placeholder]="'Søk'"
   [(selectedItems)]="selectedPeople">
 </fhi-multiselect>`;
@@ -95,6 +96,13 @@ function getDocumentationHtml(): string | null {
         <td><code>Label</code></td>
         <td>yes</td>
         <td>Label above the <i>ng&#45;select</i> field (custom for FhiMultiselect).</td>
+      </tr>
+      <tr>
+        <th>[notFoundText]</th>
+        <td><code>string</code></td>
+        <td><code>"Ingen resultater funnet"</code></td>
+        <td>no</td>
+        <td>What is shown in the drowpdown list if search does not match any items.</td>
       </tr>
       <tr>
         <th>[(selectedItems)]</th>

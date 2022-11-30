@@ -33,6 +33,7 @@ function getCodeHtml(): string {
 <i class="icon-arrow-right"></i>
 <i class="icon-arrow-right-circle-fill"></i>
 <i class="icon-bell-regular"></i>
+<i class="icon-calendar"></i>
 <i class="icon-cancer"></i>
 <i class="icon-cancer-cell"></i>
 <i class="icon-cancer-cell-2"></i>

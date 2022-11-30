@@ -42,15 +42,28 @@
   <app-layout-expandable-first-col-example *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"></app-layout-expandable-first-col-example>
   <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
 
+  <app-date-and-time-selection-example
+    *ngSwitchCase="itemIds.YearSelection"
+    [itemId]="itemIds.YearSelection"
+    [itemIds]="itemIds">
+  </app-date-and-time-selection-example>
+  <app-date-and-time-selection-example
+    *ngSwitchCase="itemIds.WeekSelection"
+    [itemId]="itemIds.WeekSelection"
+    [itemIds]="itemIds">
+  </app-date-and-time-selection-example>
+
+  <app-datepicker *ngSwitchCase="itemIds.DatePicker"></app-datepicker>
+
   <app-tabs-example
-  *ngSwitchCase="itemIds.Tabs"
-  [itemId]="itemIds.Tabs"
-  [itemIds]="itemIds">
+    *ngSwitchCase="itemIds.Tabs"
+    [itemId]="itemIds.Tabs"
+    [itemIds]="itemIds">
   </app-tabs-example>
   <app-tabs-example
-  *ngSwitchCase="itemIds.TabsAlternative"
-  [itemId]="itemIds.TabsAlternative"
-  [itemIds]="itemIds">
+    *ngSwitchCase="itemIds.TabsAlternative"
+    [itemId]="itemIds.TabsAlternative"
+    [itemIds]="itemIds">
   </app-tabs-example>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
@@ -61,10 +74,10 @@
     *ngSwitchCase="itemIds.TreeView"
     [itemId]="itemIds.TreeView"
     [itemIds]="itemIds"></app-tree-view-example>
-    <app-tree-view-example
-      *ngSwitchCase="itemIds.TreeViewNavigation"
-      [itemId]="itemIds.TreeViewNavigation"
-      [itemIds]="itemIds"></app-tree-view-example>
+  <app-tree-view-example
+    *ngSwitchCase="itemIds.TreeViewNavigation"
+    [itemId]="itemIds.TreeViewNavigation"
+    [itemIds]="itemIds"></app-tree-view-example>
   <app-tree-view-example
     *ngSwitchCase="itemIds.TreeViewBuilder"
     [itemId]="itemIds.TreeViewBuilder"
