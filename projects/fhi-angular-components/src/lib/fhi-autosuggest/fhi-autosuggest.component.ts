@@ -17,6 +17,7 @@ export class FhiAutosuggestComponent {
   @Input() description: string = undefined;
   @Input() label: string = 'Label';
   @Input() selectedItem: number = null;
+  @Input() notFoundText: string = 'Ingen elementer funnet';
 
   @Output() selectedItemChange = new EventEmitter<number>();
 

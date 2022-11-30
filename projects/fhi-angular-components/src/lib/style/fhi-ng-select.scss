@@ -19,7 +19,7 @@
 // TODO: core variable for chevron (accordion, dropdown, fhi-advanced-select, ...?)
 $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#{$body-color}"><path d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"/></svg>');
 
-.fhi-ng-select-wraper {
+.fhi-ng-select-wrapper {
 
     // TODO: should be part of default form style
     label {
@@ -109,7 +109,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
             .ng-option {
                 &.ng-option-marked,
                 &:hover {
-                    background-color: $fhi-hover; // TODO: add postfix -color core.variables
+                    background-color: $fhi-hover-color;
                 }
 
                 &:first-child {
@@ -126,7 +126,7 @@ $fhi-advanced-select-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.
 
 
 @include media-breakpoint-up(lg) {
-    .fhi-ng-select-wraper {
+    .fhi-ng-select-wrapper {
         .ng-select {
             .ng-select-container {
                 .ng-value-container {
