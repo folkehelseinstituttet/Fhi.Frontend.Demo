@@ -79,10 +79,9 @@ ${colorHtml('#9f2b26', 'fhi-red-3')}
 ${colorHtml('#de2968', 'fhi-pink-dark-1')}
 
 <p class="text-muted small mt-2 mb-0">Lyserosa</p>
-${colorHtml('#fdf4f2', 'fhi-pink-light-1')}
-${colorHtml('#faedec', 'fhi-pink-light-2')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-3')}
-${colorHtml('#fad1cd', 'fhi-pink-light-4')}`;
+${colorHtml('#faedec', 'fhi-pink-light-1')}
+${colorHtml('#fad1cd', 'fhi-pink-light-2')}
+${colorHtml('#fba39b', 'fhi-pink-light-3')}`;
 }
 
 /*
