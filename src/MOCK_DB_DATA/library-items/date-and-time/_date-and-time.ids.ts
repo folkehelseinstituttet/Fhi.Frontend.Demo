@@ -1,4 +1,5 @@
-export const DateAndTimeSelectionIds = {
+export const DateAndTimeIds = {
+  DateRange: undefined,
   YearSelection: undefined,
   WeekSelection: undefined
 }

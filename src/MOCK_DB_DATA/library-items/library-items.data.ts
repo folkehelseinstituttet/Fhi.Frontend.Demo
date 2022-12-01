@@ -7,7 +7,7 @@ import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
-import { DateAndTimeSelectionData } from './date-and-time-selection/_date-and-time-selection.data';
+import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatePickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
@@ -33,7 +33,7 @@ export const AllData: LibraryItem[] = [
   ...BreadcrumbData,
   ...ButtonsData,
   ...ColorData,
-  ...DateAndTimeSelectionData,
+  ...DateAndTimeData,
   ...DatePickerData,
   ...DrawerData,
   ...FormsData,

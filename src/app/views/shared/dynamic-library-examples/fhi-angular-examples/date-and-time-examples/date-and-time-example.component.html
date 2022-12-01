@@ -1,0 +1,127 @@
+<div class="row" *ngIf="itemId === itemIds.DateRange">
+  <div class="col-auto">
+  	<div class="fhi-datepicker">
+      <label class="form-label fhi-datepicker__label" for="datepickerFrom">
+        Fra
+      </label>
+      <button class="fhi-datepicker__toggler" type="button" (click)="datepicker.toggle()">
+        <i class="icon-calendar"></i>
+        <span class="visually-hidden">Åpne datovelger</span>
+      </button>
+  		<input
+  			#dpFromDate
+        id="datepickerFrom"
+  			class="form-control fhi-datepicker__form-control"
+  			placeholder="dd.mm.yyyy"
+  			name="dpFromDate"
+  			[value]="formatter.format(fromDate)"
+  			(input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+  		/>
+  	</div>
+  </div>
+
+  <div class="col">
+  	<div class="fhi-datepicker">
+      <label class="form-label fhi-datepicker__label" for="datepickerTo">
+        Til
+      </label>
+      <button class="fhi-datepicker__toggler" type="button" (click)="datepicker.toggle()">
+        <i class="icon-calendar"></i>
+        <span class="visually-hidden">Åpne datovelger</span>
+      </button>
+  		<input
+  			#dpToDate
+        id="datepickerTo"
+  			class="form-control fhi-datepicker__form-control"
+  			placeholder="dd.mm.yyyy"
+  			name="dpToDate"
+  			[value]="formatter.format(toDate)"
+  			(input)="toDate = validateInput(toDate, dpToDate.value)"
+  		/>
+  	</div>
+  </div>
+
+  <div class="col-12">
+  	<div class="dp-hidden position-absolute">
+  		<div class="fhi-datepicker">
+  			<input
+  				name="datepicker"
+  				class="visually-hidden"
+  				ngbDatepicker
+  				#datepicker="ngbDatepicker"
+  				[autoClose]="'outside'"
+  				(dateSelect)="onDateSelection($event)"
+  				[dayTemplate]="t"
+  				outsideDays="hidden"
+  				[startDate]="fromDate!"
+  				tabindex="-1"
+  			/>
+  			<ng-template #t let-date let-focused="focused">
+  				<span
+  					class="custom-day"
+  					[class.focused]="focused"
+  					[class.range]="isRange(date)"
+  					[class.faded]="isHovered(date) || isInside(date)"
+  					(mouseenter)="hoveredDate = date"
+  					(mouseleave)="hoveredDate = null"
+  				>
+  					{{ date.day }}
+  				</span>
+  			</ng-template>
+  		</div>
+  	</div>
+  </div>
+
+</div>
+
+
+<div *ngIf="itemId === itemIds.YearSelection">
+  <div class="fhi-double-select">
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'year-from'"
+        [items]="yearList"
+        [label]="'Fra år'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedFromYear">
+      </fhi-autosuggest>
+    </div>
+
+    <div class="fhi-double-select__item">
+      <span class="fhi-double-select__dash"></span>
+      
+      <fhi-autosuggest
+        [labelForId]="'year-to'"
+        [items]="yearList"
+        [label]="'Til år'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedToYear">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="itemId === itemIds.WeekSelection">
+  <div class="fhi-double-select">
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'year'"
+        [items]="yearList"
+        [label]="'År'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedYear">
+      </fhi-autosuggest>
+    </div>
+
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'week'"
+        [items]="weekList"
+        [label]="'Uke'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedWeek">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>

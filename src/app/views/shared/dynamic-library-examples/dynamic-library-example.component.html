@@ -42,16 +42,21 @@
   <app-layout-expandable-first-col-example *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"></app-layout-expandable-first-col-example>
   <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
 
-  <app-date-and-time-selection-example
+  <app-date-and-time-example
+    *ngSwitchCase="itemIds.DateRange"
+    [itemId]="itemIds.DateRange"
+    [itemIds]="itemIds">
+  </app-date-and-time-example>
+  <app-date-and-time-example
     *ngSwitchCase="itemIds.YearSelection"
     [itemId]="itemIds.YearSelection"
     [itemIds]="itemIds">
-  </app-date-and-time-selection-example>
-  <app-date-and-time-selection-example
+  </app-date-and-time-example>
+  <app-date-and-time-example
     *ngSwitchCase="itemIds.WeekSelection"
     [itemId]="itemIds.WeekSelection"
     [itemIds]="itemIds">
-  </app-date-and-time-selection-example>
+  </app-date-and-time-example>
 
   <app-datepicker *ngSwitchCase="itemIds.DatePicker"></app-datepicker>
 

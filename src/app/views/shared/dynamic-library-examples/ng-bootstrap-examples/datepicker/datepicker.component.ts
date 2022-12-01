@@ -1,5 +1,5 @@
 import { Component, Injectable, Input } from '@angular/core';
-import { NgbDateParserFormatter, NgbDatepicker, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
 export class CustomDateParserFormatter extends NgbDateParserFormatter {
