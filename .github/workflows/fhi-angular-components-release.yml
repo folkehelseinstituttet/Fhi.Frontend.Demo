@@ -30,6 +30,7 @@ jobs:
         id: publish
         uses: JS-DevTools/npm-publish@v1.4.3
         with:
+          dry-run: true
           access: "public"
           check-version: true
           package: dist/fhi-angular-components/package.json
