@@ -5,12 +5,13 @@ on:
     types:
       - closed
     branches:
-      - 'release/fhi-angular-components/**'
+      - 'release-test'
     paths:
       - 'projects/fhi-angular-components/package.json'
 
 jobs:
   publish:
+    if: ${{ contains(github.event.head_commit.message, 'Release/fhi-angular-components/') }}
     name: Build and publish to NPM
     runs-on: ubuntu-latest
     steps:
