@@ -5,14 +5,13 @@ import { FhiMultiselectItem } from './fhi-multiselect.model';
 @Component({
   selector: 'fhi-multiselect',
   templateUrl: './fhi-multiselect.component.html',
-  styleUrls: ['./fhi-multiselect.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class FhiMultiselectComponent {
 
   @Input() items: Array<FhiMultiselectItem> = [];
   @Input() labelForId: string = undefined;
-  @Input() placeholder: string = undefined;
+  @Input() placeholder: string = '';
 
   @Input() description: string = undefined;
   @Input() label: string = 'Label';

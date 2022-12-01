@@ -1,0 +1,40 @@
+.fhi-multiselect {
+    .ng-select {
+        .ng-select-container {
+            .ng-value-container {
+                .ng-input {
+                    margin: $fhi-px * -4;
+                    padding: $fhi-px * 4;
+                }
+
+                .ng-placeholder {
+                    top: $fhi-space-2; // OBS! Is dependeant on default .form-control padding + border
+                    left: .75rem; // OBS! Is dependeant on default .form-control padding
+                }
+            }
+        }
+    }
+
+    .ng-dropdown-panel-items {
+        .ng-option {
+            padding: $fhi-space-2;
+
+            .form-check-input {
+                margin-top: $fhi-px * 3;
+            }
+        }
+    }
+}
+
+
+@include media-breakpoint-up(lg) {
+    .fhi-multiselect {
+        .ng-select {
+            .ng-select-container {
+                .ng-value-container {
+                    height: $fhi-px * 40;
+                }
+            }
+        }
+    }
+}

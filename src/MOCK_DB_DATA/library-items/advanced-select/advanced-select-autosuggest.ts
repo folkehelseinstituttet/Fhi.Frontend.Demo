@@ -17,12 +17,12 @@ export const AdvancedSelectAutosuggest: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <fhi-autosuggest
-  [description]="'Velg/søk etter bilmerke'"
-  [labelForId]="'biler-1'"
+  description="Velg/søk etter bilmerke"
   [items]="cars"
-  [label]="'Biler'"
-  [notFoundText]="'Ingen treff'"
-  [placeholder]="'Søk'"
+  label="Biler"
+  labelForId="biler-1"
+  notFoundText="Ingen treff"
+  placeholder="Søk"
   [(selectedItem)]="selectedCar">
 </fhi-autosuggest>`;
 }
@@ -64,45 +64,45 @@ function getDocumentationHtml(): string | null {
     <tbody>
       <tr>
         <th>[items]</th>
-        <td><code>Array<FhiAutosuggestItem></code></td>
+        <td><code>Array&lt;FhiAutosuggestItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
         <td>Items array (same as in <i>ng&#45;select</i> except for item type <code>FhiAutosuggestItem</code>).</td>
       </tr>
       <tr>
-        <th>[labelForId]</th>
+        <th>labelForId</th>
         <td><code>string</code></td>
         <td><code>undefined</code></td>
         <td>no</td>
         <td>Id to associate control with label (same as in <i>ng&#45;select</i>).</td>
       </tr>
       <tr>
-        <th>[placeholder]</th>
+        <th>placeholder</th>
         <td><code>string</code></td>
-        <td><code>undefined</code></td>
+        <td><code>""</code></td>
         <td>no</td>
         <td>Placeholder text (same as in <i>ng&#45;select</i>).</td>
       </tr>
       <tr>
-        <th>[description]</th>
+        <th>description</th>
         <td><code>string</code></td>
         <td><code>undefined</code></td>
         <td>no</td>
         <td>Description below the label (custom for FhiAutosuggest).</td>
       </tr>
       <tr>
-        <th>[label]</th>
+        <th>label</th>
         <td><code>string</code></td>
         <td><code>Label</code></td>
         <td>yes</td>
         <td>Label above the <i>ng&#45;select</i> field (custom for FhiAutosuggest).</td>
       </tr>
       <tr>
-        <th>[notFoundText]</th>
+        <th>notFoundText</th>
         <td><code>string</code></td>
         <td><code>"Ingen resultater funnet"</code></td>
         <td>no</td>
-        <td>What is shown in the drowpdown list if search does not match any items.</td>
+        <td>What is shown in the drowpdown list if search does not match any items (same as in <i>ng&#45;select</i>).</td>
       </tr>
       <tr>
         <th>[(selectedItem)]</th>
