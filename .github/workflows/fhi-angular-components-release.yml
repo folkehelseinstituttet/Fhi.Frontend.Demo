@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - 'release-fhi-angular-components/**'
+      - 'release/fhi-angular-components/**'
     paths:
       - 'projects/fhi-angular-components/package.json'
 

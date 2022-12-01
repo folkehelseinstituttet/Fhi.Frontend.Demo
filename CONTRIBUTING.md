@@ -20,10 +20,10 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
     - [Fhi.Frontend.Style](#fhifrontendstyle)
       - [Feature branches](#feature-branches)
       - [Release branches](#release-branches)
-    - [Fhi.Frontend.Demo](#fhifrontenddemo)
+    - [Fhi.Frontend.Demo, including library projects](#fhifrontenddemo-including-library-projects)
       - [Feature branches](#feature-branches-1)
-      - [Release branches for demo app](#release-branches-for-demo-app)
       - [Release branches for library projects](#release-branches-for-library-projects)
+      - [Release branches for the Fhi.Frontend.Demo app](#release-branches-for-the-fhifrontenddemo-app)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
   - [HTML (Angular templates)](#html-angular-templates)
@@ -125,33 +125,38 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum 
 2. Name it `release/x.x.x`, where `x.x.x` is the version you're releasing.
 3. Change text `# Unreleased` to `# x.x.x` i `CHANGELOG.md`
 4. Run `npm version [patch, minor, major]` to upgrade `package.json` and automatically create a new commit.
-5. Push release branch and create pull request
+5. Push release branch and create pull request from release branch into `main`
 6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
-#### Fhi.Frontend.Demo
+#### Fhi.Frontend.Demo, including library projects
+
+_A library project is an Angular concept for organising code that are going to be made into a npm package. A library project is defined in `./angular.json`, and the files are located in `./projects/fhi-[project]`_
 
 ##### Feature branches
 
 1. Create a new branch from `dev`.
 2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to merge any changes made to the submodule into branch `demo` in the submodule repo.
-
-##### Release branches for demo app
-
-Currently no need for release branch, we just merge `dev` into `main` when we release a new version of the app.
+3. Before pull request, remember to merge any changes made to the submodule `Fhi.Frontend.Style` into branch `demo` in the submodule repo.
 
 ##### Release branches for library projects
 
-A library project is defined in `./angular.json` and the files are located in `./projects/fhi-[project]`
-
 1. Create a new branch from `dev`.
-2. Name it `release-fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-    > _NB! Important to add `-fhi-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
-3. Change text `# Unreleased` to `# x.x.x` i `./projects/fhi-[project]/CHANGELOG.md`
+2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+    > _NB! Important to add `/fhi-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
+3. Change text `# Unreleased` to `# x.x.x` in `./projects/fhi-[project]/CHANGELOG.md`
 4. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
-    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directorey. And since there is no `package-lock.json` and no need for an tag in the workflow as it is pr. now, doing it manually is faster. A better, and more automated, solution may come in the near future._
-5. Push release branch and create pull request
-6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+    >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
+5. Push release branch and create pull request from release branch into `dev`.
+   >_The PR goes into `dev` because this makes the workflow much easier. The fact that `main` may be a bit behind the official history in `dev`, including a release of a library, is a small price to pay._
+6. After approved review, squash and merge to `dev` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+
+##### Release branches for the Fhi.Frontend.Demo app
+
+Currently no need for a release branch, we just:
+
+1. Create pull request from `dev` into `main`.
+2. After approved review, **merge** to `main` (deploy).
+   >_NB! Just merge to `main`, do not squash! We want to keep the full history in `main`._
 
 ## Coding conventions
 
