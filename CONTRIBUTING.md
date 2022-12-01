@@ -140,15 +140,18 @@ _A library project is an Angular concept for organising code that are going to b
 
 ##### Release branches for library projects
 
+_NB! Only release a new version of a library if dependencies in `@folkehelseinstituttet/style` is already released._
+
 1. Create a new branch from `dev`.
-2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-    > _NB! Important to add `/fhi-[project]` in branch name since this isn't a release for everything in the repo, just a particular library._
-3. Change text `# Unreleased` to `# x.x.x` in `./projects/fhi-[project]/CHANGELOG.md`
+2. Name it `Release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+3. Change text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
 4. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
     >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
 5. Push release branch and create pull request from release branch into `dev`.
    >_The PR goes into `dev` because this makes the workflow much easier. The fact that `main` may be a bit behind the official history in `dev`, including a release of a library, is a small price to pay._
-6. After approved review, squash and merge to `dev` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+6. Make sure commit message is the same as the branch name.
+   > _NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
+7. After approved review, squash and merge to `dev` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
 ##### Release branches for the Fhi.Frontend.Demo app
 
