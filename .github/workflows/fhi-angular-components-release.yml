@@ -1,9 +1,7 @@
 name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - 'release-test'
     paths:
