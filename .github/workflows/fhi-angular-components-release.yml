@@ -1,16 +1,15 @@
 name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
-      - 'release/fhi-angular-components/**'
+      - 'dev'
     paths:
       - 'projects/fhi-angular-components/package.json'
 
 jobs:
   publish:
+    if: "contains(github.event.head_commit.message, 'Release/fhi-angular-components/')"
     name: Build and publish to NPM
     runs-on: ubuntu-latest
     steps:
@@ -30,7 +29,6 @@ jobs:
         id: publish
         uses: JS-DevTools/npm-publish@v1.4.3
         with:
-          dry-run: true
           access: "public"
           check-version: true
           package: dist/fhi-angular-components/package.json
