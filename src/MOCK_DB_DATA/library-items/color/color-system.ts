@@ -73,7 +73,6 @@ ${colorHtml('#f7b665', 'fhi-orange-2')}
 <p class="text-muted small mt-2 mb-0">Rød</p>
 ${colorHtml('#f86559', 'fhi-red-1')}
 ${colorHtml('#d14641', 'fhi-red-2')}
-${colorHtml('#9f2b26', 'fhi-red-3')}
 
 <p class="text-muted small mt-2 mb-0">Mørkerosa</p>
 ${colorHtml('#de2968', 'fhi-pink-dark-1')}
