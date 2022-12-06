@@ -22,6 +22,8 @@ import { SearchExampleComponent } from './fhi-angular-examples/search-example/se
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
+import { PrototypePageheaderExampleComponent } from './fhi-angular-examples/prototype-pageheader/prototype-pageheader.component';
+
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
   AlertDismissibleExampleComponent,
@@ -38,6 +40,7 @@ const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeSelectionExampleComponent,
   GlobalHeaderWithMenuExampleComponent,
+  PrototypePageheaderExampleComponent,
   SearchExampleComponent,
   TagExampleComponent,
   TreeViewExampleComponent

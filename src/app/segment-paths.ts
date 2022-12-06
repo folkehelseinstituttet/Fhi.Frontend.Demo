@@ -15,5 +15,6 @@ export class SegmentPaths {
   static components = 'components';
   static modules = 'modules';
   static layoutAndPageTemplates = 'layout-and-page-templates';
+  static prototypes = 'prototypes';
 
 }

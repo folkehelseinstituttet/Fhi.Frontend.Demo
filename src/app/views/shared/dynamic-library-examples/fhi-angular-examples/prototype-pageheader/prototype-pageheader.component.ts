@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-global-header-with-menu',
-  templateUrl: './global-header-with-menu.component.html'
+  selector: 'app-prototype-pageheader',
+  templateUrl: './prototype-pageheader.component.html'
 })
-export class GlobalHeaderWithMenuExampleComponent {
+export class PrototypePageheaderExampleComponent {
   activeLink = 1;
   mainMenuIsOpen = false;
 

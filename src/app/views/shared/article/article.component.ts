@@ -58,6 +58,12 @@ export class ArticleComponent implements OnInit {
       case SegmentPaths.layoutAndPageTemplates:
         this.title = 'Layout og sidemaler';
         this.articleHtml = this.getArticleHtmlForDeveloperLayoutAndPageTemplates();
+        break;
+
+      case SegmentPaths.prototypes:
+        this.title = 'Eksempler på bruk';
+        this.articleHtml = this.getArticleHtmlForDeveloperPrototypes();
+        break;
     }
   }
   private findSecondLevelDesigner() {
@@ -87,7 +93,12 @@ export class ArticleComponent implements OnInit {
 
   private getArticleHtmlForDeveloperLayoutAndPageTemplates(): any {
     return `
-  <p>Her finner du eksempler på hvordan man plasserer innholdet på en side.</p>`;
+<p>Her finner du eksempler på hvordan man plasserer innholdet på en side.</p>`;
+  }
+
+  private getArticleHtmlForDeveloperPrototypes(): any {
+    return `
+<p>Her finner du eksempler på større enheter og klikkbare prototyper ofte produsert for spesifikke prosjekter.</p>`;
   }
 
 }
