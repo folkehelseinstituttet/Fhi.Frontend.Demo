@@ -1,77 +1,49 @@
-<div class="row" *ngIf="itemId === itemIds.DateRange">
-  <div class="col-auto">
-  	<div class="fhi-datepicker">
+<div *ngIf="itemId === itemIds.DateRange">
+  <div class="fhi-double-datepicker">
+    <div class="fhi-double-datepicker__item fhi-datepicker">
       <label class="form-label fhi-datepicker__label" for="datepickerFrom">
         Fra
       </label>
-      <button class="fhi-datepicker__toggler" type="button" (click)="datepicker.toggle()">
+      
+      <button class="fhi-datepicker__toggler" (click)="datepicker_from.toggle()">
         <i class="icon-calendar"></i>
         <span class="visually-hidden">Åpne datovelger</span>
       </button>
-  		<input
-  			#dpFromDate
-        id="datepickerFrom"
-  			class="form-control fhi-datepicker__form-control"
-  			placeholder="dd.mm.yyyy"
-  			name="dpFromDate"
-  			[value]="formatter.format(fromDate)"
-  			(input)="fromDate = validateInput(fromDate, dpFromDate.value)"
-  		/>
-  	</div>
-  </div>
+    
+      <input class="form-control fhi-datepicker__form-control"
+            autocomplete="off"
+            id="datepickerFrom"
+            inputmode="decimal"
+            outsideDays="hidden"
+            placeholder="dd.mm.åååå"
+            type="text"
+            ngbDatepicker
+            #datepicker_from="ngbDatepicker"/>
+    </div>
 
-  <div class="col">
-  	<div class="fhi-datepicker">
+    <div class="fhi-double-datepicker__item fhi-datepicker">
+      <span class="fhi-double-datepicker__dash"></span>
+
       <label class="form-label fhi-datepicker__label" for="datepickerTo">
         Til
       </label>
-      <button class="fhi-datepicker__toggler" type="button" (click)="datepicker.toggle()">
+      
+      <button class="fhi-datepicker__toggler" (click)="datepicker_to.toggle()">
         <i class="icon-calendar"></i>
         <span class="visually-hidden">Åpne datovelger</span>
       </button>
-  		<input
-  			#dpToDate
-        id="datepickerTo"
-  			class="form-control fhi-datepicker__form-control"
-  			placeholder="dd.mm.yyyy"
-  			name="dpToDate"
-  			[value]="formatter.format(toDate)"
-  			(input)="toDate = validateInput(toDate, dpToDate.value)"
-  		/>
-  	</div>
+    
+      <input class="form-control fhi-datepicker__form-control"
+            autocomplete="off"
+            id="datepickerTo"
+            inputmode="decimal"
+            outsideDays="hidden"
+            placeholder="dd.mm.åååå"
+            type="text"
+            ngbDatepicker
+            #datepicker_to="ngbDatepicker"/>
+    </div>
   </div>
-
-  <div class="col-12">
-  	<div class="dp-hidden position-absolute">
-  		<div class="fhi-datepicker">
-  			<input
-  				name="datepicker"
-  				class="visually-hidden"
-  				ngbDatepicker
-  				#datepicker="ngbDatepicker"
-  				[autoClose]="'outside'"
-  				(dateSelect)="onDateSelection($event)"
-  				[dayTemplate]="t"
-  				outsideDays="hidden"
-  				[startDate]="fromDate!"
-  				tabindex="-1"
-  			/>
-  			<ng-template #t let-date let-focused="focused">
-  				<span
-  					class="custom-day"
-  					[class.focused]="focused"
-  					[class.range]="isRange(date)"
-  					[class.faded]="isHovered(date) || isInside(date)"
-  					(mouseenter)="hoveredDate = date"
-  					(mouseleave)="hoveredDate = null"
-  				>
-  					{{ date.day }}
-  				</span>
-  			</ng-template>
-  		</div>
-  	</div>
-  </div>
-
 </div>
 
 
