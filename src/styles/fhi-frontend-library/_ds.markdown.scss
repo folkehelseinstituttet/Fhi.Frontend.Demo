@@ -89,11 +89,11 @@ pre[class*="language-html"] {
 
 code[class*="language-js"],
 pre[class*="language-js"] {
-    color: $fhi-blue-dark-1; // default
+    color: $fhi-blue-2; // default
 
     // Alt som ikke fungerer helt settes til samme farge som "default"
     .token.class-name {
-        color: $fhi-blue-dark-1;
+        color: $fhi-blue-2;
     }
     // Inline-kode
     .token.entity {

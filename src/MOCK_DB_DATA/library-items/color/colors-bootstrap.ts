@@ -39,7 +39,7 @@ ${colorHtml('#dbe6ec', 'fhi-blue-grey-3', 'Info', 'black')}
 ${colorHtml('#feeed9', 'fhi-orange-1', 'Warning', 'black')}
 ${colorHtml('#ffe3e2', 'fhi-pink-light-3', 'Danger', 'black')}
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1', 'Light', 'black')}
-${colorHtml('#393c61', 'fhi-blue-dark-1', 'Dark')}
+${colorHtml('#393c61', 'fhi-blue-2', 'Dark')}
 ${colorHtml('#ffffff', 'white', 'White', 'black')}`;
 }
 

@@ -55,9 +55,7 @@ ${colorHtml('#435c68', 'fhi-blue-grey-7')}
 
 <p class="text-muted small mt-2 mb-0">Blå</p>
 ${colorHtml('#0875b4', 'fhi-blue-1')}
-
-<p class="text-muted small mt-2 mb-0">Mørkeblå</p>
-${colorHtml('#393c61', 'fhi-blue-dark-1')}
+${colorHtml('#393c61', 'fhi-blue-2')}
 
 <p class="text-muted small mt-2 mb-0">Grønn</p>
 ${colorHtml('#cceee4', 'fhi-green-1')}
