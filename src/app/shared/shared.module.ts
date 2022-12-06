@@ -14,12 +14,10 @@ import { TreeModule } from '@circlon/angular-tree-component';
 import { MatTreeModule } from '@angular/material/tree';
 
 import { SafePipe } from './pipes/safe.pipe';
-import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    SafePipe,
-    SpinnerComponent
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -37,7 +35,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
   ],
   exports: [
     SafePipe,
-    SpinnerComponent,
     CommonModule,
     RouterModule,
     FormsModule,
