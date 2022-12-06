@@ -65,7 +65,7 @@ pre[class*="language-html"] {
     .token.builtin,
     .token.url,
     .token.inserted {
-        color: adjust-hue($fhi-pink-dark-3, -10deg);
+        color: adjust-hue(darken($fhi-pink-dark-1, 7), -40deg);
     }
     .token.atrule,
     .token.attr-value,
@@ -89,11 +89,11 @@ pre[class*="language-html"] {
 
 code[class*="language-js"],
 pre[class*="language-js"] {
-    color: $fhi-blue-dark-1; // default
+    color: $fhi-blue-2; // default
 
     // Alt som ikke fungerer helt settes til samme farge som "default"
     .token.class-name {
-        color: $fhi-blue-dark-1;
+        color: $fhi-blue-2;
     }
     // Inline-kode
     .token.entity {
@@ -110,22 +110,20 @@ pre[class*="language-js"] {
     }
     .token.selector,
     .token.attr-name,
+    .token.attr-value,
+    .token.atrule,
     .token.char,
     .token.builtin,
     .token.url,
-    .token.inserted {
-        color: $fhi-pink-dark-3;
+    .token.inserted,
+    .token.keyword {
+        color: adjust-hue(darken($fhi-pink-dark-1, 7), -40deg);
     }
     .token.comment,
     .token.prolog,
     .token.doctype,
     .token.cdata {
         color: $fhi-grey-1;
-    }
-    .token.atrule,
-    .token.attr-value,
-    .token.keyword {
-        color: $fhi-pink-dark-3;
     }
     .token.punctuation {
         color: $fhi-grey-3;
@@ -134,7 +132,7 @@ pre[class*="language-js"] {
         color: $fhi-grey-2;
     }
     .token.function {
-        color: $fhi-blue-light-1;
+        color: $fhi-blue-grey-5;
     }
     .token.boolean {
         color: lighten($fhi-green-2, 6%);

@@ -1,0 +1,99 @@
+<div *ngIf="itemId === itemIds.DateRange">
+  <div class="fhi-double-datepicker">
+    <div class="fhi-double-datepicker__item fhi-datepicker">
+      <label class="form-label fhi-datepicker__label" for="datepickerFrom">
+        Fra
+      </label>
+      
+      <button class="fhi-datepicker__toggler" (click)="datepicker_from.toggle()">
+        <i class="icon-calendar"></i>
+        <span class="visually-hidden">Åpne datovelger</span>
+      </button>
+    
+      <input class="form-control fhi-datepicker__form-control"
+            autocomplete="off"
+            id="datepickerFrom"
+            inputmode="decimal"
+            outsideDays="hidden"
+            placeholder="dd.mm.åååå"
+            type="text"
+            ngbDatepicker
+            #datepicker_from="ngbDatepicker"/>
+    </div>
+
+    <div class="fhi-double-datepicker__item fhi-datepicker">
+      <span class="fhi-double-datepicker__dash"></span>
+
+      <label class="form-label fhi-datepicker__label" for="datepickerTo">
+        Til
+      </label>
+      
+      <button class="fhi-datepicker__toggler" (click)="datepicker_to.toggle()">
+        <i class="icon-calendar"></i>
+        <span class="visually-hidden">Åpne datovelger</span>
+      </button>
+    
+      <input class="form-control fhi-datepicker__form-control"
+            autocomplete="off"
+            id="datepickerTo"
+            inputmode="decimal"
+            outsideDays="hidden"
+            placeholder="dd.mm.åååå"
+            type="text"
+            ngbDatepicker
+            #datepicker_to="ngbDatepicker"/>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="itemId === itemIds.YearSelection">
+  <div class="fhi-double-select">
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'year-from'"
+        [items]="yearList"
+        [label]="'Fra år'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedFromYear">
+      </fhi-autosuggest>
+    </div>
+
+    <div class="fhi-double-select__item">
+      <span class="fhi-double-select__dash"></span>
+      
+      <fhi-autosuggest
+        [labelForId]="'year-to'"
+        [items]="yearList"
+        [label]="'Til år'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedToYear">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="itemId === itemIds.WeekSelection">
+  <div class="fhi-double-select">
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'year'"
+        [items]="yearList"
+        [label]="'År'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedYear">
+      </fhi-autosuggest>
+    </div>
+
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'week'"
+        [items]="weekList"
+        [label]="'Uke'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedWeek">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>
