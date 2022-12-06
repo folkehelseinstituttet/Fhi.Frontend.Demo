@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-prototype-pageheader',
-  templateUrl: './prototype-pageheader.component.html'
+  templateUrl: './pageheader.component.html'
 })
 export class PrototypePageheaderExampleComponent {
   activeLink = 1;
