@@ -3,7 +3,7 @@
     <div class="fhi-header__brand">
       <div class="container fhi-header__brand-container">
         <div class="fhi-header__brand-content">
-          <a class="fhi-header__logo" href="javascript:void(0)">
+          <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
             <i class="icon-fhi-logo fhi-header__logo-icon"></i>
             <span class="visually-hidden">FHI Statistikk</span>
           </a>
@@ -17,7 +17,7 @@
     <div class="container fhi-header__main-menu-container">
       <nav class="fhi-main-menu" [ngClass]="{'fhi-main-menu--open': mainMenuIsOpen}">
         <div class="container fhi-main-menu__container">
-          <a class="fhi-main-menu__home-link" href="javascript:void(0)">
+          <a class="fhi-main-menu__home-link" href="javascript:void(0)" (click)="linkSwitch(-1)">
             <i class="icon-fhi-logo fhi-header__logo-icon fhi-main-menu__logo-icon"></i>
             <span class="visually-hidden">FHI Statistikk</span>
           </a>
@@ -33,11 +33,14 @@
           </button>
           <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
             <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
-              <li class="fhi-main-menu__nav-item">
-                <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 1}" href="javascript:void(0)" (click)="linkSwitch(1)">Folkehelsestatistikk</a>
-              </li>
-              <li class="fhi-main-menu__nav-item">
-                <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 2}" href="javascript:void(0)" (click)="linkSwitch(2)">Dødsårsaksregisteret</a>
+              <li class="fhi-main-menu__nav-item"
+                  *ngFor="let menuItem of prototypeMenuItems; index as i">
+                <a class="nav-link fhi-main-menu__nav-link"
+                   href="javascript:void(0)"
+                   [ngClass]="{ 'active' : activeLink === i }"
+                   (click)="linkSwitch(i)">
+                  {{ menuItem.name }}
+                </a>
               </li>
             </ul>
           </div>
