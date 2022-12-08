@@ -1,0 +1,50 @@
+@import "./node_modules/bootstrap/scss/functions";
+@import "~@folkehelseinstituttet/style/scss/variables.scss";
+
+.fhi-pageheader {
+    background-color: $fhi-white;
+    z-index: 1;
+
+    &__section-title {
+        border-bottom: $fhi-px * 2 solid transparent;
+        display: inline-block;
+        font-family: $fhi-font-family-sans-serif-regular;
+        font-size: $fhi-font-size-3;
+        letter-spacing: 0;
+        line-height: 1.25;
+        margin: 0;
+        padding: $fhi-space-2 $fhi-space-4;
+        position: relative;
+
+        &::before {
+            background-color: $fhi-red-1;
+            bottom: $fhi-px * 3 * -1;
+            content: "";
+            display: block;
+            height: $fhi-px * 3;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+            width: $fhi-px * 54;
+        }
+    }
+
+    &__submenu {
+        display: flex;
+        list-style: none;
+        margin: $fhi-space-5 ($fhi-space-2 * -1) 0;
+        overflow: auto;
+        padding: 0;
+        padding-bottom: $fhi-space-2;
+    }
+
+    &__submenu-item {
+        padding: 0 $fhi-space-2;
+    }
+}
+
+
+.fhi-pageheader--sticky {
+    position: sticky;
+    top: 0;
+}
