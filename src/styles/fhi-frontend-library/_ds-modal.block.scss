@@ -63,4 +63,10 @@
     .fhi-backdrop-responsive {
         top: 47px;
     }
+
+    app-prototype-pageheader {
+        display: block;
+        height: calc(100vh - 47px);
+        overflow-y: auto;
+    }
 }

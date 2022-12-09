@@ -13,7 +13,8 @@ export class PrototypePageheaderExampleComponent {
   mainMenuIsOpen: boolean = false;
   hideMostContent: boolean = true;
   currentVerticalScrollPosition: number;
-  currentPosition: number;
+  currentVerticalScrollPositionInModal: number;
+  logoHidden: boolean = false;
   data: any = [];
 
   constructor(private dataService: PrototypePageheaderDataService, @Inject(DOCUMENT) private _document: Document) {
@@ -27,22 +28,23 @@ export class PrototypePageheaderExampleComponent {
   onPageContentScrolled = (e:any) => {
     let scroll = window.pageYOffset;
     if (scroll > this.currentVerticalScrollPosition) {
-      console.log('scrollDown');
+      this.logoHidden = true;
     } else {
-      console.log('scrollUp');
+      this.logoHidden = false;
     }
     this.currentVerticalScrollPosition = scroll;
   }
   
+  // scrolling in modal component
   @HostListener("scroll", ['$event.target'])
   onContentScrolled(e: HTMLElement) {
     let scroll = e.scrollTop;
-    if (scroll > this.currentPosition) {
-      console.log("scrollDown");
+    if (scroll > this.currentVerticalScrollPositionInModal) {
+      this.logoHidden = true;
     } else {
-      console.log("scrollUp");
+      this.logoHidden = false;
     }
-    this.currentPosition = scroll;
+    this.currentVerticalScrollPositionInModal = scroll;
   }
 
   ngOnInit() {
