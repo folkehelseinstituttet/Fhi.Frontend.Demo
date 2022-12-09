@@ -3,6 +3,10 @@
 This SCSS example is a BEM-block. It shows the order and the spacing we use, and how we nest the code, in our projects.
 
 ```scss
+// Default values for "person"
+// NB! Try to keep as much of the styling here as possible!
+//     Only breakpoint changes inside @include media-breakpoint-[..]
+//     That make it easier to se what will change at any given breakpoint.
 .person {
     property: value;
 
