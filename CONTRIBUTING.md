@@ -171,17 +171,17 @@ The project is using
 2. [BEM](./doc/BEM-in-a-nutshell.md), but only in the folder `style/blocks`
 3. And some custom rules
 
-[SCSS example file](./doc/SCSS-example.md)
+[SCSS example file](./doc/scss-example.md)
 
 ### HTML (Angular templates)
 
 The project has also some custom rules for how we write markup:
-[HTML example file](./doc/HTML-example.md)
+[HTML example file](./doc/html-example.md)
 
 ### TypeScript
 
 When it comes to TypeScript we adhere to [Angular coding style guide]([https://angular.io/guide/styleguide)
-[TypeScript example file](./doc/TypeScript-example.md)
+[TypeScript example file](./doc/typescript-example.md)
 
 ## Documentation
 
