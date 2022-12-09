@@ -1,108 +1,110 @@
-<div class="fhi-pageheader fhi-pageheader--sticky">
-  <header class="fhi-header">
-    <div class="fhi-header__brand" [ngClass]="{'fhi-header__brand-offscreen' : logoHidden}">
-      <div class="container fhi-header__brand-container">
-        <div class="fhi-header__brand-content">
-          <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
-            <i class="icon-fhi-logo fhi-header__logo-icon"></i>
-            <span class="visually-hidden">FHI Statistikk</span>
-          </a>
-          <div class="fhi-header__project">
-            <span class="fhi-header__project-name">Statistikk</span>
+<div class="ds-pageheader-component" #pageheadercomponent>
+  <div class="fhi-pageheader fhi-pageheader--sticky">
+    <header class="fhi-header">
+      <div class="fhi-header__brand" [ngClass]="{'fhi-header__brand-offscreen' : logoHidden}">
+        <div class="container fhi-header__brand-container">
+          <div class="fhi-header__brand-content">
+            <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
+              <i class="icon-fhi-logo fhi-header__logo-icon"></i>
+              <span class="visually-hidden">FHI Statistikk</span>
+            </a>
+            <div class="fhi-header__project">
+              <span class="fhi-header__project-name">Statistikk</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container p-0 border-bottom">
-      <div class="row">
-        <div class="col-auto">
-          <h1 class="fhi-pageheader__section-title">
-            {{ data.name }}
-          </h1>
+      <div class="container p-0 border-bottom">
+        <div class="row">
+          <div class="col-auto">
+            <h1 class="fhi-pageheader__section-title">
+              {{ data.name }}
+            </h1>
+          </div>
         </div>
       </div>
+      
+      <div class="container p-0">
+        <ul class="fhi-pageheader__submenu">
+          <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
+            <a class="btn fhi-btn-menu-item"
+              href="javascript:void(0)"
+              [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
+              (click)="linkSwitch(i)">
+              <i class="icon-population"></i>
+              <span class="btn__text">{{ subMenuItem.name }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+  </div>
+
+  <main class="container">
+    <p>Innhold</p>
+    <p>
+      <button class="btn fhi-btn-flat" (click)="hideMostContent = !hideMostContent">Klikk for å vise mye / lite tekst.</button>
+    </p>
+    <div [ngClass]="{'visually-hidden' : hideMostContent}">
+      <p>Her kommer så mye innhold at man må scrolle...</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>Nå er det slutt! (På main)</p>
     </div>
-    
-    <div class="container p-0">
-      <ul class="fhi-pageheader__submenu">
-        <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
-          <a class="btn fhi-btn-menu-item"
-            href="javascript:void(0)"
-            [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
-            (click)="linkSwitch(i)">
-            <i class="icon-population"></i>
-            <span class="btn__text">{{ subMenuItem.name }}</span>
-          </a>
-        </li>
-      </ul>
+  </main>
+
+  <footer class="fhi-footer" [ngClass]="{'visually-hidden' : hideMostContent}">
+    <div class="container fhi-footer__container">
+      <p>Footer</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>&hellip;</p>
+      <p>Nå er det slutt! (På footer)</p>
     </div>
-  </header>
+  </footer>
 </div>
-
-<main class="container">
-  <p>Innhold</p>
-  <p>
-    <button class="btn fhi-btn-flat" (click)="hideMostContent = !hideMostContent">Klikk for å vise mye / lite tekst.</button>
-  </p>
-  <div [ngClass]="{'visually-hidden' : hideMostContent}">
-    <p>Her kommer så mye innhold at man må scrolle...</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>Nå er det slutt! (På main)</p>
-  </div>
-</main>
-
-<footer class="fhi-footer" [ngClass]="{'visually-hidden' : hideMostContent}">
-  <div class="container fhi-footer__container">
-    <p>Footer</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>&hellip;</p>
-    <p>Nå er det slutt! (På footer)</p>
-  </div>
-</footer>

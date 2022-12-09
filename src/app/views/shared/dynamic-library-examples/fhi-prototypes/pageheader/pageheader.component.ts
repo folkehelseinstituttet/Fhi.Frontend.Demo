@@ -1,5 +1,6 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { throttleTime } from 'rxjs/operators';
 import { PrototypePageheaderDataService } from './pageheader-data.service';
 
 @Component({
@@ -13,42 +14,54 @@ export class PrototypePageheaderExampleComponent {
   mainMenuIsOpen: boolean = false;
   hideMostContent: boolean = true;
   currentVerticalScrollPosition: number;
-  currentVerticalScrollPositionInModal: number;
   logoHidden: boolean = false;
   data: any = [];
+  windowScroll$: Subscription = Subscription.EMPTY;
+  modalScroll$: Subscription = Subscription.EMPTY;
 
-  constructor(private dataService: PrototypePageheaderDataService, @Inject(DOCUMENT) private _document: Document) {
-    this._document.addEventListener('scroll', this.onPageContentScrolled);
+  @ViewChild('pageheadercomponent', { static: true }) pageheadercomponent: ElementRef;
+
+  constructor(private dataService: PrototypePageheaderDataService) {}
+
+  ngOnInit() {
+    this.data = this.dataService.getNodes();
+
+    // throttle based on
+    // https://stackblitz.com/edit/angular-throttled-window-scroll-mq22ws
+    this.windowScroll$ = fromEvent(window, 'scroll')
+      .pipe(throttleTime(400))
+      .subscribe(() => {
+        this.onScroll(window);
+        console.log('window scroll');
+      });
+    
+    this.modalScroll$ = fromEvent(this.pageheadercomponent.nativeElement, 'scroll')
+      .pipe(throttleTime(400))
+      .subscribe(() => {
+        this.onScroll(this.pageheadercomponent.nativeElement);
+        console.log('modal scroll');
+      });
   }
   
   ngOnDestroy() {
-    this._document.removeEventListener('scroll', this.onPageContentScrolled);
+    this.windowScroll$.unsubscribe();
   }
-  
-  onPageContentScrolled = (e:any) => {
-    let scroll = window.pageYOffset;
+
+  onScroll(element: any) {
+    let scroll: any;
+
+    if (element === window) {
+      scroll = element.pageYOffset;
+    } else {
+      scroll = element.scrollTop;
+    }
+    
     if (scroll > this.currentVerticalScrollPosition) {
       this.logoHidden = true;
     } else {
       this.logoHidden = false;
     }
     this.currentVerticalScrollPosition = scroll;
-  }
-  
-  // scrolling in modal component
-  @HostListener("scroll", ['$event.target'])
-  onContentScrolled(e: HTMLElement) {
-    let scroll = e.scrollTop;
-    if (scroll > this.currentVerticalScrollPositionInModal) {
-      this.logoHidden = true;
-    } else {
-      this.logoHidden = false;
-    }
-    this.currentVerticalScrollPositionInModal = scroll;
-  }
-
-  ngOnInit() {
-    this.data = this.dataService.getNodes();
   }
 
   linkSwitch(num: number) {
@@ -63,3 +76,7 @@ export class PrototypePageheaderExampleComponent {
     this.mainMenuIsOpen = !this.mainMenuIsOpen;
   }
 }
+function onContentScrolled(e: any, HTMLElement: { new(): HTMLElement; prototype: HTMLElement; }) {
+  throw new Error('Function not implemented.');
+}
+

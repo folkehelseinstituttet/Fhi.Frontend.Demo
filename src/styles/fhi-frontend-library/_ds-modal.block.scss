@@ -69,4 +69,13 @@
         height: calc(100vh - 47px);
         overflow-y: auto;
     }
+
+    .ds-pageheader-component {
+        position: fixed;
+        top: 47px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+    }
 }
