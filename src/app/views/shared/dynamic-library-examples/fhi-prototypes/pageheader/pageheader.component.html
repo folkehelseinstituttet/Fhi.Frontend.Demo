@@ -1,7 +1,7 @@
 <div class="ds-pageheader-component" #pageheadercomponent>
-  <div class="fhi-pageheader fhi-pageheader--sticky">
+  <div class="fhi-pageheader fhi-pageheader--sticky" [ngClass]="{'fhi-pageheader--sticky__no-logo' : logoHidden}">
     <header class="fhi-header">
-      <div class="fhi-header__brand" [ngClass]="{'fhi-header__brand-offscreen' : logoHidden}">
+      <div class="fhi-header__brand">
         <div class="container fhi-header__brand-container">
           <div class="fhi-header__brand-content">
             <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
@@ -25,18 +25,20 @@
         </div>
       </div>
       
-      <div class="container p-0">
-        <ul class="fhi-pageheader__submenu">
-          <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
-            <a class="btn fhi-btn-menu-item"
-              href="javascript:void(0)"
-              [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
-              (click)="linkSwitch(i)">
-              <i class="icon-population"></i>
-              <span class="btn__text">{{ subMenuItem.name }}</span>
-            </a>
-          </li>
-        </ul>
+      <div class="container p-0" #pageheadersubmenucontainer>
+        <div class="fhi-pageheader__submenu-container">
+          <ul class="fhi-pageheader__submenu" [ngStyle]="{'width' : submenuOverflow ? submenuWidth + 'px' : 'auto'}" #pageheadersubmenu>
+            <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
+              <a class="btn fhi-btn-menu-item"
+                href="javascript:void(0)"
+                [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
+                (click)="linkSwitch(i)">
+                <i class="icon-population"></i>
+                <span class="btn__text">{{ subMenuItem.name }}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   </div>
@@ -44,7 +46,7 @@
   <main class="container">
     <p>Innhold</p>
     <p>
-      <button class="btn fhi-btn-flat" (click)="hideMostContent = !hideMostContent">Klikk for å vise mye / lite tekst.</button>
+      <button class="btn fhi-btn-secondary" (click)="hideMostContent = !hideMostContent">Klikk for å vise mye / lite tekst.</button>
     </p>
     <div [ngClass]="{'visually-hidden' : hideMostContent}">
       <p>Her kommer så mye innhold at man må scrolle...</p>

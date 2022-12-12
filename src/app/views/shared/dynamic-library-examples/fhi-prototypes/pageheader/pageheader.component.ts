@@ -16,10 +16,15 @@ export class PrototypePageheaderExampleComponent {
   currentVerticalScrollPosition: number;
   logoHidden: boolean = false;
   data: any = [];
+  submenuOverflow: boolean = false;
+  submenuWidth: number = 0;
+
   windowScroll$: Subscription = Subscription.EMPTY;
   modalScroll$: Subscription = Subscription.EMPTY;
 
   @ViewChild('pageheadercomponent', { static: true }) pageheadercomponent: ElementRef;
+  @ViewChild('pageheadersubmenucontainer', { static: true }) pageheadersubmenucontainer: ElementRef;
+  @ViewChild('pageheadersubmenu', { static: true }) pageheadersubmenu: ElementRef;
 
   constructor(private dataService: PrototypePageheaderDataService) {}
 
@@ -29,22 +34,24 @@ export class PrototypePageheaderExampleComponent {
     // throttle based on
     // https://stackblitz.com/edit/angular-throttled-window-scroll-mq22ws
     this.windowScroll$ = fromEvent(window, 'scroll')
-      .pipe(throttleTime(400))
+      .pipe(throttleTime(250))//throttleTime must be more than transition time in css
       .subscribe(() => {
         this.onScroll(window);
-        console.log('window scroll');
       });
     
     this.modalScroll$ = fromEvent(this.pageheadercomponent.nativeElement, 'scroll')
-      .pipe(throttleTime(400))
+      .pipe(throttleTime(250))
       .subscribe(() => {
         this.onScroll(this.pageheadercomponent.nativeElement);
-        console.log('modal scroll');
       });
   }
   
   ngOnDestroy() {
     this.windowScroll$.unsubscribe();
+  }
+
+  ngAfterViewChecked() {
+    this.submenuSetup();
   }
 
   onScroll(element: any) {
@@ -56,12 +63,45 @@ export class PrototypePageheaderExampleComponent {
       scroll = element.scrollTop;
     }
     
-    if (scroll > this.currentVerticalScrollPosition) {
+    if (scroll > 112 && scroll > this.currentVerticalScrollPosition) {
       this.logoHidden = true;
     } else {
       this.logoHidden = false;
     }
     this.currentVerticalScrollPosition = scroll;
+  }
+
+  submenuSetup() {
+    this.submenuOverflow = false;
+
+    let submenuContainerWidth: number = this.pageheadersubmenucontainer.nativeElement.offsetWidth;
+    let submenuItemsWidths: any = [];
+    let submenuItemsTotalWidth: number = 0;
+    let submenuItemSelector: any = this.pageheadersubmenu.nativeElement.querySelectorAll('.fhi-pageheader__submenu-item');
+    let numSubmenuItems: number = submenuItemSelector.length;
+    let currentItemWidth: number;
+    let submenuConfiguredWidth: number = 0;
+
+    for (let i = 0; i < numSubmenuItems; i++) {
+      currentItemWidth = submenuItemSelector[i].offsetWidth;
+      submenuItemsWidths.push(currentItemWidth);
+      submenuItemsTotalWidth += currentItemWidth;
+    }
+
+    for (let j = 0; j < submenuItemsWidths.length; j++) {
+      if (submenuConfiguredWidth < submenuItemsTotalWidth / 2) {
+        submenuConfiguredWidth += submenuItemsWidths[j];
+      } else {
+        submenuConfiguredWidth += 1;//sic
+        j = submenuItemsWidths.length;
+      }
+    }
+    
+    if (submenuContainerWidth > 0 && submenuItemsTotalWidth > (submenuContainerWidth - 32) * 2) {
+      console.log(submenuItemsTotalWidth, (submenuContainerWidth - 8) * 2);
+      this.submenuWidth = submenuConfiguredWidth;
+      this.submenuOverflow = true;
+    }
   }
 
   linkSwitch(num: number) {
@@ -76,7 +116,3 @@ export class PrototypePageheaderExampleComponent {
     this.mainMenuIsOpen = !this.mainMenuIsOpen;
   }
 }
-function onContentScrolled(e: any, HTMLElement: { new(): HTMLElement; prototype: HTMLElement; }) {
-  throw new Error('Function not implemented.');
-}
-

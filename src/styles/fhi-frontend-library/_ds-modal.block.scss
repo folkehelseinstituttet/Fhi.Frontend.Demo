@@ -1,3 +1,5 @@
+$ds-modal-top-offset: 47px;
+
 .ds-modal {
     background-color: $fhi-grey-1;
 
@@ -61,18 +63,18 @@
     }
 
     .fhi-backdrop-responsive {
-        top: 47px;
+        top: $ds-modal-top-offset;
     }
 
     app-prototype-pageheader {
         display: block;
-        height: calc(100vh - 47px);
+        height: calc(100vh - $ds-modal-top-offset);
         overflow-y: auto;
     }
 
     .ds-pageheader-component {
         position: fixed;
-        top: 47px;
+        top: $ds-modal-top-offset;
         left: 0;
         right: 0;
         bottom: 0;

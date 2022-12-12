@@ -1,4 +1,5 @@
 @import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/mixins";
 @import "~@folkehelseinstituttet/style/scss/variables.scss";
 
 .fhi-pageheader {
@@ -29,16 +30,21 @@
         }
     }
 
+    &__submenu-container {
+        overflow: auto;
+    }
+
     &__submenu {
         display: flex;
+        flex-wrap: wrap;
         list-style: none;
-        margin: $fhi-space-5 ($fhi-space-2 * -1) 0;
-        overflow: auto;
+        margin: $fhi-space-5 0 0 ($fhi-space-1 * -1);
         padding: 0;
-        padding-bottom: $fhi-space-2;
+        transition: margin-top .2s;
     }
 
     &__submenu-item {
+        margin-bottom: $fhi-space-3;
         padding: 0 $fhi-space-2;
     }
 }
@@ -47,4 +53,26 @@
 .fhi-pageheader--sticky {
     position: sticky;
     top: 0;
+    transition: top .2s;
+
+    &__no-logo {
+        top: ($fhi-px * -88);
+
+        .border-bottom {
+            border-color: transparent !important;
+        }
+
+        .fhi-pageheader__submenu {
+            margin-top: $fhi-space-3;
+        }
+    }
+}
+
+
+@include media-breakpoint-up(xl) {
+    .fhi-pageheader--sticky {
+        &__no-logo {
+            top: ($fhi-px * -112);
+        }
+    }
 }
