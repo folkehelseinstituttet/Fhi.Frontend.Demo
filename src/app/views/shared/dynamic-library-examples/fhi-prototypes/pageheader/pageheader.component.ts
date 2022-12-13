@@ -73,7 +73,7 @@ export class PrototypePageheaderExampleComponent {
 
   submenuSetup() {
     this.submenuOverflow = false;
-
+    
     let submenuContainerWidth: number = this.pageheadersubmenucontainer.nativeElement.offsetWidth;
     let submenuItemsWidths: any = [];
     let submenuItemsTotalWidth: number = 0;
@@ -81,6 +81,7 @@ export class PrototypePageheaderExampleComponent {
     let numSubmenuItems: number = submenuItemSelector.length;
     let currentItemWidth: number;
     let submenuConfiguredWidth: number = 0;
+    let xPadding: number = 32;
 
     for (let i = 0; i < numSubmenuItems; i++) {
       currentItemWidth = submenuItemSelector[i].offsetWidth;
@@ -97,8 +98,7 @@ export class PrototypePageheaderExampleComponent {
       }
     }
     
-    if (submenuContainerWidth > 0 && submenuItemsTotalWidth > (submenuContainerWidth - 32) * 2) {
-      console.log(submenuItemsTotalWidth, (submenuContainerWidth - 8) * 2);
+    if (submenuContainerWidth > 0 && submenuItemsTotalWidth > (submenuContainerWidth - xPadding) * 2) {
       this.submenuWidth = submenuConfiguredWidth;
       this.submenuOverflow = true;
     }
