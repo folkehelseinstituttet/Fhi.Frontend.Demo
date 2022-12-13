@@ -107,12 +107,4 @@ export class PrototypePageheaderExampleComponent {
   linkSwitch(num: number) {
     this.activeLink = num;
   }
-
-  mainMenuClose(): void {
-    this.mainMenuIsOpen = false;
-  }
-
-  mainMenuToggle(): void {
-    this.mainMenuIsOpen = !this.mainMenuIsOpen;
-  }
 }
