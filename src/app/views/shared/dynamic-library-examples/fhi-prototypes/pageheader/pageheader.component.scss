@@ -31,6 +31,7 @@
     }
 
     &__submenu-container {
+        max-height: $fhi-px * 185;
         overflow: auto;
     }
 
@@ -58,12 +59,23 @@
     &__no-logo {
         top: ($fhi-px * -88);
 
+        .fhi-header__brand-container,
         .border-bottom {
             border-color: transparent !important;
         }
 
         .fhi-pageheader__submenu {
             margin-top: $fhi-space-3;
+        }
+    }
+}
+
+
+@include media-breakpoint-down(sm) {
+    .fhi-pageheader {
+        &__submenu-container {
+            padding-left: $fhi-space-4 - $fhi-space-1;
+            padding-right: $fhi-space-3;
         }
     }
 }

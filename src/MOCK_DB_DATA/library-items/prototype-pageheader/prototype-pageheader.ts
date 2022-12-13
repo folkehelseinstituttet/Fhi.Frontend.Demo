@@ -44,13 +44,9 @@ function getCodeHtml(): string | null {
       </div>
 
       <div class="container p-0 border-bottom">
-        <div class="row">
-          <div class="col-auto">
-            <h1 class="fhi-pageheader__section-title">
-              {{ data.name }}
-            </h1>
-          </div>
-        </div>
+        <h1 class="fhi-pageheader__section-title">
+          {{ data.name }}
+        </h1>
       </div>
       
       <div class="container p-0" #pageheadersubmenucontainer>
@@ -70,8 +66,7 @@ function getCodeHtml(): string | null {
       </div>
     </header>
   </div>
-</div>
-`;
+</div>`;
 }
 
 /*
