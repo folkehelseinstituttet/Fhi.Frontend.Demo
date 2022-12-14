@@ -16,6 +16,7 @@ export class PrototypePageheaderExampleComponent {
   currentVerticalScrollPosition: number;
   logoHidden: boolean = false;
   data: any = [];
+  scrollThreshold: number = 112;
   submenuOverflow: boolean = false;
   submenuWidth: number = 0;
 
@@ -63,7 +64,7 @@ export class PrototypePageheaderExampleComponent {
       scroll = element.scrollTop;
     }
     
-    if (scroll > 112 && scroll > this.currentVerticalScrollPosition) {
+    if (scroll > this.scrollThreshold && scroll > this.currentVerticalScrollPosition) {
       this.logoHidden = true;
     } else {
       this.logoHidden = false;
