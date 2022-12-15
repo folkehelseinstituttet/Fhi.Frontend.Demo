@@ -3,6 +3,11 @@ $ds-modal-top-offset: 47px;
 .ds-modal {
     background-color: $fhi-grey-1;
 
+    .modal-header {
+        background-color: silver;
+        z-index: 1;
+    }
+
     .modal-content {
         background-color: transparent;
     }
@@ -62,8 +67,9 @@ $ds-modal-top-offset: 47px;
         }
     }
 
-    .fhi-backdrop-responsive {
-        top: $ds-modal-top-offset;
+    .fhi-backdrop-responsive,
+    .fhi-pageheader__special-menu {
+        top: $ds-modal-top-offset !important;
     }
 
     app-prototype-pageheader {

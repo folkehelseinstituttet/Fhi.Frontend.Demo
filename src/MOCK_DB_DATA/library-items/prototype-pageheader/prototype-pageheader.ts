@@ -26,46 +26,99 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="ds-pageheader-component" #pageheadercomponent>
-  <div class="fhi-pageheader fhi-pageheader--sticky" [ngClass]="{'fhi-pageheader--sticky__no-logo' : logoHidden}">
-    <header class="fhi-header">
-      <div class="fhi-header__brand">
-        <div class="container fhi-header__brand-container">
-          <div class="fhi-header__brand-content">
-            <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
-              <i class="icon-fhi-logo fhi-header__logo-icon"></i>
-              <span class="visually-hidden">FHI Statistikk</span>
-            </a>
-            <div class="fhi-header__project">
-              <span class="fhi-header__project-name">Statistikk</span>
+<div class="fhi-pageheader fhi-pageheader--sticky" [ngClass]="{'fhi-pageheader--sticky__no-logo' : logoHidden}">
+  <header class="fhi-header">
+    <div class="fhi-header__brand">
+      <div class="container fhi-header__brand-container">
+        <div class="fhi-header__brand-content">
+          <a class="fhi-header__logo" href="javascript:void(0)" (click)="linkSwitch(-1)">
+            <i class="icon-fhi-logo fhi-header__logo-icon"></i>
+            <span class="visually-hidden">FHI Statistikk</span>
+          </a>
+          <div class="fhi-header__project">
+            <span class="fhi-header__project-name">Statistikk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-flex p-0 border-bottom">
+      <h1 class="me-auto fhi-pageheader__section-title">
+        {{ data.nameLong }}
+      </h1>
+      <button class="btn fhi-pageheader__secondary-megamenu-trigger"
+              id="specialMenuTrigger"
+              aria-controls="specialMenu"
+              (click)="toggleSpecialMenu(true)">
+        <span class="fhi-pageheader__secondary-megamenu-trigger-icon">
+          <i class="icon-list icon-white"></i>
+        </span>
+        <span class="btn__text">Meny</span>
+      </button>
+    </div>
+
+    <div class="fhi-special-menu"
+         id="specialMenu"
+         aria-labelledby="specialMenuTrigger"
+         [ngClass]="{'open' : specialMenuIsOpen, 'closing' : closingSpecialMenu}">
+      <div class="fhi-special-menu__backdrop" (click)="toggleSpecialMenu(true)"></div>
+      <div class="container">
+        <div class="fhi-special-menu__container">
+          <div class="row">
+            <div class="position-relative">
+              <button class="btn btn-close position-absolute mt-n5 top-0 end-0 me-3 py-0 px-3" (click)="toggleSpecialMenu()">
+                <span class="visually-hidden">Lukk meny</span>
+              </button>
+            </div>
+            
+            <div class="col-12 mb-3">
+              <h2 class="h3">{{ data.nameLong }}</h2>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <div>
+                <a class="btn fhi-btn-shortcut-link" href="javascript:void(0)">
+                  <i class="icon-arrow-right icon-white"></i>
+                  Om {{ data.nameLong }}
+                </a>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-xl-4">
+              <!-- other content / links -->
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-11 col-sm-8 col-md-6 ms-auto">
+              <span class="fhi-header__logo">
+                <i class="icon-fhi-logo fhi-header__logo-icon"></i>
+              </span>
+              <span class="fhi-header__project d-inline-block">
+                <span class="fhi-header__project-name">Statistikk</span>
+              </span>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="container p-0 border-bottom">
-        <h1 class="fhi-pageheader__section-title">
-          {{ data.name }}
-        </h1>
+    </div>
+    
+    <div class="container p-0" #pageheadersubmenucontainer>
+      <div class="fhi-pageheader__submenu-container">
+        <ul class="fhi-pageheader__submenu" [ngStyle]="{'width' : submenuOverflow ? submenuWidth + 'px' : 'auto'}" #pageheadersubmenu>
+          <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
+            <a class="btn fhi-btn-menu-item"
+              href="javascript:void(0)"
+              [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
+              (click)="linkSwitch(i)">
+              <i class="icon-population"></i>
+              <span class="btn__text">{{ subMenuItem.name }}</span>
+            </a>
+          </li>
+        </ul>
       </div>
-      
-      <div class="container p-0" #pageheadersubmenucontainer>
-        <div class="fhi-pageheader__submenu-container">
-          <ul class="fhi-pageheader__submenu" [ngStyle]="{'width' : submenuOverflow ? submenuWidth + 'px' : 'auto'}" #pageheadersubmenu>
-            <li class="fhi-pageheader__submenu-item" *ngFor="let subMenuItem of data.subMenu; index as i">
-              <a class="btn fhi-btn-menu-item"
-                href="javascript:void(0)"
-                [ngClass]="{'fhi-btn-menu-item--active': activeLink === i}"
-                (click)="linkSwitch(i)">
-                <i class="icon-population"></i>
-                <span class="btn__text">{{ subMenuItem.name }}</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </header>
-  </div>
+    </div>
+  </header>
 </div>`;
 }
 
