@@ -19,6 +19,8 @@ export class PrototypePageheaderExampleComponent {
   scrollThreshold: number = 112;
   submenuOverflow: boolean = false;
   submenuWidth: number = 0;
+  specialMenuIsOpen: boolean = false;
+  closingSpecialMenu: boolean = false;
 
   windowScroll$: Subscription = Subscription.EMPTY;
   modalScroll$: Subscription = Subscription.EMPTY;
@@ -32,10 +34,9 @@ export class PrototypePageheaderExampleComponent {
   ngOnInit() {
     this.data = this.dataService.getNodes();
 
-    // throttle based on
-    // https://stackblitz.com/edit/angular-throttled-window-scroll-mq22ws
+    //throttleTime must be more than transition time in css (.fhi-pageheader__submenu)
     this.windowScroll$ = fromEvent(window, 'scroll')
-      .pipe(throttleTime(250))//throttleTime must be more than transition time in css
+      .pipe(throttleTime(250))
       .subscribe(() => {
         this.onScroll(window);
       });
@@ -107,5 +108,19 @@ export class PrototypePageheaderExampleComponent {
 
   linkSwitch(num: number) {
     this.activeLink = num;
+  }
+
+  toggleSpecialMenu(closing?: boolean) {
+    if (closing) {
+      this.specialMenuIsOpen = false;
+    } else {
+      this.specialMenuIsOpen = !this.specialMenuIsOpen;
+    }
+
+    if (!this.specialMenuIsOpen) {
+      this.closingSpecialMenu = true;
+    }
+
+    setTimeout(() => { this.closingSpecialMenu = false }, 400);// a little longer timeout than animation speed for the .closing
   }
 }
