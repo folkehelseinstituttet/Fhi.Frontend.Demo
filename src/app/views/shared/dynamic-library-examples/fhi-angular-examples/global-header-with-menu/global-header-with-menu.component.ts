@@ -8,7 +8,7 @@ export class GlobalHeaderWithMenuExampleComponent {
   activeLink = 1;
   mainMenuIsOpen = false;
 
-  linkSwitch(num) {
+  linkSwitch(num: number) {
     this.activeLink = num;
   }
 

@@ -17,6 +17,7 @@ import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
+import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { SearchData } from './search/_search.data';
 import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
@@ -73,5 +74,8 @@ export class LibraryItemSegmentPaths {
 
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
+
+  // Prototypes (examples on use)
+  static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
 
 }

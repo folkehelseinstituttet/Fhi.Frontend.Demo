@@ -10,7 +10,8 @@ const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
   components: 'Komponenter',
   modules: 'Moduler',
-  layoutAndPageTemplates: 'Layout og sidemaler'
+  layoutAndPageTemplates: 'Layout og sidemaler',
+  prototypes: 'Eksempler på bruk',
 };
 
 @Injectable({
@@ -38,6 +39,9 @@ export class LibraryMenuService {
     }, {
       name: TopLevelMenuItemNames.layoutAndPageTemplates,
       link: `/${currentSegmentPath0}/${SegmentPaths.layoutAndPageTemplates}`
+    }, {
+      name: TopLevelMenuItemNames.prototypes,
+      link: `/${currentSegmentPath0}/${SegmentPaths.prototypes}`
     }];
     return this.topLevelMenuItems;
   }
@@ -71,6 +75,9 @@ export class LibraryMenuService {
 
       case TopLevelMenuItemNames.layoutAndPageTemplates:
         return this.getLayoutAndPageTemplatesMenu();
+
+      case TopLevelMenuItemNames.prototypes:
+        return this.getPrototypesMenu();
     }
   }
 
@@ -173,6 +180,13 @@ export class LibraryMenuService {
       name: 'Layout',
       link: LibraryItemSegmentPaths.layoutandpagetemplates
     }];
+  }
+
+  private getPrototypesMenu(): MenuItem[] {
+    return [{
+      name: 'Global header',
+      link: LibraryItemSegmentPaths.prototypepageheader
+    }]
   }
 
 }
