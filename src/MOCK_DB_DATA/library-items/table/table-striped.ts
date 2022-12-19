@@ -1,9 +1,9 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
-export const Table: LibraryItem[] = [{
-  id: LibraryItemIds.Table,
-  title: 'Table',
+export const TableStriped: LibraryItem[] = [{
+  id: LibraryItemIds.TableStriped,
+  title: 'Table - striped',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -17,7 +17,7 @@ export const Table: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -69,7 +69,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">ID</th>

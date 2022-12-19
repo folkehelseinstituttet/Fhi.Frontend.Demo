@@ -60,6 +60,12 @@
 
   <app-datepicker *ngSwitchCase="itemIds.DatePicker"></app-datepicker>
 
+  <app-table-examples
+    *ngSwitchCase="itemIds.TableSortable"
+    [itemId]="itemIds.TableSortable"
+    [itemIds]="itemIds">
+  </app-table-examples>
+
   <app-tabs-example
     *ngSwitchCase="itemIds.Tabs"
     [itemId]="itemIds.Tabs"

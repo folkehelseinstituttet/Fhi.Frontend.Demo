@@ -1,5 +1,6 @@
 export const TableIds = {
   Table: undefined,
   TableSelectableRow: undefined,
-  TableSortable: undefined
+  TableSortable: undefined,
+  TableStriped: undefined,
 }

@@ -19,7 +19,7 @@ function getExampleHtml(): string {
 <p>(Funksjonalitet på eksempeltabell kommer etter hvert.)</p>
 
 <div class="table-responsive">
-  <table class="table table-striped" data-sort-column="2">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">
@@ -117,7 +117,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="table-responsive">
-  <table class="table table-striped" data-sort-column="2">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">

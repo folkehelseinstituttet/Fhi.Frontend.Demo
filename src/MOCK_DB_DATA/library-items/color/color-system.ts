@@ -45,7 +45,7 @@ ${colorHtml('#222222', 'fhi-grey-4')}
 ${colorHtml('#333841', 'fhi-charcoal-1')}
 
 <p class="text-muted small mt-2 mb-0">Blågrå</p>
-${colorHtml('#f5f8fb', 'fhi-blue-grey-1')}
+${colorHtml('#f5f8fa', 'fhi-blue-grey-1')}
 ${colorHtml('#edf4f7', 'fhi-blue-grey-2')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-3')}
 ${colorHtml('#cbd9df', 'fhi-blue-grey-4')}
