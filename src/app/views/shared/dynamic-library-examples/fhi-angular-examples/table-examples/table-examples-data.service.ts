@@ -4,24 +4,27 @@ import { Injectable } from "@angular/core";
 export class TableExamplesDataService {
   getNodes() {
     return {
-      productionTeam: [
+      tableContent: [
         {
-          id: '2003',
-          firstName: 'Sigurd',
-          lastName: 'Bråten',
-          role: 'Designer',
+          col1: 1204,
+          col2: 'Sigurd',
+          col3: 'Bråten',
+          col4: 'Designer',
+          selected: false,
         },
         {
-          id: '1009',
-          firstName: 'Elida',
-          lastName: 'Egge',
-          role: 'Producer',
+          col1: 203,
+          col2: 'Henrik',
+          col3: 'Olsen',
+          col4: 'Assistant',
+          selected: false,
         },
         {
-          id: '1202',
-          firstName: 'Henrik',
-          lastName: 'Olsen',
-          role: 'Assistant',
+          col1: 10000,
+          col2: 'Elida',
+          col3: 'Egge',
+          col4: 'Producer',
+          selected: false,
         },
       ]
     }

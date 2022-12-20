@@ -1,48 +1,110 @@
 <ng-container *ngIf="itemId === itemIds.TableSortable">
-  <div class="table-responsive">
+  <div class="responsive-table">
     <table class="table">
       <thead>
         <tr>
-          <th scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on ID">
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på ID"
+              [attr.aria-sort]="(currentlySortedColumn === 'col1' ? sortDirection : 'none')"
+              (click)="sortTable('col1')">
             <span class="text-decoration-underline">ID</span>
-            <i class="icon-arrows-up-down"></i>
+            <i [ngClass]="getIconClass('col1')"></i>
           </th>
-          <th
-            scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on First name">
-            <span class="text-decoration-underline">First name</span>
-            <i class="icon-arrows-up-down"></i>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på fornavn"
+              [attr.aria-sort]="(currentlySortedColumn === 'col2' ? sortDirection : 'none')"
+              (click)="sortTable('col2')">
+            <span class="text-decoration-underline">Fornavn</span>
+            <i [ngClass]="getIconClass('col2')"></i>
           </th>
-          <th
-            scope="col" tabindex="0" aria-sort="ascending" aria-label="Sort table based on Last name, descending">
-            <span class="text-decoration-underline">Last name</span>
-            <i class="icon-arrow-up"></i>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på etternavn"
+              [attr.aria-sort]="(currentlySortedColumn === 'col3' ? sortDirection : 'none')"
+              (click)="sortTable('col3')">
+            <span class="text-decoration-underline">Etternavn</span>
+            <i [ngClass]="getIconClass('col3')"></i>
           </th>
-          <th
-            scope="col" tabindex="0" aria-sort="none" aria-label="Sort table based on Role">
-            <span class="text-decoration-underline">Role</span>
-            <i class="icon-arrows-up-down"></i>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på rolle"
+              [attr.aria-sort]="(currentlySortedColumn === 'col4' ? sortDirection : 'none')"
+              (click)="sortTable('col4')">
+            <span class="text-decoration-underline">Rolle</span>
+            <i [ngClass]="getIconClass('col4')"></i>
           </th>
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-          <th>2003</th>
-          <td>Sigurd</td>
-          <td>Bråten</td>
-          <td>Designer</td>
+        <tr *ngFor="let tableRow of data.tableContent">
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td>{{ tableRow.col4 }}</td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="itemId === itemIds.TableSelectableRow">
+  <div class="responsive-table">
+    <table class="table">
+      <thead>
         <tr>
-          <th>1009</th>
-          <td>Elida</td>
-          <td>Egge</td>
-          <td>Producer</td>
+          <th>
+            <input class="form-check-input" id="selectAllRows" type="checkbox" />
+            <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
+          </th>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på ID"
+              [attr.aria-sort]="(currentlySortedColumn === 'col1' ? sortDirection : 'none')"
+              (click)="sortTable('col1')">
+            <span class="text-decoration-underline">ID</span>
+            <i [ngClass]="getIconClass('col1')"></i>
+          </th>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på fornavn"
+              [attr.aria-sort]="(currentlySortedColumn === 'col2' ? sortDirection : 'none')"
+              (click)="sortTable('col2')">
+            <span class="text-decoration-underline">Fornavn</span>
+            <i [ngClass]="getIconClass('col2')"></i>
+          </th>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på etternavn"
+              [attr.aria-sort]="(currentlySortedColumn === 'col3' ? sortDirection : 'none')"
+              (click)="sortTable('col3')">
+            <span class="text-decoration-underline">Etternavn</span>
+            <i [ngClass]="getIconClass('col3')"></i>
+          </th>
+          <th scope="col"
+              tabindex="0"
+              aria-label="Sorter tabell på rolle"
+              [attr.aria-sort]="(currentlySortedColumn === 'col4' ? sortDirection : 'none')"
+              (click)="sortTable('col4')">
+            <span class="text-decoration-underline">Rolle</span>
+            <i [ngClass]="getIconClass('col4')"></i>
+          </th>
         </tr>
-        <tr>
-          <th>1202</th>
-          <td>Henrik</td>
-          <td>Olsen</td>
-          <td>Assistant</td>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let tableRow of data.tableContent; index as i" [attr.aria-selected]="tableRow.selected">
+          <td>
+            <input class="form-check-input" id="row{{i}}" type="checkbox" (change)="tableRow.selected = !tableRow.selected" />
+            <label for="row{{i}}" class="visually-hidden">Velg denne raden</label>
+          </td>
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td>{{ tableRow.col4 }}</td>
         </tr>
       </tbody>
     </table>

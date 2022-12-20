@@ -11,11 +11,55 @@ export class TableExamplesComponent {
   @Input() itemIds!: any;
   
   data: any = [];
+  sortDirection: string = 'ascending';
+  currentlySortedColumn: string = '';
+  previousSortedColumn: string = '';
 
   constructor(private tableDataService: TableExamplesDataService) { }
 
   ngOnInit() {
     this.data = this.tableDataService.getNodes();
+  }
+
+  sortTable(column: string) {
+    this.previousSortedColumn = this.currentlySortedColumn;
+    this.currentlySortedColumn = column;
+
+    if (this.previousSortedColumn === this.currentlySortedColumn) {
+      if (this.sortDirection === 'ascending') {
+        this.sortDirection = 'descending';
+      } else {
+        this.sortDirection = 'ascending';
+      }
+    } else {
+      this.sortDirection = 'ascending';
+    }
+
+    this.data.tableContent = this.data.tableContent.sort((a: any, b: any) => {
+      if (this.sortDirection === 'ascending') {
+        if (a[column] < b[column]) {
+          return -1;
+        }
+      } else {
+        if (b[column] < a[column]) {
+          return -1;
+        }
+      }
+    });
+  }
+
+  getIconClass(column: string) {
+    let iconClass = 'icon-arrows-up-down';
+
+    if (this.currentlySortedColumn === column) {
+      if (this.sortDirection === 'ascending') {
+        iconClass = 'icon-arrow-down';
+      } else {
+        iconClass = 'icon-arrow-up';
+      }
+    }
+
+    return iconClass;
   }
 
 }

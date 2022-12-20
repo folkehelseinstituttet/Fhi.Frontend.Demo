@@ -65,6 +65,11 @@
     [itemId]="itemIds.TableSortable"
     [itemIds]="itemIds">
   </app-table-examples>
+  <app-table-examples
+    *ngSwitchCase="itemIds.TableSelectableRow"
+    [itemId]="itemIds.TableSelectableRow"
+    [itemIds]="itemIds">
+  </app-table-examples>
 
   <app-tabs-example
     *ngSwitchCase="itemIds.Tabs"
