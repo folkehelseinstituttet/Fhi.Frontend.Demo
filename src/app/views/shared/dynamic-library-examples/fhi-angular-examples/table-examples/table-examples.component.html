@@ -53,11 +53,11 @@
 
 <ng-container *ngIf="itemId === itemIds.TableSelectableRow">
   <div class="responsive-table">
-    <table class="table">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>
-            <input class="form-check-input" id="selectAllRows" type="checkbox" />
+            <input class="form-check-input" id="selectAllRows" type="checkbox" (change)="toggleAll($event)"/>
             <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
           </th>
           <th scope="col"
@@ -98,7 +98,11 @@
       <tbody>
         <tr *ngFor="let tableRow of data.tableContent; index as i" [attr.aria-selected]="tableRow.selected">
           <td>
-            <input class="form-check-input" id="row{{i}}" type="checkbox" (change)="tableRow.selected = !tableRow.selected" />
+            <input class="form-check-input"
+                   id="row{{i}}"
+                   type="checkbox"
+                   [checked]="tableRow.selected"
+                   (change)="tableRow.selected = !tableRow.selected" />
             <label for="row{{i}}" class="visually-hidden">Velg denne raden</label>
           </td>
           <th>{{ tableRow.col1 }}</th>

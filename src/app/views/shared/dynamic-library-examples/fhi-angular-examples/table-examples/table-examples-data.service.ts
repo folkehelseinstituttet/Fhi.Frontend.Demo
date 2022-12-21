@@ -20,6 +20,20 @@ export class TableExamplesDataService {
           selected: false,
         },
         {
+          col1: 2668,
+          col2: 'Karl Julius',
+          col3: 'Granli',
+          col4: 'Kaffemakerassistentreserve',
+          selected: false,
+        },
+        {
+          col1: 1234,
+          col2: 'Kristoffer Benjamin',
+          col3: 'Bang-Larssen Severiniussen',
+          col4: 'Fotograf og Regissør',
+          selected: false,
+        },
+        {
           col1: 10000,
           col2: 'Elida',
           col3: 'Egge',

@@ -62,4 +62,13 @@ export class TableExamplesComponent {
     return iconClass;
   }
 
+  toggleAll(chkbx: any) {
+    let isChecked = chkbx.srcElement.checked;
+    let tableRows = this.data.tableContent;
+
+    for (let i = 0; i < tableRows.length; i++) {
+      tableRows[i].selected = isChecked;
+    }
+  }
+
 }
