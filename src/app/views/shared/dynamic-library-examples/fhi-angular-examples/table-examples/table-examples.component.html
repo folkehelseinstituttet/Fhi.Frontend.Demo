@@ -43,7 +43,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let tableRow of data.tableContent">
+        <tr *ngFor="let tableRow of table1.tableContent">
           <th>{{ tableRow.col1 }}</th>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
@@ -107,7 +107,7 @@
       </thead>
 
       <tbody>
-        <tr *ngFor="let tableRow of data.tableContent; index as i" [attr.aria-selected]="tableRow.selected">
+        <tr *ngFor="let tableRow of table1.tableContent; index as i" [attr.aria-selected]="tableRow.selected">
           <td>
             <input class="form-check-input"
                    id="row{{i}}"
@@ -120,6 +120,41 @@
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
           <td>{{ tableRow.col4 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="itemId === itemIds.TableEditable">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Fornavn</th>
+          <th scope="col">Etternavn</th>
+          <th scope="col">Rolle</th>
+          <th class="text-end" scope="col">Handling</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="table-hover-row" *ngFor="let tableRow of tableEditable.tableContent; index as i">
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td class="py-1">
+            <span contentEditable="true" (keyup)="updataData()">{{ tableRow.col4 }}</span>
+          </td>
+          <td class="text-end py-0 align-middle">
+            <button class="btn fhi-btn-icon"
+                    type="button"
+                    (click)="deleteRow(tableRow.col1, i)">
+              <i class="icon-trash-can"></i><span class="btn__text">Slett</span>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

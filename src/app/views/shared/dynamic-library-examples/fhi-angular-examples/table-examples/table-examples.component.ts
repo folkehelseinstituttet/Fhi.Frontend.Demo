@@ -10,7 +10,8 @@ export class TableExamplesComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
   
-  data: any = [];
+  table1: any = [];
+  tableEditable: any = [];
   sortDirection: string = 'ascending';
   currentlySortedColumn: string = '';
   previousSortedColumn: string = '';
@@ -18,7 +19,8 @@ export class TableExamplesComponent {
   constructor(private tableDataService: TableExamplesDataService) { }
 
   ngOnInit() {
-    this.data = this.tableDataService.getNodes();
+    this.table1 = this.tableDataService.table1();
+    this.tableEditable = this.tableDataService.tableEditable();
   }
 
   sortTable(column: string) {
@@ -35,7 +37,7 @@ export class TableExamplesComponent {
       this.sortDirection = 'ascending';
     }
 
-    this.data.tableContent = this.data.tableContent.sort((a: any, b: any) => {
+    this.table1.tableContent = this.table1.tableContent.sort((a: any, b: any) => {
       if (this.sortDirection === 'ascending') {
         if (a[column] < b[column]) {
           return -1;
@@ -64,10 +66,20 @@ export class TableExamplesComponent {
 
   toggleAll(chkbx: any) {
     let isChecked = chkbx.srcElement.checked;
-    let tableRows = this.data.tableContent;
+    let tableRows = this.table1.tableContent;
 
     for (let i = 0; i < tableRows.length; i++) {
       tableRows[i].selected = isChecked;
+    }
+  }
+
+  updataData() {
+    
+  }
+
+  deleteRow(identificator: string, i: any) {
+    if (window.confirm(`Er du sikker på at du vil slette ${identificator}?`)) {
+      this.tableEditable.tableContent.splice(i, 1);
     }
   }
 

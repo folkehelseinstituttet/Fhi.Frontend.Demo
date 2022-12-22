@@ -7,8 +7,7 @@ export const TableSortable: LibraryItem[] = [{
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml(),
-  fullScreenEnabled: true
+  documentationHtml: getDocumentationHtml()
 }];
 
 
