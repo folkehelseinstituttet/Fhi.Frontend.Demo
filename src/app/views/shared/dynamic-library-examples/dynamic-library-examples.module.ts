@@ -24,6 +24,7 @@ import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-exam
 import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
+import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
 
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
@@ -52,7 +53,8 @@ const FHI_EXAMPLES = [
   declarations: [
     DynamicLibraryExampleComponent,
     ...NGB_EXAMPLES,
-    ...FHI_EXAMPLES
+    ...FHI_EXAMPLES,
+    TableWithExpandableContentComponent
   ],
   imports: [
     NgSelectModule,

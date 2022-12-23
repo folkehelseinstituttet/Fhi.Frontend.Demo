@@ -186,6 +186,9 @@ export class LibraryMenuService {
     return [{
       name: 'Global header',
       link: LibraryItemSegmentPaths.prototypepageheader
+    }, {
+      name: 'Table w/expandable content',
+      link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
     }]
   }
 

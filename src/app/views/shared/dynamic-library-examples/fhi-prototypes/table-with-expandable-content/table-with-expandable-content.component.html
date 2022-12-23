@@ -1,0 +1,30 @@
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th scope="col">Fornavn</th>
+            <th scope="col">Etternavn</th>
+            <th scope="col">Rolle</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <ng-container *ngFor="let tableRow of tableData.tableContent">
+            <tr>
+                <th class="ps-0">
+                    <button type="button" src="btn btn-expand">
+                        <i class="icon-chevron-down"></i>
+                    </button>
+                </th>
+                <td>{{ tableRow.col1 }}</td>
+                <td>{{ tableRow.col2 }}</td>
+                <td>{{ tableRow.col3 }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">{{ tableRow.extended }}</td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</div>
