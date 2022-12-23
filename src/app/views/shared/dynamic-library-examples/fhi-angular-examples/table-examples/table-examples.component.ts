@@ -73,8 +73,22 @@ export class TableExamplesComponent {
     }
   }
 
-  updataData() {
-    
+  updataData(elm: any, evnt: any) {
+    console.log(evnt.key);
+    if (evnt.key !== "1") {
+      elm.failed = false;
+      setTimeout(function() {
+        elm.updated = true
+      }, 1000);
+      setTimeout(function() {
+        elm.updated = false;
+      }, 4000);
+    } else {
+      elm.failed = true;
+      setTimeout(function() {
+        elm.failed = false;
+      }, 5000);
+    }
   }
 
   deleteRow(identificator: string, i: any) {
