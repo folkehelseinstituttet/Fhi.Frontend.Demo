@@ -1,30 +1,33 @@
 <div class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-            <th></th>
-            <th scope="col">Fornavn</th>
-            <th scope="col">Etternavn</th>
-            <th scope="col">Rolle</th>
-        </tr>
-        </thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="fhi-btn-expand-table-container"></th>
+        <th scope="col">Fornavn</th>
+        <th scope="col">Etternavn</th>
+        <th scope="col">Rolle</th>
+      </tr>
+    </thead>
 
-        <tbody>
-        <ng-container *ngFor="let tableRow of tableData.tableContent">
-            <tr>
-                <th class="ps-0">
-                    <button type="button" src="btn btn-expand">
-                        <i class="icon-chevron-down"></i>
-                    </button>
-                </th>
-                <td>{{ tableRow.col1 }}</td>
-                <td>{{ tableRow.col2 }}</td>
-                <td>{{ tableRow.col3 }}</td>
-            </tr>
-            <tr>
-                <td colspan="4">{{ tableRow.extended }}</td>
-            </tr>
-        </ng-container>
-        </tbody>
-    </table>
+    <tbody>
+      <ng-container *ngFor="let tableRow of tableData.tableContent">
+        <tr>
+          <th class="fhi-btn-expand-table-container">
+            <button class="btn fhi-btn-expand-table"
+                    type="button"
+                    (click)="tableRow.expanded = !tableRow.expanded">
+              <i class="icon-chevron-down"></i>
+              <span class="visually-hidden">Utvidet informasjon om {{ tableRow.col1 }} {{ tableRow.col2 }}</span>
+            </button>
+          </th>
+          <td>{{ tableRow.col1 }}</td>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+        </tr>
+        <tr [ngClass]="tableRow.expanded ? 'd-table-row' : 'd-none'">
+          <td class="px-0" colspan="4" [innerHTML]="tableRow.extended"></td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
 </div>
