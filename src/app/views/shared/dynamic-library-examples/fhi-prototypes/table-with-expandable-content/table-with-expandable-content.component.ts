@@ -25,6 +25,14 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
       width: 44px;
     }
 
+    .fhi-btn-expand-table:focus {
+      outline: none !important;
+    }
+
+    .fhi-btn-expand-table:focus-visible {
+      box-shadow: 0 0 0 3px #f86559 inset;
+    }
+
     .fhi-btn-expand-table [class*="icon-"] {
       background-position: center center;
     }
