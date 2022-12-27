@@ -9,11 +9,14 @@ export class TableWithExpandableContentDataService {
           col1: 'Sigurd',
           col2: 'Bråten',
           col3: 'Designer',
-          extended: `<p>Tilleggsdata</p>
+          extended: `<p>Tilleggsdata i markup</p>
 
           <ul>
-            <li>Dette kan være</li>
-            <li>hva som helst</li>
+            <li>Dette kan være
+              <ul>
+                <li>hva som helst</li>
+              </ul>
+            </li>
           </ul>
 
           <h2 class="h5">Her er en advarsel:</h2>
