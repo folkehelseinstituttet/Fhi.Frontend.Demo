@@ -10,21 +10,26 @@
     </thead>
 
     <tbody>
-      <ng-container *ngFor="let tableRow of tableData.tableContent">
-        <tr>
+      <ng-container *ngFor="let tableRow of tableData.tableContent; index as i">
+        <tr [ngClass]="{'fhi-tablerow-expanded' : tableRow.expanded}">
           <th class="fhi-btn-expand-table-container">
             <button class="btn fhi-btn-expand-table"
                     type="button"
+                    id="item_{{i}}"
+                    attr.aria-controls="expanded_{{i}}"
+                    [attr.aria-expanded]="tableRow.expanded ? 'true' : 'false'"
                     (click)="tableRow.expanded = !tableRow.expanded">
-              <i class="icon-chevron-down"></i>
-              <span class="visually-hidden">Utvidet informasjon om {{ tableRow.col1 }} {{ tableRow.col2 }}</span>
+              <i [ngClass]="tableRow.expanded ? 'icon-chevron-up' : 'icon-chevron-down'"></i>
+              <span class="visually-hidden">Utvidet informasjon om {{ tableRow.col1 }} {{ tableRow.col2 }} (i ny rad)</span>
             </button>
           </th>
           <td>{{ tableRow.col1 }}</td>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
         </tr>
-        <tr [ngClass]="tableRow.expanded ? 'd-table-row' : 'd-none'">
+        <tr attr.aria-labelledby="item_{{i}}"
+            id="expanded_{{i}}"
+            [ngClass]="tableRow.expanded ? 'd-table-row' : 'd-none'">
           <td class="px-0" colspan="4" [innerHTML]="tableRow.extended"></td>
         </tr>
       </ng-container>

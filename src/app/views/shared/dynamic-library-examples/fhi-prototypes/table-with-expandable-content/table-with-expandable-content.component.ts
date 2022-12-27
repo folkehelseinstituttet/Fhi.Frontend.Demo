@@ -5,6 +5,11 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
   selector: 'app-prototype-table-with-expandable-content',
   templateUrl: './table-with-expandable-content.component.html',
   styles: [`
+    .fhi-tablerow-expanded th, 
+    .fhi-tablerow-expanded td {
+      border-bottom: 0;
+    }
+
     .fhi-btn-expand-table-container {
       padding: 0;
       position: relative;
