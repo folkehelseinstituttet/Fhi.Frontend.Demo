@@ -29,25 +29,25 @@ export class TableWithExpandableContentDataService {
           col1: 'Henrik',
           col2: 'Olsen',
           col3: 'Assistent',
-          extended: 'Tilleggsdata',
+          extended: `<p>Tilleggsdata i markup</p>`,
         },
         {
           col1: 'Karl Julius',
           col2: 'Granli',
           col3: 'Kaffemakerassistentreserve',
-          extended: 'Tilleggsdata',
+          extended: `<p>Tilleggsdata i markup</p>`,
         },
         {
           col1: 'Kristoffer Benjamin',
           col2: 'Bang-Larssen Severiniussen',
           col3: 'Fotograf og Regissør',
-          extended: 'Tilleggsdata',
+          extended: `<p>Tilleggsdata i markup</p>`,
         },
         {
           col1: 'Elida',
           col2: 'Egge',
           col3: 'Produsent',
-          extended: 'Tilleggsdata',
+          extended: `<p>Tilleggsdata i markup</p>`,
         },
       ]
     }
