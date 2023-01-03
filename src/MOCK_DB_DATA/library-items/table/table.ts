@@ -1,5 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Table: LibraryItem[] = [{
   id: LibraryItemIds.Table,
@@ -94,5 +95,8 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Tabell benyttes når du har behov for å presentere tabulære data.</p>
+
+<p>I FHI Designsystem er grunn-tabellene bygget som <a href="${CONST.BootstrapBaseUrl}/content/tables/">Bootstrap-tabell</a>.</p>`;
 }
