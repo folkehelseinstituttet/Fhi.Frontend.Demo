@@ -54,7 +54,7 @@ export class TableExamplesComponent {
     let iconClass = 'icon-arrows-up-down';
 
     if (this.currentlySortedColumn === column) {
-      if (this.sortDirection === 'ascending') {
+      if (this.sortDirection === 'descending') {
         iconClass = 'icon-arrow-down';
       } else {
         iconClass = 'icon-arrow-up';
