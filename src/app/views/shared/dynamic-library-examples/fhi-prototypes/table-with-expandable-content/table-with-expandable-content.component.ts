@@ -10,7 +10,12 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
       border-bottom: 0;
     }
 
+    .fhi-tablerow-expanded__additional-content {
+      padding-left: 60px;
+    }
+
     .fhi-btn-expand-table-container {
+      min-width: 44px;
       padding: 0;
       position: relative;
       width: 44px;

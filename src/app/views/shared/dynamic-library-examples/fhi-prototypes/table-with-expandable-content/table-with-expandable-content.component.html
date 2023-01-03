@@ -3,9 +3,18 @@
     <thead>
       <tr>
         <th class="fhi-btn-expand-table-container"></th>
-        <th scope="col">Fornavn</th>
-        <th scope="col">Etternavn</th>
-        <th scope="col">Rolle</th>
+        <th scope="col" style="max-width:100px; width:100px">MeldingsId</th>
+        <th scope="col">Generert dato<br>
+                        Mottatt dato</th>
+        <th scope="col">Kons.nr</th>
+        <th scope="col">Avd</th>
+        <th scope="col">Apoteknavn</th>
+        <th scope="col">Versjonsnr FP</th>
+        <th scope="col">FOMdato<br>
+                        TOMdato</th>
+        <th scope="col">Ant utlev.</th>
+        <th scope="col">Status<br>
+                        Årsak</th>
       </tr>
     </thead>
 
@@ -20,17 +29,36 @@
                     [attr.aria-expanded]="tableRow.expanded ? 'true' : 'false'"
                     (click)="tableRow.expanded = !tableRow.expanded">
               <i [ngClass]="tableRow.expanded ? 'icon-chevron-up' : 'icon-chevron-down'"></i>
-              <span class="visually-hidden">Utvidet informasjon om {{ tableRow.col1 }} {{ tableRow.col2 }} (i ny rad)</span>
+              <span class="visually-hidden">Utvidet informasjon om {{ tableRow.meldingsId }} (i ny rad)</span>
             </button>
           </th>
-          <td>{{ tableRow.col1 }}</td>
-          <td>{{ tableRow.col2 }}</td>
-          <td>{{ tableRow.col3 }}</td>
+          <td style="max-width:100px; width:100px">
+            <span><span class="text-nowrap">{{ tableRow.meldingsId }}</span></span>
+          </td>
+          <td><span class="d-block" *ngIf="tableRow.generertHosApotekDato !== '0001-01-01T00:00:00'">{{ tableRow.generertHosApotekDato | date }}</span>
+              <span *ngIf="tableRow.generertHosApotekDato === '0001-01-01T00:00:00'">-</span>
+              <span class="d-block text-nowrap">{{ tableRow.mottatt | date }}</span></td>
+          <td>{{ tableRow.konsesjonsnummer }}</td>
+          <td>{{ tableRow.apotekAvdelingsnummer }}</td>
+          <td>{{ tableRow.apotekApplikasjonProgramNavn }}</td>
+          <td>{{ tableRow.apotekApplikasjonVersjon }}</td>
+          <td>{{ tableRow.fraOgMedDato }}<br>
+              {{ tableRow.tilOgMedDato }}</td>
+          <td>{{ tableRow.antallElementer }}</td>
+          <td>{{ tableRow.farmaproReseptmeldingStatus }}<br>
+              {{ tableRow.sletteArsak }}</td>
         </tr>
         <tr attr.aria-labelledby="item_{{i}}"
             id="expanded_{{i}}"
             [ngClass]="tableRow.expanded ? 'd-table-row' : 'd-none'">
-          <td class="px-0" colspan="4" [innerHTML]="tableRow.extended"></td>
+          <td class="pe-0 fhi-tablerow-expanded__additional-content" colspan="10">
+            <h2 class="h4">Hele meldingen:</h2>
+            <ul>
+              <li *ngFor="let allKeysAndValues of tableRow | keyvalue">
+                {{ allKeysAndValues.key }} : {{ allKeysAndValues.value }}
+              </li>
+            </ul>
+          </td>
         </tr>
       </ng-container>
     </tbody>

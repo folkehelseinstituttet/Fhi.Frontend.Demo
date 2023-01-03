@@ -8,7 +8,8 @@ export const PrototypeTableWithExpandableContent: LibraryItem[] = [{
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+  documentationHtml: getDocumentationHtml(),
+  fullScreenEnabled: true,
 }];
 
 
