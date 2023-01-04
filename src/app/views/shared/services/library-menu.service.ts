@@ -186,7 +186,7 @@ export class LibraryMenuService {
     return [{
       name: 'Global header',
       link: LibraryItemSegmentPaths.prototypepageheader
-    }]
+    }];
   }
 
 }

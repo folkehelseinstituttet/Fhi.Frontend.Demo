@@ -17,6 +17,7 @@ import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
+import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from './search/_search.data';
 import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
@@ -44,6 +45,7 @@ export const AllData: LibraryItem[] = [
   ...NavigationtileData,
   ...PaginationData,
   ...PrototypePageheaderData,
+  ...PrototypeTableWithExpandableContentData,
   ...SearchData,
   ...SpinnersData,
   ...TableData,
