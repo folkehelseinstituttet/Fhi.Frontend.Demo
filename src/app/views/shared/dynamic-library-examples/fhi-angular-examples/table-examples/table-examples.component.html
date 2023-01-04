@@ -97,7 +97,7 @@
 
 <ng-container *ngIf="itemId === itemIds.TableEditable">
   <div class="table-responsive">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -109,8 +109,7 @@
       </thead>
 
       <tbody>
-        <tr class="table-hover-row"
-            *ngFor="let tableRow of tableEditable.tableContent; index as i">
+        <tr *ngFor="let tableRow of tableEditable.tableContent; index as i">
           <th>{{ tableRow.col1 }}</th>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
