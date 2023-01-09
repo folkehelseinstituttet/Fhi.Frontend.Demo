@@ -17,6 +17,7 @@ import { LayoutTemplatesIds } from "./layout-templates/_layout-templates.ids"
 import { ModalIds } from "./modal/_modal.ids"
 import { NavigationTileIds } from "./navigation-tile/_navigation-tile.ids"
 import { PaginationIds } from "./pagination/_pagination.ids"
+import { PrototypeFormIds } from "./prototype-forms/_prototype-form.ids"
 import { PrototypePageheaderIds } from "./prototype-pageheader/_prototype-pageheader.ids"
 import { PrototypeTableWithExpandableContentIds } from "./prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids"
 import { SearchIds } from "./search/_search.ids"
@@ -49,6 +50,7 @@ const libraryItemIds = {
   ...ModalIds,
   ...NavigationTileIds,
   ...PaginationIds,
+  ...PrototypeFormIds,
   ...PrototypePageheaderIds,
   ...PrototypeTableWithExpandableContentIds,
   ...SearchIds,
