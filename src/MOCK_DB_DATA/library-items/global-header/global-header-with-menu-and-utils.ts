@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const GlobalHeaderWithMenu: LibraryItem[] = [{
-  id: LibraryItemIds.GlobalHeaderWithMenu,
-  title: 'Global header med meny',
+export const GlobalHeaderWithMenuAndUtils: LibraryItem[] = [{
+  id: LibraryItemIds.GlobalHeaderWithMenuAndUtils,
+  title: 'Global header med meny og utility section',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
