@@ -28,19 +28,41 @@ function getCodeHtml(): string | null {
   return `
 <header class="fhi-header">
   <div class="fhi-header__brand">
-    <div class="container fhi-header__brand-container">
+    <div class="container fhi-header__brand-container d-flex">
       <div class="fhi-header__brand-content">
         <a class="fhi-header__logo" href="javascript:void(0)">
           <i class="icon-fhi-logo fhi-header__logo-icon"></i>
-          <span class="visually-hidden">FHI Produktnavn</span>
+          <span class="visually-hidden">FHI Pruduktnavn</span>
         </a>
         <div class="fhi-header__project">
           <span class="fhi-header__project-name">Produktnavn</span>
         </div>
       </div>
+
+      <div class="fhi-utility-section d-flex ms-auto">
+        <p class="fhi-utility-section__user">
+          <a href="javascript:void(0)" class="d-flex">
+            Innlogget Bruker
+            <span class="icon-user-regular ms-2"></span>
+          </a>
+        </p>
+        
+        <span class="fhi-utility-section__divider"></span>
+
+        <div class="fhi-utility-section__tools">
+          <div class="d-flex">
+            <button class="fhi-utility-section__btn">
+              <span class="icon-bell-regular" ngbTooltip="Varslinger"></span>
+            </button>
+            <button class="fhi-utility-section__btn">
+              <span class="icon-question-circle-regular" ngbTooltip="Hjelp"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
+  
   <div class="container fhi-header__main-menu-container">
     <nav class="fhi-main-menu" [ngClass]="{'fhi-main-menu--open': mainMenuIsOpen}">
       <div class="container fhi-main-menu__container">
@@ -48,6 +70,7 @@ function getCodeHtml(): string | null {
           <i class="icon-fhi-logo fhi-header__logo-icon fhi-main-menu__logo-icon"></i>
           <span class="visually-hidden">FHI Produktnavn</span>
         </a>
+
         <button
           type="button"
           aria-controls="fhi-main-menu"
@@ -59,14 +82,16 @@ function getCodeHtml(): string | null {
           <span class="fhi-main-menu__toggler-text">{{ !mainMenuIsOpen ? 'Meny' : 'Lukk' }}</span>
         </button>
         <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
-          <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
-            <li class="fhi-main-menu__nav-item">
-              <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 1</a>
-            </li>
-            <li class="fhi-main-menu__nav-item">
-              <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 2</a>
-            </li>
-          </ul>
+          <div class="d-flex">
+            <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 1}" href="javascript:void(0)" (click)="linkSwitch(1)">Lenke 1</a>
+              </li>
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 2}" href="javascript:void(0)" (click)="linkSwitch(2)">Lenke 2</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
