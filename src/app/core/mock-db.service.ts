@@ -26,7 +26,7 @@ import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
-import { PrototypeFormData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-form.data';
+import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
@@ -68,7 +68,7 @@ export class MockDbService implements InMemoryDbService {
       LayoutTemplatesData,
       ModalData,
       PaginationData,
-      PrototypeFormData,
+      PrototypeFormsData,
       PrototypePageheaderData,
       PrototypeTableWithExpandableContentData,
       SearchData,

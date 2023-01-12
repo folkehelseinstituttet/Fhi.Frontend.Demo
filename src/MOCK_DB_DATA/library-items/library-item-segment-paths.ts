@@ -17,7 +17,7 @@ import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
-import { PrototypeFormData } from './prototype-forms/_prototype-form.data';
+import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from './search/_search.data';
@@ -78,7 +78,7 @@ export class LibraryItemSegmentPaths {
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
 
   // Prototypes (examples on use)
-  static prototypeforms = stringTransform(Object.keys({ PrototypeFormData })[0]);
+  static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
   static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
   static prototypetablewithexpandablecontent = stringTransform(Object.keys({ PrototypeTableWithExpandableContentData})[0]);
 

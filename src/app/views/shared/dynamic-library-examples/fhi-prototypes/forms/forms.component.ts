@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-prototype-form',
-  templateUrl: './form.component.html',
+  selector: 'app-prototype-forms',
+  templateUrl: './forms.component.html',
 })
-export class PrototypeFormComponent {
+export class PrototypeFormsComponent {
 
   constructor() { }
 

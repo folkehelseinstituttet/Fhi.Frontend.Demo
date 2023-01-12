@@ -2,8 +2,8 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const PrototypeForm: LibraryItem[] = [{
-  id: LibraryItemIds.PrototypeForm,
+export const PrototypeForms: LibraryItem[] = [{
+  id: LibraryItemIds.PrototypeForms,
   title: 'Form example',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
