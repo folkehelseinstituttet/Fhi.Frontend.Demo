@@ -39,26 +39,28 @@ function getCodeHtml(): string | null {
         </div>
       </div>
 
-      <div class="fhi-utility-section d-flex ms-auto">
-        <p class="fhi-utility-section__user">
+      <div class="fhi-utility-section d-none d-xl-flex ms-auto me-lg-7 pe-lg-4 me-xl-0 pe-xl-0">
+        <p class="fhi-utility-section__group">
           <a href="javascript:void(0)" class="d-flex">
             Innlogget Bruker
-            <span class="icon-user-regular ms-2"></span>
+            <span class="icon-user-regular ms-2 me-2"></span>
           </a>
         </p>
         
         <span class="fhi-utility-section__divider"></span>
 
-        <div class="fhi-utility-section__tools">
+        <div class="fhi-utility-section__group">
           <div class="d-flex">
-            <button class="fhi-utility-section__btn">
-              <span class="icon-bell-regular" ngbTooltip="Varslinger"></span>
-            </button>
-            <button class="fhi-utility-section__btn">
-              <span class="icon-question-circle-regular" ngbTooltip="Hjelp"></span>
-            </button>
+            <a class="fhi-utility-section__btn" href="javascript:void(0)">
+              <span class="icon-bell-regular icon-lg" ngbTooltip="Varslinger"></span>
+            </a>
+            <a class="fhi-utility-section__btn" href="javascript:void(0)">
+              <span class="icon-question-circle-regular icon-lg" ngbTooltip="Hjelp"></span>
+            </a>
           </div>
         </div>
+        
+        <span class="fhi-utility-section__divider d-xl-none"></span>
       </div>
     </div>
   </div>
@@ -82,7 +84,7 @@ function getCodeHtml(): string | null {
           <span class="fhi-main-menu__toggler-text">{{ !mainMenuIsOpen ? 'Meny' : 'Lukk' }}</span>
         </button>
         <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
-          <div class="d-flex">
+          <div class="d-flex flex-wrap">
             <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
               <li class="fhi-main-menu__nav-item">
                 <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 1}" href="javascript:void(0)" (click)="linkSwitch(1)">Lenke 1</a>
@@ -91,6 +93,30 @@ function getCodeHtml(): string | null {
                 <a class="nav-link fhi-main-menu__nav-link" [ngClass]="{'active' : activeLink === 2}" href="javascript:void(0)" (click)="linkSwitch(2)">Lenke 2</a>
               </li>
             </ul>
+
+            <div class="fhi-utility-section fhi-utility-section--megamenu d-block">
+              <div class="fhi-utility-section__group">
+                <div class="my-1 py-1">
+                  <a class="d-flex text-white" href="javascript:void(0)">
+                    <span class="icon-user-regular icon-white icon-lg me-2"></span>
+                    Innlogget Bruker
+                  </a>
+                </div>
+                <div class="my-1 py-1">
+                  <a class="d-flex text-white" href="javascript:void(0)">
+                    <span class="icon-bell-regular icon-white icon-lg me-2"></span>
+                    Varslinger
+                  </a>
+                </div>
+                <div class="my-1 py-1">
+                  <a class="d-flex text-white" href="javascript:void(0)">
+                    <span class="icon-question-circle-regular icon-white icon-lg me-2"></span>
+                    Hjelp
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
