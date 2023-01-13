@@ -30,12 +30,8 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
       width: 44px;
     }
 
-    .fhi-btn-expand-table:focus {
-      outline: none !important;
-    }
-
     .fhi-btn-expand-table:focus-visible {
-      box-shadow: 0 0 0 3px #f86559 inset;
+      box-shadow: 0 0 0 2px #0067c4 inset !important;
     }
 
     .fhi-btn-expand-table [class*="icon-"] {

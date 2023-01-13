@@ -16,6 +16,7 @@ import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
 import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
+import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from './search/_search.data';
@@ -44,6 +45,7 @@ export const AllData: LibraryItem[] = [
   ...ModalData,
   ...NavigationtileData,
   ...PaginationData,
+  ...PrototypeFormsData,
   ...PrototypePageheaderData,
   ...PrototypeTableWithExpandableContentData,
   ...SearchData,
