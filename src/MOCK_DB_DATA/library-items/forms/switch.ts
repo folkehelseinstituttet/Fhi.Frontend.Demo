@@ -25,8 +25,8 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="form-check form-switch">
-  <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault">
-  <label class="form-check-label" for="flexSwitchCheckDefault">
+  <input class="form-check-input visually-hidden" type="checkbox" id="formSwitch">
+  <label class="form-check-label" for="formSwitch">
     Ledetekst for switch-element
   </label>
 </div>`;
