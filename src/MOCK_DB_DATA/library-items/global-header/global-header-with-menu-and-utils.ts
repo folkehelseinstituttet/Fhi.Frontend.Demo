@@ -94,7 +94,7 @@ function getCodeHtml(): string | null {
               </li>
             </ul>
 
-            <div class="fhi-utility-section fhi-utility-section--megamenu d-block">
+            <div class="fhi-utility-section fhi-utility-section--megamenu d-block d-xl-none">
               <div class="fhi-utility-section__group">
                 <div class="my-1 py-1">
                   <a class="d-flex text-white" href="javascript:void(0)">
