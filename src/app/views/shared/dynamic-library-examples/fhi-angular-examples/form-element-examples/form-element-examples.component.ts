@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './form-element-examples.component.html'
 })
 export class FormElementExamplesComponent {
-  
+  chkIsOn: boolean = false;
 }
