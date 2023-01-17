@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-global-header-with-menu',
-  templateUrl: './global-header-with-menu.component.html'
+  selector: 'app-global-headers',
+  templateUrl: './global-headers.component.html'
 })
-export class GlobalHeaderWithMenuExampleComponent {
+export class GlobalHeadersExampleComponent {
+  @Input() itemId!: string;
+  @Input() itemIds!: any;
+  
   activeLink = 1;
   mainMenuIsOpen = false;
 

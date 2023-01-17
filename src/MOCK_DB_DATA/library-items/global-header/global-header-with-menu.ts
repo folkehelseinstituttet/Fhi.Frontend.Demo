@@ -17,7 +17,7 @@ export const GlobalHeaderWithMenu: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `<div class="position-relative">` + getCodeHtml() + `</div>`;
+  return ``;
 }
 
 /*
