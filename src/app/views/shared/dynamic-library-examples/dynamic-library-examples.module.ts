@@ -18,6 +18,7 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
+import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
@@ -42,6 +43,7 @@ const NGB_EXAMPLES = [
 const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeExampleComponent,
+  FormElementExamplesComponent,
   GlobalHeadersExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
