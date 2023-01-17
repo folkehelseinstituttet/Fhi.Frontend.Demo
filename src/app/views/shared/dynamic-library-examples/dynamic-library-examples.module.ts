@@ -19,7 +19,7 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
-import { GlobalHeaderWithMenuExampleComponent } from './fhi-angular-examples/global-header-with-menu/global-header-with-menu.component';
+import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
@@ -44,21 +44,21 @@ const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeExampleComponent,
   FormElementExamplesComponent,
-  GlobalHeaderWithMenuExampleComponent,
+  GlobalHeadersExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
   SearchExampleComponent,
   TableExamplesComponent,
   TagExampleComponent,
-  TreeViewExampleComponent
+  TreeViewExampleComponent,
+  TableWithExpandableContentComponent
 ];
 
 @NgModule({
   declarations: [
     DynamicLibraryExampleComponent,
     ...NGB_EXAMPLES,
-    ...FHI_EXAMPLES,
-    TableWithExpandableContentComponent
+    ...FHI_EXAMPLES
   ],
   imports: [
     NgSelectModule,

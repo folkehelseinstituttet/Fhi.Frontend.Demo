@@ -111,7 +111,14 @@
 
   <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
 
-  <app-global-header-with-menu *ngSwitchCase="itemIds.GlobalHeaderWithMenu"></app-global-header-with-menu>
+  <app-global-headers
+    *ngSwitchCase="itemIds.GlobalHeaderWithMenu"
+    [itemId]="itemIds.GlobalHeaderWithMenu"
+    [itemIds]="itemIds"></app-global-headers>
+  <app-global-headers
+    *ngSwitchCase="itemIds.GlobalHeaderWithMenuAndUtils"
+    [itemId]="itemIds.GlobalHeaderWithMenuAndUtils"
+    [itemIds]="itemIds"></app-global-headers>
 
   <!-- Prototypes -->
   <app-prototype-forms *ngSwitchCase="itemIds.PrototypeForms"></app-prototype-forms>
