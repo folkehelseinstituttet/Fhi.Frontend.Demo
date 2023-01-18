@@ -66,5 +66,14 @@ function getDocumentationHtml(): string | null {
 </p>
 <p>
   Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
-</p>`;
+</p>
+
+<div class="alert alert-warning">
+  <i class="icon-bell-regular"></i>
+  <div>
+    <p>Dette eksempelet viser hvordan man kan sette opp en datepicker og brukes på eget ansvar.</p>
+    <p class="mb-0">På sikt vil denne bli tilbudt som en angular-komponent med API.</p>
+  </div>
+</div>
+`;
 }
