@@ -26,11 +26,16 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="fhi-datepicker">
-  <label class="form-label fhi-datepicker__label" for="datepicker_id">
+  <label class="form-label fhi-datepicker__label"
+         for="datepicker_id"
+         id="datepicker_label">
     Velg en dato
   </label>
+
+  <p class="fhi-datepicker__description"
+     id="datepicker_description">dd.mm.åååå</p>
   
-  <button class="fhi-datepicker__toggler" (click)="datepicker_1.toggle()">
+  <button class="fhi-datepicker__toggler" (click)="datepicker.toggle()">
     <i class="icon-calendar"></i>
     <span class="visually-hidden">Åpne datovelger</span>
   </button>
@@ -40,11 +45,13 @@ function getCodeHtml(): string | null {
          id="datepicker_id"
          inputmode="decimal"
          outsideDays="hidden"
-         placeholder="dd.mm.åååå"
          type="text"
+         aria-labelledby="datepicker_label"
+         aria-describedby="datepicker_description"
          ngbDatepicker
-         #datepicker_1="ngbDatepicker"/>
-</div>`;
+         #datepicker="ngbDatepicker"/>
+</div>
+`;
 }
 
 /*
@@ -53,7 +60,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Datepicker er implementert som en
+  Datepicker er implementert som en utvidet
   <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>
   i FHI Designsystem.
 </p>
