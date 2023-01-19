@@ -20,6 +20,6 @@ This following is the main take away from the diagram:
 
 It's important to understand the overall structure of the projects CSS code, but when contributing you will most often add/update code in a small subset of this overall structure.
 
-If you contriburte to the "Framework independent CSS" this is where you go: https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/tree/main/src/blocks
+If you contribute to the "Framework independent CSS" this is where you go: https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/tree/main/src/blocks
 
-If you contriburte to the "Angular dependent CSS" this is where you go: https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-components/src/styles
+If you contribute to the "Angular dependent CSS" this is where you go: https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-components/src/styles
