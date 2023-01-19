@@ -14,7 +14,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 - [Fixing Bugs and Adding Features](#fixing-bugs-and-adding-features)
   - [Workflows](#workflows)
     - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
-    - [How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
+    - [How to work on ./projects/fhi-\[project\] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
       - [How to do code scaffolding in an Angular library project](#how-to-do-code-scaffolding-in-an-angular-library-project)
   - [Pull request guidelines](#pull-request-guidelines)
     - [Fhi.Frontend.Style](#fhifrontendstyle)
@@ -26,6 +26,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
       - [Release branches for the Fhi.Frontend.Demo app](#release-branches-for-the-fhifrontenddemo-app)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
+    - [CSS architecture](#css-architecture)
   - [HTML (Angular templates)](#html-angular-templates)
   - [TypeScript](#typescript)
 - [Documentation](#documentation)
@@ -155,11 +156,11 @@ _NB! Only release a new version of a library if dependencies in `@folkehelseinst
 
 ##### Release branches for the Fhi.Frontend.Demo app
 
-Currently no need for a release branch, we just:
+There is no need for a release branch, since the branch `dev` represents the "truth". Therefore we do not create a pull request either, we just:
 
-1. Create pull request from `dev` into `main`.
-2. After approved review, **merge** to `main` (deploy).
-   >_NB! Just merge to `main`, do not squash! We want to keep the full history in `main`._
+1. Make sure `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style` and `@folkehelseinstituttet/angular-components` in branch `dev` (if not create a feature branch and fix it).
+2. Merge `dev` into `main`
+3. Push to origin (which will trigger the release)
 
 ## Coding conventions
 
@@ -172,6 +173,10 @@ The project is using
 3. And some custom rules
 
 [SCSS example file](./doc/scss-example.md)
+
+#### CSS architecture
+
+[Read more about](./doc/css-architecture/css-architecture.md) how we (try to) organize the CSS code.
 
 ### HTML (Angular templates)
 
