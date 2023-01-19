@@ -1,7 +1,7 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { DatePicker } from './datepicker';
+import { Datepicker } from './datepicker';
 
-export const DatePickerData: LibraryItem[] = [
-  ...DatePicker
+export const DatepickerData: LibraryItem[] = [
+  ...Datepicker
 ];

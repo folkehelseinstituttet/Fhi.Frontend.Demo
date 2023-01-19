@@ -7,7 +7,7 @@ import { ButtonGroupIds } from "./button-group/_button-group.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
 import { ColorIds } from "./color/_color.ids"
 import { DateAndTimeIds } from "./date-and-time/_date-and-time.ids"
-import { DatePickerIds } from "./datepicker/_datepicker.ids"
+import { DatepickerIds } from "./datepicker/_datepicker.ids"
 import { DrawerIds } from "./drawer/_drawer.ids"
 import { FormsIds } from "./forms/_forms.ids"
 import { GlobalFooterIds } from "./global-footer/_global-footer.ids"
@@ -40,7 +40,7 @@ const libraryItemIds = {
   ...ButtonsIds,
   ...ColorIds,
   ...DateAndTimeIds,
-  ...DatePickerIds,
+  ...DatepickerIds,
   ...DrawerIds,
   ...FormsIds,
   ...GlobalFooterIds,
