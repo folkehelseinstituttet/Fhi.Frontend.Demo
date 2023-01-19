@@ -7,7 +7,7 @@ import { ButtonGroupData } from './button-group/_button-group.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
-import { DatePickerData } from './datepicker/_datepicker.data';
+import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
@@ -54,7 +54,7 @@ export class LibraryItemSegmentPaths {
   static breadcrumb = stringTransform(Object.keys({ BreadcrumbData })[0]);
   static buttongroup = stringTransform(Object.keys({ ButtonGroupData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
-  static datepicker = stringTransform(Object.keys({ DatePickerData })[0]);
+  static datepicker = stringTransform(Object.keys({ DatepickerData })[0]);
   static forms = stringTransform(Object.keys({ FormsData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
   static navigationtile = stringTransform(Object.keys({ NavigationtileData })[0]);

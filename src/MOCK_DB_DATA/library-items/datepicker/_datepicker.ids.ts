@@ -1,3 +1,3 @@
-export const DatePickerIds = {
-  DatePicker: undefined
+export const DatepickerIds = {
+  Datepicker: undefined
 }

@@ -86,7 +86,7 @@ function getDocumentationHtml(): string | null {
   return `
 <p>
   Datepicker er implementert som en
-  <a href="/developer/components/DatePicker">FHI Datepicker</a>
+  <a href="/developer/components/Datepicker">FHI Datepicker</a>
   som baserer seg på
   <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>
   i FHI Designsystem.

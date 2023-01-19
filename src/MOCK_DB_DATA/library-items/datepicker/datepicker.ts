@@ -2,8 +2,8 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const DatePicker: LibraryItem[] = [{
-  id: LibraryItemIds.DatePicker,
+export const Datepicker: LibraryItem[] = [{
+  id: LibraryItemIds.Datepicker,
   title: 'Datepicker',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),

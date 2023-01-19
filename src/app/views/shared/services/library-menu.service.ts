@@ -127,9 +127,6 @@ export class LibraryMenuService {
       name: 'Buttons',
       link: LibraryItemSegmentPaths.buttons
     }, {
-      name: 'Datepicker',
-      link: LibraryItemSegmentPaths.datepicker
-    }, {
       name: 'Forms',
       link: LibraryItemSegmentPaths.forms
     }, {
@@ -172,9 +169,6 @@ export class LibraryMenuService {
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
-    }, {
-      name: 'Date & time',
-      link: LibraryItemSegmentPaths.dateandtimeselection
     }, {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
