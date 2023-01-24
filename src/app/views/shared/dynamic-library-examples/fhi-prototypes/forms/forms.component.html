@@ -1,100 +1,81 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <label class="form-label" for="id-1">Tekst 1</label>
-      <input class="form-control" type="text" id="id-1" />
+<form (keydown.enter)="$event.preventDefault()">
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-1">
+      <label class="form-label" for="input-1">Ledetekst</label>
     </div>
 
-    <div class="col-md-6 mb-4">
-      <label class="form-label" for="id-2">Tekst 2</label>
-      <input class="form-control" type="text" id="id-2" />
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
-      <input
-        type="text"
-        id="FormInputValidation"
-        class="form-control is-invalid"
-        placeholder=""/>
-      <div class="invalid-feedback">En forståelig feilmelding.</div>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="exampleFormControlTextarea1" class="form-label">Tekstfelt med flere linjer</label>
-      <textarea
-        class="form-control"
-        id="exampleFormControlTextarea1"
-        rows="3"></textarea>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <fieldset>
-        <legend>Her kan du gjøre 0 - 3 valg</legend>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB1">
-          <label class="form-check-label" for="customCheckB1">
-            Valg nr. 1
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB2">
-          <label class="form-check-label" for="customCheckB2">
-            Valg nr. 2
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB3">
-          <label class="form-check-label" for="customCheckB3">
-            Valg nr. 3
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <fieldset>
-        <legend>Her kan du gjøre 1 valg</legend>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB1" checked>
-          <label class="form-check-label" for="radioInputB1">
-            Valg nr. 1
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB2">
-          <label class="form-check-label" for="radioInputB2">
-            Valg nr. 2
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB3">
-          <label class="form-check-label" for="radioInputB3">
-            Valg nr. 3
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="FormSelect" class="form-label">Ledetekst for select</label>
-      <select class="form-select" id="FormSelect">
-        <option>Aktiver for å gjøre et valg</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-
-    <div>
-      <button type="button" class="btn fhi-btn-primary">
-        Send inn
-      </button>
+    <div class="fhi-input-group__col-2">
+      <p class="form-text" id="input-text-1">Hjelpetekst</p>
+      <input class="form-control" id="input-1" type="text" aria-describedby="input-text-1">
     </div>
   </div>
-</div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-1">
+      <label for="input-2" class="form-label">Tekstfelt med label som brekker</label>
+    </div>
+
+    <div class="fhi-input-group__col-2">
+      <input type="text" id="input-2" class="form-control" placeholder="">
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-1">
+      <label for="input-3" class="form-label">Tekstfelt med validering</label>
+    </div>
+
+    <div class="fhi-input-group__col-2">
+      <input type="text" id="input-3" class="form-control is-invalid" placeholder="" aria-describedby="input-text-3">
+      <p class="form-text" id="input-text-3">Hjelpetekst</p>
+      <div class="invalid-feedback">En forståelig feilmelding.</div>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-1">
+      <label for="input-4" class="form-label">Textarea</label>
+    </div>
+
+    <div class="fhi-input-group__col-2">
+      <textarea class="form-control" id="input-4" rows="3"></textarea>
+    </div>
+  </div>
+
+  <fieldset class="fhi-input-group">
+    <legend class="fhi-input-group__col-1">
+      <span class="form-label">Fieldset legend</span>
+    </legend>
+
+    <div class="fhi-input-group__col-2 d-flex flex-column justify-content-center">
+      <div class="row">
+        <div class="col-auto">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="customCheck-1">
+            <label class="form-check-label" for="customCheck-1">
+              Alternativ 1
+            </label>
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="customCheck-2">
+            <label class="form-check-label" for="customCheck-2">
+              Alternativ 2
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-1"></div>
+
+    <div class="fhi-input-group__col2">
+      <button type="submit" class="btn fhi-btn-primary me-2">Send inn</button>
+      <button type="reset" class="btn fhi-btn-secondary">Avbryt</button>
+    </div>
+  </div>
+</form>
