@@ -194,7 +194,6 @@
       "projectType": "library",
       "root": "projects/fhi-angular-highcharts",
       "sourceRoot": "projects/fhi-angular-highcharts/src",
-      "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
