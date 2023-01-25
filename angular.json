@@ -190,7 +190,7 @@
         }
       }
     },
-    "fhi-angular-highcharts": {
+    "@folkehelseinstituttet/angular-highcharts": {
       "projectType": "library",
       "root": "projects/fhi-angular-highcharts",
       "sourceRoot": "projects/fhi-angular-highcharts/src",

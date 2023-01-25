@@ -6,7 +6,7 @@
       "@folkehelseinstituttet/angular-components": [
         "dist/fhi-angular-components"
       ],
-      "fhi-angular-highcharts": [
+      "@folkehelseinstituttet/angular-highcharts": [
         "dist/fhi-angular-highcharts"
       ]
     },
