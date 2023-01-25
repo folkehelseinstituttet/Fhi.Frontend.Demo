@@ -23,7 +23,7 @@ jobs:
       - name: Build fhi-angular-components
         run: |
          npm install
-         npm run build-lib-fhi-angular-components
+         ng build @folkehelseinstituttet/angular-components
 
       - name: Check new npm version and publish
         id: publish
