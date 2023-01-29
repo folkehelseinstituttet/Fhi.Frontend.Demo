@@ -11,40 +11,39 @@
 
 <form (keydown.enter)="$event.preventDefault()">
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label class="form-label" for="input-1">Uttrekksnavn</label>
     </div>
-    <div class="fhi-input-group__col-2">
-      <input class="form-control is-invalid" id="input-1" type="text" aria-describedby="form-text-1">
-      <p class="invalid-feedback">feilmelding</p>
+    <div class="fhi-input-group__col-form-control">
+      <input class="form-control" id="input-1" type="text" aria-describedby="form-text-1">
       <p class="form-text" id="form-text-1">Påkrevd</p>
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="input-2" class="form-label">Vedtaksnummer</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <input type="text" id="input-2" class="form-control form-control-sm" aria-describedby="form-text-2">
       <p class="form-text" id="form-text-2">Mønster: XX-XXXXX-XX</p>
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="input-3" class="form-label">HDS nummer</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <input type="text" id="input-3" class="form-control form-control-sm">
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="select-4" class="form-label">Hva skal utleveres?</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <select class="form-select form-control-md" id="select-4" aria-describedby="form-text-4">
         <option value="0">Utleveres ikke (internt bruk)</option>
         <option value="1">2. valg for utlevering</option>
@@ -55,10 +54,10 @@
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="select-5" class="form-label">Formål med uttrekk</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <select class="form-select" id="select-5" aria-describedby="form-text-5">
         <option value="0">Etter søknad/henvendelse</option>
         <option value="1">2. valg for formål med uttrekk</option>
@@ -69,10 +68,10 @@
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="select-6" class="form-label">Detaljer formål</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <select class="form-select" id="select-6" aria-describedby="form-text-6">
         <option value="0">Statistikk LMR (hrl. § 19)</option>
         <option value="1">Statistikk sammenstilling, annen atakilde tilrettelegger (hrl. §§ 19 og 19c)</option>
@@ -87,35 +86,35 @@
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="input-7" class="form-label">Prosjektleder</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <input type="text" id="input-7" class="form-control form-control-md">
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="input-8" class="form-label">Institusjon</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <input type="text" id="input-8" class="form-control">
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1">
+    <div class="fhi-input-group__col-label">
       <label for="input-9" class="form-label">Merknad til uttrekket</label>
     </div>
-    <div class="fhi-input-group__col-2">
+    <div class="fhi-input-group__col-form-control">
       <textarea class="form-control" id="input-9" rows="3" aria-describedby="form-text-9"></textarea>
       <p class="form-text" id="form-text-9">Hva endret du?</p>
     </div>
   </div>
 
   <div class="fhi-input-group">
-    <div class="fhi-input-group__col-1"></div>
+    <div class="fhi-input-group__col-label"></div>
 
     <div class="fhi-input-group__col2">
       <button type="submit" class="btn fhi-btn-primary me-2">Send inn</button>
