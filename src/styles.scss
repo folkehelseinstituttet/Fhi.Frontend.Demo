@@ -1,5 +1,7 @@
 @import "../Fhi.Frontend.Style/import/all";
 @import "src/styles/fhi-frontend-library/_ds-all";
 
-// TODO: find best way to distribute styles for Fhi.AngularComponents
-@import "src/styles/fhi-angular-components/fhi-advanced-select.block";
+
+// TODO: remember to update ../Fhi.Frontend.Style/import/_all.scss when @folkehelseinstituttet/angular-components is published
+// @import "../dist/fhi-angular-components/styles/import/fhi-ng-selects";
+@import "../dist/fhi-angular-components/styles/import/all";

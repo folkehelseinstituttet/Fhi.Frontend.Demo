@@ -66,7 +66,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "20kb"
                 }
               ]
             },
@@ -93,7 +93,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "20kb"
                 }
               ]
             }
@@ -162,20 +162,20 @@
     },
     "@folkehelseinstituttet/angular-components": {
       "projectType": "library",
-      "root": "projects/fhi-frontend-angular-components",
-      "sourceRoot": "projects/fhi-frontend-angular-components/src",
+      "root": "projects/fhi-angular-components",
+      "sourceRoot": "projects/fhi-angular-components/src",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/fhi-frontend-angular-components/ng-package.json"
+            "project": "projects/fhi-angular-components/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/fhi-frontend-angular-components/tsconfig.lib.prod.json"
+              "tsConfig": "projects/fhi-angular-components/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/fhi-frontend-angular-components/tsconfig.lib.json"
+              "tsConfig": "projects/fhi-angular-components/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -183,9 +183,39 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/fhi-frontend-angular-components/src/test.ts",
-            "tsConfig": "projects/fhi-frontend-angular-components/tsconfig.spec.json",
-            "karmaConfig": "projects/fhi-frontend-angular-components/karma.conf.js"
+            "main": "projects/fhi-angular-components/src/test.ts",
+            "tsConfig": "projects/fhi-angular-components/tsconfig.spec.json",
+            "karmaConfig": "projects/fhi-angular-components/karma.conf.js"
+          }
+        }
+      }
+    },
+    "@folkehelseinstituttet/angular-highcharts": {
+      "projectType": "library",
+      "root": "projects/fhi-angular-highcharts",
+      "sourceRoot": "projects/fhi-angular-highcharts/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/fhi-angular-highcharts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fhi-angular-highcharts/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/fhi-angular-highcharts/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/fhi-angular-highcharts/src/test.ts",
+            "tsConfig": "projects/fhi-angular-highcharts/tsconfig.spec.json",
+            "karmaConfig": "projects/fhi-angular-highcharts/karma.conf.js"
           }
         }
       }

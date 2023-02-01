@@ -1,0 +1,35 @@
+<div class="fhi-ng-select-wrapper fhi-multiselect">
+  <label for="{{ labelForId }}">{{ label }}</label>
+  <p *ngIf="description !== undefined">{{ description }}</p>
+  <ng-select [items]="items"
+             [multiple]="true"
+             [closeOnSelect]="false"
+             [(ngModel)]="selectedItems"
+             bindLabel="name"
+             bindValue="id"
+             labelForId="{{ labelForId }}"
+             notFoundText="{{ notFoundText }}"
+             placeholder="{{ placeholder }}"
+             (change)="onChange()">
+    <ng-template ng-label-tmp let-item="item"></ng-template>
+    <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox"
+               name="item-{{ index }}" id="item-{{ index }}"
+               [ngModel]="item$.selected">
+        {{ item.name }}
+      </div>
+    </ng-template>
+  </ng-select>
+  <div class="fhi-multiselect__selected">
+    <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
+            *ngFor="let selected of selectedItems" (click)="unselect(selected)">
+      {{ getSelectedName(selected) }}
+      <i class="icon-xmark"></i>
+    </button>
+    <button type="button" class="btn fhi-btn-flat"
+            *ngIf="selectedItems.length > 1" (click)="unselectAll()">
+      Fjern valgte
+    </button>
+  </div>
+</div>

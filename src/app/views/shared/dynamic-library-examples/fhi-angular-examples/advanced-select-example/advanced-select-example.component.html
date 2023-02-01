@@ -1,52 +1,23 @@
-<div class="alert alert-warning">
-  <i class="icon-bell-regular"></i>
-  <p>
-    <strong>OBS!</strong><br>
-    Denne komponenten er ikke klar for bruk. En npm-pakke for FHI Angular Components vil bli klar om ikke lenge.
-  </p>
-</div>
-
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectAutosuggest">
-  <div class="fhi-advanced-select fhi-advanced-select--autosuggest">
-    <label>Biler</label>
-    <p>Velg/søk etter bilmerke</p>
-    <!-- <ng-select placeholder="Search for cars" -->
-    <ng-select [editableSearchTerm]="true"
-               [(ngModel)]="selectedCar">
-      <ng-option *ngFor="let car of cars" [value]="car.id">{{ car.name }}</ng-option>
-    </ng-select>
-  </div>
+  <fhi-autosuggest
+    description="Velg/søk etter bilmerke"
+    [items]="cars"
+    label="Biler"
+    labelForId="biler-1"
+    notFoundText="Ingen treff"
+    placeholder="Søk"
+    [(selectedItem)]="selectedCar">
+  </fhi-autosuggest>
 </ng-container>
 
 <ng-container *ngIf="itemId === itemIds.AdvancedSelectMultiselect">
-  <div class="fhi-advanced-select fhi-advanced-select--multiselect">
-    <label>Navn</label>
-    <p>Velg/søk etter navn</p>
-    <!-- <ng-select placeholder="Search for names" -->
-    <ng-select [items]="people"
-               [multiple]="true"
-               bindLabel="name"
-               [closeOnSelect]="false"
-               bindValue="id"
-               [(ngModel)]="selectedPeople">
-      <ng-template ng-label-tmp let-item="item"></ng-template>
-      <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="item-{{ index }}" id="item-{{ index }}" [ngModel]="item$.selected">
-          {{ item.name }}
-        </div>
-      </ng-template>
-    </ng-select>
-    <div class="fhi-advanced-select__selected">
-      <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
-              *ngFor="let selected of selectedPeople" (click)="unselect(selected)">
-        {{ getSelectedName(selected) }}
-        <i class="icon-xmark"></i>
-      </button>
-      <button type="button" class="btn fhi-btn-flat"
-              *ngIf="selectedPeople.length > 1" (click)="unselectAll()">
-        Fjern valgte
-      </button>
-    </div>
-  </div>
+  <fhi-multiselect
+    description="Velg/søk etter navn"
+    [items]="people"
+    label="Navn"
+    labelForId="navn-1"
+    notFoundText="Ingen treff"
+    placeholder="Søk"
+    [(selectedItems)]="selectedPeople">
+  </fhi-multiselect>
 </ng-container>

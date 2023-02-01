@@ -22,9 +22,9 @@ export class AdvancedSelectExampleDataService {
   getPeople(term: string = null): Observable<Person[]> {
     let items = this.getMockPeople();
     if (term) {
-      items = items.filter(x => x.name.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+      items = items.filter(item => item.name.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
     }
-    return of(items).pipe(delay(500));
+    return of(items);
   }
 
   private getMockPeople() {

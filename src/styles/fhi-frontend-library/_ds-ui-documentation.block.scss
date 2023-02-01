@@ -5,7 +5,7 @@
         margin-bottom: $fhi-space-3;
     }
     &__info {
-        border: 1px solid $fhi-blue-light-1;
+        border: 1px solid $fhi-blue-grey-5;
         border-radius: 4px;
         padding: $fhi-space-3;
         margin-bottom: $fhi-space-3;
@@ -28,10 +28,6 @@
         margin-bottom: $fhi-space-3;
         padding: $fhi-space-5 ($fhi-px * 15);
 
-        pre[class*="language-"] {
-            background-color: $fhi-white;
-            margin: 0;
-        }
         :not(pre) > code {
             background-color: $fhi-bg-color-4;
             border-radius: $fhi-px * 3;
@@ -40,41 +36,50 @@
             padding: ($fhi-px * 2) $fhi-space-2;
         }
     }
+    &__item--has-full-screen-button {
+        padding-top: $fhi-px * 75;
+    }
+    &__code {
+        padding-left: $fhi-space-1;
+
+        code[class*="language-"] {
+            font-size: 11px;
+        }
+    }
     &__markdown {
         padding: $fhi-space-1 $fhi-space-2;
     }
-
-
-
-    // TODO: one generic button class
-
-    &__copy-btn-wrapper,
-    &__preview-options {
-        background-color: $fhi-grey-light-1;
+    &__btn-wrapper {
         border-left: 1px solid $fhi-grey-light-2;
         border-bottom: 1px solid $fhi-grey-light-2;
         border-bottom-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
         min-width: $fhi-px * 45;
+
         p {
             font-size: $fhi-px * 12;
         }
     }
-    &__copy-btn,
-    &__preview-trigger {
+    &__btn-wrapper--full-screen {
+        background-color: $fhi-grey-light-1;
+    }
+    &__btn {
         border: 0;
         padding: 0 $fhi-space-2;
+
         &:hover {
             background-color: transparent;
         }
+
         small {
             font-family: $fhi-font-family-sans-serif-regular;
             font-size: 12px;
         }
     }
-    &__copy-btn {
+    &__btn--copy {
         padding: 0 $fhi-px * 13.75;
     }
+
 }
 
 @include media-breakpoint-up(xxs) {
@@ -109,9 +114,8 @@
         }
         &__item {
             padding: $fhi-space-5;
-
         }
-        &__item--has-preview-buttons {
+        &__item--has-full-screen-button {
             padding-top: $fhi-px * 75;
         }
     }

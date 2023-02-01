@@ -1,0 +1,8 @@
+<div>
+    <div class="form-check form-switch mb-2">
+        <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault" (change)="chkIsOn = !chkIsOn">
+        <label class="form-check-label" for="flexSwitchCheckDefault">
+            Skru <span [innerHTML]="chkIsOn ? 'av' : 'på'"></span> denne bryteren
+        </label>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+//    Disclaimer!
+//
+//    We need to make some changes to https://github.com/folkehelseinstituttet/Fhi.Frontend.Style
+//    (See https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/234) before all
+//    todo's in this file can be removed. The Designsystem team is woring hard to get this
+//    done as soon as possible.
+//
+
+.fhi-ng-select-wrapper {
+
+    // TODO: should be part of default form style
+    label {
+        font-weight: 600;
+    }
+
+    p {
+        color: $fhi-grey-3; // TODO: need $fhi-[skjemahjelpetekst?]-color in core.variables
+        font-size: $fhi-font-size-2;
+        margin: 0;
+    }
+    // /form style
+
+
+    .ng-select {
+        .ng-select-container {
+            display: block;
+            overflow: unset;
+
+            .ng-value-container {
+                height: $fhi-px * 48;
+
+                .ng-input > input,
+                .ng-input > input:focus {
+                    @extend .form-control;
+                    background: none transparent;
+                    box-sizing: border-box;
+                }
+
+                .ng-input[aria-expanded="true"] > input {
+                    border-radius: calc(#{$fhi-input-height-xs} / 2);
+                }
+
+                .ng-placeholder {
+                    color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
+                }
+            }
+        }
+
+        .ng-clear-wrapper {
+            display: none;
+        }
+
+        .ng-arrow-wrapper {
+            bottom: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 2;
+
+            .ng-arrow {
+                @extend .icon-chevron-down;
+                background-position: center center;
+                background-repeat: no-repeat;
+                height: $fhi-px * 48;
+                width: $fhi-px * 40;
+            }
+        }
+    }
+
+    .ng-select-opened {
+        .ng-arrow-wrapper {
+            .ng-arrow {
+                transform: rotate(-180deg);
+            }
+        }
+    }
+
+    .ng-dropdown-panel {
+        background-color: $fhi-white;
+        border: 1px solid $fhi-grey-3;
+        border-radius: $fhi-px * 4; // TODO: lage core.variables for standard border radius
+        box-shadow: 0 3px 6px rgba($fhi-grey-4, .16); // TODO: lage core.variables for de fire tilatte drop-shadows
+        margin: $fhi-space-2 0 $fhi-space-2;
+
+        &.ng-select-top {
+            bottom: 100%;
+        }
+
+        &.ng-select-bottom {
+            top: 100%;
+        }
+
+        .ng-dropdown-panel-items {
+            max-height: $fhi-px * 480;
+
+            .ng-option {
+                &.ng-option-marked,
+                &:hover {
+                    background-color: $fhi-hover-color;
+                }
+            }
+        }
+    }
+}
+
+.fhi-ng-select-has-connection-indicator {
+    .ng-select-container {
+        &::before {
+            content: "\2013";
+            left: ($fhi-space-3 * -1);
+            line-height: 0;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, ($fhi-px * -2));
+        }
+    }
+}
+
+
+@include media-breakpoint-up(lg) {
+    .fhi-ng-select-wrapper {
+        .ng-select {
+            .ng-select-container {
+                .ng-value-container {
+                    height: $fhi-px * 40;
+
+                    .ng-input[aria-expanded="true"] > input {
+                        border-radius: calc(#{$fhi-input-height-lg} / 2);
+                    }
+                }
+
+                .ng-arrow-wrapper {
+                    .ng-arrow {
+                        height: $fhi-px * 40;
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -9,7 +9,7 @@ export const GlobalHeaderWithMenu: LibraryItem[] = [{
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml(),
-  hasPreviewButton: true
+  fullScreenEnabled: true
 }];
 
 
@@ -17,7 +17,7 @@ export const GlobalHeaderWithMenu: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `<div class="position-relative">` + getCodeHtml() + `</div>`;
+  return ``;
 }
 
 /*
@@ -40,7 +40,7 @@ function getCodeHtml(): string | null {
       </div>
     </div>
   </div>
-  
+
   <div class="container fhi-header__main-menu-container">
     <nav class="fhi-main-menu" [ngClass]="{'fhi-main-menu--open': mainMenuIsOpen}">
       <div class="container fhi-main-menu__container">

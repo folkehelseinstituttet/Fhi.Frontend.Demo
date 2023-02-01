@@ -1,5 +1,12 @@
+$ds-modal-top-offset: 47px;
+
 .ds-modal {
     background-color: $fhi-grey-1;
+
+    .modal-header {
+        background-color: silver;
+        z-index: 1;
+    }
 
     .modal-content {
         background-color: transparent;
@@ -52,5 +59,31 @@
         border-top-left-radius: .25rem;
         border-top-right-radius: .25rem;
         padding: 0;
+
+        > div {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+    }
+
+    .fhi-backdrop-responsive,
+    .fhi-pageheader__special-menu {
+        top: $ds-modal-top-offset !important;
+    }
+
+    app-prototype-pageheader {
+        display: block;
+        height: calc(100vh - $ds-modal-top-offset);
+        overflow-y: auto;
+    }
+
+    .ds-pageheader-component {
+        position: fixed;
+        top: $ds-modal-top-offset;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
     }
 }

@@ -9,7 +9,9 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
   components: 'Komponenter',
-  modules: 'Moduler'
+  modules: 'Moduler',
+  layoutAndPageTemplates: 'Layout og sidemaler',
+  prototypes: 'Eksempler på bruk',
 };
 
 @Injectable({
@@ -34,6 +36,12 @@ export class LibraryMenuService {
     }, {
       name: TopLevelMenuItemNames.modules,
       link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
+    }, {
+      name: TopLevelMenuItemNames.layoutAndPageTemplates,
+      link: `/${currentSegmentPath0}/${SegmentPaths.layoutAndPageTemplates}`
+    }, {
+      name: TopLevelMenuItemNames.prototypes,
+      link: `/${currentSegmentPath0}/${SegmentPaths.prototypes}`
     }];
     return this.topLevelMenuItems;
   }
@@ -64,12 +72,18 @@ export class LibraryMenuService {
 
       case TopLevelMenuItemNames.modules:
         return this.getModulesMenu();
+
+      case TopLevelMenuItemNames.layoutAndPageTemplates:
+        return this.getLayoutAndPageTemplatesMenu();
+
+      case TopLevelMenuItemNames.prototypes:
+        return this.getPrototypesMenu();
     }
   }
 
   private getCurrentTopLevelMenuItem(): MenuItem {
     const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
-      return item.link.split('/')[2] === this.urlService.getSegmentPath(1)
+      return item.link.split('/')[2] === this.urlService.getSegmentPath(1);
     });
     if (topLevelMenuItem !== undefined) {
       return topLevelMenuItem;
@@ -107,8 +121,14 @@ export class LibraryMenuService {
       name: 'Breadcrumb',
       link: LibraryItemSegmentPaths.breadcrumb
     }, {
+      name: 'Button group',
+      link: LibraryItemSegmentPaths.buttongroup
+    }, {
       name: 'Buttons',
       link: LibraryItemSegmentPaths.buttons
+    }, {
+      name: 'Datepicker',
+      link: LibraryItemSegmentPaths.datepicker
     }, {
       name: 'Forms',
       link: LibraryItemSegmentPaths.forms
@@ -124,6 +144,9 @@ export class LibraryMenuService {
     }, {
       name: 'Search',
       link: LibraryItemSegmentPaths.search
+    }, {
+      name: 'Spinners',
+      link: LibraryItemSegmentPaths.spinners
     }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.table
@@ -144,8 +167,40 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
+      name: 'Date and time selection',
+      link: LibraryItemSegmentPaths.dateandtimeselection
+    }, {
+      name: 'Drawer',
+      link: LibraryItemSegmentPaths.drawer
+    }, {
+      name: 'Global footer',
+      link: LibraryItemSegmentPaths.globalfooter
+    }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
+    }, {
+      name: 'Treeview builder',
+      link: LibraryItemSegmentPaths.treeview
+    }];
+  }
+
+  private getLayoutAndPageTemplatesMenu(): MenuItem[] {
+    return [{
+      name: 'Layout',
+      link: LibraryItemSegmentPaths.layoutandpagetemplates
+    }];
+  }
+
+  private getPrototypesMenu(): MenuItem[] {
+    return [{
+      name: 'Global Header',
+      link: LibraryItemSegmentPaths.prototypepageheader
+    }, {
+      name: 'Forms',
+      link: LibraryItemSegmentPaths.prototypeforms
+    }, {
+      name: 'Tables',
+      link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
     }];
   }
 

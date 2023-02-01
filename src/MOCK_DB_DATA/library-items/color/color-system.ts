@@ -45,24 +45,18 @@ ${colorHtml('#222222', 'fhi-grey-4')}
 ${colorHtml('#333841', 'fhi-charcoal-1')}
 
 <p class="text-muted small mt-2 mb-0">Blågrå</p>
-${colorHtml('#edf4f7', 'fhi-blue-grey-1')}
-${colorHtml('#dbe6ec', 'fhi-blue-grey-2')}
-${colorHtml('#cbd9df', 'fhi-blue-grey-3')}
-${colorHtml('#afc0c7', 'fhi-blue-grey-4')}
-${colorHtml('#879ba5', 'fhi-blue-grey-5')}
-${colorHtml('#435c68', 'fhi-blue-grey-6')}
-
-<p class="text-muted small mt-2 mb-0">Lyseblå</p>
-${colorHtml('#65adc3', 'fhi-blue-light-1')}
-${colorHtml('#057e9a', 'fhi-blue-light-2')}
+${colorHtml('#f5f8fa', 'fhi-blue-grey-1')}
+${colorHtml('#edf4f7', 'fhi-blue-grey-2')}
+${colorHtml('#dbe6ec', 'fhi-blue-grey-3')}
+${colorHtml('#cbd9df', 'fhi-blue-grey-4')}
+${colorHtml('#afc0c7', 'fhi-blue-grey-5')}
+${colorHtml('#879ba5', 'fhi-blue-grey-6')}
+${colorHtml('#435c68', 'fhi-blue-grey-7')}
 
 <p class="text-muted small mt-2 mb-0">Blå</p>
-${colorHtml('#386e84', 'fhi-blue-1')}
-
-<p class="text-muted small mt-2 mb-0">Mørkeblå</p>
-${colorHtml('#393c61', 'fhi-blue-dark-1')}
-${colorHtml('#2e3152', 'fhi-blue-dark-2')}
-${colorHtml('#181B40', 'fhi-blue-dark-3')}
+${colorHtml('#0875b4', 'fhi-blue-1')}
+${colorHtml('#0e4485', 'fhi-blue-2')}
+${colorHtml('#393c61', 'fhi-blue-3')}
 
 <p class="text-muted small mt-2 mb-0">Grønn</p>
 ${colorHtml('#cceee4', 'fhi-green-1')}
@@ -76,20 +70,16 @@ ${colorHtml('#feeed9', 'fhi-orange-1')}
 ${colorHtml('#f7b665', 'fhi-orange-2')}
 
 <p class="text-muted small mt-2 mb-0">Rød</p>
-${colorHtml('#fd7065', 'fhi-red-1')}
+${colorHtml('#f86559', 'fhi-red-1')}
 ${colorHtml('#d14641', 'fhi-red-2')}
-${colorHtml('#9f2b26', 'fhi-red-3')}
 
 <p class="text-muted small mt-2 mb-0">Mørkerosa</p>
-${colorHtml('#fba39b', 'fhi-pink-dark-1')}
-${colorHtml('#e22867', 'fhi-pink-dark-2')}
-${colorHtml('#b10640', 'fhi-pink-dark-3')}
+${colorHtml('#de2968', 'fhi-pink-dark-1')}
 
 <p class="text-muted small mt-2 mb-0">Lyserosa</p>
-${colorHtml('#fdf4f2', 'fhi-pink-light-1')}
-${colorHtml('#faedec', 'fhi-pink-light-2')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-3')}
-${colorHtml('#fad1cd', 'fhi-pink-light-4')}`;
+${colorHtml('#faedec', 'fhi-pink-light-1')}
+${colorHtml('#fad1cd', 'fhi-pink-light-2')}
+${colorHtml('#fba39b', 'fhi-pink-light-3')}`;
 }
 
 /*

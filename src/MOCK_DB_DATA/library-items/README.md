@@ -2,7 +2,7 @@
 
 ## File structure
 
-If more than one variation of component i needed, the file structure will be:
+If more than one variation of component is needed, the file structure will be:
 
 ```bash
 library-items/
@@ -25,8 +25,9 @@ library-items/
 5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep postfix `Ids`)
 6. Add a new import and add imported object to `libraryItemIds` in `../library-item-ids.ts`
 7. Add a new import and constant in `../library-item-segment-paths.ts`
-8. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in the root component in one, or more, of the lazy loaded views, eg. `src/app/views/developer/developer.component.ts`
+8. Add `YourNewItemsData` to `AllData` in `../library-items.data.ts`
 9. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
+10. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in `src/app/shared/services/library-menu.service.ts`
 
 ### How to create a new library item in an exsisting mock-db data file
 

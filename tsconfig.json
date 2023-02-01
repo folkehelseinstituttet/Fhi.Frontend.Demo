@@ -4,7 +4,10 @@
   "compilerOptions": {
     "paths": {
       "@folkehelseinstituttet/angular-components": [
-        "dist/fhi-frontend-angular-components"
+        "dist/fhi-angular-components"
+      ],
+      "@folkehelseinstituttet/angular-highcharts": [
+        "dist/fhi-angular-highcharts"
       ]
     },
     "baseUrl": "./",

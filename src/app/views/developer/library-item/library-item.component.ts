@@ -7,8 +7,7 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 
 const MenuItemName = {
   example: 'Eksempel',
-  documentation: 'Dokumentasjon',
-  code: 'Kode'
+  documentation: 'Dokumentasjon'
 };
 
 @Component({
@@ -17,7 +16,7 @@ const MenuItemName = {
 })
 export class LibraryItemComponent implements OnInit {
 
-  @Input() libraryItemIds: any;
+  @Input() isDebugging: boolean;
   @Input() libraryItem: LibraryItem;
 
   id: string;
@@ -26,7 +25,7 @@ export class LibraryItemComponent implements OnInit {
   exampleHtml: string;
   documentationHtml: string;
   codeHtml: string;
-  hasPreviewButton: boolean;
+  fullScreenEnabled: boolean;
 
   itemTypeHtml = LibraryItemType.html;
   activeMenuItemByDefault = 0;
@@ -57,7 +56,7 @@ export class LibraryItemComponent implements OnInit {
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);
     this.documentationHtml = item.documentationHtml;
-    this.hasPreviewButton = item.hasPreviewButton;
+    this.fullScreenEnabled = item.fullScreenEnabled;
   }
 
   private getCodeHtml(item: LibraryItem): string {
@@ -81,12 +80,6 @@ export class LibraryItemComponent implements OnInit {
     if (this.documentationHtml !== null) {
       menuItems[n++] = {
         name: MenuItemName.documentation,
-        link: null
-      };
-    }
-    if (this.codeHtml !== null) {
-      menuItems[n++] = {
-        name: MenuItemName.code,
         link: null
       };
     }

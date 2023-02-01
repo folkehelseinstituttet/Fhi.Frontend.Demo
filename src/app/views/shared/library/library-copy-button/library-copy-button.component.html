@@ -1,6 +1,6 @@
 <div class="position-relative" style="z-index: 1">
-  <div class="ds-ui-documentation__copy-btn-wrapper position-absolute d-flex end-0">
-    <button class="btn ds-ui-documentation__copy-btn"
+  <div class="ds-ui-documentation__btn-wrapper position-absolute d-flex end-0">
+    <button class="btn ds-ui-documentation__btn"
             ngxClipboard [cbContent]="contentToCopy" (cbOnSuccess)="copied($event)"
             (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
             [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual">
