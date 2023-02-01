@@ -3,7 +3,7 @@
 > Feb 1, 2023
 
 * :bug: **Bugfix** Add correct icons in old version log
-* :bug: **Bugfix** INFO: Current version is bumped to 1.1.0 since first version should have been 0.1.0
+* :bug: **Bugfix** INFO: Current version is bumped to 0.1.1 since first version should have been 0.1.0
 
 ## 0.0.1
 
