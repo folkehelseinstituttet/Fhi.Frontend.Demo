@@ -1,3 +1,3 @@
 export const PrototypeFormsIds = {
-  PrototypeForms: undefined,
+  LabelsOnLeft: undefined,
 }

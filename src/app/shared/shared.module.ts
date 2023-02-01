@@ -10,6 +10,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
+import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
 import { TreeModule } from '@circlon/angular-tree-component';
 import { MatTreeModule } from '@angular/material/tree';
 
@@ -30,6 +31,7 @@ import { SafePipe } from './pipes/safe.pipe';
     FilterPipeModule,
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
+    FhiAngularHighchartsModule,
     TreeModule,
     MatTreeModule
   ],
@@ -45,6 +47,7 @@ import { SafePipe } from './pipes/safe.pipe';
     FilterPipeModule,
     MarkdownModule,
     FhiAngularComponentsModule,
+    FhiAngularHighchartsModule,
     TreeModule,
     MatTreeModule
   ]

@@ -1,100 +1,124 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <label class="form-label" for="id-1">Tekst 1</label>
-      <input class="form-control" type="text" id="id-1" />
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label class="form-label" for="id-2">Tekst 2</label>
-      <input class="form-control" type="text" id="id-2" />
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
-      <input
-        type="text"
-        id="FormInputValidation"
-        class="form-control is-invalid"
-        placeholder=""/>
-      <div class="invalid-feedback">En forståelig feilmelding.</div>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="exampleFormControlTextarea1" class="form-label">Tekstfelt med flere linjer</label>
-      <textarea
-        class="form-control"
-        id="exampleFormControlTextarea1"
-        rows="3"></textarea>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <fieldset>
-        <legend>Her kan du gjøre 0 - 3 valg</legend>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB1">
-          <label class="form-check-label" for="customCheckB1">
-            Valg nr. 1
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB2">
-          <label class="form-check-label" for="customCheckB2">
-            Valg nr. 2
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="checkbox" value="" id="customCheckB3">
-          <label class="form-check-label" for="customCheckB3">
-            Valg nr. 3
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <fieldset>
-        <legend>Her kan du gjøre 1 valg</legend>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB1" checked>
-          <label class="form-check-label" for="radioInputB1">
-            Valg nr. 1
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB2">
-          <label class="form-check-label" for="radioInputB2">
-            Valg nr. 2
-          </label>
-        </div>
-
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioInputB3">
-          <label class="form-check-label" for="radioInputB3">
-            Valg nr. 3
-          </label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="col-md-6 mb-4">
-      <label for="FormSelect" class="form-label">Ledetekst for select</label>
-      <select class="form-select" id="FormSelect">
-        <option>Aktiver for å gjøre et valg</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-      </select>
-    </div>
-
-    <div>
-      <button type="button" class="btn fhi-btn-primary">
-        Send inn
-      </button>
-    </div>
+<div class="alert alert-warning mb-7">
+  <i class="icon-bell-regular"></i>
+  <div>
+    <h2 class="h5">Disclaimer!</h2>
+    <p>Dette viser hvordan man kan sette opp et skjema med venstrestilte ledetekster. Inspiser koden og benytt denne markup'en, og stilsettingen vil bli korrekt.</p>
+    <p class="mb-0">FHI Designsystem vil på sikt levere Angular-komponent(er) for å sette opp skjema.</p>
   </div>
 </div>
+
+<h2 class="mb-6">Opprett ny uttrekksdefinisjon</h2>
+
+<form (keydown.enter)="$event.preventDefault()">
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label class="form-label" for="input-1">Uttrekksnavn</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <input class="form-control" id="input-1" type="text" aria-describedby="form-text-1">
+      <p class="form-text" id="form-text-1">Påkrevd</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="input-2" class="form-label">Vedtaksnummer</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <input type="text" id="input-2" class="form-control" aria-describedby="form-text-2">
+      <p class="form-text" id="form-text-2">Mønster: XX-XXXXX-XX</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="input-3" class="form-label">HDS nummer</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <input type="text" id="input-3" class="form-control">
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="select-4" class="form-label">Hva skal utleveres?</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <select class="form-select" id="select-4" aria-describedby="form-text-4">
+        <option value="0">Utleveres ikke (internt bruk)</option>
+        <option value="1">2. valg for utlevering</option>
+        <option value="2">3. valg for utlevering</option>
+      </select>
+      <p class="form-text" id="form-text-4">Påkrevd felt</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="select-5" class="form-label">Formål med uttrekk</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <select class="form-select" id="select-5" aria-describedby="form-text-5">
+        <option value="0">Etter søknad/henvendelse</option>
+        <option value="1">2. valg for formål med uttrekk</option>
+        <option value="2">3. valg for formål med uttrekk</option>
+      </select>
+      <p class="form-text" id="form-text-5">Påkrevd felt</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="select-6" class="form-label">Detaljer formål</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <select class="form-select" id="select-6" aria-describedby="form-text-6">
+        <option value="0">Statistikk LMR (hrl. § 19)</option>
+        <option value="1">Statistikk sammenstilling, annen atakilde tilrettelegger (hrl. §§ 19 og 19c)</option>
+        <option value="2">Statistikk sammenstilling, LMR tilrettelegger (hrl. §§ 19 og 19c)</option>
+        <option value="3">Individdata LMR (hrl. § 19a)</option>
+        <option value="4">Individdata sammenstilling, LMR definerer utvalg (hrl. §§ 19a og 19c)</option>
+        <option value="5">For forespørsel samtykke deltagelse studie (hrl. § 19a)</option>
+        <option value="6">Individdata sammenstilling, annen datakilde definerer utvalg (hrl. §§ 19a og 19c)</option>
+      </select>
+      <p class="form-text" id="form-text-6">Påkrevd felt</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="input-7" class="form-label">Prosjektleder</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <input type="text" id="input-7" class="form-control">
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="input-8" class="form-label">Institusjon</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <input type="text" id="input-8" class="form-control">
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label">
+      <label for="input-9" class="form-label">Merknad til uttrekket</label>
+    </div>
+    <div class="fhi-input-group__col-form-control">
+      <textarea class="form-control" id="input-9" rows="3" aria-describedby="form-text-9"></textarea>
+      <p class="form-text" id="form-text-9">Hva endret du?</p>
+    </div>
+  </div>
+
+  <div class="fhi-input-group">
+    <div class="fhi-input-group__col-label"></div>
+
+    <div class="fhi-input-group__col2">
+      <button type="submit" class="btn fhi-btn-primary me-2">Send inn</button>
+      <button type="reset" class="btn fhi-btn-secondary">Avbryt</button>
+    </div>
+  </div>
+</form>

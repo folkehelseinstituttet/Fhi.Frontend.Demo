@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const PrototypeForms: LibraryItem[] = [{
-  id: LibraryItemIds.PrototypeForms,
-  title: 'Form example',
+export const LabelsOnLeft: LibraryItem[] = [{
+  id: LibraryItemIds.LabelsOnLeft,
+  title: 'Skjema med venstrestilt ledetekst',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -31,5 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
