@@ -1,15 +1,15 @@
-name: Automatic publish of @folkehelseinstituttet/angular-components to NPM
+name: Automatic publish of @folkehelseinstituttet/angular-highcharts to NPM
 
 on:
   push:
     branches:
       - 'dev'
     paths:
-      - 'projects/fhi-angular-components/package.json'
+      - 'projects/fhi-angular-highcharts/package.json'
 
 jobs:
   publish:
-    if: "contains(github.event.head_commit.message, 'Release/fhi-angular-components/')"
+    if: "contains(github.event.head_commit.message, 'Release/fhi-angular-highcharts/')"
     name: Build and publish to NPM
     runs-on: ubuntu-latest
     steps:
@@ -20,10 +20,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: Build fhi-angular-components
+      - name: Build fhi-angular-highcharts
         run: |
          npm install
-         ng build @folkehelseinstituttet/angular-components
+         ng build @folkehelseinstituttet/angular-highcharts
 
       - name: Check new npm version and publish
         id: publish
@@ -31,7 +31,7 @@ jobs:
         with:
           access: "public"
           check-version: true
-          package: dist/fhi-angular-components/package.json
+          package: dist/fhi-angular-highcharts/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Post publish status
