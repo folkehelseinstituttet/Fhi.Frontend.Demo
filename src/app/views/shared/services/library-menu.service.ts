@@ -184,8 +184,8 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [{
-      name: 'Global header',
-      link: LibraryItemSegmentPaths.prototypepageheader
+      name: 'Forms',
+      link: LibraryItemSegmentPaths.prototypeforms
     }];
   }
 
