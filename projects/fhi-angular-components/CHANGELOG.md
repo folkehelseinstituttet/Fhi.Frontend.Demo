@@ -1,9 +1,16 @@
-# 0.0.1
+# Unreleased
+
+> Feb 1, 2023
+
+* :bug: **Bugfix** Add correct icons in old version log
+* :bug: **Bugfix** INFO: Current version is bumped to 0.1.1 since first version should have been 0.1.0
+
+## 0.0.1
 
 > Des 2, 2022
 
-* :tada: **New** Add `FhiAutosuggestModule`
-* :tada: **New** Add `FhiMultiselectModule`
+* :gift: **New** Add `FhiAutosuggestModule`
+* :gift: **New** Add `FhiMultiselectModule`
 * :gift: **New** Create `@folkehelseinstituttet/angular-components`
 
 ## Examples
