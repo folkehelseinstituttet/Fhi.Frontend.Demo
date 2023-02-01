@@ -32,13 +32,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<div class="alert alert-warning">
-  <i class="icon-info-circle"></i>
-  <div>
-    <h2 class="h5">Disclaimer!</strong></h2>
-    <p>Dette er et POC på et navigasjonsystem designet for FHI Statistikk.</p>
-    <p class="mb-0">Fra designsystemet benyttes her <a href="/developer/modules/GlobalHeader">Global header</a> og Menu button fra <a href="/developer/components/Buttons">knappekomponenter</a></p>
-  </div>
-</div>`;
+  return null;
 }
