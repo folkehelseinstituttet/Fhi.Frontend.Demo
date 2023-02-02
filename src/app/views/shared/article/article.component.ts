@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
-import { SegmentPaths } from 'src/app/segment-paths';
+import { UrlSegment } from 'src/app/url-segment.constants';
 
 @Component({
   selector: 'app-article',
@@ -30,37 +30,37 @@ export class ArticleComponent implements OnInit {
 
   private findTopLevel() {
     switch (this.urlService.getSegmentPath(0)) {
-      case SegmentPaths.developer:
+      case UrlSegment.developer:
         this.findSecondLevelDeveloper();
         break;
 
-      case SegmentPaths.designer:
+      case UrlSegment.designer:
         this.findSecondLevelDesigner();
     }
   }
   private findSecondLevelDeveloper() {
     switch (this.urlService.getSegmentPath(1)) {
-      case SegmentPaths.visualIdentity:
+      case UrlSegment.visualIdentity:
         this.title = 'Visuell identitet i FHI';
         this.articleHtml = this.getArticleHtmlForDeveloperVisualIdentity();
         break;
 
-      case SegmentPaths.components:
+      case UrlSegment.components:
         this.title = 'Komponenter';
         this.articleHtml = this.getArticleHtmlForDeveloperComponents();
         break;
 
-      case SegmentPaths.modules:
+      case UrlSegment.modules:
         this.title = 'Moduler';
         this.articleHtml = this.getArticleHtmlForDeveloperModules();
         break;
 
-      case SegmentPaths.layoutAndPageTemplates:
+      case UrlSegment.layoutAndPageTemplates:
         this.title = 'Layout og sidemaler';
         this.articleHtml = this.getArticleHtmlForDeveloperLayoutAndPageTemplates();
         break;
 
-      case SegmentPaths.prototypes:
+      case UrlSegment.prototypes:
         this.title = 'Eksempler på bruk';
         this.articleHtml = this.getArticleHtmlForDeveloperPrototypes();
         break;
