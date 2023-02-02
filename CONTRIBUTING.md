@@ -141,7 +141,10 @@ _A library project is an Angular concept for organising code that are going to b
 
 ##### Release branches for library projects
 
-_NB! Only release a new version of a library if dependencies in `@folkehelseinstituttet/style` is already released._
+>**NB!** Only release a new version of a library if:
+>
+>- Dependencies in `@folkehelseinstituttet/style` is already released.
+>- The dependency matrix is up to date.
 
 1. Create a new branch from `dev`.
 2. Name it `Release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
@@ -158,7 +161,9 @@ _NB! Only release a new version of a library if dependencies in `@folkehelseinst
 
 There is no need for a release branch, since the branch `dev` represents the "truth". Therefore we do not create a pull request either, we just:
 
-1. Make sure `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style` and all `@folkehelseinstituttet/[project]`'s in branch `dev` (if not create a feature branch and fix it).
+1. Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style` and all `@folkehelseinstituttet/[project]`'s in branch `dev`
+   - If not: create a feature branch named `enhancement/update-dependencies`, and fix it.
+   - Create PR, and when merged to `dev`.
 2. Merge `dev` into `main`
 3. Push to origin (which will trigger the release)
 
