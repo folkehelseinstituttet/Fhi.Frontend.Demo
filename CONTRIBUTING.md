@@ -158,7 +158,7 @@ _NB! Only release a new version of a library if dependencies in `@folkehelseinst
 
 There is no need for a release branch, since the branch `dev` represents the "truth". Therefore we do not create a pull request either, we just:
 
-1. Make sure `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style` and `@folkehelseinstituttet/angular-components` in branch `dev` (if not create a feature branch and fix it).
+1. Make sure `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style` and all `@folkehelseinstituttet/[project]`'s in branch `dev` (if not create a feature branch and fix it).
 2. Merge `dev` into `main`
 3. Push to origin (which will trigger the release)
 
