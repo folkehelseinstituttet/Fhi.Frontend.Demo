@@ -127,6 +127,9 @@ export class LibraryMenuService {
       name: 'Buttons',
       link: LibraryItemSegmentPaths.buttons
     }, {
+      name: 'Datepicker',
+      link: LibraryItemSegmentPaths.datepicker
+    }, {
       name: 'Forms',
       link: LibraryItemSegmentPaths.forms
     }, {
@@ -164,14 +167,20 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
+      name: 'Date and time selection',
+      link: LibraryItemSegmentPaths.dateandtimeselection
+    }, {
+      name: 'Drawer',
+      link: LibraryItemSegmentPaths.drawer
+    }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
     }, {
-      name: 'Drawer',
-      link: LibraryItemSegmentPaths.drawer
+      name: 'Treeview builder',
+      link: LibraryItemSegmentPaths.treeview
     }];
   }
 
@@ -184,8 +193,14 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [{
+      name: 'Global Header',
+      link: LibraryItemSegmentPaths.prototypepageheader
+    }, {
       name: 'Forms',
       link: LibraryItemSegmentPaths.prototypeforms
+    }, {
+      name: 'Tables',
+      link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
     }];
   }
 
