@@ -1,0 +1,12 @@
+.highcharts-column-series.highcharts-legend-item {
+    .highcharts-point {
+        stroke-width: 1;
+        stroke: $fhi-white;
+    }
+}
+
+.highcharts-column-series {
+    rect.highcharts-point {
+        stroke: unset;
+    }
+}

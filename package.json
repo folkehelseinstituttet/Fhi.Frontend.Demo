@@ -37,6 +37,8 @@
     "@types/lodash-es": "~4.17.6",
     "angular-in-memory-web-api": "^0.14.0",
     "bootstrap": "^5.2.0",
+    "highcharts": "9.0.1",
+    "highcharts-angular": "2.10.0",
     "lodash-es": "~4.17.21",
     "marked": "^4.0.18",
     "ngx-clipboard": "~15.0.0",
