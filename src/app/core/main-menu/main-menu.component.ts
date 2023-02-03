@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import { SegmentPaths } from 'src/app/segment-paths';
+import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
@@ -19,10 +19,10 @@ export class MainMenuComponent {
 
   mainMenuItems: MenuItem[] = [{
     name: 'For utviklere',
-    link: `/${SegmentPaths.developer}`
+    link: `/${UrlSegment.developer}`
   }, {
     name: 'For designere',
-    link: `/${SegmentPaths.designer}`
+    link: `/${UrlSegment.designer}`
   }];
 
   mainMenuClose(): void {
