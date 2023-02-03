@@ -1,0 +1,12 @@
+// TODO: FHI variables should bo imported from @folkehelseinstituttet/style/scss/variables.scss (npm) in the future
+@import "~src/styles/fhi.variables";
+
+@import "./theme/variables";
+@import "~highcharts/css/highcharts";
+
+@import "./theme/shared";
+@import "./theme/bar-chart";
+@import "./theme/column-chart";
+@import "./theme/line-chart";
+@import "./theme/map";
+@import "./theme/table";
