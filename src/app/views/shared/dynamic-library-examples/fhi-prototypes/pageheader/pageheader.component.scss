@@ -14,8 +14,8 @@ $fhi-special-menu-animation-speed: .3s;
     &__section-title {
         border-bottom: $fhi-px * 2 solid transparent;
         display: inline-block;
-        font-family: $fhi-font-family-sans-serif-regular;
-        font-size: $fhi-font-size-3;
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        font-size: $fhi-core-font-size-3;
         letter-spacing: 0;
         line-height: 1.25;
         margin: 0;
@@ -55,7 +55,7 @@ $fhi-special-menu-animation-speed: .3s;
     }
 
     &__secondary-megamenu-trigger {
-        font-family: $fhi-font-family-sans-serif-regular;
+        font-family: $fhi-core-font-family-sans-serif-regular;
         border: 0;
         height: auto;
         padding: 0;
