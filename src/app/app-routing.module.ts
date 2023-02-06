@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SegmentPaths } from './segment-paths';
+import { UrlSegment } from './url-segment.constants';
 
-const defaultPath = `/${SegmentPaths.developer}/${SegmentPaths.components}`;
+const defaultPath = `/${UrlSegment.developer}/${UrlSegment.components}`;
 
 const routes: Routes = [{
   path: '',
   pathMatch: 'full',
   redirectTo: defaultPath
 }, {
-  path: SegmentPaths.developer,
+  path: UrlSegment.developer,
   loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)
 }, {
-  path: SegmentPaths.designer,
+  path: UrlSegment.designer,
   loadChildren: () => import('./views/designer/designer.module').then(m => m.DesignerModule)
 }, {
   path: '**',
