@@ -1,32 +1,32 @@
 markdown {
     h1, h2, h3, h4, h5, h6 {
-        font-family: $fhi-core-font-family-sans-serif-bold;
-        margin: 0 0 $fhi-core-space-1;
+        font-family: $fhi-font-family-sans-serif-bold;
+        margin: 0 0 $fhi-space-1;
     }
     h1, h2 {
-        border-bottom: 1px solid $fhi-core-grey-light-3;
-        padding-bottom: $fhi-core-space-1;
-        margin-bottom: $fhi-core-space-3;
+        border-bottom: 1px solid $fhi-grey-light-3;
+        padding-bottom: $fhi-space-1;
+        margin-bottom: $fhi-space-3;
     }
     h1 {
-        font-family: $fhi-core-font-family-sans-serif-medium;
-        font-size: $fhi-core-font-size-6;
+        font-family: $fhi-font-family-sans-serif-medium;
+        font-size: $fhi-font-size-6;
     }
     h2 {
-        font-size: $fhi-core-font-size-4;
-        margin-top: $fhi-core-space-4;
-        margin-bottom: $fhi-core-space-2;
+        font-size: $fhi-font-size-4;
+        margin-top: $fhi-space-4;
+        margin-bottom: $fhi-space-2;
     }
     h3 {
-        font-size: $fhi-core-font-size-3;
-        margin-top: $fhi-core-space-3;
+        font-size: $fhi-font-size-3;
+        margin-top: $fhi-space-3;
     }
     h4, h5, h6 {
-        font-size: $fhi-core-font-size-2;
-        margin-top: $fhi-core-space-2;
+        font-size: $fhi-font-size-2;
+        margin-top: $fhi-space-2;
     }
     hr {
-        border-color: $fhi-core-grey-light-3;
+        border-color: $fhi-grey-light-3;
     }
 }
 
@@ -39,15 +39,15 @@ code[class*="language-"],
 pre[class*="language-"] {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px;
-    min-height: $fhi-core-px * 44;// sic
+    min-height: $fhi-px * 44;// sic
     padding: 0;
     margin: 0;
 }
 
 code[class*="language-html"],
 pre[class*="language-html"] {
-    color: darken($fhi-core-grey-2, 18%);
-    margin-right: $fhi-core-space-7;
+    color: darken($fhi-grey-2, 18%);
+    margin-right: $fhi-space-7;
 
     .token.property,
     .token.tag,
@@ -56,7 +56,7 @@ pre[class*="language-html"] {
     .token.constant,
     .token.symbol,
     .token.deleted {
-        color: $fhi-core-blue-1;
+        color: $fhi-blue-1;
     }
     .token.selector,
     .token.attr-name,
@@ -65,16 +65,16 @@ pre[class*="language-html"] {
     .token.builtin,
     .token.url,
     .token.inserted {
-        color: adjust-hue(darken($fhi-core-pink-dark-1, 7), -40deg);
+        color: adjust-hue(darken($fhi-pink-dark-1, 7), -40deg);
     }
     .token.atrule,
     .token.attr-value,
     .token.keyword {
-        color: darken($fhi-core-red-1, 25%);
+        color: darken($fhi-red-1, 25%);
     }
     .token.entity,
     .token.punctuation {
-        color: darken($fhi-core-grey-3, 2%);
+        color: darken($fhi-grey-3, 2%);
     }
     .token.entity {
         background: $fhi-bg-color-3;
@@ -83,21 +83,21 @@ pre[class*="language-html"] {
     .token.prolog,
     .token.doctype,
     .token.cdata {
-        color: darken($fhi-core-grey-1, 38%);
+        color: darken($fhi-grey-1, 38%);
     }
 }
 
 code[class*="language-js"],
 pre[class*="language-js"] {
-    color: $fhi-core-blue-3; // default
+    color: $fhi-blue-3; // default
 
     // Alt som ikke fungerer helt settes til samme farge som "default"
     .token.class-name {
-        color: $fhi-core-blue-3;
+        color: $fhi-blue-3;
     }
     // Inline-kode
     .token.entity {
-        color: $fhi-core-grey-3;
+        color: $fhi-grey-3;
         background: $fhi-bg-color-3;
     }
     .token.property,
@@ -106,7 +106,7 @@ pre[class*="language-js"] {
     .token.constant,
     .token.symbol,
     .token.deleted {
-        color: $fhi-core-blue-1;
+        color: $fhi-blue-1;
     }
     .token.selector,
     .token.attr-name,
@@ -117,24 +117,24 @@ pre[class*="language-js"] {
     .token.url,
     .token.inserted,
     .token.keyword {
-        color: adjust-hue(darken($fhi-core-pink-dark-1, 7), -40deg);
+        color: adjust-hue(darken($fhi-pink-dark-1, 7), -40deg);
     }
     .token.comment,
     .token.prolog,
     .token.doctype,
     .token.cdata {
-        color: $fhi-core-grey-1;
+        color: $fhi-grey-1;
     }
     .token.punctuation {
-        color: $fhi-core-grey-3;
+        color: $fhi-grey-3;
     }
     .token.string {
-        color: $fhi-core-grey-2;
+        color: $fhi-grey-2;
     }
     .token.function {
-        color: $fhi-core-blue-grey-5;
+        color: $fhi-blue-grey-5;
     }
     .token.boolean {
-        color: lighten($fhi-core-green-2, 6%);
+        color: lighten($fhi-green-2, 6%);
     }
 }
