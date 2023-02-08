@@ -174,7 +174,7 @@ There is no need for a release branch, since the branch `dev` represents the "tr
 The project is using
 
 1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
-2. [BEM](./doc/BEM-in-a-nutshell.md), but only in the folder `style/blocks`
+2. [BEM](./doc/BEM-in-a-nutshell.md), but only in the folder `fhi/blocks`
 3. And some custom rules
 
 [SCSS example file](./doc/scss-example.md)
