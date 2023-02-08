@@ -14,8 +14,8 @@
     }
 
     p {
-        color: $fhi-core-grey-3; // TODO: need $fhi-[skjemahjelpetekst?]-color in core.variables
-        font-size: $fhi-core-font-size-2;
+        color: $fhi-grey-3; // TODO: need $fhi-[skjemahjelpetekst?]-color in core.variables
+        font-size: $fhi-font-size-2;
         margin: 0;
     }
     // /form style
@@ -27,7 +27,7 @@
             overflow: unset;
 
             .ng-value-container {
-                height: $fhi-core-px * 48;
+                height: $fhi-px * 48;
 
                 .ng-input > input,
                 .ng-input > input:focus {
@@ -41,7 +41,7 @@
                 }
 
                 .ng-placeholder {
-                    color:  $fhi-core-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
+                    color:  $fhi-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
                 }
             }
         }
@@ -61,8 +61,8 @@
                 @extend .icon-chevron-down;
                 background-position: center center;
                 background-repeat: no-repeat;
-                height: $fhi-core-px * 48;
-                width: $fhi-core-px * 40;
+                height: $fhi-px * 48;
+                width: $fhi-px * 40;
             }
         }
     }
@@ -76,11 +76,11 @@
     }
 
     .ng-dropdown-panel {
-        background-color: $fhi-core-white;
-        border: 1px solid $fhi-core-grey-3;
-        border-radius: $fhi-core-px * 4; // TODO: lage core.variables for standard border radius
-        box-shadow: 0 3px 6px rgba($fhi-core-grey-4, .16); // TODO: lage core.variables for de fire tilatte drop-shadows
-        margin: $fhi-core-space-2 0 $fhi-core-space-2;
+        background-color: $fhi-white;
+        border: 1px solid $fhi-grey-3;
+        border-radius: $fhi-px * 4; // TODO: lage core.variables for standard border radius
+        box-shadow: 0 3px 6px rgba($fhi-grey-4, .16); // TODO: lage core.variables for de fire tilatte drop-shadows
+        margin: $fhi-space-2 0 $fhi-space-2;
 
         &.ng-select-top {
             bottom: 100%;
@@ -91,12 +91,12 @@
         }
 
         .ng-dropdown-panel-items {
-            max-height: $fhi-core-px * 480;
+            max-height: $fhi-px * 480;
 
             .ng-option {
                 &.ng-option-marked,
                 &:hover {
-                    background-color: $fhi-core-pink-light-3;
+                    background-color: $fhi-pink-light-3;
                 }
             }
         }
@@ -107,11 +107,11 @@
     .ng-select-container {
         &::before {
             content: "\2013";
-            left: ($fhi-core-space-3 * -1);
+            left: ($fhi-space-3 * -1);
             line-height: 0;
             position: absolute;
             top: 50%;
-            transform: translate(-50%, ($fhi-core-px * -2));
+            transform: translate(-50%, ($fhi-px * -2));
         }
     }
 }
@@ -122,7 +122,7 @@
         .ng-select {
             .ng-select-container {
                 .ng-value-container {
-                    height: $fhi-core-px * 40;
+                    height: $fhi-px * 40;
 
                     .ng-input[aria-expanded="true"] > input {
                         border-radius: calc(#{$fhi-input-height-lg} / 2);
@@ -131,7 +131,7 @@
 
                 .ng-arrow-wrapper {
                     .ng-arrow {
-                        height: $fhi-core-px * 40;
+                        height: $fhi-px * 40;
                     }
                 }
             }
