@@ -10,6 +10,7 @@
     "build-libs": "npm run build-angular-components && npm run build-angular-highcharts",
     "build-angular-components": "ng build @folkehelseinstituttet/angular-components",
     "build-angular-highcharts": "ng build @folkehelseinstituttet/angular-highcharts",
+    "generate-icon-list": "node ./src/generate-icon-list",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
