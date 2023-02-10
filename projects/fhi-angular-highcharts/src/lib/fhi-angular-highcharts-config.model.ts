@@ -1,4 +1,4 @@
-import { Diagramtype } from "./fhi-highcharts-diagramtyper";
+import { DiagramType } from "./fhi-diagram-types/fhi-diagram-type.model";
 
 export interface FhiSerie {
   data:	Array<Data>;
@@ -17,7 +17,7 @@ export interface FhiHighchartsConfig {
   captionDisclaimer?: string;
   creditsHref: string;
   creditsText: string;
-  diagramtype: Diagramtype;
+  diagramtype: DiagramType;
   title: string;
   series: Array<FhiSerie>;
 }

@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-// import { FhiHighchartsConfig } from './fhi-highcharts-config.model';
+import { FhiHighchartsConfig } from './fhi-angular-highcharts-config.model';
 // import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
 // import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
 // import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
