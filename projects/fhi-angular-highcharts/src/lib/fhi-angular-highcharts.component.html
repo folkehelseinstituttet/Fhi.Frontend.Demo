@@ -1,4 +1,3 @@
-...
 <ng-container [ngSwitch]="currentDiagramTemplate">
   <ng-container *ngSwitchCase="diagramTemplates.table">
     <ng-container *ngTemplateOutlet="table"></ng-container>
@@ -22,7 +21,7 @@
 <ng-template #chart>
   <highcharts-chart
     class="fhi-highcharts"
-    [Highcharts]="highcharts"
+    [Highcharts]="Highcharts"
     [options]="options"
     (chartInstance)="onChartInstance($event)">
   </highcharts-chart>
@@ -31,7 +30,7 @@
 <ng-template #map>
   <highcharts-chart
     class="fhi-highcharts fhi-highcharts-map"
-    [Highcharts]="highcharts"
+    [Highcharts]="Highcharts"
     [constructorType]="'mapChart'"
     [options]="options"
     (chartInstance)="onChartInstance($event)">

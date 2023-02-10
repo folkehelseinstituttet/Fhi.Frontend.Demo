@@ -16,7 +16,7 @@ export const Highcharts: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `<fhi-angular-highcharts></fhi-angular-highcharts>`;
+  return `<fhi-angular-highcharts [diagramConfig]="diagramConfig"></fhi-angular-highcharts>`;
 }
 
 /*

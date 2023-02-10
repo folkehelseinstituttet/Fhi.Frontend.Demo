@@ -21,6 +21,21 @@ import { DiagramTypes } from './fhi-diagram-types/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 
+
+
+// TODO: interface FhiDiagramConfig must be exposed by the npm-package
+interface FhiDiagramConfig {
+  data: any;
+  title: string;
+  defaultDiagramType: number;
+  disclaimer: string;
+  lastUpdated: string;
+  creditsHref: string;
+  creditsText: string;
+}
+
+
+
 @Component({
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
@@ -28,7 +43,7 @@ enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 })
 export class FhiAngularHighchartsComponent {
 
-  highcharts = Highcharts;
+  Highcharts: typeof Highcharts = Highcharts;
   options!: Options;
   diagramTemplates = DiagramTemplates;
   currentDiagramTemplate!: string;
@@ -38,7 +53,11 @@ export class FhiAngularHighchartsComponent {
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
 
-  @Input() config!: FhiHighchartsConfig;
+
+  config!: FhiHighchartsConfig;
+
+  @Input() diagramConfig!: FhiDiagramConfig;
+
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -56,6 +75,12 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
+
+
+    // TODO: just one config named diagramConfig when all refactoring is done!
+    this.config = this.diagramConfigToConfigAdapterTMP(this.diagramConfig);
+
+
     this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.config.diagramtype);
     this.options = this.optionsService.updateOptions(this.config, this.allMapsLoaded);
 
@@ -68,10 +93,35 @@ export class FhiAngularHighchartsComponent {
   }
 
   onChartInstance(chart: Chart) {
+
     this.chartInstanceService.chart = chart;
     this.downloadService.setConfig(this.config);
     this.csvService.csv = chart.getCSV();
   }
+
+
+
+  // TODO: just one config named diagramConfig when all refactoring is done!
+  //       And then delete this method.
+  private diagramConfigToConfigAdapterTMP(diagramConfig: FhiDiagramConfig): FhiHighchartsConfig {
+    return {
+      captionDisclaimer: diagramConfig.disclaimer,
+      captionLastUpdated: diagramConfig.lastUpdated,
+      creditsHref: diagramConfig.creditsHref,
+      creditsText: diagramConfig.creditsText,
+      diagramtype: DiagramTypes.column,
+      title: diagramConfig.title,
+      series: this.seriesFromDiagramConfigData(diagramConfig.data)
+    };
+  }
+  // In this POC the data from the data-service has correct type, in a real app
+  // this is where data from API is transformed for Highcharts consumption.
+  private seriesFromDiagramConfigData(data: any): any {
+    return data;
+  }
+
+
+
 
   private updateTable(options: Highcharts.Options) {
     this.tableHeaderRow = this.tableService.getHeaderRow(options);
