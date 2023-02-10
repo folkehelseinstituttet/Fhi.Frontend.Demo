@@ -1,0 +1,76 @@
+Hello Highcharts!
+<!-- <ng-container [ngSwitch]="currentDiagramTemplate">
+  <ng-container *ngSwitchCase="diagramTemplates.table">
+    <ng-container *ngTemplateOutlet="table"></ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="diagramTemplates.map">
+    <ng-container *ngIf="allMapsLoaded">
+      <ng-container *ngTemplateOutlet="map"></ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="diagramTemplates.chart">
+    <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
+      <ng-container *ngTemplateOutlet="chart"></ng-container>
+    </ng-container>
+    <ng-template #chartAnimationHack><!-/- to get correct chart animation when switching from one chart type to another -/->
+      <ng-container *ngTemplateOutlet="chart"></ng-container>
+    </ng-template>
+  </ng-container>
+</ng-container> -->
+
+
+<!-- <ng-template #chart>
+  <highcharts-chart
+    class="fhi-highcharts"
+    [Highcharts]="highcharts"
+    [options]="options"
+    (chartInstance)="onChartInstance($event)">
+  </highcharts-chart>
+</ng-template> -->
+
+<!-- <ng-template #map>
+  <highcharts-chart
+    class="fhi-highcharts fhi-highcharts-map"
+    [Highcharts]="highcharts"
+    [constructorType]="'mapChart'"
+    [options]="options"
+    (chartInstance)="onChartInstance($event)">
+  </highcharts-chart>
+</ng-template> -->
+
+<!-- <ng-template #table>
+  <article class="fhi-highcharts-table">
+    <h1 class="h3">{{ tableTitle }}</h1>
+    <div class="table-responsive">
+      <table class="table table table-striped mt-3">
+        <thead>
+          <tr class="fhi-highcharts-table__row">
+            <th *ngFor="let tableCellData of tableHeaderRow; let i = index"
+                [scope]="i === 0 ? 'row' : 'col'"
+                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--header text-center">
+              <span>{{ tableCellData }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
+            <ng-container *ngFor="let tableCellData of tableRow; let i = index">
+              <th *ngIf="i === 0" scope="row" class="fhi-highcharts-table__cell">{{ tableCellData }}</th>
+              <td class="fhi-highcharts-table__cell text-right" *ngIf="i !== 0">{{ tableCellData | number }}</td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <footer class="fhi-highcharts-table__footer">
+      <div class="fhi-highcharts-table__caption">
+        <p class="fhi-highcharts-table__caption-last-update mb-0">Oppdatert: {{ config.captionLastUpdated }}</p>
+        <p class="fhi-highcharts-table__caption-disclaimer mb-0"
+           *ngIf="config.captionDisclaimer"
+           [innerHTML]="config.captionDisclaimer">
+        </p>
+        <a href="{{ config.creditsHref }}" class="fhi-highcharts-table__credits">{{ config.creditsText }}</a>
+      </div>
+    </footer>
+  </article>
+</ng-template> -->
