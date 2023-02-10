@@ -7,14 +7,18 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { FhiHighchartsConfig } from './fhi-angular-highcharts-config.model';
-// import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
-// import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
-// import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
-// import { FhiHighchartsCsvService } from './services/fhi-highcharts-csv.service';
-// import { FhiHighchartsDownloadService } from './services/fhi-highcharts-download.service';
-// import { FhiHighchartsGeoJsonService } from "./services/fhi-highcharts-geo-json.service";
-// import { Diagramtype, Diagramtyper } from './fhi-highcharts-diagramtyper';
+// TODO: rename (either FhiAngularHighcharts or just Highcharts)
+import { FhiHighchartsConfig } from './fhi-highcharts-config.model';
+import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
+import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
+import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
+import { FhiHighchartsCsvService } from './services/fhi-highcharts-csv.service';
+import { FhiHighchartsDownloadService } from './services/fhi-highcharts-download.service';
+import { FhiHighchartsGeoJsonService } from "./services/fhi-highcharts-geo-json.service";
+
+import { DiagramType } from './fhi-diagram-types/fhi-diagram-type.model';
+import { DiagramTypes } from './fhi-diagram-types/fhi-diagram-types';
+
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 
 @Component({
