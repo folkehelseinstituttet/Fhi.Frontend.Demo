@@ -9,7 +9,7 @@ import { ColorIds } from "./color/_color.ids"
 import { DateAndTimeIds } from "./date-and-time/_date-and-time.ids"
 import { DatepickerIds } from "./datepicker/_datepicker.ids"
 import { DrawerIds } from "./drawer/_drawer.ids"
-import { FhiAngularHighchartsIds } from "./fhi-angular-highcharts/_fhi-angular-highcharts.ids"
+import { HighchartsIds } from "./highcharts/_highcharts.ids"
 import { FormsIds } from "./forms/_forms.ids"
 import { GlobalFooterIds } from "./global-footer/_global-footer.ids"
 import { GlobalHeaderIds } from "./global-header/_global-header.ids"
@@ -43,7 +43,7 @@ const libraryItemIds = {
   ...DateAndTimeIds,
   ...DatepickerIds,
   ...DrawerIds,
-  ...FhiAngularHighchartsIds,
+  ...HighchartsIds,
   ...FormsIds,
   ...GlobalFooterIds,
   ...GlobalHeaderIds,
