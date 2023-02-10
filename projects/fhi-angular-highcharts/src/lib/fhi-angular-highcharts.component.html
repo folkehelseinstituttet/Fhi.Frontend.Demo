@@ -1,5 +1,5 @@
-Hello Highcharts!
-<!-- <ng-container [ngSwitch]="currentDiagramTemplate">
+...
+<ng-container [ngSwitch]="currentDiagramTemplate">
   <ng-container *ngSwitchCase="diagramTemplates.table">
     <ng-container *ngTemplateOutlet="table"></ng-container>
   </ng-container>
@@ -12,23 +12,23 @@ Hello Highcharts!
     <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
       <ng-container *ngTemplateOutlet="chart"></ng-container>
     </ng-container>
-    <ng-template #chartAnimationHack><!-/- to get correct chart animation when switching from one chart type to another -/->
+    <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
       <ng-container *ngTemplateOutlet="chart"></ng-container>
     </ng-template>
   </ng-container>
-</ng-container> -->
+</ng-container>
 
 
-<!-- <ng-template #chart>
+<ng-template #chart>
   <highcharts-chart
     class="fhi-highcharts"
     [Highcharts]="highcharts"
     [options]="options"
     (chartInstance)="onChartInstance($event)">
   </highcharts-chart>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #map>
+<ng-template #map>
   <highcharts-chart
     class="fhi-highcharts fhi-highcharts-map"
     [Highcharts]="highcharts"
@@ -36,9 +36,9 @@ Hello Highcharts!
     [options]="options"
     (chartInstance)="onChartInstance($event)">
   </highcharts-chart>
-</ng-template> -->
+</ng-template>
 
-<!-- <ng-template #table>
+<ng-template #table>
   <article class="fhi-highcharts-table">
     <h1 class="h3">{{ tableTitle }}</h1>
     <div class="table-responsive">
@@ -73,4 +73,4 @@ Hello Highcharts!
       </div>
     </footer>
   </article>
-</ng-template> -->
+</ng-template>
