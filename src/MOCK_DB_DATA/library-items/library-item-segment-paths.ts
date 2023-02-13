@@ -9,6 +9,7 @@ import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
+import { HighchartsData } from './highcharts/_highcharts.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -68,6 +69,7 @@ export class LibraryItemSegmentPaths {
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
 
   // Modules
+  static fhiAngularHighcharts = stringTransform(Object.keys({ HighchartsData })[0]);
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
