@@ -24,6 +24,7 @@ import { SearchData } from './search/_search.data';
 import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
+import { TabsModulesData } from './tabs-modules/_tabs-modules.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
@@ -72,6 +73,7 @@ export class LibraryItemSegmentPaths {
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
+  static tabsmodules = stringTransform(Object.keys({ TabsModulesData })[0]);
   static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
 
   // Layout and page templates

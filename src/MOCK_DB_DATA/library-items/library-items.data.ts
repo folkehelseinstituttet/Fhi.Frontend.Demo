@@ -23,6 +23,7 @@ import { SearchData } from './search/_search.data';
 import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
+import { TabsModulesData } from './tabs-modules/_tabs-modules.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
@@ -52,6 +53,7 @@ export const AllData: LibraryItem[] = [
   ...SpinnersData,
   ...TableData,
   ...TabsData,
+  ...TabsModulesData,
   ...TagsData,
   ...ToastData,
   ...TooltipData,

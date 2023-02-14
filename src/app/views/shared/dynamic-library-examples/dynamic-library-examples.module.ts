@@ -21,6 +21,7 @@ import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-tim
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
+import { TabsModulesExamplesComponent } from './ng-bootstrap-examples/tabs-modules-examples/tabs-modules-examples.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
@@ -36,6 +37,7 @@ const NGB_EXAMPLES = [
   ModalExampleComponent,
   PaginationExampleComponent,
   TabsExampleComponent,
+  TabsModulesExamplesComponent,
   ToastExampleComponent,
   TooltipExampleComponent
 ];

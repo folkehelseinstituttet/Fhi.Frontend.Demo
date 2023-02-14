@@ -88,6 +88,15 @@
     [itemIds]="itemIds">
   </app-tabs-example>
 
+  <app-tabs-modules-examples
+    *ngSwitchCase="itemIds.TabsBottomBordered"
+    [itemId]="itemIds.TabsBottomBordered"
+    [itemIds]="itemIds"></app-tabs-modules-examples>
+  <app-tabs-modules-examples
+    *ngSwitchCase="itemIds.TabsWithGreyBackground"
+    [itemId]="itemIds.TabsWithGreyBackground"
+    [itemIds]="itemIds"></app-tabs-modules-examples>
+
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
   <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
