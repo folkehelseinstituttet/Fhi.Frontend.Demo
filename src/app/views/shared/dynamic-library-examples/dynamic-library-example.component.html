@@ -27,6 +27,8 @@
     [itemIds]="itemIds">
   </app-advanced-select-example>
 
+  <app-fhi-angular-highcharts-example *ngSwitchCase="itemIds.Highcharts"></app-fhi-angular-highcharts-example>
+
   <app-pagination-example
     *ngSwitchCase="itemIds.Pagination"
     [itemId]="itemIds.Pagination"

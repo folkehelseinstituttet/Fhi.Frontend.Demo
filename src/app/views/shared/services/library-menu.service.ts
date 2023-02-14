@@ -167,6 +167,9 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
+      name: 'FHI Angular Highcharts',
+      link: LibraryItemSegmentPaths.fhiAngularHighcharts
+    }, {
       name: 'Date and time selection',
       link: LibraryItemSegmentPaths.dateandtimeselection
     }, {
