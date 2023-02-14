@@ -154,7 +154,7 @@ _A library project is an Angular concept for organising code that are going to b
 5. Push release branch and create pull request from release branch into `dev`.
    >_The PR goes into `dev` because this makes the workflow much easier. The fact that `main` may be a bit behind the official history in `dev`, including a release of a library, is a small price to pay._
 6. Make sure commit message is the same as the branch name.
-   > _NB! Automated release job only runs if `release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
+   > _NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
 7. After approved review, squash and merge to `dev` (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
 ##### Release branches for the Fhi.Frontend.Demo app
