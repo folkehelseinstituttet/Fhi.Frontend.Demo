@@ -19,42 +19,49 @@
 
 
 <div class="container" *ngIf="itemId === itemIds.TabsWithGreyBackground">
-    <div class="bg-secondary">
-        <h1>Overskrift</h1>
-        
-        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-            <li [ngbNavItem]="1">
-                <a ngbNavLink>Design</a>
-                <ng-template ngbNavContent>
-                    <p>Dette er innhold for Design.</p>
-                </ng-template>
-            </li>
-            <li [ngbNavItem]="2">
-                <a ngbNavLink>Komponenter</a>
-                <ng-template ngbNavContent>
-                    <p>Dette er innhold for Komponenter.</p>
-                </ng-template>
-            </li>
-            <li [ngbNavItem]="3">
-                <a ngbNavLink>Eksempler</a>
-                <ng-template ngbNavContent>
-                    <p>Dette er innhold for Eksempler.</p>
-                </ng-template>
-            </li>
-            <li [ngbNavItem]="4">
-                <a ngbNavLink>Kode og andre vanskelige ting</a>
-                <ng-template ngbNavContent>
-                    <p>Dette er innhold for Kode og andre vanskelige ting.</p>
-                </ng-template>
-            </li>
-            <li [ngbNavItem]="5">
-                <a ngbNavLink>Krav</a>
-                <ng-template ngbNavContent>
-                    <p>Dette er innhold for Krav.</p>
-                </ng-template>
-            </li>
-        </ul>
-        
-        <div [ngbNavOutlet]="nav" class="bg-white p-3 pt-5"></div>
+    <div class="row">
+        <div class="bg-secondary">
+            <div class="px-2 px-xs-0 px-md-2 px-lg-3 py-3">
+                <h1>Overskrift</h1>
+                <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
+            </div>
+            
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+                <li [ngbNavItem]="1">
+                    <a ngbNavLink>Design</a>
+                    <ng-template ngbNavContent>
+                        <p>Dette er innhold for Design.</p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>Komponenter</a>
+                    <ng-template ngbNavContent>
+                        <p>Dette er innhold for Komponenter.</p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="3">
+                    <a ngbNavLink>Eksempler</a>
+                    <ng-template ngbNavContent>
+                        <p>Dette er innhold for Eksempler.</p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="4">
+                    <a ngbNavLink>Kode og andre vanskelige ting</a>
+                    <ng-template ngbNavContent>
+                        <p>Dette er innhold for Kode og andre vanskelige ting.</p>
+                    </ng-template>
+                </li>
+                <li [ngbNavItem]="5">
+                    <a ngbNavLink>Krav</a>
+                    <ng-template ngbNavContent>
+                        <p>Dette er innhold for Krav.</p>
+                    </ng-template>
+                </li>
+            </ul>
+            
+            <div class="bg-white row">
+                <div [ngbNavOutlet]="nav" class="p-3 pt-5"></div>
+            </div>
+        </div>
     </div>
 </div>
