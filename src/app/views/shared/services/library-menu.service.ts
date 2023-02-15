@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-item-segment-paths';
 
 import { UrlService } from 'src/app/services/url.service';
-import { SegmentPaths } from 'src/app/segment-paths';
+import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from 'src/app/models/menu-item.model';
 
 const TopLevelMenuItemNames = {
@@ -29,19 +29,19 @@ export class LibraryMenuService {
     const currentSegmentPath0 = this.urlService.getSegmentPath(0);
     this.topLevelMenuItems = [{
       name: TopLevelMenuItemNames.visualIdentity,
-      link: `/${currentSegmentPath0}/${SegmentPaths.visualIdentity}`
+      link: `/${currentSegmentPath0}/${UrlSegment.visualIdentity}`
     }, {
       name: TopLevelMenuItemNames.components,
-      link: `/${currentSegmentPath0}/${SegmentPaths.components}`
+      link: `/${currentSegmentPath0}/${UrlSegment.components}`
     }, {
       name: TopLevelMenuItemNames.modules,
-      link: `/${currentSegmentPath0}/${SegmentPaths.modules}`
+      link: `/${currentSegmentPath0}/${UrlSegment.modules}`
     }, {
       name: TopLevelMenuItemNames.layoutAndPageTemplates,
-      link: `/${currentSegmentPath0}/${SegmentPaths.layoutAndPageTemplates}`
+      link: `/${currentSegmentPath0}/${UrlSegment.layoutAndPageTemplates}`
     }, {
       name: TopLevelMenuItemNames.prototypes,
-      link: `/${currentSegmentPath0}/${SegmentPaths.prototypes}`
+      link: `/${currentSegmentPath0}/${UrlSegment.prototypes}`
     }];
     return this.topLevelMenuItems;
   }
@@ -167,6 +167,9 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
+      name: 'FHI Angular Highcharts',
+      link: LibraryItemSegmentPaths.fhiAngularHighcharts
+    }, {
       name: 'Date and time selection',
       link: LibraryItemSegmentPaths.dateandtimeselection
     }, {

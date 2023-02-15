@@ -1,4 +1,4 @@
-export class SegmentPaths {
+export class UrlSegment {
 
   /*
    * Main menu
