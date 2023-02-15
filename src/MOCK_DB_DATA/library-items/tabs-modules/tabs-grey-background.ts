@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TabsWithGreyBackground: LibraryItem[] = [{
   id: LibraryItemIds.TabsWithGreyBackground,
-  title: 'Tabs with grey background',
+  title: 'Tabs on light blue background',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,7 +25,50 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<div class="bg-secondary">
+  <div class="px-2 px-xs-0 px-md-2 px-lg-3 py-3">
+    <h1>Overskrift</h1>
+    <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
+  </div>
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Design</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for Design.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Komponenter</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for Komponenter.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Eksempler</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for Eksempler.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>Kode og andre vanskelige ting</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for Kode og andre vanskelige ting.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="5">
+      <a ngbNavLink>Krav</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for Krav.</p>
+      </ng-template>
+    </li>
+  </ul>
+
+  <div class="bg-white row">
+    <div [ngbNavOutlet]="nav" class="p-3 pt-5"></div>
+  </div>
+</div>`;
 }
 
 /*
@@ -43,6 +86,6 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed Components skal stilsettingen fra FHI Designsystem fungere. Husk <code>class="border-bottom"</code> på <code>ul</code>
+  Ved bruk av React Bootstrap Tabbed Components skal stilsettingen fra FHI Designsystem fungere. Husk <code>class="bg-secondary"</code> på wrapper og <code>class="bg-white"</code> på nav outlet.
 </p>`;
 }
