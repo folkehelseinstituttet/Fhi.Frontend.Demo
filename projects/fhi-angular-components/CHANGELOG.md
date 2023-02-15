@@ -1,10 +1,4 @@
-# 0.2.0
-
-> Feb 14, 2023
-
-* :tada: **Enhancement** Support @folkehelseinstituttet/style v4.
-
-## 0.1.1
+# 0.1.1
 
 > Feb 1, 2023
 
