@@ -2,7 +2,7 @@
 
 > Feb 14, 2023
 
-* :tada: **Enhancement** Support @folkehelseinstituttet/style v4.
+* :tada: **Enhancement** Support @folkehelseinstituttet/style v4
 
 ## 0.1.1
 
