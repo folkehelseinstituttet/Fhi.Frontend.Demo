@@ -3,13 +3,13 @@
     <li [ngbNavItem]="1">
       <a ngbNavLink>For utviklere</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for utviklere.</p>
+        <p>Innhold for utviklere.</p>
       </ng-template>
     </li>
     <li [ngbNavItem]="2">
       <a ngbNavLink>For designere</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for designere.</p>
+        <p>Innhold for designere.</p>
       </ng-template>
     </li>
   </ul>
@@ -17,7 +17,8 @@
   <div [ngbNavOutlet]="nav" class="mt-5"></div>
 </ng-container>
 
-<div class="container" *ngIf="itemId === itemIds.TabsWithGreyBackground">
+
+<div class="container" *ngIf="itemId === itemIds.TabsOnBlueBackground">
   <div class="row">
     <div class="bg-secondary">
       <div class="px-2 px-xs-0 px-md-2 px-lg-3 py-3">
@@ -29,36 +30,80 @@
         <li [ngbNavItem]="1">
           <a ngbNavLink>Design</a>
           <ng-template ngbNavContent>
-            <p>Dette er innhold for Design.</p>
+            <p>Innhold for Design.</p>
           </ng-template>
         </li>
         <li [ngbNavItem]="2">
           <a ngbNavLink>Komponenter</a>
           <ng-template ngbNavContent>
-            <p>Dette er innhold for Komponenter.</p>
+            <p>Innhold for Komponenter.</p>
           </ng-template>
         </li>
         <li [ngbNavItem]="3">
           <a ngbNavLink>Eksempler</a>
           <ng-template ngbNavContent>
-            <p>Dette er innhold for Eksempler.</p>
+            <p>Innhold for Eksempler.</p>
           </ng-template>
         </li>
         <li [ngbNavItem]="4">
           <a ngbNavLink>Kode og andre vanskelige ting</a>
           <ng-template ngbNavContent>
-            <p>Dette er innhold for Kode og andre vanskelige ting.</p>
+            <p>Innhold for Kode og andre vanskelige ting.</p>
           </ng-template>
         </li>
         <li [ngbNavItem]="5">
           <a ngbNavLink>Krav</a>
           <ng-template ngbNavContent>
-            <p>Dette er innhold for Krav.</p>
+            <p>Innhold for Krav.</p>
           </ng-template>
         </li>
       </ul>
 
       <div class="bg-white row">
+        <div [ngbNavOutlet]="nav" class="p-3 pt-5"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container" *ngIf="itemId === itemIds.TabsBlueAndBlueBackground">
+  <div class="row">
+    <div class="p-0">
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 1 }">Design</a>
+          <ng-template ngbNavContent>
+            <p>Innhold for Design.</p>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 2 }">Komponenter</a>
+          <ng-template ngbNavContent>
+            <p>Innhold for Komponenter.</p>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 3 }">Eksempler</a>
+          <ng-template ngbNavContent>
+            <p>Innhold for Eksempler.</p>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+          <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 4 }">Kode og andre vanskelige ting</a>
+          <ng-template ngbNavContent>
+            <p>Innhold for Kode og andre vanskelige ting.</p>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="5">
+          <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 5 }">Krav</a>
+          <ng-template ngbNavContent>
+            <p>Innhold for Krav.</p>
+          </ng-template>
+        </li>
+      </ul>
+
+      <div class="bg-secondary">
         <div [ngbNavOutlet]="nav" class="p-3 pt-5"></div>
       </div>
     </div>

@@ -2,8 +2,8 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TabsWithGreyBackground: LibraryItem[] = [{
-  id: LibraryItemIds.TabsWithGreyBackground,
+export const TabsOnBlueBackground: LibraryItem[] = [{
+  id: LibraryItemIds.TabsOnBlueBackground,
   title: 'Tabs on light blue background',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
@@ -36,31 +36,31 @@ function getCodeHtml(): string | null {
     <li [ngbNavItem]="1">
       <a ngbNavLink>Design</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for Design.</p>
+        <p>Innhold for Design.</p>
       </ng-template>
     </li>
     <li [ngbNavItem]="2">
       <a ngbNavLink>Komponenter</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for Komponenter.</p>
+        <p>Innhold for Komponenter.</p>
       </ng-template>
     </li>
     <li [ngbNavItem]="3">
       <a ngbNavLink>Eksempler</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for Eksempler.</p>
+        <p>Innhold for Eksempler.</p>
       </ng-template>
     </li>
     <li [ngbNavItem]="4">
       <a ngbNavLink>Kode og andre vanskelige ting</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for Kode og andre vanskelige ting.</p>
+        <p>Innhold for Kode og andre vanskelige ting.</p>
       </ng-template>
     </li>
     <li [ngbNavItem]="5">
       <a ngbNavLink>Krav</a>
       <ng-template ngbNavContent>
-        <p>Dette er innhold for Krav.</p>
+        <p>Innhold for Krav.</p>
       </ng-template>
     </li>
   </ul>

@@ -1,9 +1,11 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { TabsBottomBordered } from './tabs-bottom-bordered';
-import { TabsWithGreyBackground } from './tabs-grey-background';
+import { TabsOnBlueBackground } from './tabs-on-blue-background';
+import { TabsBlueAndBlueBackground } from './blue-tabs-and-background';
 
 export const TabsModulesData: LibraryItem[] = [
   ...TabsBottomBordered,
-  ...TabsWithGreyBackground
+  ...TabsOnBlueBackground,
+  ...TabsBlueAndBlueBackground
 ];

@@ -29,25 +29,25 @@ function getCodeHtml(): string | null {
   <li [ngbNavItem]="1">
     <a ngbNavLink>Fane 1</a>
     <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 1.</p>
+      <p>Innhold for fane 1.</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>Fane 2</a>
     <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 2.</p>
+      <p>Innhold for fane 2.</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="3">
     <a ngbNavLink>Fane 3</a>
     <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 3.</p>
+      <p>Innhold for fane 3.</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="4">
     <a ngbNavLink>Fane 4</a>
     <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 4.</p>
+      <p>Innhold for fane 4.</p>
     </ng-template>
   </li>
 </ul>

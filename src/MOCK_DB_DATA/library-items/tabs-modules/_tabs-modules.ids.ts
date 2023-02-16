@@ -1,4 +1,5 @@
 export const TabsModulesIds = {
   TabsBottomBordered: undefined,
-  TabsWithGreyBackground: undefined
+  TabsOnBlueBackground: undefined,
+  TabsBlueAndBlueBackground: undefined
 }

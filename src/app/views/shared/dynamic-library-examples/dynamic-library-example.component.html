@@ -95,9 +95,13 @@
     [itemId]="itemIds.TabsBottomBordered"
     [itemIds]="itemIds"></app-tabs-modules-examples>
   <app-tabs-modules-examples
-    *ngSwitchCase="itemIds.TabsWithGreyBackground"
-    [itemId]="itemIds.TabsWithGreyBackground"
+    *ngSwitchCase="itemIds.TabsOnBlueBackground"
+    [itemId]="itemIds.TabsOnBlueBackground"
     [itemIds]="itemIds"></app-tabs-modules-examples>
+    <app-tabs-modules-examples
+      *ngSwitchCase="itemIds.TabsBlueAndBlueBackground"
+      [itemId]="itemIds.TabsBlueAndBlueBackground"
+      [itemIds]="itemIds"></app-tabs-modules-examples>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
