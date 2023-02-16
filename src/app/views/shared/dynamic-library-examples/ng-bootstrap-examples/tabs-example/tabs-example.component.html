@@ -1,30 +1,51 @@
 <ng-container *ngIf="itemId === itemIds.Tabs">
-    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-        <li [ngbNavItem]="1">
-            <a ngbNavLink>Fane nummer 1</a>
-            <ng-template ngbNavContent>
-                <p>Dette er innhold for fane nummer <strong>1</strong>.</p>
-            </ng-template>
-        </li>
-        <li [ngbNavItem]="2">
-            <a ngbNavLink>Fane nummer 2</a>
-            <ng-template ngbNavContent>
-                <p>Dette er innhold for fane nummer <strong>2</strong>.</p>
-            </ng-template>
-        </li>
-        <li [ngbNavItem]="3">
-            <a ngbNavLink>Fane nummer 3</a>
-            <ng-template ngbNavContent>
-                <p>Dette er innhold for fane nummer <strong>3</strong>.</p>
-            </ng-template>
-        </li>
-        <li [ngbNavItem]="4">
-            <a ngbNavLink>Fane nummer 4</a>
-            <ng-template ngbNavContent>
-                <p>Dette er innhold for fane nummer <strong>4</strong>.</p>
-            </ng-template>
-        </li>
-    </ul>
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink>Fane nummer 1</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for fane nummer <strong>1</strong>.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink>Fane nummer 2</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for fane nummer <strong>2</strong>.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink>Fane nummer 3</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for fane nummer <strong>3</strong>.</p>
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink>Fane nummer 4</a>
+      <ng-template ngbNavContent>
+        <p>Dette er innhold for fane nummer <strong>4</strong>.</p>
+      </ng-template>
+    </li>
+  </ul>
 
-    <div [ngbNavOutlet]="nav" class="mt-5"></div>
+  <div [ngbNavOutlet]="nav" class="mt-5"></div>
+</ng-container>
+
+
+<ng-container *ngIf="itemId === itemIds.TabsBlue">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+    <li [ngbNavItem]="1">
+      <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 1 }">Design</a>
+    </li>
+    <li [ngbNavItem]="2">
+      <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 2 }">Komponenter</a>
+    </li>
+    <li [ngbNavItem]="3">
+      <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 3 }">Bruk</a>
+    </li>
+    <li [ngbNavItem]="4">
+      <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 4 }">Teknisk dokumentasjon</a>
+    </li>
+    <li [ngbNavItem]="5">
+      <a ngbNavLink [ngClass]="{ 'bg-secondary' : active === 5 }">Krav</a>
+    </li>
+  </ul>
 </ng-container>

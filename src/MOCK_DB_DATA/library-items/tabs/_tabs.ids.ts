@@ -1,3 +1,4 @@
 export const TabsIds = {
-  Tabs: undefined
+  Tabs: undefined,
+  TabsBlue: undefined
 }
