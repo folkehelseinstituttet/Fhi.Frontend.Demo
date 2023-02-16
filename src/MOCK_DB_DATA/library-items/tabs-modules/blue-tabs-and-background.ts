@@ -83,6 +83,6 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed Components skal stilsettingen fra FHI Designsystem fungere. Husk <code>class="bg-secondary"</code> på wrapper og <code>class="bg-white"</code> på nav outlet.
+  Ved bruk av React Bootstrap Tabbed Components skal stilsettingen fra FHI Designsystem fungere. Husk <code>class="bg-secondary"</code> på lenke til aktiv fane og på container for nav outlet.
 </p>`;
 }
