@@ -26,47 +26,27 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="bg-secondary">
-  <div class="px-2 px-xs-0 px-md-2 px-lg-3 py-3">
+<div class="fhi-bg fhi-bg-light-blue">
+  <div class="fhi-bg__text-container">
     <h1>Overskrift</h1>
     <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
   </div>
 
-  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-    <li [ngbNavItem]="1">
-      <a ngbNavLink>Design</a>
-      <ng-template ngbNavContent>
-        <p>Innhold for Design.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="2">
-      <a ngbNavLink>Komponenter</a>
-      <ng-template ngbNavContent>
-        <p>Innhold for Komponenter.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="3">
-      <a ngbNavLink>Eksempler</a>
-      <ng-template ngbNavContent>
-        <p>Innhold for Eksempler.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="4">
-      <a ngbNavLink>Kode og andre vanskelige ting</a>
-      <ng-template ngbNavContent>
-        <p>Innhold for Kode og andre vanskelige ting.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="5">
-      <a ngbNavLink>Krav</a>
-      <ng-template ngbNavContent>
-        <p>Innhold for Krav.</p>
-      </ng-template>
-    </li>
-  </ul>
+  <div class="fhi-bg__nav-tabs-container">
 
-  <div class="bg-white row">
-    <div [ngbNavOutlet]="nav" class="p-3 pt-5"></div>
+    <div class="fhi-nav-tabs">
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem *ngFor="let tab of tabsList">
+          <a ngbNavLink>{{ tab.tabName }}</a>
+          <ng-template ngbNavContent>
+            <div [innerHTML]="tab.tabContent"></div>
+          </ng-template>
+        </li>
+      </ul>
+  
+      <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+    </div>
+    
   </div>
 </div>`;
 }

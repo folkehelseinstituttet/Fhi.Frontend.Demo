@@ -25,34 +25,18 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs border-bottom">
-  <li [ngbNavItem]="1">
-      <a ngbNavLink>Fane nummer 1</a>
+<div class="fhi-nav-tabs fhi-nav-tabs--enhanced">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem *ngFor="let tab of tabsList">
+      <a ngbNavLink>{{ tab.tabName }}</a>
       <ng-template ngbNavContent>
-          <p>Innhold for fane nummer <strong>1</strong>.</p>
+        <div [innerHTML]="tab.tabContent"></div>
       </ng-template>
-  </li>
-  <li [ngbNavItem]="2">
-      <a ngbNavLink>Fane nummer 2</a>
-      <ng-template ngbNavContent>
-          <p>Innhold for fane nummer <strong>2</strong>.</p>
-      </ng-template>
-  </li>
-  <li [ngbNavItem]="3">
-      <a ngbNavLink>Fane nummer 3</a>
-      <ng-template ngbNavContent>
-          <p>Innhold for fane nummer <strong>3</strong>.</p>
-      </ng-template>
-  </li>
-  <li [ngbNavItem]="4">
-      <a ngbNavLink>Fane nummer 4</a>
-      <ng-template ngbNavContent>
-          <p>Innhold for fane nummer <strong>4</strong>.</p>
-      </ng-template>
-  </li>
-</ul>
+    </li>
+  </ul>
 
-<div [ngbNavOutlet]="nav" class="mt-5"></div>`;
+  <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+</div>`;
 }
 
 /*
@@ -70,6 +54,6 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed Components skal stilsettingen fra FHI Designsystem fungere. Husk <code>class="border-bottom"</code> på <code>ul</code>
+  Ved bruk av React Bootstrap Tabbed components husk å legge til klassen <span class="text-nowrap"><code>fhi-nav-tabs--enhanced</code></span> på wrapper.
 </p>`;
 }

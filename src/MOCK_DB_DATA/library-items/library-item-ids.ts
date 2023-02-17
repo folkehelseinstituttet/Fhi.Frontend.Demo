@@ -25,7 +25,6 @@ import { SearchIds } from "./search/_search.ids"
 import { SpinnersIds } from "./spinners/_spinners.ids"
 import { TableIds } from "./table/_table.ids"
 import { TabsIds } from "./tabs/_tabs.ids"
-import { TabsModulesIds } from "./tabs-modules/_tabs-modules.ids"
 import { TagsIds } from "./tags/_tags.ids"
 import { ToastIds } from "./toast/_toast.ids"
 import { TooltipIds } from "./tooltip/_tooltip.ids"
@@ -60,7 +59,6 @@ const libraryItemIds = {
   ...SpinnersIds,
   ...TableIds,
   ...TabsIds,
-  ...TabsModulesIds,
   ...TagsIds,
   ...ToastIds,
   ...TooltipIds,

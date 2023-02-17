@@ -1,4 +1,6 @@
 export const TabsIds = {
   Tabs: undefined,
-  TabsBlue: undefined
+  TabsBottomBordered: undefined,
+  TabsOnBlueBackground: undefined,
+  TabsBlueAndBlueBackground: undefined
 }

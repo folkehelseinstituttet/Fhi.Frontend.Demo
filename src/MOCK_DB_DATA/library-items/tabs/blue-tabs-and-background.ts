@@ -2,13 +2,14 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Tabs: LibraryItem[] = [{
-  id: LibraryItemIds.Tabs,
-  title: 'Tabs',
-  type: LibraryItemType.ngBootstrap,
+export const TabsBlueAndBlueBackground: LibraryItem[] = [{
+  id: LibraryItemIds.TabsBlueAndBlueBackground,
+  title: 'Tabs - blue, with blue background',
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+  documentationHtml: getDocumentationHtml(),
+  fullScreenEnabled: true
 }];
 
 
@@ -25,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="fhi-nav-tabs">
+<div class="fhi-nav-tabs fhi-nav-tabs--inverted">
   <ul ngbNav #nav="ngbNav" class="nav-tabs">
     <li ngbNavItem *ngFor="let tab of tabsList">
       <a ngbNavLink>{{ tab.tabName }}</a>
@@ -54,6 +55,6 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed components husk å wrappe i en <code>class="fhi-nav-tabs"</code> og benytt <code>class="fhi-nav-tabs__content"</code> på tab-innholdsfeltet.
+  Ved bruk av React Bootstrap Tabbed components husk å legge til klassen <span class="text-nowrap"><code>fhi-nav-tabs--inverted</code></span> på wrapper.
 </p>`;
 }

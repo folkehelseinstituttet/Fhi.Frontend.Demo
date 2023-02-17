@@ -179,9 +179,6 @@ export class LibraryMenuService {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
     }, {
-      name: 'Tabs',
-      link: LibraryItemSegmentPaths.tabsmodules
-    }, {
       name: 'Treeview builder',
       link: LibraryItemSegmentPaths.treeview
     }];
@@ -191,6 +188,9 @@ export class LibraryMenuService {
     return [{
       name: 'Layout',
       link: LibraryItemSegmentPaths.layoutandpagetemplates
+    }, {
+      name: 'Tab navigation',
+      link: LibraryItemSegmentPaths.tabsnavigationtemplate
     }];
   }
 
