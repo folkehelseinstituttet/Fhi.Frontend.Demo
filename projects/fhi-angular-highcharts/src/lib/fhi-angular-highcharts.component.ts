@@ -8,7 +8,7 @@ import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
 // TODO: rename (either FhiAngularHighcharts or just Highcharts, or maybe no prefix at all...)
-import { FhiHighchartsConfig } from './fhi-highcharts-config.model';
+import { DiagramOptions, FhiHighchartsConfig } from './fhi-highcharts-config.model';
 import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
 import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
 import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
@@ -20,20 +20,6 @@ import { DiagramType } from './fhi-diagram-types/fhi-diagram-type.model';
 import { DiagramTypes } from './fhi-diagram-types/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
-
-
-
-// TODO: interface FhiDiagramConfig must be exposed by the npm-package
-interface FhiDiagramConfig {
-  data: any;
-  title: string;
-  defaultDiagramType: number;
-  disclaimer: string;
-  lastUpdated: string;
-  creditsHref: string;
-  creditsText: string;
-}
-
 
 
 @Component({
@@ -56,7 +42,7 @@ export class FhiAngularHighchartsComponent {
 
   config!: FhiHighchartsConfig;
 
-  @Input() diagramConfig!: FhiDiagramConfig;
+  @Input() diagramOptions!: DiagramOptions;
 
 
   constructor(
@@ -77,8 +63,8 @@ export class FhiAngularHighchartsComponent {
   ngOnChanges() {
 
 
-    // TODO: just one config named diagramConfig when all refactoring is done!
-    this.config = this.diagramConfigToConfigAdapterTMP(this.diagramConfig);
+    // TODO: just one config named diagramOptions when all refactoring is done!
+    this.config = this.diagramConfigToConfigAdapterTMP(this.diagramOptions);
 
 
     this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.config.diagramtype);
@@ -103,7 +89,7 @@ export class FhiAngularHighchartsComponent {
 
   // TODO: just one config named diagramConfig when all refactoring is done!
   //       And then delete this method.
-  private diagramConfigToConfigAdapterTMP(diagramConfig: FhiDiagramConfig): FhiHighchartsConfig {
+  private diagramConfigToConfigAdapterTMP(diagramConfig: DiagramOptions): FhiHighchartsConfig {
     return {
       captionDisclaimer: diagramConfig.disclaimer,
       captionLastUpdated: diagramConfig.lastUpdated,
