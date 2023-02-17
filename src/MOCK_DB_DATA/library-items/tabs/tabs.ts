@@ -35,7 +35,7 @@ function getCodeHtml(): string | null {
     </li>
   </ul>
 
-  <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+  <div [ngbNavOutlet]="nav"></div>
 </div>`;
 }
 
@@ -54,6 +54,6 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed components husk å wrappe i en <code>class="fhi-nav-tabs"</code> og benytt <code>class="fhi-nav-tabs__content"</code> på tab-innholdsfeltet.
+  Ved bruk av React Bootstrap Tabbed components husk å wrappe i en <code>class="fhi-nav-tabs"</code>.
 </p>`;
 }

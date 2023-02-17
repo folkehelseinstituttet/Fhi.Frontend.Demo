@@ -36,7 +36,7 @@ function getCodeHtml(): string | null {
     </li>
   </ul>
 
-  <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+  <div [ngbNavOutlet]="nav"></div>
 </div>`;
 }
 

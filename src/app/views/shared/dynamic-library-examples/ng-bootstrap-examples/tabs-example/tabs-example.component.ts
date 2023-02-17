@@ -8,6 +8,8 @@ export class TabsExampleComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
+  mainMenuIsOpen = false;
+
   tabsList: any = [
     {
       tabName: 'Design',
@@ -31,5 +33,12 @@ export class TabsExampleComponent {
     }
   ];
 
-  active = 1;
+
+  mainMenuClose(): void {
+    this.mainMenuIsOpen = false;
+  }
+
+  mainMenuToggle(): void {
+    this.mainMenuIsOpen = !this.mainMenuIsOpen;
+  }
 }

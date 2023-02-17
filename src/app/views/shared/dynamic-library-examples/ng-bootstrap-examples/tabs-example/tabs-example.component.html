@@ -9,7 +9,7 @@
       </li>
     </ul>
 
-    <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+    <div [ngbNavOutlet]="nav"></div>
   </div>
 </ng-container>
 
@@ -25,7 +25,7 @@
       </li>
     </ul>
 
-    <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+    <div [ngbNavOutlet]="nav"></div>
   </div>
 </ng-container>
 
@@ -43,35 +43,85 @@
           </li>
         </ul>
 
-        <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+        <div [ngbNavOutlet]="nav"></div>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="container" *ngIf="itemId === itemIds.TabsOnBlueBackground">
-  <div class="row">
-    <div class="fhi-bg fhi-bg-light-blue">
-      <div class="fhi-bg__text-container">
-        <h1>Overskrift</h1>
-        <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
+<ng-container *ngIf="itemId === itemIds.TabsOnBlueBackground">
+  <header class="fhi-header mb-0">
+    <div class="fhi-header__brand">
+      <div class="container fhi-header__brand-container">
+        <div class="fhi-header__brand-content">
+          <a class="fhi-header__logo" href="javascript:void(0)">
+            <i class="icon-fhi-logo fhi-header__logo-icon"></i>
+            <span class="visually-hidden">FHI Produktnavn</span>
+          </a>
+          <div class="fhi-header__project">
+            <span class="fhi-header__project-name">Produktnavn</span>
+          </div>
+        </div>
       </div>
+    </div>
+  
+    <div class="container fhi-header__main-menu-container">
+      <nav class="fhi-main-menu" [ngClass]="{'fhi-main-menu--open': mainMenuIsOpen}">
+        <div class="container fhi-main-menu__container">
+          <a class="fhi-main-menu__home-link" href="javascript:void(0)">
+            <i class="icon-fhi-logo fhi-header__logo-icon fhi-main-menu__logo-icon"></i>
+            <span class="visually-hidden">FHI Produktnavn</span>
+          </a>
+          <button
+            type="button"
+            aria-controls="fhi-main-menu"
+            class="fhi-main-menu__toggler"
+            [attr.aria-expanded]="mainMenuIsOpen"
+            (click)="mainMenuToggle()">
+            <i class="icon-xmark fhi-main-menu__toggler-close-icon"></i>
+            <i class="icon-list fhi-main-menu__toggler-menu-icon"></i>
+            <span class="fhi-main-menu__toggler-text">{{ !mainMenuIsOpen ? 'Meny' : 'Lukk' }}</span>
+          </button>
+          <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
+            <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 1</a>
+              </li>
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 2</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="fhi-backdrop-responsive" *ngIf="mainMenuIsOpen" (click)="mainMenuClose()"></div>
+    </div>
+  </header>
 
-      <div class="fhi-bg__nav-tabs-container">
-        <div class="fhi-nav-tabs">
-          <ul ngbNav #nav="ngbNav" class="nav-tabs">
-            <li ngbNavItem *ngFor="let tab of tabsList">
-              <a ngbNavLink>{{ tab.tabName }}</a>
-              <ng-template ngbNavContent>
-                <div [innerHTML]="tab.tabContent"></div>
-              </ng-template>
-            </li>
-          </ul>
-      
-          <div [ngbNavOutlet]="nav" class="fhi-nav-tabs__content"></div>
+  <div class="container">
+    <div class="row">
+      <div class="fhi-bg fhi-bg-light-blue bg-secondary">
+        <div class="fhi-bg__text-container">
+          <h1>Overskrift</h1>
+          <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
+        </div>
+
+        <div class="fhi-bg__nav-tabs-container">
+          <div class="fhi-nav-tabs">
+            <ul ngbNav #nav="ngbNav" class="nav-tabs">
+              <li ngbNavItem *ngFor="let tab of tabsList">
+                <a ngbNavLink>{{ tab.tabName }}</a>
+                <ng-template ngbNavContent>
+                  <div [innerHTML]="tab.tabContent"></div>
+                </ng-template>
+              </li>
+            </ul>
+        
+            <div [ngbNavOutlet]="nav"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>
