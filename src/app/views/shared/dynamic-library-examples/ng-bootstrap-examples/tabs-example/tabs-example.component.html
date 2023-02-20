@@ -86,10 +86,10 @@
           <div [ngbCollapse]="!mainMenuIsOpen" [animation]="false" class="collapse fhi-main-menu__collapse">
             <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
               <li class="fhi-main-menu__nav-item">
-                <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 1</a>
+                <a class="nav-link fhi-main-menu__nav-link active" href="javascript:void(0)">Lenke 1</a>
               </li>
               <li class="fhi-main-menu__nav-item">
-                <a class="nav-link fhi-main-menu__nav-link" href="#">Lenke 2</a>
+                <a class="nav-link fhi-main-menu__nav-link" href="javascript:void(0)">Lenke 2</a>
               </li>
             </ul>
           </div>
@@ -101,25 +101,23 @@
 
   <div class="container">
     <div class="row">
-      <div class="fhi-bg fhi-bg-light-blue bg-secondary">
-        <div class="fhi-bg__text-container">
+      <div class="fhi-bg fhi-bg-1">
+        <div class="fhi-bg__content">
           <h1>Overskrift</h1>
           <p>Annet innhold. Dette kan være rik tekst som lister og tabeller.</p>
         </div>
 
-        <div class="fhi-bg__nav-tabs-container">
-          <div class="fhi-nav-tabs">
-            <ul ngbNav #nav="ngbNav" class="nav-tabs">
-              <li ngbNavItem *ngFor="let tab of tabsList">
-                <a ngbNavLink>{{ tab.tabName }}</a>
-                <ng-template ngbNavContent>
-                  <div [innerHTML]="tab.tabContent"></div>
-                </ng-template>
-              </li>
-            </ul>
-        
-            <div [ngbNavOutlet]="nav"></div>
-          </div>
+        <div class="fhi-nav-tabs">
+          <ul ngbNav #nav="ngbNav" class="nav-tabs">
+            <li ngbNavItem *ngFor="let tab of tabsList">
+              <a ngbNavLink>{{ tab.tabName }}</a>
+              <ng-template ngbNavContent>
+                <div [innerHTML]="tab.tabContent"></div>
+              </ng-template>
+            </li>
+          </ul>
+      
+          <div [ngbNavOutlet]="nav" class="px-3 px-sm-0"></div>
         </div>
       </div>
     </div>
