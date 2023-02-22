@@ -24,7 +24,7 @@ import { PrototypeTableWithExpandableContentData } from './prototype-table-with-
 import { SearchData } from './search/_search.data';
 import { SpinnersData } from './spinners/_spinners.data';
 import { TableData } from './table/_table.data';
-import { TabsData, TabsPageTemplateData } from './tabs/_tabs.data';
+import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
@@ -78,7 +78,6 @@ export class LibraryItemSegmentPaths {
 
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
-  static tabsnavigationtemplate = stringTransform(Object.keys({ TabsPageTemplateData })[0]);
 
   // Prototypes (examples on use)
   static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);

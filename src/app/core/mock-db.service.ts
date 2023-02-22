@@ -33,7 +33,7 @@ import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/librar
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { SpinnersData } from 'src/MOCK_DB_DATA/library-items/spinners/_spinners.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
-import { TabsData, TabsPageTemplateData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
+import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
@@ -77,7 +77,6 @@ export class MockDbService implements InMemoryDbService {
       SpinnersData,
       TableData,
       TabsData,
-      TabsPageTemplateData,
       TagsData,
       NavigationtileData,
       ToastData,

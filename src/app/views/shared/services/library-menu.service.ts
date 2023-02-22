@@ -188,9 +188,6 @@ export class LibraryMenuService {
     return [{
       name: 'Layout',
       link: LibraryItemSegmentPaths.layoutandpagetemplates
-    }, {
-      name: 'Tab navigation',
-      link: LibraryItemSegmentPaths.tabsnavigationtemplate
     }];
   }
 
