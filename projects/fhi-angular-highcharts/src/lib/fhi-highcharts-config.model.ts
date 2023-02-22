@@ -1,3 +1,4 @@
+//  TODO: remove
 import { DiagramType } from "./fhi-diagram-types/fhi-diagram-type.model";
 export interface FhiHighchartsConfig {
   captionLastUpdated: string;
