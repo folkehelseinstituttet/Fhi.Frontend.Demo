@@ -54,6 +54,7 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed components husk å wrappe i en <code>class="fhi-nav-tabs"</code>.
+  Ved bruk av React Bootstrap Tabbed components er det bare å wrappe i en<br>
+  <code>&lt;div class="fhi-nav-tabs"&gt;&lt;/div&gt;</code>.
 </p>`;
 }
