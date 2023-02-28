@@ -17,17 +17,23 @@ export const BtnMenuItem: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<p class="mb-4">
-  <a href="${CONST.voidURL}" class="btn fhi-btn-menu-item">
-    <i class="icon-population"></i>
-    <span class="btn__text">Menyknapp</span>
-  </a>
-</p>
+<div class="row mb-4">
+  <div class="col-auto">
+    <a href="${CONST.voidURL}" class="btn fhi-btn-menu-item">
+      <i class="icon-population"></i>
+      <span class="btn__text">Med ikon</span>
+    </a>
+  </div>
+  <div class="col-auto">
+    <a href="${CONST.voidURL}" class="btn fhi-btn-menu-item">
+      <span class="btn__text">Uten ikon</span>
+    </a>
+  </div>
+</div>
 <p>
-  Aktivt meny-element:<br>
-  <a class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
+  <a href="${CONST.voidURL}" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
     <i class="icon-muscle"></i>
-    <span class="btn__text">Menyknapp</span>
+    <span class="btn__text">Aktivt menyelement</span>
   </a>
 </p>`;
 }
@@ -38,14 +44,18 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<a href="" class="btn fhi-btn-menu-item">
-  <i class="icon-population"></i>
-  <span class="btn__text">Menyknapp</span>
+<a href="#" class="btn fhi-btn-menu-item">
+  <i class="icon-[name]"></i>
+  <span class="btn__text">Med ikon</span>
 </a>
 
-<a class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
-  <i class="icon-muscle"></i>
-  <span class="btn__text">Menyknapp</span>
+<a href="#" class="btn fhi-btn-menu-item">
+  <span class="btn__text">Uten ikon</span>
+</a>
+
+<a href="#" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
+  <i class="icon-[name]"></i>
+  <span class="btn__text">Aktivt menyelement</span>
 </a>`;
 }
 

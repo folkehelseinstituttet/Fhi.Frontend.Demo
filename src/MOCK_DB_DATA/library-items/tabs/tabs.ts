@@ -25,34 +25,18 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-  <li [ngbNavItem]="1">
-    <a ngbNavLink>Fane 1</a>
-    <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 1.</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="2">
-    <a ngbNavLink>Fane 2</a>
-    <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 2.</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="3">
-    <a ngbNavLink>Fane 3</a>
-    <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 3.</p>
-    </ng-template>
-  </li>
-  <li [ngbNavItem]="4">
-    <a ngbNavLink>Fane 4</a>
-    <ng-template ngbNavContent>
-      <p>Dette er innhold for fane 4.</p>
-    </ng-template>
-  </li>
-</ul>
+<div class="fhi-nav-tabs">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem *ngFor="let tab of tabsList">
+      <a ngbNavLink>{{ tab.tabName }}</a>
+      <ng-template ngbNavContent>
+        <div [innerHTML]="tab.tabContent"></div>
+      </ng-template>
+    </li>
+  </ul>
 
-<div [ngbNavOutlet]="nav" class="mt-5"></div>`;
+  <div [ngbNavOutlet]="nav"></div>
+</div>`;
 }
 
 /*
@@ -70,6 +54,7 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+  Ved bruk av React Bootstrap Tabbed components er det bare å wrappe i en<br>
+  <code>&lt;div class="fhi-nav-tabs"&gt;&lt;/div&gt;</code>.
 </p>`;
 }
