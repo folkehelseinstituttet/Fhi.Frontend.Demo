@@ -4,7 +4,7 @@ import { Options, ExportingMimeTypeValue, ExportingOptions } from 'highcharts';
 
 import { FhiHighchartsChartInstanceService } from './fhi-highcharts-chart-instance.service';
 import { FhiHighchartsCsvService } from './fhi-highcharts-csv.service';
-import { FhiHighchartsConfig } from '../fhi-highcharts-config.model';
+import { DiagramOptions } from '../fhi-highcharts-config.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class FhiHighchartsDownloadService {
     private csvService: FhiHighchartsCsvService
   ) { }
 
-  private config!: FhiHighchartsConfig;
+  private diagramOptions!: DiagramOptions;
 
-  setConfig(config: FhiHighchartsConfig) {
-    this.config = config;
+  setConfig(diagramOptions: DiagramOptions) {
+    this.diagramOptions = diagramOptions;
   }
 
   downloadImage(MIMEtype: ExportingMimeTypeValue) {
@@ -31,7 +31,7 @@ export class FhiHighchartsDownloadService {
     };
     const chartOptions: Options = {
       chart: {
-        spacingBottom: (this.config.captionDisclaimer) ? 100 : 50
+        spacingBottom: (this.diagramOptions.disclaimer) ? 100 : 50
       }
     };
     this.chartInstanceService.chart.exportChartLocal(exportingOptions, chartOptions);
@@ -39,13 +39,13 @@ export class FhiHighchartsDownloadService {
 
   downloadCSV() {
     const filename = this.getFilename().concat('.csv');
-    const credits = `"${this.config.creditsText}"\n\n\n`;
+    const credits = `"${this.diagramOptions.creditsText}"\n\n\n`;
     this.downloadBlob(credits.concat(this.csvService.csv), filename);
   }
 
   private getFilename() {
     const today = formatDate(new Date(), 'yyyy-MM-dd', 'nb-NO');
-    const title = this.config.title.replace(/ /gi, '-').replace(/,/gi, '').replace(/---/gi, '-');
+    const title = this.diagramOptions.title.replace(/ /gi, '-').replace(/,/gi, '').replace(/---/gi, '-');
     const filename = today.concat('.', title.toLowerCase());
     return filename;
   }

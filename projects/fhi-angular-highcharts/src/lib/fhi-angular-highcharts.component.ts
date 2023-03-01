@@ -8,7 +8,7 @@ import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
 // TODO: rename (either FhiAngularHighcharts or just Highcharts, or maybe no prefix at all...)
-import { DiagramOptions, FhiHighchartsConfig } from './fhi-highcharts-config.model';
+import { DiagramOptions } from './fhi-highcharts-config.model';
 import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
 import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
 import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
@@ -38,12 +38,12 @@ export class FhiAngularHighchartsComponent {
   tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
-
-
-  config!: FhiHighchartsConfig;
+  tableLastUpdated!: string;
+  tableDisclaimer!: string;
+  tableCreditsHref!: string;
+  tableCreditsText!: string;
 
   @Input() diagramOptions!: DiagramOptions;
-
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -61,66 +61,42 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-
-
-    // TODO: just one config named diagramOptions when all refactoring is done!
-    this.config = this.diagramConfigToConfigAdapterTMP(this.diagramOptions);
-
-
-    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.config.diagramtype);
-    this.options = this.optionsService.updateOptions(this.config, this.allMapsLoaded);
+    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
+    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
     if (this.currentDiagramTemplate === this.diagramTemplates.table) {
       this.updateTable(this.options);
     }
-    if (this.config.diagramtype.isMap) {
-      this.checkIfMapIsLoaded(this.config.diagramtype);
+    if (this.diagramOptions.diagramType.isMap) {
+      this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
     }
   }
 
   onChartInstance(chart: Chart) {
-
     this.chartInstanceService.chart = chart;
-    this.downloadService.setConfig(this.config);
+    this.downloadService.setConfig(this.diagramOptions);
     this.csvService.csv = chart.getCSV();
   }
-
-
-
-  // TODO: just one config named diagramConfig when all refactoring is done!
-  //       And then delete this method.
-  private diagramConfigToConfigAdapterTMP(diagramConfig: DiagramOptions): FhiHighchartsConfig {
-    return {
-      captionDisclaimer: diagramConfig.disclaimer,
-      captionLastUpdated: diagramConfig.lastUpdated,
-      creditsHref: diagramConfig.creditsHref,
-      creditsText: diagramConfig.creditsText,
-      diagramtype: DiagramTypes.column,
-      title: diagramConfig.title,
-      series: this.seriesFromDiagramConfigData(diagramConfig.data)
-    };
-  }
-  // In this POC the data from the data-service has correct type, in a real app
-  // this is where data from API is transformed for Highcharts consumption.
-  private seriesFromDiagramConfigData(data: any): any {
-    return data;
-  }
-
-
-
 
   private updateTable(options: Highcharts.Options) {
     this.tableHeaderRow = this.tableService.getHeaderRow(options);
     this.tableBodyRows = this.tableService.getDataRows(options);
+    this.tableTitle = this.diagramOptions.title;
+    this.tableLastUpdated = this.diagramOptions.lastUpdated;
+    this.tableDisclaimer = this.diagramOptions.disclaimer;
+    this.tableCreditsHref = this.diagramOptions.creditsHref;
+    this.tableCreditsText = this.diagramOptions.creditsText;
+
+    // TODO: solution for generating table data without using csv from Highcharts
     this.csvService.csv = this.tableService.getCsv(options);
-    this.tableTitle = this.config.title;
+
     this.changeDetector.detectChanges();
   }
 
   private updateMap(map: any) {
     this.geoJsonService.updateMapFeatures(map);
     this.allMapsLoaded = true;
-    this.options = this.optionsService.updateOptions(this.config, this.allMapsLoaded);
+    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
     this.changeDetector.detectChanges();
   }
 
