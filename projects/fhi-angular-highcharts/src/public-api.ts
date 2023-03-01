@@ -6,3 +6,4 @@ export * from './lib/fhi-angular-highcharts.service';
 export * from './lib/fhi-angular-highcharts.component';
 export * from './lib/fhi-angular-highcharts.module';
 export { DiagramOptions } from './lib/fhi-highcharts-config.model';
+export { DiagramTypes } from './lib/fhi-diagram-types/fhi-diagram-types';

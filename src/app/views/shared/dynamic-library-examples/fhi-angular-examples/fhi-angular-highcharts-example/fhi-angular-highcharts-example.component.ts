@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
+
 import { DiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
+import { DiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: 'Dødsfall etter årsak, 2008 - 2018',
             data: data,
-            diagramType: undefined,
+            diagramType: DiagramTypes.line,
             disclaimer: 'Det kan være feil i disse dataene.',
             lastUpdated: 'Juni 2021',
             creditsHref: 'https://www.fhi.no',

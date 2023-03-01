@@ -1,5 +1,6 @@
-//  TODO: remove
 import { DiagramType } from "./fhi-diagram-types/fhi-diagram-type.model";
+
+//  TODO: remove
 export interface FhiHighchartsConfig {
   captionLastUpdated: string;
   captionDisclaimer?: string;
@@ -29,18 +30,7 @@ export interface DiagramOptions {
   creditsHref: string;
   creditsText: string;
   data: Array<FhiSerie>;
-  diagramType:
-    'area' |
-    'bar' |
-    'barStacked' |
-    'column' |
-    'columnStacked' |
-    'donut' |
-    'line' |
-    'mapFylker2019' |
-    'mapFylker' |
-    'pie' |
-    'table' | undefined;
+  diagramType: DiagramType | undefined;
   disclaimer?: string;
   lastUpdated: string;
   title: string;
