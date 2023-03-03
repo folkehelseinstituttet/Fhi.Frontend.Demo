@@ -16,8 +16,8 @@ import { FhiHighchartsCsvService } from './services/fhi-highcharts-csv.service';
 import { FhiHighchartsDownloadService } from './services/fhi-highcharts-download.service';
 import { FhiHighchartsGeoJsonService } from "./services/fhi-highcharts-geo-json.service";
 
-import { DiagramType } from './diagram-types/fhi-diagram-type.model';
-import { DiagramTypes } from './diagram-types/fhi-diagram-types';
+import { DiagramType } from './diagram-types/diagram-type.model';
+import { DiagramTypes } from './diagram-types/diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 

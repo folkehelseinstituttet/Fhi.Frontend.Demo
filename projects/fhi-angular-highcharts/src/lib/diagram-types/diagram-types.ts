@@ -9,8 +9,8 @@ import { OptionsMapFylker2019 } from '../highcharts-options/options-map-fylker-2
 import { OptionsMapFylker } from '../highcharts-options/options-map-fylker';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
 
-import { DiagramType } from './fhi-diagram-type.model';
-import { DiagramTypeId } from './fhi-diagram-type-id';
+import { DiagramType } from './diagram-type.model';
+import { DiagramTypeId } from './diagram-type-id';
 
 const area: DiagramType = {
   id: DiagramTypeId.area,
