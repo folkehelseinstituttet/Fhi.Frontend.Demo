@@ -32,7 +32,8 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             disclaimer: 'Det kan være feil i disse dataene.',
             lastUpdated: 'Juni 2021',
             creditsHref: 'https://www.fhi.no',
-            creditsText: 'Kilde: Dødsårsaksregisteret, FHI'
+            creditsText: 'Kilde: Dødsårsaksregisteret, FHI',
+            openSource: false
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

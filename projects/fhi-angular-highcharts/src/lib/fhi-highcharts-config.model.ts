@@ -19,5 +19,6 @@ export interface DiagramOptions {
   diagramType: DiagramType | undefined;
   disclaimer?: string;
   lastUpdated: string;
+  openSource: boolean;
   title: string;
 }
