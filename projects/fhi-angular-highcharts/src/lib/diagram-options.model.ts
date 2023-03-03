@@ -1,4 +1,4 @@
-import { DiagramType } from "./fhi-diagram-types/fhi-diagram-type.model";
+import { DiagramType } from "./diagram-types/fhi-diagram-type.model";
 
 interface Data {
   name: string;

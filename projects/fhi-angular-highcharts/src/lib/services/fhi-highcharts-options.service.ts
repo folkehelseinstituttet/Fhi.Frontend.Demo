@@ -5,8 +5,8 @@ import merge from 'lodash-es/merge';
 import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOptions, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
-import { DiagramType } from '../fhi-diagram-types/fhi-diagram-type.model';
-import { DiagramTypeList } from '../fhi-diagram-types/fhi-diagram-types';
+import { DiagramType } from '../diagram-types/fhi-diagram-type.model';
+import { DiagramTypeList } from '../diagram-types/fhi-diagram-types';
 import { FhiHighchartsGeoJsonService } from './fhi-highcharts-geo-json.service';
 import { DiagramOptions, DiagramSerie } from '../diagram-options.model';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
