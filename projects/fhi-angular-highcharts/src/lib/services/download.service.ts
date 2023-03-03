@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { Options, ExportingMimeTypeValue, ExportingOptions } from 'highcharts';
 
-import { FhiHighchartsChartInstanceService } from './fhi-highcharts-chart-instance.service';
-import { FhiHighchartsCsvService } from './fhi-highcharts-csv.service';
+import { ChartInstanceService } from './chart-instance.service';
+import { CsvService } from './csv.service';
 import { DiagramOptions } from '../diagram-options.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsDownloadService {
+export class DownloadService {
 
   constructor(
-    private chartInstanceService: FhiHighchartsChartInstanceService,
-    private csvService: FhiHighchartsCsvService
+    private chartInstanceService: ChartInstanceService,
+    private csvService: CsvService
   ) { }
 
   private diagramOptions!: DiagramOptions;

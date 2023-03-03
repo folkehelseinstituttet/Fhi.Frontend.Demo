@@ -4,7 +4,7 @@ import { Chart } from 'highcharts';
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsChartInstanceService {
+export class ChartInstanceService {
 
   private _chart!: Chart;
 

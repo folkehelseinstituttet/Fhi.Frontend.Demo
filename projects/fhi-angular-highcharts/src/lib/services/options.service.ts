@@ -7,7 +7,7 @@ import { isValid, parseISO } from 'date-fns'
 
 import { DiagramType } from '../diagram-types/diagram-type.model';
 import { DiagramTypeList } from '../diagram-types/diagram-types';
-import { FhiHighchartsGeoJsonService } from './fhi-highcharts-geo-json.service';
+import { GeoJsonService } from './geo-json.service';
 import { DiagramOptions, DiagramSerie } from '../diagram-options.model';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
@@ -16,9 +16,9 @@ import { OptionsMaps } from '../highcharts-options/options-maps';
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsOptionsService {
+export class OptionsService {
 
-  constructor(private geoJsonService: FhiHighchartsGeoJsonService) {
+  constructor(private geoJsonService: GeoJsonService) {
     this.diagramTypeList = DiagramTypeList;
     this.setAllStaticOptions();
   }

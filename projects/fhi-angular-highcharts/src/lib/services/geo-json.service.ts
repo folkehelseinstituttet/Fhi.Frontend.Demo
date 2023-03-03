@@ -8,7 +8,7 @@ import { SeriesMapOptions } from 'highcharts';
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsGeoJsonService {
+export class GeoJsonService {
 
   constructor(private http: HttpClient) { }
 

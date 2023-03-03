@@ -7,14 +7,13 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-// TODO: rename (either FhiAngularHighcharts or just Highcharts, or maybe no prefix at all...)
 import { DiagramOptions } from './diagram-options.model';
-import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
-import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
-import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
-import { FhiHighchartsCsvService } from './services/fhi-highcharts-csv.service';
-import { FhiHighchartsDownloadService } from './services/fhi-highcharts-download.service';
-import { FhiHighchartsGeoJsonService } from "./services/fhi-highcharts-geo-json.service";
+import { OptionsService } from './services/options.service';
+import { TableService } from './services/table.service';
+import { ChartInstanceService } from './services/chart-instance.service';
+import { CsvService } from './services/csv.service';
+import { DownloadService } from './services/download.service';
+import { GeoJsonService } from "./services/geo-json.service";
 
 import { DiagramType } from './diagram-types/diagram-type.model';
 import { DiagramTypes } from './diagram-types/diagram-types';
@@ -47,12 +46,12 @@ export class FhiAngularHighchartsComponent {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private optionsService: FhiHighchartsOptionsService,
-    private chartInstanceService: FhiHighchartsChartInstanceService,
-    private csvService: FhiHighchartsCsvService,
-    private tableService: FhiHighchartsTableService,
-    private downloadService: FhiHighchartsDownloadService,
-    private geoJsonService: FhiHighchartsGeoJsonService
+    private optionsService: OptionsService,
+    private chartInstanceService: ChartInstanceService,
+    private csvService: CsvService,
+    private tableService: TableService,
+    private downloadService: DownloadService,
+    private geoJsonService: GeoJsonService
   ) {
     HighchartsExporting(Highcharts);
     HighchartsOfflineExporting(Highcharts);
@@ -85,7 +84,7 @@ export class FhiAngularHighchartsComponent {
       diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : DiagramTypes.table,
       openSource: true
     }
-    // TODO: need system in FhiHighchartsOptionsService for when to render/not render anything that has to do with properties below:
+    // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
     // creditsHref?: string;
     // creditsText?: string;
     // disclaimer?: string;
