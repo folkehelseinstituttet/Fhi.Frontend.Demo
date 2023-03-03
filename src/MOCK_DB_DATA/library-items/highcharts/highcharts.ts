@@ -16,7 +16,7 @@ export const Highcharts: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `<fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>`;
+  return ``;
 }
 
 /*
@@ -24,12 +24,18 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `<fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>
+  Informasjon om hvordan ta i bruk denne modulen finner du her:
+  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
+    @folkehelseinstituttet/angular-highcharts
+  </a>
+</p>`;
 }
