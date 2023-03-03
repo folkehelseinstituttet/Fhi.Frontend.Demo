@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { DiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
-import { DiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
+import { DiagramOptions, DiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({

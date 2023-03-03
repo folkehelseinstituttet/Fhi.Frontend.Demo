@@ -8,7 +8,7 @@ import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
 // TODO: rename (either FhiAngularHighcharts or just Highcharts, or maybe no prefix at all...)
-import { DiagramOptions } from './fhi-highcharts-config.model';
+import { DiagramOptions } from './diagram-options.model';
 import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
 import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
 import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';

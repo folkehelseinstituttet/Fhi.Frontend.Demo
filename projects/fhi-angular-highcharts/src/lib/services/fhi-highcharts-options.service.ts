@@ -8,7 +8,7 @@ import { isValid, parseISO } from 'date-fns'
 import { DiagramType } from '../fhi-diagram-types/fhi-diagram-type.model';
 import { DiagramTypeList } from '../fhi-diagram-types/fhi-diagram-types';
 import { FhiHighchartsGeoJsonService } from './fhi-highcharts-geo-json.service';
-import { DiagramOptions, FhiSerie } from '../fhi-highcharts-config.model';
+import { DiagramOptions, DiagramSerie } from '../diagram-options.model';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -79,7 +79,7 @@ export class FhiHighchartsOptionsService {
     return credits;
   }
 
-  private getSeries(series: FhiSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(series: DiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
       return [this.geoJsonService.getHighmapsSerie(series[0])];
     } else {
@@ -87,13 +87,13 @@ export class FhiHighchartsOptionsService {
     }
   }
 
-  private getXaxis(xAxis: XAxisOptions, series: FhiSerie[]): XAxisOptions | XAxisOptions[] {
+  private getXaxis(xAxis: XAxisOptions, series: DiagramSerie[]): XAxisOptions | XAxisOptions[] {
     xAxis = (xAxis) ? xAxis : {};
     xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
   }
 
-  private getFormattedLabels(series: FhiSerie[]): XAxisLabelsOptions {
+  private getFormattedLabels(series: DiagramSerie[]): XAxisLabelsOptions {
     const isDayLabels = isValid(parseISO(this.getISO8601DataFromNorwegianDate(series[0].data[0].name)));
     if (isDayLabels) {
       if (series[0].data.length > 60) {

@@ -1,8 +1,8 @@
 # Unreleased
 
-> Jan 30, 2023
+> Mar 03, 2023
 
-* :gift: **New** Create `@folkehelseinstituttet/angular-components`
+* :gift: **New** Create `@folkehelseinstituttet/angular-highcharts`
 
 ## Examples
 

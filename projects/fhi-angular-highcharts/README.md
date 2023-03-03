@@ -1,24 +1,60 @@
-# FhiAngularHighcharts
+# FHI AngularHighcharts
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+An opinionated wrapper to the official minimal [Highcharts wrapper for Angular](https://github.com/highcharts/highcharts-angular)
 
-## Code scaffolding
+## Dependencies
 
-Run `ng generate component component-name --project fhi-angular-highcharts` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project fhi-angular-highcharts`.
-> Note: Don't forget to add `--project fhi-angular-highcharts` or else it will be added to the default project in your `angular.json` file. 
+| FHI AngularHighcharts | FHI Style | Bootstrap | Highcharts | HighchartsAngular | Angular | Node/NPM |
+| --------------------- | --------- | --------- | ---------- | ----------------- | ------- | -------- |
+| 0.1.0                 | 4         | 5         | 10.3.0     | 3                 | 14      | 16/8 *   |
 
-## Build
+For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
+_* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
 
-Run `ng build fhi-angular-highcharts` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Changelog
 
-## Publishing
+You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/CHANGELOG.md).
 
-After building your library with `ng build fhi-angular-highcharts`, go to the dist folder `cd dist/fhi-angular-highcharts` and run `npm publish`.
+## Install
 
-## Running unit tests
+Install with [npm](https://www.npmjs.com): `npm install @folkehelseinstituttet/angular-highcharts`
 
-Run `ng test fhi-angular-highcharts` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contribute
 
-## Further help
+Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Demo and documentation
+
+Live example in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no/developer/modules/Highcharts)
+
+Repo for demo app: [Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
+
+### Get started
+
+After installing package and all dependencies add the following to you're code:
+
+```ts
+// In a module
+import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
+...
+  imports: [FhiAngularHighchartsModule]
+...
+```
+
+```ts
+// In a component (.ts)
+import { DiagramOptions, DiagramSerie, DiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
+...
+  data: DiagramSerie[] = [...];
+  diagramOptions: DiagramOptions = {
+    title: 'Diagram title',
+    data: data,
+    diagramType: DiagramTypes.column
+  };
+...
+```
+
+```html
+<!-- In a component (.html) -->
+<fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+```
