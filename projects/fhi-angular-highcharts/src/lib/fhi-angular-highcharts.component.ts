@@ -61,6 +61,7 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
+    this.diagramOptions = this.setOptionalDiagramOptions(this.diagramOptions);
     this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
     this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
@@ -76,6 +77,19 @@ export class FhiAngularHighchartsComponent {
     this.chartInstanceService.chart = chart;
     this.downloadService.setConfig(this.diagramOptions);
     this.csvService.csv = chart.getCSV();
+  }
+
+  private setOptionalDiagramOptions(diagramOptions: DiagramOptions): DiagramOptions {
+    return {
+      ...diagramOptions,
+      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : DiagramTypes.table,
+      openSource: true
+    }
+    // TODO: need system in FhiHighchartsOptionsService for when to render/not render anything that has to do with properties below:
+    // creditsHref?: string;
+    // creditsText?: string;
+    // disclaimer?: string;
+    // lastUpdated?: string;
   }
 
   private updateTable(options: Highcharts.Options) {

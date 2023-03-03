@@ -63,7 +63,8 @@
     </div>
     <footer class="fhi-highcharts-table__footer">
       <div class="fhi-highcharts-table__caption">
-        <p class="fhi-highcharts-table__caption-last-update mb-0">Oppdatert: {{ tableLastUpdated }}</p>
+        <p class="fhi-highcharts-table__caption-last-update mb-0"
+           *ngIf="tableLastUpdated">Oppdatert: {{ tableLastUpdated }}</p>
         <p class="fhi-highcharts-table__caption-disclaimer mb-0"
            *ngIf="tableDisclaimer"
            [innerHTML]="tableDisclaimer">

@@ -13,12 +13,12 @@ interface Data {
 }
 
 export interface DiagramOptions {
-  creditsHref: string;
-  creditsText: string;
+  creditsHref?: string;
+  creditsText?: string;
   data: Array<FhiSerie>;
-  diagramType: DiagramType | undefined;
+  diagramType?: DiagramType | undefined;
   disclaimer?: string;
-  lastUpdated: string;
-  openSource: boolean;
+  lastUpdated?: string;
+  openSource?: boolean;
   title: string;
 }

@@ -30,10 +30,12 @@ export class FhiHighchartsOptionsService {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
 
     options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
-    options.caption = this.getCaptionText(options.caption, diagramOptions.lastUpdated, diagramOptions.disclaimer);
-    options.credits = this.getCredits(options.credits, diagramOptions.creditsHref, diagramOptions.creditsText, diagramOptions.diagramType.isMap);
     options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
 
+    if (!diagramOptions.openSource) {
+      options.caption = this.getCaptionText(options.caption, diagramOptions.lastUpdated, diagramOptions.disclaimer);
+      options.credits = this.getCredits(options.credits, diagramOptions.creditsHref, diagramOptions.creditsText, diagramOptions.diagramType.isMap);
+    }
     if (!diagramOptions.diagramType.isMap) {
       options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
     }

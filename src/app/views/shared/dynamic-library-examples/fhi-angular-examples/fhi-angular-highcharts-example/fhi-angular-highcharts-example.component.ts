@@ -28,13 +28,18 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: 'Dødsfall etter årsak, 2008 - 2018',
             data: data,
-            diagramType: DiagramTypes.column,
-            disclaimer: 'Det kan være feil i disse dataene.',
-            lastUpdated: 'Juni 2021',
-            creditsHref: 'https://www.fhi.no',
-            creditsText: 'Kilde: Dødsårsaksregisteret, FHI',
-            openSource: false
+            diagramType: DiagramTypes.column
           };
+          // this.diagramOptions = {
+          //   title: 'Dødsfall etter årsak, 2008 - 2018',
+          //   data: data,
+          //   diagramType: DiagramTypes.column,
+          //   disclaimer: 'Det kan være feil i disse dataene.',
+          //   lastUpdated: 'Juni 2021',
+          //   creditsHref: 'https://www.fhi.no',
+          //   creditsText: 'Kilde: Dødsårsaksregisteret, FHI',
+          //   openSource: false
+          // };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
         },
