@@ -15,8 +15,8 @@ import { CsvService } from './services/csv.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
-import { DiagramType } from './diagram-types/diagram-type.model';
-import { DiagramTypes } from './diagram-types/diagram-types';
+import { DiagramType } from './fhi-diagram/diagram-type.model';
+import { DiagramTypes } from './fhi-diagram/diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 
