@@ -4,7 +4,7 @@ import { Options, ExportingMimeTypeValue, ExportingOptions } from 'highcharts';
 
 import { ChartInstanceService } from './chart-instance.service';
 import { CsvService } from './csv.service';
-import { DiagramOptions } from '../diagram-options.model';
+import { DiagramOptions } from '../fhi-diagram/diagram-options.model';
 
 @Injectable({
   providedIn: 'root'

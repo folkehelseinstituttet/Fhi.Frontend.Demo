@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { DiagramOptions } from './diagram-options.model';
+import { DiagramOptions } from './fhi-diagram/diagram-options.model';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';

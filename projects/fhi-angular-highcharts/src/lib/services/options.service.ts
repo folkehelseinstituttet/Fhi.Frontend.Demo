@@ -8,7 +8,7 @@ import { isValid, parseISO } from 'date-fns'
 import { DiagramType } from '../fhi-diagram/diagram-type.model';
 import { DiagramTypeList } from '../fhi-diagram/diagram-types';
 import { GeoJsonService } from './geo-json.service';
-import { DiagramOptions, DiagramSerie } from '../diagram-options.model';
+import { DiagramOptions, DiagramSerie } from '../fhi-diagram/diagram-options.model';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
