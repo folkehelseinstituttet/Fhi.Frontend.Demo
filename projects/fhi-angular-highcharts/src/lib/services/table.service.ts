@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsTableService {
+export class TableService {
 
   getHeaderRow(options: Highcharts.Options): string[] {
     if (!options.series) {
-      throw new Error('FhiHighchartsTableService.getHeaderRow() -> options.series is undefined');
+      throw new Error('TableService.getHeaderRow() -> options.series is undefined');
     }
     // Generate header row
     const tableHeaderRow = options.series.map(s => s.name) as string[];
@@ -17,7 +17,7 @@ export class FhiHighchartsTableService {
 
   getDataRows(options: Highcharts.Options, includeSumRow: boolean = false): any[][] {
     if (!options.series) {
-      throw new Error('FhiHighchartsTableService.getDataRows() -> options.series is undefined');
+      throw new Error('TableService.getDataRows() -> options.series is undefined');
     }
     // Generate first column in rows
     let sumRowCount = includeSumRow ? 1 : 0;

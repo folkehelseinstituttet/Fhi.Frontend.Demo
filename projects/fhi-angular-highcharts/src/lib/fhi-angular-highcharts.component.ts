@@ -7,33 +7,18 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-// TODO: rename (either FhiAngularHighcharts or just Highcharts, or maybe no prefix at all...)
-import { FhiHighchartsConfig } from './fhi-highcharts-config.model';
-import { FhiHighchartsOptionsService } from './services/fhi-highcharts-options.service';
-import { FhiHighchartsTableService } from './services/fhi-highcharts-table.service';
-import { FhiHighchartsChartInstanceService } from './services/fhi-highcharts-chart-instance.service';
-import { FhiHighchartsCsvService } from './services/fhi-highcharts-csv.service';
-import { FhiHighchartsDownloadService } from './services/fhi-highcharts-download.service';
-import { FhiHighchartsGeoJsonService } from "./services/fhi-highcharts-geo-json.service";
+import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
+import { OptionsService } from './services/options.service';
+import { TableService } from './services/table.service';
+import { ChartInstanceService } from './services/chart-instance.service';
+import { CsvService } from './services/csv.service';
+import { DownloadService } from './services/download.service';
+import { GeoJsonService } from "./services/geo-json.service";
 
-import { DiagramType } from './fhi-diagram-types/fhi-diagram-type.model';
-import { DiagramTypes } from './fhi-diagram-types/fhi-diagram-types';
+import { FhiDiagramType } from './fhi-diagram/fhi-diagram-type.model';
+import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
-
-
-
-// TODO: interface FhiDiagramConfig must be exposed by the npm-package
-interface FhiDiagramConfig {
-  data: any;
-  title: string;
-  defaultDiagramType: number;
-  disclaimer: string;
-  lastUpdated: string;
-  creditsHref: string;
-  creditsText: string;
-}
-
 
 
 @Component({
@@ -52,21 +37,21 @@ export class FhiAngularHighchartsComponent {
   tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
+  tableLastUpdated!: string;
+  tableDisclaimer!: string;
+  tableCreditsHref!: string;
+  tableCreditsText!: string;
 
-
-  config!: FhiHighchartsConfig;
-
-  @Input() diagramConfig!: FhiDiagramConfig;
-
+  @Input() diagramOptions!: FhiDiagramOptions;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private optionsService: FhiHighchartsOptionsService,
-    private chartInstanceService: FhiHighchartsChartInstanceService,
-    private csvService: FhiHighchartsCsvService,
-    private tableService: FhiHighchartsTableService,
-    private downloadService: FhiHighchartsDownloadService,
-    private geoJsonService: FhiHighchartsGeoJsonService
+    private optionsService: OptionsService,
+    private chartInstanceService: ChartInstanceService,
+    private csvService: CsvService,
+    private tableService: TableService,
+    private downloadService: DownloadService,
+    private geoJsonService: GeoJsonService
   ) {
     HighchartsExporting(Highcharts);
     HighchartsOfflineExporting(Highcharts);
@@ -75,70 +60,60 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-
-
-    // TODO: just one config named diagramConfig when all refactoring is done!
-    this.config = this.diagramConfigToConfigAdapterTMP(this.diagramConfig);
-
-
-    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.config.diagramtype);
-    this.options = this.optionsService.updateOptions(this.config, this.allMapsLoaded);
+    this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
+    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
     if (this.currentDiagramTemplate === this.diagramTemplates.table) {
       this.updateTable(this.options);
     }
-    if (this.config.diagramtype.isMap) {
-      this.checkIfMapIsLoaded(this.config.diagramtype);
+    if (this.diagramOptions.diagramType.isMap) {
+      this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
     }
   }
 
   onChartInstance(chart: Chart) {
-
     this.chartInstanceService.chart = chart;
-    this.downloadService.setConfig(this.config);
+    this.downloadService.setConfig(this.diagramOptions);
     this.csvService.csv = chart.getCSV();
   }
 
-
-
-  // TODO: just one config named diagramConfig when all refactoring is done!
-  //       And then delete this method.
-  private diagramConfigToConfigAdapterTMP(diagramConfig: FhiDiagramConfig): FhiHighchartsConfig {
+  private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     return {
-      captionDisclaimer: diagramConfig.disclaimer,
-      captionLastUpdated: diagramConfig.lastUpdated,
-      creditsHref: diagramConfig.creditsHref,
-      creditsText: diagramConfig.creditsText,
-      diagramtype: DiagramTypes.column,
-      title: diagramConfig.title,
-      series: this.seriesFromDiagramConfigData(diagramConfig.data)
-    };
+      ...diagramOptions,
+      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
+      openSource: true
+    }
+    // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
+    // creditsHref?: string;
+    // creditsText?: string;
+    // disclaimer?: string;
+    // lastUpdated?: string;
   }
-  // In this POC the data from the data-service has correct type, in a real app
-  // this is where data from API is transformed for Highcharts consumption.
-  private seriesFromDiagramConfigData(data: any): any {
-    return data;
-  }
-
-
-
 
   private updateTable(options: Highcharts.Options) {
     this.tableHeaderRow = this.tableService.getHeaderRow(options);
     this.tableBodyRows = this.tableService.getDataRows(options);
+    this.tableTitle = this.diagramOptions.title;
+    this.tableLastUpdated = this.diagramOptions.lastUpdated;
+    this.tableDisclaimer = this.diagramOptions.disclaimer;
+    this.tableCreditsHref = this.diagramOptions.creditsHref;
+    this.tableCreditsText = this.diagramOptions.creditsText;
+
+    // TODO: solution for generating table data without using csv from Highcharts
     this.csvService.csv = this.tableService.getCsv(options);
-    this.tableTitle = this.config.title;
+
     this.changeDetector.detectChanges();
   }
 
   private updateMap(map: any) {
     this.geoJsonService.updateMapFeatures(map);
     this.allMapsLoaded = true;
-    this.options = this.optionsService.updateOptions(this.config, this.allMapsLoaded);
+    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
     this.changeDetector.detectChanges();
   }
 
-  private checkIfMapIsLoaded(diagramtype: DiagramType) {
+  private checkIfMapIsLoaded(diagramtype: FhiDiagramType) {
     if (Highcharts.maps[diagramtype.id]) {
       this.updateMap(Highcharts.maps[diagramtype.id]);
     } else {
@@ -146,7 +121,7 @@ export class FhiAngularHighchartsComponent {
     }
   }
 
-  private loadMap(diagramtype: DiagramType) {
+  private loadMap(diagramtype: FhiDiagramType) {
     this.geoJsonService.getMap(diagramtype.mapFile)
       .pipe(first()).subscribe(map => {
         this.geoJsonService.addMapToHighcharts(Highcharts, map, diagramtype.id);
@@ -154,8 +129,8 @@ export class FhiAngularHighchartsComponent {
       });
   }
 
-  private getCurrentDiagramTemplate(diagramtype: DiagramType): string {
-    if (diagramtype.id === DiagramTypes.table.id) {
+  private getCurrentDiagramTemplate(diagramtype: FhiDiagramType): string {
+    if (diagramtype.id === FhiDiagramTypes.table.id) {
       return DiagramTemplates.table;
     }
     if (diagramtype.isMap) {

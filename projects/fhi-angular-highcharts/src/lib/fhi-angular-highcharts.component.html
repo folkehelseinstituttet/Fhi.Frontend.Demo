@@ -41,7 +41,7 @@
   <article class="fhi-highcharts-table">
     <h1 class="h3">{{ tableTitle }}</h1>
     <div class="table-responsive">
-      <table class="table table table-striped mt-3">
+      <table class="table table-striped table-sm mt-3">
         <thead>
           <tr class="fhi-highcharts-table__row">
             <th *ngFor="let tableCellData of tableHeaderRow; let i = index"
@@ -63,12 +63,13 @@
     </div>
     <footer class="fhi-highcharts-table__footer">
       <div class="fhi-highcharts-table__caption">
-        <p class="fhi-highcharts-table__caption-last-update mb-0">Oppdatert: {{ config.captionLastUpdated }}</p>
+        <p class="fhi-highcharts-table__caption-last-update mb-0"
+           *ngIf="tableLastUpdated">Oppdatert: {{ tableLastUpdated }}</p>
         <p class="fhi-highcharts-table__caption-disclaimer mb-0"
-           *ngIf="config.captionDisclaimer"
-           [innerHTML]="config.captionDisclaimer">
+           *ngIf="tableDisclaimer"
+           [innerHTML]="tableDisclaimer">
         </p>
-        <a href="{{ config.creditsHref }}" class="fhi-highcharts-table__credits">{{ config.creditsText }}</a>
+        <a href="{{ tableCreditsHref }}" class="fhi-highcharts-table__credits">{{ tableCreditsText }}</a>
       </div>
     </footer>
   </article>

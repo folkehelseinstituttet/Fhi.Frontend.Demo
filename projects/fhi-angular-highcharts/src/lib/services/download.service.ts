@@ -2,24 +2,24 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { Options, ExportingMimeTypeValue, ExportingOptions } from 'highcharts';
 
-import { FhiHighchartsChartInstanceService } from './fhi-highcharts-chart-instance.service';
-import { FhiHighchartsCsvService } from './fhi-highcharts-csv.service';
-import { FhiHighchartsConfig } from '../fhi-highcharts-config.model';
+import { ChartInstanceService } from './chart-instance.service';
+import { CsvService } from './csv.service';
+import { FhiDiagramOptions } from '../fhi-diagram/fhi-diagram-options.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsDownloadService {
+export class DownloadService {
 
   constructor(
-    private chartInstanceService: FhiHighchartsChartInstanceService,
-    private csvService: FhiHighchartsCsvService
+    private chartInstanceService: ChartInstanceService,
+    private csvService: CsvService
   ) { }
 
-  private config!: FhiHighchartsConfig;
+  private diagramOptions!: FhiDiagramOptions;
 
-  setConfig(config: FhiHighchartsConfig) {
-    this.config = config;
+  setConfig(diagramOptions: FhiDiagramOptions) {
+    this.diagramOptions = diagramOptions;
   }
 
   downloadImage(MIMEtype: ExportingMimeTypeValue) {
@@ -31,7 +31,7 @@ export class FhiHighchartsDownloadService {
     };
     const chartOptions: Options = {
       chart: {
-        spacingBottom: (this.config.captionDisclaimer) ? 100 : 50
+        spacingBottom: (this.diagramOptions.disclaimer) ? 100 : 50
       }
     };
     this.chartInstanceService.chart.exportChartLocal(exportingOptions, chartOptions);
@@ -39,13 +39,13 @@ export class FhiHighchartsDownloadService {
 
   downloadCSV() {
     const filename = this.getFilename().concat('.csv');
-    const credits = `"${this.config.creditsText}"\n\n\n`;
+    const credits = `"${this.diagramOptions.creditsText}"\n\n\n`;
     this.downloadBlob(credits.concat(this.csvService.csv), filename);
   }
 
   private getFilename() {
     const today = formatDate(new Date(), 'yyyy-MM-dd', 'nb-NO');
-    const title = this.config.title.replace(/ /gi, '-').replace(/,/gi, '').replace(/---/gi, '-');
+    const title = this.diagramOptions.title.replace(/ /gi, '-').replace(/,/gi, '').replace(/---/gi, '-');
     const filename = today.concat('.', title.toLowerCase());
     return filename;
   }

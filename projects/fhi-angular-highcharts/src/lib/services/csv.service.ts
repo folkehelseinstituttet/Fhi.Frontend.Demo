@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class FhiHighchartsCsvService {
+export class CsvService {
 
   private _csv!: string;
 
