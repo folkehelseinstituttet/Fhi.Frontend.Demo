@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { DiagramOptions } from './fhi-diagram/diagram-options.model';
+import { DiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
@@ -15,8 +15,8 @@ import { CsvService } from './services/csv.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
-import { DiagramType } from './fhi-diagram/diagram-type.model';
-import { DiagramTypes } from './fhi-diagram/diagram-types';
+import { DiagramType } from './fhi-diagram/fhi-diagram-type.model';
+import { DiagramTypes } from './fhi-diagram/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 

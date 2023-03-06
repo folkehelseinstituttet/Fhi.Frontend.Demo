@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DiagramSerie } from '../fhi-diagram/diagram-options.model';
+import { DiagramSerie } from '../fhi-diagram/fhi-diagram-options.model';
 import { SeriesMapOptions } from 'highcharts';
 
 @Injectable({
