@@ -43,13 +43,13 @@ import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highc
 
 ```ts
 // In a component (.ts)
-import { DiagramOptions, DiagramSerie, DiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions, FhiDiagramSerie, FhiDiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
 ...
-  data: DiagramSerie[] = [...];
-  diagramOptions: DiagramOptions = {
+  data: FhiDiagramSerie[] = [...];
+  diagramOptions: FhiDiagramOptions = {
     title: 'Diagram title',
     data: data,
-    diagramType: DiagramTypes.column
+    diagramType: FhiDiagramTypes.column
   };
 ...
 ```

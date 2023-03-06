@@ -1,22 +1,22 @@
-import { DiagramType } from "./fhi-diagram-type.model";
+import { FhiDiagramType } from "./fhi-diagram-type.model";
 
 interface Data {
   name: string;
   y: number;
 }
 
-export interface DiagramSerie {
+export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string;
   colorIndex:	number;
   legendIndex: number;
 }
 
-export interface DiagramOptions {
+export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
-  data: Array<DiagramSerie>;
-  diagramType?: DiagramType | undefined;
+  data: Array<FhiDiagramSerie>;
+  diagramType?: FhiDiagramType | undefined;
   disclaimer?: string;
   lastUpdated?: string;
   openSource?: boolean;

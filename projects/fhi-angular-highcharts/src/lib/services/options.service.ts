@@ -5,10 +5,10 @@ import merge from 'lodash-es/merge';
 import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOptions, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
-import { DiagramType } from '../fhi-diagram/fhi-diagram-type.model';
-import { DiagramTypeList } from '../fhi-diagram/fhi-diagram-types';
+import { FhiDiagramType } from '../fhi-diagram/fhi-diagram-type.model';
+import { FhiDiagramTypeList } from '../fhi-diagram/fhi-diagram-types';
 import { GeoJsonService } from './geo-json.service';
-import { DiagramOptions, DiagramSerie } from '../fhi-diagram/fhi-diagram-options.model';
+import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram-options.model';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -19,14 +19,14 @@ import { OptionsMaps } from '../highcharts-options/options-maps';
 export class OptionsService {
 
   constructor(private geoJsonService: GeoJsonService) {
-    this.diagramTypeList = DiagramTypeList;
+    this.diagramTypeList = FhiDiagramTypeList;
     this.setAllStaticOptions();
   }
 
   private allStaticOptions = new Map();
-  private diagramTypeList: DiagramType[];
+  private diagramTypeList: FhiDiagramType[];
 
-  updateOptions(diagramOptions: DiagramOptions, allMapsLoaded: boolean): Options {
+  updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
 
     options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
@@ -43,11 +43,11 @@ export class OptionsService {
   }
 
   private setAllStaticOptions() {
-    this.diagramTypeList.forEach(DiagramType => {
-      const optionsCurrentChartType = DiagramType.options;
-      const isMap = DiagramType.isMap;
+    this.diagramTypeList.forEach(FhiDiagramType => {
+      const optionsCurrentChartType = FhiDiagramType.options;
+      const isMap = FhiDiagramType.isMap;
       const staticOptions = this.setStaticOptions(optionsCurrentChartType, isMap);
-      this.allStaticOptions.set(DiagramType.id, staticOptions);
+      this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
     });
   }
 
@@ -79,7 +79,7 @@ export class OptionsService {
     return credits;
   }
 
-  private getSeries(series: DiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
       return [this.geoJsonService.getHighmapsSerie(series[0])];
     } else {
@@ -87,13 +87,13 @@ export class OptionsService {
     }
   }
 
-  private getXaxis(xAxis: XAxisOptions, series: DiagramSerie[]): XAxisOptions | XAxisOptions[] {
+  private getXaxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
     xAxis = (xAxis) ? xAxis : {};
     xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
   }
 
-  private getFormattedLabels(series: DiagramSerie[]): XAxisLabelsOptions {
+  private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {
     const isDayLabels = isValid(parseISO(this.getISO8601DataFromNorwegianDate(series[0].data[0].name)));
     if (isDayLabels) {
       if (series[0].data.length > 60) {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { DiagramSerie } from '../fhi-diagram/fhi-diagram-options.model';
+import { FhiDiagramSerie } from '../fhi-diagram/fhi-diagram-options.model';
 import { SeriesMapOptions } from 'highcharts';
 
 @Injectable({
@@ -22,15 +22,15 @@ export class GeoJsonService {
     return this.http.get<any>(url);
   }
 
-  addMapToHighcharts(Highcharts: any, map: any, DiagramTypeId: string) {
-    Highcharts.maps[DiagramTypeId] = map;
+  addMapToHighcharts(Highcharts: any, map: any, FhiDiagramTypeId: string) {
+    Highcharts.maps[FhiDiagramTypeId] = map;
   }
 
   updateMapFeatures(map: any) {
     this.mapFeatures = map.features;
   }
 
-  getHighmapsSerie(serie: DiagramSerie): SeriesMapOptions {
+  getHighmapsSerie(serie: FhiDiagramSerie): SeriesMapOptions {
     let mapSerie!: SeriesMapOptions;
     serie.data.forEach((p, index) => {
       if (index === 0) {

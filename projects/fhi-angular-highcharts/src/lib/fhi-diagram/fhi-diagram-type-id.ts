@@ -1,4 +1,4 @@
-export class DiagramTypeId {
+export class FhiDiagramTypeId {
   static area = 'area';
   static bar = 'bar';
   static barStacked = 'barStacked';

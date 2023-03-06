@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { DiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
+import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
@@ -15,8 +15,8 @@ import { CsvService } from './services/csv.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
-import { DiagramType } from './fhi-diagram/fhi-diagram-type.model';
-import { DiagramTypes } from './fhi-diagram/fhi-diagram-types';
+import { FhiDiagramType } from './fhi-diagram/fhi-diagram-type.model';
+import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
 
@@ -42,7 +42,7 @@ export class FhiAngularHighchartsComponent {
   tableCreditsHref!: string;
   tableCreditsText!: string;
 
-  @Input() diagramOptions!: DiagramOptions;
+  @Input() diagramOptions!: FhiDiagramOptions;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -60,7 +60,7 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-    this.diagramOptions = this.setOptionalDiagramOptions(this.diagramOptions);
+    this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
     this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
     this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
@@ -78,10 +78,10 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
-  private setOptionalDiagramOptions(diagramOptions: DiagramOptions): DiagramOptions {
+  private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     return {
       ...diagramOptions,
-      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : DiagramTypes.table,
+      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
       openSource: true
     }
     // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
@@ -113,7 +113,7 @@ export class FhiAngularHighchartsComponent {
     this.changeDetector.detectChanges();
   }
 
-  private checkIfMapIsLoaded(diagramtype: DiagramType) {
+  private checkIfMapIsLoaded(diagramtype: FhiDiagramType) {
     if (Highcharts.maps[diagramtype.id]) {
       this.updateMap(Highcharts.maps[diagramtype.id]);
     } else {
@@ -121,7 +121,7 @@ export class FhiAngularHighchartsComponent {
     }
   }
 
-  private loadMap(diagramtype: DiagramType) {
+  private loadMap(diagramtype: FhiDiagramType) {
     this.geoJsonService.getMap(diagramtype.mapFile)
       .pipe(first()).subscribe(map => {
         this.geoJsonService.addMapToHighcharts(Highcharts, map, diagramtype.id);
@@ -129,8 +129,8 @@ export class FhiAngularHighchartsComponent {
       });
   }
 
-  private getCurrentDiagramTemplate(diagramtype: DiagramType): string {
-    if (diagramtype.id === DiagramTypes.table.id) {
+  private getCurrentDiagramTemplate(diagramtype: FhiDiagramType): string {
+    if (diagramtype.id === FhiDiagramTypes.table.id) {
       return DiagramTemplates.table;
     }
     if (diagramtype.isMap) {

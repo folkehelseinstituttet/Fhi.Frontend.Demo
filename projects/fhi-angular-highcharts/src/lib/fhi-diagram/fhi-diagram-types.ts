@@ -9,60 +9,60 @@ import { OptionsMapFylker2019 } from '../highcharts-options/options-map-fylker-2
 import { OptionsMapFylker } from '../highcharts-options/options-map-fylker';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
 
-import { DiagramType } from './fhi-diagram-type.model';
-import { DiagramTypeId } from './fhi-diagram-type-id';
+import { FhiDiagramType } from './fhi-diagram-type.model';
+import { FhiDiagramTypeId } from './fhi-diagram-type-id';
 
-const area: DiagramType = {
-  id: DiagramTypeId.area,
+const area: FhiDiagramType = {
+  id: FhiDiagramTypeId.area,
   options: OptionsChartTypeArea
 }
-const bar: DiagramType = {
-  id: DiagramTypeId.bar,
+const bar: FhiDiagramType = {
+  id: FhiDiagramTypeId.bar,
   options: OptionsChartTypeBar
 }
-const barStacked: DiagramType = {
-  id: DiagramTypeId.barStacked,
+const barStacked: FhiDiagramType = {
+  id: FhiDiagramTypeId.barStacked,
   options: OptionsChartTypeBarStacked
 }
-const column: DiagramType = {
-  id: DiagramTypeId.column,
+const column: FhiDiagramType = {
+  id: FhiDiagramTypeId.column,
   options: OptionsChartTypeColumn
 }
-const columnStacked: DiagramType = {
-  id: DiagramTypeId.columnStacked,
+const columnStacked: FhiDiagramType = {
+  id: FhiDiagramTypeId.columnStacked,
   options: OptionsChartTypeColumnStacked
 }
-const donut: DiagramType = {
-  id: DiagramTypeId.donut,
+const donut: FhiDiagramType = {
+  id: FhiDiagramTypeId.donut,
   options: OptionsChartTypeDonut
 }
-const line: DiagramType = {
-  id: DiagramTypeId.line,
+const line: FhiDiagramType = {
+  id: FhiDiagramTypeId.line,
   options: OptionsChartTypeLine
 }
-const mapFylker2019: DiagramType = {
-  id: DiagramTypeId.mapFylker2019,
+const mapFylker2019: FhiDiagramType = {
+  id: FhiDiagramTypeId.mapFylker2019,
   options: OptionsMapFylker2019,
   isMap: true,
   mapFile: 'assets/geo-json/no-all-2019.geo.json'
 }
-const mapFylker: DiagramType = {
-  id: DiagramTypeId.mapFylker,
+const mapFylker: FhiDiagramType = {
+  id: FhiDiagramTypeId.mapFylker,
   options: OptionsMapFylker,
   isMap: true,
   mapFile: 'assets/geo-json/no-all.geo.json'
 }
-const pie: DiagramType = {
-  id: DiagramTypeId.pie,
+const pie: FhiDiagramType = {
+  id: FhiDiagramTypeId.pie,
   options: OptionsChartTypePie
 }
 // TODO: remove all leftovers from deprecated "csv-data"-hack
-const table: DiagramType = {
-  id: DiagramTypeId.table,
+const table: FhiDiagramType = {
+  id: FhiDiagramTypeId.table,
   options: OptionsChartTypeLine // to create hidden chart for csv-data
 }
 
-export class DiagramTypes {
+export class FhiDiagramTypes {
   static area = area;
   static bar = bar;
   static barStacked = barStacked;
@@ -76,7 +76,7 @@ export class DiagramTypes {
   static table = table;
 }
 
-export const DiagramTypeList = [
+export const FhiDiagramTypeList = [
   area,
   bar,
   barStacked,
