@@ -28,6 +28,8 @@ import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
 import { TypographyData } from './typography/_typography.data';
+import { TreeviewData } from './treeview/_treeview.data';
+
 
 export const AllData: LibraryItem[] = [
   ...AccordionData,
@@ -57,5 +59,6 @@ export const AllData: LibraryItem[] = [
   ...TagsData,
   ...ToastData,
   ...TooltipData,
-  ...TypographyData
+  ...TypographyData,
+  ...TreeviewData
 ];

@@ -1,12 +1,9 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, Input } from '@angular/core';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { initial } from 'lodash-es';
 
 
 @Component({
-  selector: 'app-tree-view-example',
-  templateUrl: './tree-view-example.component.html'
+  selector: 'app-treeview-example',
+  templateUrl: './treeview-example.component.html'
 })
 export class TreeViewExampleComponent {
   @Input() itemId!: string;

@@ -28,7 +28,7 @@ import { TabsIds } from "./tabs/_tabs.ids"
 import { TagsIds } from "./tags/_tags.ids"
 import { ToastIds } from "./toast/_toast.ids"
 import { TooltipIds } from "./tooltip/_tooltip.ids"
-import { TreeViewIds } from "./tree-view/_treeview.ids"
+import { TreeViewIds } from "./treeview/_treeview.ids"
 import { TypographyIds } from "./typography/_typography.ids"
 
 const libraryItemIds = {

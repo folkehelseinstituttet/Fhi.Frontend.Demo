@@ -5,7 +5,7 @@ import { TreeViewNavigation } from './treeview-navigation';
 import { TreeViewBuilder } from './treeview-builder';
 import { TreeViewCheckbox } from './treeview-checkbox';
 
-export const TreeViewData: LibraryItem[] = [
+export const TreeviewData: LibraryItem[] = [
   // ...TreeView,
   // ...TreeViewNavigation,
   // ...TreeViewCheckbox,

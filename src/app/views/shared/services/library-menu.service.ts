@@ -181,9 +181,6 @@ export class LibraryMenuService {
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
-    }, {
-      name: 'Treeview builder',
-      link: LibraryItemSegmentPaths.treeview
     }];
   }
 
@@ -204,6 +201,9 @@ export class LibraryMenuService {
     }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
+    }, {
+      name: 'Circlon Treeview',
+      link: LibraryItemSegmentPaths.treeview
     }];
   }
 

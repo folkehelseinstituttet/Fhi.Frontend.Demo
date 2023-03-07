@@ -28,7 +28,7 @@ import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
-import { TreeViewData } from './tree-view/_treeview.data';
+import { TreeviewData } from './treeview/_treeview.data';
 import { TypographyData } from './typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
@@ -74,14 +74,14 @@ export class LibraryItemSegmentPaths {
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
-  static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
-
+  
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
-
+  
   // Prototypes (examples on use)
   static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
   static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
   static prototypetablewithexpandablecontent = stringTransform(Object.keys({ PrototypeTableWithExpandableContentData})[0]);
+  static treeview = stringTransform(Object.keys({ TreeviewData })[0]);
 
 }
