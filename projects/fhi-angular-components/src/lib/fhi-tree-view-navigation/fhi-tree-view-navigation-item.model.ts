@@ -1,8 +1,9 @@
 export interface FhiTreeViewNavigationNode {
   children?: FhiTreeViewNavigationNode[];
-  hasActiveChild?: boolean;
   href?: string;
   isActive?: boolean;
+  isExpanded?: boolean;
+  hasActiveDescendant?: boolean;
   name: string;
   routerLink?: string;
 }

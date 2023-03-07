@@ -9,6 +9,6 @@ import { FhiTreeViewNavigationNode } from './fhi-tree-view-navigation-item.model
 })
 export class FhiTreeViewNavigationComponent {
 
-  @Input() items: Array<FhiTreeViewNavigationNode> = [];
+  @Input() nodes: Array<FhiTreeViewNavigationNode> = [];
 
 }

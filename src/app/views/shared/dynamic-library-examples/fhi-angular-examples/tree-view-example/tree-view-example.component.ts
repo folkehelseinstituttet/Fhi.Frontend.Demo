@@ -38,7 +38,8 @@ const NAVIGATION_TREE_DATA: NavigationNode[] = [
       {
         name: 'Moduler',
         id: 'i_1-3',
-        uri: '/developer/modules',
+        uri: 'https://designsystem.fhi.no/developer/modules/Drawer',
+        // uri: '/developer/modules',
         anyCheckedInSelection: true,
         children: [
           { name: 'Global footer', id: 'i_1-3-1', uri: '/developer/modules/GlobalFooter' },
