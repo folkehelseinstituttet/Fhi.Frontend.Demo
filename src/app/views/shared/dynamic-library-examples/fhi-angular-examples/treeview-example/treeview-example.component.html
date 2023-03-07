@@ -6,7 +6,7 @@
     </button>
   </div>
 
-  <tree-root [nodes]="treeViewSimpleNodes">
+  <tree-root [nodes]="treeViewSimpleNodes" [options]="options">
     <ng-template #treeNodeTemplate let-node let-index="index">
       <div class="tree-column">
         <span>{{ node.data.name }}</span>
