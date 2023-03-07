@@ -173,6 +173,9 @@ export class LibraryMenuService {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }, {
+      name: 'FHI AngularHighcharts',
+      link: LibraryItemSegmentPaths.fhiAngularHighcharts
+    }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter
     }, {
