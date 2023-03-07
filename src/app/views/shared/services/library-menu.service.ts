@@ -193,6 +193,9 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [{
+      name: 'Circlon Treeview',
+      link: LibraryItemSegmentPaths.treeview
+    }, {
       name: 'Global Header',
       link: LibraryItemSegmentPaths.prototypepageheader
     }, {
@@ -201,9 +204,6 @@ export class LibraryMenuService {
     }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
-    }, {
-      name: 'Circlon Treeview',
-      link: LibraryItemSegmentPaths.treeview
     }];
   }
 
