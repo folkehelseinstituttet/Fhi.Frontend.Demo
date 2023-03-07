@@ -1,1 +1,10 @@
-<p>fhi-tree-view-navigation works!</p>
+<ng-container *ngTemplateOutlet="itemList; context: { items: items }"></ng-container>
+
+<ng-template #itemList let-items="items">
+  <ul>
+    <li *ngFor="let item of items">
+      {{ item.name }}
+      <ng-container *ngTemplateOutlet="itemList; context: { items: item.children }"></ng-container>
+    </li>
+  </ul>
+</ng-template>

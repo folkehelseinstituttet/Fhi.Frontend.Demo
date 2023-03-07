@@ -1,26 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-interface FhiTreeViewNavigationItem {
-  active?: boolean;
-  children?: FhiTreeViewNavigationItem[];
-  name: string;
-  uri?: string;
-}
-
-
 @Component({
   selector: 'app-tree-view-navigation-example',
   templateUrl: './tree-view-navigation-example.component.html'
 })
 export class TreeViewNavigationExampleComponent implements OnInit {
 
-  items: FhiTreeViewNavigationItem[];
+  items: any[];
 
   ngOnInit() {
     this.items = this.getTreeviewNavigationItems();
   }
 
-  private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {
+  private getTreeviewNavigationItems(): any[] {
     return [{
       name: 'For utviklere',
       uri: '/developer',
