@@ -17,36 +17,36 @@ export class TreeViewNavigationExampleComponent implements OnInit {
   private getTreeviewNavigationItems(): FhiTreeViewNavigationNode[] {
     return [{
       name: 'For utviklere',
-      link: '/developer',
+      routerLink: '/developer',
       hasActiveChild: true,
       children: [{
         name: 'Visuell identitet',
-        link: '/developer/visual-identity'
+        routerLink: '/developer/visual-identity'
       }, {
         name: 'Komponenter',
-        link: '/developer/components',
+        routerLink: '/developer/components',
         children: [
-          { name: 'Accordions', link: '/developer/modules/Accordion'},
-          { name: 'Advanced select', link: '/developer/modules/AdvancedSelect'},
-          { name: 'Alerts', link: '/developer/modules/Alerts'}
+          { name: 'Accordions', routerLink: '/developer/modules/Accordion'},
+          { name: 'Advanced select', routerLink: '/developer/modules/AdvancedSelect'},
+          { name: 'Alerts', routerLink: '/developer/modules/Alerts'}
         ]
       }, {
         name: 'Moduler',
-        link: '/developer/modules',
+        routerLink: '/developer/modules',
         hasActiveChild: true,
         children: [
-          { name: 'Global footer', link: '/developer/modules/GlobalFooter' },
-          { name: 'Global header', link: '/developer/modules/GlobalHeader' },
-          { name: 'Drawer', link: '/developer/modules/Drawer' },
+          { name: 'Global footer', routerLink: '/developer/modules/GlobalFooter' },
+          { name: 'Global header', routerLink: '/developer/modules/GlobalHeader' },
+          { name: 'Drawer', href: 'https://designsystem.fhi.no/developer/modules/Drawer' },
           { name: 'Tree view', isActive: true }
         ]
       }, {
         name: 'Layout og sidemaler',
-        link: '/developer/layout-and-page-templates'
+        routerLink: '/developer/layout-and-page-templates'
       }],
     }, {
       name: 'For designere',
-      link: '/designer',
+      routerLink: '/designer',
     }];
   }
 

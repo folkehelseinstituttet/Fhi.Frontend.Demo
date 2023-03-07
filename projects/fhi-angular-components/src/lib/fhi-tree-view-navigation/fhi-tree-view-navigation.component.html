@@ -5,26 +5,58 @@
 <ng-template #itemList let-items="items">
   <ul>
     <li *ngFor="let item of items">
-      <a
-        class="fhi-tree-view-navigation__link"
-        [routerLink]="item.link"
-        routerLinkActive="active"
-        *ngIf="item.link"
-      >
-        <span class="fhi-tree-view-navigation__link-text">{{ item.name }}</span>
-      </a>
+      <ng-container *ngIf="item.routerLink">
+        <ng-container *ngTemplateOutlet="routerLink; context: { item: item }"></ng-container>
+      </ng-container>
 
-      <span
-        class="fhi-tree-view-navigation__text"
-        *ngIf="!item.link"
-      >
-        {{ item.name }}
-      </span>
+      <ng-container *ngIf="item.href">
+        <ng-container *ngTemplateOutlet="href; context: { item: item }"></ng-container>
+      </ng-container>
 
-      <ng-container *ngIf="item.hasActiveChild"></ng-container>
+      <ng-container *ngIf="!item.routerLink && !item.href">
+        <ng-container *ngTemplateOutlet="text; context: { item: item }"></ng-container>
+      </ng-container>
 
-      <ng-container *ngTemplateOutlet="itemList; context: { items: item.children }"></ng-container>
+      <ng-container *ngIf="item.hasActiveChild">
+        <ng-container *ngTemplateOutlet="itemList; context: { items: item.children }"></ng-container>
+      </ng-container>
     </li>
   </ul>
+</ng-template>
+
+
+<ng-template #routerLink let-item="item">
+  <a
+    class="fhi-tree-view-navigation__link"
+    [routerLink]="item.routerLink"
+    routerLinkActive="active"
+  >
+    <span class="fhi-tree-view-navigation__link-text">{{ item.name }}</span>
+  </a>
+</ng-template>
+
+
+<ng-template #href let-item="item">
+  <a
+    class="fhi-tree-view-navigation__link"
+    href="{{ item.href }}"
+  >
+    <span class="fhi-tree-view-navigation__link-text">{{ item.name }}</span>
+  </a>
+  (href-test)
+</ng-template>
+
+
+<ng-template #text let-item="item">
+  <span
+    class="fhi-tree-view-navigation__text"
+    *ngIf="!item.link"
+  >
+    {{ item.name }}
+  </span>
+</ng-template>
+
+
+<ng-template #f let-item="item">
 </ng-template>
 
