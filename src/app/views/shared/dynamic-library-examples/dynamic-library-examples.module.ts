@@ -23,6 +23,8 @@ import { FormElementExamplesComponent } from './fhi-angular-examples/form-elemen
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
+
+import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
 import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
@@ -50,6 +52,7 @@ const FHI_EXAMPLES = [
   SearchExampleComponent,
   TableExamplesComponent,
   TagExampleComponent,
+  TreeViewNavigationExampleComponent,
   TreeViewExampleComponent
 ];
 
