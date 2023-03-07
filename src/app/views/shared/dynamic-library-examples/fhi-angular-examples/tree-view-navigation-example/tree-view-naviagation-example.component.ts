@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FhiTreeViewNavigationNode } from '@folkehelseinstituttet/angular-components';
+
 @Component({
   selector: 'app-tree-view-navigation-example',
   templateUrl: './tree-view-navigation-example.component.html'
@@ -12,37 +14,39 @@ export class TreeViewNavigationExampleComponent implements OnInit {
     this.items = this.getTreeviewNavigationItems();
   }
 
-  private getTreeviewNavigationItems(): any[] {
+  private getTreeviewNavigationItems(): FhiTreeViewNavigationNode[] {
     return [{
       name: 'For utviklere',
-      uri: '/developer',
+      link: '/developer',
+      hasActiveChild: true,
       children: [{
         name: 'Visuell identitet',
-        uri: '/developer/visual-identity'
+        link: '/developer/visual-identity'
       }, {
         name: 'Komponenter',
-        uri: '/developer/components',
+        link: '/developer/components',
         children: [
-          { name: 'Accordions', uri: '/developer/modules/Accordion'},
-          { name: 'Advanced select', uri: '/developer/modules/AdvancedSelect'},
-          { name: 'Alerts', uri: '/developer/modules/Alerts'}
+          { name: 'Accordions', link: '/developer/modules/Accordion'},
+          { name: 'Advanced select', link: '/developer/modules/AdvancedSelect'},
+          { name: 'Alerts', link: '/developer/modules/Alerts'}
         ]
       }, {
         name: 'Moduler',
-        uri: '/developer/modules',
+        link: '/developer/modules',
+        hasActiveChild: true,
         children: [
-          { name: 'Global footer', uri: '/developer/modules/GlobalFooter' },
-          { name: 'Global header', uri: '/developer/modules/GlobalHeader' },
-          { name: 'Drawer', uri: '/developer/modules/Drawer' },
-          { name: 'Tree view', uri: '/developer/modules/TreeView' }
+          { name: 'Global footer', link: '/developer/modules/GlobalFooter' },
+          { name: 'Global header', link: '/developer/modules/GlobalHeader' },
+          { name: 'Drawer', link: '/developer/modules/Drawer' },
+          { name: 'Tree view', isActive: true }
         ]
       }, {
         name: 'Layout og sidemaler',
-        uri: '/developer/layout-and-page-templates'
+        link: '/developer/layout-and-page-templates'
       }],
     }, {
       name: 'For designere',
-      uri: '/designer',
+      link: '/designer',
     }];
   }
 

@@ -1,10 +1,30 @@
-<ng-container *ngTemplateOutlet="itemList; context: { items: items }"></ng-container>
+<div class="fhi-tree-view-navigation">
+  <ng-container *ngTemplateOutlet="itemList; context: { items: items }"></ng-container>
+</div>
 
 <ng-template #itemList let-items="items">
   <ul>
     <li *ngFor="let item of items">
-      {{ item.name }}
+      <a
+        class="fhi-tree-view-navigation__link"
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        *ngIf="item.link"
+      >
+        <span class="fhi-tree-view-navigation__link-text">{{ item.name }}</span>
+      </a>
+
+      <span
+        class="fhi-tree-view-navigation__text"
+        *ngIf="!item.link"
+      >
+        {{ item.name }}
+      </span>
+
+      <ng-container *ngIf="item.hasActiveChild"></ng-container>
+
       <ng-container *ngTemplateOutlet="itemList; context: { items: item.children }"></ng-container>
     </li>
   </ul>
 </ng-template>
+

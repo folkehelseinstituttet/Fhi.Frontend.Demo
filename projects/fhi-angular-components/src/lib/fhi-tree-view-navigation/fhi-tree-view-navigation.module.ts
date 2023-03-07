@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { FhiTreeViewNavigationComponent } from './fhi-tree-view-navigation.component';
 
@@ -8,7 +9,8 @@ import { FhiTreeViewNavigationComponent } from './fhi-tree-view-navigation.compo
     FhiTreeViewNavigationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     FhiTreeViewNavigationComponent

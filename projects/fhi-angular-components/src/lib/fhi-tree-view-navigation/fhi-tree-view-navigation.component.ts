@@ -1,6 +1,6 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-import { FhiTreeViewNavigationItem } from './fhi-tree-view-navigation-item.model';
+import { FhiTreeViewNavigationNode } from './fhi-tree-view-navigation-item.model';
 
 @Component({
   selector: 'fhi-tree-view-navigation',
@@ -9,6 +9,6 @@ import { FhiTreeViewNavigationItem } from './fhi-tree-view-navigation-item.model
 })
 export class FhiTreeViewNavigationComponent {
 
-  @Input() items: Array<FhiTreeViewNavigationItem> = [];
+  @Input() items: Array<FhiTreeViewNavigationNode> = [];
 
 }
