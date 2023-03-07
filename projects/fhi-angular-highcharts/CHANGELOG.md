@@ -1,6 +1,6 @@
-# Unreleased
+# 0.1.0
 
-> Mar 03, 2023
+> Mar 07, 2023
 
 * :gift: **New** Create `@folkehelseinstituttet/angular-highcharts`
 
