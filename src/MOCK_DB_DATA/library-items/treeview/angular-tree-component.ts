@@ -2,8 +2,8 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeViewBuilder: LibraryItem[] = [{
-  id: LibraryItemIds.TreeViewBuilder,
+export const AngularTreeComponent: LibraryItem[] = [{
+  id: LibraryItemIds.AngularTreeComponent,
   title: 'angular tree component',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),

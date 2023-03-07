@@ -11,6 +11,7 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
+import { AngularTreeComponentData } from 'src/MOCK_DB_DATA/library-items/treeview/_treeview.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
@@ -54,6 +55,7 @@ export class MockDbService implements InMemoryDbService {
       AccordionData,
       AdvancedSelectData,
       AlertsData,
+      AngularTreeComponentData,
       BadgeData,
       BreadcrumbData,
       ButtonGroupData,

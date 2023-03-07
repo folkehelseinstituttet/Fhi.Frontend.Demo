@@ -4,10 +4,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-treeview-example',
-  templateUrl: './treeview-example.component.html'
+  selector: 'app-angular-tree-component-example',
+  templateUrl: './angular-tree-component-example.component.html'
 })
-export class TreeViewExampleComponent {
+export class AngularTreeComponentExampleComponent {
 
   @Input() itemId!: string;
   @Input() itemIds!: any;
