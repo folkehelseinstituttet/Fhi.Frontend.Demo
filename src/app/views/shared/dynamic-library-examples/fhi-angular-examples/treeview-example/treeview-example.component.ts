@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ITreeState, ITreeOptions } from '@circlon/angular-tree-component';
-import { v4 } from 'uuid';
+import { Component, Input, ViewChild } from '@angular/core';
+import { ITreeState, ITreeOptions, TreeComponent } from '@circlon/angular-tree-component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,11 +11,15 @@ export class TreeViewExampleComponent {
 
   @Input() itemId!: string;
   @Input() itemIds!: any;
+  
+  constructor(private modalService: NgbModal) { }
+  
+  elementName: string;
 
-  constructor() {
-  }
+  @ViewChild(TreeComponent)
+  private tree: TreeComponent;
 
-  treeViewSimpleNodes: any = [
+  treeViewNodes: any = [
     {
       name: 'rot 1',
       children: [
@@ -39,44 +43,35 @@ export class TreeViewExampleComponent {
 
   state: ITreeState = {
     expandedNodeIds: {
+      0: true,
       1: true,
-      2: true
+      2: true,
+      3: true,
+      4: true
     },
     hiddenNodeIds: {},
     activeNodeIds: {}
   };
 
   options: ITreeOptions = {
-    allowDrag: (node) => node.isLeaf,
-    getNodeClone: (node) => ({
-      ...node.data,
-      id: v4(),
-      name: `copy of ${node.data.name}`
-    })
+    allowDrag: true,
+    allowDrop: true
   };
 
-  nodes = [
-    {
-      id: 1,
-      name: 'root1',
-      children: [
-        { name: 'child1' },
-        { name: 'child2' }
-      ]
-    },
-    {
-      name: 'root2',
-      id: 2,
-      children: [
-        { name: 'child2.1', children: [] },
-        { name: 'child2.2', children: [
-          {name: 'grandchild2.2.1'}
-        ] }
-      ]
-    },
-    { name: 'root3' },
-    { name: 'root4', children: [] },
-    { name: 'root5', children: null }
-  ];
+  open(content: any) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'sm' });
+	}
+
+  saveElement(modalDismiss: any) {
+    let newElm = {
+      name: this.elementName
+    };
+    
+    this.treeViewNodes.push(newElm);
+    this.tree.treeModel.update();
+
+    modalDismiss;
+    this.elementName = '';
+  }
 
 }
