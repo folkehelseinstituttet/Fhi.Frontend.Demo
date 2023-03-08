@@ -74,4 +74,8 @@ export class AngularTreeComponentExampleComponent {
     this.elementName = '';
   }
 
+  deleteNode(node: any) {
+    console.log(node);
+  }
+
 }

@@ -11,13 +11,13 @@
     <ng-template #treeNodeTemplate let-node let-index="index">
       <div class="tree-column">
         <span>{{ node.data.name }}</span>
-        <button class="btn">
+        <button class="btn" (click)="open(content)">
           <i class="icon-pencil"></i>
         </button>
-        <button class="btn">
+        <button class="btn" (click)="open(content)">
           <i class="icon-plus-circle"></i>
         </button>
-        <button class="btn">
+        <button class="btn" (click)="deleteNode(node.data.id)">
           <i class="icon-trash-can"></i>
         </button>
       </div>
