@@ -17,6 +17,7 @@ export class AngularTreeComponentExampleComponent {
   elementName: string;
   saveState: string | null = null;
   currentNode: any;
+  currentNodeData: any;
 
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
@@ -60,10 +61,10 @@ export class AngularTreeComponentExampleComponent {
     allowDrop: true
   };
 
-  editNode(content: any, nodeElm: any) {
+  editNode(content: any, nodeElmData: any) {
     this.saveState = 'edit';
-    this.elementName = nodeElm.name;
-    this.currentNode = nodeElm;
+    this.elementName = nodeElmData.name;
+    this.currentNodeData = nodeElmData;
     this.open(content);
   }
 
@@ -71,11 +72,12 @@ export class AngularTreeComponentExampleComponent {
     this.saveState = 'add-child';
     this.elementName = '';
     this.currentNode = nodeElm;
+    this.currentNodeData = nodeElm.data;
     this.open(content);
   }
 
   newBaseNode(content: any) {
-    this.saveState = null;
+    this.saveState = 'new-root';
     this.elementName = '';
     this.open(content);
   }
@@ -85,7 +87,7 @@ export class AngularTreeComponentExampleComponent {
 	}
 
   saveElement(modalDismiss: any) {
-    if (this.saveState === null) {
+    if (this.saveState === 'new-root') {
       let newElm = {
         name: this.elementName
       };
@@ -93,18 +95,20 @@ export class AngularTreeComponentExampleComponent {
       this.treeViewNodes.push(newElm);
     }
     if (this.saveState === 'edit') {
-      this.currentNode.name = this.elementName;
+      this.currentNodeData.name = this.elementName;
     }
     if (this.saveState === 'add-child') {
       let newElm = {
         name: this.elementName
       }
 
-      if (this.currentNode.children) {
-        this.currentNode.children.push(newElm);
+      if (this.currentNodeData.children) {
+        this.currentNodeData.children.push(newElm);
       } else {
-        this.currentNode.children = [newElm];
+        this.currentNodeData.children = [newElm];
       }
+
+      this.currentNode.expand();// doesn't expand when creating first child
     }
     this.tree.treeModel.update();
 
@@ -120,7 +124,7 @@ export class AngularTreeComponentExampleComponent {
     let hasChildren: boolean = false;
     if (nodeChildren !== undefined && nodeChildren.length > 0) {
       hasChildren = true;
-      hasChildrenMsg = ' og dens under-elementer?';
+      hasChildrenMsg = ' og dens under-element(er)?';
     }
     if (confirm('Er du helt sikker på at du vil slette "' + nodeName + '"' + hasChildrenMsg)) {
       this.treeViewNodes = this.removeById(this.treeViewNodes, nodeId);
