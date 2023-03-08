@@ -4,8 +4,8 @@
 
 
 <ng-template #nodeList let-nodes="nodes">
-	<ul>
-		<li *ngFor="let node of nodes">
+	<ul class="fhi-tree-view-navigation__list">
+		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes">
 			<ng-container *ngIf="node.children">
 				<ng-container *ngTemplateOutlet="expandButton; context: { node: node }"></ng-container>
 			</ng-container>
