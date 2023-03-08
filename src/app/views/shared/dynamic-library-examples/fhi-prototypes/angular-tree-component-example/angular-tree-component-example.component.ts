@@ -15,6 +15,8 @@ export class AngularTreeComponentExampleComponent {
   constructor(private modalService: NgbModal) { }
   
   elementName: string;
+  saveState: string | null = null;
+  currentNode: any;
 
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
@@ -58,24 +60,83 @@ export class AngularTreeComponentExampleComponent {
     allowDrop: true
   };
 
+  editNode(content: any, nodeElm: any) {
+    this.saveState = 'edit';
+    this.elementName = nodeElm.name;
+    this.currentNode = nodeElm;
+    this.open(content);
+  }
+
+  newChildNode(content: any, nodeElm: any) {
+    this.saveState = 'add-child';
+    this.elementName = '';
+    this.currentNode = nodeElm;
+    this.open(content);
+  }
+
+  newBaseNode(content: any) {
+    this.saveState = null;
+    this.elementName = '';
+    this.open(content);
+  }
+
   open(content: any) {
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'sm' });
 	}
 
   saveElement(modalDismiss: any) {
-    let newElm = {
-      name: this.elementName
-    };
-    
-    this.treeViewNodes.push(newElm);
+    if (this.saveState === null) {
+      let newElm = {
+        name: this.elementName
+      };
+      
+      this.treeViewNodes.push(newElm);
+    }
+    if (this.saveState === 'edit') {
+      this.currentNode.name = this.elementName;
+    }
+    if (this.saveState === 'add-child') {
+      let newElm = {
+        name: this.elementName
+      }
+
+      if (this.currentNode.children) {
+        this.currentNode.children.push(newElm);
+      } else {
+        this.currentNode.children = [newElm];
+      }
+    }
     this.tree.treeModel.update();
 
     modalDismiss;
     this.elementName = '';
   }
 
-  deleteNode(node: any) {
-    console.log(node);
+  deleteNode(nodeElm: any) {
+    let nodeChildren: any = nodeElm.children;
+    let nodeId: string | number = nodeElm.id;
+    let nodeName: string = nodeElm.name;
+    let hasChildrenMsg: string = '';
+    let hasChildren: boolean = false;
+    if (nodeChildren !== undefined && nodeChildren.length > 0) {
+      hasChildren = true;
+      hasChildrenMsg = ' og dens under-elementer?';
+    }
+    if (confirm('Er du helt sikker på at du vil slette "' + nodeName + '"' + hasChildrenMsg)) {
+      this.treeViewNodes = this.removeById(this.treeViewNodes, nodeId);
+      this.tree.treeModel.update();
+    }
   }
+
+  private removeById = (arr: any, targetId: any) => arr.reduce((acc: any, obj: any) => 
+  (obj.id === targetId) 
+    ? acc 
+    : [ ...acc, 
+        {
+          ...obj, 
+          ...(obj.children && { children: this.removeById(obj.children, targetId) }) 
+        }
+      ],
+  []);
 
 }
