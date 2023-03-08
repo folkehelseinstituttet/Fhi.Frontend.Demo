@@ -26,7 +26,6 @@ export class TreeViewNavigationExampleComponent implements OnInit {
       }, {
         name: 'Komponenter',
         routerLink: '/developer/components',
-        // isExpanded: true,
         children: [
           { name: 'Accordions', routerLink: '/developer/modules/Accordion'},
           { name: 'Advanced select', routerLink: '/developer/modules/AdvancedSelect'},
@@ -34,14 +33,13 @@ export class TreeViewNavigationExampleComponent implements OnInit {
         ]
       }, {
         name: 'Moduler',
-        // href: 'https://designsystem.fhi.no/developer/modules/Drawer',
-        // routerLink: '/developer/modules',
+        routerLink: '/developer/modules',
         isExpanded: true,
         hasActiveDescendant: true,
         children: [
           { name: 'Global footer', routerLink: '/developer/modules/GlobalFooter' },
           { name: 'Global header', routerLink: '/developer/modules/GlobalHeader' },
-          { name: 'Drawer', href: 'https://designsystem.fhi.no/developer/modules/Drawer' },
+          { name: 'Drawer', routerLink: '/developer/modules/Drawer' },
           { name: 'Tree view', routerLink: '/developer/modules/GlobalHeader', isActive: true }
         ]
       }, {
@@ -51,6 +49,12 @@ export class TreeViewNavigationExampleComponent implements OnInit {
     }, {
       name: 'For designere',
       routerLink: '/designer',
+    }, {
+      name: 'Github',
+      children: [{
+        name: 'Fhi.Frontend.Style',
+        href: 'https://github.com/folkehelseinstituttet/Fhi.Frontend.Style',
+      }]
     }];
   }
 

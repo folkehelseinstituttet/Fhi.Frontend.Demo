@@ -11,4 +11,8 @@ export class FhiTreeViewNavigationComponent {
 
   @Input() nodes: Array<FhiTreeViewNavigationNode> = [];
 
+  toggleNode(node: FhiTreeViewNavigationNode) {
+    node.isExpanded = !node.isExpanded;
+  }
+
 }

@@ -5,6 +5,10 @@
 <ng-template #nodeList let-nodes="nodes">
   <ul>
     <li *ngFor="let node of nodes">
+      <ng-container *ngIf="node.children">
+        <ng-container *ngTemplateOutlet="expandButton; context: { node: node }"></ng-container>
+      </ng-container>
+
       <ng-container *ngIf="node.routerLink">
         <ng-container *ngTemplateOutlet="routerLink; context: { node: node }"></ng-container>
       </ng-container>
@@ -17,11 +21,28 @@
         <ng-container *ngTemplateOutlet="text; context: { node: node }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="node.isExpanded">
+      <ng-container *ngIf="node.isExpanded && node.children">
         <ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children }"></ng-container>
       </ng-container>
     </li>
   </ul>
+</ng-template>
+
+
+<ng-template #expandButton let-node="node">
+  <button
+    class="fhi-tree-view-navigation__toggler"
+    [attr.aria-label]="'Toggle ' + node.name"
+    (click)="toggleNode(node)"
+  >
+    <i
+      [ngClass]="{
+        'icon-chevron-up' : node.isExpanded,
+        'icon-chevron-down' : !node.isExpanded
+      }"
+    >
+    </i>
+  </button>
 </ng-template>
 
 
@@ -31,7 +52,7 @@
     [routerLink]="node.routerLink"
     routerLinkActive="active"
   >
-    <span class="fhi-tree-view-navigation__link-text">{{ node.name }}</span>
+    {{ node.name }}
   </a>
 </ng-template>
 
@@ -42,9 +63,8 @@
     [ngClass]="{ 'active': node.hasActiveDescendant }"
     href="{{ node.href }}"
   >
-    <span class="fhi-tree-view-navigation__link-text">{{ node.name }}</span>
+    {{ node.name }}
   </a>
-  (href-test)
 </ng-template>
 
 
