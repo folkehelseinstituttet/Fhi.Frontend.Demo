@@ -33,7 +33,10 @@ export class TreeViewNavigationExampleComponent implements OnInit {
         ]
       }, {
         name: 'Moduler',
-        routerLink: '/developer/modules',
+
+        // Commented out routerLink to get "active no-link"-node
+        // routerLink: '/developer/modules',
+
         isExpanded: true,
         hasActiveDescendant: true,
         children: [
