@@ -43,7 +43,7 @@ export class TreeViewNavigationExampleComponent implements OnInit {
           { name: 'Global footer', routerLink: '/developer/modules/GlobalFooter' },
           { name: 'Global header', routerLink: '/developer/modules/GlobalHeader' },
           { name: 'Drawer', routerLink: '/developer/modules/Drawer' },
-          { name: 'Tree view', routerLink: '/developer/modules/GlobalHeader', isActive: true }
+          { name: 'Tree view', routerLink: '/developer/modules/TreeView', isActive: true }
         ]
       }, {
         name: 'Layout og sidemaler',

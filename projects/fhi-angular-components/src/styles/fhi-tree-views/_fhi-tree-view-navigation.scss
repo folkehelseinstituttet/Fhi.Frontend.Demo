@@ -1,0 +1,47 @@
+.fhi-tree-view-navigation {
+    &__link {
+        color: currentColor;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        font-size: inherit;
+        justify-content: center;
+        line-height: 1.125;
+        padding: $fhi-core-space-1 $fhi-core-space-2 $fhi-core-space-1 $fhi-core-space-3;
+        text-decoration: none;
+
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+            color: currentColor;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 3px $fhi-core-red-1 inset;
+            outline: none !important;// override data-whatinput
+        }
+
+        &.active {
+            font-family: $fhi-core-font-family-sans-serif-medium;
+        }
+    }
+
+    &__toggler {
+        background-color: $fhi-core-white;
+        border: 0;
+        display: flex;
+        flex-basis: $fhi-core-px * 44;
+        flex-direction: column;
+        flex-shrink: 0;
+        justify-content: center;
+        width: $fhi-core-px * 44;
+
+        [class*="icon-"] {
+            margin: auto;
+        }
+
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+        }
+    }
+}
