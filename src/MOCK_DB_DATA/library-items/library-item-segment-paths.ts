@@ -29,7 +29,7 @@ import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
-import { TreeviewData } from './treeview/_treeview.data';
+import { TreeViewData } from './treeview/_treeview.data';
 import { TypographyData } from './typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
