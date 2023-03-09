@@ -43,6 +43,7 @@
         &:focus-visible {
             box-shadow: 0 0 0 3px $fhi-core-red-1 inset;
             outline: none !important; // override data-whatinput
+            z-index: 1;
         }
     }
 
@@ -53,6 +54,14 @@
         flex-direction: column;
         flex-shrink: 0;
         justify-content: center;
+
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+        }
+
+        &:focus-visible {
+            z-index: 1;
+        }
     }
 
     &__toggler--chevron {
