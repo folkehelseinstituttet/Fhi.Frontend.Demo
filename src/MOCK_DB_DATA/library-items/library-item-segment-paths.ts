@@ -1,7 +1,7 @@
 import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { AlertsData } from './alerts/_alerts.data';
-import { AngularTreeComponentData } from './treeview/_treeview.data';
+import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
 import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from './button-group/_button-group.data';
@@ -80,7 +80,7 @@ export class LibraryItemSegmentPaths {
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
   
   // Prototypes (examples on use)
-  static prototypeangulartreecomponent = stringTransform(Object.keys({ AngularTreeComponentData })[0]);
+  static prototypeangulartreecomponent = stringTransform(Object.keys({ PrototypeAngularTreeData })[0]);
   static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
   static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
   static prototypetablewithexpandablecontent = stringTransform(Object.keys({ PrototypeTableWithExpandableContentData})[0]);
