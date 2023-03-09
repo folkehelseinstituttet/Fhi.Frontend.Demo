@@ -4,8 +4,8 @@
 
 
 <ng-template #nodeList let-nodes="nodes">
-	<ul class="fhi-tree-view-navigation__list">
-		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes">
+	<ul class="fhi-tree-view-navigation__list" role="tree">
+		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes" role="treeitem">
 			<div class="d-flex w-100">
 				<ng-container *ngIf="node.routerLink">
 					<ng-container *ngTemplateOutlet="routerLink; context: { node: node }"></ng-container>
@@ -25,7 +25,7 @@
 			</div>
 
 			<ng-container *ngIf="node.isExpanded && node.children">
-				<div class="fhi-tree-view-navigation__nested-group">
+				<div class="fhi-tree-view-navigation__nested-group" [id]="'id-' + node.id">
 					<ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children }"></ng-container>
 				</div>
 			</ng-container>
@@ -38,6 +38,9 @@
 	<button
 		class="fhi-tree-view-navigation__toggler"
 		[attr.aria-label]="'Toggle ' + node.name"
+		[attr.aria-controls]="'id-' + node.id"
+		[attr.aria-haspopup]="'tree'"
+		[attr.aria-expanded]="node.isExpanded"
 		(click)="toggleNode(node)"
 	>
 		<i
