@@ -6,24 +6,28 @@
 <ng-template #nodeList let-nodes="nodes">
 	<ul class="fhi-tree-view-navigation__list">
 		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes">
-			<ng-container *ngIf="node.children">
-				<ng-container *ngTemplateOutlet="expandButton; context: { node: node }"></ng-container>
-			</ng-container>
+			<div class="d-flex w-100">
+				<ng-container *ngIf="node.routerLink">
+					<ng-container *ngTemplateOutlet="routerLink; context: { node: node }"></ng-container>
+				</ng-container>
 
-			<ng-container *ngIf="node.routerLink">
-				<ng-container *ngTemplateOutlet="routerLink; context: { node: node }"></ng-container>
-			</ng-container>
+				<ng-container *ngIf="node.href">
+					<ng-container *ngTemplateOutlet="href; context: { node: node }"></ng-container>
+				</ng-container>
 
-			<ng-container *ngIf="node.href">
-				<ng-container *ngTemplateOutlet="href; context: { node: node }"></ng-container>
-			</ng-container>
+				<ng-container *ngIf="!node.routerLink && !node.href">
+					<ng-container *ngTemplateOutlet="text; context: { node: node }"></ng-container>
+				</ng-container>
 
-			<ng-container *ngIf="!node.routerLink && !node.href">
-				<ng-container *ngTemplateOutlet="text; context: { node: node }"></ng-container>
-			</ng-container>
+				<ng-container *ngIf="node.children">
+					<ng-container *ngTemplateOutlet="expandButton; context: { node: node }"></ng-container>
+				</ng-container>
+			</div>
 
 			<ng-container *ngIf="node.isExpanded && node.children">
-				<ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children }"></ng-container>
+				<div class="fhi-tree-view-navigation__nested-group">
+					<ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children }"></ng-container>
+				</div>
 			</ng-container>
 		</li>
 	</ul>

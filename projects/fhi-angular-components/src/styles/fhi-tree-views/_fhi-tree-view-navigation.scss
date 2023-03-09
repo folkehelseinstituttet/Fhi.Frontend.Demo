@@ -9,7 +9,6 @@
         display: flex;
         flex-wrap: wrap;
         font-size: $fhi-core-font-size-3;
-        min-height: $fhi-core-px * 44;
 
         .fhi-tree-view-navigation__list {
             flex: none;
@@ -26,6 +25,7 @@
         font-size: inherit;
         justify-content: center;
         line-height: 1.125;
+        min-height: $fhi-core-px * 44;
         padding: $fhi-core-space-1 $fhi-core-space-2 $fhi-core-space-1 $fhi-core-space-3;
         text-decoration: none;
 
@@ -68,30 +68,41 @@
         }
     }
 
-    // &__toggler--plus {
-    //     margin-right: $fhi-core-space-2;
-    //     padding: 0;
+    &__nested-group {
+        width: 100%;
+        
+        .fhi-tree-view-navigation {
+            &__link,
+            &__no-link {
+                padding-left: ($fhi-core-space-3 + $fhi-core-space-4);
+            }
 
-    //     [class*='icon-'] {
-    //         background-size: 1.5rem;
-    //     }
-    // }
+            &__nested-group {
+                .fhi-tree-view-navigation {
+                    &__link,
+                    &__no-link {
+                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 2));
+                    }
 
-    // &__nested-group {
-    //     .fhi-tree-view-navigation__link {
-    //         padding-left: ($fhi-core-space-3 + $fhi-core-space-4);
-    //     }
+                    &__nested-group {
+                        .fhi-tree-view-navigation {
+                            &__link,
+                            &__no-link {
+                                padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 3));
+                            }
 
-    //     .fhi-tree-view-navigation__nested-group {
-    //         .fhi-tree-view-navigation__link {
-    //             padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 2));
-    //         }
-
-    //         .fhi-tree-view-navigation__nested-group {
-    //             .fhi-tree-view-navigation__link {
-    //                 padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 3));
-    //             }
-    //         }
-    //     }
-    // }
+                            &__nested-group {
+                                .fhi-tree-view-navigation {
+                                    &__link,
+                                    &__no-link {
+                                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 4));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
