@@ -3,8 +3,11 @@
 </div>
 
 
-<ng-template #nodeList let-nodes="nodes">
-	<ul class="fhi-tree-view-navigation__list" role="tree">
+<ng-template #nodeList let-nodes="nodes" let-nodeId="nodeId">
+	<ul class="fhi-tree-view-navigation__list"
+			role="tree"
+			[id]="'id-' + nodeId"
+			[attr.aria-labelledby]="nodeId !== undefined ?'branch-' + nodeId : null">
 		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes" role="treeitem">
 			<div class="d-flex w-100">
 				<ng-container *ngIf="node.routerLink">
@@ -25,8 +28,8 @@
 			</div>
 
 			<ng-container *ngIf="node.isExpanded && node.children">
-				<div class="fhi-tree-view-navigation__nested-group" [id]="'id-' + node.id">
-					<ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children }"></ng-container>
+				<div class="fhi-tree-view-navigation__nested-group">
+					<ng-container *ngTemplateOutlet="nodeList; context: { nodes: node.children, nodeId: node.id }"></ng-container>
 				</div>
 			</ng-container>
 		</li>
@@ -59,6 +62,7 @@
 		class="fhi-tree-view-navigation__link"
 		[routerLink]="node.routerLink"
 		routerLinkActive="active"
+		[id]="'branch-' + node.id"
 	>
 		{{ node.name }}
 	</a>
@@ -70,6 +74,7 @@
 		class="fhi-tree-view-navigation__link"
 		[ngClass]="{ 'active': node.hasActiveDescendant }"
 		href="{{ node.href }}"
+		[id]="'branch-' + node.id"
 	>
 		{{ node.name }}
 	</a>
@@ -81,6 +86,7 @@
 		class="fhi-tree-view-navigation__no-link"
 		[ngClass]="{ 'active': node.hasActiveDescendant || node.isActive }"
 		*ngIf="!node.link"
+		[id]="'branch-' + node.id"
 	>
 		{{ node.name }}
 	</span>
