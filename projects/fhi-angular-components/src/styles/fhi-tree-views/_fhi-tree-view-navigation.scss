@@ -4,7 +4,7 @@
         width: 100%;
     }
 
-    &__node {
+    &__item {
         align-items: unset;
         display: flex;
         flex-wrap: wrap;
@@ -78,7 +78,7 @@
 
     &__nested-group {
         width: 100%;
-        
+
         .fhi-tree-view-navigation {
             &__link,
             &__no-link {
