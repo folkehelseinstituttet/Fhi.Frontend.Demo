@@ -1,14 +1,13 @@
 <div class="fhi-tree-view-navigation">
-  <label class="visually-hidden" id="label-root">TreeViewNavigation</label>
-	<ng-container *ngTemplateOutlet="nodeList; context: { nodes: nodes, nodeId: 'root' }"></ng-container>
+	<ng-container *ngTemplateOutlet="nodeList; context: { nodes: nodes, nodeId: null }"></ng-container>
 </div>
 
 
 <ng-template #nodeList let-nodes="nodes" let-nodeId="nodeId">
 	<ul class="fhi-tree-view-navigation__list"
 			role="tree"
-			[id]="'list-' + nodeId"
-			[attr.aria-labelledby]="'label-' + nodeId">
+			[attr.id]="nodeId !== null ? 'list-' + nodeId : null"
+			[attr.aria-labelledby]="nodeId !== null ? 'label-' + nodeId : null">
 		<li class="fhi-tree-view-navigation__item" *ngFor="let node of nodes" role="treeitem">
 			<div class="d-flex w-100">
 				<ng-container *ngIf="node.routerLink">
