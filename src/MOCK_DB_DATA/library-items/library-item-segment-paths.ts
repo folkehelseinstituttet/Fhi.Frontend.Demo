@@ -75,10 +75,11 @@ export class LibraryItemSegmentPaths {
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
-  
+  static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
+
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
-  
+
   // Prototypes (examples on use)
   static prototypeangulartreecomponent = stringTransform(Object.keys({ PrototypeAngularTreeData })[0]);
   static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
