@@ -33,7 +33,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Tree view navigation en komponent som finnes i
+  Tree view navigation er en komponent som finnes i
   <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-components">@folkehelseinstituttet/angular-components</a>.
 </p>
 <p>
