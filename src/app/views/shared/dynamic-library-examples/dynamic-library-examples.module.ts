@@ -25,11 +25,11 @@ import { SearchExampleComponent } from './fhi-angular-examples/search-example/se
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
-import { TreeViewExampleComponent } from './fhi-angular-examples/tree-view-example/tree-view-example.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
 import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
+import { AngularTreeComponentExampleComponent } from './fhi-prototypes/angular-tree-component-example/angular-tree-component-example.component';
 
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
@@ -51,12 +51,12 @@ const FHI_EXAMPLES = [
   GlobalHeadersExampleComponent,
   SearchExampleComponent,
   TableExamplesComponent,
-  TagExampleComponent,
   TreeViewNavigationExampleComponent,
-  TreeViewExampleComponent
+  TagExampleComponent
 ];
 
 const FHI_PROTOTYPES = [
+  AngularTreeComponentExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
   TableWithExpandableContentComponent

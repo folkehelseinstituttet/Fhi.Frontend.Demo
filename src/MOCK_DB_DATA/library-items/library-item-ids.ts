@@ -18,6 +18,7 @@ import { LayoutTemplatesIds } from "./layout-templates/_layout-templates.ids"
 import { ModalIds } from "./modal/_modal.ids"
 import { NavigationTileIds } from "./navigation-tile/_navigation-tile.ids"
 import { PaginationIds } from "./pagination/_pagination.ids"
+import { PrototypeAngularTreeIds } from "./prototype-angular-tree/_prototype-angular-tree.ids"
 import { PrototypeFormsIds } from "./prototype-forms/_prototype-forms.ids"
 import { PrototypePageheaderIds } from "./prototype-pageheader/_prototype-pageheader.ids"
 import { PrototypeTableWithExpandableContentIds } from "./prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids"
@@ -28,13 +29,14 @@ import { TabsIds } from "./tabs/_tabs.ids"
 import { TagsIds } from "./tags/_tags.ids"
 import { ToastIds } from "./toast/_toast.ids"
 import { TooltipIds } from "./tooltip/_tooltip.ids"
-import { TreeViewIds } from "./tree-view/_treeview.ids"
+import { TreeViewIds } from "./treeview/_treeview.ids"
 import { TypographyIds } from "./typography/_typography.ids"
 
 const libraryItemIds = {
   ...AccordionIds,
   ...AdvancedSelectIds,
   ...AlertsIds,
+  ...PrototypeAngularTreeIds,
   ...BadgeIds,
   ...ButtonGroupIds,
   ...BreadcrumbIds,
