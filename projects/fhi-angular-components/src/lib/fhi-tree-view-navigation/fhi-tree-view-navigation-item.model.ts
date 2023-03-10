@@ -1,7 +1,7 @@
-export interface FhiTreeViewNavigationNode {
-  children?: FhiTreeViewNavigationNode[];
+export interface FhiTreeViewNavigationItem {
+  children?: FhiTreeViewNavigationItem[];
   href?: string;
-  id?: string;
+  id?: number | string;
   isActive?: boolean;
   isExpanded?: boolean;
   hasActiveDescendant?: boolean;
