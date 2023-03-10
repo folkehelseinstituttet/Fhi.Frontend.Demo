@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const AngularTreeComponent: LibraryItem[] = [{
   id: LibraryItemIds.AngularTreeComponent,
-  title: 'angular tree component',
+  title: 'Angular tree component',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
