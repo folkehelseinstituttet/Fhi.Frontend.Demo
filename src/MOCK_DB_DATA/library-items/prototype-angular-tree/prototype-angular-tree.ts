@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeViewBuilder: LibraryItem[] = [{
-  id: LibraryItemIds.TreeViewBuilder,
-  title: 'Tree view builder',
+export const AngularTreeComponent: LibraryItem[] = [{
+  id: LibraryItemIds.AngularTreeComponent,
+  title: 'Angular tree component',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,30 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<div class="mb-2">
-  <button class="btn fhi-btn-flat-secondary p-0">
-    <i class="icon-plus-circle-fill"></i>
-    <span>Legg til element</span>
-  </button>
-</div>
-
-<tree-root [nodes]="treeViewSimpleNodes">
-  <ng-template #treeNodeTemplate let-node let-index="index">
-    <div class="tree-column">
-      <span>{{ node.data.name }}</span>
-      <button class="btn">
-        <i class="icon-pencil"></i>
-      </button>
-      <button class="btn">
-        <i class="icon-plus-circle"></i>
-      </button>
-      <button class="btn">
-        <i class="icon-trash-can"></i>
-      </button>
-    </div>
-  </ng-template>
-</tree-root>`;
+  return ``;
 }
 
 /*
@@ -55,7 +32,9 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Tree view builder er bygget på <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a>. Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for mer avansert bruk, som drag & drop.</p>
+<p>Dette er et eksempel på implementering av <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a>. Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for flere detaljer om bruk.</p>
+
+<p><strong>Merk:</strong> ved å benytte denne komponenten vil du for øyeblikket få korrekt stilsetting via @folkehelseinstituttet/style. Dog vil denne stilsettingen på et senere tidspunkt fjernes fra stilbiblioteket.</p>
 
 <div class="alert alert-warning mb-5">
   <i class="icon-bell-regular"></i>
