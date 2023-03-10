@@ -187,7 +187,37 @@
 }
 
 .ds-icons-wrapper {
-    > i {
-        margin: 1em;
+    .ds-icon {
+        display: inherit;
+        flex-basis: 100%;
+        margin-bottom: 1rem;
+
+        [class*="icon-"] {
+            margin-right: .5rem;
+        }
+
+        > * {
+            vertical-align: text-bottom;
+        }
+
+        &:hover .fhi-text-ancillary {
+            color: black;
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .ds-icons-wrapper {
+        .ds-icon {
+            flex-basis: 50%;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .ds-icons-wrapper {
+        .ds-icon {
+            flex-basis: 33.333%;
+        }
     }
 }

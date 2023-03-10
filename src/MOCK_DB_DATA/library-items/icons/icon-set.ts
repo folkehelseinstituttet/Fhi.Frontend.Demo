@@ -1,5 +1,6 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { includedIcons } from './icon-set.GENERATED';
 
 export const IconSet: LibraryItem[] = [{
   id: LibraryItemIds.IconSet,
@@ -15,9 +16,23 @@ export const IconSet: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
+  const icons = includedIcons;
+  let iconRender = '';
+  let darkBgClass;
+  for (let i = 0; i < icons.length; i++) {
+    if (icons[i].indexOf("-white") !== -1) {
+      darkBgClass = ' bg-dark';
+    } else {
+      darkBgClass = '';
+    }
+    
+    if(icons[i].indexOf("fhi-logo") == -1) {
+      iconRender += '<div class="ds-icon"><i class="icon-' + icons[i] + darkBgClass + '"></i><small class="fhi-text-ancillary">icon-' + icons[i] + '</small></div>';
+    }
+  }
   return `
-<div class="flex flex-wrap ds-icons-wrapper">
-  ${getCodeHtml()}
+<div class="d-flex flex-wrap ds-icons-wrapper">
+  ${iconRender}
 </div>`;
 }
 
@@ -26,52 +41,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string {
-  return `
-<i class="icon-alcohol-drugs"></i>
-<i class="icon-arrow-left"></i>
-<i class="icon-arrow-left-red"></i>
-<i class="icon-arrow-right"></i>
-<i class="icon-arrow-right-circle-fill"></i>
-<i class="icon-bell-regular"></i>
-<i class="icon-calendar"></i>
-<i class="icon-cancer"></i>
-<i class="icon-cancer-cell"></i>
-<i class="icon-cancer-cell-2"></i>
-<i class="icon-cardio"></i>
-<i class="icon-cards"></i>
-<i class="icon-check"></i>
-<i class="icon-check-circle-regular"></i>
-<i class="icon-chevron-down"></i>
-<i class="icon-chevron-down-fat"></i>
-<i class="icon-chevron-expand"></i>
-<i class="icon-chevron-left"></i>
-<i class="icon-chevron-right"></i>
-<i class="icon-chevron-up"></i>
-<i class="icon-circle-regular"></i>
-<i class="icon-clap"></i>
-<i class="icon-dash-circle"></i>
-<i class="icon-dash-circle-fill"></i>
-<i class="icon-description"></i>
-<i class="icon-diabetes"></i>
-<i class="icon-ellipsis-v"></i>
-<i class="icon-envelope-regular"></i>
-<i class="icon-environment"></i>
-<i class="icon-file-excel-regular"></i>
-<i class="icon-insight"></i>
-<i class="icon-list"></i>
-<i class="icon-magnifying-glass"></i>
-<i class="icon-muscle"></i>
-<i class="icon-no-handwash"></i>
-<i class="icon-pencil"></i>
-<i class="icon-plus-circle"></i>
-<i class="icon-plus-circle-fill"></i>
-<i class="icon-population"></i>
-<i class="icon-question-circle-regular"></i>
-<i class="icon-suicide"></i>
-<i class="icon-swap"></i>
-<i class="icon-trash-can"></i>
-<i class="icon-user-regular"></i>
-<i class="icon-xmark"></i>`;
+  return null;
 }
 
 /*
