@@ -27,7 +27,7 @@ export class FhiTreeViewNavigationComponent {
         node.id = id++;
       }
       if (node.children && node.children.length > 0) {
-        this.createIds(node.children, id);
+        this.createIds(node.children, ((id - 1) * 10) + 1);
       }
     });
   }
