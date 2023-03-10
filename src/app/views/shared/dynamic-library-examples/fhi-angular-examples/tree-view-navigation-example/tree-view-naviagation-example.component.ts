@@ -8,13 +8,13 @@ import { FhiTreeViewNavigationItem } from '@folkehelseinstituttet/angular-compon
 })
 export class TreeViewNavigationExampleComponent implements OnInit {
 
-  nodes: any[];
+  items: any[];
 
   ngOnInit() {
-    this.nodes = this.getTreeviewNavigationNodes();
+    this.items = this.getTreeviewNavigationItems();
   }
 
-  private getTreeviewNavigationNodes(): FhiTreeViewNavigationItem[] {
+  private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {
     return [{
       name: 'For utviklere',
       routerLink: '/developer',
