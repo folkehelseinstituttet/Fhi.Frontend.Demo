@@ -10,15 +10,14 @@ import { FhiTreeViewNavigationItem } from './fhi-tree-view-navigation-item.model
 })
 export class FhiTreeViewNavigationComponent {
 
-  @Input() nodes: FhiTreeViewNavigationItem[] = [];
+  @Input() items: FhiTreeViewNavigationItem[] = [];
 
   toggleNode(node: FhiTreeViewNavigationItem) {
     node.isExpanded = !node.isExpanded;
   }
 
   ngOnChanges() {
-    let id = 1;
-    this.createIds(this.nodes, id);
+    this.createIds(this.items, 1);
   }
 
   private createIds(nodes: FhiTreeViewNavigationItem[], id: number) {
