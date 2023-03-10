@@ -1,14 +1,15 @@
 <div class="fhi-tree-view-navigation">
-	<ng-container *ngTemplateOutlet="nodeList; context: { nodes: nodes, nodeId: null }"></ng-container>
+  <label class="visually-hidden"></label>
+	<ng-container *ngTemplateOutlet="nodeList; context: { nodes: items, nodeId: 'root' }"></ng-container>
 </div>
 
 
 <ng-template #nodeList let-nodes="nodes" let-nodeId="nodeId">
 	<ul class="fhi-tree-view-navigation__list"
 			role="tree"
-			[attr.id]="nodeId !== null ? 'list-' + nodeId : null"
-			[attr.aria-labelledby]="nodeId !== null ? 'label-' + nodeId : null">
-		<li class="fhi-tree-view-navigation__item" *ngFor="let node of nodes" role="treeitem">
+			[id]="'ul-' + nodeId"
+			[attr.aria-labelledby]="'a-' + nodeId">
+		<li class="fhi-tree-view-navigation__node" *ngFor="let node of nodes" role="treeitem">
 			<div class="d-flex w-100">
 				<ng-container *ngIf="node.routerLink">
 					<ng-container *ngTemplateOutlet="routerLink; context: { node: node }"></ng-container>
@@ -41,7 +42,7 @@
 	<button
 		class="fhi-tree-view-navigation__toggler"
 		[attr.aria-label]="'Toggle ' + node.name"
-		[attr.aria-controls]="'list-' + node.id"
+		[attr.aria-controls]="'ul-' + node.id"
 		[attr.aria-haspopup]="'tree'"
 		[attr.aria-expanded]="node.isExpanded"
 		(click)="toggleNode(node)"
@@ -62,7 +63,7 @@
 		class="fhi-tree-view-navigation__link"
 		[routerLink]="node.routerLink"
 		routerLinkActive="active"
-		[id]="'label-' + node.id"
+		[id]="'a-' + node.id"
 	>
 		{{ node.name }}
 	</a>
@@ -74,7 +75,7 @@
 		class="fhi-tree-view-navigation__link"
 		[ngClass]="{ 'active': node.hasActiveDescendant }"
 		href="{{ node.href }}"
-		[id]="'label-' + node.id"
+		[id]="'a-' + node.id"
 	>
 		{{ node.name }}
 	</a>
@@ -86,7 +87,7 @@
 		class="fhi-tree-view-navigation__no-link"
 		[ngClass]="{ 'active': node.hasActiveDescendant || node.isActive }"
 		*ngIf="!node.link"
-		[id]="'label-' + node.id"
+		[id]="'a-' + node.id"
 	>
 		{{ node.name }}
 	</span>
