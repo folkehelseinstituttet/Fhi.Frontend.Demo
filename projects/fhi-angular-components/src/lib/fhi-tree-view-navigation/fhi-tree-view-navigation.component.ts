@@ -17,8 +17,7 @@ export class FhiTreeViewNavigationComponent {
   }
 
   ngOnChanges() {
-    let id = 1;
-    this.createIds(this.nodes, id);
+    this.createIds(this.nodes, 1);
   }
 
   private createIds(nodes: FhiTreeViewNavigationItem[], id: number) {
