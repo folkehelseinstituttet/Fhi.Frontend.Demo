@@ -1,6 +1,7 @@
 import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { AlertsData } from './alerts/_alerts.data';
+import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
 import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from './button-group/_button-group.data';
@@ -9,6 +10,7 @@ import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
+import { HighchartsData } from './highcharts/_highcharts.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -27,7 +29,7 @@ import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
-import { TreeViewData } from './tree-view/_treeview.data';
+import { TreeViewData } from './treeview/_treeview.data';
 import { TypographyData } from './typography/_typography.data';
 
 function stringTransform(objectNameAsString: string) {
@@ -68,16 +70,17 @@ export class LibraryItemSegmentPaths {
   static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
 
   // Modules
+  static fhiAngularHighcharts = stringTransform(Object.keys({ HighchartsData })[0]);
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
-  static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
-
+  
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
-
+  
   // Prototypes (examples on use)
+  static prototypeangulartreecomponent = stringTransform(Object.keys({ PrototypeAngularTreeData })[0]);
   static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
   static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
   static prototypetablewithexpandablecontent = stringTransform(Object.keys({ PrototypeTableWithExpandableContentData})[0]);

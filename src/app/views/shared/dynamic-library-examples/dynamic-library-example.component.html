@@ -27,6 +27,8 @@
     [itemIds]="itemIds">
   </app-advanced-select-example>
 
+  <app-fhi-angular-highcharts-example *ngSwitchCase="itemIds.Highcharts"></app-fhi-angular-highcharts-example>
+
   <app-pagination-example
     *ngSwitchCase="itemIds.Pagination"
     [itemId]="itemIds.Pagination"
@@ -83,31 +85,26 @@
     [itemIds]="itemIds">
   </app-tabs-example>
   <app-tabs-example
-    *ngSwitchCase="itemIds.TabsAlternative"
-    [itemId]="itemIds.TabsAlternative"
-    [itemIds]="itemIds">
-  </app-tabs-example>
+    *ngSwitchCase="itemIds.TabsBottomBordered"
+    [itemId]="itemIds.TabsBottomBordered"
+    [itemIds]="itemIds"></app-tabs-example>
+  <app-tabs-example
+    *ngSwitchCase="itemIds.TabsOnBlueBackground"
+    [itemId]="itemIds.TabsOnBlueBackground"
+    [itemIds]="itemIds"></app-tabs-example>
+  <app-tabs-example
+    *ngSwitchCase="itemIds.TabsBlueAndBlueBackground"
+    [itemId]="itemIds.TabsBlueAndBlueBackground"
+    [itemIds]="itemIds"></app-tabs-example>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
   <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
 
-  <app-tree-view-example
-    *ngSwitchCase="itemIds.TreeView"
-    [itemId]="itemIds.TreeView"
-    [itemIds]="itemIds"></app-tree-view-example>
-  <app-tree-view-example
-    *ngSwitchCase="itemIds.TreeViewNavigation"
-    [itemId]="itemIds.TreeViewNavigation"
-    [itemIds]="itemIds"></app-tree-view-example>
-  <app-tree-view-example
-    *ngSwitchCase="itemIds.TreeViewBuilder"
-    [itemId]="itemIds.TreeViewBuilder"
-    [itemIds]="itemIds"></app-tree-view-example>
-  <app-tree-view-example
-    *ngSwitchCase="itemIds.TreeViewCheckbox"
-    [itemId]="itemIds.TreeViewCheckbox"
-    [itemIds]="itemIds"></app-tree-view-example>
+  <app-angular-tree-component-example
+    *ngSwitchCase="itemIds.AngularTreeComponent"
+    [itemId]="itemIds.AngularTreeComponent"
+    [itemIds]="itemIds"></app-angular-tree-component-example>
 
   <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
 

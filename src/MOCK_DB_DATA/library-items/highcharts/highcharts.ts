@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeView: LibraryItem[] = [{
-  id: LibraryItemIds.TreeView,
-  title: 'Tree view',
+export const Highcharts: LibraryItem[] = [{
+  id: LibraryItemIds.Highcharts,
+  title: 'FHI Angular Highcharts',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<tree-root [nodes]="nodes"></tree-root>`;
+  return `<fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>`;
 }
 
 /*
@@ -32,5 +32,10 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Tree view er bygget på <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a></p>`;
+<p>
+  Informasjon om hvordan ta i bruk denne modulen finner du her:
+  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
+    @folkehelseinstituttet/angular-highcharts
+  </a>
+</p>`;
 }

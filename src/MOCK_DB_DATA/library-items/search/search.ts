@@ -36,7 +36,7 @@ function getCodeHtml(): string | null {
         placeholder="Søk her..."
         [ngbTypeahead]="search"/>
     </div>
-    <button type="button" class="btn fhi-btn-secondary fhi-search__btn">
+    <button type="button" class="btn fhi-search__btn">
       <i class="fhi-search__btn-icon"></i>
       <span class="fhi-search__btn__text">Søk</span>
     </button>

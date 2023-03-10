@@ -173,14 +173,14 @@ export class LibraryMenuService {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }, {
+      name: 'FHI AngularHighcharts',
+      link: LibraryItemSegmentPaths.fhiAngularHighcharts
+    }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
-    }, {
-      name: 'Treeview builder',
-      link: LibraryItemSegmentPaths.treeview
     }];
   }
 
@@ -193,6 +193,9 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [{
+      name: 'Angular Tree Component',
+      link: LibraryItemSegmentPaths.prototypeangulartreecomponent
+    }, {
       name: 'Global Header',
       link: LibraryItemSegmentPaths.prototypepageheader
     }, {

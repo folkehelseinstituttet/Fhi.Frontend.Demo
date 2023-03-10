@@ -6,12 +6,12 @@ If more than one variation of component is needed, the file structure will be:
 
 ```bash
 library-items/
-    foo/
-        _foo.data.ts
-        _foo.ids.ts
-        foo-bar.data.ts
-        foo-baz.data.ts
-        etc.
+  foo/
+    _foo.data.ts
+    _foo.ids.ts
+    foo-bar.ts
+    foo-baz.ts
+    etc.
 ```
 
 ## HOW TO
@@ -19,10 +19,10 @@ library-items/
 ### How to create a new mock-db data file with a library item
 
 1. Copy/paste the folder `./.TEMPLATE`
-2. Rename new folder and files (keep prefix `_` and postfix `.data`, and `.ids`)
+2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.ids`)
 3. Rename `const Template` in `./your-new-items/your-new-item.ts`
-4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep postfix `Data`)
-5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep postfix `Ids`)
+4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
+5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep suffix `Ids`)
 6. Add a new import and add imported object to `libraryItemIds` in `../library-item-ids.ts`
 7. Add a new import and constant in `../library-item-segment-paths.ts`
 8. Add `YourNewItemsData` to `AllData` in `../library-items.data.ts`

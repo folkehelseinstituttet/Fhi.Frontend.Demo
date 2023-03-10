@@ -12,7 +12,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
 import { TreeModule } from '@circlon/angular-tree-component';
-import { MatTreeModule } from '@angular/material/tree';
 
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -32,8 +31,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    TreeModule,
-    MatTreeModule
+    TreeModule
   ],
   exports: [
     SafePipe,
@@ -48,8 +46,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    TreeModule,
-    MatTreeModule
+    TreeModule
   ]
 })
 export class SharedModule { }
