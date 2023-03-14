@@ -24,4 +24,4 @@ const generateIconList = function() {
   });
 }
 
-setTimeout(generateIconList, 1000);//give some time to find and read file
+setTimeout(generateIconList, 250);//give some time to find and read file
