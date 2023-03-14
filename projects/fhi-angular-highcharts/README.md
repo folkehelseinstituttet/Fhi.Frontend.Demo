@@ -77,11 +77,9 @@ _Highcharts uses the UMD pattern which includes AMD, and it is probably detected
 This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 ```json
-...
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": ["highcharts"],
-...
 ```
