@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-alert [class]="bordered" [type]="type" (closed)="close(alert)">
+<ngb-alert [ngClass]="{ 'fhi-alert-bordered': bordered }" [type]="type" (closed)="close(alert)">
   <i class="icon-..."></i>
   {{ message }}
 </ngb-alert>`;

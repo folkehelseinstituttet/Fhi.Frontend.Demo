@@ -22,7 +22,7 @@ const ALERTS: Alert[] = [{
   }, {
     type: 'error',
     message: 'Dette er en feilmelding.',
-    icon: 'icon-bell',
+    icon: 'icon-exclamation-circle',
   }, {
     type: 'info',
     message: 'Dette er en melding til informasjon.',
@@ -41,7 +41,7 @@ const ALERTS: Alert[] = [{
   }, {
     type: 'error',
     message: 'Dette er en feilmelding.',
-    icon: 'icon-bell',
+    icon: 'icon-exclamation-circle',
     bordered: true,
   }
 ];
