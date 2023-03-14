@@ -23,7 +23,7 @@ function getExampleHtml(): string {
 </a>
 <br>
 <a href="${CONST.voidURL}" class="btn fhi-btn-shortcut-link">
-  <i class="icon-arrow-left-red"></i>
+  <i class="icon-arrow-left icon-red"></i>
   <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
@@ -40,7 +40,7 @@ function getCodeHtml(): string | null {
 </a>
 
 <a href="" class="btn fhi-btn-shortcut-link">
-  <i class="icon-arrow-left-red"></i>
+  <i class="icon-arrow-left icon-red"></i>
   <span class="btn__text">Snarvei-lenke</span>
 </a>`;
 }
