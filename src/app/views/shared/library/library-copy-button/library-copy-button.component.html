@@ -4,7 +4,7 @@
             ngxClipboard [cbContent]="contentToCopy" (cbOnSuccess)="copied($event)"
             (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
             [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual">
-      <fa-icon [icon]="faCopy"></fa-icon>
+      <i class="icon-clipboard2 me-0"></i>
       <span class="visually-hidden">Copy code</span>
     </button>
   </div>
