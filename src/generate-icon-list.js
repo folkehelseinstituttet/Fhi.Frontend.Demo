@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 // *** comment line 5 in and line 6 out for local testing when doing changes on the icon set
-const pathToListOfGeneratedIcons = path.join(__dirname, '..', '..', 'Fhi.Frontend.Demo', 'Fhi.Frontend.Style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
-// const pathToListOfGeneratedIcons = path.join(__dirname, '..', 'node_modules', '@folkehelseinstituttet', 'style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
+// const pathToListOfGeneratedIcons = path.join(__dirname, '..', '..', 'Fhi.Frontend.Demo', 'Fhi.Frontend.Style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
+const pathToListOfGeneratedIcons = path.join(__dirname, '..', 'node_modules', '@folkehelseinstituttet', 'style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
 const generatedOutputFile = path.join(__dirname, 'MOCK_DB_DATA', 'library-items', 'icons', 'icon-set.GENERATED.ts');
 
 let listOfGeneratedIcons;
