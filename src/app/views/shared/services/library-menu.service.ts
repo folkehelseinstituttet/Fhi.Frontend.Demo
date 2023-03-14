@@ -96,7 +96,7 @@ export class LibraryMenuService {
       name: 'Farger',
       link: LibraryItemSegmentPaths.color
     }, {
-      name: 'Ikonsett',
+      name: 'Ikoner',
       link: LibraryItemSegmentPaths.icons
     }, {
       name: 'Typografi',

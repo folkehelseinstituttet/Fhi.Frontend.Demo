@@ -1,9 +1,10 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { includedIcons } from './icon-set.GENERATED';
 
-export const HeadingLevels: LibraryItem[] = [{
-  id: LibraryItemIds.HeadingLevels,
-  title: 'Overskriftsnivåer',
+export const IconColors: LibraryItem[] = [{
+  id: LibraryItemIds.IconColors,
+  title: 'Ikonfarger',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,19 +17,22 @@ export const HeadingLevels: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<h1>Overskriftsnivå 1</h1>
-<h2>Overskriftsnivå 2</h1>
-<h3>Overskriftsnivå 3</h1>
-<h4>Overskriftsnivå 4</h1>
-<h5>Overskriftsnivå 5</h1>`;
+<div class="d-flex flex-wrap">
+  <div class="me-3"><i class="icon-arrow-left icon-red"></i></div>
+  <div class="me-3"><i class="icon-cloud-fog icon-green"></i></div>
+  <div class="bg-dark px-1"><i class="icon-cloud-fog icon-white"></i></div>
+</div>`;
 }
 
 /*
  * Return empty string to use a copy of exampleHtml as codeHtml.
  * Return null to remove Code from library-item.
  */
-function getCodeHtml(): string | null {
-  return ``;
+function getCodeHtml(): string {
+  return `
+<i class="icon-arrow-left icon-red"></i>
+<i class="icon-cloud-fog icon-green"></i>
+<i class="icon-cloud-fog icon-white"></i>`;
 }
 
 /*
@@ -37,4 +41,3 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return null;
 }
-

@@ -22,15 +22,15 @@ function getExampleHtml(): string {
   Dette er en melding til informasjon.
 </div>
 <div class="alert alert-success">
-  <i class="icon-check-circle-regular"></i>
+  <i class="icon-check-circle"></i>
   Dette er en melding om suksess!
 </div>
 <div class="alert alert-warning">
-  <i class="icon-bell-regular"></i>
+  <i class="icon-bell"></i>
   Dette er en advarsel!
 </div>
 <div class="alert alert-error">
-  <i class="icon-bell-regular"></i>
+  <i class="icon-bell"></i>
   Dette er en feilmelding.
 </div>
 <div class="alert alert-info fhi-alert-bordered">
@@ -38,15 +38,15 @@ function getExampleHtml(): string {
   Dette er en melding til informasjon.
 </div>
 <div class="alert alert-success fhi-alert-bordered">
-  <i class="icon-check-circle-regular"></i>
+  <i class="icon-check-circle"></i>
   Dette er en melding om suksess!
 </div>
 <div class="alert alert-warning fhi-alert-bordered">
-  <i class="icon-bell-regular"></i>
+  <i class="icon-bell"></i>
   Dette er en advarsel!
 </div>
 <div class="alert alert-error fhi-alert-bordered">
-  <i class="icon-bell-regular"></i>
+  <i class="icon-bell"></i>
   Dette er en feilmelding.
 </div>`;
 }

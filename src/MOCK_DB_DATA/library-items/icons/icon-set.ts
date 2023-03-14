@@ -4,7 +4,7 @@ import { includedIcons } from './icon-set.GENERATED';
 
 export const IconSet: LibraryItem[] = [{
   id: LibraryItemIds.IconSet,
-  title: 'Icon set',
+  title: 'Ikonsett',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -18,16 +18,9 @@ export const IconSet: LibraryItem[] = [{
 function getExampleHtml(): string {
   const icons = includedIcons;
   let iconRender = '';
-  let darkBgClass;
   for (let i = 0; i < icons.length; i++) {
-    if (icons[i].indexOf("-white") !== -1) {
-      darkBgClass = ' bg-dark';
-    } else {
-      darkBgClass = '';
-    }
-    
     if(icons[i].indexOf("fhi-logo") == -1) {
-      iconRender += '<div class="ds-icon"><i class="icon-' + icons[i] + darkBgClass + '"></i><small class="fhi-text-ancillary">icon-' + icons[i] + '</small></div>';
+      iconRender += '<div class="ds-icon"><i class="icon-' + icons[i] + '"></i><small class="fhi-text-ancillary">icon-' + icons[i] + '</small></div>';
     }
   }
   return `
@@ -41,7 +34,9 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string {
-  return null;
+  return `
+<!-- eksempel på implementering -->
+<i class="icon-arrow-down"></i>`;
 }
 
 /*

@@ -17,7 +17,7 @@ export const BtnIcon: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <button type="button" class="btn fhi-btn-icon">
-  <i class="icon-bell-regular"></i><span class="btn__text">Ikon-knapp</span>
+  <i class="icon-bell"></i><span class="btn__text">Ikon-knapp</span>
 </button>`;
 }
 
