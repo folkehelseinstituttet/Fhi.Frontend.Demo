@@ -26,8 +26,6 @@
     "@angular/router": "15.2.2",
     "@circlon/angular-tree-component": "^11.0.4",
     "@folkehelseinstituttet/style": "4.2.0",
-    "@folkehelseinstituttet/angular-components": "0.2.0",
-    "@folkehelseinstituttet/angular-highcharts": "0.1.0",
     "@fortawesome/angular-fontawesome": "0.12.1",
     "@fortawesome/fontawesome-svg-core": "6.3.0",
     "@fortawesome/free-solid-svg-icons": "6.3.0",
