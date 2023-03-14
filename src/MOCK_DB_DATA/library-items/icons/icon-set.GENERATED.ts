@@ -5,7 +5,6 @@ export const includedIcons = [
   'arrow-down',
   'arrow-down-up',
   'arrow-left',
-  'arrow-left-red',
   'arrow-right',
   'arrow-right-circle-fill',
   'arrow-up',
