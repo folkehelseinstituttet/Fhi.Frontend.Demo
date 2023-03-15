@@ -1,0 +1,87 @@
+<div class="row mb-3">
+  <div class="col-12 mb-3 col-lg-auto mb-lg-0 ms-lg-auto order-lg-2 d-lg-flex flex-lg-column justify-content-center">
+
+    <div class="btn-group fhi-btn-group" role="group" aria-label="Velg størrelse på ikoner">
+        <input class="btn-check fhi-btn-group__check"
+               type="radio"
+               name="iconSize"
+               id="iconSizeSM"
+               [checked]="iconSizeSelected === 'icon-sm'"
+               (change)="onChangeSize('icon-sm')">
+        <label class="btn fhi-btn-group__btn" for="iconSizeSM">
+          <span aria-hidden="true">sm</span>
+          <span class="visually-hidden">Vis små ikoner (16 x 16 px)</span>
+        </label>
+
+        <input class="btn-check fhi-btn-group__check"
+               type="radio"
+               name="iconSize"
+               id="iconSizeMD"
+               [checked]="iconSizeSelected === 'icon-md'"
+               (change)="onChangeSize('icon-md')">
+        <label class="btn fhi-btn-group__btn" for="iconSizeMD">
+          <span aria-hidden="true">md</span>
+          <span class="visually-hidden">Vis medium ikoner (24 x 24 px)</span>
+        </label>
+
+        <input class="btn-check fhi-btn-group__check"
+               type="radio"
+               name="iconSize"
+               id="iconSizeLG"
+               [checked]="iconSizeSelected === 'icon-lg'"
+               (change)="onChangeSize('icon-lg')">
+        <label class="btn fhi-btn-group__btn" for="iconSizeLG">
+          <span aria-hidden="true">lg</span>
+          <span class="visually-hidden">Vis store ikoner (32 x 32 px)</span>
+        </label>
+        
+        <input class="btn-check fhi-btn-group__check"
+               type="radio"
+               name="iconSize"
+               id="iconSizeXL"
+               [checked]="iconSizeSelected === 'icon-xl'"
+               (change)="onChangeSize('icon-xl')">
+        <label class="btn fhi-btn-group__btn" for="iconSizeXL">
+          <span aria-hidden="true">xl</span>
+          <span class="visually-hidden">Vis ekstra store ikoner (40 x 40 px)</span>
+        </label>
+    </div>
+  </div>
+
+  <div class="col-auto">
+    <div class="d-flex">
+      <label class="input-group-label pt-2 me-2 text-nowrap" for="iconFilter">Finn ikon:</label>
+      
+      <div class="input-group">
+        <input class="form-control"
+              style="height: auto"
+              type="text"
+              id="iconFilter"
+              [(ngModel)]="iconFilter"
+              (keyup)="onFilterIcons($event)"
+              #iconFilterInput>
+        <button class="btn btn-sm fhi-btn-secondary"
+                style="height: auto"
+                *ngIf="iconFilter !== ''"
+                (click)="onResetFilter()">Nullstill</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="d-flex flex-wrap ds-icons-wrapper">
+  <div class="ds-icon mb-4"
+       *ngFor="let icon of filteredIcons"
+       (click)="onCopyIconClass('icon-' + icon)"
+       [ngbTooltip]="icon + ' er kopiert'" triggers="click:blur">
+    <i [class]="'icon-' + icon + ' ' + iconSizeSelected"></i>
+    <small class="ds-icon__name fhi-text-ancillary"
+           tabindex="0"
+           (keyup)="onCheckIfEnterKeyIsClicked($event, 'icon-' + icon)"
+           [ngbTooltip]="icon + ' er kopiert'" triggers="keyup.Enter:blur">
+      {{ icon }}
+    </small>
+  </div>
+</div>

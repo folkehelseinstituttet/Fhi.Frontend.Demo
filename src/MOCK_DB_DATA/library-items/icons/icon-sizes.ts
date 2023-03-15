@@ -18,10 +18,10 @@ export const IconSizes: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <div class="d-flex flex-wrap">
-  <div class="me-3"><i class="icon-cloud-fog icon-sm"></i></div>
-  <div class="me-3"><i class="icon-cloud-fog icon-md"></i></div>
-  <div class="me-3"><i class="icon-cloud-fog icon-lg"></i></div>
-  <div><i class="icon-cloud-fog icon-xl"></i></div>
+  <div class="me-4 text-center"><small>sm<br>16x16</small><br><i class="icon-cloud-fog icon-sm"></i></div>
+  <div class="me-4 text-center"><small>md<br>24x24</small><br><i class="icon-cloud-fog icon-md"></i></div>
+  <div class="me-4 text-center"><small>lg<br>32x32</small><br><i class="icon-cloud-fog icon-lg"></i></div>
+  <div class="text-center"><small>xl<br>40x40</small><br><i class="icon-cloud-fog icon-xl"></i></div>
 </div>`;
 }
 

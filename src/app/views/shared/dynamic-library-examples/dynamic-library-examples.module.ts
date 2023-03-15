@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
@@ -8,6 +10,7 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example.compon
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { DatepickerExampleComponent } from './ng-bootstrap-examples/datepicker/datepicker.component';
+import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
 import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
@@ -46,6 +49,7 @@ const FHI_EXAMPLES = [
   AngularTreeComponentExampleComponent,
   DateAndTimeExampleComponent,
   FhiAngularHighchartsExampleComponent,
+  IconListComponent,
   FormElementExamplesComponent,
   GlobalHeadersExampleComponent,
   SearchExampleComponent,
@@ -67,6 +71,7 @@ const FHI_PROTOTYPES = [
     ...FHI_PROTOTYPES
   ],
   imports: [
+    NgbTooltipModule,
     NgSelectModule,
     SharedModule,
   ],

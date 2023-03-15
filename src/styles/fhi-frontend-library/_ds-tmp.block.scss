@@ -190,18 +190,38 @@
     .ds-icon {
         display: inherit;
         flex-basis: 100%;
-        margin-bottom: 1.25rem;
 
         [class*="icon-"] {
             margin-right: .5rem;
+            transition: height .15s, width .15s, margin-top .15s;
+        }
+
+        .icon-sm {
+            margin-top: $fhi-core-space-1;
         }
 
         > * {
             vertical-align: text-bottom;
         }
 
-        &:hover .fhi-text-ancillary {
-            color: black;
+        &:hover {
+            .fhi-text-ancillary {
+                color: $fhi-core-charcoal-1;
+            }
+
+            .ds-icon__prefix {
+                display: initial;
+            }
+        }
+
+        &__name {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &:focus {
+                color: $fhi-core-charcoal-1;
+            }
         }
     }
 }

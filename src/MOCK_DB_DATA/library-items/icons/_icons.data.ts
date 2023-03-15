@@ -6,6 +6,6 @@ import { IconSizes } from './icon-sizes';
 
 export const IconsData: LibraryItem[] = [
   ...IconSizes,
-  ...IconColors,
-  ...IconSet
+  ...IconSet,
+  ...IconColors
 ];
