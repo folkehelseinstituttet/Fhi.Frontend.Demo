@@ -43,7 +43,7 @@ function getCodeHtml(): string | null {
         <p class="fhi-utility-section__group">
           <a href="javascript:void(0)" class="d-flex">
             Innlogget Bruker
-            <span class="icon-user-regular ms-2 me-2"></span>
+            <span class="icon-person ms-2 me-2"></span>
           </a>
         </p>
         
@@ -98,7 +98,7 @@ function getCodeHtml(): string | null {
               <div class="fhi-utility-section__group">
                 <div class="my-1 py-1">
                   <a class="d-flex text-white" href="javascript:void(0)">
-                    <span class="icon-user-regular icon-white icon-lg me-2"></span>
+                    <span class="icon-person icon-white icon-lg me-2"></span>
                     Innlogget Bruker
                   </a>
                 </div>

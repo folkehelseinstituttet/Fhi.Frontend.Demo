@@ -36,7 +36,7 @@ function getCodeHtml(): string | null {
   return `
 <div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
   <button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
-	  <p class="pt-3"><i class="icon-user-regular me-0"></i></p>
+	  <p class="pt-3"><i class="icon-person me-0"></i></p>
 	  <p class="d-none d-md-block">Ikontekst</p>
 	  <i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
 	  <i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
