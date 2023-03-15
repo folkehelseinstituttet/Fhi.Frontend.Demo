@@ -10,6 +10,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
+import { FhiTreeViewCheckboxModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
 import { TreeModule } from '@circlon/angular-tree-component';
 

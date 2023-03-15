@@ -16,7 +16,7 @@ export const TreeViewCheckbox: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `<fhi-tree-view-checkbox></fhi-tree-view-checkbox>`;
 }
 
 /*
@@ -24,6 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
+  return ``;
   return `
 <mat-tree class="fhi-material-tree fhi-material-tree--check"
   [dataSource]="dataSource"
@@ -84,6 +85,8 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
+  return `
+`;
   return `
   <p>Vis/skjul noder på Tree view med checkbox er bygget på <a href="https://material.angular.io/components/tree/overview">Angular Material Tree</a>.</p>
   <p>Checkboxer er bygget på Bootstraps <a href="https://getbootstrap.com/docs/5.2/forms/checks-radios/">Checks</a>.</p>`;
