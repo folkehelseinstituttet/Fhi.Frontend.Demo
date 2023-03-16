@@ -6,8 +6,8 @@
                type="radio"
                name="iconSize"
                id="iconSizeSM"
-               [checked]="iconSizeSelected === 'icon-sm'"
-               (change)="onChangeSize('icon-sm')">
+               [checked]="iconSizeSelected === 'sm'"
+               (change)="onChangeSize('sm')">
         <label class="btn fhi-btn-group__btn" for="iconSizeSM">
           <span aria-hidden="true">sm</span>
           <span class="visually-hidden">Vis små ikoner (16 x 16 px)</span>
@@ -17,8 +17,8 @@
                type="radio"
                name="iconSize"
                id="iconSizeMD"
-               [checked]="iconSizeSelected === 'icon-md'"
-               (change)="onChangeSize('icon-md')">
+               [checked]="iconSizeSelected === 'md'"
+               (change)="onChangeSize('md')">
         <label class="btn fhi-btn-group__btn" for="iconSizeMD">
           <span aria-hidden="true">md</span>
           <span class="visually-hidden">Vis medium ikoner (24 x 24 px)</span>
@@ -28,8 +28,8 @@
                type="radio"
                name="iconSize"
                id="iconSizeLG"
-               [checked]="iconSizeSelected === 'icon-lg'"
-               (change)="onChangeSize('icon-lg')">
+               [checked]="iconSizeSelected === 'lg'"
+               (change)="onChangeSize('lg')">
         <label class="btn fhi-btn-group__btn" for="iconSizeLG">
           <span aria-hidden="true">lg</span>
           <span class="visually-hidden">Vis store ikoner (32 x 32 px)</span>
@@ -39,8 +39,8 @@
                type="radio"
                name="iconSize"
                id="iconSizeXL"
-               [checked]="iconSizeSelected === 'icon-xl'"
-               (change)="onChangeSize('icon-xl')">
+               [checked]="iconSizeSelected === 'xl'"
+               (change)="onChangeSize('xl')">
         <label class="btn fhi-btn-group__btn" for="iconSizeXL">
           <span aria-hidden="true">xl</span>
           <span class="visually-hidden">Vis ekstra store ikoner (40 x 40 px)</span>
@@ -60,10 +60,6 @@
               [(ngModel)]="iconFilter"
               (keyup)="onFilterIcons($event)"
               #iconFilterInput>
-        <button class="btn btn-sm fhi-btn-secondary"
-                style="height: auto"
-                *ngIf="iconFilter !== ''"
-                (click)="onResetFilter()">Nullstill</button>
       </div>
     </div>
   </div>
@@ -74,13 +70,13 @@
 <div class="d-flex flex-wrap ds-icons-wrapper">
   <div class="ds-icon mb-4"
        *ngFor="let icon of filteredIcons"
-       (click)="onCopyIconClass('icon-' + icon)"
-       [ngbTooltip]="icon + ' er kopiert'" triggers="click:blur">
-    <i [class]="'icon-' + icon + ' ' + iconSizeSelected"></i>
+       (click)="onCopyIconClass(icon)"
+       [ngbTooltip]="icon + ' (' + iconSizeSelected + ') er kopiert'" triggers="click:blur">
+    <i [class]="'icon-' + icon + ' icon-' + iconSizeSelected"></i>
     <small class="ds-icon__name fhi-text-ancillary"
            tabindex="0"
-           (keyup)="onCheckIfEnterKeyIsClicked($event, 'icon-' + icon)"
-           [ngbTooltip]="icon + ' er kopiert'" triggers="keyup.Enter:blur">
+           (keyup)="onCopyByFocus($event, icon)"
+           [ngbTooltip]="icon + ' (' + iconSizeSelected + ') er kopiert'" triggers="keyup.Enter:blur">
       {{ icon }}
     </small>
   </div>

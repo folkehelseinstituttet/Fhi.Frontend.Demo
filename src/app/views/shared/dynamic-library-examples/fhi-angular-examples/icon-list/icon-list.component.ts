@@ -13,7 +13,7 @@ export class IconListComponent {
   includedIcons: any = includedIcons;
   filteredIcons: any = [...includedIcons];
   iconFilter: string = '';
-  iconSizeSelected: string = 'icon-md';
+  iconSizeSelected: string = 'md';
 
   constructor(private clipboard: Clipboard) {}
 
@@ -25,14 +25,16 @@ export class IconListComponent {
     }
   }
 
-  onCheckIfEnterKeyIsClicked(event: KeyboardEvent, iconToCopy: string) {
+  onCopyByFocus(event: KeyboardEvent, iconToCopy: string) {
     if (event.key === 'Enter') {
       this.onCopyIconClass(iconToCopy);
     }
   }
 
   onCopyIconClass(iconToCopy: string) {
-    this.clipboard.copy(iconToCopy);
+    console.log(iconToCopy, this.iconSizeSelected);
+    const iconTag = `<i class="icon-${iconToCopy} icon-${this.iconSizeSelected}"></i>`;
+    this.clipboard.copy(iconTag);
   }
 
   onResetFilter() {
