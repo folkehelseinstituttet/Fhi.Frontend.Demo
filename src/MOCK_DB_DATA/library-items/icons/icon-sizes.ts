@@ -31,10 +31,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string {
   return `
-<i class="icon-cloud-fog icon-sm"></i>
-<i class="icon-cloud-fog icon-md"></i>
-<i class="icon-cloud-fog icon-lg"></i>
-<i class="icon-cloud-fog icon-xl"></i>`;
+<i class="icon-[name] icon-sm"></i>
+<i class="icon-[name] icon-md"></i>
+<i class="icon-[name] icon-lg"></i>
+<i class="icon-[name] icon-xl"></i>`;
 }
 
 /*

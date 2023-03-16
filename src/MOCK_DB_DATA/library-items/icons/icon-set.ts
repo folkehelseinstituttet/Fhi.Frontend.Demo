@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string {
   return `
-<i class="icon-[navn]"></i>`;
+<i class="icon-[name] icon-[size]"></i>`;
 }
 
 /*

@@ -30,9 +30,9 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string {
   return `
-<i class="icon-arrow-left icon-red"></i>
-<i class="icon-cloud-fog icon-green"></i>
-<i class="icon-cloud-fog icon-white"></i>`;
+<i class="icon-[name] icon-[size] icon-red"></i>
+<i class="icon-[name] icon-[size] icon-green"></i>
+<i class="icon-[name] icon-[size] icon-white"></i>`;
 }
 
 /*
