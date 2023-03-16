@@ -27,6 +27,8 @@ import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-hea
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
+import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
+
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
 import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
@@ -46,7 +48,6 @@ const NGB_EXAMPLES = [
 
 const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
-  AngularTreeComponentExampleComponent,
   DateAndTimeExampleComponent,
   FhiAngularHighchartsExampleComponent,
   IconListComponent,
@@ -54,10 +55,12 @@ const FHI_EXAMPLES = [
   GlobalHeadersExampleComponent,
   SearchExampleComponent,
   TableExamplesComponent,
+  TreeViewNavigationExampleComponent,
   TagExampleComponent
 ];
 
 const FHI_PROTOTYPES = [
+  AngularTreeComponentExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
   TableWithExpandableContentComponent

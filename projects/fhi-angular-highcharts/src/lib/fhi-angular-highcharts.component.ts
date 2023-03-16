@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 import { first } from 'rxjs/operators';
-import * as Highcharts from 'highcharts'; // https://github.com/highcharts/highcharts/issues/14183, hvis Highcharts endrer fra CommonJS til ECMAScript modules i fremtidig versjon, fjern følgende fra angular.json: "allowedCommonJsDependencies": ["highcharts"]
-import { Options, Chart } from 'highcharts'; // https://github.com/highcharts/highcharts/issues/14183, hvis Highcharts endrer fra CommonJS til ECMAScript modules i fremtidig versjon, fjern følgende fra angular.json: "allowedCommonJsDependencies": ["highcharts"]
+import * as Highcharts from 'highcharts';
+import { Options, Chart } from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';

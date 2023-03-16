@@ -1,4 +1,10 @@
-# 0.2.0
+# 0.3.0
+
+> Mar 14, 2023
+
+* :tada: **Enhancement** Add support for Angular 15
+
+## 0.2.0
 
 > Feb 15, 2023
 

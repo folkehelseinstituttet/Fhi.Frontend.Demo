@@ -24,35 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="fhi-material-tree">
-  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-    <a class="fhi-material-tree__link"
-      [routerLink]="node.uri"
-      *ngIf="node.uri.substr(0, 4) !== 'http'">{{ node.name }}</a>
-    <a class="fhi-material-tree__link"
-      [href]="node.uri"
-      *ngIf="node.uri.substr(0, 4) === 'http'">{{ node.name }}</a>
-  </mat-tree-node>
-
-  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
-    <div class="mat-tree-node">
-      <button class="fhi-material-tree__toggler" mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
-        <i [ngClass]="{'icon-chevron-up' : treeControl.isExpanded(node), 'icon-chevron-down' : !treeControl.isExpanded(node)}"></i>
-      </button>
-      <a class="fhi-material-tree__link"
-        [routerLink]="node.uri"
-        *ngIf="node.uri.substr(0, 4) !== 'http'">{{ node.name }}</a>
-      <a class="fhi-material-tree__link"
-        [href]="node.uri"
-        *ngIf="node.uri.substr(0, 4) === 'http'">{{ node.name }}</a>
-    </div>
-
-    <div class="fhi-material-tree__nested-group" [class.fhi-material-tree__invisible]="!treeControl.isExpanded(node)" role="group">
-      <ng-container matTreeNodeOutlet></ng-container>
-    </div>
-  </mat-nested-tree-node>
-</mat-tree>`;
+  return `<fhi-tree-view-navigation [items]="items"></fhi-tree-view-navigation>`;
 }
 
 /*
@@ -60,5 +32,33 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Tree view navigation er bygget på <a href="https://material.angular.io/components/tree/overview">Angular Material Tree</a>.</p>`;
+<p>
+  Tree view navigation er en komponent som finnes i
+  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-components">@folkehelseinstituttet/angular-components</a>.
+</p>
+<p>
+  API'et består kun av en input:
+</p>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Input</th>
+        <th scope="col">Type</th>
+        <th scope="col">Default</th>
+        <th scope="col">Required</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>[nodes]</th>
+        <td><code>Array&lt;FhiTreeViewNavigationItem&gt;</code></td>
+        <td><code>[]</code></td>
+        <td>yes</td>
+        <td>All items in your navigation tree.</td>
+      </tr>
+   </tbody>
+  </table>
+</div>`;
 }

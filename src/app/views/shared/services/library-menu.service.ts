@@ -181,6 +181,9 @@ export class LibraryMenuService {
     }, {
       name: 'Global header',
       link: LibraryItemSegmentPaths.globalheader
+    }, {
+      name: 'Tree views',
+      link: LibraryItemSegmentPaths.treeview
     }];
   }
 

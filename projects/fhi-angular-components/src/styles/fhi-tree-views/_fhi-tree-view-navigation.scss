@@ -1,0 +1,116 @@
+.fhi-tree-view-navigation {
+    &__list {
+        padding: 0;
+        width: 100%;
+    }
+
+    &__item {
+        align-items: unset;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: $fhi-core-font-size-3;
+
+        .fhi-tree-view-navigation__list {
+            flex: none;
+        }
+    }
+
+    &__link,
+    &__no-link {
+        color: currentColor;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        font-size: inherit;
+        justify-content: center;
+        line-height: 1.125;
+        min-height: $fhi-core-px * 44;
+        padding: $fhi-core-space-1 $fhi-core-space-2 $fhi-core-space-1 $fhi-core-space-3;
+        text-decoration: none;
+
+        &.active {
+            font-family: $fhi-core-font-family-sans-serif-medium;
+        }
+    }
+
+    &__link {
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+            color: currentColor;
+        }
+
+        &:focus-visible {
+            box-shadow: 0 0 0 3px $fhi-core-red-1 inset;
+            z-index: 1;
+        }
+    }
+
+    &__toggler {
+        background-color: $fhi-core-white;
+        border: 0;
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+        justify-content: center;
+
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+        }
+
+        &:focus-visible {
+            z-index: 1;
+        }
+    }
+
+    &__toggler--chevron {
+        flex-basis: $fhi-core-px * 45;
+        width: $fhi-core-px * 44;
+
+        [class*='icon-'] {
+            margin: auto;
+        }
+
+        &:hover {
+            background-color: $fhi-core-pink-light-2;
+        }
+    }
+
+    &__nested-group {
+        width: 100%;
+
+        .fhi-tree-view-navigation {
+            &__link,
+            &__no-link {
+                padding-left: ($fhi-core-space-3 + $fhi-core-space-4);
+            }
+
+            &__nested-group {
+                .fhi-tree-view-navigation {
+                    &__link,
+                    &__no-link {
+                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 2));
+                    }
+
+                    &__nested-group {
+                        .fhi-tree-view-navigation {
+                            &__link,
+                            &__no-link {
+                                padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 3));
+                            }
+
+                            &__nested-group {
+                                .fhi-tree-view-navigation {
+                                    &__link,
+                                    &__no-link {
+                                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 4));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
