@@ -12,12 +12,12 @@ export class FhiTreeViewNavigationComponent {
 
   @Input() items: FhiTreeViewNavigationItem[] = [];
 
-  toggleItem(item: FhiTreeViewNavigationItem) {
-    item.isExpanded = !item.isExpanded;
-  }
-
   ngOnChanges() {
     this.createIds(this.items, 1);
+  }
+
+  toggleItem(item: FhiTreeViewNavigationItem) {
+    item.isExpanded = !item.isExpanded;
   }
 
   private createIds(items: FhiTreeViewNavigationItem[], id: number) {

@@ -1,10 +1,8 @@
 export interface FhiTreeViewCheckboxItem {
   children?: FhiTreeViewCheckboxItem[];
-  href?: string;
   id?: number | string;
-  isActive?: boolean;
+  isChecked?: boolean;
   isExpanded?: boolean;
-  hasActiveDescendant?: boolean;
+  hasCheckedDescendant?: boolean;
   name: string;
-  routerLink?: string;
 }

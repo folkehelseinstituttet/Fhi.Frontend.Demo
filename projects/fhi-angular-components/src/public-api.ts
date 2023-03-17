@@ -16,3 +16,4 @@ export * from './lib/fhi-tree-view-navigation/fhi-tree-view-navigation-item.mode
 
 export * from './lib/fhi-tree-view-checkbox/fhi-tree-view-checkbox.component';
 export * from './lib/fhi-tree-view-checkbox/fhi-tree-view-checkbox.module';
+export * from './lib/fhi-tree-view-checkbox/fhi-tree-view-checkbox-item.model';
