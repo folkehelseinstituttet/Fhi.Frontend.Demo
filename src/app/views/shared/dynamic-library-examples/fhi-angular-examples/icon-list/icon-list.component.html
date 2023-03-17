@@ -48,7 +48,7 @@
       {{ icon }}
     </small>
   </div>
-  <p class="p-3" *ngIf="(icons | filterBy: searchInput)?.length === 0">
-    Søket gir ingen treff
+  <p *ngIf="(icons | filterBy: searchInput)?.length === 0">
+    Ingen ikoner å vise
   </p>
 </div>

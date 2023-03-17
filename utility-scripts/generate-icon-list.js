@@ -6,8 +6,7 @@ const path = require('path');
  * comment line 9 in and line 10 out
  */
 
-// const pathToListOfGeneratedIcons = path.join(__dirname, '..', '..', 'Fhi.Frontend.Demo', 'Fhi.Frontend.Style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md'); // dev
-const pathToListOfGeneratedIcons = path.join(__dirname, '..', 'node_modules', '@folkehelseinstituttet', 'style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');  // prod
+const pathToListOfGeneratedIcons = path.join(__dirname, '..', '..', 'Fhi.Frontend.Demo', 'Fhi.Frontend.Style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
 const generatedOutputFile = path.join(__dirname, 'MOCK_DB_DATA', 'library-items', 'icons', 'icon-set.GENERATED.ts');
 
 let listOfGeneratedIcons;
