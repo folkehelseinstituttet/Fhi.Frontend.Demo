@@ -12,21 +12,21 @@ export class FhiTreeViewNavigationComponent {
 
   @Input() items: FhiTreeViewNavigationItem[] = [];
 
-  toggleNode(node: FhiTreeViewNavigationItem) {
-    node.isExpanded = !node.isExpanded;
+  toggleItem(item: FhiTreeViewNavigationItem) {
+    item.isExpanded = !item.isExpanded;
   }
 
   ngOnChanges() {
     this.createIds(this.items, 1);
   }
 
-  private createIds(nodes: FhiTreeViewNavigationItem[], id: number) {
-    nodes.forEach(node => {
-      if (node.id === undefined) {
-        node.id = id++;
+  private createIds(items: FhiTreeViewNavigationItem[], id: number) {
+    items.forEach(item => {
+      if (item.id === undefined) {
+        item.id = id++;
       }
-      if (node.children && node.children.length > 0) {
-        this.createIds(node.children, ((id - 1) * 10) + 1);
+      if (item.children && item.children.length > 0) {
+        this.createIds(item.children, ((id - 1) * 10) + 1);
       }
     });
   }
