@@ -6,6 +6,7 @@ An opinionated wrapper to the official minimal [Highcharts wrapper for Angular](
 
 | FHI AngularHighcharts | FHI Style | Bootstrap | Highcharts | HighchartsAngular | Angular | Node/NPM |
 | --------------------- | --------- | --------- | ---------- | ----------------- | ------- | -------- |
+| Unreleased            | 4         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
 | 0.2.0                 | 4         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
 | 0.1.0                 | 4         | 5         | 10.3.0     | 3                 | 14      | 16/8 *   |
 
@@ -62,7 +63,7 @@ import { FhiDiagramOptions, FhiDiagramSerie, FhiDiagramTypes } from '@folkehelse
 
 ```scss
 // In global css-file (usually style.scss)
-@import "../dist/fhi-angular-highcharts/styles/import/all";
+@import "./node_modules/@folkehelseinstituttet/angular-highcharts/styles/import/all";
 ```
 
 ### Remove warnings
@@ -76,10 +77,12 @@ _Highcharts uses the UMD pattern which includes AMD, and it is probably detected
 
 This is where `allowedCommonJsDependencies` i located in `angular.json`
 
-```json
+```js
+...
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": ["highcharts"],
+...
 ```
