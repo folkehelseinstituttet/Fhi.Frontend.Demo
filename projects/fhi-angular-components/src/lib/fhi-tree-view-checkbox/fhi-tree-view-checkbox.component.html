@@ -1,1 +1,7 @@
-<p>fhi-tree-view-checkbox works!</p>
+<div class="fhi-tree-view-checkbox">
+	<ng-container *ngTemplateOutlet="checkboxItems; context: { nodes: items, nodeId: null }"></ng-container>
+</div>
+
+
+<ng-template #checkboxItems let-nodes="nodes" let-nodeId="nodeId">
+</ng-template>
