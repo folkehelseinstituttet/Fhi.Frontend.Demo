@@ -45,7 +45,10 @@ export class TreeViewCheckboxExampleComponent implements OnInit {
           { name: 'Global footer' },
           { name: 'Global header' },
           { name: 'Drawer' },
-          { name: 'Tree view' }
+          {
+            isChecked: true,
+            name: 'Tree view'
+          }
         ]
       }, {
         name: 'Layout og sidemaler',

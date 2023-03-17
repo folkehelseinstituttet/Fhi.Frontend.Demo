@@ -34,7 +34,7 @@
 		[attr.aria-controls]="'list-' + item.id"
 		[attr.aria-haspopup]="'tree'"
 		[attr.aria-expanded]="item.isExpanded"
-		(click)="toggleItem(item)"
+		(click)="toggleExpanded(item)"
 	>
 		<i
 			[ngClass]="{
@@ -57,7 +57,7 @@
       value=""
       [id]="item.id"
       [checked]="item.isChecked"
-      (click)="setIsChecked(item.id)">
+      (click)="toggleChecked(item.id)">
     <label class="form-check-label" [for]="item.id">
       {{ item.name }}
     </label>

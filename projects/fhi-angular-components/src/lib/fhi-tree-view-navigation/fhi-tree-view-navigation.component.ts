@@ -16,7 +16,7 @@ export class FhiTreeViewNavigationComponent {
     this.createIds(this.items, 1);
   }
 
-  toggleItem(item: FhiTreeViewNavigationItem) {
+  toggleExpanded(item: FhiTreeViewNavigationItem) {
     item.isExpanded = !item.isExpanded;
   }
 
