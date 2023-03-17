@@ -57,7 +57,7 @@
       value=""
       [id]="item.id"
       [checked]="item.isChecked"
-      (click)="checkTreeState(item.id)">
+      (click)="setIsChecked(item.id)">
     <label class="form-check-label" [for]="item.id">
       {{ item.name }}
     </label>

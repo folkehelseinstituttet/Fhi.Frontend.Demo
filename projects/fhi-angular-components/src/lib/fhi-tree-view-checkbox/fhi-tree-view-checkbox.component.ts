@@ -11,18 +11,33 @@ import { FhiTreeViewCheckboxItem } from './fhi-tree-view-checkbox-item.model';
 export class FhiTreeViewCheckboxComponent {
 
   @Input() items: FhiTreeViewCheckboxItem[] = [];
-  @Output() itemsChange = new EventEmitter<FhiTreeViewCheckboxItem[]>();
+  @Output() treeViewCheckboxToggle = new EventEmitter<FhiTreeViewCheckboxItem[]>();
 
   ngOnChanges() {
     this.createIds(this.items, 1);
+    // console.log('FhiTreeViewCheckboxComponent.ngOnChanges()');
   }
 
   toggleItem(item: FhiTreeViewCheckboxItem) {
     item.isExpanded = !item.isExpanded;
   }
 
-  checkTreeState(itemId: number | string) {
-    console.log('itemId', itemId);
+  setIsChecked(id: number | string) {
+    console.log('itemId', id);
+    this.updateTreeState(this.items, id);
+    this.treeViewCheckboxToggle.emit(this.items);
+  }
+
+  private updateTreeState(items: FhiTreeViewCheckboxItem[], id: number | string) {
+    items.forEach(item => {
+      if (item.id === id) {
+        item.isChecked = !item.isChecked;
+      }
+      if (item.children && item.children.length > 0) {
+        // console.log('item.children', item.children);
+        this.updateTreeState(item.children, id);
+      }
+    });
   }
 
   private createIds(items: FhiTreeViewCheckboxItem[], id: number) {
@@ -35,4 +50,5 @@ export class FhiTreeViewCheckboxComponent {
       }
     });
   }
+
 }

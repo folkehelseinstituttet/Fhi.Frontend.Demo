@@ -12,7 +12,11 @@ export class TreeViewCheckboxExampleComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.getTreeviewCheckboxItems();
-    console.log('TreeViewCheckboxExampleComponent.ngOnInit()');
+    // console.log('TreeViewCheckboxExampleComponent.ngOnInit()');
+  }
+
+  onTreeViewCheckboxToggle(items: FhiTreeViewCheckboxItem[]) {
+    console.log('onItemsChange->items', items);
   }
 
   private getTreeviewCheckboxItems(): FhiTreeViewCheckboxItem[] {
