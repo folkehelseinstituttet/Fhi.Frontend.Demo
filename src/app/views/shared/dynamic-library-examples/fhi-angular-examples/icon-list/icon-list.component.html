@@ -2,64 +2,37 @@
   <div class="col-12 mb-3 col-lg-auto mb-lg-0 ms-lg-auto order-lg-2 d-lg-flex flex-lg-column justify-content-center">
 
     <div class="btn-group fhi-btn-group" role="group" aria-label="Velg størrelse på ikoner">
-        <input class="btn-check fhi-btn-group__check"
-               type="radio"
-               name="iconSize"
-               id="iconSizeSM"
-               [checked]="iconSizeSelected === 'sm'"
-               (change)="onChangeSize('sm')">
-        <label class="btn fhi-btn-group__btn" for="iconSizeSM">
-          <span aria-hidden="true">sm</span>
-          <span class="visually-hidden">Vis små ikoner (16 x 16 px)</span>
-        </label>
+      <ng-container *ngFor="let iconSize of iconSizes">
+        <ng-container *ngTemplateOutlet="iconSizeInput;
+          context: { size: iconSize.size, px: iconSize.px  }">
+        </ng-container>
+      </ng-container>
 
+      <ng-template #iconSizeInput let-size="size" let-px="px">
         <input class="btn-check fhi-btn-group__check"
                type="radio"
-               name="iconSize"
-               id="iconSizeMD"
-               [checked]="iconSizeSelected === 'md'"
-               (change)="onChangeSize('md')">
-        <label class="btn fhi-btn-group__btn" for="iconSizeMD">
-          <span aria-hidden="true">md</span>
-          <span class="visually-hidden">Vis medium ikoner (24 x 24 px)</span>
+               name="icon-size"
+               id="icon-size-{{ size }}"
+               [checked]="iconSizeSelected === size"
+               (change)="changeSize(size)">
+        <label class="btn fhi-btn-group__btn" for="icon-size-{{ size }}">
+          <span aria-hidden="true">{{ size }}</span>
+          <span class="visually-hidden">Vis ekstra store ikoner ({{ px }} x {{ px }} px)</span>
         </label>
-
-        <input class="btn-check fhi-btn-group__check"
-               type="radio"
-               name="iconSize"
-               id="iconSizeLG"
-               [checked]="iconSizeSelected === 'lg'"
-               (change)="onChangeSize('lg')">
-        <label class="btn fhi-btn-group__btn" for="iconSizeLG">
-          <span aria-hidden="true">lg</span>
-          <span class="visually-hidden">Vis store ikoner (32 x 32 px)</span>
-        </label>
-        
-        <input class="btn-check fhi-btn-group__check"
-               type="radio"
-               name="iconSize"
-               id="iconSizeXL"
-               [checked]="iconSizeSelected === 'xl'"
-               (change)="onChangeSize('xl')">
-        <label class="btn fhi-btn-group__btn" for="iconSizeXL">
-          <span aria-hidden="true">xl</span>
-          <span class="visually-hidden">Vis ekstra store ikoner (40 x 40 px)</span>
-        </label>
+      </ng-template>
     </div>
   </div>
 
   <div class="col-auto">
     <div class="d-flex">
       <label class="input-group-label pt-2 me-2 text-nowrap" for="iconFilter">Finn ikon:</label>
-      
+
       <div class="input-group">
         <input class="form-control"
               style="height: auto"
               type="text"
               id="iconFilter"
-              [(ngModel)]="iconFilter"
-              (keyup)="onFilterIcons($event)"
-              #iconFilterInput>
+              [(ngModel)]="searchInput">
       </div>
     </div>
   </div>
@@ -68,17 +41,14 @@
 <hr>
 
 <div class="d-flex flex-wrap ds-icons-wrapper">
-  <p class="w-100 mb-6 fhi-text-ancillary">Klikk på ikon (evt. Enter ved fokus) for å kopiere &lt;i&gt;-tag med css-klasser.</p>
   <div class="ds-icon mb-4"
-       *ngFor="let icon of filteredIcons"
-       (click)="onCopyIconClass(icon)"
-       [ngbTooltip]="icon + ' (' + iconSizeSelected + ') er kopiert'" triggers="click:blur">
+       *ngFor="let icon of icons | filterBy: searchInput">
     <i [class]="'icon-' + icon + ' icon-' + iconSizeSelected"></i>
-    <small class="ds-icon__name fhi-text-ancillary"
-           tabindex="0"
-           (keyup)="onCopyByFocus($event, icon)"
-           [ngbTooltip]="icon + ' (' + iconSizeSelected + ') er kopiert'" triggers="keyup.Enter:blur">
+    <small class="ds-icon__name fhi-text-ancillary" tabindex="0">
       {{ icon }}
     </small>
   </div>
+  <p class="p-3" *ngIf="(icons | filterBy: searchInput)?.length === 0">
+    Søket gir ingen treff
+  </p>
 </div>
