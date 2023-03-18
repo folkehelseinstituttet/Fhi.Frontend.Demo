@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
-import { FhiTreeViewCheckboxItem } from './fhi-tree-view-checkbox-item.model';
+import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.model';
 
 @Component({
   selector: 'fhi-tree-view-checkbox',
@@ -10,36 +10,67 @@ import { FhiTreeViewCheckboxItem } from './fhi-tree-view-checkbox-item.model';
 })
 export class FhiTreeViewCheckboxComponent {
 
-  @Input() items: FhiTreeViewCheckboxItem[] = [];
-  @Output() treeViewCheckboxToggle = new EventEmitter<FhiTreeViewCheckboxItem[]>();
+  @Input() items: Item[] = [];
+  @Output() checkedItemsChange = new EventEmitter<Item[]>();
 
   ngOnChanges() {
     this.createIds(this.items, 1);
-    // console.log('FhiTreeViewCheckboxComponent.ngOnChanges()');
+    this.updateDesecendantState(this.items, true);
   }
 
-  toggleExpanded(item: FhiTreeViewCheckboxItem) {
+  toggleExpanded(item: Item) {
     item.isExpanded = !item.isExpanded;
   }
 
   toggleChecked(id: number | string) {
-    // console.log('itemId', id);
-    this.updateTreeState(id, this.items);
-    this.treeViewCheckboxToggle.emit(this.items);
+    this.updateCheckedState(id, this.items);
+    this.updateDesecendantState(this.items, false);
+    this.checkedItemsChange.emit(this.items);
   }
 
-  private updateTreeState(id: number | string, items: FhiTreeViewCheckboxItem[]) {
+  private updateCheckedState(id: number | string, items: Item[]) {
     items.forEach(item => {
       if (item.id === id) {
         item.isChecked = !item.isChecked;
       }
       if (item.children && item.children.length > 0) {
-        this.updateTreeState(id, item.children);
+        this.updateCheckedState(id, item.children);
+      }
+      item.descendantStateConfirmed = false;
+    });
+  }
+
+  private updateDesecendantState(items: Item[], initialState: boolean) {
+    items.forEach(item => {
+      if (item.children && item.children.length > 0) {
+        if (item.children.every(item => item.descendantStateConfirmed)) {
+          if (item.children.find(item => item.isChecked)) {
+            this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
+          } else {
+            this.setHasCheckedDescendantAndIsExpanded(false, item, initialState);
+          }
+          if (item.children.find(item => item.hasCheckedDescendant)) {
+            this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
+          }
+          item.descendantStateConfirmed = true;
+        }
+        this.updateDesecendantState(item.children, initialState);
+
+      } else if (!item.descendantStateConfirmed) {
+        item.descendantStateConfirmed = true; // I.e. has no descendants
+        this.updateDesecendantState(this.items, initialState);
       }
     });
   }
 
-  private createIds(items: FhiTreeViewCheckboxItem[], id: number) {
+  private setHasCheckedDescendantAndIsExpanded(value: boolean, item: Item, initialState: boolean) {
+    item.hasCheckedDescendant = value;
+    if (initialState) {
+      item.isExpanded = value;
+    }
+  }
+
+  private createIds(items: Item[], id: number) {
     items.forEach(item => {
       if (item.id === undefined) {
         item.id = id++;

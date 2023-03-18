@@ -12,35 +12,33 @@ export class TreeViewCheckboxExampleComponent implements OnInit {
 
   ngOnInit() {
     this.items = this.getTreeviewCheckboxItems();
-    // console.log('TreeViewCheckboxExampleComponent.ngOnInit()');
   }
 
-  onTreeViewCheckboxToggle(items: FhiTreeViewCheckboxItem[]) {
-    console.log('onItemsChange->items', items);
+  onCheckedItemsChange(items: FhiTreeViewCheckboxItem[]) {
+    console.log('onCheckedItemsChange()->items', items);
+    this.items = items;
   }
 
   private getTreeviewCheckboxItems(): FhiTreeViewCheckboxItem[] {
     return [{
       name: 'For utviklere',
-      isExpanded: true,
-      hasCheckedDescendant: true,
       children: [{
         name: 'Visuell identitet',
       }, {
         name: 'Komponenter',
         children: [
-          { name: 'Accordions' },
-          { name: 'Advanced select' },
-          { name: 'Alerts' }
+          {
+            name: 'Accordions'
+          },
+          {
+            name: 'Advanced select'
+          },
+          {
+            name: 'Alerts',
+          }
         ]
       }, {
         name: 'Moduler',
-
-        // Commented out routerLink to get "active no-link"-node
-        // routerLink: '/developer/modules',
-
-        isExpanded: true,
-        hasCheckedDescendant: true,
         children: [
           { name: 'Global footer' },
           { name: 'Global header' },
