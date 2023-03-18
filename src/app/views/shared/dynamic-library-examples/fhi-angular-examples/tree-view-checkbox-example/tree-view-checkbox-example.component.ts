@@ -15,7 +15,7 @@ export class TreeViewCheckboxExampleComponent implements OnInit {
   }
 
   onCheckedItemsChange(items: FhiTreeViewCheckboxItem[]) {
-    console.log('onCheckedItemsChange()->items', items);
+    // console.log('onCheckedItemsChange()->items', items);
     this.items = items;
   }
 
