@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 
-import { FhiTreeViewNavigationItem } from './fhi-tree-view-navigation-item.model';
+import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-item.model';
 
 @Component({
   selector: 'fhi-tree-view-navigation',
@@ -10,17 +10,17 @@ import { FhiTreeViewNavigationItem } from './fhi-tree-view-navigation-item.model
 })
 export class FhiTreeViewNavigationComponent {
 
-  @Input() items: FhiTreeViewNavigationItem[] = [];
+  @Input() items: Item[] = [];
 
   ngOnChanges() {
     this.createIds(this.items, 1);
   }
 
-  toggleExpanded(item: FhiTreeViewNavigationItem) {
+  toggleExpanded(item: Item) {
     item.isExpanded = !item.isExpanded;
   }
 
-  private createIds(items: FhiTreeViewNavigationItem[], id: number) {
+  private createIds(items: Item[], id: number) {
     items.forEach(item => {
       if (item.id === undefined) {
         item.id = id++;
