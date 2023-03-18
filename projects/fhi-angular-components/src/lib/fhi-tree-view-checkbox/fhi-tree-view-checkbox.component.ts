@@ -10,7 +10,9 @@ import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.mo
 })
 export class FhiTreeViewCheckboxComponent {
 
+  @Input() enableCheckAll = false;
   @Input() items: Item[] = [];
+
   @Output() checkedItemsChange = new EventEmitter<Item[]>();
 
   ngOnChanges() {
@@ -30,14 +32,14 @@ export class FhiTreeViewCheckboxComponent {
     }
   }
 
-  checkeAll(items: Item[]) {
+  checkAll(items: Item[]) {
     items.forEach(item => {
       this.toggleChecked(item.id, true, true);
     });
     this.checkedItemsChange.emit(this.items);
   }
 
-  uncheckeAll(items: Item[]) {
+  uncheckAll(items: Item[]) {
     items.forEach(item => {
       this.toggleChecked(item.id, true);
     });
