@@ -22,19 +22,43 @@ export class FhiTreeViewCheckboxComponent {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: number | string) {
-    this.updateCheckedState(id, this.items);
+  toggleChecked(id: number | string, multiToggle = false, checkeAll = false) {
+    this.updateCheckedState(id, this.items, multiToggle, checkeAll);
     this.updateDesecendantState(this.items, false);
+    if (!multiToggle) {
+      this.checkedItemsChange.emit(this.items);
+    }
+  }
+
+  checkeAll(items: Item[]) {
+    items.forEach(item => {
+      this.toggleChecked(item.id, true, true);
+    });
     this.checkedItemsChange.emit(this.items);
   }
 
-  private updateCheckedState(id: number | string, items: Item[]) {
+  uncheckeAll(items: Item[]) {
+    items.forEach(item => {
+      this.toggleChecked(item.id, true);
+    });
+    this.checkedItemsChange.emit(this.items);
+  }
+
+  allItemsChecked(items: Item[]): boolean {
+    return items.every(item => item.isChecked)
+  }
+
+  private updateCheckedState(id: number | string, items: Item[], multiToggle: boolean, checkeAll: boolean) {
     items.forEach(item => {
       if (item.id === id) {
-        item.isChecked = !item.isChecked;
+        if (multiToggle) {
+          (checkeAll) ? item.isChecked = true : item.isChecked = false;
+        } else {
+          item.isChecked = !item.isChecked;
+        }
       }
       if (item.children && item.children.length > 0) {
-        this.updateCheckedState(id, item.children);
+        this.updateCheckedState(id, item.children, multiToggle, checkeAll);
       }
       item.descendantStateConfirmed = false;
     });
