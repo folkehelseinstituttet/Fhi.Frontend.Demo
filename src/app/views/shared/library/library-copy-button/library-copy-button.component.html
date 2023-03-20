@@ -1,9 +1,9 @@
 <div class="position-relative" style="z-index: 1">
   <div class="ds-ui-documentation__btn-wrapper position-absolute d-flex end-0">
     <button class="btn ds-ui-documentation__btn"
-            ngxClipboard [cbContent]="contentToCopy" (cbOnSuccess)="copied($event)"
             (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
-            [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual">
+            [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual"
+            (click)="copy(contentToCopy)">
       <i class="icon-clipboard2 me-0"></i>
       <span class="visually-hidden">Copy code</span>
     </button>
@@ -12,5 +12,5 @@
 
 
 <ng-template #tipContent>
-  {{ copyIsSuccess ? tooltipCopyIsSuccess : tooltipCopyInital }}
+  {{ tooltipText }}
 </ng-template>

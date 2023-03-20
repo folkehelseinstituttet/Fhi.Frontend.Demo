@@ -1,6 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
+import { Clipboard } from '@angular/cdk/clipboard';
+
 import { IncludedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/icon-set.GENERATED';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-icon-list',
@@ -8,6 +11,9 @@ import { IncludedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/ico
 })
 export class IconListComponent {
   @ViewChild('iconFilterInput') iconFilterInput: ElementRef;
+
+  copyIsSuccess = false;
+  tooltipText = 'Kopier';
 
   icons = [...Icons];
   iconSizeSelected = 'md';
@@ -19,7 +25,17 @@ export class IconListComponent {
   ];
   searchInput!: string;
 
-  checkIfEscape(whatKey: KeyboardEvent) {
+  fhiIconIndex = this.icons.indexOf('fhi-logo');
+  
+  constructor(private clipboard: Clipboard) {}
+
+  ngOnInit() {
+    if (this.fhiIconIndex > -1) {
+      this.icons.splice(this.fhiIconIndex, 1);
+    }
+  }
+
+  checkIfEscapeFilter(whatKey: KeyboardEvent) {
     if (whatKey.key === 'Escape') {
       this.resetFilter();
     }
@@ -32,6 +48,18 @@ export class IconListComponent {
   resetFilter() {
     this.searchInput = '';
     this.iconFilterInput.nativeElement.focus();
+  }
+
+  copyIcon(textToCopy: string) {
+    this.tooltipText = textToCopy + ' kopiert!';
+    this.copyIsSuccess = true;
+    this.clipboard.copy(textToCopy);
+  }
+
+  tooltipOpen(tooltip: NgbTooltip) {
+    this.tooltipText = 'Kopier';
+    this.copyIsSuccess = false;
+    tooltip.open();
   }
 
 }

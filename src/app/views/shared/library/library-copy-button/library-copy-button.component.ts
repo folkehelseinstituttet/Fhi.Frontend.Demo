@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
+
+import { Clipboard } from '@angular/cdk/clipboard';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import { IClipboardResponse } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-library-copy-button',
@@ -10,16 +11,17 @@ export class LibraryCopyButtonComponent {
 
   @Input() contentToCopy: any;
 
-  copyIsSuccess = false;
-  tooltipCopyInital = 'Copy to clipboard';
-  tooltipCopyIsSuccess = 'Copied!';
+  tooltipText = 'Kopier';
 
-  tooltipOpen(tooltip: NgbTooltip) {
-    this.copyIsSuccess = false;
-    tooltip.open();
+  constructor(private clipboard: Clipboard) {}
+
+  copy(contentToCopy: any) {
+    this.tooltipText = 'Kopiert!';
+    this.clipboard.copy(contentToCopy);
   }
 
-  copied(event: IClipboardResponse) {
-    this.copyIsSuccess = event.isSuccess;
+  tooltipOpen(tooltip: NgbTooltip) {
+    this.tooltipText = 'Kopier';
+    tooltip.open();
   }
 }
