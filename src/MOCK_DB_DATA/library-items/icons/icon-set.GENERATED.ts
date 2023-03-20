@@ -1,4 +1,4 @@
-export const includedIcons = [
+export const IncludedIcons = [
   'accident',
   'alcohol-drugs',
   'anesthesia',
@@ -11,7 +11,6 @@ export const includedIcons = [
   'bar-chart-line',
   'bar-chart-line-horizontal',
   'bell',
-  'bell-fill',
   'bicycle',
   'blood',
   'box-arrow-in-left',
@@ -57,7 +56,6 @@ export const includedIcons = [
   'file-text',
   'gear',
   'geo-alt',
-  'geo-alt-fill',
   'graph-up',
   'grip-vertical',
   'gynaecology',
@@ -81,7 +79,6 @@ export const includedIcons = [
   'people',
   'person',
   'pie-chart',
-  'pie-chart-fill',
   'plus',
   'plus-circle',
   'plus-circle-fill',
@@ -102,7 +99,6 @@ export const includedIcons = [
   'three-dots-vertical',
   'trash3',
   'upload',
-  'virus',
   'x',
   'x-circle',
   'x-circle-fill',

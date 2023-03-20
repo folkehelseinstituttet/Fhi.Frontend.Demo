@@ -31,5 +31,6 @@ function getCodeHtml(): string {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p></p>`;
 }

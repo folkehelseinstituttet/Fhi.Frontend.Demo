@@ -29,10 +29,12 @@
 
       <div class="input-group">
         <input class="form-control"
-              style="height: auto"
-              type="text"
-              id="iconFilter"
-              [(ngModel)]="searchInput">
+               style="height: auto"
+               type="text"
+               id="iconFilter"
+               #iconFilterInput
+               (keyup)="checkIfEscape($event)"
+               [(ngModel)]="searchInput">
       </div>
     </div>
   </div>

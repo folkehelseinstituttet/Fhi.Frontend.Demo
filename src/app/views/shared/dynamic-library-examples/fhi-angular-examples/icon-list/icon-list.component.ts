@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
-import { includedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/icon-set.GENERATED';
+import { IncludedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/icon-set.GENERATED';
 
 @Component({
   selector: 'app-icon-list',
   templateUrl: './icon-list.component.html'
 })
 export class IconListComponent {
+  @ViewChild('iconFilterInput') iconFilterInput: ElementRef;
+
   icons = [...Icons];
   iconSizeSelected = 'md';
   iconSizes = [
@@ -17,8 +19,19 @@ export class IconListComponent {
   ];
   searchInput!: string;
 
+  checkIfEscape(whatKey: KeyboardEvent) {
+    if (whatKey.key === 'Escape') {
+      this.resetFilter();
+    }
+  }
+
   changeSize(iconSize: string) {
     this.iconSizeSelected = iconSize;
+  }
+
+  resetFilter() {
+    this.searchInput = '';
+    this.iconFilterInput.nativeElement.focus();
   }
 
 }

@@ -1,6 +1,5 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { includedIcons } from './icon-set.GENERATED';
 
 export const IconSizes: LibraryItem[] = [{
   id: LibraryItemIds.IconSizes,
