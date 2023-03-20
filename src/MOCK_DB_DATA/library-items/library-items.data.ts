@@ -29,7 +29,7 @@ import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TooltipData } from './tooltip/_tooltip.data';
 import { TypographyData } from './typography/_typography.data';
-import { TreeViewData } from './treeview/_treeview.data';
+import { TreeViewData } from './tree-view/_tree-view.data';
 
 
 export const AllData: LibraryItem[] = [
