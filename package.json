@@ -39,7 +39,6 @@
     "highcharts": "~10.3.3",
     "highcharts-angular": "~3.1.0",
     "lodash-es": "~4.17.21",
-    "ngx-clipboard": "~15.1.0",
     "ngx-filter-pipe": "~2.1.2",
     "ngx-markdown": "~15.1.2",
     "rxjs": "~6.6.0",
