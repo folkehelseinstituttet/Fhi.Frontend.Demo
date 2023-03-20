@@ -32,5 +32,6 @@ function getCodeHtml(): string {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p></p>`;
+<p>Se <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/tree/main/src/fhi/icons#readme">detaljer om ikonsystemet</a> på Github, og hvordan du kan lage ditt eget subset.</p>
+<p>Savner du et ikon? Se kontaktinfo nederst på siden.</p>`;
 }

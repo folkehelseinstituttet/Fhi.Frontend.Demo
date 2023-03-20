@@ -1,11 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-/*
- * NOTE! When doing changes on the icon set and testing locally,
- * comment line 9 in and line 10 out
- */
-
 const pathToListOfGeneratedIcons = path.join(__dirname, '..', '..', 'Fhi.Frontend.Demo', 'Fhi.Frontend.Style', 'src', 'fhi', 'icons', 'icon-list.GENERATED.md');
 const generatedOutputFile = path.join(__dirname, '..', 'src', 'MOCK_DB_DATA', 'library-items', 'icons', 'icon-set.GENERATED.ts');
 
@@ -27,4 +22,4 @@ const generateIconList = function() {
   });
 }
 
-setTimeout(generateIconList, 250);//give some time to find and read file
+setTimeout(generateIconList, 250);//give time to find and read file

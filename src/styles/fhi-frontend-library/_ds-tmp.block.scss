@@ -192,6 +192,7 @@
         flex-basis: 100%;
 
         [class*="icon-"] {
+            cursor: pointer;
             margin-right: .5rem;
             transition: height .15s, width .15s, margin-top .15s;
         }
@@ -215,9 +216,11 @@
         }
 
         &__name {
+            cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
 
             &:focus {
                 color: $fhi-core-charcoal-1;
