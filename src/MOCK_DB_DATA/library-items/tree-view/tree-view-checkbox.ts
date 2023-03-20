@@ -25,10 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-checkbox
-  [enableCheckAll]="true"
-  [(items)]="items">
-</fhi-tree-view-checkbox>`;
+<fhi-tree-view-checkbox [(items)]="items"></fhi-tree-view-checkbox>`;
 }
 
 /*
@@ -55,13 +52,13 @@ function getDocumentationHtml(): string | null {
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <!-- <tr>
         <th>[enableCheckAll]</th>
         <td><code>boolean</code></td>
         <td><code>true</code></td>
         <td>no</td>
         <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component.</td>
-      </tr>
+      </tr> -->
       <tr>
         <th>[(items)]</th>
         <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
