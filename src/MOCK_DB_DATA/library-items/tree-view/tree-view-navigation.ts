@@ -52,7 +52,7 @@ function getDocumentationHtml(): string | null {
     </thead>
     <tbody>
       <tr>
-        <th>[nodes]</th>
+        <th>[items]</th>
         <td><code>Array&lt;FhiTreeViewNavigationItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
