@@ -141,21 +141,28 @@ _A library project is an Angular concept for organising code that are going to b
 
 ##### Release branches for library projects
 
->**NB!** Only release a new version of a library if:
+>**Before creating a release branch**
 >
->- Dependencies in `@folkehelseinstituttet/style` is already released.
->- The dependency matrix is up to date.
+>- Check that dependencies in `@folkehelseinstituttet/style` is already released.
+>- Check that all peerDependencies are updated.
+>- Check that the dependency matrix is updated, and has "Unreleased" as latest version.
+>- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
+>
+>**When creating a release branch**
+>
+>- Follow the instructions below to the letter!
 
 1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
 3. Change text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
-4. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
+4. Change text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md`
+5. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
     >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
-5. Push release branch and create pull request from release branch into `dev`.
+6. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `dev`.
+   >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
+   >
    >_The PR goes into `dev` because this makes the workflow much easier. The fact that `main` may be a bit behind the official history in `dev`, including a release of a library, is a small price to pay._
-6. Make sure commit message is the same as the branch name.
-   > _NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
-7. After approved review, squash and merge to `dev` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+7. After approved review, squash and merge to `dev` (deploy)
 
 ##### Release branches for the Fhi.Frontend.Demo app
 
@@ -163,7 +170,7 @@ There is no need for a release branch, since the branch `dev` represents the "tr
 
 1. Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`
    - If not: create a feature branch named `enhancement/update-dependencies`, and fix it.
-   - Create PR, and merge `enhancement/update-dependencies` to `dev`.
+   - Create PR, and merge `enhancement/update-dependencies` to `dev` when approved.
 2. Merge `main` into `dev` and fix merge conflicts if any.
 3. Merge `dev` into `main`
 4. Push to origin (which will trigger the release)
