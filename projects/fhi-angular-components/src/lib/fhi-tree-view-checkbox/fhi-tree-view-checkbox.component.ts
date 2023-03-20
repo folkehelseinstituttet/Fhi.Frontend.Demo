@@ -10,7 +10,7 @@ import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.mo
 })
 export class FhiTreeViewCheckboxComponent {
 
-  @Input() enableCheckAll = false;
+  // @Input() enableCheckAll = false;
   @Input() items: Item[] = [];
 
   @Output() itemsChange = new EventEmitter<Item[]>();
