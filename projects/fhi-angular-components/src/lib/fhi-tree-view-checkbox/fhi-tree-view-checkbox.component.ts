@@ -13,7 +13,7 @@ export class FhiTreeViewCheckboxComponent {
   @Input() enableCheckAll = false;
   @Input() items: Item[] = [];
 
-  @Output() checkedItemsChange = new EventEmitter<Item[]>();
+  @Output() itemsChange = new EventEmitter<Item[]>();
 
   ngOnChanges() {
     this.createIds(this.items, 1);
@@ -28,7 +28,7 @@ export class FhiTreeViewCheckboxComponent {
     this.updateCheckedState(id, this.items, multiToggle, checkeAll);
     this.updateDesecendantState(this.items, false);
     if (!multiToggle) {
-      this.checkedItemsChange.emit(this.items);
+      this.itemsChange.emit(this.items);
     }
   }
 
@@ -36,14 +36,14 @@ export class FhiTreeViewCheckboxComponent {
     items.forEach(item => {
       this.toggleChecked(item.id, true, true);
     });
-    this.checkedItemsChange.emit(this.items);
+    this.itemsChange.emit(this.items);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach(item => {
       this.toggleChecked(item.id, true);
     });
-    this.checkedItemsChange.emit(this.items);
+    this.itemsChange.emit(this.items);
   }
 
   allItemsChecked(items: Item[]): boolean {

@@ -19,8 +19,7 @@ function getExampleHtml(): string {
   return `
 <fhi-tree-view-checkbox
   [enableCheckAll]="true"
-  [items]="items"
-  (checkedItemsChange)="onCheckedItemsChange($event)">
+  [(items)]="items">
 </fhi-tree-view-checkbox>`;
 }
 
