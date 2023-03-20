@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ClipboardModule } from 'ngx-clipboard';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
@@ -24,7 +23,6 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    ClipboardModule,
     FilterPipeModule,
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
@@ -38,7 +36,6 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    ClipboardModule,
     FilterPipeModule,
     MarkdownModule,
     FhiAngularComponentsModule,
