@@ -75,10 +75,10 @@
       class="form-check-input"
       type="checkbox"
       value=""
-      [id]="item.id"
+      [id]="'label-' + item.id"
       [checked]="item.isChecked"
       (click)="toggleChecked(item.id)">
-    <label class="form-check-label" [for]="item.id">
+    <label class="form-check-label" [for]="'label-' + item.id">
       {{ item.name }}
     </label>
   </div>

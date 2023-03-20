@@ -3,28 +3,3 @@
 
 @import "../dist/fhi-angular-components/styles/import/all";
 @import "../dist/fhi-angular-highcharts/styles/import/all";
-
-
-.fhi-tree-view-checkbox {
-    &__list {
-        list-style-type: none;
-    }
-
-    &__item {
-        position: relative;
-    }
-
-    &__toggler {
-        position: absolute;
-        left: -30px;
-        background-color: $fhi-core-white;
-        border: 0;
-        margin-right: $fhi-core-space-2;
-        padding: 0;
-
-        [class*="icon-"] {
-            background-size: 1.5rem;
-        }
-    }
-
-}
