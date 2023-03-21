@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeViewNavigation: LibraryItem[] = [{
-  id: LibraryItemIds.TreeViewNavigation,
-  title: 'Tree view navigation',
+export const TreeViewCheckbox: LibraryItem[] = [{
+  id: LibraryItemIds.TreeViewCheckbox,
+  title: 'Tree view checkbox',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,7 +24,8 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<fhi-tree-view-navigation [items]="items"></fhi-tree-view-navigation>`;
+  return `
+<fhi-tree-view-checkbox [(items)]="items"></fhi-tree-view-checkbox>`;
 }
 
 /*
@@ -51,12 +52,19 @@ function getDocumentationHtml(): string | null {
       </tr>
     </thead>
     <tbody>
+      <!-- <tr>
+        <th>[enableCheckAll]</th>
+        <td><code>boolean</code></td>
+        <td><code>true</code></td>
+        <td>no</td>
+        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component.</td>
+      </tr> -->
       <tr>
-        <th>[nodes]</th>
-        <td><code>Array&lt;FhiTreeViewNavigationItem&gt;</code></td>
+        <th>[(items)]</th>
+        <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
-        <td>All items in your navigation tree.</td>
+        <td>A two way binding to access the state of all items in your checkbox tree.</td>
       </tr>
    </tbody>
   </table>

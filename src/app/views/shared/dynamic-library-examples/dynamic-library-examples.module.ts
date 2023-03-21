@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
@@ -8,6 +10,7 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example.compon
 import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { DatepickerExampleComponent } from './ng-bootstrap-examples/datepicker/datepicker.component';
+import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
 import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
@@ -25,6 +28,7 @@ import { SearchExampleComponent } from './fhi-angular-examples/search-example/se
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
+import { TreeViewCheckboxExampleComponent } from './fhi-angular-examples/tree-view-checkbox-example/tree-view-checkbox-example.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
@@ -47,11 +51,13 @@ const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeExampleComponent,
   FhiAngularHighchartsExampleComponent,
+  IconListComponent,
   FormElementExamplesComponent,
   GlobalHeadersExampleComponent,
   SearchExampleComponent,
   TableExamplesComponent,
   TreeViewNavigationExampleComponent,
+  TreeViewCheckboxExampleComponent,
   TagExampleComponent
 ];
 
@@ -70,6 +76,7 @@ const FHI_PROTOTYPES = [
     ...FHI_PROTOTYPES
   ],
   imports: [
+    NgbTooltipModule,
     NgSelectModule,
     SharedModule,
   ],

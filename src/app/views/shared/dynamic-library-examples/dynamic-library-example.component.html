@@ -29,6 +29,8 @@
 
   <app-fhi-angular-highcharts-example *ngSwitchCase="itemIds.Highcharts"></app-fhi-angular-highcharts-example>
 
+  <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
+
   <app-pagination-example
     *ngSwitchCase="itemIds.Pagination"
     [itemId]="itemIds.Pagination"
@@ -101,9 +103,13 @@
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
   <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
 
- <app-tree-view-navigation-example
+  <app-tree-view-navigation-example
     *ngSwitchCase="itemIds.TreeViewNavigation">
   </app-tree-view-navigation-example>
+
+  <app-tree-view-checkbox-example
+    *ngSwitchCase="itemIds.TreeViewCheckbox">
+  </app-tree-view-checkbox-example>
 
   <app-angular-tree-component-example
     *ngSwitchCase="itemIds.AngularTreeComponent"

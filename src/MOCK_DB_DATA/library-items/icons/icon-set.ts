@@ -3,8 +3,8 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const IconSet: LibraryItem[] = [{
   id: LibraryItemIds.IconSet,
-  title: 'Icon set',
-  type: LibraryItemType.html,
+  title: 'Ikonsett',
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -15,10 +15,7 @@ export const IconSet: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<div class="flex flex-wrap ds-icons-wrapper">
-  ${getCodeHtml()}
-</div>`;
+  return ``;
 }
 
 /*
@@ -27,56 +24,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string {
   return `
-<i class="icon-alcohol-drugs"></i>
-<i class="icon-arrow-left"></i>
-<i class="icon-arrow-left-red"></i>
-<i class="icon-arrow-right"></i>
-<i class="icon-arrow-right-circle-fill"></i>
-<i class="icon-bell-regular"></i>
-<i class="icon-calendar"></i>
-<i class="icon-cancer"></i>
-<i class="icon-cancer-cell"></i>
-<i class="icon-cancer-cell-2"></i>
-<i class="icon-cardio"></i>
-<i class="icon-cards"></i>
-<i class="icon-check"></i>
-<i class="icon-check-circle-regular"></i>
-<i class="icon-chevron-down"></i>
-<i class="icon-chevron-down-fat"></i>
-<i class="icon-chevron-expand"></i>
-<i class="icon-chevron-left"></i>
-<i class="icon-chevron-right"></i>
-<i class="icon-chevron-up"></i>
-<i class="icon-circle-regular"></i>
-<i class="icon-clap"></i>
-<i class="icon-dash-circle"></i>
-<i class="icon-dash-circle-fill"></i>
-<i class="icon-description"></i>
-<i class="icon-diabetes"></i>
-<i class="icon-ellipsis-v"></i>
-<i class="icon-envelope-regular"></i>
-<i class="icon-environment"></i>
-<i class="icon-file-excel-regular"></i>
-<i class="icon-insight"></i>
-<i class="icon-list"></i>
-<i class="icon-magnifying-glass"></i>
-<i class="icon-muscle"></i>
-<i class="icon-no-handwash"></i>
-<i class="icon-pencil"></i>
-<i class="icon-plus-circle"></i>
-<i class="icon-plus-circle-fill"></i>
-<i class="icon-population"></i>
-<i class="icon-question-circle-regular"></i>
-<i class="icon-suicide"></i>
-<i class="icon-swap"></i>
-<i class="icon-trash-can"></i>
-<i class="icon-user-regular"></i>
-<i class="icon-xmark"></i>`;
+<i class="icon-[name] icon-[size]"></i>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Se <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/tree/main/src/fhi/icons#readme">detaljer om ikonsystemet</a> på Github, og hvordan du kan lage ditt eget subset.</p>
+<p>Savner du et ikon? Se kontaktinfo nederst på siden.</p>`;
 }

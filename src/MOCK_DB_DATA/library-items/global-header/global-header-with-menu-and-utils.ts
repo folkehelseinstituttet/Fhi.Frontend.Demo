@@ -43,7 +43,7 @@ function getCodeHtml(): string | null {
         <p class="fhi-utility-section__group">
           <a href="javascript:void(0)" class="d-flex">
             Innlogget Bruker
-            <span class="icon-user-regular ms-2 me-2"></span>
+            <span class="icon-person ms-2 me-2"></span>
           </a>
         </p>
         
@@ -52,7 +52,7 @@ function getCodeHtml(): string | null {
         <div class="fhi-utility-section__group">
           <div class="d-flex">
             <a class="fhi-utility-section__btn" href="javascript:void(0)">
-              <span class="icon-bell-regular icon-lg" ngbTooltip="Varslinger"></span>
+              <span class="icon-bell icon-lg" ngbTooltip="Varslinger"></span>
             </a>
             <a class="fhi-utility-section__btn" href="javascript:void(0)">
               <span class="icon-question-circle-regular icon-lg" ngbTooltip="Hjelp"></span>
@@ -79,7 +79,7 @@ function getCodeHtml(): string | null {
           class="fhi-main-menu__toggler"
           [attr.aria-expanded]="mainMenuIsOpen"
           (click)="mainMenuToggle()">
-          <i class="icon-xmark fhi-main-menu__toggler-close-icon"></i>
+          <i class="icon-x fhi-main-menu__toggler-close-icon"></i>
           <i class="icon-list fhi-main-menu__toggler-menu-icon"></i>
           <span class="fhi-main-menu__toggler-text">{{ !mainMenuIsOpen ? 'Meny' : 'Lukk' }}</span>
         </button>
@@ -98,13 +98,13 @@ function getCodeHtml(): string | null {
               <div class="fhi-utility-section__group">
                 <div class="my-1 py-1">
                   <a class="d-flex text-white" href="javascript:void(0)">
-                    <span class="icon-user-regular icon-white icon-lg me-2"></span>
+                    <span class="icon-person icon-white icon-lg me-2"></span>
                     Innlogget Bruker
                   </a>
                 </div>
                 <div class="my-1 py-1">
                   <a class="d-flex text-white" href="javascript:void(0)">
-                    <span class="icon-bell-regular icon-white icon-lg me-2"></span>
+                    <span class="icon-bell icon-white icon-lg me-2"></span>
                     Varslinger
                   </a>
                 </div>

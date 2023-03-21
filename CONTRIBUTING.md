@@ -89,6 +89,9 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
    1. Run `git push` in this repo
    2. Run `git push --recurse-submodules=check` in the submodule repo
 
+##### Icon set updates
+When making changes to the icon file set, run `npm run generate-icon-list`.
+
 #### How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo
 
 1. Create a new branch in this repo (from `dev`)

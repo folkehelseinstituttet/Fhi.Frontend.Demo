@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const HeadingLevels: LibraryItem[] = [{
   id: LibraryItemIds.HeadingLevels,
-  title: 'Heading levels',
+  title: 'Overskriftsnivåer',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

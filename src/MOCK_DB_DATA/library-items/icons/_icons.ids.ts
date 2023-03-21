@@ -1,4 +1,5 @@
 export const IconsIds = {
-  IconSet: undefined
+  IconSet: undefined,
+  IconSizes: undefined
 }
 

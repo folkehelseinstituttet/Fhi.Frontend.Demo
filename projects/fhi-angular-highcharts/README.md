@@ -17,10 +17,6 @@ _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versio
 
 You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/CHANGELOG.md).
 
-## Install
-
-Install with [npm](https://www.npmjs.com): `npm install @folkehelseinstituttet/angular-highcharts`
-
 ## Contribute
 
 Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
@@ -31,9 +27,15 @@ Live example in our demo app: [https://designsystem.fhi.no](https://designsystem
 
 Repo for demo app: [Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
 
-### Get started
+## Get started
 
-After installing package and all dependencies add the following to you're code:
+### Install
+
+Install with [npm](https://www.npmjs.com): `npm install @folkehelseinstituttet/angular-highcharts`
+
+### Add to app
+
+After installing the package and all dependencies add the following code to you're app:
 
 ```ts
 // In a module

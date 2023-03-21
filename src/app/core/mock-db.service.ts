@@ -39,7 +39,7 @@ import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
 import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.data';
-import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/treeview/_treeview.data';
+import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 @Injectable({
