@@ -17,6 +17,7 @@ export interface FhiDiagramOptions {
   creditsText?: string;
   data: Array<FhiDiagramSerie>;
   diagramType?: FhiDiagramType | undefined;
+  diagramTypeMenu?: boolean;
   disclaimer?: string;
   lastUpdated?: string;
   openSource?: boolean;

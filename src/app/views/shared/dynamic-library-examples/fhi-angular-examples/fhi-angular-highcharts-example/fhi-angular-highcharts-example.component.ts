@@ -37,7 +37,8 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             this.diagramOptions = {
               title: 'Dødsfall etter årsak, 2008 - 2018',
               data: data,
-              diagramType: FhiDiagramTypes.table
+              diagramType: FhiDiagramTypes.table,
+              diagramTypeMenu: true
             };
           }
           // this.diagramOptions = {

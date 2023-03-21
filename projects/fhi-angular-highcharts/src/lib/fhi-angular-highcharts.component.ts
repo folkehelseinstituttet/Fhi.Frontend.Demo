@@ -79,10 +79,12 @@ export class FhiAngularHighchartsComponent {
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
+    const d = diagramOptions;
     return {
       ...diagramOptions,
-      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
-      openSource: true
+      diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
+      diagramTypeMenu: (d.diagramTypeMenu) ? d.diagramTypeMenu : false,
+      openSource: (d.openSource) ? d.openSource : true,
     }
     // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
     // creditsHref?: string;
