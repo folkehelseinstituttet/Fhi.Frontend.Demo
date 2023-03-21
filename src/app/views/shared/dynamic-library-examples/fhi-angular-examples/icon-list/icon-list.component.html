@@ -54,7 +54,7 @@
            (mouseenter)="tooltipOpen(t2)" (mouseleave)="t2.close()"
            [ngbTooltip]="tipContent" #t2="ngbTooltip" [autoClose]="false" triggers="manual"
            placement="end"
-           (click)="copyIcon('icon-' + icon)">
+           (click)="copyIcon(icon)">
       {{ icon }}
     </small>
   </div>
