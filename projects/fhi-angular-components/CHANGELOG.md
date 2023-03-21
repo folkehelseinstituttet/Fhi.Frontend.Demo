@@ -1,13 +1,15 @@
 # Unreleased
 
-> Mar 15, 2023
+> Mar 20, 2023
 
+* :gift: **New** Add `FhiTreeViewCheckboxModule`
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 
 ## 0.3.0
 
 > Mar 14, 2023
 
+* :gift: **New** Add `FhiTreeViewNavigationModule`
 * :tada: **Enhancement** Add support for Angular 15
 
 ## 0.2.0

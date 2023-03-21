@@ -1,6 +1,6 @@
 # Unreleased
 
-> Mar 15, 2023
+> Mar 20, 2023
 
 * :bug: **Bugfix** Change wrong @import path for css in README
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix

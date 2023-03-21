@@ -1,0 +1,85 @@
+<div class="fhi-tree-view-checkbox">
+  <ng-container *ngTemplateOutlet="checkboxItems; context: { items: items, itemId: null }"></ng-container>
+</div>
+
+
+<ng-template #checkboxItems let-items="items" let-itemId="itemId">
+
+	<ul class="fhi-tree-view-checkbox__list"
+			role="tree"
+			[attr.id]="itemId !== null ? 'list' + itemId : null"
+			[attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null">
+
+    <!-- <ng-container *ngIf="enableCheckAll">
+      <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
+    </ng-container> -->
+
+		<li class="fhi-tree-view-checkbox__item" *ngFor="let item of items" role="treeitem">
+      <ng-container *ngIf="item.children">
+        <ng-container *ngTemplateOutlet="expandButton; context: { item: item }"></ng-container>
+      </ng-container>
+
+      <ng-container>
+        <ng-container *ngTemplateOutlet="checkboxItem; context: { item: item }"></ng-container>
+      </ng-container>
+
+			<ng-container *ngIf="item.isExpanded && item.children">
+				<div class="fhi-tree-view-checkbox__nested-group">
+					<ng-container *ngTemplateOutlet="checkboxItems; context: { items: item.children, itemId: item.id }"></ng-container>
+				</div>
+			</ng-container>
+		</li>
+	</ul>
+</ng-template>
+
+
+<ng-template #checkAndUncheckAll let-items="items">
+  <button type="button" class="btn fhi-btn-flat"
+    *ngIf="items.length > 1 && !allItemsChecked(items)"
+    (click)="checkAll(items)">
+    Velg alle
+  </button>
+  <button type="button" class="btn fhi-btn-flat"
+    *ngIf="items.length > 1 && allItemsChecked(items)"
+    (click)="uncheckAll(items)">
+    Fjern alle
+  </button>
+</ng-template>
+
+
+<ng-template #expandButton let-item="item">
+	<button
+		class="fhi-tree-view-checkbox__toggler"
+		[attr.aria-label]="'Toggle ' + item.name"
+		[attr.aria-controls]="'list' + item.id"
+		[attr.aria-haspopup]="'tree'"
+		[attr.aria-expanded]="item.isExpanded"
+		(click)="toggleExpanded(item)"
+	>
+		<i
+			[ngClass]="{
+        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant,
+        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant,
+        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant,
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant
+			}"
+		>
+		</i>
+	</button>
+</ng-template>
+
+
+<ng-template #checkboxItem let-item="item">
+  <div class="form-check mb-2">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      [id]="'input' + item.id"
+      [checked]="item.isChecked"
+      (click)="toggleChecked(item.id)">
+    <label class="form-check-label" [for]="'input' + item.id" [id]="'label' + item.id">
+      {{ item.name }}
+    </label>
+  </div>
+</ng-template>
