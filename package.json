@@ -11,7 +11,7 @@
     "build-angular-components": "ng build @folkehelseinstituttet/angular-components",
     "build-angular-highcharts": "ng build @folkehelseinstituttet/angular-highcharts",
     "install-projects": "npm install --no-save @folkehelseinstituttet/angular-components @folkehelseinstituttet/angular-highcharts",
-    "generate-icon-list": "node ./Fhi.Frontend.Style/src/fhi/icons/generate-icon-map && node ./utility-scripts/generate-icon-list",
+    "generate-icon-list": "node ./Fhi.Frontend.Style/src/fhi/icons/generate-icon-map && node ./src/MOCK_DB_DATA/library-items/icons/generate-icon-list",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
