@@ -1,5 +1,13 @@
 <ng-container *ngIf="!dataIsLoading else spinner">
-  <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+
+  <ng-container *ngIf="itemId === itemIds.Highcharts">
+    <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+  </ng-container>
+
+  <ng-container *ngIf="itemId === itemIds.HighchartsWithMenu">
+    <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+  </ng-container>
+
 </ng-container>
 
 <ng-template #spinner>

@@ -27,7 +27,16 @@
     [itemIds]="itemIds">
   </app-advanced-select-example>
 
-  <app-fhi-angular-highcharts-example *ngSwitchCase="itemIds.Highcharts"></app-fhi-angular-highcharts-example>
+  <app-fhi-angular-highcharts-example
+    *ngSwitchCase="itemIds.Highcharts"
+    [itemId]="itemIds.Highcharts"
+    [itemIds]="itemIds">
+  </app-fhi-angular-highcharts-example>
+  <app-fhi-angular-highcharts-example
+    *ngSwitchCase="itemIds.HighchartsWithMenu"
+    [itemId]="itemIds.HighchartsWithMenu"
+    [itemIds]="itemIds">
+  </app-fhi-angular-highcharts-example>
 
   <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
 
