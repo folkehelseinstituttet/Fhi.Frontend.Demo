@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 
@@ -10,7 +10,6 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './icon-list.component.html'
 })
 export class IconListComponent {
-  @ViewChild('iconFilterInput') iconFilterInput: ElementRef;
 
   copyIsSuccess = false;
   tooltipText!: string;
@@ -35,19 +34,14 @@ export class IconListComponent {
     }
   }
 
-  checkIfEscapeFilter(whatKey: KeyboardEvent) {
-    if (whatKey.key === 'Escape') {
-      this.resetFilter();
+  checkIfEscapeFilter(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.searchInput = '';
     }
   }
 
   changeSize(iconSize: string) {
     this.iconSizeSelected = iconSize;
-  }
-
-  resetFilter() {
-    this.searchInput = '';
-    this.iconFilterInput.nativeElement.focus();
   }
 
   copyIcon(textToCopy: string) {

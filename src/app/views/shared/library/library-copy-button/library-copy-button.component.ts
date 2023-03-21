@@ -9,13 +9,13 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 })
 export class LibraryCopyButtonComponent {
 
-  @Input() contentToCopy: any;
+  @Input() contentToCopy: string;
 
   tooltipText!: string;
 
   constructor(private clipboard: Clipboard) {}
 
-  copy(contentToCopy: any) {
+  copy(contentToCopy: string) {
     if (this.clipboard.copy(contentToCopy)) {
       this.tooltipText = 'Kopiert!';
       this.clipboard.copy(contentToCopy);
