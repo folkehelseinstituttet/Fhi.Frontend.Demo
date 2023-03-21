@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
+
+import { Clipboard } from '@angular/cdk/clipboard';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { IClipboardResponse } from 'ngx-clipboard';
 
 @Component({
   selector: 'app-library-copy-button',
@@ -9,19 +9,23 @@ import { IClipboardResponse } from 'ngx-clipboard';
 })
 export class LibraryCopyButtonComponent {
 
-  @Input() contentToCopy: any;
+  @Input() contentToCopy: string;
 
-  faCopy = faCopy;
-  copyIsSuccess = false;
-  tooltipCopyInital = 'Copy to clipboard';
-  tooltipCopyIsSuccess = 'Copied!';
+  tooltipText!: string;
 
-  tooltipOpen(tooltip: NgbTooltip) {
-    this.copyIsSuccess = false;
-    tooltip.open();
+  constructor(private clipboard: Clipboard) {}
+
+  copy(contentToCopy: string) {
+    if (this.clipboard.copy(contentToCopy)) {
+      this.tooltipText = 'Kopiert!';
+      this.clipboard.copy(contentToCopy);
+    } else {
+      this.tooltipText = 'Kopiering feilet';
+    }
   }
 
-  copied(event: IClipboardResponse) {
-    this.copyIsSuccess = event.isSuccess;
+  tooltipOpen(tooltip: NgbTooltip) {
+    this.tooltipText = 'Kopier';
+    tooltip.open();
   }
 }

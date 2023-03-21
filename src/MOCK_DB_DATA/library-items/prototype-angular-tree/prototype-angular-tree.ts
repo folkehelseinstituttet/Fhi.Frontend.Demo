@@ -37,7 +37,7 @@ function getDocumentationHtml(): string | null {
 <p><strong>Merk:</strong> ved å benytte denne komponenten vil du for øyeblikket få korrekt stilsetting via @folkehelseinstituttet/style. Dog vil denne stilsettingen på et senere tidspunkt fjernes fra stilbiblioteket.</p>
 
 <div class="alert alert-warning mb-5">
-  <i class="icon-bell-regular"></i>
+  <i class="icon-bell"></i>
   <div>
     <p>Brukes bare på fagsystemer / interne applikasjoner, da den ikke er god nok på universell utforming for offentlig tilgjengelige nettsteder.</p>
   </div>

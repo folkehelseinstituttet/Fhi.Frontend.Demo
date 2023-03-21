@@ -14,15 +14,15 @@ const ALERTS: Alert[] = [{
   }, {
     type: 'success',
     message: 'Dette er en melding om suksess!',
-    icon: 'icon-check-circle-regular',
+    icon: 'icon-check-circle',
   }, {
     type: 'warning',
     message: 'Dette er en advarsel!',
-    icon: 'icon-bell-regular',
+    icon: 'icon-bell',
   }, {
     type: 'error',
     message: 'Dette er en feilmelding.',
-    icon: 'icon-bell-regular',
+    icon: 'icon-exclamation-circle',
   }, {
     type: 'info',
     message: 'Dette er en melding til informasjon.',
@@ -31,17 +31,17 @@ const ALERTS: Alert[] = [{
   }, {
     type: 'success',
     message: 'Dette er en melding om suksess!',
-    icon: 'icon-check-circle-regular',
+    icon: 'icon-check-circle',
     bordered: true,
   }, {
     type: 'warning',
     message: 'Dette er en advarsel!',
-    icon: 'icon-bell-regular',
+    icon: 'icon-bell',
     bordered: true,
   }, {
     type: 'error',
     message: 'Dette er en feilmelding.',
-    icon: 'icon-bell-regular',
+    icon: 'icon-exclamation-circle',
     bordered: true,
   }
 ];

@@ -26,7 +26,7 @@ function getCodeHtml(): string | null {
   return `
 <button class="fhi-tag fhi-tag--filter-option">
   Filtervalg
-  <i class="icon-xmark"></i>
+  <i class="icon-x"></i>
 </button>`;
 }
 

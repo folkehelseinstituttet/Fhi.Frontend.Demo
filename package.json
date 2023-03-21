@@ -11,6 +11,7 @@
     "build-angular-components": "ng build @folkehelseinstituttet/angular-components",
     "build-angular-highcharts": "ng build @folkehelseinstituttet/angular-highcharts",
     "install-projects": "npm install --no-save @folkehelseinstituttet/angular-components @folkehelseinstituttet/angular-highcharts",
+    "generate-icon-list": "node ./Fhi.Frontend.Style/src/fhi/icons/generate-icon-map && node ./utility-scripts/generate-icon-list",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -18,6 +19,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "15.2.2",
+    "@angular/cdk": "^15.2.2",
     "@angular/common": "15.2.2",
     "@angular/core": "15.2.2",
     "@angular/forms": "15.2.2",
@@ -27,9 +29,6 @@
     "@angular/router": "15.2.2",
     "@circlon/angular-tree-component": "^11.0.4",
     "@folkehelseinstituttet/style": "4.2.0",
-    "@fortawesome/angular-fontawesome": "0.12.1",
-    "@fortawesome/fontawesome-svg-core": "6.3.0",
-    "@fortawesome/free-solid-svg-icons": "6.3.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.0",
     "@ng-select/ng-select": "^10.0.3",
     "@popperjs/core": "^2.11.6",
@@ -40,7 +39,6 @@
     "highcharts": "~10.3.3",
     "highcharts-angular": "~3.1.0",
     "lodash-es": "~4.17.21",
-    "ngx-clipboard": "~15.1.0",
     "ngx-filter-pipe": "~2.1.2",
     "ngx-markdown": "~15.1.2",
     "rxjs": "~6.6.0",

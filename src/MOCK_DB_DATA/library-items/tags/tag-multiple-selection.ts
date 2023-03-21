@@ -18,15 +18,27 @@ function getExampleHtml(): string {
   return `
 <div class="fhi-tag-selector">
   <input class="fhi-tag-selector__input" type="checkbox" id="mltpl-opt-1">
-  <label class="fhi-tag-selector__label" for="mltpl-opt-1"><i class="icon-check"></i> Valg 1</label>
+  <label class="fhi-tag-selector__label" for="mltpl-opt-1">
+    <i class="icon-plus"></i>
+    <i class="icon-check"></i>
+    Valg 1
+  </label>
 </div>
 <div class="fhi-tag-selector">
   <input class="fhi-tag-selector__input" type="checkbox" id="mltpl-opt-2">
-  <label class="fhi-tag-selector__label" for="mltpl-opt-2"><i class="icon-check"></i> Valg 2</label>
+  <label class="fhi-tag-selector__label" for="mltpl-opt-2">
+    <i class="icon-plus"></i>
+    <i class="icon-check"></i>
+    Valg 2
+  </label>
 </div>
 <div class="fhi-tag-selector">
   <input class="fhi-tag-selector__input" type="checkbox" id="mltpl-opt-3">
-  <label class="fhi-tag-selector__label" for="mltpl-opt-3"><i class="icon-check"></i> Valg 3</label>
+  <label class="fhi-tag-selector__label" for="mltpl-opt-3">
+    <i class="icon-plus"></i>
+    <i class="icon-check"></i>
+    Valg 3
+  </label>
 </div>`;
 }
 

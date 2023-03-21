@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const TypographicHierarchy: LibraryItem[] = [{
   id: LibraryItemIds.TypographicHierarchy,
-  title: 'Typographical hierarchy',
+  title: 'Typografisk hierarki',
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

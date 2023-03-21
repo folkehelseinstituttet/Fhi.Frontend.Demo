@@ -187,7 +187,60 @@
 }
 
 .ds-icons-wrapper {
-    > i {
-        margin: 1em;
+    .ds-icon {
+        display: inherit;
+        flex-basis: 100%;
+
+        [class*="icon-"] {
+            cursor: pointer;
+            margin-right: .5rem;
+            transition: height .15s, width .15s, margin-top .15s;
+        }
+
+        .icon-sm {
+            margin-top: $fhi-core-space-1;
+        }
+
+        > * {
+            vertical-align: text-bottom;
+        }
+
+        &:hover {
+            .fhi-text-ancillary {
+                color: $fhi-core-charcoal-1;
+            }
+
+            .ds-icon__prefix {
+                display: initial;
+            }
+        }
+
+        &__name {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+
+            &:focus {
+                color: $fhi-core-charcoal-1;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .ds-icons-wrapper {
+        .ds-icon {
+            flex-basis: 50%;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .ds-icons-wrapper {
+        .ds-icon {
+            flex-basis: 33.333%;
+        }
     }
 }
