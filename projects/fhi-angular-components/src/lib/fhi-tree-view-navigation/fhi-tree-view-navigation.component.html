@@ -6,8 +6,8 @@
 <ng-template #navigationItems let-items="items" let-itemId="itemId">
 	<ul class="fhi-tree-view-navigation__list"
 			role="tree"
-			[attr.id]="itemId !== null ? 'list-' + itemId : null"
-			[attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null">
+			[attr.id]="itemId !== null ? 'list\-' + itemId : null"
+			[attr.aria-labelledby]="itemId !== null ? 'label\-' + itemId : null">
 		<li class="fhi-tree-view-navigation__item" *ngFor="let item of items" role="treeitem">
 			<div class="d-flex w-100">
 				<ng-container *ngIf="item.routerLink">
@@ -41,7 +41,7 @@
 	<button
 		class="fhi-tree-view-navigation__toggler"
 		[attr.aria-label]="'Toggle ' + item.name"
-		[attr.aria-controls]="'list-' + item.id"
+		[attr.aria-controls]="'list\-' + item.id"
 		[attr.aria-haspopup]="'tree'"
 		[attr.aria-expanded]="item.isExpanded"
 		(click)="toggleExpanded(item)"
@@ -62,7 +62,7 @@
 		class="fhi-tree-view-navigation__link"
 		[routerLink]="item.routerLink"
 		routerLinkActive="active"
-		[id]="'label-' + item.id"
+		[id]="'label\-' + item.id"
 	>
 		{{ item.name }}
 	</a>
@@ -74,7 +74,7 @@
 		class="fhi-tree-view-navigation__link"
 		[ngClass]="{ 'active': item.hasActiveDescendant }"
 		href="{{ item.href }}"
-		[id]="'label-' + item.id"
+		[id]="'label\-' + item.id"
 	>
 		{{ item.name }}
 	</a>
@@ -86,7 +86,7 @@
 		class="fhi-tree-view-navigation__no-link"
 		[ngClass]="{ 'active': item.hasActiveDescendant || item.isActive }"
 		*ngIf="!item.link"
-		[id]="'label-' + item.id"
+		[id]="'label\-' + item.id"
 	>
 		{{ item.name }}
 	</span>
