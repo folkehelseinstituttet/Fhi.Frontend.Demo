@@ -13,7 +13,7 @@ export class IconListComponent {
   @ViewChild('iconFilterInput') iconFilterInput: ElementRef;
 
   copyIsSuccess = false;
-  tooltipText = 'Kopier';
+  tooltipText!: string;
 
   icons = [...Icons];
   iconSizeSelected = 'md';

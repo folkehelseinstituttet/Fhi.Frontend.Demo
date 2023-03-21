@@ -11,13 +11,17 @@ export class LibraryCopyButtonComponent {
 
   @Input() contentToCopy: any;
 
-  tooltipText = 'Kopier';
+  tooltipText!: string;
 
   constructor(private clipboard: Clipboard) {}
 
   copy(contentToCopy: any) {
-    this.tooltipText = 'Kopiert!';
-    this.clipboard.copy(contentToCopy);
+    if (this.clipboard.copy(contentToCopy)) {
+      this.tooltipText = 'Kopiert!';
+      this.clipboard.copy(contentToCopy);
+    } else {
+      this.tooltipText = 'Kopiering feilet';
+    }
   }
 
   tooltipOpen(tooltip: NgbTooltip) {
