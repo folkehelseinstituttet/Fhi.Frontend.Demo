@@ -1,3 +1,7 @@
+<ng-container *ngIf="diagramOptions.diagramTypeMenu">
+  <ng-container *ngTemplateOutlet="diagramTypeMenu"></ng-container>
+</ng-container>
+
 <ng-container [ngSwitch]="currentDiagramTemplate">
   <ng-container *ngSwitchCase="diagramTemplates.table">
     <ng-container *ngTemplateOutlet="table"></ng-container>
@@ -17,6 +21,10 @@
   </ng-container>
 </ng-container>
 
+
+<ng-template #diagramTypeMenu>
+  DiagramTypeMenu...
+</ng-template>
 
 <ng-template #chart>
   <highcharts-chart
