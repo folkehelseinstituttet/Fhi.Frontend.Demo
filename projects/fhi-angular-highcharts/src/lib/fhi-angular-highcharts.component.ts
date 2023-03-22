@@ -42,6 +42,24 @@ export class FhiAngularHighchartsComponent {
   tableCreditsHref!: string;
   tableCreditsText!: string;
 
+  chartIsActive!: boolean;
+  navigationMenu: any = [
+    { name: 'Tabell', icon: 'icon-table' },
+    { name: 'Kart', icon: 'icon-geo-alt' },
+    {
+      name: 'Graf',
+      icon: 'icon-bar-chart-line',
+      chartTypes: [
+        'Linjediagram',
+        'Stående søylediagram',
+        'Liggende søylediagram',
+        'Stående søylediagram stablet',
+        'Liggende søylediagram stablet',
+        'Kakediagram'
+      ]
+    }
+  ]
+
   @Input() diagramOptions!: FhiDiagramOptions;
 
   constructor(

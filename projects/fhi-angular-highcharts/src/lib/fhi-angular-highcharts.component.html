@@ -23,7 +23,60 @@
 
 
 <ng-template #diagramTypeMenu>
-  DiagramTypeMenu...
+  <div class="fhi-highcharts-btn-group mb-3">
+    <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Visningsvalg">
+      <ng-container *ngFor="let navigationElement of navigationMenu; let i = index">
+        <input class="btn-check fhi-btn-group__check"
+               type="radio"
+               name="visualisationNavigation"
+               [id]="'navElm' + i"
+               [checked]="i === 0"
+               (change)="chartIsActive = navigationElement.chartTypes">
+        <label [for]="'navElm' + i" class="btn fhi-btn-group__btn">
+          <i [class]="'icon-md ' + navigationElement.icon"></i>
+          {{ navigationElement.name }}
+        </label>
+      </ng-container>
+    </div>
+
+    <div class="btn-group fhi-btn-group fhi-highcharts-btn-group__chart-type mb-1" role="group" aria-label="Velg graftype" *ngIf="chartIsActive">
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype1" checked>
+      <label class="btn fhi-btn-group__btn border-0" for="charttype1">
+        <i class="icon-graph-up icon-md"></i>
+        <span class="visually-hidden">Linjediagram</span>
+      </label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype2">
+      <label class="btn fhi-btn-group__btn border-0" for="charttype2">
+        <i class="icon-bar-chart-line icon-md"></i>
+        <span class="visually-hidden">Stående søylediagram</span>
+      </label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype3">
+      <label class="btn fhi-btn-group__btn border-0" for="charttype3">
+        <i class="icon-bar-chart-line-horizontal icon-md"></i>
+        <span class="visually-hidden">Liggende søylediagram</span>
+      </label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype4">
+      <label class="btn fhi-btn-group__btn border-0" for="charttype4">
+        <i class="icon-bar-chart-line-stacked icon-md"></i>
+        <span class="visually-hidden">Stående søylediagram stablet</span>
+      </label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype5">
+      <label class="btn fhi-btn-group__btn border-0" for="charttype5">
+        <i class="icon-bar-chart-line-stacked-horizontal icon-md"></i>
+        <span class="visually-hidden">Liggende søylediagram stablet</span>
+      </label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="charttype" id="charttype6">
+      <label class="btn fhi-btn-group__btn border-0" for="charttype6">
+        <i class="icon-pie-chart icon-md"></i>
+        <span class="visually-hidden">Kakediagram</span>
+      </label>
+    </div>
+  </div>
 </ng-template>
 
 <ng-template #chart>
