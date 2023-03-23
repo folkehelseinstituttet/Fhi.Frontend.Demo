@@ -89,3 +89,9 @@ export const FhiDiagramTypeList = [
   pie,
   table
 ];
+
+export class FhiDiagramTypeGroups {
+  static chart = 'chart';
+  static map = 'map';
+  static table = 'table'
+};

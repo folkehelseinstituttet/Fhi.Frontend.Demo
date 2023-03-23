@@ -2,16 +2,16 @@
   <ng-container *ngTemplateOutlet="diagramTypeMenu"></ng-container>
 </ng-container>
 
-<ng-container [ngSwitch]="currentDiagramTemplate">
-  <ng-container *ngSwitchCase="diagramTemplates.table">
+<ng-container [ngSwitch]="currentDiagramTypeGroup">
+  <ng-container *ngSwitchCase="diagramTypeGroups.table">
     <ng-container *ngTemplateOutlet="table"></ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="diagramTemplates.map">
+  <ng-container *ngSwitchCase="diagramTypeGroups.map">
     <ng-container *ngIf="allMapsLoaded">
       <ng-container *ngTemplateOutlet="map"></ng-container>
     </ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="diagramTemplates.chart">
+  <ng-container *ngSwitchCase="diagramTypeGroups.chart">
     <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
       <ng-container *ngTemplateOutlet="chart"></ng-container>
     </ng-container>
@@ -24,11 +24,11 @@
 
 <ng-template #diagramTypeMenu>
 
-  <ul>
-    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.table)">FhiDiagramTypes.table</a></li>
-    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.line)">FhiDiagramTypes.line</a></li>
-    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.column)">FhiDiagramTypes.column</a></li>
-  </ul>
+  <fhi-diagram-type-navigation
+    [currentDiagramTypeGroup]="currentDiagramTypeGroup"
+    [diagramType]="diagramOptions.diagramType"
+    (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+  </fhi-diagram-type-navigation>
 
 
   <div class="fhi-highcharts-btn-group mb-3">

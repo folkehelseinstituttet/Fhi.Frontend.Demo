@@ -16,9 +16,7 @@ import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
-import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
-
-enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
+import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 
 
 @Component({
@@ -30,10 +28,11 @@ export class FhiAngularHighchartsComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
   options!: Options;
-  diagramTemplates = DiagramTemplates;
-  currentDiagramTemplate!: string;
-  showDefaultChartTemplate = true;
+
   allMapsLoaded = false;
+  currentDiagramTypeGroup!: string;
+  diagramTypeGroups = FhiDiagramTypeGroups;
+  showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
@@ -41,7 +40,6 @@ export class FhiAngularHighchartsComponent {
   tableDisclaimer!: string;
   tableCreditsHref!: string;
   tableCreditsText!: string;
-  FhiDiagramTypes = FhiDiagramTypes;
 
   chartIsActive: boolean;
   navigationMenu = [
@@ -91,10 +89,10 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
+    this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
     this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
-    if (this.currentDiagramTemplate === this.diagramTemplates.table) {
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
       this.updateTable(this.options);
     }
     if (this.diagramOptions.diagramType.isMap) {
@@ -112,14 +110,14 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
-  navigateToDiagram(diagramType: FhiDiagramType) {
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
     this.diagramTypeNavigation.emit(diagramType);
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     const d = diagramOptions;
     return {
-      ...diagramOptions,
+      ...d,
       diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
       diagramTypeMenu: (d.diagramTypeMenu) ? d.diagramTypeMenu : false,
       openSource: (d.openSource) ? d.openSource : true,
@@ -169,15 +167,15 @@ export class FhiAngularHighchartsComponent {
       });
   }
 
-  private getCurrentDiagramTemplate(diagramtype: FhiDiagramType): string {
+  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
     if (diagramtype.id === FhiDiagramTypes.table.id) {
-      return DiagramTemplates.table;
+      return FhiDiagramTypeGroups.table;
     }
     if (diagramtype.isMap) {
-      return DiagramTemplates.map;
+      return FhiDiagramTypeGroups.map;
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return DiagramTemplates.chart
+    return FhiDiagramTypeGroups.chart
   }
 
 }
