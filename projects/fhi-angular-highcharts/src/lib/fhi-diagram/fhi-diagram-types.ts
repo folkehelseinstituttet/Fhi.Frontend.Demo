@@ -12,6 +12,13 @@ import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pi
 import { FhiDiagramType } from './fhi-diagram.models';
 import { FhiDiagramTypeId } from './fhi-diagram-type-id';
 
+
+export class FhiDiagramTypeGroups {
+  static chart = 'chart';
+  static map = 'map';
+  static table = 'table'
+};
+
 const area: FhiDiagramType = {
   id: FhiDiagramTypeId.area,
   options: OptionsChartTypeArea
@@ -89,9 +96,3 @@ export const FhiDiagramTypeList = [
   pie,
   table
 ];
-
-export class FhiDiagramTypeGroups {
-  static chart = 'chart';
-  static map = 'map';
-  static table = 'table'
-};
