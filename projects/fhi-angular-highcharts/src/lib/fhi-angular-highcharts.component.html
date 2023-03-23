@@ -24,6 +24,12 @@
 
 <ng-template #diagramTypeMenu>
   DiagramTypeMenu...
+  <ul>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.table)">FhiDiagramTypes.table</a></li>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.line)">FhiDiagramTypes.line</a></li>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.column)">FhiDiagramTypes.column</a></li>
+  </ul>
+
 </ng-template>
 
 <ng-template #chart>

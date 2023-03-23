@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
 import { Options, Chart } from 'highcharts';
@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
+import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
@@ -15,7 +15,7 @@ import { CsvService } from './services/csv.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
-import { FhiDiagramType } from './fhi-diagram/fhi-diagram-type.model';
+import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
 
 enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
@@ -41,8 +41,10 @@ export class FhiAngularHighchartsComponent {
   tableDisclaimer!: string;
   tableCreditsHref!: string;
   tableCreditsText!: string;
+  FhiDiagramTypes = FhiDiagramTypes;
 
   @Input() diagramOptions!: FhiDiagramOptions;
+  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -76,6 +78,10 @@ export class FhiAngularHighchartsComponent {
     this.chartInstanceService.chart = chart;
     this.downloadService.setConfig(this.diagramOptions);
     this.csvService.csv = chart.getCSV();
+  }
+
+  navigateToDiagram(diagramType: FhiDiagramType) {
+    this.diagramTypeNavigation.emit(diagramType);
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
