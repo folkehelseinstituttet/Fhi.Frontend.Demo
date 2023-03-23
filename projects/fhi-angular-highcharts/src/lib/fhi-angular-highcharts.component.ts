@@ -42,13 +42,14 @@ export class FhiAngularHighchartsComponent {
   tableCreditsHref!: string;
   tableCreditsText!: string;
 
-  chartIsActive!: boolean;
-  navigationMenu: any = [
-    { name: 'Tabell', icon: 'icon-table' },
-    { name: 'Kart', icon: 'icon-geo-alt' },
+  chartIsActive: boolean;
+  navigationMenu = [
+    { name: 'Tabell', icon: 'table' },
+    { name: 'Kart', icon: 'geo-alt' },
     {
       name: 'Graf',
-      icon: 'icon-bar-chart-line',
+      icon: null,
+      hasChartTypes: true,
       chartTypes: [
         'Linjediagram',
         'Stående søylediagram',
@@ -58,7 +59,16 @@ export class FhiAngularHighchartsComponent {
         'Kakediagram'
       ]
     }
-  ]
+  ];
+  chartTypes = [
+    { name: 'Linjediagram', icon: 'graph-up' },
+    { name: 'Stående søylediagram', icon: 'bar-chart-line' },
+    { name: 'Liggende søylediagram', icon: 'bar-chart-line-horizontal' },
+    { name: 'Stående søylediagram stablet', icon: 'bar-chart-line-stacked' },
+    { name: 'Liggende søylediagram stablet', icon: 'bar-chart-line-stacked-horizontal' },
+    { name: 'Kakediagram', icon: 'pie-chart' },
+  ];
+  currentChartType: string = 'bar-chart-line';
 
   @Input() diagramOptions!: FhiDiagramOptions;
 
@@ -88,6 +98,10 @@ export class FhiAngularHighchartsComponent {
     if (this.diagramOptions.diagramType.isMap) {
       this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
     }
+  }
+
+  changeChartType(icon: string) {
+    this.currentChartType = icon;
   }
 
   onChartInstance(chart: Chart) {
