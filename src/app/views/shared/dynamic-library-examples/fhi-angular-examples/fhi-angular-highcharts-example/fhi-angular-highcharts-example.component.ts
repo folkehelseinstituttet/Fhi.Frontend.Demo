@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { FhiDiagramOptions, FhiDiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({
@@ -17,7 +17,11 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
 
   dataIsLoading = false;
   dataIsLoaded = false;
-  diagramOptions!: FhiDiagramOptions;
+  diagramOptions: FhiDiagramOptions = {
+    title: 'Dødsfall etter årsak, 2008 - 2018',
+    diagramType: FhiDiagramTypes.table,
+    data: []
+  }
 
   constructor(private highchartsDataService: MockDataService) { }
 
@@ -29,33 +33,29 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         next: (data) => {
           if (this.itemId === this.itemIds.Highcharts) {
             this.diagramOptions = {
-              title: 'Dødsfall etter årsak, 2008 - 2018',
+              ...this.diagramOptions,
               data: data,
               diagramType: FhiDiagramTypes.column
             };
           } else {
             this.diagramOptions = {
-              title: 'Dødsfall etter årsak, 2008 - 2018',
+              ...this.diagramOptions,
               data: data,
-              diagramType: FhiDiagramTypes.table,
               diagramTypeMenu: true
             };
           }
-          // this.diagramOptions = {
-          //   title: 'Dødsfall etter årsak, 2008 - 2018',
-          //   data: data,
-          //   diagramType: FhiDiagramTypes.column,
-          //   disclaimer: 'Det kan være feil i disse dataene.',
-          //   lastUpdated: 'Juni 2021',
-          //   creditsHref: 'https://www.fhi.no',
-          //   creditsText: 'Kilde: Dødsårsaksregisteret, FHI',
-          //   openSource: false
-          // };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
         },
         error: (e) => console.error(e)
       });
+  }
+
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      diagramType: diagramType
+    };
   }
 
 }

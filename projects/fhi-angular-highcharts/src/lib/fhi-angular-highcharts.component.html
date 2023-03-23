@@ -23,6 +23,14 @@
 
 
 <ng-template #diagramTypeMenu>
+
+  <ul>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.table)">FhiDiagramTypes.table</a></li>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.line)">FhiDiagramTypes.line</a></li>
+    <li><a class="link" (click)="navigateToDiagram(FhiDiagramTypes.column)">FhiDiagramTypes.column</a></li>
+  </ul>
+
+
   <div class="fhi-highcharts-btn-group mb-3">
     <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Visningsvalg">
       <ng-container *ngFor="let navigationElement of navigationMenu; index as i">
