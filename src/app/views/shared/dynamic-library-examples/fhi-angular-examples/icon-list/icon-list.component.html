@@ -48,12 +48,12 @@
     <i [class]="'icon-' + icon + ' icon-' + iconSizeSelected"
        (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
        [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual"
-       placement="end"
+       placement="left right"
        (click)='copyIcon("<i class=\"icon-" + icon + " icon-" + iconSizeSelected + "\"></i>")'></i>
     <small class="ds-icon__name fhi-text-ancillary" tabindex="0"
            (mouseenter)="tooltipOpen(t2)" (mouseleave)="t2.close()"
            [ngbTooltip]="tipContent" #t2="ngbTooltip" [autoClose]="false" triggers="manual"
-           placement="top"
+           placement="right top"
            (click)="copyIcon(icon)">
       {{ icon }}
     </small>
