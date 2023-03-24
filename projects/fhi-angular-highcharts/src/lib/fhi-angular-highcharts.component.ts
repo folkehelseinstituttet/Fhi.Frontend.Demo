@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { catchError, first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
 import { Options, Chart } from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
@@ -62,15 +62,19 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-    this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-    this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
-    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
+    try {
+      this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
+      this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-      this.updateTable(this.options);
-    }
-    if (this.diagramOptions.diagramType.isMap) {
-      this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
+      if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
+        this.updateTable(this.options);
+      }
+      if (this.diagramOptions.diagramType.isMap) {
+        this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
+      }
+    } catch (error) {
+      console.error(this.getErrorMsg());
     }
   }
 
@@ -145,6 +149,15 @@ export class FhiAngularHighchartsComponent {
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     return FhiDiagramTypeGroups.chart
+  }
+
+  private getErrorMsg() {
+    return `FhiAngularHighchartsComponent.ngOnChanges():
+@Input() diagramOptions === undefined
+-> the FhiAngularHighchartsComponent can not be rendered.
+
+To avoid this error message: test for diagramOptions !== undefined
+before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
 }

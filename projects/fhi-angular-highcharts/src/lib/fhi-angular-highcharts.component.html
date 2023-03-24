@@ -1,23 +1,25 @@
-<ng-container *ngIf="diagramOptions.diagramTypeNavigation !== undefined">
-  <ng-container *ngTemplateOutlet="diagramTypeNavigation"></ng-container>
-</ng-container>
+<ng-container *ngIf="diagramOptions !== undefined">
+  <ng-container *ngIf="diagramOptions.diagramTypeNavigation !== undefined">
+    <ng-container *ngTemplateOutlet="diagramTypeNavigation"></ng-container>
+  </ng-container>
 
-<ng-container [ngSwitch]="currentDiagramTypeGroup">
-  <ng-container *ngSwitchCase="diagramTypeGroups.table">
-    <ng-container *ngTemplateOutlet="table"></ng-container>
-  </ng-container>
-  <ng-container *ngSwitchCase="diagramTypeGroups.map">
-    <ng-container *ngIf="allMapsLoaded">
-      <ng-container *ngTemplateOutlet="map"></ng-container>
+  <ng-container [ngSwitch]="currentDiagramTypeGroup">
+    <ng-container *ngSwitchCase="diagramTypeGroups.table">
+      <ng-container *ngTemplateOutlet="table"></ng-container>
     </ng-container>
-  </ng-container>
-  <ng-container *ngSwitchCase="diagramTypeGroups.chart">
-    <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
-      <ng-container *ngTemplateOutlet="chart"></ng-container>
+    <ng-container *ngSwitchCase="diagramTypeGroups.map">
+      <ng-container *ngIf="allMapsLoaded">
+        <ng-container *ngTemplateOutlet="map"></ng-container>
+      </ng-container>
     </ng-container>
-    <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
-      <ng-container *ngTemplateOutlet="chart"></ng-container>
-    </ng-template>
+    <ng-container *ngSwitchCase="diagramTypeGroups.chart">
+      <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
+        <ng-container *ngTemplateOutlet="chart"></ng-container>
+      </ng-container>
+      <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
+        <ng-container *ngTemplateOutlet="chart"></ng-container>
+      </ng-template>
+    </ng-container>
   </ng-container>
 </ng-container>
 
