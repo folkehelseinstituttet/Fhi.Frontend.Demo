@@ -17,7 +17,7 @@ import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeMenus } from './fhi-diagram-type-navigation/fhi-diagram-type-menus';
+import { FhiDiagramTypeNavigations } from './fhi-diagram-type-navigation/fhi-diagram-type-navigations';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class FhiAngularHighchartsComponent {
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeMenus = FhiDiagramTypeMenus;
+  diagramTypeNavigations = FhiDiagramTypeNavigations;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();

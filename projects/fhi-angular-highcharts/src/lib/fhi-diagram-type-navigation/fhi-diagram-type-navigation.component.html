@@ -4,7 +4,7 @@
       <input class="btn-check fhi-btn-group__check"
               type="radio"
               name="visualisationNavigation"
-              aria-controls="chartTypeMenu"
+              aria-controls="chartTypeNavigation"
               [disabled]="navigationElement.icon === 'geo-alt'"
               [id]="'navElm' + i"
               [checked]="i === 0"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="btn-group fhi-btn-group fhi-diagram-type-navigation__chart-type mb-1"
-        id="chartTypeMenu"
+        id="chartTypeNavigation"
         role="menu"
         aria-label="Velg graftype"
         *ngIf="chartIsActive">

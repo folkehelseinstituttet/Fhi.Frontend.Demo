@@ -1,5 +1,5 @@
-<ng-container *ngIf="diagramOptions.diagramTypeMenu !== undefined">
-  <ng-container *ngTemplateOutlet="diagramTypeMenu"></ng-container>
+<ng-container *ngIf="diagramOptions.diagramTypeNavigation !== undefined">
+  <ng-container *ngTemplateOutlet="diagramTypeNavigation"></ng-container>
 </ng-container>
 
 <ng-container [ngSwitch]="currentDiagramTypeGroup">
@@ -22,9 +22,9 @@
 </ng-container>
 
 
-<ng-template #diagramTypeMenu>
+<ng-template #diagramTypeNavigation>
   <fhi-diagram-type-navigation
-    *ngIf="diagramOptions.diagramTypeMenu === diagramTypeMenus.default"
+    *ngIf="diagramOptions.diagramTypeNavigation === diagramTypeNavigations.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [diagramType]="diagramOptions.diagramType"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
