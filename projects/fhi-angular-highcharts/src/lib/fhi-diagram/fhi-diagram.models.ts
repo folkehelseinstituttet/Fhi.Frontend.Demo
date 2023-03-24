@@ -1,4 +1,11 @@
-import { FhiDiagramType } from "./fhi-diagram-type.model";
+import { Options } from 'highcharts';
+
+export interface FhiDiagramType {
+  id: string;
+  options: Options;
+  isMap?: boolean;
+  mapFile?: string;
+}
 
 interface Data {
   name: string;
@@ -23,3 +30,4 @@ export interface FhiDiagramOptions {
   openSource?: boolean;
   title: string;
 }
+
