@@ -1,4 +1,4 @@
-<ng-container *ngIf="diagramOptions.diagramTypeMenu">
+<ng-container *ngIf="diagramOptions.diagramTypeMenu !== undefined">
   <ng-container *ngTemplateOutlet="diagramTypeMenu"></ng-container>
 </ng-container>
 
@@ -24,6 +24,7 @@
 
 <ng-template #diagramTypeMenu>
   <fhi-diagram-type-navigation
+    *ngIf="diagramOptions.diagramTypeMenu === diagramTypeMenus.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [diagramType]="diagramOptions.diagramType"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)">

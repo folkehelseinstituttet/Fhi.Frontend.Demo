@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType } from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType, FhiDiagramTypeMenus } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             this.diagramOptions = {
               ...this.diagramOptions,
               data: data,
-              diagramTypeMenu: true
+              diagramTypeMenu: FhiDiagramTypeMenus.default
             };
           }
           this.dataIsLoading = false;

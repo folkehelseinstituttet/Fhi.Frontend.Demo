@@ -17,6 +17,7 @@ import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeMenus } from './fhi-diagram-type-navigation/fhi-diagram-type-menus';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class FhiAngularHighchartsComponent {
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeMenus = FhiDiagramTypeMenus;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
@@ -87,7 +89,6 @@ export class FhiAngularHighchartsComponent {
     return {
       ...d,
       diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
-      diagramTypeMenu: (d.diagramTypeMenu) ? d.diagramTypeMenu : false,
       openSource: (d.openSource) ? d.openSource : true,
     }
     // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
