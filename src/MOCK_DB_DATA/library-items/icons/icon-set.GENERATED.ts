@@ -10,6 +10,8 @@ export const IncludedIcons = [
   'arrow-up',
   'bar-chart-line',
   'bar-chart-line-horizontal',
+  'bar-chart-line-stacked',
+  'bar-chart-line-stacked-horizontal',
   'bell',
   'bicycle',
   'blood',
