@@ -1,34 +1,36 @@
-<ng-container *ngIf="diagramOptions.diagramTypeMenu !== undefined">
-  <ng-container *ngTemplateOutlet="diagramTypeMenu"></ng-container>
-</ng-container>
-
-<ng-container [ngSwitch]="currentDiagramTypeGroup">
-  <ng-container *ngSwitchCase="diagramTypeGroups.table">
-    <ng-container *ngTemplateOutlet="table"></ng-container>
+<ng-container *ngIf="diagramOptions !== undefined">
+  <ng-container *ngIf="diagramOptions.diagramTypeNav !== undefined">
+    <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="diagramTypeGroups.map">
-    <ng-container *ngIf="allMapsLoaded">
-      <ng-container *ngTemplateOutlet="map"></ng-container>
+
+  <ng-container [ngSwitch]="currentDiagramTypeGroup">
+    <ng-container *ngSwitchCase="diagramTypeGroups.table">
+      <ng-container *ngTemplateOutlet="table"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="diagramTypeGroups.map">
+      <ng-container *ngIf="allMapsLoaded">
+        <ng-container *ngTemplateOutlet="map"></ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="diagramTypeGroups.chart">
+      <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
+        <ng-container *ngTemplateOutlet="chart"></ng-container>
+      </ng-container>
+      <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
+        <ng-container *ngTemplateOutlet="chart"></ng-container>
+      </ng-template>
     </ng-container>
   </ng-container>
-  <ng-container *ngSwitchCase="diagramTypeGroups.chart">
-    <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
-      <ng-container *ngTemplateOutlet="chart"></ng-container>
-    </ng-container>
-    <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
-      <ng-container *ngTemplateOutlet="chart"></ng-container>
-    </ng-template>
-  </ng-container>
 </ng-container>
 
 
-<ng-template #diagramTypeMenu>
-  <fhi-diagram-type-navigation
-    *ngIf="diagramOptions.diagramTypeMenu === diagramTypeMenus.default"
+<ng-template #diagramTypeNav>
+  <fhi-diagram-type-nav
+    *ngIf="diagramOptions.diagramTypeNav === diagramTypeNavs.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [diagramType]="diagramOptions.diagramType"
-    (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-  </fhi-diagram-type-navigation>
+    (diagramTypeNav)="onDiagramTypeNav($event)">
+  </fhi-diagram-type-nav>
 </ng-template>
 
 <ng-template #chart>

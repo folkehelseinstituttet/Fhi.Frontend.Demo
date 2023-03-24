@@ -1,4 +1,4 @@
-.fhi-diagram-type-navigation {
+.fhi-diagram-type-nav {
     &__btn-text {
         display: flex;
         flex-direction: column;
@@ -53,7 +53,7 @@
                     }
                 }
             }
-            
+
             &__btn {
                 width: $fhi-core-px * 44;
             }
@@ -62,7 +62,7 @@
 }
 
 @include media-breakpoint-up(xs) {
-    .fhi-diagram-type-navigation {
+    .fhi-diagram-type-nav {
         .fhi-btn-group {
             &__btn {
                 padding-right: $fhi-core-space-3;

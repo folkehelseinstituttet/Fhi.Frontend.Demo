@@ -7,4 +7,4 @@ export * from './lib/fhi-angular-highcharts.module';
 
 export * from './lib/fhi-diagram/fhi-diagram.models';
 export * from './lib/fhi-diagram/fhi-diagram-types';
-export * from './lib/fhi-diagram-type-navigation/fhi-diagram-type-menus';
+export * from './lib/fhi-diagram-type-navs/fhi-diagram-type-navs';
