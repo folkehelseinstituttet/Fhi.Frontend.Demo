@@ -1,4 +1,4 @@
-.fhi-highcharts-btn-group {
+.fhi-diagram-type-navigation {
     &__btn-text {
         display: flex;
         flex-direction: column;
@@ -62,7 +62,7 @@
 }
 
 @include media-breakpoint-up(xs) {
-    .fhi-highcharts-btn-group {
+    .fhi-diagram-type-navigation {
         .fhi-btn-group {
             &__btn {
                 padding-right: $fhi-core-space-3;
