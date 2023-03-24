@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import { catchError, first } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
 import { Options, Chart } from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
@@ -17,7 +17,7 @@ import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeNavigations } from './fhi-diagram-type-navigation/fhi-diagram-type-navigations';
+import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-navs';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class FhiAngularHighchartsComponent {
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavigations = FhiDiagramTypeNavigations;
+  diagramTypeNavs = FhiDiagramTypeNavs;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
@@ -44,7 +44,7 @@ export class FhiAngularHighchartsComponent {
   tableCreditsText!: string;
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -84,8 +84,8 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
-  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
-    this.diagramTypeNavigation.emit(diagramType);
+  onDiagramTypeNav(diagramType: FhiDiagramType) {
+    this.diagramTypeNav.emit(diagramType);
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {

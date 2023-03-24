@@ -1,5 +1,4 @@
 import { Options } from 'highcharts';
-import { FhiDiagramTypeNavigations } from '../fhi-diagram-type-navigation/fhi-diagram-type-navigations';
 
 export interface FhiDiagramType {
   id: string;
@@ -28,8 +27,8 @@ export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
   data: Array<FhiDiagramSerie>;
-  diagramType?: FhiDiagramType | undefined;
-  diagramTypeNavigation?: FhiDiagramTypeNavigations | undefined;
+  diagramType?: FhiDiagramType;
+  diagramTypeNav?: string;
   disclaimer?: string;
   lastUpdated?: string;
   openSource?: boolean;

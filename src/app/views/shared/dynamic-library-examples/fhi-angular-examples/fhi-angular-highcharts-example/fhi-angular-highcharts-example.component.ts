@@ -3,7 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType, FhiDiagramTypeNavigations } from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType, FhiDiagramTypeNavs } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({
@@ -42,7 +42,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             this.diagramOptions = {
               ...this.diagramOptions,
               data: data,
-              diagramTypeNavigation: FhiDiagramTypeNavigations.default
+              diagramTypeNav: FhiDiagramTypeNavs.default
             };
           }
           this.dataIsLoading = false;
@@ -52,7 +52,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       });
   }
 
-  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+  onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramOptions = {
       ...this.diagramOptions,
       diagramType: diagramType
