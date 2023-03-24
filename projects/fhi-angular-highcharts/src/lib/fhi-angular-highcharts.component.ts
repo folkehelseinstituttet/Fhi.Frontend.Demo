@@ -16,9 +16,8 @@ import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
-import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
-
-enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
+import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeMenus } from './fhi-diagram-type-navigation/fhi-diagram-type-menus';
 
 
 @Component({
@@ -30,10 +29,12 @@ export class FhiAngularHighchartsComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
   options!: Options;
-  diagramTemplates = DiagramTemplates;
-  currentDiagramTemplate!: string;
-  showDefaultChartTemplate = true;
+
   allMapsLoaded = false;
+  currentDiagramTypeGroup!: string;
+  diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeMenus = FhiDiagramTypeMenus;
+  showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
@@ -41,35 +42,6 @@ export class FhiAngularHighchartsComponent {
   tableDisclaimer!: string;
   tableCreditsHref!: string;
   tableCreditsText!: string;
-  FhiDiagramTypes = FhiDiagramTypes;
-
-  chartIsActive: boolean;
-  navigationMenu = [
-    { name: 'Tabell', icon: 'table' },
-    { name: 'Kart', icon: 'geo-alt' },
-    {
-      name: 'Graf',
-      icon: null,
-      hasChartTypes: true,
-      chartTypes: [
-        'Linjediagram',
-        'Stående søylediagram',
-        'Liggende søylediagram',
-        'Stående søylediagram stablet',
-        'Liggende søylediagram stablet',
-        'Kakediagram'
-      ]
-    }
-  ];
-  chartTypes = [
-    { name: 'Linjediagram', icon: 'graph-up' },
-    { name: 'Stående søylediagram', icon: 'bar-chart-line' },
-    { name: 'Liggende søylediagram', icon: 'bar-chart-line-horizontal' },
-    { name: 'Stående søylediagram stablet', icon: 'bar-chart-line-stacked' },
-    { name: 'Liggende søylediagram stablet', icon: 'bar-chart-line-stacked-horizontal' },
-    { name: 'Kakediagram', icon: 'pie-chart' },
-  ];
-  currentChartType: string = 'bar-chart-line';
 
   @Input() diagramOptions!: FhiDiagramOptions;
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
@@ -91,19 +63,15 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
+    this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
     this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
-    if (this.currentDiagramTemplate === this.diagramTemplates.table) {
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
       this.updateTable(this.options);
     }
     if (this.diagramOptions.diagramType.isMap) {
       this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
     }
-  }
-
-  changeChartType(icon: string) {
-    this.currentChartType = icon;
   }
 
   onChartInstance(chart: Chart) {
@@ -112,16 +80,15 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
-  navigateToDiagram(diagramType: FhiDiagramType) {
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
     this.diagramTypeNavigation.emit(diagramType);
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     const d = diagramOptions;
     return {
-      ...diagramOptions,
+      ...d,
       diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
-      diagramTypeMenu: (d.diagramTypeMenu) ? d.diagramTypeMenu : false,
       openSource: (d.openSource) ? d.openSource : true,
     }
     // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
@@ -169,15 +136,15 @@ export class FhiAngularHighchartsComponent {
       });
   }
 
-  private getCurrentDiagramTemplate(diagramtype: FhiDiagramType): string {
+  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
     if (diagramtype.id === FhiDiagramTypes.table.id) {
-      return DiagramTemplates.table;
+      return FhiDiagramTypeGroups.table;
     }
     if (diagramtype.isMap) {
-      return DiagramTemplates.map;
+      return FhiDiagramTypeGroups.map;
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return DiagramTemplates.chart
+    return FhiDiagramTypeGroups.chart
   }
 
 }
