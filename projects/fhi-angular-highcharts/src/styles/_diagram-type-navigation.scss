@@ -1,0 +1,83 @@
+.fhi-diagram-type-navigation {
+    &__btn-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    [class*="icon"] {
+        transition: margin-top .1s;
+    }
+
+    .fhi-btn-group {
+        &__check {
+            &:checked + .btn {
+                [class*="icon-"] {
+                    filter: brightness(1000%);//sic
+                }
+            }
+        }
+
+        &__btn {
+            display: flex;
+            flex-direction: row;
+            padding-right: $fhi-core-space-2;
+            padding-left: $fhi-core-space-2;
+        }
+    }
+
+    &__chart-type {
+        [class*="icon-"] {
+            margin-right: 0;
+        }
+
+        .fhi-btn-group {
+            &__check {
+                &:checked + .btn {
+                    background-color: transparent;
+
+                    [class*="icon-"] {
+                        filter: none;
+                        margin-top: -3px;
+                        position: relative;
+
+                        &::after {
+                            border-bottom: 2px solid $fhi-core-pink-light-3;
+                            bottom: -6px;
+                            content: "";
+                            display: block;
+                            left: 0;
+                            position: absolute;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            
+            &__btn {
+                width: $fhi-core-px * 44;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xs) {
+    .fhi-diagram-type-navigation {
+        .fhi-btn-group {
+            &__btn {
+                padding-right: $fhi-core-space-3;
+                padding-left: $fhi-core-space-3;
+            }
+        }
+
+        &__chart-type {
+            .fhi-btn-group {
+                &__btn {
+                    padding-right: $fhi-core-space-2;
+                    padding-left: $fhi-core-space-2;
+                    width: $fhi-core-px * 44;
+                }
+            }
+        }
+    }
+}

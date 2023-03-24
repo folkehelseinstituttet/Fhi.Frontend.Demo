@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { FhiDiagramOptions, FhiDiagramTypes } from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions, FhiDiagramTypes, FhiDiagramType, FhiDiagramTypeMenus } from '@folkehelseinstituttet/angular-highcharts';
 
 
 @Component({
@@ -12,9 +12,16 @@ import { FhiDiagramOptions, FhiDiagramTypes } from '@folkehelseinstituttet/angul
 })
 export class FhiAngularHighchartsExampleComponent implements OnInit {
 
+  @Input() itemId!: string;
+  @Input() itemIds!: any;
+
   dataIsLoading = false;
   dataIsLoaded = false;
-  diagramOptions!: FhiDiagramOptions;
+  diagramOptions: FhiDiagramOptions = {
+    title: 'Dødsfall etter årsak, 2008 - 2018',
+    diagramType: FhiDiagramTypes.table,
+    data: []
+  }
 
   constructor(private highchartsDataService: MockDataService) { }
 
@@ -24,26 +31,31 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
     this.highchartsDataService.getData(MockData.TwoSeriesAar)
       .subscribe({
         next: (data) => {
-          this.diagramOptions = {
-            title: 'Dødsfall etter årsak, 2008 - 2018',
-            data: data,
-            diagramType: FhiDiagramTypes.column
-          };
-          // this.diagramOptions = {
-          //   title: 'Dødsfall etter årsak, 2008 - 2018',
-          //   data: data,
-          //   diagramType: FhiDiagramTypes.column,
-          //   disclaimer: 'Det kan være feil i disse dataene.',
-          //   lastUpdated: 'Juni 2021',
-          //   creditsHref: 'https://www.fhi.no',
-          //   creditsText: 'Kilde: Dødsårsaksregisteret, FHI',
-          //   openSource: false
-          // };
+          if (this.itemId === this.itemIds.Highcharts) {
+            this.diagramOptions = {
+              ...this.diagramOptions,
+              data: data,
+              diagramType: FhiDiagramTypes.column
+            };
+          } else {
+            this.diagramOptions = {
+              ...this.diagramOptions,
+              data: data,
+              diagramTypeMenu: FhiDiagramTypeMenus.default
+            };
+          }
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
         },
         error: (e) => console.error(e)
       });
+  }
+
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      diagramType: diagramType
+    };
   }
 
 }

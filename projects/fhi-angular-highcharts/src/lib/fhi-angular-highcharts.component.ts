@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
 import { Options, Chart } from 'highcharts';
@@ -7,7 +7,7 @@ import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 
-import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram-options.model';
+import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
@@ -15,10 +15,9 @@ import { CsvService } from './services/csv.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
-import { FhiDiagramType } from './fhi-diagram/fhi-diagram-type.model';
-import { FhiDiagramTypes } from './fhi-diagram/fhi-diagram-types';
-
-enum DiagramTemplates { chart = 'chart', map = 'map', table = 'table' };
+import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
+import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeMenus } from './fhi-diagram-type-navigation/fhi-diagram-type-menus';
 
 
 @Component({
@@ -30,10 +29,12 @@ export class FhiAngularHighchartsComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
   options!: Options;
-  diagramTemplates = DiagramTemplates;
-  currentDiagramTemplate!: string;
-  showDefaultChartTemplate = true;
+
   allMapsLoaded = false;
+  currentDiagramTypeGroup!: string;
+  diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeMenus = FhiDiagramTypeMenus;
+  showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
@@ -43,6 +44,7 @@ export class FhiAngularHighchartsComponent {
   tableCreditsText!: string;
 
   @Input() diagramOptions!: FhiDiagramOptions;
+  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -61,10 +63,10 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-    this.currentDiagramTemplate = this.getCurrentDiagramTemplate(this.diagramOptions.diagramType);
+    this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
     this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
-    if (this.currentDiagramTemplate === this.diagramTemplates.table) {
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
       this.updateTable(this.options);
     }
     if (this.diagramOptions.diagramType.isMap) {
@@ -78,11 +80,16 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+    this.diagramTypeNavigation.emit(diagramType);
+  }
+
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
+    const d = diagramOptions;
     return {
-      ...diagramOptions,
-      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
-      openSource: true
+      ...d,
+      diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
+      openSource: (d.openSource) ? d.openSource : true,
     }
     // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
     // creditsHref?: string;
@@ -129,15 +136,15 @@ export class FhiAngularHighchartsComponent {
       });
   }
 
-  private getCurrentDiagramTemplate(diagramtype: FhiDiagramType): string {
+  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
     if (diagramtype.id === FhiDiagramTypes.table.id) {
-      return DiagramTemplates.table;
+      return FhiDiagramTypeGroups.table;
     }
     if (diagramtype.isMap) {
-      return DiagramTemplates.map;
+      return FhiDiagramTypeGroups.map;
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return DiagramTemplates.chart
+    return FhiDiagramTypeGroups.chart
   }
 
 }
