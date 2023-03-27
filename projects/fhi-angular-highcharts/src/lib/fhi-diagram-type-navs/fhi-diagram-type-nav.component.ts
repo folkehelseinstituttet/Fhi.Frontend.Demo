@@ -5,16 +5,16 @@ import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 
 
 @Component({
-  selector: 'fhi-diagram-type-navigation',
-  templateUrl: './fhi-diagram-type-navigation.component.html',
+  selector: 'fhi-diagram-type-nav',
+  templateUrl: './fhi-diagram-type-nav.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FhiDiagramTypeNavigationComponent {
+export class FhiDiagramTypeNavComponent {
   FhiDiagramTypes = FhiDiagramTypes;
 
   @Input() currentDiagramTypeGroup!: string;
   @Input() diagramType!: FhiDiagramType;
-  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
 
 
 
@@ -24,7 +24,7 @@ export class FhiDiagramTypeNavigationComponent {
   //   - Create logic for subset (only include what consumer want).
   //   - Create logic for language (NO/EN)
   chartIsActive: boolean;
-  navigationMenu = [
+  navMenu = [
     { name: 'Tabell', icon: 'table' },
     { name: 'Kart', icon: 'geo-alt' },
     {
@@ -96,7 +96,7 @@ export class FhiDiagramTypeNavigationComponent {
 
   navigateToDiagramType(diagramType: FhiDiagramType) {
     // console.log('navigateToDiagramType() -> diagramType', diagramType);
-    this.diagramTypeNavigation.emit(diagramType);
+    this.diagramTypeNav.emit(diagramType);
   }
 
 }

@@ -17,7 +17,7 @@ import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeMenus } from './fhi-diagram-type-navigation/fhi-diagram-type-menus';
+import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-navs';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class FhiAngularHighchartsComponent {
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeMenus = FhiDiagramTypeMenus;
+  diagramTypeNavs = FhiDiagramTypeNavs;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
@@ -44,7 +44,7 @@ export class FhiAngularHighchartsComponent {
   tableCreditsText!: string;
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -62,15 +62,19 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-    this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-    this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
-    this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
+    try {
+      this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
+      this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-      this.updateTable(this.options);
-    }
-    if (this.diagramOptions.diagramType.isMap) {
-      this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
+      if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
+        this.updateTable(this.options);
+      }
+      if (this.diagramOptions.diagramType.isMap) {
+        this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
+      }
+    } catch (error) {
+      console.error(this.getErrorMsg());
     }
   }
 
@@ -80,8 +84,8 @@ export class FhiAngularHighchartsComponent {
     this.csvService.csv = chart.getCSV();
   }
 
-  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
-    this.diagramTypeNavigation.emit(diagramType);
+  onDiagramTypeNav(diagramType: FhiDiagramType) {
+    this.diagramTypeNav.emit(diagramType);
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
@@ -145,6 +149,15 @@ export class FhiAngularHighchartsComponent {
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     return FhiDiagramTypeGroups.chart
+  }
+
+  private getErrorMsg() {
+    return `FhiAngularHighchartsComponent.ngOnChanges():
+@Input() diagramOptions === undefined
+-> the FhiAngularHighchartsComponent can not be rendered.
+
+To avoid this error message: test for diagramOptions !== undefined
+before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
 }

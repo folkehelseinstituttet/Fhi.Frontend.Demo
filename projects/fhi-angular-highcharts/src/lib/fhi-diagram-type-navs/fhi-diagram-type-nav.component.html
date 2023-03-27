@@ -1,26 +1,26 @@
-<div class="fhi-diagram-type-navigation mb-3">
+<div class="fhi-diagram-type-nav mb-3">
   <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Visningsvalg">
-    <ng-container *ngFor="let navigationElement of navigationMenu; index as i">
+    <ng-container *ngFor="let navElement of navMenu; index as i">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
-              name="visualisationNavigation"
-              aria-controls="chartTypeMenu"
-              [disabled]="navigationElement.icon === 'geo-alt'"
+              name="visualisationNav"
+              aria-controls="chartTypeNav"
+              [disabled]="navElement.icon === 'geo-alt'"
               [id]="'navElm' + i"
               [checked]="i === 0"
-              [attr.aria-haspopup]="navigationElement.hasChartTypes"
-              (change)="chartIsActive = navigationElement.hasChartTypes">
+              [attr.aria-haspopup]="navElement.hasChartTypes"
+              (change)="chartIsActive = navElement.hasChartTypes">
       <label [for]="'navElm' + i" class="btn fhi-btn-group__btn"
-             [ngClass]="{ 'disabled': navigationElement.icon === 'geo-alt' }"
-             (click)="changeChartType(navigationElement.icon !== null ? navigationElement.icon : currentChartType)">
-        <i class="icon-md" [ngClass]="navigationElement.icon !== null ? 'icon-' + navigationElement.icon : 'icon-' + currentChartType"></i>
-        {{ navigationElement.name }}
+             [ngClass]="{ 'disabled': navElement.icon === 'geo-alt' }"
+             (click)="changeChartType(navElement.icon !== null ? navElement.icon : currentChartType)">
+        <i class="icon-md" [ngClass]="navElement.icon !== null ? 'icon-' + navElement.icon : 'icon-' + currentChartType"></i>
+        {{ navElement.name }}
       </label>
     </ng-container>
   </div>
 
-  <div class="btn-group fhi-btn-group fhi-diagram-type-navigation__chart-type mb-1"
-        id="chartTypeMenu"
+  <div class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
+        id="chartTypeNav"
         role="menu"
         aria-label="Velg graftype"
         *ngIf="chartIsActive">

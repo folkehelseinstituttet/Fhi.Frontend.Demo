@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
-import { FhiDiagramTypeNavigationComponent } from './fhi-diagram-type-navigation/fhi-diagram-type-navigation.component';
+import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
 
 @NgModule({
   declarations: [
     FhiAngularHighchartsComponent,
-    FhiDiagramTypeNavigationComponent
+    FhiDiagramTypeNavComponent
   ],
   imports: [
     CommonModule,
