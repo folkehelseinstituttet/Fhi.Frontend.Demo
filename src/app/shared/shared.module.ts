@@ -9,7 +9,7 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
-import { FhiAngularTreeviewBuilderModule } from '@folkehelseinstituttet/angular-treeview-builder';
+import { FhiAngularTreeviewBuilderModule } from '@folkehelseinstituttet/angular-tree-view-builder';
 
 import { SafePipe } from './pipes/safe.pipe';
 

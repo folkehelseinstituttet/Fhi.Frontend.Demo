@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TreeModule } from '@circlon/angular-tree-component';
-import { FhiAngularTreeviewBuilderComponent } from './fhi-angular-treeview-builder.component';
 
+import { FhiAngularTreeViewBuilderComponent } from './fhi-angular-tree-view-builder.component';
 
 
 @NgModule({
   declarations: [
-    FhiAngularTreeviewBuilderComponent
+    FhiAngularTreeViewBuilderComponent
   ],
   imports: [
     TreeModule,
     FormsModule
   ],
   exports: [
-    FhiAngularTreeviewBuilderComponent
+    FhiAngularTreeViewBuilderComponent
   ]
 })
 export class FhiAngularTreeviewBuilderModule { }

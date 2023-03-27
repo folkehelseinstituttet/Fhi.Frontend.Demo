@@ -4,10 +4,10 @@ import { ITreeState, ITreeOptions, TreeComponent } from '@circlon/angular-tree-c
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'fhi-angular-treeview-builder',
-  templateUrl: './fhi-angular-treeview-builder.component.html'
+  selector: 'fhi-angular-tree-view-builder',
+  templateUrl: './fhi-angular-tree-view-builder.component.html'
 })
-export class FhiAngularTreeviewBuilderComponent {
+export class FhiAngularTreeViewBuilderComponent {
 
   constructor(private modalService: NgbModal) { }
   

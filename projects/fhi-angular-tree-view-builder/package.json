@@ -1,5 +1,5 @@
 {
-  "name": "@folkehelseinstituttet/angular-treeview-builder",
+  "name": "@folkehelseinstituttet/angular-tree-view-builder",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
