@@ -205,7 +205,7 @@ export class LibraryMenuService {
       name: 'Tables',
       link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
     }, {
-      name: 'Treeview Builder',
+      name: 'Tree View Builder',
       link: LibraryItemSegmentPaths.prototypeangulartreecomponent
     }];
   }

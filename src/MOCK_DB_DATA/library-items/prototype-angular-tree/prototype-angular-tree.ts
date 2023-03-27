@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TreeViewBuilder: LibraryItem[] = [{
   id: LibraryItemIds.TreeViewBuilder,
-  title: 'Treeview Builder',
+  title: 'Tree View Builder',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -1,4 +1,4 @@
-# FhiAngularTreeviewBuilder
+# FhiAngularTreeViewBuilder
 
 A menu builder built with [@circlon/angular-tree-component](https://www.npmjs.com/package/@circlon/angular-tree-component/)
 
