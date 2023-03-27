@@ -8,9 +8,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
-import { FhiTreeViewCheckboxModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
-import { TreeModule } from '@circlon/angular-tree-component';
+import { FhiAngularTreeviewBuilderModule } from '@folkehelseinstituttet/angular-treeview-builder';
 
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -28,7 +27,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    TreeModule
+    FhiAngularTreeviewBuilderModule
   ],
   exports: [
     SafePipe,
@@ -41,7 +40,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    TreeModule
+    FhiAngularTreeviewBuilderModule
   ]
 })
 export class SharedModule { }

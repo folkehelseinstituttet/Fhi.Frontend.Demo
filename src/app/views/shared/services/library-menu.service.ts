@@ -196,9 +196,6 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [{
-      name: 'Angular Tree Component',
-      link: LibraryItemSegmentPaths.prototypeangulartreecomponent
-    }, {
       name: 'Global Header',
       link: LibraryItemSegmentPaths.prototypepageheader
     }, {
@@ -207,6 +204,9 @@ export class LibraryMenuService {
     }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
+    }, {
+      name: 'Treeview Builder',
+      link: LibraryItemSegmentPaths.prototypeangulartreecomponent
     }];
   }
 

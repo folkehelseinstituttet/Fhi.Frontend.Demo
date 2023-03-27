@@ -1,3 +1,3 @@
 export const PrototypeAngularTreeIds = {
-  AngularTreeComponent: undefined
+  TreeviewBuilder: undefined
 }
