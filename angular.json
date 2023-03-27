@@ -220,6 +220,39 @@
           }
         }
       }
+    },
+    "@folkehelseinstituttet/angular-treeview-builder": {
+      "projectType": "library",
+      "root": "projects/fhi-angular-treeview-builder",
+      "sourceRoot": "projects/fhi-angular-treeview-builder/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/fhi-angular-treeview-builder/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/fhi-angular-treeview-builder/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/fhi-angular-treeview-builder/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/fhi-angular-treeview-builder/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
