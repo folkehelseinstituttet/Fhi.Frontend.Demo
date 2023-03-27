@@ -9,8 +9,8 @@
       "@folkehelseinstituttet/angular-highcharts": [
         "dist/fhi-angular-highcharts"
       ],
-      "@folkehelseinstituttet/angular-treeview-builder": [
-        "dist/fhi-angular-treeview-builder"
+      "@folkehelseinstituttet/angular-tree-view-builder": [
+        "dist/fhi-angular-tree-view-builder"
       ]
     },
     "baseUrl": "./",

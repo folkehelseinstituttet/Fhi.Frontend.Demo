@@ -33,7 +33,7 @@ import { TreeViewCheckboxExampleComponent } from './fhi-angular-examples/tree-vi
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
 import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
-import { AngularTreeComponentExampleComponent } from './fhi-prototypes/angular-tree-view-builder-example/angular-tree-view-builder-example.component';
+import { AngularTreeViewBuilderExampleComponent } from './fhi-prototypes/angular-tree-view-builder-example/angular-tree-view-builder-example.component';
 
 const NGB_EXAMPLES = [
   AccordionExampleComponent,
@@ -62,7 +62,7 @@ const FHI_EXAMPLES = [
 ];
 
 const FHI_PROTOTYPES = [
-  AngularTreeComponentExampleComponent,
+  AngularTreeViewBuilderExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
   TableWithExpandableContentComponent

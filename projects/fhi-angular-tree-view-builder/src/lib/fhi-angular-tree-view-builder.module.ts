@@ -18,4 +18,4 @@ import { FhiAngularTreeViewBuilderComponent } from './fhi-angular-tree-view-buil
     FhiAngularTreeViewBuilderComponent
   ]
 })
-export class FhiAngularTreeviewBuilderModule { }
+export class FhiAngularTreeViewBuilderModule { }
