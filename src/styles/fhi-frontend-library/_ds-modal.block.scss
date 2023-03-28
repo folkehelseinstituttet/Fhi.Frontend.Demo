@@ -1,7 +1,7 @@
 $ds-modal-top-offset: 47px;
 
 .ds-modal {
-    background-color: $fhi-grey-1;
+    background-color: $fhi-core-grey-1;
 
     .modal-header {
         background-color: silver;
@@ -55,7 +55,7 @@ $ds-modal-top-offset: 47px;
     }
 
     &__modal-body {
-        background-color: $fhi-white;
+        background-color: $fhi-core-white;
         border-top-left-radius: .25rem;
         border-top-right-radius: .25rem;
         padding: 0;
