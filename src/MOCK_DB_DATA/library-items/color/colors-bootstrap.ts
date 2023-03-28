@@ -25,9 +25,6 @@ function getExampleHtml(): string {
   <div class="ds-color-palette__code ms-4 p-2">
     ${hex}
   </div>
-  <div class="ds-color-palette__code ms-4 p-2 d-none d-lg-block">
-    $${color}
-  </div>
 </div>`;
   }
 

@@ -8,35 +8,35 @@ $fhi-special-menu-animation-speed: .3s;
 
 
 .fhi-pageheader {
-    background-color: $fhi-white;
+    background-color: $fhi-core-white;
     z-index: 1;
 
     &__section-title {
-        border-bottom: $fhi-px * 2 solid transparent;
+        border-bottom: $fhi-core-px * 2 solid transparent;
         display: inline-block;
-        font-family: $fhi-font-family-sans-serif-regular;
-        font-size: $fhi-font-size-3;
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        font-size: $fhi-core-font-size-3;
         letter-spacing: 0;
         line-height: 1.25;
         margin: 0;
-        padding: $fhi-space-3 $fhi-space-4;
+        padding: $fhi-core-space-3 $fhi-core-space-4;
         position: relative;
 
         &::before {
-            background-color: $fhi-red-1;
-            bottom: $fhi-px * 3 * -1;
+            background-color: $fhi-core-red-1;
+            bottom: $fhi-core-px * 3 * -1;
             content: "";
             display: block;
-            height: $fhi-px * 3;
+            height: $fhi-core-px * 3;
             left: 50%;
             position: absolute;
             transform: translateX(-50%);
-            width: $fhi-px * 54;
+            width: $fhi-core-px * 54;
         }
     }
 
     &__submenu-container {
-        max-height: $fhi-px * 202;//sic
+        max-height: $fhi-core-px * 202;//sic
         overflow: auto;
     }
 
@@ -44,23 +44,23 @@ $fhi-special-menu-animation-speed: .3s;
         display: flex;
         flex-wrap: wrap;
         list-style: none;
-        margin: $fhi-space-5 0 0 ($fhi-space-1 * -1);
+        margin: $fhi-core-space-5 0 0 ($fhi-core-space-1 * -1);
         padding: 0;
         transition: margin-top .2s;
     }
 
     &__submenu-item {
-        margin-bottom: $fhi-space-3;
-        padding: 0 $fhi-space-2;
+        margin-bottom: $fhi-core-space-3;
+        padding: 0 $fhi-core-space-2;
     }
 
     &__secondary-megamenu-trigger {
-        font-family: $fhi-font-family-sans-serif-regular;
+        font-family: $fhi-core-font-family-sans-serif-regular;
         border: 0;
         height: auto;
         padding: 0;
-        padding-right: $fhi-space-2;
-        padding-left: $fhi-space-2;
+        padding-right: $fhi-core-space-2;
+        padding-left: $fhi-core-space-2;
         z-index: 1;
 
         &:hover {
@@ -69,13 +69,13 @@ $fhi-special-menu-animation-speed: .3s;
     }
 
     &__secondary-megamenu-trigger-icon {
-        background-color: $fhi-red-1;
+        background-color: $fhi-core-red-1;
         border-radius: 50%;
         display: inline-block;
-        height: $fhi-px * 44;
-        margin-right: $fhi-space-2;
-        padding-top: $fhi-px * 11;
-        width: $fhi-px * 44;
+        height: $fhi-core-px * 44;
+        margin-right: $fhi-core-space-2;
+        padding-top: $fhi-core-px * 11;
+        width: $fhi-core-px * 44;
 
         [class*="icon-"] {
             margin: 0;
@@ -90,7 +90,7 @@ $fhi-special-menu-animation-speed: .3s;
     transition: top .2s;
 
     &__no-logo {
-        top: ($fhi-px * -88);
+        top: ($fhi-core-px * -88);
 
         .fhi-header__brand-container,
         .border-bottom {
@@ -98,7 +98,7 @@ $fhi-special-menu-animation-speed: .3s;
         }
 
         .fhi-pageheader__submenu {
-            margin-top: $fhi-space-4;
+            margin-top: $fhi-core-space-4;
         }
     }
 }
@@ -108,7 +108,7 @@ $fhi-special-menu-animation-speed: .3s;
     display: none;
     left: 0;
     max-height: 100vh;
-    padding-bottom: $fhi-space-7 + $fhi-space-4;
+    padding-bottom: $fhi-core-space-7 + $fhi-core-space-4;
     position: fixed;
     top: 47px;
     transform: translateY(-100%);
@@ -117,13 +117,13 @@ $fhi-special-menu-animation-speed: .3s;
 
     &::before,
     &::after {
-        background-color: $fhi-red-1;
+        background-color: $fhi-core-red-1;
         content: "";
         position: absolute;
     }
     
     &::before {
-        bottom: $fhi-px * 375;
+        bottom: $fhi-core-px * 375;
         left: 0;
         right: 0;
         top: 0;
@@ -135,24 +135,24 @@ $fhi-special-menu-animation-speed: .3s;
         border-bottom-left-radius: 50%;
         bottom: 0;
         left: -30%;
-        height: $fhi-px * 750;
+        height: $fhi-core-px * 750;
         width: 175%;
     }
 
     &__container {
-        max-height: calc(100vh - (#{$fhi-space-7 + $fhi-space-3}));
+        max-height: calc(100vh - (#{$fhi-core-space-7 + $fhi-core-space-3}));
         overflow-y: auto;
         overflow-x: hidden;
-        padding-top: $fhi-space-5;
-        padding-bottom: $fhi-space-2;
+        padding-top: $fhi-core-space-5;
+        padding-bottom: $fhi-core-space-2;
         position: relative;
         z-index: 1;
     }
 
     &__backdrop {
-        background-color: $fhi-white;
+        background-color: $fhi-core-white;
         display: none;
-        height: calc(100vh + #{$fhi-px * 375});
+        height: calc(100vh + #{$fhi-core-px * 375});
         left: 0;
         opacity: 0;
         position: fixed;
@@ -183,10 +183,10 @@ $fhi-special-menu-animation-speed: .3s;
     
     .fhi-header {
         &__logo {
-            margin-right: $fhi-space-3;
+            margin-right: $fhi-core-space-3;
         }
         &__project {
-            border-left-color: $fhi-white;
+            border-left-color: $fhi-core-white;
         }
     }
 
@@ -201,7 +201,7 @@ $fhi-special-menu-animation-speed: .3s;
             outline: none !important;
         }
         &:focus-visible {
-            box-shadow: 0 0 0 3px $fhi-white inset;
+            box-shadow: 0 0 0 3px $fhi-core-white inset;
         }
     }
 }
@@ -210,12 +210,12 @@ $fhi-special-menu-animation-speed: .3s;
 @include media-breakpoint-down(sm) {
     .fhi-pageheader {
         &__submenu-container {
-            padding-left: $fhi-space-4 - $fhi-space-1;
-            padding-right: $fhi-space-3;
+            padding-left: $fhi-core-space-4 - $fhi-core-space-1;
+            padding-right: $fhi-core-space-3;
         }
 
         &__secondary-megamenu-trigger {
-            margin-right: $fhi-space-1;
+            margin-right: $fhi-core-space-1;
 
             .btn__text {
                 display: none;
@@ -248,7 +248,7 @@ $fhi-special-menu-animation-speed: .3s;
 @include media-breakpoint-up(xl) {
     .fhi-pageheader--sticky {
         &__no-logo {
-            top: ($fhi-px * -112);
+            top: ($fhi-core-px * -112);
         }
     }
 

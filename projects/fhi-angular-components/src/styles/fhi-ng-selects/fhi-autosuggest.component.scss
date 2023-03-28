@@ -5,7 +5,7 @@
             .ng-value-container {
                 .ng-value,
                 .ng-placeholder {
-                    padding: $fhi-space-2 .75rem; // OBS! Is dependeant on default .form-control padding
+                    padding: $fhi-core-space-2 .75rem; // OBS! Is dependeant on default .form-control padding
                 }
             }
         }
@@ -19,7 +19,7 @@
 
     .ng-dropdown-panel-items {
         .ng-option {
-            padding: $fhi-space-2;
+            padding: $fhi-core-space-2;
         }
     }
 }
