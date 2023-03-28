@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const AngularTreeComponent: LibraryItem[] = [{
-  id: LibraryItemIds.AngularTreeComponent,
-  title: 'Angular tree component',
+export const TreeViewBuilder: LibraryItem[] = [{
+  id: LibraryItemIds.TreeViewBuilder,
+  title: 'Tree View Builder',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -32,9 +32,7 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>Dette er et eksempel på implementering av <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a>. Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for flere detaljer om bruk.</p>
-
-<p><strong>Merk:</strong> ved å benytte denne komponenten vil du for øyeblikket få korrekt stilsetting via @folkehelseinstituttet/style. Dog vil denne stilsettingen på et senere tidspunkt fjernes fra stilbiblioteket.</p>
+<p>FHI Angular Tree View Builder er et eksempel på implementering av <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a>. Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for flere detaljer om bruk.</p>
 
 <div class="alert alert-warning mb-5">
   <i class="icon-bell"></i>

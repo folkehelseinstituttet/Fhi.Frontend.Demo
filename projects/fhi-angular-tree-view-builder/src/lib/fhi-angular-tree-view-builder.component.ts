@@ -1,17 +1,14 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+
 import { ITreeState, ITreeOptions, TreeComponent } from '@circlon/angular-tree-component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-
 @Component({
-  selector: 'app-angular-tree-component-example',
-  templateUrl: './angular-tree-component-example.component.html'
+  selector: 'fhi-angular-tree-view-builder',
+  templateUrl: './fhi-angular-tree-view-builder.component.html'
 })
-export class AngularTreeComponentExampleComponent {
+export class FhiAngularTreeViewBuilderComponent {
 
-  @Input() itemId!: string;
-  @Input() itemIds!: any;
-  
   constructor(private modalService: NgbModal) { }
   
   elementName: string;
@@ -19,8 +16,7 @@ export class AngularTreeComponentExampleComponent {
   currentNode: any;
   currentNodeData: any;
 
-  @ViewChild(TreeComponent)
-  private tree: TreeComponent;
+  @ViewChild(TreeComponent) private tree: TreeComponent;
 
   treeViewNodes: any = [
     {
@@ -142,5 +138,5 @@ export class AngularTreeComponentExampleComponent {
         }
       ],
   []);
-
+  
 }

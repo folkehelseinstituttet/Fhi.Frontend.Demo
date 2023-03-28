@@ -1,0 +1,15 @@
+{
+  "name": "@folkehelseinstituttet/angular-tree-view-builder",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@circlon/angular-tree-component": "^11.0.0",
+    "@folkehelseinstituttet/style": "^4.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^14.0.0",
+    "bootstrap": "^5.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.5.0"
+  }
+}
