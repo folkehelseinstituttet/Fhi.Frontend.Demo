@@ -1,7 +1,8 @@
 # Unreleased
 
-> Mar 20, 2023
+> Mar 28, 2023
 
+* :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
 * :gift: **New** Add `FhiTreeViewCheckboxModule`
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 

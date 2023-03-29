@@ -1,7 +1,8 @@
 # Unreleased
 
-> Mar 20, 2023
+> Mar 28, 2023
 
+* :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
 * :bug: **Bugfix** Change wrong @import path for css in README
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 
