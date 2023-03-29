@@ -32,12 +32,11 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       .subscribe({
         next: (data) => {
           if (this.itemId === this.itemIds.Highcharts) {
-            this.diagramOptions = undefined;
-            // this.diagramOptions = {
-            //   ...this.diagramOptions,
-            //   data: data,
-            //   diagramType: FhiDiagramTypes.column
-            // };
+            this.diagramOptions = {
+              ...this.diagramOptions,
+              data: data,
+              diagramType: FhiDiagramTypes.column
+            };
           } else {
             this.diagramOptions = {
               ...this.diagramOptions,
