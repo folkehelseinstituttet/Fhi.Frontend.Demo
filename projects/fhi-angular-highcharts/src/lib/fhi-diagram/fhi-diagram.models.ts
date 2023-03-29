@@ -19,8 +19,6 @@ interface Data {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string;
-  colorIndex:	number;
-  legendIndex: number;
 }
 
 export interface FhiDiagramOptions {
