@@ -14,6 +14,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
 - [Fixing Bugs and Adding Features](#fixing-bugs-and-adding-features)
   - [Workflows](#workflows)
     - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
+      - [Icon set updates](#icon-set-updates)
     - [How to work on ./projects/fhi-\[project\] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
       - [How to do code scaffolding in an Angular library project](#how-to-do-code-scaffolding-in-an-angular-library-project)
   - [Pull request guidelines](#pull-request-guidelines)
@@ -151,9 +152,11 @@ _A library project is an Angular concept for organising code that are going to b
 >- Check that the dependency matrix is updated, and has "Unreleased" as latest version.
 >- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
 >
->**When creating a release branch**
+> If one or more of the checks above is not OK; create a branch, fix, and create a new pull request.
 >
->- Follow the instructions below to the letter!
+>**If everything is OK; create a release branch**
+>
+>- When creating a release branch, follow the instructions below to the letter!
 
 1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
