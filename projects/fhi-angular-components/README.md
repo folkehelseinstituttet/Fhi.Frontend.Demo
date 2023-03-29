@@ -6,7 +6,7 @@ Contains frontend Angular components used by FHI, based on [Bootstrap widgets (@
 
 | FHI AngularComponents | FHI Style | Bootstrap | NgSelect | NgBootstrap | Angular | Node/NPM |
 | --------------------- | --------- | --------- | -------- | ----------- | ------- | -------- |
-| Unreleased            | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
+| 0.4.x                 | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
 | 0.3.0                 | 4         | 5         | 10       | 14          | 15      | 18/9 *   |
 | 0.2.0                 | 4         | 5         | 9        | 13          | 14      | 16/8 *   |
 

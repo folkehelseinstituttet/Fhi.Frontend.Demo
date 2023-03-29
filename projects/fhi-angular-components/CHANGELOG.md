@@ -1,6 +1,6 @@
-# Unreleased
+# 0.4.0
 
-> Mar 28, 2023
+> Mar 29, 2023
 
 * :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
 * :gift: **New** Add `FhiTreeViewCheckboxModule`
