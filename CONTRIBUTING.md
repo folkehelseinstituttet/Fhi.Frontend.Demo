@@ -161,7 +161,7 @@ _A library project is an Angular concept for organising code that are going to b
 1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
 3. Change text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
-4. Change text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md`
+4. (If a new line is added) Change text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md`
 5. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
     >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
 6. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `dev`.
