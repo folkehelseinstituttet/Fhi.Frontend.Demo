@@ -1,6 +1,6 @@
-# Unreleased
+# 0.3.0
 
-> Mar 28, 2023
+> Mar 29, 2023
 
 * :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
 * :bug: **Bugfix** Change wrong @import path for css in README
