@@ -19,6 +19,9 @@ import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-navs';
 
+import Accessibility from 'highcharts/modules/accessibility';
+Accessibility(Highcharts);
+
 
 @Component({
   selector: 'fhi-angular-highcharts',
