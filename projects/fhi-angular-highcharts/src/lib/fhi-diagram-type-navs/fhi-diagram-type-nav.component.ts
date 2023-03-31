@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
 import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 
-interface DiagramTypeNavItem {
-  children?: DiagramTypeNavItem[];
+interface NavDiagramTypeGroup {
   diagramType: FhiDiagramType;
-  icon?: string;
+  icon: string;
+  id: string;
   name: string;
 }
 
@@ -24,41 +24,39 @@ export class FhiDiagramTypeNavComponent {
 
   FhiDiagramTypes = FhiDiagramTypes;
   FhiDiagramTypeGroups = FhiDiagramTypeGroups;
-  currentChildDiagramtype = FhiDiagramTypes.column
   chartSubmenuIsOpen = false;
-  navItems = this.getNavItems();
+  currentChartIcon = FhiDiagramTypes.column.icon;
+  navChartTypes = this.getChartItems();
+  navDiagramTypeGroups = this.getNavDiagramTypeGroups();
 
   ngOnChanges() {
     console.log('ngOnChanges() -> diagramType', this.currentDiagramType);
     console.log('ngOnChanges() -> currentDiagramTypeGroup', this.currentDiagramTypeGroup);
 
-    this.updateTemplate();
+    // this.updateTemplate();
   }
 
-  private updateTemplate() {
-    // this.parentIsChecked();
+  // private updateTemplate() {
+  //   // this.parentIsChecked();
+  // }
+
+  navigate(diagramType: FhiDiagramType) {
+    console.log('navigate() -> diagramType', diagramType);
+    this.navigateToDiagramType.emit(diagramType);
   }
 
-  navigate(item: DiagramTypeNavItem) {
-    console.log('navigate() -> diagramType', item.diagramType);
-    this.navigateToDiagramType.emit(item.diagramType);
-  }
+  // childIsChecked(item: DiagramTypeNavItem) {
+  // }
 
-  childIsChecked(item: DiagramTypeNavItem) {
-  }
-
-  parentIsChecked(item: DiagramTypeNavItem) {
-    // if (item.diagramType === this.currentDiagramType
-    //     || this.currentDiagramTypeIsChart ) {
-    if (item.diagramType === FhiDiagramTypes.table) {
+  parentIsChecked(id: string) {
+    if (id === FhiDiagramTypeGroups.table) {
       return true;
     }
     return false;
   }
 
-  diagramTypeGroupIsChart(item: DiagramTypeNavItem) {
-    // TODO: test based on FhiDiagramTypeGroups
-    if (item.children !== undefined) {
+  diagramTypeGroupIsChart(id: string) {
+    if (id === FhiDiagramTypeGroups.chart) {
       return true;
     }
     return false;
@@ -75,44 +73,34 @@ export class FhiDiagramTypeNavComponent {
   // TODO:
   //   - Create logic for disabled (if dataset does not match diagram type).
   //   - Create logic for subset (only include what consumer want).
-  private getNavItems(): DiagramTypeNavItem[] {
-    const diagramTypeSubset = [
-      FhiDiagramTypes.table,
-      FhiDiagramTypes.mapFylker,
-    ];
-    const diagramTypeChildrenSubset = [
+  private getChartItems(): FhiDiagramType[] {
+    return [
       FhiDiagramTypes.line,
       FhiDiagramTypes.column,
       FhiDiagramTypes.bar,
       FhiDiagramTypes.columnStacked,
       FhiDiagramTypes.barStacked
     ];
-    let parents: DiagramTypeNavItem[] = this.getNavItemSubset(diagramTypeSubset);
-    let children: DiagramTypeNavItem[] = this.getNavItemSubset(diagramTypeChildrenSubset);
+  }
 
-    return [
-      ...parents, {
-      children: children,
+  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
+    return [{
+      diagramType: FhiDiagramTypes.table,
+      icon: FhiDiagramTypes.table.icon,
+      id: FhiDiagramTypeGroups.table,
+      name: FhiDiagramTypes.table.name
+    }, {
+      diagramType: FhiDiagramTypes.mapFylker,
+      icon: FhiDiagramTypes.mapFylker.icon,
+      id: FhiDiagramTypeGroups.map,
+      name: 'Kart'
+    }, {
       diagramType: FhiDiagramTypes.column,
       icon: FhiDiagramTypes.column.icon,
+      id: FhiDiagramTypeGroups.chart,
       name: 'Graf'
     }];
   }
-
-  private getNavItemSubset(diagramTypeSubset: FhiDiagramType[]): DiagramTypeNavItem[] {
-    let subset: DiagramTypeNavItem[] = [];
-    diagramTypeSubset.forEach(diagramType => {
-      subset.push({
-        diagramType: diagramType,
-        icon: diagramType.icon,
-        name: diagramType.name
-      });
-    });
-    return subset;
-  }
-
-
-
 
 
 

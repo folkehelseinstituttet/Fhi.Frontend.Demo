@@ -71,7 +71,7 @@ const line: FhiDiagramType = {
 const mapFylker2019: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker2019,
   icon: 'geo-alt',
-  name: 'Kart',
+  name: 'Fylkeskart før 2019',
   options: OptionsMapFylker2019,
   isMap: true,
   mapFile: 'assets/geo-json/no-all-2019.geo.json'
@@ -80,7 +80,7 @@ const mapFylker2019: FhiDiagramType = {
 const mapFylker: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker,
   icon: 'geo-alt',
-  name: 'Kart',
+  name: 'Fylkeskart',
   options: OptionsMapFylker,
   isMap: true,
   mapFile: 'assets/geo-json/no-all.geo.json'
