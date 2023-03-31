@@ -33,12 +33,21 @@ export class FhiDiagramTypeNavComponent {
     console.log('ngOnChanges() -> diagramType', this.currentDiagramType);
     console.log('ngOnChanges() -> currentDiagramTypeGroup', this.currentDiagramTypeGroup);
 
-    // this.updateTemplate();
+    this.updateNavState();
   }
 
-  // private updateTemplate() {
-  //   // this.parentIsChecked();
-  // }
+  private updateNavState() {
+    this.chartSubmenuIsOpen = this.setChartSubmenuIsOpen();
+
+    // this.parentIsChecked();
+  }
+
+  private setChartSubmenuIsOpen(): boolean {
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+      return true;
+    }
+    return false;
+  }
 
   navigate(diagramType: FhiDiagramType) {
     console.log('navigate() -> diagramType', diagramType);
