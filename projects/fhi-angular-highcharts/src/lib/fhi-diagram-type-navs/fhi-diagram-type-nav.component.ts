@@ -7,6 +7,7 @@ interface NavDiagramTypeGroup {
   diagramType: FhiDiagramType;
   icon: string;
   id: string;
+  isDisabled: boolean;
   name: string;
 }
 
@@ -22,46 +23,23 @@ export class FhiDiagramTypeNavComponent {
 
   @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
 
-  FhiDiagramTypes = FhiDiagramTypes;
-  FhiDiagramTypeGroups = FhiDiagramTypeGroups;
   chartSubmenuIsOpen = false;
-  currentChartIcon = FhiDiagramTypes.column.icon;
-  navChartTypes = this.getChartItems();
-  navDiagramTypeGroups = this.getNavDiagramTypeGroups();
+  navDiagramTypeGroupsOk = false;
+  navChartTypes!: FhiDiagramType[];
+  navDiagramTypeGroups!: NavDiagramTypeGroup[] | undefined;
+
+  constructor() {
+    this.navChartTypes = this.getNavChartTypes();
+    this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
+  }
 
   ngOnChanges() {
-    console.log('ngOnChanges() -> diagramType', this.currentDiagramType);
-    console.log('ngOnChanges() -> currentDiagramTypeGroup', this.currentDiagramTypeGroup);
-
-    this.updateNavState();
-  }
-
-  private updateNavState() {
-    this.chartSubmenuIsOpen = this.setChartSubmenuIsOpen();
-
-    // this.parentIsChecked();
-  }
-
-  private setChartSubmenuIsOpen(): boolean {
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
-      return true;
-    }
-    return false;
+    this.setChartSubmenuIsOpen();
+    this.updateNavDiagramChartGroup();
   }
 
   navigate(diagramType: FhiDiagramType) {
-    console.log('navigate() -> diagramType', diagramType);
     this.navigateToDiagramType.emit(diagramType);
-  }
-
-  // childIsChecked(item: DiagramTypeNavItem) {
-  // }
-
-  parentIsChecked(id: string) {
-    if (id === FhiDiagramTypeGroups.table) {
-      return true;
-    }
-    return false;
   }
 
   diagramTypeGroupIsChart(id: string) {
@@ -71,18 +49,24 @@ export class FhiDiagramTypeNavComponent {
     return false;
   }
 
-  openChartSubmenu(event: Event) {
-    console.log('item', event);
-    // if (item.children !== undefined) {
-    //   this.chartSubmenuIsOpen = true;
-    // }
-    // this.chartSubmenuIsOpen = false;
+  private setChartSubmenuIsOpen() {
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+      this.chartSubmenuIsOpen = true;
+    } else {
+      this.chartSubmenuIsOpen = false;
+    }
   }
 
-  // TODO:
-  //   - Create logic for disabled (if dataset does not match diagram type).
-  //   - Create logic for subset (only include what consumer want).
-  private getChartItems(): FhiDiagramType[] {
+  private updateNavDiagramChartGroup() {
+    const id = this.currentDiagramType.id;
+    const chartType = this.getNavChartTypes().find(chartType => chartType.id === id);
+
+    if (chartType !== undefined && this.navDiagramTypeGroups[2] !== undefined) {
+      this.navDiagramTypeGroups[2] = this.getNavDiagramChartGroup(id);
+    }
+  }
+
+  private getNavChartTypes(): FhiDiagramType[] {
     return [
       FhiDiagramTypes.line,
       FhiDiagramTypes.column,
@@ -92,112 +76,76 @@ export class FhiDiagramTypeNavComponent {
     ];
   }
 
-  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
-    return [{
+  private getNavMapTypes(): FhiDiagramType[] {
+    return [
+      FhiDiagramTypes.mapFylker,
+      FhiDiagramTypes.mapFylker2019
+    ];
+  }
+
+  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] | undefined {
+    const navDiagramTableGroup = {
       diagramType: FhiDiagramTypes.table,
       icon: FhiDiagramTypes.table.icon,
       id: FhiDiagramTypeGroups.table,
+      isDisabled: false,
       name: FhiDiagramTypes.table.name
-    }, {
-      diagramType: FhiDiagramTypes.mapFylker,
-      icon: FhiDiagramTypes.mapFylker.icon,
-      id: FhiDiagramTypeGroups.map,
-      name: 'Kart'
-    }, {
-      diagramType: FhiDiagramTypes.column,
-      icon: FhiDiagramTypes.column.icon,
-      id: FhiDiagramTypeGroups.chart,
-      name: 'Graf'
-    }];
+    };
+    const navDiagramMapGroup = this.getNavDiagramMapGroup(FhiDiagramTypes.mapFylker.id);
+    const navDiagramChartGroup = this.getNavDiagramChartGroup(FhiDiagramTypes.column.id);
+
+    if (navDiagramMapGroup !== undefined
+        && navDiagramChartGroup !== undefined) {
+
+      this.navDiagramTypeGroupsOk = true;
+
+      return [
+        navDiagramTableGroup,
+        navDiagramMapGroup,
+        navDiagramChartGroup
+      ];
+    } else {
+      console.error(this.getErrorMsg());
+      return undefined;
+    }
   }
 
+  private getNavDiagramMapGroup(diagramtypeId: string): NavDiagramTypeGroup {
+    let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
 
-
-
-
-
-
-  // TODO:
-  //   - Transfer all values to FhiDiagramTypes.
-  //   - Create logic for navigation based on real values
-  //   - Create logic for subset (only include what consumer want).
-  chartIsActive: boolean;
-
-  navItemsOld = [
-    {
-      name: 'Tabell',
-      icon: 'table'
-    },
-    {
-      name: 'Kart',
-      icon: 'geo-alt' },
-    {
-      name: 'Graf',
-      icon: null,
-      hasChartTypes: true,
-      chartTypes: [
-        'Linjediagram',
-        'Søylediagram',
-        'Liggende søylediagram',
-        'Stablet søylediagram',
-        'Stablet liggende søylediagram',
-        // 'Kakediagram'
-      ]
-    }
-  ];
-  chartTypes = [
-    { name: 'Linjediagram', icon: 'graph-up' },
-    { name: 'Søylediagram', icon: 'bar-chart-line' },
-    { name: 'Liggende søylediagram', icon: 'bar-chart-line-horizontal' },
-    { name: 'Stablet søylediagram', icon: 'bar-chart-line-stacked' },
-    { name: 'Stablet liggende søylediagram', icon: 'bar-chart-line-stacked-horizontal' },
-    // { name: 'Kakediagram', icon: 'pie-chart' },
-  ];
-  currentChartType: string = 'bar-chart-line';
-
-  changeChartType(icon: string) {
-    if (icon !== 'table') {
-      this.currentChartType = icon;
-    }
-
-    // TMP hack to make navigation work
-    let diagramType: FhiDiagramType;
-    switch (icon) {
-      case FhiDiagramTypes.table.icon:
-        diagramType = FhiDiagramTypes.table;
-        break;
-
-      case FhiDiagramTypes.mapFylker.icon:
-        diagramType = FhiDiagramTypes.mapFylker;
-        break;
-
-      case FhiDiagramTypes.line.icon:
-        diagramType = FhiDiagramTypes.line;
-        break;
-
-      case FhiDiagramTypes.column.icon:
-        diagramType = FhiDiagramTypes.column;
-        break;
-
-      case FhiDiagramTypes.bar.icon:
-        diagramType = FhiDiagramTypes.bar;
-        break;
-
-      case FhiDiagramTypes.columnStacked.icon:
-        diagramType = FhiDiagramTypes.columnStacked;
-        break;
-
-      case FhiDiagramTypes.barStacked.icon:
-        diagramType = FhiDiagramTypes.barStacked;
-        break;
-
-      default:
-        diagramType = FhiDiagramTypes.table;
-    }
-    // this.navigate(diagramType);
+    this.getNavMapTypes().forEach(type => {
+      navDiagramTypeGroups.push({
+        diagramType: type,
+        icon: type.icon,
+        id: FhiDiagramTypeGroups.map,
+        isDisabled: true,
+        name: 'Kart'
+      });
+    });
+    return navDiagramTypeGroups
+      .find((group) => group.diagramType.id === diagramtypeId);
   }
 
+  private getNavDiagramChartGroup(diagramtypeId: string): NavDiagramTypeGroup {
+    let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
 
+    this.getNavChartTypes().forEach(type => {
+      navDiagramTypeGroups.push({
+        diagramType: type,
+        icon: type.icon,
+        id: FhiDiagramTypeGroups.chart,
+        isDisabled: false,
+        name: 'Graf'
+      });
+    });
+    return navDiagramTypeGroups
+      .find((group) => group.diagramType.id === diagramtypeId);
+  }
 
+  private getErrorMsg() {
+    return `FhiDiagramTypeNavComponent.getNavDiagramTypeGroups():
+navDiagramMapGroup or navDiagramChartGroup is undefined,
+the FhiDiagramTypeNav can not be rendered.`;
+  }
 
 }

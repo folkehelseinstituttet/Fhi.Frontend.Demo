@@ -1,4 +1,4 @@
-<div class="fhi-diagram-type-nav mb-3">
+<div class="fhi-diagram-type-nav mb-3" *ngIf="navDiagramTypeGroupsOk">
   <div class="btn-group fhi-btn-group mb-1"
        role="group"
        aria-label="Velg tabell, kart eller graf">
@@ -10,19 +10,14 @@
               id="{{ group.id }}"
               aria-controls="diagram-type-children-nav"
               [attr.aria-haspopup]="diagramTypeGroupIsChart(group.id)"
-
-              [disabled]="group.icon === 'geo-alt'"
-
-              [checked]="parentIsChecked(group.id)"
+              [disabled]="group.isDisabled"
+              [checked]="group.id === currentDiagramTypeGroup"
               (change)="navigate(group.diagramType)">
 
       <label class="btn fhi-btn-group__btn"
              for="{{ group.id }}"
-             [ngClass]="{ 'disabled': group.icon === 'geo-alt' }">
-        <i class="icon-md"
-           [ngClass]="'icon-' + ((diagramTypeGroupIsChart(group.id))
-              ? currentChartIcon : group.icon)">
-        </i>
+             [ngClass]="{ 'disabled': group.isDisabled }">
+        <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
         {{ group.name }}
       </label>
     </ng-container>
@@ -34,16 +29,16 @@
         aria-label="Velg graftype"
         *ngIf="chartSubmenuIsOpen">
 
-    <ng-container *ngFor="let chartType of chartTypes; index as i">
+    <ng-container *ngFor="let chartType of navChartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
               name="charttype"
-              (change)="changeChartType(chartType.icon)"
-              [id]="'charttype' + i"
-              [checked]="chartType.icon === currentChartType">
+              id="{{ chartType.id }}"
+              [checked]="chartType.id === currentDiagramType.id"
+              (change)="navigate(chartType)">
 
       <label class="btn fhi-btn-group__btn border-0"
-              [for]="'charttype' + i">
+             for="{{ chartType.id }}">
         <i [class]="'icon-md icon-' + chartType.icon"></i>
         <span class="visually-hidden">{{ chartType.name }}</span>
       </label>
