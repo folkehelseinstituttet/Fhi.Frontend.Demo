@@ -1,29 +1,39 @@
 <div class="fhi-diagram-type-nav mb-3">
-  <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Visningsvalg">
-    <ng-container *ngFor="let navElement of navMenu; index as i">
+  <div class="btn-group fhi-btn-group mb-1"
+       role="group"
+       aria-label="Velg tabell, kart eller graf">
+
+    <ng-container *ngFor="let item of navItems">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
-              name="visualisationNav"
-              aria-controls="chartTypeNav"
-              [disabled]="navElement.icon === 'geo-alt'"
-              [id]="'navElm' + i"
-              [checked]="i === 0"
-              [attr.aria-haspopup]="navElement.hasChartTypes"
-              (change)="chartIsActive = navElement.hasChartTypes">
-      <label [for]="'navElm' + i" class="btn fhi-btn-group__btn"
-             [ngClass]="{ 'disabled': navElement.icon === 'geo-alt' }"
-             (click)="changeChartType(navElement.icon !== null ? navElement.icon : currentChartType)">
-        <i class="icon-md" [ngClass]="navElement.icon !== null ? 'icon-' + navElement.icon : 'icon-' + currentChartType"></i>
-        {{ navElement.name }}
+              name="diagram-type-nav"
+              id="{{ item.diagramType.id }}"
+              aria-controls="diagram-type-children-nav"
+              [attr.aria-haspopup]="diagramTypeGroupIsChart(item)"
+
+              [disabled]="item.icon === 'geo-alt'"
+
+              [checked]="parentIsChecked(item)"
+              (change)="navigate(item)">
+
+      <label class="btn fhi-btn-group__btn"
+             for="{{ item.diagramType.id }}"
+             [ngClass]="{ 'disabled': item.icon === 'geo-alt' }">
+        <i class="icon-md"
+           [ngClass]="'icon-' + ((diagramTypeGroupIsChart(item))
+              ? currentChildDiagramtype.icon : item.icon)">
+        </i>
+        {{ item.name }}
       </label>
     </ng-container>
   </div>
 
   <div class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
-        id="chartTypeNav"
+        id="diagram-type-children-nav"
         role="menu"
         aria-label="Velg graftype"
-        *ngIf="chartIsActive">
+        *ngIf="chartSubmenuIsOpen">
+
     <ng-container *ngFor="let chartType of chartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
@@ -31,6 +41,7 @@
               (change)="changeChartType(chartType.icon)"
               [id]="'charttype' + i"
               [checked]="chartType.icon === currentChartType">
+
       <label class="btn fhi-btn-group__btn border-0"
               [for]="'charttype' + i">
         <i [class]="'icon-md icon-' + chartType.icon"></i>

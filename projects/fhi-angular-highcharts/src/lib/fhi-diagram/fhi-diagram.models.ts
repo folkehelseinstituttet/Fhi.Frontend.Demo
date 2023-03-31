@@ -3,8 +3,7 @@ import { Options } from 'highcharts';
 export interface FhiDiagramType {
   id: string;
   icon?: string;
-  nameNO?: string;
-  nameEN?: string;
+  name: string;
   group?: string;
   options: Options;
   isMap?: boolean;

@@ -1,8 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
 import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 
+interface DiagramTypeNavItem {
+  children?: DiagramTypeNavItem[];
+  diagramType: FhiDiagramType;
+  icon?: string;
+  name: string;
+}
 
 @Component({
   selector: 'fhi-diagram-type-nav',
@@ -10,11 +16,107 @@ import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiDiagramTypeNavComponent {
-  FhiDiagramTypes = FhiDiagramTypes;
 
   @Input() currentDiagramTypeGroup!: string;
-  @Input() diagramType!: FhiDiagramType;
-  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
+  @Input() currentDiagramType!: FhiDiagramType;
+
+  @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
+
+  FhiDiagramTypes = FhiDiagramTypes;
+  FhiDiagramTypeGroups = FhiDiagramTypeGroups;
+  currentChildDiagramtype = FhiDiagramTypes.column
+  chartSubmenuIsOpen = false;
+  navItems = this.getNavItems();
+
+  ngOnChanges() {
+    console.log('ngOnChanges() -> diagramType', this.currentDiagramType);
+    console.log('ngOnChanges() -> currentDiagramTypeGroup', this.currentDiagramTypeGroup);
+
+    this.updateTemplate();
+  }
+
+  private updateTemplate() {
+    // this.parentIsChecked();
+  }
+
+  navigate(item: DiagramTypeNavItem) {
+    console.log('navigate() -> diagramType', item.diagramType);
+    this.navigateToDiagramType.emit(item.diagramType);
+  }
+
+  childIsChecked(item: DiagramTypeNavItem) {
+  }
+
+  parentIsChecked(item: DiagramTypeNavItem) {
+    // if (item.diagramType === this.currentDiagramType
+    //     || this.currentDiagramTypeIsChart ) {
+    if (item.diagramType === FhiDiagramTypes.table) {
+      return true;
+    }
+    return false;
+  }
+
+  diagramTypeGroupIsChart(item: DiagramTypeNavItem) {
+    // TODO: test based on FhiDiagramTypeGroups
+    if (item.children !== undefined) {
+      return true;
+    }
+    return false;
+  }
+
+  openChartSubmenu(event: Event) {
+    console.log('item', event);
+    // if (item.children !== undefined) {
+    //   this.chartSubmenuIsOpen = true;
+    // }
+    // this.chartSubmenuIsOpen = false;
+  }
+
+  // TODO:
+  //   - Create logic for disabled (if dataset does not match diagram type).
+  //   - Create logic for subset (only include what consumer want).
+  private getNavItems(): DiagramTypeNavItem[] {
+    const diagramTypeSubset = [
+      FhiDiagramTypes.table,
+      FhiDiagramTypes.mapFylker,
+    ];
+    const diagramTypeChildrenSubset = [
+      FhiDiagramTypes.line,
+      FhiDiagramTypes.column,
+      FhiDiagramTypes.bar,
+      FhiDiagramTypes.columnStacked,
+      FhiDiagramTypes.barStacked
+    ];
+    let parents: DiagramTypeNavItem[] = this.getNavItemSubset(diagramTypeSubset);
+    let children: DiagramTypeNavItem[] = this.getNavItemSubset(diagramTypeChildrenSubset);
+
+    return [
+      ...parents, {
+      children: children,
+      diagramType: FhiDiagramTypes.column,
+      icon: FhiDiagramTypes.column.icon,
+      name: 'Graf'
+    }];
+  }
+
+  private getNavItemSubset(diagramTypeSubset: FhiDiagramType[]): DiagramTypeNavItem[] {
+    let subset: DiagramTypeNavItem[] = [];
+    diagramTypeSubset.forEach(diagramType => {
+      subset.push({
+        diagramType: diagramType,
+        icon: diagramType.icon,
+        name: diagramType.name
+      });
+    });
+    return subset;
+  }
+
+
+
+
+
+
+
 
 
 
@@ -22,31 +124,36 @@ export class FhiDiagramTypeNavComponent {
   //   - Transfer all values to FhiDiagramTypes.
   //   - Create logic for navigation based on real values
   //   - Create logic for subset (only include what consumer want).
-  //   - Create logic for language (NO/EN)
   chartIsActive: boolean;
-  navMenu = [
-    { name: 'Tabell', icon: 'table' },
-    { name: 'Kart', icon: 'geo-alt' },
+
+  navItemsOld = [
+    {
+      name: 'Tabell',
+      icon: 'table'
+    },
+    {
+      name: 'Kart',
+      icon: 'geo-alt' },
     {
       name: 'Graf',
       icon: null,
       hasChartTypes: true,
       chartTypes: [
         'Linjediagram',
-        'Stående søylediagram',
+        'Søylediagram',
         'Liggende søylediagram',
-        'Stående søylediagram stablet',
-        'Liggende søylediagram stablet',
+        'Stablet søylediagram',
+        'Stablet liggende søylediagram',
         // 'Kakediagram'
       ]
     }
   ];
   chartTypes = [
     { name: 'Linjediagram', icon: 'graph-up' },
-    { name: 'Stående søylediagram', icon: 'bar-chart-line' },
+    { name: 'Søylediagram', icon: 'bar-chart-line' },
     { name: 'Liggende søylediagram', icon: 'bar-chart-line-horizontal' },
-    { name: 'Stående søylediagram stablet', icon: 'bar-chart-line-stacked' },
-    { name: 'Liggende søylediagram stablet', icon: 'bar-chart-line-stacked-horizontal' },
+    { name: 'Stablet søylediagram', icon: 'bar-chart-line-stacked' },
+    { name: 'Stablet liggende søylediagram', icon: 'bar-chart-line-stacked-horizontal' },
     // { name: 'Kakediagram', icon: 'pie-chart' },
   ];
   currentChartType: string = 'bar-chart-line';
@@ -59,44 +166,41 @@ export class FhiDiagramTypeNavComponent {
     // TMP hack to make navigation work
     let diagramType: FhiDiagramType;
     switch (icon) {
-      case 'table':
+      case FhiDiagramTypes.table.icon:
         diagramType = FhiDiagramTypes.table;
         break;
-      case 'geo-alt':
+
+      case FhiDiagramTypes.mapFylker.icon:
         diagramType = FhiDiagramTypes.mapFylker;
         break;
-      case 'graph-up':
+
+      case FhiDiagramTypes.line.icon:
         diagramType = FhiDiagramTypes.line;
         break;
-      case 'bar-chart-line':
+
+      case FhiDiagramTypes.column.icon:
         diagramType = FhiDiagramTypes.column;
         break;
-      case 'bar-chart-line-horizontal':
+
+      case FhiDiagramTypes.bar.icon:
         diagramType = FhiDiagramTypes.bar;
         break;
-      case 'bar-chart-line-stacked':
+
+      case FhiDiagramTypes.columnStacked.icon:
         diagramType = FhiDiagramTypes.columnStacked;
         break;
-      case 'bar-chart-line-stacked-horizontal':
+
+      case FhiDiagramTypes.barStacked.icon:
         diagramType = FhiDiagramTypes.barStacked;
         break;
+
       default:
         diagramType = FhiDiagramTypes.table;
     }
-    this.navigateToDiagramType(diagramType);
+    // this.navigate(diagramType);
   }
 
 
 
-
-
-  ngOnChanges() {
-    // console.log('ngOnChanges() -> diagramType', this.diagramType);
-  }
-
-  navigateToDiagramType(diagramType: FhiDiagramType) {
-    // console.log('navigateToDiagramType() -> diagramType', diagramType);
-    this.diagramTypeNav.emit(diagramType);
-  }
 
 }

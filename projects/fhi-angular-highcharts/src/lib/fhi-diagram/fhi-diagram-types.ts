@@ -21,78 +21,110 @@ export class FhiDiagramTypeGroups {
 
 const area: FhiDiagramType = {
   id: FhiDiagramTypeId.area,
+  icon: undefined,
+  name: '',
   options: OptionsChartTypeArea
 }
+
 const bar: FhiDiagramType = {
   id: FhiDiagramTypeId.bar,
+  icon: 'bar-chart-line-horizontal',
+  name: 'Liggende søylediagram',
   options: OptionsChartTypeBar
 }
+
 const barStacked: FhiDiagramType = {
   id: FhiDiagramTypeId.barStacked,
+  icon: 'bar-chart-line-stacked-horizontal',
+  name: 'Stablet liggende søylediagram',
   options: OptionsChartTypeBarStacked
 }
+
 const column: FhiDiagramType = {
   id: FhiDiagramTypeId.column,
+  icon: 'bar-chart-line',
+  name: 'Søylediagram',
   options: OptionsChartTypeColumn
 }
+
 const columnStacked: FhiDiagramType = {
   id: FhiDiagramTypeId.columnStacked,
+  icon: 'bar-chart-line-stacked',
+  name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked
 }
+
 const donut: FhiDiagramType = {
   id: FhiDiagramTypeId.donut,
+  icon: undefined,
+  name: '',
   options: OptionsChartTypeDonut
 }
+
 const line: FhiDiagramType = {
   id: FhiDiagramTypeId.line,
+  icon: 'graph-up',
+  name: 'Linjediagram',
   options: OptionsChartTypeLine
 }
+
 const mapFylker2019: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker2019,
+  icon: 'geo-alt',
+  name: 'Kart',
   options: OptionsMapFylker2019,
   isMap: true,
   mapFile: 'assets/geo-json/no-all-2019.geo.json'
 }
+
 const mapFylker: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker,
+  icon: 'geo-alt',
+  name: 'Kart',
   options: OptionsMapFylker,
   isMap: true,
   mapFile: 'assets/geo-json/no-all.geo.json'
 }
+
 const pie: FhiDiagramType = {
   id: FhiDiagramTypeId.pie,
+  icon: 'pie-chart',
+  name: 'Kakediagram',
   options: OptionsChartTypePie
 }
+
 // TODO: remove all leftovers from deprecated "csv-data"-hack
 const table: FhiDiagramType = {
   id: FhiDiagramTypeId.table,
+  icon: 'table',
+  name: 'Tabell',
   options: OptionsChartTypeLine // to create hidden chart for csv-data
 }
 
 export class FhiDiagramTypes {
-  static area = area;
+  // static area = area;
   static bar = bar;
   static barStacked = barStacked;
   static column = column;
   static columnStacked = columnStacked;
-  static donut = donut;
+  // static donut = donut;
   static line = line;
   static mapFylker2019 = mapFylker2019;
   static mapFylker = mapFylker;
-  static pie = pie;
+  // static pie = pie;
   static table = table;
 }
 
 export const FhiDiagramTypeList = [
-  area,
+  // area,
   bar,
   barStacked,
   column,
   columnStacked,
-  donut,
+  // donut,
   line,
   mapFylker2019,
   mapFylker,
-  pie,
+  // pie,
   table
 ];
