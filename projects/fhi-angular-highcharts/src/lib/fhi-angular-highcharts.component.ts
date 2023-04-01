@@ -152,12 +152,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private getErrorMsg() {
-    return `FhiAngularHighchartsComponent.ngOnChanges():
-@Input() diagramOptions === undefined
--> the FhiAngularHighchartsComponent can not be rendered.
-
-To avoid this error message: test for diagramOptions !== undefined
-before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
+    return `ERROR: @Input() diagramOptions === undefined
+    at FhiAngularHighchartsComponent.ngOnChanges
+    FhiAngularHighchartsComponent can not be rendered.
+    To avoid this error message: test for diagramOptions !== undefined
+    before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
 }
