@@ -31,26 +31,50 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
   ngOnInit() {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
-    this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
-      next: (data) => {
-        if (this.itemId === this.itemIds.Highcharts) {
+
+    if (this.itemId === this.itemIds.Highcharts) {
+      this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
+        next: (data) => {
           this.diagramOptions = {
             ...this.diagramOptions,
             data: data,
             diagramType: FhiDiagramTypes.column,
-          };
-        } else {
+          }
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        },
+        error: (e) => console.error(e),
+      });
+
+    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
+      // this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
+      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
+        next: (data) => {
           this.diagramOptions = {
             ...this.diagramOptions,
             data: data,
             diagramTypeNav: FhiDiagramTypeNavs.default
           };
-        }
-        this.dataIsLoading = false;
-        this.dataIsLoaded = true;
-      },
-      error: (e) => console.error(e),
-    });
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        },
+        error: (e) => console.error(e),
+      });
+
+    } else {
+      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
+        next: (data) => {
+          this.diagramOptions = {
+            ...this.diagramOptions,
+            data: data,
+            diagramTypeNav: FhiDiagramTypeNavs.default
+          };
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        },
+        error: (e) => console.error(e),
+      });
+    }
   }
 
   onDiagramTypeNav(diagramType: FhiDiagramType) {
