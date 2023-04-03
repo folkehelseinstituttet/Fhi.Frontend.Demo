@@ -2,20 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
 import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
-
-interface NavDiagramTypeGroup {
-  diagramType: FhiDiagramType;
-  icon: string;
-  id: string;
-  isDisabled: boolean;
-  name: string;
-}
-
-enum DiagramTypeGroupIndex {
-  table = 0,
-  map = 1,
-  chart = 2
-}
+import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
+import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 
 @Component({
   selector: 'fhi-diagram-type-nav',
@@ -30,9 +18,9 @@ export class FhiDiagramTypeNavComponent {
   @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
 
   chartSubmenuIsOpen = false;
-  navDiagramTypeGroupsOk = false;
   navChartTypes!: FhiDiagramType[];
   navDiagramTypeGroups!: NavDiagramTypeGroup[];
+  showNav = false;
 
   constructor() {
     this.navChartTypes = this.getNavChartTypes();
@@ -42,21 +30,8 @@ export class FhiDiagramTypeNavComponent {
   ngOnChanges() {
     this.setChartSubmenuIsOpen();
     this.updateNavDiagramTypeGroup();
-    this.navDiagramTypeGroupsOk = this.testNavDiagramTypeGroups();
+    this.showNav = this.testNavDiagramTypeGroups();
   }
-
-
-
-  // TODO: make a test that makes sure all NavDiagramTypeGroups
-  //       fulfill all requirements, and if so, returns true
-  //       Otherwise return false, and show getErrorMsg
-  private testNavDiagramTypeGroups(): boolean {
-    return true;
-    // this.getErrorMsg()
-  }
-
-
-
 
   navigate(diagramType: FhiDiagramType) {
     this.navigateToDiagramType.emit(diagramType);
@@ -69,12 +44,9 @@ export class FhiDiagramTypeNavComponent {
     return false;
   }
 
-  // TODO: must be set with interaction since it shouldn't be
-  //       open by default if a chartType is default diagramType
   private setChartSubmenuIsOpen() {
     if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
       this.chartSubmenuIsOpen = true;
-      // this.chartSubmenuIsOpen !== this.chartSubmenuIsOpen;
     } else {
       this.chartSubmenuIsOpen = false;
     }
@@ -113,20 +85,10 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
-    const navDiagramTableGroup = {
-      diagramType: FhiDiagramTypes.table,
-      icon: FhiDiagramTypes.table.icon,
-      id: FhiDiagramTypeGroups.table,
-      isDisabled: false,
-      name: FhiDiagramTypes.table.name
-    };
-    const navDiagramMapGroup = this.getNavDiagramMapGroup(FhiDiagramTypes.mapFylker.id);
-    const navDiagramChartGroup = this.getNavDiagramChartGroup(FhiDiagramTypes.column.id);
-
     return [
-      navDiagramTableGroup,
-      navDiagramMapGroup,
-      navDiagramChartGroup
+      NavDiagramTableGroup,
+      this.getNavDiagramMapGroup(FhiDiagramTypes.mapFylker.id),
+      this.getNavDiagramChartGroup(FhiDiagramTypes.column.id)
     ];
   }
 
@@ -160,6 +122,18 @@ export class FhiDiagramTypeNavComponent {
     });
     return navDiagramTypeGroups
       .find((group) => group.diagramType.id === diagramTypeId);
+  }
+
+  private testNavDiagramTypeGroups(): boolean {
+    if (
+      this.navDiagramTypeGroups[DiagramTypeGroupIndex.table] !== undefined
+      && this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] !== undefined
+      && this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] !== undefined
+    ) {
+      return true;
+    }
+    console.error(this.getErrorMsg());
+    return false;
   }
 
   private getErrorMsg() {

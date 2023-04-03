@@ -43,8 +43,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             ...this.diagramOptions,
             data: data,
-            diagramTypeNav: FhiDiagramTypeNavs.default,
-            diagramType: FhiDiagramTypes.line,
+            diagramTypeNav: FhiDiagramTypeNavs.default
           };
         }
         this.dataIsLoading = false;
