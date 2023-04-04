@@ -6,6 +6,7 @@ import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
+import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
 import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
@@ -18,9 +19,6 @@ import { GeoJsonService } from "./services/geo-json.service";
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-navs';
-
-import Accessibility from 'highcharts/modules/accessibility';
-Accessibility(Highcharts);
 
 
 @Component({
@@ -62,6 +60,7 @@ export class FhiAngularHighchartsComponent {
     HighchartsOfflineExporting(Highcharts);
     HighchartsExportData(Highcharts);
     HighchartsMap(Highcharts);
+    HighchartsAccessibility(Highcharts);
   }
 
   ngOnChanges() {
