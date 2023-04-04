@@ -70,7 +70,8 @@ export class FhiDiagramTypeNavComponent {
       FhiDiagramTypes.column,
       FhiDiagramTypes.bar,
       FhiDiagramTypes.columnStacked,
-      FhiDiagramTypes.barStacked
+      FhiDiagramTypes.barStacked,
+      FhiDiagramTypes.pie
     ];
   }
 

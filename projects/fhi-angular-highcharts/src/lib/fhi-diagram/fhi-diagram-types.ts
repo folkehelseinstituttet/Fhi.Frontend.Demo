@@ -111,7 +111,7 @@ export class FhiDiagramTypes {
   static line = line;
   static mapFylker2019 = mapFylker2019;
   static mapFylker = mapFylker;
-  // static pie = pie;
+  static pie = pie;
   static table = table;
 }
 
@@ -125,6 +125,6 @@ export const FhiDiagramTypeList = [
   line,
   mapFylker2019,
   mapFylker,
-  // pie,
+  pie,
   table
 ];
