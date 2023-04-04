@@ -6,8 +6,8 @@
     <ng-container *ngFor="let group of navDiagramTypeGroups">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
-              name="diagram-type-nav"
-              id="{{ group.id }}"
+              name="{{ 'diagram-type-nav' + navId }}"
+              id="{{ group.id + navId }}"
               aria-controls="diagram-type-children-nav"
               [attr.aria-haspopup]="diagramTypeGroupIsChart(group.id)"
               [disabled]="group.isDisabled"
@@ -15,7 +15,7 @@
               (change)="navigate(group.diagramType)">
 
       <label class="btn fhi-btn-group__btn"
-             for="{{ group.id }}"
+             for="{{ group.id + navId }}"
              [ngClass]="{ 'disabled': group.isDisabled }">
         <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
         {{ group.name }}
@@ -32,13 +32,14 @@
     <ng-container *ngFor="let chartType of navChartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
-              name="charttype"
-              id="{{ chartType.id }}"
+              name="{{ 'chart-type-' + navId }}"
+              name=""
+              id="{{ chartType.id + navId }}"
               [checked]="chartType.id === currentDiagramType.id"
               (change)="navigate(chartType)">
 
       <label class="btn fhi-btn-group__btn border-0"
-             for="{{ chartType.id }}">
+             for="{{ chartType.id + navId }}">
         <i [class]="'icon-md icon-' + chartType.icon"></i>
         <span class="visually-hidden">{{ chartType.name }}</span>
       </label>

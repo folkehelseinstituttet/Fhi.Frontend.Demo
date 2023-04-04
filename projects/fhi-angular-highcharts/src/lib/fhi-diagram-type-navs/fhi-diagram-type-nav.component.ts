@@ -20,11 +20,13 @@ export class FhiDiagramTypeNavComponent {
   chartSubmenuIsOpen = false;
   navChartTypes!: FhiDiagramType[];
   navDiagramTypeGroups!: NavDiagramTypeGroup[];
+  navId: number;
   showNav = false;
 
   constructor() {
     this.navChartTypes = this.getNavChartTypes();
     this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
+    this.navId = Math.floor(Math.random() * 100);
   }
 
   ngOnChanges() {

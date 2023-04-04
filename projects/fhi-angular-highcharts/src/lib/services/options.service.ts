@@ -20,7 +20,6 @@ export class OptionsService {
   constructor(private geoJsonService: GeoJsonService) {
     this.diagramTypeList = FhiDiagramTypeList;
     this.setAllStaticOptions();
-    console.log('this.allStaticOptions', this.allStaticOptions);
   }
 
   private allStaticOptions = new Map();

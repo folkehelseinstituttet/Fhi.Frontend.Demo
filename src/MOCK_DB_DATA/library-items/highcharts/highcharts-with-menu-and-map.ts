@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const HighchartsWithMenu: LibraryItem[] = [{
-  id: LibraryItemIds.HighchartsWithMenu,
-  title: 'FHI Angular Highcharts with menu (2)',
+export const HighchartsWithMenuAndMap: LibraryItem[] = [{
+  id: LibraryItemIds.HighchartsWithMenuAndMap,
+  title: 'FHI Angular Highcharts with menu',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -38,7 +38,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             ...this.diagramOptions,
             data: data,
-            diagramType: FhiDiagramTypes.column,
+            diagramType: FhiDiagramTypes.line,
           }
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -46,9 +46,8 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         error: (e) => console.error(e),
       });
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
-      // this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
-      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
+    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndMap) {
+      this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
         next: (data) => {
           this.diagramOptions = {
             ...this.diagramOptions,
@@ -61,7 +60,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         error: (e) => console.error(e),
       });
 
-    } else {
+    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
