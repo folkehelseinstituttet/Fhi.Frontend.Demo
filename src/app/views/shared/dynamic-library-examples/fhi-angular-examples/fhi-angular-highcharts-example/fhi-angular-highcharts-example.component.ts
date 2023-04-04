@@ -20,11 +20,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
 
   dataIsLoading = false;
   dataIsLoaded = false;
-  diagramOptions: FhiDiagramOptions = {
-    title: "Dødsfall etter årsak, 2008 - 2018",
-    diagramType: FhiDiagramTypes.table,
-    data: [],
-  };
+  diagramOptions!: FhiDiagramOptions;
 
   constructor(private highchartsDataService: MockDataService) {}
 
@@ -36,7 +32,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
-            ...this.diagramOptions,
+            title: "Dødsfall etter årsak, 2008 - 2018",
             data: data,
             diagramType: FhiDiagramTypes.line,
           }
@@ -50,7 +46,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
         next: (data) => {
           this.diagramOptions = {
-            ...this.diagramOptions,
+            title: "Dødsfall fordelt på fylke",
             data: data,
             diagramTypeNav: FhiDiagramTypeNavs.default
           };
@@ -64,7 +60,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
-            ...this.diagramOptions,
+            title: "Dødsfall etter årsak, 2017 - 2021",
             data: data,
             diagramTypeNav: FhiDiagramTypeNavs.default
           };

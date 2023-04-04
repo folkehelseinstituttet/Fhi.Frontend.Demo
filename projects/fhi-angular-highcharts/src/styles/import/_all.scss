@@ -9,3 +9,9 @@
 @import "../theme/column-chart";
 @import "../theme/line-chart";
 @import "../theme/map";
+
+// Blocks: all custom css for the FHI AngularHighcharts
+@import "../blocks/fhi-diagram-type-nav.block";
+@import "../blocks/fhi-highcharts-chart.block";
+@import "../blocks/fhi-highcharts-map.block";
+@import "../blocks/fhi-highcharts-table.block";
