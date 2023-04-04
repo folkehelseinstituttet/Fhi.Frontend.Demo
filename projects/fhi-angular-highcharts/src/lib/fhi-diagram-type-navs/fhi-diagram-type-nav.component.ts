@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeGroups } from '../fhi-diagram/fhi-diagram-types';
 import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
+import { DiagramTypeService } from '../services/diagram-type.service';
 
 @Component({
   selector: 'fhi-diagram-type-nav',
@@ -18,13 +19,16 @@ export class FhiDiagramTypeNavComponent {
   @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
 
   chartSubmenuIsOpen = false;
-  navChartTypes!: FhiDiagramType[];
+  chartTypes!: FhiDiagramType[];
+  mapTypes!: FhiDiagramType[];
   navDiagramTypeGroups!: NavDiagramTypeGroup[];
   navId: number;
   showNav = false;
 
-  constructor() {
-    this.navChartTypes = this.getNavChartTypes();
+  constructor(private diagramTypeService: DiagramTypeService) {
+    this.chartTypes = this.diagramTypeService.chartTypes;
+    this.mapTypes = this.diagramTypeService.chartTypes;
+
     this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
     this.navId = Math.floor(Math.random() * 100);
   }
@@ -56,30 +60,13 @@ export class FhiDiagramTypeNavComponent {
 
   private updateNavDiagramTypeGroup() {
     const chartId = this.currentDiagramType.id;
-    const chartType = this.getNavChartTypes().find(chartType => chartType.id === chartId);
+    const chartType = this.diagramTypeService.chartTypes
+      .find(chartType => chartType.id === chartId);
 
     if (chartType !== undefined
         && this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
       this.updateNavDiagramChartGroup(chartId);
     }
-  }
-
-  private getNavChartTypes(): FhiDiagramType[] {
-    return [
-      FhiDiagramTypes.line,
-      FhiDiagramTypes.column,
-      FhiDiagramTypes.bar,
-      FhiDiagramTypes.columnStacked,
-      FhiDiagramTypes.barStacked,
-      FhiDiagramTypes.pie
-    ];
-  }
-
-  private getNavMapTypes(): FhiDiagramType[] {
-    return [
-      FhiDiagramTypes.mapFylker,
-      FhiDiagramTypes.mapFylker2019
-    ];
   }
 
   private updateNavDiagramChartGroup(diagramTypeId: string) {
@@ -90,15 +77,17 @@ export class FhiDiagramTypeNavComponent {
   private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
     return [
       NavDiagramTableGroup,
-      this.getNavDiagramMapGroup(FhiDiagramTypes.mapFylker.id),
-      this.getNavDiagramChartGroup(FhiDiagramTypes.column.id)
+
+      // TODO: this should be set to default defined by user, and defult must be legal
+      this.getNavDiagramMapGroup(this.mapTypes[0].id),
+      this.getNavDiagramChartGroup(this.chartTypes[0].id)
     ];
   }
 
   private getNavDiagramMapGroup(diagramTypeId: string): NavDiagramTypeGroup {
     let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
 
-    this.getNavMapTypes().forEach(type => {
+    this.mapTypes.forEach(type => {
       navDiagramTypeGroups.push({
         diagramType: type,
         icon: type.icon,
@@ -114,7 +103,7 @@ export class FhiDiagramTypeNavComponent {
   private getNavDiagramChartGroup(diagramTypeId: string): NavDiagramTypeGroup {
     let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
 
-    this.getNavChartTypes().forEach(type => {
+    this.chartTypes.forEach(type => {
       navDiagramTypeGroups.push({
         diagramType: type,
         icon: type.icon,

@@ -5,7 +5,7 @@ import merge from 'lodash-es/merge';
 import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOptions, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
-import { FhiDiagramTypeList } from '../fhi-diagram/fhi-diagram-types';
+import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
 import { GeoJsonService } from './geo-json.service';
 import { FhiDiagramOptions, FhiDiagramSerie, FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
@@ -18,12 +18,10 @@ import { OptionsMaps } from '../highcharts-options/options-maps';
 export class OptionsService {
 
   constructor(private geoJsonService: GeoJsonService) {
-    this.diagramTypeList = FhiDiagramTypeList;
     this.setAllStaticOptions();
   }
 
   private allStaticOptions = new Map();
-  private diagramTypeList: FhiDiagramType[];
 
   updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
@@ -42,7 +40,7 @@ export class OptionsService {
   }
 
   private setAllStaticOptions() {
-    this.diagramTypeList.forEach(FhiDiagramType => {
+    FhiAllDiagramTypes.forEach(FhiDiagramType => {
       const optionsCurrentChartType = FhiDiagramType.options;
       const isMap = FhiDiagramType.isMap;
       const staticOptions = this.setStaticOptions(optionsCurrentChartType, isMap);

@@ -115,7 +115,7 @@ export class FhiDiagramTypes {
   static table = table;
 }
 
-export const FhiDiagramTypeList = [
+export const FhiAllDiagramTypes = [
   // area,
   bar,
   barStacked,
@@ -127,4 +127,19 @@ export const FhiDiagramTypeList = [
   mapFylker,
   pie,
   table
+];
+
+// This is the order used in diagram-type-navs
+export const FhiChartTypes = [
+  line,
+  column,
+  bar,
+  columnStacked,
+  barStacked,
+  pie
+];
+
+export const FhiMapTypes = [
+  mapFylker2019,
+  mapFylker
 ];

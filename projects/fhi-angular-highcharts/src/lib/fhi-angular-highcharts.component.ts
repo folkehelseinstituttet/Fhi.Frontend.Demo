@@ -12,6 +12,7 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
 import { CsvService } from './services/csv.service';
+import { DiagramTypeService } from './services/diagram-type.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
@@ -34,6 +35,8 @@ export class FhiAngularHighchartsComponent {
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavs = FhiDiagramTypeNavs;
+  numOfDimensions!: number;
+  numOfSeries!: number;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
@@ -51,6 +54,7 @@ export class FhiAngularHighchartsComponent {
     private optionsService: OptionsService,
     private chartInstanceService: ChartInstanceService,
     private csvService: CsvService,
+    private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
     private downloadService: DownloadService,
     private geoJsonService: GeoJsonService
@@ -64,6 +68,7 @@ export class FhiAngularHighchartsComponent {
   ngOnChanges() {
     try {
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.diagramTypeService.data = this.diagramOptions.data;
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
       this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 

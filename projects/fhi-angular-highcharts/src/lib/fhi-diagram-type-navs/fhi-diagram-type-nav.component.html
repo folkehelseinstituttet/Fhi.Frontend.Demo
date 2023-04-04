@@ -29,7 +29,7 @@
         aria-label="Velg graftype"
         *ngIf="chartSubmenuIsOpen">
 
-    <ng-container *ngFor="let chartType of navChartTypes; index as i">
+    <ng-container *ngFor="let chartType of chartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"
               type="radio"
               name="{{ 'chart-type-' + navId }}"
