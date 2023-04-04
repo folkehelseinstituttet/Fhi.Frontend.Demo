@@ -46,7 +46,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
         next: (data) => {
           this.diagramOptions = {
-            title: "Dødsfall fordelt på fylke",
+            title: "Dødsfall etter årsak fordelt på fylke, 2016 - 2020",
             data: data,
             diagramTypeNav: FhiDiagramTypeNavs.default
           };
