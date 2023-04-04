@@ -1,20 +1,21 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
 
-import { MockDataService } from "./mock-data.service";
-import { MockData } from "./mock-data";
+import { MockDataService } from './mock-data.service';
+import { MockData } from './mock-data';
 
 import {
   FhiDiagramOptions,
   FhiDiagramTypes,
   FhiDiagramType,
   FhiDiagramTypeNavs,
-} from "@folkehelseinstituttet/angular-highcharts";
+} from '@folkehelseinstituttet/angular-highcharts';
 
 @Component({
-  selector: "app-fhi-angular-highcharts-example",
-  templateUrl: "./fhi-angular-highcharts-example.component.html",
+  selector: 'app-fhi-angular-highcharts-example',
+  templateUrl: './fhi-angular-highcharts-example.component.html'
 })
 export class FhiAngularHighchartsExampleComponent implements OnInit {
+
   @Input() itemId!: string;
   @Input() itemIds!: any;
 

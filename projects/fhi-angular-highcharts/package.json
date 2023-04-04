@@ -1,10 +1,10 @@
 {
   "name": "@folkehelseinstituttet/angular-highcharts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0",
-    "@folkehelseinstituttet/style": "^4.0.0",
+    "@folkehelseinstituttet/style": "^5.0.0",
     "bootstrap": "^5.0.0",
     "date-fns": "~2.29.0",
     "highcharts": "~10.3.3",
