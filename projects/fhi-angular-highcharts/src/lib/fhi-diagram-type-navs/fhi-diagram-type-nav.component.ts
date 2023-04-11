@@ -27,7 +27,7 @@ export class FhiDiagramTypeNavComponent {
 
   constructor(private diagramTypeService: DiagramTypeService) {
     this.chartTypes = this.diagramTypeService.chartTypes;
-    this.mapTypes = this.diagramTypeService.chartTypes;
+    this.mapTypes = this.diagramTypeService.mapTypes;
 
     this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
     this.navId = Math.floor(Math.random() * 100);
