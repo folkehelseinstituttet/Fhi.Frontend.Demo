@@ -3,8 +3,7 @@ import { Options } from 'highcharts';
 export interface FhiDiagramType {
   id: string;
   icon?: string;
-  nameNO?: string;
-  nameEN?: string;
+  name: string;
   group?: string;
   options: Options;
   isMap?: boolean;
@@ -19,8 +18,9 @@ interface Data {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string;
-  colorIndex:	number;
-  legendIndex: number;
+  colorIndex?: number,
+  linkedTo?: string,
+  stack?: string;
 }
 
 export interface FhiDiagramOptions {

@@ -13,12 +13,13 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { ChartInstanceService } from './services/chart-instance.service';
 import { CsvService } from './services/csv.service';
+import { DiagramTypeService } from './services/diagram-type.service';
 import { DownloadService } from './services/download.service';
 import { GeoJsonService } from "./services/geo-json.service";
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-navs';
+import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 
 
 @Component({
@@ -35,6 +36,8 @@ export class FhiAngularHighchartsComponent {
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavs = FhiDiagramTypeNavs;
+  numOfDimensions!: number;
+  numOfSeries!: number;
   showDefaultChartTemplate = true;
   tableTitle!: string;
   tableHeaderRow = new Array();
@@ -52,6 +55,7 @@ export class FhiAngularHighchartsComponent {
     private optionsService: OptionsService,
     private chartInstanceService: ChartInstanceService,
     private csvService: CsvService,
+    private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
     private downloadService: DownloadService,
     private geoJsonService: GeoJsonService
@@ -66,6 +70,7 @@ export class FhiAngularHighchartsComponent {
   ngOnChanges() {
     try {
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.diagramTypeService.data = this.diagramOptions.data;
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
       this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
 
@@ -154,12 +159,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private getErrorMsg() {
-    return `FhiAngularHighchartsComponent.ngOnChanges():
-@Input() diagramOptions === undefined
--> the FhiAngularHighchartsComponent can not be rendered.
-
-To avoid this error message: test for diagramOptions !== undefined
-before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
+    return `ERROR: @Input() diagramOptions === undefined
+    at FhiAngularHighchartsComponent.ngOnChanges
+    FhiAngularHighchartsComponent can not be rendered.
+    To avoid this error message: test for diagramOptions !== undefined
+    before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
 }

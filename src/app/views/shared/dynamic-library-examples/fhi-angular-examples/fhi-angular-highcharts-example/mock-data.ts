@@ -1,6 +1,7 @@
 export enum MockData {
   OneSerieFylke = 1,
-  TwoSeriesAar = 2
+  TwoSeriesAar = 2,
+  MultipleSeriesAar = 3
 }
 
 export const MockDataSets = [{
@@ -9,4 +10,7 @@ export const MockDataSets = [{
 }, {
   index: MockData.TwoSeriesAar,
   label: 'Dødsfall etter årsak, 2008 - 2018'
+}, {
+  index: MockData.MultipleSeriesAar,
+  label: 'Dødsfall etter årsak, 2017 - 2021'
 }];

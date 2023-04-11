@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
@@ -12,6 +13,7 @@ import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-
   ],
   imports: [
     CommonModule,
+    FormsModule,
     HighchartsChartModule
   ],
   exports: [

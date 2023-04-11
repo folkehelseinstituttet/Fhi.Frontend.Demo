@@ -4,6 +4,13 @@
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
   </ng-container>
 
+  <ng-container *ngIf="itemId === itemIds.HighchartsWithMenuAndMap">
+    <fhi-angular-highcharts
+      [diagramOptions]="diagramOptions"
+      (diagramTypeNav)="onDiagramTypeNav($event)">
+    </fhi-angular-highcharts>
+  </ng-container>
+
   <ng-container *ngIf="itemId === itemIds.HighchartsWithMenu">
     <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
