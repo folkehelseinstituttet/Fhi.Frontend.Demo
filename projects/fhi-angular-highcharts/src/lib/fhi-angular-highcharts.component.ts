@@ -6,6 +6,7 @@ import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
+import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
 import { FhiDiagramOptions } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
@@ -59,6 +60,7 @@ export class FhiAngularHighchartsComponent {
     HighchartsOfflineExporting(Highcharts);
     HighchartsExportData(Highcharts);
     HighchartsMap(Highcharts);
+    HighchartsAccessibility(Highcharts);
   }
 
   ngOnChanges() {

@@ -9,10 +9,9 @@
               [id]="'navElm' + i"
               [checked]="i === 0"
               [attr.aria-haspopup]="navElement.hasChartTypes"
-              (change)="chartIsActive = navElement.hasChartTypes">
+              (change)="chartIsActive = navElement.hasChartTypes; changeChartType(navElement.icon !== null ? navElement.icon : currentChartType)">
       <label [for]="'navElm' + i" class="btn fhi-btn-group__btn"
-             [ngClass]="{ 'disabled': navElement.icon === 'geo-alt' }"
-             (click)="changeChartType(navElement.icon !== null ? navElement.icon : currentChartType)">
+             [ngClass]="{ 'disabled': navElement.icon === 'geo-alt' }">
         <i class="icon-md" [ngClass]="navElement.icon !== null ? 'icon-' + navElement.icon : 'icon-' + currentChartType"></i>
         {{ navElement.name }}
       </label>
