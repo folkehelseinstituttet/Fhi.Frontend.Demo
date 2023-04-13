@@ -1,13 +1,13 @@
 <fhi-table>
   <ng-container fhi-table.thead>
-
-    fhi-table.thead
-
+    <tr>
+      <td></td>
+      <ng-container *ngFor="let th of tableHeaderData">
+        <th scope="col">{{ th.heading }}</th>
+      </ng-container>
+    </tr>
   </ng-container>
   <ng-container fhi-table.tbody>
-
-    fhi-table.body
-
   </ng-container>
 </fhi-table>
 

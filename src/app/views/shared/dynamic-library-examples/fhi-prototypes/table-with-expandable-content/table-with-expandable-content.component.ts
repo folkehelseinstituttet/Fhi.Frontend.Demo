@@ -45,10 +45,31 @@ export class TableWithExpandableContentComponent {
 
   tableData: any = [];
 
+  tableHeaderData: any = [];
+  tableBodyData: any = [];
+
   constructor(private tableDataService: TableWithExpandableContentDataService) { }
 
   ngOnInit() {
     this.tableData = this.tableDataService.tableData();
+
+    this.tableBodyData = this.tableData;
+    this.tableHeaderData = [{
+      heading: 'Varselkode',
+      width: 100
+    }, {
+      heading: 'Første hendelse',
+      noWrap: true
+    }, {
+      heading: 'Siste hendelse',
+      noWrap: true
+    }, {
+      heading: 'Antall hendelser'
+    }, {
+      heading: 'Varsel'
+    }, {
+      heading: 'Konsekvens'
+    }];
   }
 
 }
