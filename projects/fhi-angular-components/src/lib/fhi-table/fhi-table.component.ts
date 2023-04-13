@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'fhi-table',
   templateUrl: './fhi-table.component.html',
-  styles: [
-  ]
+  encapsulation: ViewEncapsulation.None
 })
 export class FhiTableComponent {
 
