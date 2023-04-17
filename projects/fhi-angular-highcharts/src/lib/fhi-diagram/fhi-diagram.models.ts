@@ -10,7 +10,7 @@ export interface FhiDiagramType {
   mapFile?: string;
 }
 
-interface Data {
+export interface Data {
   name: string;
   y: number | string;
 }

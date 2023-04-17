@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-// import { first } from 'rxjs/operators';
 import * as Highcharts from 'highcharts';
-import { Options, Chart } from 'highcharts';
+import { Options } from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 import HighchartsExportData from 'highcharts/modules/export-data';
@@ -13,15 +12,9 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 
-// import { DownloadService } from './services/download.service';
-// import { ChartInstanceService } from './services/chart-instance.service';
-// import { CsvService } from './services/csv.service';
-// import { GeoJsonService } from "./services/geo-json.service";
-
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
-
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -56,10 +49,6 @@ export class FhiAngularHighchartsComponent {
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
-    // private downloadService: DownloadService,
-    // private chartInstanceService: ChartInstanceService,
-    // private csvService: CsvService,
-    // private geoJsonService: GeoJsonService
   ) {
     HighchartsExporting(Highcharts);
     HighchartsOfflineExporting(Highcharts);
@@ -70,30 +59,24 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
+      if (!this.diagramOptions.data) {
+        throw new Error('TODO: user need a good feedback when there is no data to show!');
+      }
+      this.diagramTypeService.series = this.diagramOptions.data;
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
-      this.diagramTypeService.data = this.diagramOptions.data;
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-        this.updateTable(this.diagramOptions.data);
+        this.updateTable(this.diagramTypeService.series);
       } else {
         // TODO: this.options -> this.highchartsOptions
         this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
       }
-      // if (this.diagramOptions.diagramType.isMap) {
-      //   this.checkIfMapIsLoaded(this.diagramOptions.diagramType);
-      // }
     } catch (error) {
       console.error(error);
       console.error(this.getErrorMsg());
     }
   }
-
-  // onChartInstance(chart: Chart) {
-  //   this.chartInstanceService.chart = chart;
-  //   this.downloadService.setConfig(this.diagramOptions);
-  //   this.csvService.csv = chart.getCSV();
-  // }
 
   onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramTypeNav.emit(diagramType);
@@ -106,16 +89,11 @@ export class FhiAngularHighchartsComponent {
       diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
       openSource: (d.openSource) ? d.openSource : true,
     }
-    // TODO: need system in OptionsService for when to render/not render anything that has to do with properties below:
-    // creditsHref?: string;
-    // creditsText?: string;
-    // disclaimer?: string;
-    // lastUpdated?: string;
   }
 
-  private updateTable(data: FhiDiagramSerie[]) {
-    this.tableHeaderRow = this.tableService.getHeaderRow(data);
-    // this.tableBodyRows = this.tableService.getDataRows(data);
+  private updateTable(series: FhiDiagramSerie[]) {
+    this.tableHeaderRow = this.tableService.getHeaderRow(series);
+    this.tableBodyRows = this.tableService.getDataRows(series);
     this.tableTitle = this.diagramOptions.title;
     this.tableLastUpdated = this.diagramOptions.lastUpdated;
     this.tableDisclaimer = this.diagramOptions.disclaimer;
@@ -125,31 +103,9 @@ export class FhiAngularHighchartsComponent {
     // TODO: solution for generating table data without using csv from Highcharts
     // this.csvService.csv = this.tableService.getCsv(options);
 
+    // TODO: add data-menu for testing data-update, and see if changeDetector is still needed
     this.changeDetector.detectChanges();
   }
-
-  // private checkIfMapIsLoaded(diagramtype: FhiDiagramType) {
-  //   if (Highcharts.maps[diagramtype.id]) {
-  //     this.updateMap(Highcharts.maps[diagramtype.id]);
-  //   } else {
-  //     this.loadMap(diagramtype);
-  //   }
-  // }
-
-  // private updateMap(map: any) {
-  //   this.geoJsonService.updateMapFeatures(map);
-  //   this.allMapsLoaded = true;
-  //   this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-  //   this.changeDetector.detectChanges();
-  // }
-
-  // private loadMap(diagramtype: FhiDiagramType) {
-  //   this.geoJsonService.getMap(diagramtype.mapFile)
-  //     .pipe(first()).subscribe(map => {
-  //       this.geoJsonService.addMapToHighcharts(Highcharts, map, diagramtype.id);
-  //       this.updateMap(map);
-  //     });
-  // }
 
   private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
     if (diagramtype.id === FhiDiagramTypes.table.id) {

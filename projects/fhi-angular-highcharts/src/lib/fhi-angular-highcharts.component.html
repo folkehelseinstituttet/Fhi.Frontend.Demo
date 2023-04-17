@@ -72,7 +72,7 @@
           <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
             <ng-container *ngFor="let tableCellData of tableRow; let i = index">
               <th *ngIf="i === 0" scope="row" class="fhi-highcharts-table__cell">{{ tableCellData }}</th>
-              <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">{{ tableCellData | number }}</td>
+              <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">{{ tableCellData }}</td>
             </ng-container>
           </tr>
         </tbody>
