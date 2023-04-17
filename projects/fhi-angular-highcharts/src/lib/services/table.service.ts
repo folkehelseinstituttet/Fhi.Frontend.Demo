@@ -13,10 +13,11 @@ export class TableService {
     return tableHeaderRow;
   }
 
-  getDataRows(series: FhiDiagramSerie[]): any[][] {
-    // Generate first column in rows
+  getDataRows(series: FhiDiagramSerie[]): string[][] {
     let dataArray = this.getDataArray(series[0]);
     const tableBodyRows = new Array(dataArray.length);
+
+    // Generate first column in rows
     for (let j = 0; j < dataArray.length; j++) {
       tableBodyRows[j] = new Array(series.length + 1); // +1 = Label column
       tableBodyRows[j][0] = dataArray[j].name;
