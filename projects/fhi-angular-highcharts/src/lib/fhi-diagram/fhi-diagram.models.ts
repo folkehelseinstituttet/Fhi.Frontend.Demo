@@ -12,7 +12,7 @@ export interface FhiDiagramType {
 
 interface Data {
   name: string;
-  y: number;
+  y: number | string;
 }
 
 export interface FhiDiagramSerie {
