@@ -1,19 +1,31 @@
 import { Injectable } from '@angular/core';
 
+import { FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
 
-  getHeaderRow(options: Highcharts.Options): string[] {
-    if (!options.series) {
-      throw new Error('TableService.getHeaderRow() -> options.series is undefined');
+  getHeaderRow(data: FhiDiagramSerie[]): string[] {
+    if (!data) {
+      throw new Error('TableService.getHeaderRow() -> data is undefined');
     }
     // Generate header row
-    const tableHeaderRow = options.series.map(s => s.name) as string[];
+    const tableHeaderRow = data.map(s => s.name) as string[];
     tableHeaderRow.unshift('');
     return tableHeaderRow;
   }
+
+  // getHeaderRow(options: Highcharts.Options): string[] {
+  //   if (!options.series) {
+  //     throw new Error('TableService.getHeaderRow() -> options.series is undefined');
+  //   }
+  //   // Generate header row
+  //   const tableHeaderRow = options.series.map(s => s.name) as string[];
+  //   tableHeaderRow.unshift('');
+  //   return tableHeaderRow;
+  // }
 
   getDataRows(options: Highcharts.Options, includeSumRow: boolean = false): any[][] {
     if (!options.series) {
@@ -50,23 +62,23 @@ export class TableService {
     return tableBodyRows;
   }
 
-  getCsv(options: Highcharts.Options): string {
-    let headerRow = this.getHeaderRow(options);
-    let result = headerRow.map((x) => {
-      return '"' + x + '"'
-    }).join(';')+'\n';
+  // getCsv(options: Highcharts.Options): string {
+  //   let headerRow = this.getHeaderRow(options);
+  //   let result = headerRow.map((x) => {
+  //     return '"' + x + '"'
+  //   }).join(';')+'\n';
 
-    let dataRows = this.getDataRows(options, false);
-    dataRows.forEach((dataRow, idx, array) => {
-      result += dataRow.map((x) => {
-        return isNaN(x) ? '"' + x + '"' : x
-      }).join(';');
+  //   let dataRows = this.getDataRows(options, false);
+  //   dataRows.forEach((dataRow, idx, array) => {
+  //     result += dataRow.map((x) => {
+  //       return isNaN(x) ? '"' + x + '"' : x
+  //     }).join(';');
 
-      // Add linefeed except last line
-      if (idx < array.length - 1) result += '\n';
-    });
-    return result;
-  }
+  //     // Add linefeed except last line
+  //     if (idx < array.length - 1) result += '\n';
+  //   });
+  //   return result;
+  // }
 
   private getDataArray(serie: Highcharts.SeriesOptionsType): Array<any> {
     const data = (<any>serie).data;

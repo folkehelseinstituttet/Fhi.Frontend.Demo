@@ -45,7 +45,8 @@ export class MockDataService {
             },
             {
                 "name": "Innlandet",
-                "y": 3360
+                "y": ":"
+                // "y": 3360
             },
             {
                 "name": "Møre og Romsdal",

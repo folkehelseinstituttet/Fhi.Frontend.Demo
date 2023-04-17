@@ -6,8 +6,8 @@ import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOption
 import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
-import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie, FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
+// import { GeoJsonService } from './geo-json.service';
+import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -17,7 +17,8 @@ import { OptionsMaps } from '../highcharts-options/options-maps';
 })
 export class OptionsService {
 
-  constructor(private geoJsonService: GeoJsonService) {
+  // constructor(private geoJsonService: GeoJsonService) {
+  constructor() {
     this.setAllStaticOptions();
   }
 
@@ -78,7 +79,7 @@ export class OptionsService {
 
   private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
-      return [this.geoJsonService.getHighmapsSerie(series[0])];
+      // return [this.geoJsonService.getHighmapsSerie(series[0])];
     } else {
       return series as SeriesOptionsType[];
     }
