@@ -34,12 +34,12 @@
 
 
 <ng-template #checkAndUncheckAll let-items="items">
-  <button type="button" class="btn fhi-btn-flat"
+  <button type="button" class="btn fhi-tree-view-checkbox__check-all"
     *ngIf="items.length > 1 && !allItemsChecked(items)"
     (click)="checkAll(items)">
     Velg alle
   </button>
-  <button type="button" class="btn fhi-btn-flat"
+  <button type="button" class="btn fhi-tree-view-checkbox__check-all"
     *ngIf="items.length > 1 && allItemsChecked(items)"
     (click)="uncheckAll(items)">
     Fjern alle
