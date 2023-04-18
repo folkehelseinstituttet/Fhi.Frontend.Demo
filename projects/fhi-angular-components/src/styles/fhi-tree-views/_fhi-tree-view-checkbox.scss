@@ -25,8 +25,8 @@
         font-size: $fhi-core-font-size-2;
         font-family: $fhi-core-font-family-sans-serif-regular;
         height: unset;
-        margin: $fhi-core-space-1 0 $fhi-core-space-3;
-        padding: 0;
+        margin: 0 0 $fhi-core-space-2 (-$fhi-core-space-1);
+        padding: $fhi-core-space-1;
 
         &:hover {
             color: $fhi-core-blue-1;
