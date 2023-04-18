@@ -22,14 +22,27 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
+  MockData = MockData;
 
   constructor(private highchartsDataService: MockDataService) {}
 
   ngOnInit() {
+    if (this.itemId === this.itemIds.Highcharts) {
+      this.loadData(MockData.TwoSeriesAar);
+
+    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndMap) {
+      this.loadData(MockData.OneSerieFylke);
+
+    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
+      this.loadData(MockData.MultipleSeriesAar);
+    }
+  }
+
+  loadData(dataSetIndex: number) {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    if (this.itemId === this.itemIds.Highcharts) {
+    if (dataSetIndex === MockData.TwoSeriesAar) {
       this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
@@ -44,7 +57,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         error: (e) => console.error(e),
       });
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndMap) {
+    } else if (dataSetIndex === MockData.OneSerieFylke) {
       this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
         next: (data) => {
           this.diagramOptions = {
@@ -58,7 +71,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         error: (e) => console.error(e),
       });
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
+    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {

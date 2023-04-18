@@ -37,10 +37,8 @@
   <highcharts-chart
     class="fhi-highcharts-chart"
     [Highcharts]="Highcharts"
-    [options]="options">
+    [options]="highchartsOptions">
   </highcharts-chart>
-    <!-- (chartInstance)="onChartInstance($event)">
-  </highcharts-chart> -->
 </ng-template>
 
 <ng-template #map>
@@ -48,10 +46,8 @@
     class="fhi-highcharts-map"
     [Highcharts]="Highcharts"
     [constructorType]="'mapChart'"
-    [options]="options">
+    [options]="highchartsOptions">
   </highcharts-chart>
-    <!-- (chartInstance)="onChartInstance($event)">
-  </highcharts-chart> -->
 </ng-template>
 
 <ng-template #table>

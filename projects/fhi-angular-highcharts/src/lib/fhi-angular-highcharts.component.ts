@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Options } from 'highcharts';
 import HighchartsExporting from 'highcharts/modules/exporting';
@@ -24,7 +24,7 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
 export class FhiAngularHighchartsComponent {
 
   Highcharts: typeof Highcharts = Highcharts;
-  options!: Options;
+  highchartsOptions!: Options;
 
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
@@ -45,7 +45,6 @@ export class FhiAngularHighchartsComponent {
   @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
@@ -69,8 +68,7 @@ export class FhiAngularHighchartsComponent {
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable(this.diagramTypeService.series);
       } else {
-        // TODO: this.options -> this.highchartsOptions
-        this.options = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
+        this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
       }
     } catch (error) {
       console.error(error);
@@ -95,16 +93,6 @@ export class FhiAngularHighchartsComponent {
     this.tableHeaderRow = this.tableService.getHeaderRow(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
     this.tableTitle = this.diagramOptions.title;
-    this.tableLastUpdated = this.diagramOptions.lastUpdated;
-    this.tableDisclaimer = this.diagramOptions.disclaimer;
-    this.tableCreditsHref = this.diagramOptions.creditsHref;
-    this.tableCreditsText = this.diagramOptions.creditsText;
-
-    // TODO: solution for generating table data without using csv from Highcharts
-    // this.csvService.csv = this.tableService.getCsv(options);
-
-    // TODO: add data-menu for testing data-update, and see if changeDetector is still needed
-    this.changeDetector.detectChanges();
   }
 
   private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
@@ -122,8 +110,8 @@ export class FhiAngularHighchartsComponent {
     return `ERROR: @Input() diagramOptions === undefined
     at FhiAngularHighchartsComponent.ngOnChanges
     FhiAngularHighchartsComponent can not be rendered.
-    To avoid this error message: test for diagramOptions !== undefined
-    before calling <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
+    To avoid this error message: test for yourOptions !== undefined before calling
+    <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
 }
