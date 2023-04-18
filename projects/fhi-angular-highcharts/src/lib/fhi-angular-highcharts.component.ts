@@ -33,9 +33,14 @@ export class FhiAngularHighchartsComponent {
   numOfDimensions!: number;
   numOfSeries!: number;
   showDefaultChartTemplate = true;
-  tableTitle!: string;
   tableHeaderRow = new Array();
   tableBodyRows = new Array();
+
+  // TODO: the following is not just for table but should be rendered
+  //       as HTML for Highcharts as well.
+  //       Simplified solution without fancy styling must be created
+  //       use with Highcarts when download as SVG/PDF
+  tableTitle!: string;
   tableLastUpdated!: string;
   tableDisclaimer!: string;
   tableCreditsHref!: string;
@@ -58,9 +63,6 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
-      if (!this.diagramOptions.data) {
-        throw new Error('TODO: user need a good feedback when there is no data to show!');
-      }
       this.diagramTypeService.series = this.diagramOptions.data;
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
@@ -108,9 +110,12 @@ export class FhiAngularHighchartsComponent {
 
   private getErrorMsg() {
     return `ERROR: @Input() diagramOptions === undefined
+    or @Input() diagramOptions.data === undefined
     at FhiAngularHighchartsComponent.ngOnChanges
     FhiAngularHighchartsComponent can not be rendered.
-    To avoid this error message: test for yourOptions !== undefined before calling
+    To avoid this error message:
+    test for yourOptions !== undefined
+    and yourOptions.data !== undefined before calling
     <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
   }
 
