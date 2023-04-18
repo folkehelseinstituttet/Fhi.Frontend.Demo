@@ -58,7 +58,8 @@ export class MockDataService {
             },
             {
                 "name": "Oslo",
-                "y": 2814
+                "y": "."
+                // "y": 2814
             },
             {
                 "name": "Rogaland",
