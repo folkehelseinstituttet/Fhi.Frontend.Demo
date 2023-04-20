@@ -87,7 +87,7 @@ export class OptionsService {
       highchartsSeries.forEach((serie, index) => {
         // Add anonymized to FhiDiagramSerie
         series[index].dataAnonymized = serie.data
-          .filter(dataPoint =>  typeof dataPoint.y === 'string') as DataAnonymized[];
+          .filter(dataPoint => typeof dataPoint.y === 'string') as DataAnonymized[];
 
         // Remove anonymized from Highcharts options series
         serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
