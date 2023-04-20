@@ -41,12 +41,12 @@ export class MockDataService {
         "data": [
             {
                 "name": "Agder",
-                "y": 1698
+                "y": ":"
+                // "y": 1698
             },
             {
                 "name": "Innlandet",
-                "y": ":"
-                // "y": 3360
+                "y": 3360
             },
             {
                 "name": "Møre og Romsdal",

@@ -7,7 +7,7 @@ import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
 // import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
+import { FhiDiagramOptions, FhiDiagramSerie, DataAnonymized } from '../fhi-diagram/fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -79,9 +79,20 @@ export class OptionsService {
 
   private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
+      // TODO: MAP
       // return [this.geoJsonService.getHighmapsSerie(series[0])];
+
     } else {
-      return series as SeriesOptionsType[];
+      const highchartsSeries = cloneDeep(series);
+      highchartsSeries.forEach((serie, index) => {
+        // Add anonymized to FhiDiagramSerie
+        series[index].dataAnonymized = serie.data
+          .filter(dataPoint =>  typeof dataPoint.y === 'string') as DataAnonymized[];
+
+        // Remove anonymized from Highcharts options series
+        serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
+      });
+      return highchartsSeries as SeriesOptionsType[];
     }
   }
 

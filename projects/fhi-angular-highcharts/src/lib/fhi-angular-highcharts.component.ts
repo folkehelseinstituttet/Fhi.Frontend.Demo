@@ -7,7 +7,7 @@ import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { FhiDiagramOptions, FhiDiagramSerie } from './fhi-diagram/fhi-diagram.models';
+import { DataAnonymizedSerie, FhiDiagramOptions, FhiDiagramSerie } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
@@ -26,6 +26,7 @@ export class FhiAngularHighchartsComponent {
   Highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
 
+  anonymizedSeries: DataAnonymizedSerie[] = [];
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
@@ -71,6 +72,7 @@ export class FhiAngularHighchartsComponent {
         this.updateTable(this.diagramTypeService.series);
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
+        this.setAnonymized()
       }
     } catch (error) {
       console.error(error);
@@ -80,6 +82,13 @@ export class FhiAngularHighchartsComponent {
 
   onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramTypeNav.emit(diagramType);
+  }
+
+  tableCellDataOK(data: number | string): boolean {
+    if (typeof data === "number") {
+      return true;
+    }
+    return false;
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
@@ -106,6 +115,17 @@ export class FhiAngularHighchartsComponent {
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     return FhiDiagramTypeGroups.chart
+  }
+
+  private setAnonymized() {
+    this.diagramOptions.data.forEach((serie, index) => {
+      if (serie.dataAnonymized !== undefined) {
+        this.anonymizedSeries[index] = {
+          name: serie.name,
+          dataAnonymized: serie.dataAnonymized
+        };
+      }
+    });
   }
 
   private getErrorMsg() {
