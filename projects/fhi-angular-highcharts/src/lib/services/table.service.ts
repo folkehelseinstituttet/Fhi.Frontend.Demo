@@ -10,7 +10,10 @@ export class TableService {
 
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const tmpHeaderRow = series.map(s => s.name) as string[];
+
+    // TODO: get rid of this
     tmpHeaderRow.unshift('');
+    console.log('tmpHeaderRow', tmpHeaderRow);
 
     const tableHeaderRowCount = tmpHeaderRow[1].split(',').length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
@@ -22,9 +25,7 @@ export class TableService {
 
       tableHeaderRows[j] = new Array(series.length + 1); // + 1 = Label column
       tableHeaderRows[0][0] = {
-        name: undefined,
-        colspan: null,
-        rowspan: tmpHeaderRow[1].split(',').length
+        rowspan: tableHeaderRowCount
       };
       if (j > 0) {
         tableHeaderRows[j][0] = undefined;
@@ -40,17 +41,14 @@ export class TableService {
           colspan = i - iPreviouForColspan;
           tableHeaderRows[j][i] = {
             name: currentCellName,
-            colspan: colspan,
-            rowspan: null
+            colspan: colspan
           };
           tableHeaderRows[j][1].colspan =  (colspan) ? colspan : splitHeader.length
           iPreviouForColspan = i;
         }
         if (isLastRow && !isFirstColumn) {
           tableHeaderRows[j][i] = {
-            name: currentCellName,
-            colspan: null,
-            rowspan: null
+            name: currentCellName
           };
         }
         previousCellName = currentCellName;

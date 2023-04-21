@@ -1,9 +1,9 @@
 import { Options } from 'highcharts';
 
 export interface TableHeaderCell {
-  name: string;
-  colspan: number;
-  rowspan: number;
+  name?: string;
+  colspan?: number;
+  rowspan?: number;
 }
 
 export interface FhiDiagramType {
