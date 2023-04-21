@@ -49,6 +49,8 @@ export class TableService {
 
     for (let j = 0; j < newTableHeaderRows.length; j++) {
       const isLastRow = j + 1 === tableHeaderRowCount;
+      let previousCellName: string;
+      let colspan: number;
 
       newTableHeaderRows[j] = new Array(series.length + 1); // + 1 = Label column
       newTableHeaderRows[0][0] = {
@@ -57,45 +59,23 @@ export class TableService {
       newTableHeaderRows[j][0] = undefined;
 
       for (let i = 0; i < tmpHeaderRow.length; i++) {
-
         const isFirstColumn = i === 0;
         const splitHeader = tmpHeaderRow[i].split(',');
+        const currentCellName = splitHeader[j];
 
-
-        // Alle runder unntatt den siste: må finne et modulo utrykk som blir riktig i alle runder
-        let modulo: number = 0; //(i % splitHeader.length)
-
-        if (!isLastRow && !isFirstColumn && modulo === 0) {
+        if (!isLastRow && !isFirstColumn && currentCellName !== previousCellName) {
           newTableHeaderRows[j][i] = {
-            name: splitHeader[j]
-          //   colspan: (() => {
-          //     if (tmpHeaderRow[j + 1] === undefined) {
-          //       return;
-          //     }
-          //     newTableHeaderRows[j + 1].forEach(i => {
-          //       console.log('i', i);
-          //     });
-          //     return 1
-          //   })()
+            name: currentCellName
           };
         }
-        // if (newTableHeaderRows[j - 1] !== undefined) {
-        //   // typeof newTableHeaderRows[j - 1][i] === 'object'
-        //   // console.log('newTableHeaderRows[j - 1][i]', newTableHeaderRows[j - 1][i]);
-        //   // console.log('newTableHeaderRows[j - 1]', newTableHeaderRows[j - 1]);
-        //   // newTableHeaderRows[j - 1][i].colespan = 2
-        // }
-
-        // Siste runde: Alle skal med, ingen clospan
-        if (isLastRow) {
+        if (isLastRow && !isFirstColumn) {
           newTableHeaderRows[j][i] = {
-            name: splitHeader[j]
+            name: currentCellName
           };
         }
-
-      } // end for i
-    } // end for j
-
+        previousCellName = currentCellName;
+      }
+    }
 
     console.log('newTableHeaderRows', newTableHeaderRows);
 
