@@ -1,85 +1,62 @@
 import { Injectable } from '@angular/core';
 
-import { Data, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagram.models';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
 
-  getHeaderRow(series: FhiDiagramSerie[]): string[] {
-    const tableHeaderRow = series.map(s => s.name) as string[];
-    tableHeaderRow.unshift('');
-
-
-    // const newTableHeaderRows = new Array(tableHeaderRow[1].split(',').length);
-    const tmpHeaders = [
-        {
-            "name": "Hjerteinfarkt, Kvinne, A",
-        }, {
-            "name": "Hjerteinfarkt, Kvinne, B",
-        }, {
-            "name": "Hjerteinfarkt, Mann, A",
-        }, {
-            "name": "Hjerteinfarkt, Mann, B",
-        }, {
-            "name": "Annen iskemisk hjertesykdom, Kvinne, A",
-        }, {
-            "name": "Annen iskemisk hjertesykdom, Kvinne, B",
-        }, {
-            "name": "Annen iskemisk hjertesykdom, Mann, A",
-        }, {
-            "name": "Annen iskemisk hjertesykdom, Mann, B",
-        }, {
-            "name": "Karsykdommer i hjernen, Kvinne, A",
-        }, {
-            "name": "Karsykdommer i hjernen, Kvinne, B",
-        }, {
-            "name": "Karsykdommer i hjernen, Mann, A",
-        }, {
-            "name": "Karsykdommer i hjernen, Mann, B",
-        }
-    ];
-    const tmpHeaderRow = tmpHeaders.map(s => s.name) as string[];
+  getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
+    const tmpHeaderRow = series.map(s => s.name) as string[];
     tmpHeaderRow.unshift('');
 
     const tableHeaderRowCount = tmpHeaderRow[1].split(',').length;
-    const newTableHeaderRows = new Array(tableHeaderRowCount);
+    const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
-
-    for (let j = 0; j < newTableHeaderRows.length; j++) {
+    for (let j = 0; j < tableHeaderRows.length; j++) {
       const isLastRow = j + 1 === tableHeaderRowCount;
       let previousCellName: string;
-      let colspan: number;
+      let iPreviouForColspan: number;
 
-      newTableHeaderRows[j] = new Array(series.length + 1); // + 1 = Label column
-      newTableHeaderRows[0][0] = {
+      tableHeaderRows[j] = new Array(series.length + 1); // + 1 = Label column
+      tableHeaderRows[0][0] = {
+        name: undefined,
+        colspan: null,
         rowspan: tmpHeaderRow[1].split(',').length
       };
-      newTableHeaderRows[j][0] = undefined;
+      if (j > 0) {
+        tableHeaderRows[j][0] = undefined;
+      }
 
       for (let i = 0; i < tmpHeaderRow.length; i++) {
         const isFirstColumn = i === 0;
         const splitHeader = tmpHeaderRow[i].split(',');
         const currentCellName = splitHeader[j];
+        let colspan: number;
 
         if (!isLastRow && !isFirstColumn && currentCellName !== previousCellName) {
-          newTableHeaderRows[j][i] = {
-            name: currentCellName
+          colspan = i - iPreviouForColspan;
+          tableHeaderRows[j][i] = {
+            name: currentCellName,
+            colspan: colspan,
+            rowspan: null
           };
+          tableHeaderRows[j][1].colspan =  (colspan) ? colspan : splitHeader.length
+          iPreviouForColspan = i;
         }
         if (isLastRow && !isFirstColumn) {
-          newTableHeaderRows[j][i] = {
-            name: currentCellName
+          tableHeaderRows[j][i] = {
+            name: currentCellName,
+            colspan: null,
+            rowspan: null
           };
         }
         previousCellName = currentCellName;
       }
     }
-
-    console.log('newTableHeaderRows', newTableHeaderRows);
-
-    return tableHeaderRow;
+    return tableHeaderRows;
   }
 
   getDataRows(series: FhiDiagramSerie[]): string[][] {
@@ -99,9 +76,6 @@ export class TableService {
         tableBodyRows[j][i + 1] = dataArray[j].y;
       }
     }
-
-    console.log('tableBodyRows', tableBodyRows);
-
     return tableBodyRows;
   }
 

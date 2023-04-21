@@ -59,12 +59,21 @@
     <div class="table-responsive">
       <table class="table table-striped table-sm mt-3">
         <thead>
-          <tr class="fhi-highcharts-table__row">
-            <th *ngFor="let tableCellData of tableHeaderRow; let i = index"
-                [scope]="i === 0 ? 'row' : 'col'"
-                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header">
-              <span>{{ tableCellData }}</span>
-            </th>
+          <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
+            <ng-container *ngFor="let tableCellData of headerRow; let i = index">
+              <ng-container *ngIf="tableCellData">
+                <td class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                    [attr.rowspan]="(tableCellData.rowspan) ? tableCellData.rowspan : null"
+                    *ngIf="i === 0; else tableHeaderCell"></td>
+                <ng-template #tableHeaderCell>
+                  <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                      [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
+                      scope="col">
+                    <span>{{ tableCellData.name }}</span>
+                  </th>
+                </ng-template>
+              </ng-container>
+            </ng-container>
           </tr>
         </thead>
         <tbody>

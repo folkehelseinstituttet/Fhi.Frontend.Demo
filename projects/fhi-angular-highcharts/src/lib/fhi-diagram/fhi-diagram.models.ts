@@ -1,5 +1,11 @@
 import { Options } from 'highcharts';
 
+export interface TableHeaderCell {
+  name: string;
+  colspan: number;
+  rowspan: number;
+}
+
 export interface FhiDiagramType {
   id: string;
   icon?: string;

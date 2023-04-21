@@ -34,7 +34,7 @@ export class FhiAngularHighchartsComponent {
   numOfDimensions!: number;
   numOfSeries!: number;
   showDefaultChartTemplate = true;
-  tableHeaderRow = new Array();
+  tableHeaderRows = new Array();
   tableBodyRows = new Array();
 
   // TODO: the following is not just for table but should be rendered
@@ -101,7 +101,7 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateTable(series: FhiDiagramSerie[]) {
-    this.tableHeaderRow = this.tableService.getHeaderRow(series);
+    this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
     this.tableTitle = this.diagramOptions.title;
   }
