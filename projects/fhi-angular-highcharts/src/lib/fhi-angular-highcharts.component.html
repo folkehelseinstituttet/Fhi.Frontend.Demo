@@ -37,9 +37,11 @@
   <highcharts-chart
     class="fhi-highcharts-chart"
     [Highcharts]="Highcharts"
-    [options]="options"
-    (chartInstance)="onChartInstance($event)">
+    [options]="highchartsOptions">
   </highcharts-chart>
+
+  <!-- DEBUGGING -->
+  <!-- <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre> -->
 </ng-template>
 
 <ng-template #map>
@@ -47,8 +49,7 @@
     class="fhi-highcharts-map"
     [Highcharts]="Highcharts"
     [constructorType]="'mapChart'"
-    [options]="options"
-    (chartInstance)="onChartInstance($event)">
+    [options]="highchartsOptions">
   </highcharts-chart>
 </ng-template>
 
@@ -61,7 +62,7 @@
           <tr class="fhi-highcharts-table__row">
             <th *ngFor="let tableCellData of tableHeaderRow; let i = index"
                 [scope]="i === 0 ? 'row' : 'col'"
-                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--header">
+                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header">
               <span>{{ tableCellData }}</span>
             </th>
           </tr>
@@ -69,8 +70,18 @@
         <tbody>
           <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
             <ng-container *ngFor="let tableCellData of tableRow; let i = index">
-              <th *ngIf="i === 0" scope="row" class="fhi-highcharts-table__cell">{{ tableCellData }}</th>
-              <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">{{ tableCellData | number }}</td>
+              <th *ngIf="i === 0" scope="row"
+                   class="fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
+                {{ tableCellData }}
+              </th>
+              <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
+                <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
+                  {{ tableCellData | number }}
+                </ng-container>
+                <ng-template #tableCellDataIsString>
+                  {{ tableCellData }}
+                </ng-template>
+              </td>
             </ng-container>
           </tr>
         </tbody>

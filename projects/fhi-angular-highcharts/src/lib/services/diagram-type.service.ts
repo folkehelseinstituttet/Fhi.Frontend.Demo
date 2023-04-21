@@ -10,11 +10,15 @@ import { FhiDiagramTypeId } from '../fhi-diagram/fhi-diagram-type-id';
 export class DiagramTypeService {
   private _chartTypes!: FhiDiagramType[];
   private _mapTypes!: FhiDiagramType[];
-  private _data!: FhiDiagramSerie[];
+  private _series!: FhiDiagramSerie[];
 
-  set data(data: FhiDiagramSerie[]) {
-    this._data = data;
+  set series(series: FhiDiagramSerie[]) {
+    this._series = series;
     this.updateAvailableTypes();
+  }
+
+  get series(): FhiDiagramSerie[] {
+    return this._series;
   }
 
   get chartTypes(): FhiDiagramType[] {
@@ -61,11 +65,11 @@ export class DiagramTypeService {
   }
 
   private getNumberOfSeries(): number {
-    return this._data.length;
+    return this._series.length;
   }
 
   private getNumberOfDimensions(): number {
-    const nameFirstSerie = this._data[0].name;
+    const nameFirstSerie = this._series[0].name;
     return nameFirstSerie.split(',').length + 1;
   }
 

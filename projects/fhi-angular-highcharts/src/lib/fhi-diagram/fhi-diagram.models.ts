@@ -10,13 +10,24 @@ export interface FhiDiagramType {
   mapFile?: string;
 }
 
-interface Data {
+export interface Data {
   name: string;
-  y: number;
+  y: number | string;
+}
+
+export interface DataAnonymized {
+  name: string;
+  y: string;
+}
+
+export interface DataAnonymizedSerie {
+  name: string;
+  dataAnonymized: Array<DataAnonymized>;
 }
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
+  dataAnonymized?: Array<DataAnonymized>;
   name:	string;
   colorIndex?: number,
   linkedTo?: string,
