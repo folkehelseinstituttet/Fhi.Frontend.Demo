@@ -1,4 +1,17 @@
 .fhi-highcharts-table {
+    &__cell {
+        text-align: end;
+    }
+
+    &__cell--col-header {
+        border-right: 1px solid $white;
+        text-align: center;
+    }
+
+    &__cell--row-header {
+        text-align: start;
+    }
+
     &__footer p,
     &__footer a {
         font-family: $font-family-highcharts-regular;

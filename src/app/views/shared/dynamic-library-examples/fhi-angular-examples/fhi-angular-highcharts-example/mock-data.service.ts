@@ -41,7 +41,8 @@ export class MockDataService {
         "data": [
             {
                 "name": "Agder",
-                "y": 1698
+                "y": ":"
+                // "y": 1698
             },
             {
                 "name": "Innlandet",
@@ -57,7 +58,8 @@ export class MockDataService {
             },
             {
                 "name": "Oslo",
-                "y": 2814
+                "y": "."
+                // "y": 2814
             },
             {
                 "name": "Rogaland",
