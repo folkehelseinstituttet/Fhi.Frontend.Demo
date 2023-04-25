@@ -19,11 +19,11 @@ function getExampleHtml(): string {
 <div class="row gx-3 gx-sm-5">
   <div class="col-auto col-md-6 mb-3 mb-md-5">
     <a href="javascript:void(0)" class="fhi-navigation-tile">
-      <p class="fhi-navigation-tile__heading">Overskrift</p>
-      <p class="fhi-navigation-tile__description">Kort, beskrivende tekst.</p>
       <span class="fhi-navigation-tile__icon">
         <i class="icon-check"></i>
       </span>
+      <p class="fhi-navigation-tile__heading">Overskrift</p>
+      <p class="fhi-navigation-tile__description">Kort, beskrivende tekst.</p>
     </a>
   </div>
 
