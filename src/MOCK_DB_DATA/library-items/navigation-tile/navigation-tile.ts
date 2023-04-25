@@ -43,7 +43,9 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <a href="#" class="fhi-navigation-tile">
+  <!-- Overskrift er påkrevd -->
   <p class="fhi-navigation-tile__heading">Overskrift</p>
+
   <p class="fhi-navigation-tile__description">Kort, beskrivende tekst.</p>
   <span class="fhi-navigation-tile__icon">
     <i class="icon-[name]"></i>
