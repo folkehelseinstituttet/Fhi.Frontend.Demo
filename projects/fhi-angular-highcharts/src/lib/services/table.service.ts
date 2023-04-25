@@ -8,12 +8,9 @@ import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagr
 })
 export class TableService {
 
-  getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
+  getHeaderRows__OLD(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const tmpHeaderRow = series.map(s => s.name) as string[];
-
-    // TODO: get rid of this
     tmpHeaderRow.unshift('');
-    console.log('tmpHeaderRow', tmpHeaderRow);
 
     const tableHeaderRowCount = tmpHeaderRow[1].split(',').length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
@@ -54,6 +51,42 @@ export class TableService {
         previousCellName = currentCellName;
       }
     }
+    return tableHeaderRows;
+  }
+
+  getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
+    const commaSeparatedHeaderRow = series.map(s => s.name) as string[];
+    const tableHeaderRowCount = commaSeparatedHeaderRow[0].split(',').length;
+    const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
+
+    for (let j = 0; j < tableHeaderRows.length; j++) {
+      const isLastRow = j + 1 === tableHeaderRowCount;
+      let previousCellName: string;
+      tableHeaderRows[j] = new Array(series.length);
+
+      for (let i = 0; i < commaSeparatedHeaderRow.length; i++) {
+        const splitHeader = commaSeparatedHeaderRow[i].split(',');
+        const currentCellName = splitHeader[j];
+
+        console.log('splitHeader', splitHeader);
+
+        if (!isLastRow && currentCellName !== previousCellName) {
+          tableHeaderRows[j][i] = {
+            name: currentCellName,
+            colspan: splitHeader.length
+          };
+        }
+        if (isLastRow) {
+          tableHeaderRows[j][i] = { name: currentCellName };
+        }
+        previousCellName = currentCellName;
+      }
+      tableHeaderRows[j].unshift(undefined); // Label column
+    }
+    tableHeaderRows[0][0] = { rowspan: tableHeaderRowCount }; // Label column
+
+    console.log('tableHeaderRows', tableHeaderRows);
+
     return tableHeaderRows;
   }
 
