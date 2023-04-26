@@ -67,6 +67,7 @@
                     *ngIf="i === 0; else tableHeaderCell"></td>
                 <ng-template #tableHeaderCell>
                   <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                      [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
                       [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
                       scope="col">
                     <span>{{ tableCellData.name }}</span>
@@ -80,7 +81,7 @@
           <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
             <ng-container *ngFor="let tableCellData of tableRow; let i = index">
               <th *ngIf="i === 0" scope="row"
-                   class="fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
+                   class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
                 {{ tableCellData }}
               </th>
               <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
