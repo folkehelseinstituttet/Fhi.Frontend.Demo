@@ -2,15 +2,15 @@
 
 > Apr 26, 2023
 
-* :enhancement: **Enhancement** Add support for more than one heading row in table
-* :enhancement: **Enhancement** Add support for string values in table
-* :enhancement: **Enhancement** Add HighchartsAccessibility module
+* :tada: **Enhancement** Add support for more than one heading row in table
+* :tada: **Enhancement** Add support for string values in table
+* :tada: **Enhancement** Add HighchartsAccessibility module
 
 ## 0.3.0
 
 > Mar 29, 2023
 
-* :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
+* :tada: **Enhancement** Support @folkehelseinstituttet/style v5
 * :bug: **Bugfix** Change wrong @import path for css in README
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 
