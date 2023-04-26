@@ -1,4 +1,10 @@
-# 0.4.0
+# Unreleased
+
+> Apr --, 2023
+
+* :tada: **Enhancement** Move diagram title above diagram nav
+
+## 0.4.0
 
 > Apr 26, 2023
 
