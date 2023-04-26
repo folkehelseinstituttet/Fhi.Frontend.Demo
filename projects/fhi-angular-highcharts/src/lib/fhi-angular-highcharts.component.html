@@ -70,7 +70,7 @@
                       [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
                       [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
                       scope="col">
-                    <span>{{ tableCellData.name }}</span>
+                    {{ tableCellData.name }}
                   </th>
                 </ng-template>
               </ng-container>
