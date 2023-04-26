@@ -4,32 +4,11 @@
     }
 
     &__cell--col-header {
-        border-right: 1px solid $white;
+        border: 1px solid $white;
         text-align: center;
     }
 
     &__cell--row-header {
         text-align: start;
-    }
-
-    &__footer p,
-    &__footer a {
-        font-family: $font-family-highcharts-regular;
-        // font-size: 11px;
-    }
-    // &__caption {
-    //     margin-top: $space-2;
-    // }
-    // &__caption-last-update {
-    //     margin-bottom: -$space-2;
-    // }
-    &__caption-disclaimer {
-        line-height: 1.2;
-        // margin-top: $space-2;
-        // margin-bottom: $space-2;
-    }
-    &__credits {
-        color: $body-color;
-        text-decoration: none;
     }
 }
