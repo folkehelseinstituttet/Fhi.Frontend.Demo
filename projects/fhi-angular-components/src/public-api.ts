@@ -11,6 +11,8 @@ export * from './lib/fhi-multiselect/fhi-multiselect.component';
 export * from './lib/fhi-multiselect/fhi-multiselect.module';
 
 export * from './lib/fhi-table/fhi-table.component';
+export * from './lib/fhi-table/row-components/fhi-table-row-expander/fhi-table-row-expander.component';
+export * from './lib/fhi-table/row-components/fhi-table-row-expandable/fhi-table-row-expandable.component';
 export * from './lib/fhi-table/fhi-table.module';
 
 export * from './lib/fhi-tree-view-navigation/fhi-tree-view-navigation.component';

@@ -1,10 +1,16 @@
 <div class="fhi-table table-responsive">
   <table class="table">
     <thead>
-      <ng-content select="[fhi-table.thead]"></ng-content>
+      <tr>
+        <td></td>
+        <th scope="col"
+            *ngFor="let th of tableConfig.headings">
+          <span class="text-nowrap">{{ th.name }}</span>
+        </th>
+      </tr>
     </thead>
     <tbody>
-      <ng-content select="[fhi-table.tbody]"></ng-content>
+      <ng-content></ng-content>
     </tbody>
   </table>
 </div>
