@@ -10,9 +10,9 @@
 			[attr.id]="itemId !== null ? 'list' + itemId : null"
 			[attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null">
 
-    <!-- <ng-container *ngIf="enableCheckAll">
+    <ng-container *ngIf="enableCheckAll">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
-    </ng-container> -->
+    </ng-container>
 
 		<li class="fhi-tree-view-checkbox__item" *ngFor="let item of items" role="treeitem">
       <ng-container *ngIf="item.children">
@@ -34,12 +34,12 @@
 
 
 <ng-template #checkAndUncheckAll let-items="items">
-  <button type="button" class="btn fhi-btn-flat"
+  <button type="button" class="btn fhi-tree-view-checkbox__check-all"
     *ngIf="items.length > 1 && !allItemsChecked(items)"
     (click)="checkAll(items)">
     Velg alle
   </button>
-  <button type="button" class="btn fhi-btn-flat"
+  <button type="button" class="btn fhi-tree-view-checkbox__check-all"
     *ngIf="items.length > 1 && allItemsChecked(items)"
     (click)="uncheckAll(items)">
     Fjern alle

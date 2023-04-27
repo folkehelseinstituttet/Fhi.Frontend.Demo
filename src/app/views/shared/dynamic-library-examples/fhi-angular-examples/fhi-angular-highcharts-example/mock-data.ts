@@ -1,7 +1,8 @@
 export enum MockData {
   OneSerieFylke = 1,
-  TwoSeriesAar = 2,
-  MultipleSeriesAar = 3
+  OneSerieFylkeB = 2,
+  TwoSeriesAar = 3,
+  MultipleSeriesAar = 4
 }
 
 export const MockDataSets = [{

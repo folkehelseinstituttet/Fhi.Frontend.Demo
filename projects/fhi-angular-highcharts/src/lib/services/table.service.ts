@@ -1,76 +1,71 @@
 import { Injectable } from '@angular/core';
 
+import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagram.models';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TableService {
 
-  getHeaderRow(options: Highcharts.Options): string[] {
-    if (!options.series) {
-      throw new Error('TableService.getHeaderRow() -> options.series is undefined');
+  getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
+    const commaSeparatedHeaderRow = series.map(s => s.name) as string[];
+    const tableHeaderRowCount = commaSeparatedHeaderRow[0].split(',').length;
+    const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
+
+    for (let j = 0; j < tableHeaderRows.length; j++) {
+      const isLastRow = j + 1 === tableHeaderRowCount;
+      let previousCellName: string;
+      let colspanDivider = 0;
+      tableHeaderRows[j] = new Array(commaSeparatedHeaderRow.length);
+
+      for (let i = 0; i < commaSeparatedHeaderRow.length; i++) {
+        const splitHeader = commaSeparatedHeaderRow[i].split(',');
+        const currentCellName = splitHeader[j];
+
+        if (!isLastRow && currentCellName !== previousCellName) {
+          tableHeaderRows[j][i] = {
+            name: currentCellName,
+            colspan: commaSeparatedHeaderRow.length / 3
+          };
+          colspanDivider = colspanDivider + 1;
+        }
+        if (isLastRow) {
+          tableHeaderRows[j][i] = { name: currentCellName };
+        }
+        previousCellName = currentCellName;
+      }
+      tableHeaderRows[j].forEach(i => {
+        i.colspan = commaSeparatedHeaderRow.length / colspanDivider
+      });
+      tableHeaderRows[j].unshift(undefined); // Label column
     }
-    // Generate header row
-    const tableHeaderRow = options.series.map(s => s.name) as string[];
-    tableHeaderRow.unshift('');
-    return tableHeaderRow;
+    tableHeaderRows[0][0] = { rowspan: tableHeaderRowCount }; // Label column
+    return tableHeaderRows;
   }
 
-  getDataRows(options: Highcharts.Options, includeSumRow: boolean = false): any[][] {
-    if (!options.series) {
-      throw new Error('TableService.getDataRows() -> options.series is undefined');
-    }
+  getDataRows(series: FhiDiagramSerie[]): string[][] {
+    let dataArray = this.getDataArray(series[0]);
+    const tableBodyRows = new Array(dataArray.length);
+
     // Generate first column in rows
-    let sumRowCount = includeSumRow ? 1 : 0;
-    let dataArray = this.getDataArray(options.series[0]);
-    const tableBodyRows = new Array(dataArray.length+sumRowCount); // +1 = Sum row
     for (let j = 0; j < dataArray.length; j++) {
-      tableBodyRows[j] = new Array(options.series.length+1); // +1 = Label column
+      tableBodyRows[j] = new Array(series.length + 1); // + 1 = Label column
       tableBodyRows[j][0] = dataArray[j].name;
     }
-    if (includeSumRow) {
-      // Generate first column ('Sum') of Sum row
-      tableBodyRows[dataArray.length] = new Array(options.series.length+1); // +1 = Label column
-      tableBodyRows[dataArray.length][0] = 'Sum';
-    }
+
     // Populate value-columns in all rows
-    for (let i = 0; i < options.series.length; i++) {
-      dataArray = this.getDataArray(options.series[i]);
-      let sum = 0.0;
+    for (let i = 0; i < series.length; i++) {
+      dataArray = this.getDataArray(series[i]);
       for (let j = 0; j < dataArray.length; j++) {
-        tableBodyRows[j][i+1] = dataArray[j].y;
-        if (includeSumRow) {
-          sum += dataArray[j].y;
-        }
-      }
-      if (includeSumRow) {
-        // Populate sum-columns of sum-row
-        tableBodyRows[dataArray.length][i+1] = sum;
+        tableBodyRows[j][i + 1] = dataArray[j].y;
       }
     }
     return tableBodyRows;
   }
 
-  getCsv(options: Highcharts.Options): string {
-    let headerRow = this.getHeaderRow(options);
-    let result = headerRow.map((x) => {
-      return '"' + x + '"'
-    }).join(';')+'\n';
-
-    let dataRows = this.getDataRows(options, false);
-    dataRows.forEach((dataRow, idx, array) => {
-      result += dataRow.map((x) => {
-        return isNaN(x) ? '"' + x + '"' : x
-      }).join(';');
-
-      // Add linefeed except last line
-      if (idx < array.length - 1) result += '\n';
-    });
-    return result;
-  }
-
-  private getDataArray(serie: Highcharts.SeriesOptionsType): Array<any> {
-    const data = (<any>serie).data;
-    return <Array<any>>data;
+  private getDataArray(serie: FhiDiagramSerie): Data[] {
+    const data = serie.data;
+    return data;
   }
 
 }

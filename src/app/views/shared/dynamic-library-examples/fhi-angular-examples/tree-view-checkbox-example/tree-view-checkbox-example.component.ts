@@ -14,10 +14,10 @@ export class TreeViewCheckboxExampleComponent implements OnInit {
     this.items = this.getTreeviewCheckboxItems();
   }
 
-  // onItemsChange(items: FhiTreeViewCheckboxItem[]) {
-  //   // console.log('onCheckedItemsChange()->items', items);
-  //   this.items = items;
-  // }
+  onItemsChange(items: FhiTreeViewCheckboxItem[]) {
+    // console.log('onCheckedItemsChange()->items', items);
+    this.items = items;
+  }
 
   private getTreeviewCheckboxItems(): FhiTreeViewCheckboxItem[] {
     return [{

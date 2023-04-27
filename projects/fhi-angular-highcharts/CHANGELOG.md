@@ -1,4 +1,12 @@
-# 0.3.0
+# 0.4.0
+
+> Apr 26, 2023
+
+* :enhancement: **Enhancement** Add support for more than one heading row in table
+* :enhancement: **Enhancement** Add support for string values in table
+* :enhancement: **Enhancement** Add HighchartsAccessibility module
+
+## 0.3.0
 
 > Mar 29, 2023
 
