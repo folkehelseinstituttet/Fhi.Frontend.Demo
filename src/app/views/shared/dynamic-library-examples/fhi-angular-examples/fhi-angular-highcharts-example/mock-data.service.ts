@@ -12,8 +12,8 @@ export class MockDataService {
     return new Observable<any>(observer => {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
-          //observer.next(this.dodsfall_r_Fylke_c_Aarsak);
-          observer.next(this.dodsfall_r_Fylke_c_Aarsak_Pre2019);
+          observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+          //observer.next(this.dodsfall_r_Fylke_c_Aarsak_Pre2019);
           break;
 
         case MockData.TwoSeriesAar:
