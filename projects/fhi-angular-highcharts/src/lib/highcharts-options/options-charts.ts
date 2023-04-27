@@ -1,6 +1,6 @@
 export const OptionsCharts = {
   chart: {
-    colorCount: 16
+    colorCount: 12
   },
   legend: {
     align: 'left',
