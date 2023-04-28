@@ -1,6 +1,6 @@
 .fhi-table {
     &__row-with-expand-button.next-row-is-expanded {
-        background-color: $fhi-core-grey-light-1;
+        // background-color: $fhi-core-grey-light-1;
 
         th, td {
             border-bottom: 0;
@@ -33,7 +33,7 @@
         }
     }
 
-    &__row-expandable {
-        background-color: $fhi-core-grey-light-1;
-    }
+    // &__row-expandable {
+    //     background-color: $fhi-core-grey-light-1;
+    // }
 }
