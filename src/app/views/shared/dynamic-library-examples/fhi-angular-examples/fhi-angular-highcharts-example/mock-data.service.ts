@@ -13,6 +13,7 @@ export class MockDataService {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
           observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+          //observer.next(this.dodsfall_r_Fylke_c_Aarsak_Pre2019);
           break;
 
         case MockData.TwoSeriesAar:
@@ -83,6 +84,90 @@ export class MockDataService {
             },
             {
                 "name": "Viken",
+                "y": 6738
+            }
+        ]
+    }
+  ];
+  
+  private dodsfall_r_Fylke_c_Aarsak_Pre2019 = [
+    {
+        "name": "Hjerte- og karsystemet",
+        "data": [
+            {
+                "name": "Aust-Agder",
+                "y": 1698
+            },
+            {
+                "name": "Vest-Agder",
+                "y": 1698
+            },
+            {
+                "name": "Oppland",
+                "y": 3360
+            },
+            {
+                "name": "Hedmark",
+                "y": 3378
+            },
+            {
+                "name": "Møre og Romsdal",
+                "y": 1909
+            },
+            {
+                "name": "Nordland",
+                "y": 1687
+            },
+            {
+                "name": "Oslo",
+                "y": 2814
+            },
+            {
+                "name": "Rogaland",
+                "y": 2143
+            },
+            {
+                "name": "Troms",
+                "y": 1566
+            },
+            {
+                "name": "Finnmark",
+                "y": 1566
+            },
+            {
+                "name": "Sør-Trøndelag",
+                "y": 2839
+            },
+            {
+                "name": "Nord-Trøndelag",
+                "y": 2839
+            },
+            {
+                "name": "Vestfold",
+                "y": 3060
+            },
+            {
+                "name": "Østfold",
+                "y": 2152
+            },
+            {
+                "name": "Telemark",
+                "y": 3060
+            },
+            {
+                "name": "Buskerud",
+                "y": 2682
+            },
+            {
+                "name": "Hordaland",
+                "y": 3625
+            },
+            {
+                "name": "Sogn og Fjordane",
+                "y": 3625
+            },
+            {
+                "name": "Akershus",
                 "y": 6738
             }
         ]

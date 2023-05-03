@@ -6,6 +6,7 @@ An opinionated wrapper to the official minimal [Highcharts wrapper for Angular](
 
 | FHI AngularHighcharts | FHI Style | Bootstrap | Highcharts | HighchartsAngular | Angular | Node/NPM |
 | --------------------- | --------- | --------- | ---------- | ----------------- | ------- | -------- |
+| Unreleased            | 5         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
 | 0.4.x                 | 5         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
 | 0.3.x                 | 5         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
 | 0.2.0                 | 4         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
