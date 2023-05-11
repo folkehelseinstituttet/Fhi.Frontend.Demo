@@ -1,10 +1,8 @@
-<!-- TODO:  constant: 'table-row-expand-button-'
-     TODO:  constant: 'table-row-expandable-' -->
 <th>
   <button class="btn"
           type="button"
-          id="table-row-expand-button-{{ index }}"
-          attr.aria-controls="table-row-expandable-{{ index }}"
+          id="{{ FhiTableConstants.rowExpandButton + index }}"
+          attr.aria-controls="{{ FhiTableConstants.rowExpandable + index }}"
           [attr.aria-expanded]="tableRowIsExpanded ? 'true' : 'false'"
           (click)="toggleExpandableRow()">
     <i [ngClass]="tableRowIsExpanded ? 'icon-chevron-up' : 'icon-chevron-down'"></i>

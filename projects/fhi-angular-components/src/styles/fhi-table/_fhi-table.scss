@@ -1,7 +1,5 @@
 .fhi-table {
     &__row-with-expand-button.next-row-is-expanded {
-        // background-color: $fhi-core-grey-light-1;
-
         th, td {
             border-bottom: 0;
         }
@@ -24,7 +22,7 @@
             width: 44px;
 
             &:focus-visible {
-                box-shadow: 0 0 0 2px #0067c4 inset !important;
+                box-shadow: 0 0 0 2px $fhi-core-blue-1 inset !important;
             }
 
             [class*="icon-"] {
@@ -32,8 +30,4 @@
             }
         }
     }
-
-    // &__row-expandable {
-    //     background-color: $fhi-core-grey-light-1;
-    // }
 }

@@ -1,45 +1,46 @@
-<fhi-table [tableConfig]="demoTableConfig">
-  <ng-container *ngFor="let row of demoTableContent; index as i">
-    <tr fhi-table-row-expander [index]="i">
-      <ng-container *ngTemplateOutlet="rowExpander; context: { row: row }"></ng-container>
-    </tr>
-    <tr fhi-table-row-expandable [index]="i" [colspan]="5">
-      <ng-container
-        *ngTemplateOutlet="rowExpandable; context: { content: row.expandableContent }">
-      </ng-container>
-    </tr>
-  </ng-container>
-</fhi-table>
-
-<ng-template #rowExpander let-row="row">
-  <td>{{ row.id }}</td>
-  <td>{{ row.name }}</td>
-  <td>{{ row.area }}</td>
-  <td>{{ row.population }}</td>
-</ng-template>
-
-<ng-template #rowExpandable let-content="content">
-  <div class="fhi-nav-tabs">
-    <ul ngbNav #nav="ngbNav" class="nav-tabs" [animation]="false">
-      <li ngbNavItem *ngFor="let tab of content">
-        <a ngbNavLink>{{ tab.name }}</a>
-        <ng-template ngbNavContent>
-          <div class="p-3 w-100">
-            <p>
-              {{ tab.content }}
-            </p>
-          </div>
-        </ng-template>
-      </li>
-    </ul>
-    <div [ngbNavOutlet]="nav"></div>
-  </div>
-</ng-template>
-
-
-
-
 <div class="container">
+
+  <fhi-table [tableConfig]="demoTableConfig">
+    <ng-container *ngFor="let row of demoTableContent; index as i">
+      <tr fhi-table-row-expander [index]="i">
+        <ng-container *ngTemplateOutlet="rowExpander; context: { row: row }"></ng-container>
+      </tr>
+      <tr fhi-table-row-expandable [index]="i" [colspan]="5">
+        <ng-container
+          *ngTemplateOutlet="rowExpandable; context: { content: row.expandableContent }">
+        </ng-container>
+      </tr>
+    </ng-container>
+  </fhi-table>
+
+  <ng-template #rowExpander let-row="row">
+    <td>{{ row.id }}</td>
+    <td>{{ row.name }}</td>
+    <td>{{ row.area }}</td>
+    <td>{{ row.population }}</td>
+  </ng-template>
+
+  <ng-template #rowExpandable let-content="content">
+    <div class="fhi-nav-tabs">
+      <ul ngbNav #nav="ngbNav" class="nav-tabs" [animation]="false">
+        <li ngbNavItem *ngFor="let tab of content">
+          <a ngbNavLink>{{ tab.name }}</a>
+          <ng-template ngbNavContent>
+            <div class="p-3 w-100">
+              <p>
+                {{ tab.content }}
+              </p>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+  </ng-template>
+
+
+
+
   <div class="alert alert-warning mb-7">
     <i class="icon-bell"></i>
     <div>

@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
+
 import { ToggleExpandableRowService } from '../toggle-expandable-row.service';
+import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
   selector: '[fhi-table-row-expandable]',
@@ -20,12 +22,10 @@ export class FhiTableRowExpandableComponent {
 
   ngOnInit() {
     this.hostElement.setAttribute(
-      // TODO:  constant: 'table-row-expand-button-'
-      'aria-labelledby', 'table-row-expand-button-'+this.index
+      'aria-labelledby', FhiTableConstants.rowExpandButton + this.index
     );
     this.hostElement.setAttribute(
-      // TODO:  constant: 'table-row-expandable-'
-      'id', 'table-row-expandable-'+this.index
+      'id', FhiTableConstants.rowExpandable + this.index
     );
     this.addClass('fhi-table__row-expandable');
     this.addClass('d-none');

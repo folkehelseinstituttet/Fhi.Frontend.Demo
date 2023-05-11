@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input } from '@angular/core';
 
 import { ToggleExpandableRowService } from '../toggle-expandable-row.service';
+import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
   selector: '[fhi-table-row-expander]',
@@ -11,6 +12,8 @@ export class FhiTableRowExpanderComponent {
   @Input() row: any = {};
 
   tableRowIsExpanded = false;
+  FhiTableConstants = FhiTableConstants;
+
 
   private get hostElement(): HTMLElement {
     return this._elementRef.nativeElement;
