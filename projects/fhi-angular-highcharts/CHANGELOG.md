@@ -1,10 +1,4 @@
-# Unreleased 
-
-> May 03, 2023
-
-* :enhancement: **Enhancement** Extended from 8 to 12 colors
-
-## 0.4.0
+# 0.4.0
 
 > Apr 26, 2023
 
