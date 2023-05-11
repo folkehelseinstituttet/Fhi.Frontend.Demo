@@ -2,7 +2,7 @@
   <table class="table">
     <thead>
       <tr>
-        <td></td>
+        <td *ngIf="tableConfig.expandableRows"></td>
         <th scope="col"
             *ngFor="let th of tableConfig.headings">
           <span class="text-nowrap">{{ th.name }}</span>
