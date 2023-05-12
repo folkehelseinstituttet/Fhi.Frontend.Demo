@@ -4,8 +4,6 @@
 			<div class="col-12 col-md-auto">
 				<div class="fhi-drawer" [ngClass]="{ 'open' : drawerIsOpen }">
 					<button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
-						<p class="pt-3"><i class="icon-person me-0"></i></p>
-						<p class="d-none d-md-block">Ikontekst</p>
 						<i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
 						<i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>
 					</button>
@@ -24,7 +22,7 @@
 				
 			<div class="col-12 col-md">
 				<main class="fhi-expandable-first-col__main mt-n6 ps-7 mt-md-0 ps-md-0" [ngStyle]="{'min-height': drawerHeight + 'px'}">
-					<h1>Hovedinnhold</h1>
+					<h1>Hovedinnholdet</h1>
 					<p>&hellip;</p>
 					<p>&hellip;</p>
 				</main>
