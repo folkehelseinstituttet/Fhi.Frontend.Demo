@@ -1,8 +1,8 @@
 # Unreleased
 
-> Apr --, 2023
+> May 15, 2023
 
-* :tada: **Enhancement** Move diagram title above diagram nav
+* :tada: **Enhancement** Move diagram title above diagram nav and use it for both table and charts/maps
 
 ## 0.4.0
 
