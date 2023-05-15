@@ -27,7 +27,9 @@ export class OptionsService {
   updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
 
-    options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
+    // TODO: how to deal with title in exported charts?
+    // options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
+
     options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
 
     if (!diagramOptions.openSource) {

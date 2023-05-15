@@ -19,14 +19,7 @@ export const OptionsChartsAndMaps = {
   },
   series: [],
   title: {
-    align: 'left',
-    margin: 5,
-    widthAdjust: 0
-  },
-  subtitle: {
-    align: 'left',
-    margin: 15,
-    widthAdjust: 0
+    text: undefined
   },
   exporting: {
     allowHTML: true,
