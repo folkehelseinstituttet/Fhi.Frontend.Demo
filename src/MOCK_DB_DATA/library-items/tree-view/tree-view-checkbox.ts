@@ -48,23 +48,30 @@ function getDocumentationHtml(): string | null {
         <th scope="col">Type</th>
         <th scope="col">Default</th>
         <th scope="col">Required</th>
-        <th scope="col">Description</th>
+        <th scope="col" style="min-width: 300px">Description</th>
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
+      <tr>
         <th>[enableCheckAll]</th>
         <td><code>boolean</code></td>
-        <td><code>true</code></td>
+        <td><code>false</code></td>
         <td>no</td>
         <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component.</td>
-      </tr> -->
+      </tr>
       <tr>
-        <th>[(items)]</th>
+        <th>[items]</th>
         <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
-        <td>A two way binding to access the state of all items in your checkbox tree.</td>
+        <td>All items in your checkbox tree.</td>
+      </tr>
+      <tr>
+        <th>(itemsChange)</th>
+        <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
+        <td><i>N/A</i></td>
+        <td>no</td>
+        <td>An output event for accessing the state of all items in your checkbox tree.</td>
       </tr>
    </tbody>
   </table>

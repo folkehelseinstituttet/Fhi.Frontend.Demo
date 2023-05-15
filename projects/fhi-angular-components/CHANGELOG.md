@@ -1,8 +1,15 @@
-# 0.4.0
+# Unreleased
+
+> May 15, 2023
+
+* :tada: **Enhancement** Update API-doc for `FhiTreeViewCheckboxComponent`
+* :tada: **Enhancement** Add support for "Check all" `FhiTreeViewCheckboxComponent`
+
+## 0.4.0
 
 > Mar 29, 2023
 
-* :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
+* :tada: **Enhancement** Support @folkehelseinstituttet/style v5
 * :gift: **New** Add `FhiTreeViewCheckboxModule`
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 
