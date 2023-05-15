@@ -1,5 +1,4 @@
-<ng-container *ngIf="diagramOptions !== undefined">
-
+<article *ngIf="diagramOptions !== undefined">
   <h1 class="h3 mb-4">{{ diagramTitle }}</h1>
 
   <ng-container *ngIf="diagramOptions.diagramTypeNav !== undefined">
@@ -24,7 +23,7 @@
       </ng-template>
     </ng-container>
   </ng-container>
-</ng-container>
+</article>
 
 
 <ng-template #diagramTypeNav>
