@@ -29,6 +29,7 @@ export class FhiAngularHighchartsComponent {
   anonymizedSeries: DataAnonymizedSerie[] = [];
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
+  diagramTitle!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavs = FhiDiagramTypeNavs;
   numOfDimensions!: number;
@@ -40,8 +41,7 @@ export class FhiAngularHighchartsComponent {
   // TODO: the following is not just for table but should be rendered
   //       as HTML for Highcharts as well.
   //       Simplified solution without fancy styling must be created
-  //       use with Highcarts when download as SVG/PDF
-  tableTitle!: string;
+  //       for use with Highcarts when exporting as SVG/PDF
   tableLastUpdated!: string;
   tableDisclaimer!: string;
   tableCreditsHref!: string;
@@ -66,6 +66,7 @@ export class FhiAngularHighchartsComponent {
     try {
       this.diagramTypeService.series = this.diagramOptions.data;
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.diagramTitle = this.diagramOptions.title;
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
@@ -103,7 +104,6 @@ export class FhiAngularHighchartsComponent {
   private updateTable(series: FhiDiagramSerie[]) {
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
-    this.tableTitle = this.diagramOptions.title;
   }
 
   private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
