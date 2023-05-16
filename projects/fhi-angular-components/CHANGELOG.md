@@ -1,4 +1,4 @@
-# Unreleased
+# 0.5.0
 
 > May 15, 2023
 
