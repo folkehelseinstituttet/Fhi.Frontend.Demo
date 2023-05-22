@@ -77,7 +77,14 @@
   </app-date-and-time-example>
 
   <app-datepicker *ngSwitchCase="itemIds.Datepicker"></app-datepicker>
-  <app-form-element-examples *ngSwitchCase="itemIds.FormSwitch"></app-form-element-examples>
+  <app-form-element-examples
+    *ngSwitchCase="itemIds.FormRadioButtonTile"
+    [itemId]="itemIds.FormRadioButtonTile"
+    [itemIds]="itemIds"></app-form-element-examples>
+  <app-form-element-examples
+    *ngSwitchCase="itemIds.FormSwitch"
+    [itemId]="itemIds.FormSwitch"
+    [itemIds]="itemIds"></app-form-element-examples>
 
   <app-table-examples
     *ngSwitchCase="itemIds.TableSortable"
