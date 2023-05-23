@@ -3,7 +3,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 
 export const RadioButtonTile: LibraryItem[] = [{
   id: LibraryItemIds.FormRadioButtonTile,
-  title: 'Radio Button Tile',
+  title: 'Radio button tile',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
