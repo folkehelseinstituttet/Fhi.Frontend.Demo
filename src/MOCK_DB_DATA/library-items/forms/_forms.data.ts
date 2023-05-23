@@ -4,6 +4,7 @@ import { Checkbox } from './checkbox';
 import { Validation } from './valdation';
 import { Input } from './input';
 import { Radio } from './radio';
+import { RadioButtonTile } from './radio-button-tile';
 import { Select } from './select';
 import { Switch } from './switch';
 import { Textarea } from './textarea';
@@ -15,5 +16,6 @@ export const FormsData: LibraryItem[] = [
   ...Select,
   ...Checkbox,
   ...Radio,
+  ...RadioButtonTile,
   ...Switch
 ];
