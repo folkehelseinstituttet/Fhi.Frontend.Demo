@@ -25,11 +25,11 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="fhi-form-check-tile">
-  <input class="fhi-form-check-tile__input form-check-input" type="radio" name="radioButtonTiles" id="uid">
+  <input class="fhi-form-check-tile__input form-check-input" type="radio" name="radioButtonTiles" id="[uid]">
   
-  <label class="fhi-form-check-tile__label form-check-label" for="uid">
+  <label class="fhi-form-check-tile__label form-check-label" for="[uid]">
     <span class="fhi-form-check-tile__label-text">Ledetekst</span>
-    <span class="fhi-form-check-tile__label-addition">Kort beskrivelse om behov</span>
+    <span class="fhi-form-check-tile__label-description">Kort beskrivelse om behov</span>
   </label>
 </div>`;
 }
