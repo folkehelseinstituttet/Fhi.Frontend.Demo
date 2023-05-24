@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { FhiTreeViewCheckboxItem } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-tree-view-checkbox-example',
-  templateUrl: './tree-view-checkbox-example.component.html'
+  templateUrl: './tree-view-checkbox-examples.component.html'
 })
 export class TreeViewCheckboxExampleComponent implements OnInit {
+  @Input() itemId!: string;
+  @Input() itemIds!: any;
 
   items: any[];
 

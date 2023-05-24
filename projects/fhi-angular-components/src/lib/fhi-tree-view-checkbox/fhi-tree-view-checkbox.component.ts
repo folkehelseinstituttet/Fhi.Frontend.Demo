@@ -11,6 +11,7 @@ import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.mo
 export class FhiTreeViewCheckboxComponent {
 
   @Input() enableCheckAll = false;
+  @Input() radioButtons = false;
   @Input() items: Item[] = [];
 
   @Output() itemsChange = new EventEmitter<Item[]>();
@@ -24,12 +25,16 @@ export class FhiTreeViewCheckboxComponent {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: number | string, multiToggle = false, checkeAll = false) {
-    this.updateCheckedState(id, this.items, multiToggle, checkeAll);
+  toggleChecked(id: number | string, multiToggle = false, checkAll = false) {
+    this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDesecendantState(this.items, false);
     if (!multiToggle) {
       this.itemsChange.emit(this.items);
     }
+  }
+
+  changeRadio(id: number) {
+    
   }
 
   checkAll(items: Item[]) {
@@ -50,17 +55,17 @@ export class FhiTreeViewCheckboxComponent {
     return items.every(item => item.isChecked)
   }
 
-  private updateCheckedState(id: number | string, items: Item[], multiToggle: boolean, checkeAll: boolean) {
+  private updateCheckedState(id: number | string, items: Item[], multiToggle: boolean, checkAll: boolean) {
     items.forEach(item => {
       if (item.id === id) {
         if (multiToggle) {
-          (checkeAll) ? item.isChecked = true : item.isChecked = false;
+          (checkAll) ? item.isChecked = true : item.isChecked = false;
         } else {
           item.isChecked = !item.isChecked;
         }
       }
       if (item.children && item.children.length > 0) {
-        this.updateCheckedState(id, item.children, multiToggle, checkeAll);
+        this.updateCheckedState(id, item.children, multiToggle, checkAll);
       }
       item.descendantStateConfirmed = false;
     });
