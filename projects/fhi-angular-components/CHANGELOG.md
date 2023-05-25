@@ -1,3 +1,9 @@
+# Unreleased
+
+> May 25, 2023
+
+* :tada: **Enhancement** Add support for single selection (radio) `FhiTreeViewCheckboxComponent`
+
 # 0.5.0
 
 > May 15, 2023
