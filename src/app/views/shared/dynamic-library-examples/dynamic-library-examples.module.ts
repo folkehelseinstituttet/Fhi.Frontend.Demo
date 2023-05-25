@@ -28,7 +28,7 @@ import { SearchExampleComponent } from './fhi-angular-examples/search-example/se
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
-import { TreeViewCheckboxExampleComponent } from './fhi-angular-examples/tree-view-checkbox-examples/tree-view-checkbox-examples.component';
+import { TreeViewSelectionExampleComponent } from './fhi-angular-examples/tree-view-selection-examples/tree-view-selection-examples.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
@@ -57,7 +57,7 @@ const FHI_EXAMPLES = [
   SearchExampleComponent,
   TableExamplesComponent,
   TreeViewNavigationExampleComponent,
-  TreeViewCheckboxExampleComponent,
+  TreeViewSelectionExampleComponent,
   TagExampleComponent
 ];
 

@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TreeViewCheckbox: LibraryItem[] = [{
   id: LibraryItemIds.TreeViewCheckbox,
-  title: 'Tree view checkbox',
+  title: 'Tree view selection - checkbox',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-checkbox [(items)]="items"></fhi-tree-view-checkbox>`;
+<fhi-tree-view-selection [(items)]="items"></fhi-tree-view-selection>`;
 }
 
 /*
@@ -57,18 +57,18 @@ function getDocumentationHtml(): string | null {
         <td><code>boolean</code></td>
         <td><code>false</code></td>
         <td>no</td>
-        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component. May not be enabled along with the <code>[singleSelection]</code></td>
+        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component. <code>[enableCheckAll]="true"</code> overrides <code>[singleSelection]</code></td>
       </tr>
       <tr>
         <th>[items]</th>
-        <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
+        <td><code>Array&lt;FhiTreeViewSelectionItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
         <td>All items in your checkbox tree.</td>
       </tr>
       <tr>
         <th>(itemsChange)</th>
-        <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
+        <td><code>Array&lt;FhiTreeViewSelectionItem&gt;</code></td>
         <td><i>N/A</i></td>
         <td>no</td>
         <td>An output event for accessing the state of all items in your checkbox tree.</td>
@@ -78,7 +78,7 @@ function getDocumentationHtml(): string | null {
         <td><code>boolean</code></td>
         <td><code>false</code></td>
         <td>no</td>
-        <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree. May not be enabled along with the <code>[enableCheckAll]</code></td>
+        <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree. <code>[enableCheckAll]="true"</code> overrides <code>[singleSelection]</code></td>
       </tr>
    </tbody>
   </table>

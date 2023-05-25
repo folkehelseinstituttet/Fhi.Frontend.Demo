@@ -1,27 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { FhiTreeViewCheckboxItem } from '@folkehelseinstituttet/angular-components';
+import { FhiTreeViewSelectionItem } from '@folkehelseinstituttet/angular-components';
 
 @Component({
-  selector: 'app-tree-view-checkbox-example',
-  templateUrl: './tree-view-checkbox-examples.component.html'
+  selector: 'app-tree-view-selection-example',
+  templateUrl: './tree-view-selection-examples.component.html'
 })
-export class TreeViewCheckboxExampleComponent implements OnInit {
+export class TreeViewSelectionExampleComponent implements OnInit {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
   items: any[];
 
   ngOnInit() {
-    this.items = this.getTreeviewCheckboxItems();
+    this.items = this.getTreeviewSelectionItems();
   }
 
-  onItemsChange(items: FhiTreeViewCheckboxItem[]) {
+  onItemsChange(items: FhiTreeViewSelectionItem[]) {
     // console.log('onCheckedItemsChange()->items', items);
     this.items = items;
   }
 
-  private getTreeviewCheckboxItems(): FhiTreeViewCheckboxItem[] {
+  private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [{
       name: 'For utviklere',
       children: [{

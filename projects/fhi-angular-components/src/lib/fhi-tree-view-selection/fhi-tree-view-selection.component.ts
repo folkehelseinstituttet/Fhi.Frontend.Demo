@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
-import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.model';
+import { FhiTreeViewSelectionItem as Item} from './fhi-tree-view-selection-item.model';
 
 @Component({
-  selector: 'fhi-tree-view-checkbox',
-  templateUrl: './fhi-tree-view-checkbox.component.html',
+  selector: 'fhi-tree-view-selection',
+  templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FhiTreeViewCheckboxComponent {
+export class FhiTreeViewSelectionComponent {
 
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
