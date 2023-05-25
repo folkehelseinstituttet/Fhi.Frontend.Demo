@@ -78,7 +78,7 @@ function getDocumentationHtml(): string | null {
         <td><code>boolean</code></td>
         <td><code>false</code></td>
         <td>no</td>
-        <td></td>
+        <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree.</td>
       </tr>
    </tbody>
   </table>
