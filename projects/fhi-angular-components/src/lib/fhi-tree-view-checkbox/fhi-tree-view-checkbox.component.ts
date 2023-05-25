@@ -11,7 +11,7 @@ import { FhiTreeViewCheckboxItem as Item} from './fhi-tree-view-checkbox-item.mo
 export class FhiTreeViewCheckboxComponent {
 
   @Input() enableCheckAll = false;
-  @Input() radioButtons = false;
+  @Input() singleSelection = false;
   @Input() items: Item[] = [];
 
   @Output() itemsChange = new EventEmitter<Item[]>();
@@ -31,10 +31,6 @@ export class FhiTreeViewCheckboxComponent {
     if (!multiToggle) {
       this.itemsChange.emit(this.items);
     }
-  }
-
-  changeRadio(id: number) {
-
   }
 
   checkAll(items: Item[]) {
@@ -60,9 +56,14 @@ export class FhiTreeViewCheckboxComponent {
       if (item.id === id) {
         if (multiToggle) {
           (checkAll) ? item.isChecked = true : item.isChecked = false;
-        } else {
+        } else if (!this.singleSelection) {
           item.isChecked = !item.isChecked;
+        } else if (this.singleSelection) {
+          item.isChecked = true;
         }
+      }
+      if (this.singleSelection && item.id !== id) {
+        item.isChecked = null;
       }
       if (item.children && item.children.length > 0) {
         this.updateCheckedState(id, item.children, multiToggle, checkAll);

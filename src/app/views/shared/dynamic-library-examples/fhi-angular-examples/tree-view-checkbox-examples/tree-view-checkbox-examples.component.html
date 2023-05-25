@@ -8,7 +8,7 @@
 
 <div class="col-md-8 col-lg-6" *ngIf="itemId === itemIds.TreeViewRadio">
   <fhi-tree-view-checkbox
-    [radioButtons]="true"
+    [singleSelection]="true"
     [items]="items"
     (itemsChange)="onItemsChange($event)">
   </fhi-tree-view-checkbox>

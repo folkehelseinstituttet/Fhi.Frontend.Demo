@@ -18,10 +18,10 @@
         <ng-container *ngTemplateOutlet="expandButton; context: { item: item }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="!radioButtons">
+      <ng-container *ngIf="!singleSelection">
         <ng-container *ngTemplateOutlet="checkboxItem; context: { item: item }"></ng-container>
       </ng-container>
-      <ng-container *ngIf="radioButtons">
+      <ng-container *ngIf="singleSelection">
         <ng-container *ngTemplateOutlet="radioItem; context: { item: item }"></ng-container>
       </ng-container>
 
@@ -94,7 +94,7 @@
       name="test"
       [id]="'radio-input' + item.id"
       [checked]="item.isChecked"
-      (change)="changeRadio(item.id)">
+      (change)="toggleChecked(item.id, false, false)">
     <label class="form-check-label" [for]="'radio-input' + item.id" [id]="'label' + item.id">
       {{ item.name }}
     </label>

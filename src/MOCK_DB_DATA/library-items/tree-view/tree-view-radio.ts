@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-checkbox [(items)]="items" [radioButtons]="true"></fhi-tree-view-checkbox>`;
+<fhi-tree-view-checkbox [(items)]="items" [singleSelection]="true"></fhi-tree-view-checkbox>`;
 }
 
 /*
@@ -72,6 +72,13 @@ function getDocumentationHtml(): string | null {
         <td><i>N/A</i></td>
         <td>no</td>
         <td>An output event for accessing the state of all items in your checkbox tree.</td>
+      </tr>
+      <tr>
+        <th>[singleSelection]</th>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>no</td>
+        <td></td>
       </tr>
    </tbody>
   </table>
