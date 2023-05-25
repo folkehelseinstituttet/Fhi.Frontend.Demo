@@ -3,6 +3,7 @@ export const FormsIds = {
   FormTextarea: undefined,
   FormValidation: undefined,
   FormCheckbox: undefined,
+  FormCheckboxTile: undefined,
   FormRadio: undefined,
   FormRadioButtonTile: undefined,
   FormSelect: undefined,

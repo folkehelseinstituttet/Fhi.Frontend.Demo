@@ -1,6 +1,7 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { Checkbox } from './checkbox';
+import { CheckboxTile } from './checkbox-tile';
 import { Validation } from './valdation';
 import { Input } from './input';
 import { Radio } from './radio';
@@ -15,6 +16,7 @@ export const FormsData: LibraryItem[] = [
   ...Textarea,
   ...Select,
   ...Checkbox,
+  ...CheckboxTile,
   ...Radio,
   ...RadioButtonTile,
   ...Switch
