@@ -18,7 +18,7 @@ export class FhiTreeViewCheckboxComponent {
 
   ngOnChanges() {
     this.createIds(this.items, 1);
-    this.updateDesecendantState(this.items, true);
+    this.updateDecendantState(this.items, true);
   }
 
   toggleExpanded(item: Item) {
@@ -27,14 +27,14 @@ export class FhiTreeViewCheckboxComponent {
 
   toggleChecked(id: number | string, multiToggle = false, checkAll = false) {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
-    this.updateDesecendantState(this.items, false);
+    this.updateDecendantState(this.items, false);
     if (!multiToggle) {
       this.itemsChange.emit(this.items);
     }
   }
 
   changeRadio(id: number) {
-    
+
   }
 
   checkAll(items: Item[]) {
@@ -71,7 +71,7 @@ export class FhiTreeViewCheckboxComponent {
     });
   }
 
-  private updateDesecendantState(items: Item[], initialState: boolean) {
+  private updateDecendantState(items: Item[], initialState: boolean) {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
         if (item.children.every(item => item.descendantStateConfirmed)) {
@@ -85,11 +85,11 @@ export class FhiTreeViewCheckboxComponent {
           }
           item.descendantStateConfirmed = true;
         }
-        this.updateDesecendantState(item.children, initialState);
+        this.updateDecendantState(item.children, initialState);
 
       } else if (!item.descendantStateConfirmed) {
         item.descendantStateConfirmed = true; // I.e. has no descendants
-        this.updateDesecendantState(this.items, initialState);
+        this.updateDecendantState(this.items, initialState);
       }
     });
   }
