@@ -38,7 +38,7 @@ function getDocumentationHtml(): string | null {
   <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-components">@folkehelseinstituttet/angular-components</a>.
 </p>
 <p>
-  API'et består kun av en input:
+  API:
 </p>
 <div class="table-responsive">
   <table class="table table-striped">
