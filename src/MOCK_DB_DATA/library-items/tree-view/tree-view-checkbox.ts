@@ -57,7 +57,7 @@ function getDocumentationHtml(): string | null {
         <td><code>boolean</code></td>
         <td><code>false</code></td>
         <td>no</td>
-        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component.</td>
+        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component. May not be enabled along with the <code>[singleSelection]</code></td>
       </tr>
       <tr>
         <th>[items]</th>
@@ -72,6 +72,13 @@ function getDocumentationHtml(): string | null {
         <td><i>N/A</i></td>
         <td>no</td>
         <td>An output event for accessing the state of all items in your checkbox tree.</td>
+      </tr>
+      <tr>
+        <th>[singleSelection]</th>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>no</td>
+        <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree. May not be enabled along with the <code>[enableCheckAll]</code></td>
       </tr>
    </tbody>
   </table>

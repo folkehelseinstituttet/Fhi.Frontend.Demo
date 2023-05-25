@@ -16,6 +16,12 @@ export class FhiTreeViewCheckboxComponent {
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
+  ngOnInit() {
+    if (this.enableCheckAll) {
+      this.singleSelection = false;
+    }
+  }
+
   ngOnChanges() {
     this.createIds(this.items, 1);
     this.updateDecendantState(this.items, true);
