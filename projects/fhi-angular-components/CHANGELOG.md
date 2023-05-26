@@ -1,3 +1,10 @@
+# Unreleased
+
+> May 25, 2023
+
+* :gift: **New** `FhiTreeViewSelectionComponent` is replacing `FhiTreeViewCheckboxComponent` :boom:.
+  * `FhiTreeViewSelectionComponent` supports single selection (radio).
+
 # 0.5.0
 
 > May 15, 2023

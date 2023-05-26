@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TreeViewCheckbox: LibraryItem[] = [{
-  id: LibraryItemIds.TreeViewCheckbox,
-  title: 'Tree view selection - checkbox',
+export const TreeViewRadio: LibraryItem[] = [{
+  id: LibraryItemIds.TreeViewRadio,
+  title: 'Tree view selection - radio',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-selection [(items)]="items"></fhi-tree-view-selection>`;
+<fhi-tree-view-selection [(items)]="items" [singleSelection]="true"></fhi-tree-view-selection>`;
 }
 
 /*

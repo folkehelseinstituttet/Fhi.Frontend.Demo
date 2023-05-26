@@ -1,4 +1,5 @@
 export const TreeViewIds = {
   TreeViewNavigation: undefined,
-  TreeViewCheckbox: undefined
+  TreeViewCheckbox: undefined,
+  TreeViewRadio: undefined
 }
