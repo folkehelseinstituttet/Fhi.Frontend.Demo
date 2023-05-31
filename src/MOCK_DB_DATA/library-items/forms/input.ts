@@ -16,7 +16,8 @@ export const Input: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<label for="FormInput" class="form-label">Tekstfelt</label>
+<label for="FormInput" class="form-label" aria-describedby="hjelpeTekst">Tekstfelt</label>
+<p class="form-text" id="hjelpeTekst">Hjelpetekst, f.eks "Valgfritt felt"</p>
 <input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt">`;
 }
 
