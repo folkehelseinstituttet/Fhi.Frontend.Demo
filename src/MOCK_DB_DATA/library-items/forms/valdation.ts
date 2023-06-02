@@ -15,7 +15,7 @@ export const Validation: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<label for="FormInputValidation" class="form-label">Tekstfelt med validering</label>
+<label for="FormInputValidation" class="form-label">Tekstfelt med feilmelding</label>
 <input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
 <p class="invalid-feedback">En forståelig feilmelding.</p>`;
 }
