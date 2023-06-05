@@ -34,7 +34,7 @@ ${colorHtml('#edf4f7', 'fhi-blue-grey-2', 'Secondary', 'black')}
 ${colorHtml('#cceee4', 'fhi-green-1', 'Success', 'black')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-3', 'Info', 'black')}
 ${colorHtml('#feeed9', 'fhi-orange-1', 'Warning', 'black')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-3', 'Danger', 'black')}
+${colorHtml('#ffe3e2', 'fhi-pink-light-1', 'Danger', 'black')}
 ${colorHtml('#fbfbfb', 'fhi-grey-light-1', 'Light', 'black')}
 ${colorHtml('#393c61', 'fhi-blue-3', 'Dark')}
 ${colorHtml('#ffffff', 'fhi-white', 'White', 'black')}`;
