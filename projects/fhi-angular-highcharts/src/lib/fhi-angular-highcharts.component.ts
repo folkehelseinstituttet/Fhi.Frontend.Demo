@@ -58,19 +58,19 @@ export class FhiAngularHighchartsComponent {
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
       this.diagramTitle = this.diagramOptions.title;
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
+      this.setFooterData();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable(this.diagramTypeService.series);
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-        this.setAnonymized()
+        this.setAnonymized();
       }
     } catch (error) {
       console.error(error);
       console.error(this.getErrorMsg());
     }
   }
-
   onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramTypeNav.emit(diagramType);
   }
@@ -87,7 +87,7 @@ export class FhiAngularHighchartsComponent {
     return {
       ...d,
       diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
-      openSource: (d.openSource) ? d.openSource : true,
+      openSource: (!d.openSource) ? d.openSource : true,
     }
   }
 
@@ -116,6 +116,31 @@ export class FhiAngularHighchartsComponent {
         };
       }
     });
+  }
+
+  private setFooterData() {
+
+    console.log('this.diagramOptions', this.diagramOptions);
+
+    if (this.diagramOptions.openSource) {
+      return;
+    }
+    if (!this.diagramOptions.lastUpdated) {
+      this.footerLastUpdated = this.diagramOptions.lastUpdated;
+      this.showFooter = true;
+    }
+    if (this.diagramOptions.disclaimer !== undefined) {
+      this.footerDisclaimer = this.diagramOptions.disclaimer;
+      this.showFooter = true;
+    }
+    if (this.diagramOptions.creditsHref !== undefined) {
+      this.footerCreditsHref = this.diagramOptions.creditsHref;
+      this.showFooter = true;
+    }
+    if (this.diagramOptions.creditsText !== undefined) {
+      this.footerCreditsText = this.diagramOptions.creditsText;
+      this.showFooter = true;
+    }
   }
 
   private getErrorMsg() {
