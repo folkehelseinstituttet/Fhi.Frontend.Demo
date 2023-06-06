@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Options } from 'highcharts';
-import HighchartsExporting from 'highcharts/modules/exporting';
-import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
-import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
@@ -37,15 +34,11 @@ export class FhiAngularHighchartsComponent {
   showDefaultChartTemplate = true;
   tableHeaderRows = new Array();
   tableBodyRows = new Array();
-
-  // TODO: the following is not just for table but should be rendered
-  //       as HTML for Highcharts as well.
-  //       Simplified solution without fancy styling must be created
-  //       for use with Highcarts when exporting as SVG/PDF
-  tableLastUpdated!: string;
-  tableDisclaimer!: string;
-  tableCreditsHref!: string;
-  tableCreditsText!: string;
+  footerLastUpdated!: string;
+  footerDisclaimer!: string;
+  footerCreditsHref!: string;
+  footerCreditsText!: string;
+  showFooter = false;
 
   @Input() diagramOptions!: FhiDiagramOptions;
   @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
@@ -55,9 +48,6 @@ export class FhiAngularHighchartsComponent {
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
   ) {
-    HighchartsExporting(Highcharts);
-    HighchartsOfflineExporting(Highcharts);
-    HighchartsExportData(Highcharts);
     HighchartsMap(Highcharts);
     HighchartsAccessibility(Highcharts);
   }

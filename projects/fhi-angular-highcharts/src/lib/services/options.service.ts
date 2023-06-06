@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import cloneDeep from 'lodash-es/cloneDeep';
 import merge from 'lodash-es/merge';
-import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOptions, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
+import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
@@ -26,16 +26,8 @@ export class OptionsService {
 
   updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
-
-    // TODO: how to deal with title in exported charts?
-    // options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
-
     options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
 
-    if (!diagramOptions.openSource) {
-      options.caption = this.getCaptionText(options.caption, diagramOptions.lastUpdated, diagramOptions.disclaimer);
-      options.credits = this.getCredits(options.credits, diagramOptions.creditsHref, diagramOptions.creditsText, diagramOptions.diagramType.isMap);
-    }
     if (!diagramOptions.diagramType.isMap) {
       options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
     }
@@ -55,28 +47,6 @@ export class OptionsService {
     const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
     const current = (isMap) ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
     return merge(chartsAndMaps, current, optionsCurrentChartType);
-  }
-
-  private getCaptionText(caption: CaptionOptions | undefined, lastUpdated: string, disclaimerHtml: string | undefined) {
-    const disclaimer = (disclaimerHtml === undefined) ? false : true;
-    const lastUpdatedHtml = `<p>Oppdatert: ${lastUpdated}</p>`;
-    caption = (caption) ? caption : {};
-    caption.text = lastUpdatedHtml + ((disclaimer) ? disclaimerHtml : '');
-    if (!disclaimer) {
-      caption.y = 32;
-    }
-    return caption;
-  }
-
-  private getCredits(credits: CreditsOptions | undefined, href: string, text: string, isMap: boolean | undefined) {
-    credits = (credits) ? credits : {};
-    if (isMap) {
-      credits.text = '<a href="' + href + '">' + text + '</a>';
-    } else {
-      credits.href = href;
-      credits.text = text;
-    }
-    return credits;
   }
 
   private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
@@ -139,7 +109,6 @@ export class OptionsService {
     };
   }
 
-  // TODO: move to generic date-service
   public getISO8601DataFromNorwegianDate(nbNODate: string) {
     const dateList = nbNODate.split('.');
     return `${dateList[2]}-${dateList[1]}-${dateList[0]}`;

@@ -63,7 +63,13 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: "Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020",
             data: data,
-            diagramTypeNav: FhiDiagramTypeNavs.default
+            diagramTypeNav: FhiDiagramTypeNavs.default,
+
+            creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
+            creditsText: 'Nøkkeltall for folkehelse',
+            disclaimer: 'Disse dataene kan inneholde feil.',
+            lastUpdated: '06.06.2023',
+            openSource: false
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

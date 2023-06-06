@@ -24,7 +24,16 @@
     </ng-container>
   </ng-container>
 
-  <footer>
+  <footer *ngIf="showFooter">
+    <p class="" *ngIf="footerLastUpdated">
+      Sist oppdatert: {{ footerLastUpdated }}
+    </p>
+    <p class="" *ngIf="footerDisclaimer"
+      [innerHTML]="footerDisclaimer">
+    </p>
+    <a href="{{ footerCreditsHref }}" class="">
+      {{ footerCreditsText }}
+    </a>
   </footer>
 </article>
 
