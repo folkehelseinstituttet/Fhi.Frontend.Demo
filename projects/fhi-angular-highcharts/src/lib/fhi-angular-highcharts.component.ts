@@ -83,11 +83,10 @@ export class FhiAngularHighchartsComponent {
   }
 
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
-    const d = diagramOptions;
     return {
-      ...d,
-      diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
-      openSource: (!d.openSource) ? d.openSource : true,
+      ...diagramOptions,
+      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
+      openSource: (!diagramOptions.openSource) ? diagramOptions.openSource : true,
     }
   }
 
