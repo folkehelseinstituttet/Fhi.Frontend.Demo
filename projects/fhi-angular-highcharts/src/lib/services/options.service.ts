@@ -28,6 +28,9 @@ export class OptionsService {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
     options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
 
+    if (!diagramOptions.openSource) {
+      options.credits = { enabled: false };
+    }
     if (!diagramOptions.diagramType.isMap) {
       options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
     }

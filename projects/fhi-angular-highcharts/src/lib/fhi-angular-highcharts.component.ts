@@ -86,7 +86,7 @@ export class FhiAngularHighchartsComponent {
     return {
       ...diagramOptions,
       diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
-      openSource: (!diagramOptions.openSource) ? diagramOptions.openSource : true,
+      openSource: (diagramOptions.openSource === undefined || diagramOptions.openSource) ? true : false
     }
   }
 
@@ -119,7 +119,7 @@ export class FhiAngularHighchartsComponent {
 
   private setFooterData() {
 
-    console.log('this.diagramOptions', this.diagramOptions);
+    // console.log('this.diagramOptions', this.diagramOptions);
 
     if (this.diagramOptions.openSource) {
       return;
