@@ -25,14 +25,14 @@
   </ng-container>
 
   <footer *ngIf="showFooter">
-    <p class="" *ngIf="footerLastUpdated">
-      Sist oppdatert: {{ footerLastUpdated }}
+    <p class="" *ngIf="diagramOptions.lastUpdated">
+      Sist oppdatert: {{ diagramOptions.lastUpdated }}
     </p>
-    <a href="{{ footerCreditsHref }}" class="">
-      Kilde: {{ footerCreditsText }}
+    <a href="{{ diagramOptions.creditsHref }}" class="">
+      Kilde: {{ diagramOptions.creditsText }}
     </a>
-    <p class="" *ngIf="footerDisclaimer"
-      [innerHTML]="footerDisclaimer">
+    <p class="" *ngIf="diagramOptions.disclaimer"
+      [innerHTML]="diagramOptions.disclaimer">
     </p>
   </footer>
 </article>

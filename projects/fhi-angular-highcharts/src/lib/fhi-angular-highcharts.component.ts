@@ -34,11 +34,6 @@ export class FhiAngularHighchartsComponent {
   showDefaultChartTemplate = true;
   tableHeaderRows = new Array();
   tableBodyRows = new Array();
-
-  footerLastUpdated!: string;
-  footerDisclaimer!: string;
-  footerCreditsHref!: string;
-  footerCreditsText!: string;
   showFooter = false;
 
   @Input() diagramOptions!: FhiDiagramOptions;
@@ -54,17 +49,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
-
-    // update vs set?
-    // Anonymized always?
-    // OptionalFhiDiagramOptions vs setFooterData
-
     try {
-      this.diagramTypeService.series = this.diagramOptions.data;
-
-      this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
+      this.diagramOptions = this.updateDiagramOptions(this.diagramOptions);
+      this.showFooter = this.canShowFooter();
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
-      this.setFooterData();
+      this.updateSeriesInDiagramTypeService();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable(this.diagramOptions.data);
@@ -89,39 +78,37 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-
-  private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
+  private updateDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     return {
       ...diagramOptions,
       diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
       openSource: (diagramOptions.openSource === undefined || diagramOptions.openSource) ? true : false
     }
   }
-  // TODO: should be part of setOptionalFhiDiagramOptions
-  private setFooterData() {
 
-    // console.log('this.diagramOptions', this.diagramOptions);
-
+  private canShowFooter(): boolean {
     if (this.diagramOptions.openSource) {
-      return;
+      return false;
     }
-    if (!this.diagramOptions.lastUpdated) {
-      this.footerLastUpdated = this.diagramOptions.lastUpdated;
-      this.showFooter = true;
+    if (this.diagramOptions.lastUpdated !== undefined) {
+      return true;
     }
     if (this.diagramOptions.disclaimer !== undefined) {
-      this.footerDisclaimer = this.diagramOptions.disclaimer;
-      this.showFooter = true;
+      return true;
     }
-    if (this.diagramOptions.creditsHref !== undefined) {
-      this.footerCreditsHref = this.diagramOptions.creditsHref;
-      this.showFooter = true;
+    if (this.diagramOptions.creditsHref !== undefined && this.diagramOptions.creditsText !== undefined) {
+      return true;
     }
-    if (this.diagramOptions.creditsText !== undefined) {
-      this.footerCreditsText = this.diagramOptions.creditsText;
-      this.showFooter = true;
-    }
+    return false;
   }
+
+  private updateSeriesInDiagramTypeService() {
+    this.diagramTypeService.series = this.diagramOptions.data;
+  }
+
+
+
+
   private setAnonymized() {
     this.diagramOptions.data.forEach((serie, index) => {
       if (serie.dataAnonymized[0] !== undefined) {
