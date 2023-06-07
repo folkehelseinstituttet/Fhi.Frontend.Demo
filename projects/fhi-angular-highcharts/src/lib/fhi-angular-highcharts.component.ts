@@ -50,17 +50,19 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
-      this.diagramOptions = this.updateDiagramOptions(this.diagramOptions);
-      this.showFooter = this.canShowFooter();
-      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
+      this.diagramOptions = this.updateDiagramOptions();
+      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup();
       this.updateSeriesInDiagramTypeService();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-        this.updateTable(this.diagramOptions.data);
+        this.updateTable();
+        this.updateAnonymizedForTable();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-        // this.setAnonymized(); // This is only for charts/maps
+        this.updateAnonymizedForChartOrMap();
       }
+      this.showFooter = this.canShowFooter();
+
     } catch (error) {
       console.error(error);
       console.error(this.getErrorMsg());
@@ -78,12 +80,27 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  private updateDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
+  private updateDiagramOptions(): FhiDiagramOptions {
+    const options = this.diagramOptions;
     return {
-      ...diagramOptions,
-      diagramType: (diagramOptions.diagramType) ? diagramOptions.diagramType : FhiDiagramTypes.table,
-      openSource: (diagramOptions.openSource === undefined || diagramOptions.openSource) ? true : false
+      ...options,
+      diagramType: (options.diagramType) ? options.diagramType : FhiDiagramTypes.table,
+      openSource: (options.openSource === undefined || options.openSource) ? true : false
     }
+  }
+
+  private updateAnonymizedForTable() {
+  }
+
+  private updateAnonymizedForChartOrMap() {
+    this.diagramOptions.data.forEach((serie, index) => {
+      if (serie.dataAnonymized[0] !== undefined) {
+        this.anonymizedSeries[index] = {
+          name: serie.name,
+          dataAnonymized: serie.dataAnonymized
+        };
+      }
+    });
   }
 
   private canShowFooter(): boolean {
@@ -106,33 +123,18 @@ export class FhiAngularHighchartsComponent {
     this.diagramTypeService.series = this.diagramOptions.data;
   }
 
-
-
-
-  private setAnonymized() {
-    this.diagramOptions.data.forEach((serie, index) => {
-      if (serie.dataAnonymized[0] !== undefined) {
-        this.anonymizedSeries[index] = {
-          name: serie.name,
-          dataAnonymized: serie.dataAnonymized
-        };
-      }
-    });
-  }
-
-
-
-
-  private updateTable(series: FhiDiagramSerie[]) {
+  private updateTable() {
+    const series: FhiDiagramSerie[] = this.diagramOptions.data;
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
   }
 
-  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
-    if (diagramtype.id === FhiDiagramTypes.table.id) {
+  private getCurrentDiagramTypeGroup(): string {
+    const diagramType: FhiDiagramType = this.diagramOptions.diagramType;
+    if (diagramType.id === FhiDiagramTypes.table.id) {
       return FhiDiagramTypeGroups.table;
     }
-    if (diagramtype.isMap) {
+    if (diagramType.isMap) {
       return FhiDiagramTypeGroups.map;
     }
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;

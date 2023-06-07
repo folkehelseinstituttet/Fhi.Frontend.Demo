@@ -25,14 +25,23 @@
   </ng-container>
 
   <footer *ngIf="showFooter">
-    <p class="" *ngIf="diagramOptions.lastUpdated">
-      Sist oppdatert: {{ diagramOptions.lastUpdated }}
+    <p *ngIf="diagramOptions.lastUpdated">
+      <strong>Sist oppdatert:</strong> {{ diagramOptions.lastUpdated }}
     </p>
-    <a href="{{ diagramOptions.creditsHref }}" class="">
-      Kilde: {{ diagramOptions.creditsText }}
-    </a>
-    <p class="" *ngIf="diagramOptions.disclaimer"
-      [innerHTML]="diagramOptions.disclaimer">
+    <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
+      <strong>Kilde:</strong>
+      <a href="{{ diagramOptions.creditsHref }}" class="">
+        {{ diagramOptions.creditsText }}
+      </a>
+    </p>
+    <p *ngIf="true">
+      <strong>Tegnforklaringer:</strong><br>
+    </p>
+    <!-- DEBUGGING -->
+    <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre>
+
+    <p class="fst-italic" *ngIf="diagramOptions.disclaimer">
+      {{ diagramOptions.disclaimer }}
     </p>
   </footer>
 </article>
@@ -53,9 +62,6 @@
     [Highcharts]="Highcharts"
     [options]="highchartsOptions">
   </highcharts-chart>
-
-  <!-- DEBUGGING -->
-  <!-- <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre> -->
 </ng-template>
 
 <ng-template #map>
