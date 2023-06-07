@@ -23,10 +23,10 @@ export class FhiAngularHighchartsComponent {
   Highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
 
-  anonymizedSeries: DataAnonymizedSerie[] = [];
+  anonymizedSeries: DataAnonymizedSerie[] = []; // TODO...
+
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
-  diagramTitle!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavs = FhiDiagramTypeNavs;
   numOfDimensions!: number;
@@ -34,6 +34,7 @@ export class FhiAngularHighchartsComponent {
   showDefaultChartTemplate = true;
   tableHeaderRows = new Array();
   tableBodyRows = new Array();
+
   footerLastUpdated!: string;
   footerDisclaimer!: string;
   footerCreditsHref!: string;
@@ -53,24 +54,30 @@ export class FhiAngularHighchartsComponent {
   }
 
   ngOnChanges() {
+
+    // update vs set?
+    // Anonymized always?
+    // OptionalFhiDiagramOptions vs setFooterData
+
     try {
       this.diagramTypeService.series = this.diagramOptions.data;
+
       this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-      this.diagramTitle = this.diagramOptions.title;
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
       this.setFooterData();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-        this.updateTable(this.diagramTypeService.series);
+        this.updateTable(this.diagramOptions.data);
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-        this.setAnonymized();
+        // this.setAnonymized(); // This is only for charts/maps
       }
     } catch (error) {
       console.error(error);
       console.error(this.getErrorMsg());
     }
   }
+
   onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramTypeNav.emit(diagramType);
   }
@@ -82,6 +89,7 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
+
   private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
     return {
       ...diagramOptions,
@@ -89,34 +97,7 @@ export class FhiAngularHighchartsComponent {
       openSource: (diagramOptions.openSource === undefined || diagramOptions.openSource) ? true : false
     }
   }
-
-  private updateTable(series: FhiDiagramSerie[]) {
-    this.tableHeaderRows = this.tableService.getHeaderRows(series);
-    this.tableBodyRows = this.tableService.getDataRows(series);
-  }
-
-  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
-    if (diagramtype.id === FhiDiagramTypes.table.id) {
-      return FhiDiagramTypeGroups.table;
-    }
-    if (diagramtype.isMap) {
-      return FhiDiagramTypeGroups.map;
-    }
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return FhiDiagramTypeGroups.chart
-  }
-
-  private setAnonymized() {
-    this.diagramOptions.data.forEach((serie, index) => {
-      if (serie.dataAnonymized[0] !== undefined) {
-        this.anonymizedSeries[index] = {
-          name: serie.name,
-          dataAnonymized: serie.dataAnonymized
-        };
-      }
-    });
-  }
-
+  // TODO: should be part of setOptionalFhiDiagramOptions
   private setFooterData() {
 
     // console.log('this.diagramOptions', this.diagramOptions);
@@ -140,6 +121,35 @@ export class FhiAngularHighchartsComponent {
       this.footerCreditsText = this.diagramOptions.creditsText;
       this.showFooter = true;
     }
+  }
+  private setAnonymized() {
+    this.diagramOptions.data.forEach((serie, index) => {
+      if (serie.dataAnonymized[0] !== undefined) {
+        this.anonymizedSeries[index] = {
+          name: serie.name,
+          dataAnonymized: serie.dataAnonymized
+        };
+      }
+    });
+  }
+
+
+
+
+  private updateTable(series: FhiDiagramSerie[]) {
+    this.tableHeaderRows = this.tableService.getHeaderRows(series);
+    this.tableBodyRows = this.tableService.getDataRows(series);
+  }
+
+  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
+    if (diagramtype.id === FhiDiagramTypes.table.id) {
+      return FhiDiagramTypeGroups.table;
+    }
+    if (diagramtype.isMap) {
+      return FhiDiagramTypeGroups.map;
+    }
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
+    return FhiDiagramTypeGroups.chart
   }
 
   private getErrorMsg() {

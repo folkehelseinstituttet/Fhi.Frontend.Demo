@@ -1,5 +1,5 @@
 <article *ngIf="diagramOptions !== undefined">
-  <h1 class="h3 mb-4">{{ diagramTitle }}</h1>
+  <h1 class="h3 mb-4">{{ diagramOptions.title }}</h1>
 
   <ng-container *ngIf="diagramOptions.diagramTypeNav !== undefined">
     <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
@@ -28,12 +28,12 @@
     <p class="" *ngIf="footerLastUpdated">
       Sist oppdatert: {{ footerLastUpdated }}
     </p>
+    <a href="{{ footerCreditsHref }}" class="">
+      Kilde: {{ footerCreditsText }}
+    </a>
     <p class="" *ngIf="footerDisclaimer"
       [innerHTML]="footerDisclaimer">
     </p>
-    <a href="{{ footerCreditsHref }}" class="">
-      {{ footerCreditsText }}
-    </a>
   </footer>
 </article>
 
