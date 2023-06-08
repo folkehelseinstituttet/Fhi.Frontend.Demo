@@ -47,9 +47,8 @@ export interface FlaggedSerie {
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
-  flaggedData?:  Array<FlaggedSerie>;
 
-  dataAnonymized?: Array<DataAnonymized>;
+  dataAnonymized?: Array<DataAnonymized>; // TODO: remove!
 
   name:	string;
   colorIndex?: number,

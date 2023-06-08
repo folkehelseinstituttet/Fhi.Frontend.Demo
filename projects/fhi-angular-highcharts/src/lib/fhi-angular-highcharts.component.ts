@@ -4,7 +4,7 @@ import { Options } from 'highcharts';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { DataAnonymizedSerie, FhiDiagramOptions, FhiDiagramSerie } from './fhi-diagram/fhi-diagram.models';
+import { Data, DataAnonymizedSerie, FhiDiagramOptions, FhiDiagramSerie, FlagWithCategoryName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
@@ -23,6 +23,7 @@ export class FhiAngularHighchartsComponent {
   highchartsOptions!: Options;
 
   anonymizedSeries: DataAnonymizedSerie[] = []; // TODO...
+  flaggedSeries: FlaggedSerie[] = [];
   flaggedCategoriesInChartOrMap!: string;
 
   allMapsLoaded = false;
@@ -53,6 +54,7 @@ export class FhiAngularHighchartsComponent {
       this.diagramOptions = this.updateDiagramOptions();
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup();
       this.updateSeriesInDiagramTypeService();
+      this.updateFlaggedSeries();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
@@ -95,7 +97,6 @@ export class FhiAngularHighchartsComponent {
 
   private updateAnonymizedForTable() {
   }
-
   private updateAnonymizedForChartOrMap() {
     this.diagramOptions.data.forEach((serie, index) => {
 
@@ -108,6 +109,35 @@ export class FhiAngularHighchartsComponent {
         };
       }
     });
+  }
+
+  private updateFlaggedSeries() {
+    let n = 0;
+    this.diagramOptions.data.forEach((serie, index) => {
+      const test = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
+      if (test.length !== 0) {
+        this.flaggedSeries[n++] = {
+          name: serie.name,
+          flaggedCatgories: this.getFlaggedCatgories(test)
+        };
+      }
+    });
+
+    console.log('this.flaggedSeries', this.flaggedSeries);
+  }
+
+  // TODO: Data[] -> FhiDiagramSerieData[]?
+  private getFlaggedCatgories(test: Data[]): FlagWithCategoryName[] {
+    const flaggedCatgories: FlagWithCategoryName[] = [];
+    let n = 0;
+    test.forEach(category => {
+      flaggedCatgories[n++] = {
+        name: category.name,
+        symbol: category.y as string,
+        label: 'N/A'
+      };
+    });
+    return flaggedCatgories;
   }
 
   private canShowFooter(): boolean {
