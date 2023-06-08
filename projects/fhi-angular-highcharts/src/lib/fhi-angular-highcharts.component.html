@@ -30,11 +30,8 @@
     </p>
     <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
       <strong>Kilde</strong>
-      <a href="{{ diagramOptions.creditsHref }}" class="">
-        {{ diagramOptions.creditsText }}
-      </a>
+      <a href="{{ diagramOptions.creditsHref }}" class="">l{{ diagramOptions.creditsText }}</a>
     </p>
-
     <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
       <strong>Tegnforklaringer</strong><br>
       <table>
@@ -46,15 +43,10 @@
         </tbody>
       </table>
     </div>
-
     <p *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
       Data for {{ flaggedCategoriesInChartOrMap }} kan ikke vises.
       <a class="link" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
     </p>
-
-    <!-- DEBUGGING -->
-    <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre>
-
     <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
       {{ diagramOptions.disclaimer }}
     </p>

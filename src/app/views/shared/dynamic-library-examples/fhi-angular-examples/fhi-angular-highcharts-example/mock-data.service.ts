@@ -9,22 +9,22 @@ import { MockData } from './mock-data';
 export class MockDataService {
 
   getData(dataSetIndex: number): Observable<any> {
-    return new Observable<any>(observer => {
+    return new Observable<any>(dataSet => {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
-          observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
 
         case MockData.TwoSeriesAar:
-          observer.next(this.dodsfall_r_Ar_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Ar_c_Aarsak);
           break;
 
         case MockData.MultipleSeriesAar:
-          observer.next(this.dodsfall_r_Ar_c_Aarsak_LG);
+          dataSet.next(this.dodsfall_r_Ar_c_Aarsak_LG);
           break;
 
         default:
-          observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
       }
     });

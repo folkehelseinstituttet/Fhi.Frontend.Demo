@@ -4,7 +4,7 @@ import { Options } from 'highcharts';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { Data, DataAnonymizedSerie, FhiDiagramOptions, FhiDiagramSerie, FlagWithCategoryName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithCategoryName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
@@ -21,11 +21,8 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
 export class FhiAngularHighchartsComponent {
   Highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
-
-  anonymizedSeries: DataAnonymizedSerie[] = []; // TODO...
   flaggedSeries: FlaggedSerie[] = [];
   flaggedCategoriesInChartOrMap!: string;
-
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
