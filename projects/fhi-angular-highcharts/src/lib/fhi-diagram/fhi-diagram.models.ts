@@ -16,6 +16,7 @@ export interface FhiDiagramType {
   mapFile?: string;
 }
 
+// TODO: Data[] -> FhiDiagramSerieData[]?
 export interface Data {
   name: string;
   y: number | string;

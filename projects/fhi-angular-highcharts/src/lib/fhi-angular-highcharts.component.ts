@@ -58,7 +58,6 @@ export class FhiAngularHighchartsComponent {
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
-        this.updateAnonymizedForTable();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
         this.updateAnonymizedForChartOrMap();
@@ -91,13 +90,15 @@ export class FhiAngularHighchartsComponent {
     return {
       ...options,
       diagramType: (options.diagramType) ? options.diagramType : FhiDiagramTypes.table,
+      flags: (options.flags) ? options.flags : undefined,
       openSource: (options.openSource === undefined || options.openSource) ? true : false
     }
   }
 
-  private updateAnonymizedForTable() {
-  }
   private updateAnonymizedForChartOrMap() {
+
+    console.log('this.flaggedSeries', this.flaggedSeries);
+
     this.diagramOptions.data.forEach((serie, index) => {
 
       console.log('serie', serie);
@@ -113,24 +114,21 @@ export class FhiAngularHighchartsComponent {
 
   private updateFlaggedSeries() {
     let n = 0;
-    this.diagramOptions.data.forEach((serie, index) => {
-      const test = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
-      if (test.length !== 0) {
+    this.diagramOptions.data.forEach((serie) => {
+      const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
+      if (data.length !== 0) {
         this.flaggedSeries[n++] = {
           name: serie.name,
-          flaggedCatgories: this.getFlaggedCatgories(test)
+          flaggedCatgories: this.getFlaggedCatgories(data)
         };
       }
     });
-
-    console.log('this.flaggedSeries', this.flaggedSeries);
   }
 
-  // TODO: Data[] -> FhiDiagramSerieData[]?
-  private getFlaggedCatgories(test: Data[]): FlagWithCategoryName[] {
+  private getFlaggedCatgories(data: Data[]): FlagWithCategoryName[] {
     const flaggedCatgories: FlagWithCategoryName[] = [];
     let n = 0;
-    test.forEach(category => {
+    data.forEach(category => {
       flaggedCatgories[n++] = {
         name: category.name,
         symbol: category.y as string,
@@ -143,6 +141,9 @@ export class FhiAngularHighchartsComponent {
   private canShowFooter(): boolean {
     if (this.diagramOptions.openSource) {
       return false;
+    }
+    if (this.flaggedSeries.length !== 0) {
+      return true;
     }
     if (this.diagramOptions.lastUpdated !== undefined) {
       return true;

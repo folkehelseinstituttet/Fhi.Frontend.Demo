@@ -48,7 +48,6 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: "Dødsfall etter årsak, 2008 - 2018",
             data: data,
-            // diagramType: FhiDiagramTypes.line,
             diagramType: FhiDiagramTypes.table,
           }
           this.dataIsLoading = false;
@@ -64,7 +63,16 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             title: "Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020",
             data: data,
             diagramTypeNav: FhiDiagramTypeNavs.default,
-
+            flags: [{
+              symbol: '..',
+              label: 'Manglende data'
+            }, {
+              symbol: '.',
+              label: 'Lar seg ikke beregne'
+            }, {
+              symbol: ':',
+              label: 'Anonymisert'
+            }],
             creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
             creditsText: 'Nøkkeltall for folkehelse',
             disclaimer: 'Disse dataene kan inneholde feil.',

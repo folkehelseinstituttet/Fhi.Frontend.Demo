@@ -24,21 +24,30 @@
     </ng-container>
   </ng-container>
 
-  <footer *ngIf="showFooter">
+  <footer class="mt-3" *ngIf="showFooter">
     <p *ngIf="diagramOptions.lastUpdated">
-      <strong>Sist oppdatert:</strong> {{ diagramOptions.lastUpdated }}
+      <strong>Sist oppdatert</strong> {{ diagramOptions.lastUpdated }}
     </p>
     <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
-      <strong>Kilde:</strong>
+      <strong>Kilde</strong>
       <a href="{{ diagramOptions.creditsHref }}" class="">
         {{ diagramOptions.creditsText }}
       </a>
     </p>
 
+    <div class="mb-3" *ngIf="diagramOptions.flags">
+      <strong>Tegnforklaringer</strong><br>
+      <table>
+        <tbody>
+          <tr *ngFor="let flag of diagramOptions.flags">
+            <td class="pe-2">{{ flag.symbol }}</td>
+            <td>{{ flag.label }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <p *ngIf="false">
-      <strong>Tegnforklaringer:</strong><br>
-    </p>
-    <p *ngIf="true">
       Data for {{ flaggedCategoriesInChartOrMap }} kan ikke vises.<br>
       <a class="link" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
     </p>
@@ -46,7 +55,7 @@
     <!-- DEBUGGING -->
     <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre>
 
-    <p class="fst-italic" *ngIf="diagramOptions.disclaimer">
+    <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
       {{ diagramOptions.disclaimer }}
     </p>
   </footer>
