@@ -60,10 +60,6 @@ export class OptionsService {
     } else {
       const highchartsSeries = cloneDeep(data);
       highchartsSeries.forEach((serie) => {
-        // Add anonymized to diagramOptions.data
-        // data[index].dataAnonymized = serie.data
-        //   .filter(dataPoint => typeof dataPoint.y === 'string') as DataAnonymized[];
-
         // Remove flagged data from Highcharts options series
         serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
       });

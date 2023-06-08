@@ -60,7 +60,7 @@ export class FhiAngularHighchartsComponent {
         this.updateTable();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-        this.updateAnonymizedForChartOrMap();
+        this.updateFlaggedCategoriesInChartOrMap();
       }
       this.showFooter = this.canShowFooter();
 
@@ -70,8 +70,13 @@ export class FhiAngularHighchartsComponent {
     }
   }
 
+  // TODO: onDiagramTypeNav -> onDiagramTypeNavigation?
   onDiagramTypeNav(diagramType: FhiDiagramType) {
     this.diagramTypeNav.emit(diagramType);
+  }
+
+  setDiagramTypeGroupToTable() {
+    this.diagramTypeNav.emit(FhiDiagramTypes.table);
   }
 
   tableCellDataOK(data: number | string): boolean {
@@ -79,10 +84,6 @@ export class FhiAngularHighchartsComponent {
       return true;
     }
     return false;
-  }
-
-  setDiagramTypeGroupToTable() {
-    console.log('setDiagramTypeGroupToTable() !');
   }
 
   private updateDiagramOptions(): FhiDiagramOptions {
@@ -93,23 +94,6 @@ export class FhiAngularHighchartsComponent {
       flags: (options.flags) ? options.flags : undefined,
       openSource: (options.openSource === undefined || options.openSource) ? true : false
     }
-  }
-
-  private updateAnonymizedForChartOrMap() {
-
-    console.log('this.flaggedSeries', this.flaggedSeries);
-
-    this.diagramOptions.data.forEach((serie, index) => {
-
-      console.log('serie', serie);
-
-      if (serie.dataAnonymized[0] !== undefined) {
-        this.anonymizedSeries[index] = {
-          name: serie.name,
-          dataAnonymized: serie.dataAnonymized
-        };
-      }
-    });
   }
 
   private updateFlaggedSeries() {
@@ -132,11 +116,34 @@ export class FhiAngularHighchartsComponent {
       flaggedCatgories[n++] = {
         name: category.name,
         symbol: category.y as string,
-        label: 'N/A'
+        label: 'N/A' // TODO: match label to symbol from Flag
       };
     });
     return flaggedCatgories;
   }
+
+  private updateFlaggedCategoriesInChartOrMap() {
+    console.log('this.flaggedSeries', this.flaggedSeries);
+    this.flaggedCategoriesInChartOrMap = '';
+  }
+  // private updateAnonymizedForChartOrMap() {
+
+  //   console.log('this.flaggedSeries', this.flaggedSeries);
+
+  //   this.diagramOptions.data.forEach((serie, index) => {
+
+  //     console.log('serie', serie);
+
+  //     if (serie.dataAnonymized[0] !== undefined) {
+  //       this.anonymizedSeries[index] = {
+  //         name: serie.name,
+  //         dataAnonymized: serie.dataAnonymized
+  //       };
+  //     }
+  //   });
+  // }
+
+
 
   private canShowFooter(): boolean {
     if (this.diagramOptions.openSource) {

@@ -22,35 +22,23 @@ export interface Data {
   y: number | string;
 }
 
-
-export interface DataAnonymized {
-  name: string;
-  y: string;
-}
-export interface DataAnonymizedSerie {
-  name: string;
-  dataAnonymized: Array<DataAnonymized>;
-}
-
+// TODO: Flag -> FhiDiagramFlag
 export interface Flag {
   symbol: string;
   label: string;
 }
+
 export interface FlagWithCategoryName extends Flag {
   name: string;
 }
+
 export interface FlaggedSerie {
   name: string;
   flaggedCatgories: Array<FlagWithCategoryName>;
 }
 
-
-
 export interface FhiDiagramSerie {
   data:	Array<Data>;
-
-  dataAnonymized?: Array<DataAnonymized>; // TODO: remove!
-
   name:	string;
   colorIndex?: number,
   linkedTo?: string,

@@ -35,7 +35,7 @@
       </a>
     </p>
 
-    <div class="mb-3" *ngIf="diagramOptions.flags">
+    <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
       <strong>Tegnforklaringer</strong><br>
       <table>
         <tbody>
@@ -47,8 +47,8 @@
       </table>
     </div>
 
-    <p *ngIf="false">
-      Data for {{ flaggedCategoriesInChartOrMap }} kan ikke vises.<br>
+    <p *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
+      Data for {{ flaggedCategoriesInChartOrMap }} kan ikke vises.
       <a class="link" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
     </p>
 
