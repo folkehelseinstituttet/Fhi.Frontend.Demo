@@ -35,12 +35,22 @@ export interface Flag {
   symbol: string;
   label: string;
 }
+export interface FlagWithCategoryName extends Flag {
+  name: string;
+}
+export interface FlaggedSerie {
+  name: string;
+  flaggedCatgories: Array<FlagWithCategoryName>;
+}
 
 
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
+  flaggedData?:  Array<FlaggedSerie>;
+
   dataAnonymized?: Array<DataAnonymized>;
+
   name:	string;
   colorIndex?: number,
   linkedTo?: string,

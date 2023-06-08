@@ -98,6 +98,9 @@ export class FhiAngularHighchartsComponent {
 
   private updateAnonymizedForChartOrMap() {
     this.diagramOptions.data.forEach((serie, index) => {
+
+      console.log('serie', serie);
+
       if (serie.dataAnonymized[0] !== undefined) {
         this.anonymizedSeries[index] = {
           name: serie.name,

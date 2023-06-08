@@ -52,16 +52,16 @@ export class OptionsService {
     return merge(chartsAndMaps, current, optionsCurrentChartType);
   }
 
-  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(data: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
       // TODO: MAP
       // return [this.geoJsonService.getHighmapsSerie(series[0])];
 
     } else {
-      const highchartsSeries = cloneDeep(series);
+      const highchartsSeries = cloneDeep(data);
       highchartsSeries.forEach((serie, index) => {
-        // Add anonymized to FhiDiagramSerie
-        series[index].dataAnonymized = serie.data
+        // Add anonymized to diagramOptions.data
+        data[index].dataAnonymized = serie.data
           .filter(dataPoint => typeof dataPoint.y === 'string') as DataAnonymized[];
 
         // Remove anonymized from Highcharts options series
