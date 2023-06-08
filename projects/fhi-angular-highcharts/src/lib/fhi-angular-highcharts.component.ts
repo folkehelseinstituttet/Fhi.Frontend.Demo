@@ -19,11 +19,11 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiAngularHighchartsComponent {
-
   Highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
 
   anonymizedSeries: DataAnonymizedSerie[] = []; // TODO...
+  flaggedCategoriesInChartOrMap!: string;
 
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
@@ -78,6 +78,10 @@ export class FhiAngularHighchartsComponent {
       return true;
     }
     return false;
+  }
+
+  setDiagramTypeGroupToTable() {
+    console.log('setDiagramTypeGroupToTable() !');
   }
 
   private updateDiagramOptions(): FhiDiagramOptions {

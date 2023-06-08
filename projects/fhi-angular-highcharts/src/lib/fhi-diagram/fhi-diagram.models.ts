@@ -21,15 +21,22 @@ export interface Data {
   y: number | string;
 }
 
+
 export interface DataAnonymized {
   name: string;
   y: string;
 }
-
 export interface DataAnonymizedSerie {
   name: string;
   dataAnonymized: Array<DataAnonymized>;
 }
+
+export interface Flag {
+  symbol: string;
+  label: string;
+}
+
+
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
@@ -47,6 +54,7 @@ export interface FhiDiagramOptions {
   diagramType?: FhiDiagramType;
   diagramTypeNav?: string;
   disclaimer?: string;
+  flags?: Array<Flag>;
   lastUpdated?: string;
   openSource?: boolean;
   title: string;

@@ -34,9 +34,15 @@
         {{ diagramOptions.creditsText }}
       </a>
     </p>
-    <p *ngIf="true">
+
+    <p *ngIf="false">
       <strong>Tegnforklaringer:</strong><br>
     </p>
+    <p *ngIf="true">
+      Data for {{ flaggedCategoriesInChartOrMap }} kan ikke vises.
+      <a class="link" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+    </p>
+
     <!-- DEBUGGING -->
     <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre>
 
