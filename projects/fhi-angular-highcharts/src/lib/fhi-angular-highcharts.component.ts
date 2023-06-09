@@ -19,10 +19,16 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiAngularHighchartsComponent {
+
+  // TODO: clean up list (pub/priv, H -> h, order)
+
   Highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
+
   flaggedSeries: FlaggedSerie[] = [];
-  flaggedCategoriesInChartOrMap!: string;
+  flaggedCategoriesForChartOrMap!: Array<string>;
+  // TODO: flaggedCategoriesForChartOrMap -> flaggedDataPoints
+
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
@@ -50,7 +56,7 @@ export class FhiAngularHighchartsComponent {
     try {
       this.diagramOptions = this.updateDiagramOptions();
       this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup();
-      this.updateSeriesInDiagramTypeService();
+      this.updateDiagramTypes();
       this.updateFlaggedSeries();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
@@ -120,27 +126,16 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateFlaggedCategoriesInChartOrMap() {
-    console.log('this.flaggedSeries', this.flaggedSeries);
-    this.flaggedCategoriesInChartOrMap = '';
+    const flagged: Array<string> = [];
+    let n = 0;
+    this.flaggedSeries.forEach(serie => {
+      serie.flaggedCatgories.forEach(category => {
+        flagged[n++] = serie.name.concat(', ', category.name, ' [', category.symbol, ']');
+      });
+    });
+    // console.log('flagged', flagged);
+    this.flaggedCategoriesForChartOrMap = flagged;
   }
-  // private updateAnonymizedForChartOrMap() {
-
-  //   console.log('this.flaggedSeries', this.flaggedSeries);
-
-  //   this.diagramOptions.data.forEach((serie, index) => {
-
-  //     console.log('serie', serie);
-
-  //     if (serie.dataAnonymized[0] !== undefined) {
-  //       this.anonymizedSeries[index] = {
-  //         name: serie.name,
-  //         dataAnonymized: serie.dataAnonymized
-  //       };
-  //     }
-  //   });
-  // }
-
-
 
   private canShowFooter(): boolean {
     if (this.diagramOptions.openSource) {
@@ -161,14 +156,14 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  private updateSeriesInDiagramTypeService() {
-    this.diagramTypeService.series = this.diagramOptions.data;
-  }
-
   private updateTable() {
     const series: FhiDiagramSerie[] = this.diagramOptions.data;
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
+  }
+
+  private updateDiagramTypes() {
+    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.data);
   }
 
   private getCurrentDiagramTypeGroup(): string {

@@ -12,11 +12,6 @@ export class DiagramTypeService {
   private _mapTypes!: FhiDiagramType[];
   private _series!: FhiDiagramSerie[];
 
-  set series(series: FhiDiagramSerie[]) {
-    this._series = series;
-    this.updateAvailableTypes();
-  }
-
   get series(): FhiDiagramSerie[] {
     return this._series;
   }
@@ -27,6 +22,11 @@ export class DiagramTypeService {
 
   get mapTypes(): FhiDiagramType[] {
     return this._mapTypes;
+  }
+
+  updateDiagramTypes(series: FhiDiagramSerie[]) {
+    this._series = series;
+    this.updateAvailableTypes();
   }
 
   private updateAvailableTypes() {

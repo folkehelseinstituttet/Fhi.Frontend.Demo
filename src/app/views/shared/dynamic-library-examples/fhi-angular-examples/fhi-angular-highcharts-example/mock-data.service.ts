@@ -12,7 +12,8 @@ export class MockDataService {
     return new Observable<any>(dataSet => {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
-          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Ar_c_Aarsak_LG);
+          // dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
 
         case MockData.TwoSeriesAar:
@@ -215,7 +216,8 @@ export class MockDataService {
               },
               {
                   "name": "2021",
-                  "y": 660
+                  "y": ':'
+                  // "y": 660
               }
           ]
       },
@@ -231,7 +233,8 @@ export class MockDataService {
               },
               {
                   "name": "2018",
-                  "y": 1096
+                  "y": ':'
+                  // "y": 1096
               },
               {
                   "name": "2019",
@@ -258,11 +261,13 @@ export class MockDataService {
               },
               {
                   "name": "2018",
-                  "y": 603
+                  // "y": 603
+                  "y": ':'
               },
               {
                   "name": "2019",
-                  "y": 544
+                  // "y": 544
+                  "y": ':'
               },
               {
                   "name": "2020",
@@ -317,7 +322,8 @@ export class MockDataService {
               },
               {
                   "name": "2019",
-                  "y": 1203
+                  "y": ':'
+                  // "y": 1203
               },
               {
                   "name": "2020",
