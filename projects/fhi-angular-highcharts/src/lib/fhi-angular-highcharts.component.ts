@@ -54,10 +54,10 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
-      this.diagramOptions = this.updateDiagramOptions();
-      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup();
-      this.updateDiagramTypes();
+      this.updateDiagramOptions();
       this.updateFlaggedSeries();
+      this.updateCurrentDiagramTypeGroup();
+      this.updateDiagramTypes();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
@@ -89,13 +89,16 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  private updateDiagramOptions(): FhiDiagramOptions {
-    const options = this.diagramOptions;
-    return {
-      ...options,
-      diagramType: (options.diagramType) ? options.diagramType : FhiDiagramTypes.table,
-      flags: (options.flags) ? options.flags : undefined,
-      openSource: (options.openSource === undefined || options.openSource) ? true : false
+  private updateDiagramOptions() {
+    const diagramType = this.diagramOptions.diagramType;
+    const flags = this.diagramOptions.flags;
+    const openSource = this.diagramOptions.openSource;
+
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      diagramType: (diagramType) ? diagramType : FhiDiagramTypes.table,
+      flags: (flags) ? flags : undefined,
+      openSource: (openSource === undefined || openSource) ? true : false
     }
   }
 
@@ -137,6 +140,28 @@ export class FhiAngularHighchartsComponent {
     this.flaggedCategoriesForChartOrMap = flagged;
   }
 
+  private updateCurrentDiagramTypeGroup() {
+    const diagramType: FhiDiagramType = this.diagramOptions.diagramType;
+    if (diagramType.id === FhiDiagramTypes.table.id) {
+      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
+    }
+    if (diagramType.isMap) {
+      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
+    }
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
+    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
+  }
+
+  private updateDiagramTypes() {
+    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.data);
+  }
+
+  private updateTable() {
+    const series: FhiDiagramSerie[] = this.diagramOptions.data;
+    this.tableHeaderRows = this.tableService.getHeaderRows(series);
+    this.tableBodyRows = this.tableService.getDataRows(series);
+  }
+
   private canShowFooter(): boolean {
     if (this.diagramOptions.openSource) {
       return false;
@@ -154,28 +179,6 @@ export class FhiAngularHighchartsComponent {
       return true;
     }
     return false;
-  }
-
-  private updateTable() {
-    const series: FhiDiagramSerie[] = this.diagramOptions.data;
-    this.tableHeaderRows = this.tableService.getHeaderRows(series);
-    this.tableBodyRows = this.tableService.getDataRows(series);
-  }
-
-  private updateDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.data);
-  }
-
-  private getCurrentDiagramTypeGroup(): string {
-    const diagramType: FhiDiagramType = this.diagramOptions.diagramType;
-    if (diagramType.id === FhiDiagramTypes.table.id) {
-      return FhiDiagramTypeGroups.table;
-    }
-    if (diagramType.isMap) {
-      return FhiDiagramTypeGroups.map;
-    }
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return FhiDiagramTypeGroups.chart
   }
 
   private getErrorMsg() {

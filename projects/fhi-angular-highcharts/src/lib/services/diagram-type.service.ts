@@ -39,6 +39,11 @@ export class DiagramTypeService {
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfSeries = this.getNumberOfSeries();
 
+    // Remove line
+    if (numOfSeries > 1) {
+      chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
+    }
+
     // Remove pie
     if (numOfSeries > 1) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
