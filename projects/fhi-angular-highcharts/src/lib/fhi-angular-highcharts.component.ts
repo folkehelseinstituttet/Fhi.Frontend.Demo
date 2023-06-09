@@ -11,7 +11,7 @@ import { DiagramTypeService } from './services/diagram-type.service';
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramTypeId } from './fhi-diagram/fhi-diagram-type-id';
 
 @Component({
@@ -34,7 +34,7 @@ export class FhiAngularHighchartsComponent {
   allMapsLoaded = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavs = FhiDiagramTypeNavs;
+  diagramTypeNavId = FhiDiagramTypeNavId;
   numOfDimensions!: number;
   numOfSeries!: number;
   showDefaultChartTemplate = true;

@@ -1,7 +1,7 @@
 <article *ngIf="diagramOptions !== undefined">
   <h1 class="h3 mb-4">{{ diagramOptions.title }}</h1>
 
-  <ng-container *ngIf="diagramOptions.diagramTypeNav !== undefined">
+  <ng-container *ngIf="diagramOptions.diagramTypeNavId !== undefined">
     <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
   </ng-container>
 
@@ -62,7 +62,7 @@
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="diagramOptions.diagramTypeNav === diagramTypeNavs.default"
+    *ngIf="diagramOptions.diagramTypeNavId === diagramTypeNavId.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [currentDiagramTypeId]="diagramOptions.diagramTypeId"
     (navigateToDiagramType)="onDiagramTypeNavigation($event)">

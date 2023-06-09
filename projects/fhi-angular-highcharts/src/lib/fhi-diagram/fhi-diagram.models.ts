@@ -49,11 +49,7 @@ export interface FhiDiagramOptions {
   creditsText?: string;
   data: Array<FhiDiagramSerie>;
   diagramTypeId?: string;
-  // diagramTypeNavId?: string;
-
-  // TODO: remove
-  diagramTypeNav?: string;
-
+  diagramTypeNavId?: string;
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
