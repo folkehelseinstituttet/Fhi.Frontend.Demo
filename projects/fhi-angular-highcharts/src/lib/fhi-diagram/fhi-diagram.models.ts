@@ -22,13 +22,12 @@ export interface Data {
   y: number | string;
 }
 
-// TODO: Flag -> FhiDiagramFlag
-export interface Flag {
+export interface FhiDiagramFlag {
   symbol: string;
   label: string;
 }
 
-export interface FlagWithCategoryName extends Flag {
+export interface FlagWithCategoryName extends FhiDiagramFlag {
   name: string;
 }
 
@@ -52,7 +51,7 @@ export interface FhiDiagramOptions {
   diagramType?: FhiDiagramType;
   diagramTypeNav?: string;
   disclaimer?: string;
-  flags?: Array<Flag>;
+  flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
   openSource?: boolean;
   title: string;
