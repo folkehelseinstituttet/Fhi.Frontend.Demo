@@ -47,13 +47,13 @@ export interface FhiDiagramSerie {
 export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
-  data: Array<FhiDiagramSerie>;
   diagramTypeId?: string;
   diagramTypeNavId?: string;
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
   openSource?: boolean;
+  series: Array<FhiDiagramSerie>;
   title: string;
 }
 

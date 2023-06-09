@@ -75,7 +75,7 @@ export class FhiAngularHighchartsComponent {
       this.showFooter = this.canShowFooter();
 
     } catch (error) {
-      console.error(error);
+      // console.error(error); //DEBUGGING
       console.error(this.getErrorMsg());
     }
   }
@@ -114,7 +114,7 @@ export class FhiAngularHighchartsComponent {
 
   private updateFlaggedSeries() {
     let n = 0;
-    this.diagramOptions.data.forEach((serie) => {
+    this.diagramOptions.series.forEach((serie) => {
       const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
       if (data.length !== 0) {
         this.flaggedSeries[n++] = {
@@ -171,11 +171,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.data, this.flaggedSeries);
+    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.series, this.flaggedSeries);
   }
 
   private updateTable() {
-    const series: FhiDiagramSerie[] = this.diagramOptions.data;
+    const series: FhiDiagramSerie[] = this.diagramOptions.series;
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
   }
@@ -201,13 +201,16 @@ export class FhiAngularHighchartsComponent {
 
   private getErrorMsg() {
     return `ERROR: @Input() diagramOptions === undefined
-    or @Input() diagramOptions.data === undefined
+    or diagramOptions.series === undefined
     at FhiAngularHighchartsComponent.ngOnChanges
     FhiAngularHighchartsComponent can not be rendered.
+
     To avoid this error message:
-    test for yourOptions !== undefined
-    and yourOptions.data !== undefined before calling
-    <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
+    Make sure [yourOptions] are valid before calling template:
+    <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
+
+    If [yourOptions] are in accordance with specification; contact maintainer of
+    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts`;
   }
 
 }

@@ -27,13 +27,13 @@ export class OptionsService {
 
   updateOptions(diagramOptions: FhiDiagramOptions, diagramType: FhiDiagramType, allMapsLoaded: boolean): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramTypeId));
-    options.series = this.getSeries(diagramOptions.data, diagramType.isMap, allMapsLoaded);
+    options.series = this.getSeries(diagramOptions.series, diagramType.isMap, allMapsLoaded);
 
     if (!diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
     if (!diagramType.isMap) {
-      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
+      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.series);
     }
     return options;
   }
