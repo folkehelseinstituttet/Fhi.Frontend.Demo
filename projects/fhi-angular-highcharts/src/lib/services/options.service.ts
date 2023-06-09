@@ -11,6 +11,7 @@ import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.m
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
+import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models'
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +25,14 @@ export class OptionsService {
 
   private allStaticOptions = new Map();
 
-  updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
-    options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
+  updateOptions(diagramOptions: FhiDiagramOptions, diagramType: FhiDiagramType, allMapsLoaded: boolean): Options {
+    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramTypeId));
+    options.series = this.getSeries(diagramOptions.data, diagramType.isMap, allMapsLoaded);
 
     if (!diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
-    if (!diagramOptions.diagramType.isMap) {
+    if (!diagramType.isMap) {
       options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
     }
     return options;

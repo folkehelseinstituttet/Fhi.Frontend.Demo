@@ -14,7 +14,7 @@ import { DiagramTypeService } from '../services/diagram-type.service';
 export class FhiDiagramTypeNavComponent {
 
   @Input() currentDiagramTypeGroup!: string;
-  @Input() currentDiagramType!: FhiDiagramType;
+  @Input() currentDiagramTypeId!: string;
 
   @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
 
@@ -59,7 +59,7 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private updateNavDiagramTypeGroup() {
-    const chartId = this.currentDiagramType.id;
+    const chartId = this.currentDiagramTypeId;
     const chartType = this.diagramTypeService.chartTypes
       .find(chartType => chartType.id === chartId);
 

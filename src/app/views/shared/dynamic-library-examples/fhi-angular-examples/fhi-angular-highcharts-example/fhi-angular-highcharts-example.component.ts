@@ -5,8 +5,6 @@ import { MockData } from './mock-data';
 
 import {
   FhiDiagramOptions,
-  FhiDiagramTypes,
-  FhiDiagramType,
   FhiDiagramTypeNavs,
 } from '@folkehelseinstituttet/angular-highcharts';
 
@@ -48,7 +46,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: "Dødsfall etter årsak, 2008 - 2018",
             data: data,
-            diagramType: FhiDiagramTypes.table,
+            diagramTypeId: 'table',
           }
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -101,10 +99,10 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
     }
   }
 
-  onDiagramTypeNav(diagramType: FhiDiagramType) {
+  onDiagramTypeNavigation(diagramTypeId: string) {
     this.diagramOptions = {
       ...this.diagramOptions,
-      diagramType: diagramType,
+      diagramTypeId: diagramTypeId,
     };
   }
 }

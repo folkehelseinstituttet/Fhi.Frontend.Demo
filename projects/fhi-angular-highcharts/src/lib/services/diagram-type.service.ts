@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram/fhi-diagram.models';
-import { FhiChartTypes, FhiMapTypes } from '../fhi-diagram/fhi-diagram-types';
+import { FhiAllDiagramTypes, FhiChartTypes, FhiMapTypes } from '../fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeId } from '../fhi-diagram/fhi-diagram-type-id';
 
 @Injectable({
@@ -31,6 +31,16 @@ export class DiagramTypeService {
     this.updateAvailableTypes();
   }
 
+  getDiagramTypeById(diagramTypeId: string): FhiDiagramType {
+    let type: FhiDiagramType;
+    FhiAllDiagramTypes.forEach(diagramType => {
+      if (diagramType.id === diagramTypeId) {
+        type = diagramType;
+      }
+    });
+    return type;
+  }
+
   private updateAvailableTypes() {
     this._chartTypes = this.updateAvailableChartTypes();
     this._mapTypes = this.updateAvailableMapTypes();
@@ -40,10 +50,6 @@ export class DiagramTypeService {
     let chartTypes = FhiChartTypes;
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfSeries = this.getNumberOfSeries();
-
-
-
-
 
     // Remove line
     if (numOfSeries > 1 && this.flaggedSeries.length !== 0) {

@@ -64,8 +64,8 @@
   <fhi-diagram-type-nav
     *ngIf="diagramOptions.diagramTypeNav === diagramTypeNavs.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
-    [currentDiagramType]="diagramOptions.diagramType"
-    (navigateToDiagramType)="onDiagramTypeNav($event)">
+    [currentDiagramTypeId]="diagramOptions.diagramTypeId"
+    (navigateToDiagramType)="onDiagramTypeNavigation($event)">
   </fhi-diagram-type-nav>
 </ng-template>
 

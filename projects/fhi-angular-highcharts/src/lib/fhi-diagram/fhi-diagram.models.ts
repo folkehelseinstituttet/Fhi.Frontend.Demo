@@ -48,8 +48,12 @@ export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
   data: Array<FhiDiagramSerie>;
-  diagramType?: FhiDiagramType;
+  diagramTypeId?: string;
+  // diagramTypeNavId?: string;
+
+  // TODO: remove
   diagramTypeNav?: string;
+
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;

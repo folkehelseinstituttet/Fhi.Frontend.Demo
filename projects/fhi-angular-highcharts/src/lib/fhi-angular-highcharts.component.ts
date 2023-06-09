@@ -12,6 +12,7 @@ import { DiagramTypeService } from './services/diagram-type.service';
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { FhiDiagramTypeId } from './fhi-diagram/fhi-diagram-type-id';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -19,6 +20,7 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiAngularHighchartsComponent {
+  private diagramType: FhiDiagramType;
 
   // TODO: clean up list (pub/priv, H -> h, order)
 
@@ -41,7 +43,9 @@ export class FhiAngularHighchartsComponent {
   showFooter = false;
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
+  @Output() navigateToDiagramType = new EventEmitter<string>();
+
+
 
   constructor(
     private optionsService: OptionsService,
@@ -56,13 +60,16 @@ export class FhiAngularHighchartsComponent {
     try {
       this.updateDiagramOptions();
       this.updateFlaggedSeries();
-      this.updateDiagramTypes();
+      this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
+      this.updateAvailableDiagramTypes();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
+        this.highchartsOptions = this.optionsService
+          .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
+
         this.updateFlaggedCategoriesInChartOrMap();
       }
       this.showFooter = this.canShowFooter();
@@ -74,12 +81,12 @@ export class FhiAngularHighchartsComponent {
   }
 
   // TODO: onDiagramTypeNav -> onDiagramTypeNavigation?
-  onDiagramTypeNav(diagramType: FhiDiagramType) {
-    this.diagramTypeNav.emit(diagramType);
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+    this.navigateToDiagramType.emit(diagramType.id);
   }
 
   setDiagramTypeGroupToTable() {
-    this.diagramTypeNav.emit(FhiDiagramTypes.table);
+    this.navigateToDiagramType.emit(FhiDiagramTypeId.table);
   }
 
   tableCellDataOK(data: number | string): boolean {
@@ -89,14 +96,17 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
+  // getFlaggedDataPoints() {
+  // }
+
   private updateDiagramOptions() {
-    const diagramType = this.diagramOptions.diagramType;
+    const diagramTypeId = this.diagramOptions.diagramTypeId;
     const flags = this.diagramOptions.flags;
     const openSource = this.diagramOptions.openSource;
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      diagramType: (diagramType) ? diagramType : FhiDiagramTypes.table,
+      diagramTypeId: (diagramTypeId) ? diagramTypeId : FhiDiagramTypeId.table,
       flags: (flags) ? flags : undefined,
       openSource: (openSource === undefined || openSource) ? true : false
     }
@@ -134,20 +144,25 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
     this.flaggedSeries.forEach(serie => {
       serie.flaggedCatgories.forEach(category => {
-        flagged[n++] = serie.name.concat(', ', category.name, ' [ ', category.symbol, ' ]');
+        flagged[n++] = serie.name.concat(', ', category.name);
       });
     });
     // console.log('flagged', flagged);
     this.flaggedCategoriesForChartOrMap = flagged;
   }
 
+  private updateCurrentDiagramType() {
+    this.diagramType = this.diagramTypeService
+      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
+  }
+
   private updateCurrentDiagramTypeGroup() {
-    const diagramType: FhiDiagramType = this.diagramOptions.diagramType;
-    if (diagramType.id === FhiDiagramTypes.table.id) {
+    const diagramTypeId = this.diagramOptions.diagramTypeId;
+    if (diagramTypeId === FhiDiagramTypes.table.id) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
       return;
     }
-    if (diagramType.isMap) {
+    if (this.diagramType.isMap) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
       return;
     }
@@ -155,7 +170,7 @@ export class FhiAngularHighchartsComponent {
     this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
   }
 
-  private updateDiagramTypes() {
+  private updateAvailableDiagramTypes() {
     this.diagramTypeService.updateDiagramTypes(this.diagramOptions.data, this.flaggedSeries);
   }
 

@@ -35,7 +35,7 @@
               name="{{ 'chart-type-' + navId }}"
               name=""
               id="{{ chartType.id + navId }}"
-              [checked]="chartType.id === currentDiagramType.id"
+              [checked]="chartType.id === currentDiagramTypeId"
               (change)="navigate(chartType)">
 
       <label class="btn fhi-btn-group__btn border-0"
