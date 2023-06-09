@@ -65,8 +65,7 @@ export class FhiAngularHighchartsComponent {
       this.showFooter = this.canShowFooter();
 
     } catch (error) {
-      // console.error(error); //DEBUGGING
-      console.error(this.getErrorMsg());
+      console.error(this.getErrorMsg(error));
     }
   }
 
@@ -150,8 +149,8 @@ export class FhiAngularHighchartsComponent {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
       return;
     }
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 
   private updateAvailableDiagramTypes() {
@@ -184,7 +183,7 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  private getErrorMsg() {
+  private getErrorMsg(error: any) {
     return `ERROR: @Input() diagramOptions === undefined
     or diagramOptions.series === undefined
     at FhiAngularHighchartsComponent.ngOnChanges
@@ -195,7 +194,10 @@ export class FhiAngularHighchartsComponent {
     <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
 
     If [yourOptions] are in accordance with specification; contact maintainer of
-    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts`;
+    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
+
+    Stacktrace:
+    ${error}`;
   }
 
 }

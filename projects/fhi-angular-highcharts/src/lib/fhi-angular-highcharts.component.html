@@ -30,7 +30,7 @@
     </p>
     <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
       <strong>Kilde </strong>
-      <a href="{{ diagramOptions.creditsHref }}" class="">{{ diagramOptions.creditsText }}</a>
+      <a href="{{ diagramOptions.creditsHref }}">{{ diagramOptions.creditsText }}</a>
     </p>
     <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
       <strong>Tegnforklaringer</strong><br>
@@ -51,7 +51,7 @@
       </span>
 
       ...kan ikke vises.
-      <a class="link" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+      <a class="" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
     </div>
     <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
       {{ diagramOptions.disclaimer }}
