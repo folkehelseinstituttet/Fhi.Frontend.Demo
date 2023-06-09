@@ -46,7 +46,7 @@
     <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
       Data for:<br>
 
-      <span *ngFor="let dataPoint of flaggedCategoriesForChartOrMap">
+      <span *ngFor="let dataPoint of getFlaggedDataPoints()">
         {{ dataPoint }} <br>
       </span>
 
@@ -72,7 +72,7 @@
 <ng-template #chart>
   <highcharts-chart
     class="fhi-highcharts-chart"
-    [Highcharts]="Highcharts"
+    [Highcharts]="highcharts"
     [options]="highchartsOptions">
   </highcharts-chart>
 </ng-template>
@@ -80,7 +80,7 @@
 <ng-template #map>
   <highcharts-chart
     class="fhi-highcharts-map"
-    [Highcharts]="Highcharts"
+    [Highcharts]="highcharts"
     [constructorType]="'mapChart'"
     [options]="highchartsOptions">
   </highcharts-chart>

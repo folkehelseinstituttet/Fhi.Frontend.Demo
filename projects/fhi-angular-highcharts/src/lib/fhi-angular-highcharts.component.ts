@@ -4,7 +4,7 @@ import { Options } from 'highcharts';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithCategoryName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithDataPointName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
@@ -20,31 +20,24 @@ import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-na
 })
 export class FhiAngularHighchartsComponent {
   private diagramType: FhiDiagramType;
-
-  // TODO: clean up list (pub/priv, H -> h, order)
-
-  Highcharts: typeof Highcharts = Highcharts;
-  highchartsOptions!: Options;
-
-  flaggedSeries: FlaggedSerie[] = [];
-  flaggedCategoriesForChartOrMap!: Array<string>;
-  // TODO: flaggedCategoriesForChartOrMap -> flaggedDataPoints
-
-  allMapsLoaded = false;
-  currentDiagramTypeGroup!: string;
-  diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavId = FhiDiagramTypeNavId;
-  numOfDimensions!: number;
-  numOfSeries!: number;
-  showDefaultChartTemplate = true;
-  tableHeaderRows = new Array();
-  tableBodyRows = new Array();
-  showFooter = false;
+  private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
   @Output() navigateToDiagramType = new EventEmitter<string>();
 
+  highcharts: typeof Highcharts = Highcharts;
+  highchartsOptions!: Options;
 
+  allMapsLoaded = false;
+  showDefaultChartTemplate = true;
+  showFooter = false;
+
+  currentDiagramTypeGroup!: string;
+  diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeNavId = FhiDiagramTypeNavId;
+
+  tableHeaderRows = new Array();
+  tableBodyRows = new Array();
 
   constructor(
     private optionsService: OptionsService,
@@ -68,8 +61,6 @@ export class FhiAngularHighchartsComponent {
       } else {
         this.highchartsOptions = this.optionsService
           .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
-
-        this.updateFlaggedCategoriesInChartOrMap();
       }
       this.showFooter = this.canShowFooter();
 
@@ -79,7 +70,6 @@ export class FhiAngularHighchartsComponent {
     }
   }
 
-  // TODO: onDiagramTypeNav -> onDiagramTypeNavigation?
   onDiagramTypeNavigation(diagramType: FhiDiagramType) {
     this.navigateToDiagramType.emit(diagramType.id);
   }
@@ -95,8 +85,21 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  // getFlaggedDataPoints() {
-  // }
+  getFlaggedDataPoints(): Array<string> {
+    const flagged: Array<string> = [];
+    let n = 0;
+    this.flaggedSeries.forEach(serie => {
+      serie.flaggedDataPoints.forEach(dataPoint => {
+        flagged[n++] = serie.name.concat(', ', dataPoint.name);
+      });
+    });
+    return flagged;
+  }
+
+  private updateCurrentDiagramType() {
+    this.diagramType = this.diagramTypeService
+      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
+  }
 
   private updateDiagramOptions() {
     const diagramTypeId = this.diagramOptions.diagramTypeId;
@@ -118,41 +121,23 @@ export class FhiAngularHighchartsComponent {
       if (data.length !== 0) {
         this.flaggedSeries[n++] = {
           name: serie.name,
-          flaggedCatgories: this.getFlaggedCatgories(data)
+          flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(data)
         };
       }
     });
   }
 
-  // TODO: getFlaggedCatgories -> getFlaggedDataPoints
-  private getFlaggedCatgories(data: Data[]): FlagWithCategoryName[] {
-    const flaggedCatgories: FlagWithCategoryName[] = [];
+  private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {
+    const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
     data.forEach(category => {
-      flaggedCatgories[n++] = {
+      flaggedDataPoints[n++] = {
         name: category.name,
         symbol: category.y as string,
-        label: 'N/A' // TODO: match label to symbol from Flag
+        label: 'N/A'
       };
     });
-    return flaggedCatgories;
-  }
-
-  private updateFlaggedCategoriesInChartOrMap() {
-    const flagged: Array<string> = [];
-    let n = 0;
-    this.flaggedSeries.forEach(serie => {
-      serie.flaggedCatgories.forEach(category => {
-        flagged[n++] = serie.name.concat(', ', category.name);
-      });
-    });
-    // console.log('flagged', flagged);
-    this.flaggedCategoriesForChartOrMap = flagged;
-  }
-
-  private updateCurrentDiagramType() {
-    this.diagramType = this.diagramTypeService
-      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
+    return flaggedDataPoints;
   }
 
   private updateCurrentDiagramTypeGroup() {
@@ -192,7 +177,8 @@ export class FhiAngularHighchartsComponent {
     if (this.diagramOptions.disclaimer !== undefined) {
       return true;
     }
-    if (this.diagramOptions.creditsHref !== undefined && this.diagramOptions.creditsText !== undefined) {
+    if (this.diagramOptions.creditsHref !== undefined
+        && this.diagramOptions.creditsText !== undefined) {
       return true;
     }
     return false;

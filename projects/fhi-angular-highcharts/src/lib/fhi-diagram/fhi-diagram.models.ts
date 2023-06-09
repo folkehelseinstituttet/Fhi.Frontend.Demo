@@ -16,24 +16,26 @@ export interface FhiDiagramType {
   mapFile?: string;
 }
 
-// TODO: Data[] -> FhiDiagramSerieData[]?
 export interface Data {
   name: string;
   y: number | string;
 }
 
-export interface FhiDiagramFlag {
-  symbol: string;
-  label: string;
-}
-
-export interface FlagWithCategoryName extends FhiDiagramFlag {
+export interface FlagWithDataPointName extends FhiDiagramFlag {
   name: string;
 }
 
 export interface FlaggedSerie {
   name: string;
-  flaggedCatgories: Array<FlagWithCategoryName>;
+  flaggedDataPoints: Array<FlagWithDataPointName>;
+}
+
+
+// Public interfaces
+
+export interface FhiDiagramFlag {
+  symbol: string;
+  label: string;
 }
 
 export interface FhiDiagramSerie {
