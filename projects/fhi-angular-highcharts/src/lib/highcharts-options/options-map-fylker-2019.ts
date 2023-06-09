@@ -1,4 +1,4 @@
-import { FhiDiagramTypeId } from '../fhi-diagram/fhi-diagram-type-id';
+import { FhiDiagramTypeId } from "../fhi-diagram/fhi-diagram-types";
 
 export const OptionsMapFylker2019 = {
   chart: {

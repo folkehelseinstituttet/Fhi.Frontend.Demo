@@ -10,8 +10,20 @@ import { OptionsMapFylker } from '../highcharts-options/options-map-fylker';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
 
 import { FhiDiagramType } from './fhi-diagram.models';
-import { FhiDiagramTypeId } from './fhi-diagram-type-id';
 
+export class FhiDiagramTypeId {
+  static area = 'area';
+  static bar = 'bar';
+  static barStacked = 'barStacked';
+  static column = 'column';
+  static columnStacked = 'columnStacked';
+  static donut = 'donut';
+  static line = 'line';
+  static mapFylker2019 = 'mapFylker2019';
+  static mapFylker = 'mapFylker';
+  static pie = 'pie';
+  static table = 'table';
+}
 
 export class FhiDiagramTypeGroups {
   static chart = 'chart';

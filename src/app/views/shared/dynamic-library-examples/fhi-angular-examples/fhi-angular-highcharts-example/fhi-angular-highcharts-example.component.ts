@@ -41,10 +41,8 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
-            title: undefined,
-            series: undefined
-            // title: "Dødsfall etter årsak, 2008 - 2018",
-            // series: data
+            title: "Dødsfall etter årsak, 2008 - 2018",
+            series: data
           }
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

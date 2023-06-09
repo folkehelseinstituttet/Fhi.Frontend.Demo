@@ -10,9 +10,8 @@ import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 
 import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
-import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
-import { FhiDiagramTypeId } from './fhi-diagram/fhi-diagram-type-id';
 
 @Component({
   selector: 'fhi-angular-highcharts',
