@@ -1,4 +1,9 @@
 <article *ngIf="diagramOptions !== undefined">
+  <!-- <h1 class="h3"
+      [ngClass]="{ 'mb-1': currentDiagramTypeGroup === diagramTypeGroups.table }"
+      [ngClass]="{ 'mb-3': currentDiagramTypeGroup !== diagramTypeGroups.table }">
+    {{ diagramOptions.title }}
+  </h1> -->
   <h1 class="h3 mb-4">{{ diagramOptions.title }}</h1>
 
   <ng-container *ngIf="diagramOptions.diagramTypeNavId !== undefined">

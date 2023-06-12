@@ -34,8 +34,8 @@ export class FhiDiagramTypeNavComponent {
   }
 
   ngOnChanges() {
-    this.setChartSubmenuIsOpen();
     this.updateNavDiagramTypeGroup();
+    this.updateChartSubmenuState();
     this.showNav = this.testNavDiagramTypeGroups();
   }
 
@@ -50,7 +50,7 @@ export class FhiDiagramTypeNavComponent {
     return false;
   }
 
-  private setChartSubmenuIsOpen() {
+  private updateChartSubmenuState() {
     if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
       this.chartSubmenuIsOpen = true;
     } else {
