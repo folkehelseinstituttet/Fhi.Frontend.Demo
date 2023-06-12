@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { FhiDiagramTypeGroups } from '../fhi-diagram/fhi-diagram-type.constants';
 import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
-import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
+import { DiagramTypeGroupIndex } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
 
 @Component({
@@ -28,15 +28,13 @@ export class FhiDiagramTypeNavComponent {
   constructor(private diagramTypeService: DiagramTypeService) {
     this.chartTypes = this.diagramTypeService.chartTypes;
     this.mapTypes = this.diagramTypeService.mapTypes;
-
-    this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
     this.navId = Math.floor(Math.random() * 100);
   }
 
   ngOnChanges() {
-    this.setChartSubmenuIsOpen();
     this.updateNavDiagramTypeGroup();
-    this.showNav = this.testNavDiagramTypeGroups();
+    this.updateChartSubmenuState();
+    this.showNav = this.isPossibleToShowNav();
   }
 
   navigate(diagramType: FhiDiagramType) {
@@ -50,7 +48,7 @@ export class FhiDiagramTypeNavComponent {
     return false;
   }
 
-  private setChartSubmenuIsOpen() {
+  private updateChartSubmenuState() {
     if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
       this.chartSubmenuIsOpen = true;
     } else {
@@ -74,32 +72,6 @@ export class FhiDiagramTypeNavComponent {
       = this.getNavDiagramChartGroup(diagramTypeId);
   }
 
-  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
-    return [
-      NavDiagramTableGroup,
-
-      // TODO: this should be set to default defined by user, and defult must be legal
-      this.getNavDiagramMapGroup(this.mapTypes[0].id),
-      this.getNavDiagramChartGroup(this.chartTypes[0].id)
-    ];
-  }
-
-  private getNavDiagramMapGroup(diagramTypeId: string): NavDiagramTypeGroup {
-    let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
-
-    this.mapTypes.forEach(type => {
-      navDiagramTypeGroups.push({
-        diagramType: type,
-        icon: type.icon,
-        id: FhiDiagramTypeGroups.map,
-        isDisabled: true,
-        name: 'Kart'
-      });
-    });
-    return navDiagramTypeGroups
-      .find((group) => group.diagramType.id === diagramTypeId);
-  }
-
   private getNavDiagramChartGroup(diagramTypeId: string): NavDiagramTypeGroup {
     let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
 
@@ -116,7 +88,7 @@ export class FhiDiagramTypeNavComponent {
       .find((group) => group.diagramType.id === diagramTypeId);
   }
 
-  private testNavDiagramTypeGroups(): boolean {
+  private isPossibleToShowNav(): boolean {
     if (
       this.navDiagramTypeGroups[DiagramTypeGroupIndex.table] !== undefined
       && this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] !== undefined

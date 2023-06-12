@@ -52,14 +52,14 @@ const barStacked: FhiDiagramType = {
 
 const column: FhiDiagramType = {
   id: FhiDiagramTypeId.column,
-  icon: 'bar-chart-line',
+  icon: 'bar-chart-line', // [sic]
   name: 'Søylediagram',
   options: OptionsChartTypeColumn
 }
 
 const columnStacked: FhiDiagramType = {
   id: FhiDiagramTypeId.columnStacked,
-  icon: 'bar-chart-line-stacked',
+  icon: 'bar-chart-line-stacked', // [sic]
   name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked
 }
@@ -73,7 +73,7 @@ const donut: FhiDiagramType = {
 
 const line: FhiDiagramType = {
   id: FhiDiagramTypeId.line,
-  icon: 'graph-up',
+  icon: 'graph-up', // [sic]
   name: 'Linjediagram',
   options: OptionsChartTypeLine
 }
