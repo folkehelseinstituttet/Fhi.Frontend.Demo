@@ -50,9 +50,9 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
-      this.updateDiagramOptions();
       this.updateFlaggedSeries();
       this.updateAvailableDiagramTypes();
+      this.updateDiagramOptions();
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
 
@@ -95,24 +95,6 @@ export class FhiAngularHighchartsComponent {
     return flagged;
   }
 
-  private updateCurrentDiagramType() {
-    this.diagramType = this.diagramTypeService
-      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
-  }
-
-  private updateDiagramOptions() {
-    const diagramTypeId = this.diagramOptions.diagramTypeId;
-    const flags = this.diagramOptions.flags;
-    const openSource = this.diagramOptions.openSource;
-
-    this.diagramOptions = {
-      ...this.diagramOptions,
-      diagramTypeId: (diagramTypeId) ? diagramTypeId : FhiDiagramTypeId.table,
-      flags: (flags) ? flags : undefined,
-      openSource: (openSource === undefined || openSource) ? true : false
-    }
-  }
-
   private updateFlaggedSeries() {
     let n = 0;
     this.diagramOptions.series.forEach((serie) => {
@@ -139,9 +121,32 @@ export class FhiAngularHighchartsComponent {
     return flaggedDataPoints;
   }
 
-  private updateCurrentDiagramTypeGroup() {
+  private updateAvailableDiagramTypes() {
+    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.series, this.flaggedSeries);
+  }
+
+  private updateDiagramOptions() {
     const diagramTypeId = this.diagramOptions.diagramTypeId;
-    if (diagramTypeId === FhiDiagramTypes.table.id) {
+    const flags = this.diagramOptions.flags;
+    const openSource = this.diagramOptions.openSource;
+
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      diagramTypeId: (diagramTypeId)
+        ? this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId)
+        : FhiDiagramTypeId.table,
+      flags: (flags) ? flags : undefined,
+      openSource: (openSource === undefined || openSource) ? true : false
+    }
+  }
+
+  private updateCurrentDiagramType() {
+    this.diagramType = this.diagramTypeService
+      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
+  }
+
+  private updateCurrentDiagramTypeGroup() {
+    if (this.diagramOptions.diagramTypeId === FhiDiagramTypes.table.id) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
       return;
     }
@@ -151,11 +156,6 @@ export class FhiAngularHighchartsComponent {
     }
     this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-  }
-
-  private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.series, this.flaggedSeries);
-    console.log('updateAvailableDiagramTypes()', this.diagramTypeService.chartTypes);
   }
 
   private updateTable() {
@@ -185,9 +185,9 @@ export class FhiAngularHighchartsComponent {
   }
 
   private getErrorMsg(error: any) {
-    return `ERROR: @Input() diagramOptions === undefined
-    or diagramOptions.series === undefined
-    at FhiAngularHighchartsComponent.ngOnChanges
+    return `ERROR: @Input() diagramOptions === undefined,
+    diagramOptions.title === undefined or diagramOptions.series === undefined
+    at FhiAngularHighchartsComponent.ngOnChanges()
     FhiAngularHighchartsComponent can not be rendered.
 
     To avoid this error message:

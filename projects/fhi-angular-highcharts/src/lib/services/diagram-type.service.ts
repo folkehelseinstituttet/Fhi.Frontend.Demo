@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram/fhi-diagram.models';
-import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiMapTypes } from '../fhi-diagram/fhi-diagram-type.constants';
+import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram/fhi-diagram-type.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -31,13 +31,40 @@ export class DiagramTypeService {
   }
 
   getDiagramTypeById(diagramTypeId: string): FhiDiagramType {
-    let type: FhiDiagramType;
-    FhiAllDiagramTypes.forEach(diagramType => {
-      if (diagramType.id === diagramTypeId) {
-        type = diagramType;
-      }
-    });
-    return type;
+    const diagramType = FhiAllDiagramTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType;
+    } else {
+      throw new Error(`diagramType is undefined!
+        At DiagramTypeService.getDiagramTypeById()`);
+    }
+  }
+
+  getVerifiedDiagramTypeId(diagramTypeId: string): string {
+    let diagramType: FhiDiagramType;
+
+    diagramType = this.getChartType(diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType.id;
+    }
+    diagramType = this.getMapType(diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType.id;
+    }
+    return FhiDiagramTypes.table.id;
+  }
+
+  private getChartType(diagramTypeId: string): FhiDiagramType {
+    const diagramType = this.chartTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    return diagramType;
+  }
+
+  private getMapType(diagramTypeId: string): FhiDiagramType {
+    const diagramType = this.mapTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    return diagramType;
   }
 
   private updateAvailableTypes() {

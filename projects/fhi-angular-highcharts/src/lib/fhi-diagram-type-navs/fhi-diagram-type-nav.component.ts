@@ -60,12 +60,18 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private updateNavDiagramTypeGroups() {
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
+    if (this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] === undefined
+        || this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+      this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
+    }
+    if (this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] === undefined
+        || this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
+      this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
+    }
   }
 
   private getNavDiagramChartGroup(): NavDiagramTypeGroup {
-    const chartType = this.getDefaultChartType();
+    const chartType = this.getChartType();
     return {
       diagramType: chartType,
       icon: chartType.icon,
@@ -76,7 +82,7 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private getNavDiagramMapGroup(): NavDiagramTypeGroup {
-    const mapType = this.getDefaultMapType();
+    const mapType = this.getMapType();
     return {
       diagramType: mapType,
       icon: mapType.icon,
@@ -86,34 +92,22 @@ export class FhiDiagramTypeNavComponent {
     }
   }
 
-  private getDefaultChartType(): FhiDiagramType {
-    const diagramTypeId = this.getDiagramTypeId(FhiDiagramTypeGroups.chart);
-    const diagramType = this.chartTypes
-      .find(diagramType => diagramType.id === diagramTypeId);
-    if (diagramType === undefined) {
+  private getChartType(): FhiDiagramType {
+    const chartType = this.chartTypes
+      .find(diagramType => diagramType.id === this.currentDiagramTypeId);
+    if (chartType === undefined) {
       return this.chartTypes[0];
     }
-    return diagramType;
+    return chartType;
   }
 
-  private getDefaultMapType(): FhiDiagramType {
-    const diagramTypeId = this.getDiagramTypeId(FhiDiagramTypeGroups.map);
-    const diagramType = this.mapTypes
-      .find(diagramType => diagramType.id === diagramTypeId);
-    if (diagramType === undefined) {
+  private getMapType(): FhiDiagramType {
+    const mapType = this.mapTypes
+      .find(diagramType => diagramType.id === this.currentDiagramTypeId);
+    if (mapType === undefined) {
       return this.mapTypes[0];
     }
-    return diagramType;
-  }
-
-  private getDiagramTypeId(groupId: string): string {
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table
-        || this.currentDiagramTypeGroup === groupId) {
-      return (groupId === FhiDiagramTypeGroups.chart)
-        ? this.chartTypes[0].id
-        : this.mapTypes[0].id;
-    }
-    return this.currentDiagramTypeId;
+    return mapType;
   }
 
 }

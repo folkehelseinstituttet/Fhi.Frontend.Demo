@@ -13,10 +13,7 @@ export class MockDataService {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
 
-          // TODO: remove after all testing is done
-          dataSet.next(this.dodsfall_r_Ar_c_Aarsak_LG);
-
-          // dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
 
         case MockData.TwoSeriesAar:
