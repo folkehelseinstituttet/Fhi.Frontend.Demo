@@ -51,14 +51,14 @@ export class FhiAngularHighchartsComponent {
   ngOnChanges() {
     try {
       this.updateDiagramOptions();
+      this.updateFlaggedSeries();
+      this.updateAvailableDiagramTypes();
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
-      this.updateAvailableDiagramTypes();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
       } else {
-        this.updateFlaggedSeries();
         this.highchartsOptions = this.optionsService
           .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
       }
@@ -155,6 +155,7 @@ export class FhiAngularHighchartsComponent {
 
   private updateAvailableDiagramTypes() {
     this.diagramTypeService.updateDiagramTypes(this.diagramOptions.series, this.flaggedSeries);
+    console.log('updateAvailableDiagramTypes()', this.diagramTypeService.chartTypes);
   }
 
   private updateTable() {
