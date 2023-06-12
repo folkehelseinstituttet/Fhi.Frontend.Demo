@@ -26,17 +26,15 @@ export class FhiDiagramTypeNavComponent {
   showNav = false;
 
   constructor(private diagramTypeService: DiagramTypeService) {
-    this.chartTypes = this.diagramTypeService.chartTypes;
-    this.mapTypes = this.diagramTypeService.mapTypes;
-
-    this.navDiagramTypeGroups = this.getNavDiagramTypeGroups();
+    this.initNavDiagramTypeGroups();
     this.navId = Math.floor(Math.random() * 100);
   }
 
   ngOnChanges() {
-    this.updateNavDiagramTypeGroup();
+    this.chartTypes = this.diagramTypeService.chartTypes;
+    this.mapTypes = this.diagramTypeService.mapTypes;
+    this.updateNavDiagramTypeGroups();
     this.updateChartSubmenuState();
-    this.showNav = this.testNavDiagramTypeGroups();
   }
 
   navigate(diagramType: FhiDiagramType) {
@@ -58,80 +56,65 @@ export class FhiDiagramTypeNavComponent {
     }
   }
 
-  private updateNavDiagramTypeGroup() {
-    const chartId = this.currentDiagramTypeId;
-    const chartType = this.diagramTypeService.chartTypes
-      .find(chartType => chartType.id === chartId);
-
-    if (chartType !== undefined
-        && this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
-      this.updateNavDiagramChartGroup(chartId);
-    }
+  private initNavDiagramTypeGroups() {
+    this.navDiagramTypeGroups = [NavDiagramTableGroup, undefined, undefined];
   }
 
-  private updateNavDiagramChartGroup(diagramTypeId: string) {
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart]
-      = this.getNavDiagramChartGroup(diagramTypeId);
+  private updateNavDiagramTypeGroups() {
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
   }
 
-  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
-    return [
-      NavDiagramTableGroup,
-
-      // TODO: this should be set to default defined by user, and defult must be legal
-      this.getNavDiagramMapGroup(this.mapTypes[0].id),
-      this.getNavDiagramChartGroup(this.chartTypes[0].id)
-    ];
-  }
-
-  private getNavDiagramMapGroup(diagramTypeId: string): NavDiagramTypeGroup {
-    let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
-
-    this.mapTypes.forEach(type => {
-      navDiagramTypeGroups.push({
-        diagramType: type,
-        icon: type.icon,
-        id: FhiDiagramTypeGroups.map,
-        isDisabled: true,
-        name: 'Kart'
-      });
-    });
-    return navDiagramTypeGroups
-      .find((group) => group.diagramType.id === diagramTypeId);
-  }
-
-  private getNavDiagramChartGroup(diagramTypeId: string): NavDiagramTypeGroup {
-    let navDiagramTypeGroups: NavDiagramTypeGroup[] = [];
-
-    this.chartTypes.forEach(type => {
-      navDiagramTypeGroups.push({
-        diagramType: type,
-        icon: type.icon,
+  private getNavDiagramChartGroup(): NavDiagramTypeGroup {
+    const chartType = this.getDefaultChartType();
+    if (chartType !== undefined) {
+      return {
+        diagramType: chartType,
+        icon: chartType.icon,
         id: FhiDiagramTypeGroups.chart,
         isDisabled: false,
         name: 'Graf'
-      });
-    });
-    return navDiagramTypeGroups
-      .find((group) => group.diagramType.id === diagramTypeId);
-  }
-
-  private testNavDiagramTypeGroups(): boolean {
-    if (
-      this.navDiagramTypeGroups[DiagramTypeGroupIndex.table] !== undefined
-      && this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] !== undefined
-      && this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] !== undefined
-    ) {
-      return true;
+      }
     }
-    console.error(this.getErrorMsg());
-    return false;
   }
 
-  private getErrorMsg() {
-    return `ERROR: navDiagramMapGroup or navDiagramChartGroup is undefined
-    at FhiDiagramTypeNavComponent.getNavDiagramTypeGroups
-    FhiDiagramTypeNav can not be rendered.`;
+  private getNavDiagramMapGroup(): NavDiagramTypeGroup {
+    const mapType = this.getDefaultMapType();
+    if (mapType !== undefined) {
+      return {
+        diagramType: mapType,
+        icon: mapType.icon,
+        id: FhiDiagramTypeGroups.map,
+        isDisabled: true,
+        name: 'Kart'
+      }
+    }
+  }
+
+  private getDefaultChartType(): FhiDiagramType {
+    let currentDiagramTypeId: string;
+
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table
+        || this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
+      currentDiagramTypeId = this.chartTypes[0].id;
+    } else {
+      currentDiagramTypeId = this.currentDiagramTypeId;
+    }
+    return this.diagramTypeService.chartTypes
+      .find(diagramType => diagramType.id === currentDiagramTypeId);
+  }
+
+  private getDefaultMapType(): FhiDiagramType {
+    let currentDiagramTypeId: string;
+
+    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table
+        || this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+      currentDiagramTypeId = this.mapTypes[0].id;
+    } else {
+      currentDiagramTypeId = this.currentDiagramTypeId;
+    }
+    return this.diagramTypeService.mapTypes
+      .find(diagramType => diagramType.id === this.mapTypes[0].id);
   }
 
 }
