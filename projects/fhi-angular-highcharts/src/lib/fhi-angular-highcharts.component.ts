@@ -51,7 +51,6 @@ export class FhiAngularHighchartsComponent {
   ngOnChanges() {
     try {
       this.updateDiagramOptions();
-      this.updateFlaggedSeries();
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
       this.updateAvailableDiagramTypes();
@@ -59,6 +58,7 @@ export class FhiAngularHighchartsComponent {
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
       } else {
+        this.updateFlaggedSeries();
         this.highchartsOptions = this.optionsService
           .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
       }

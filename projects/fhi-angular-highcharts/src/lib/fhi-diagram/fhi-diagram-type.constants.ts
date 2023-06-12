@@ -111,12 +111,10 @@ const pie: FhiDiagramType = {
   options: OptionsChartTypePie
 }
 
-// TODO: remove all leftovers from deprecated "csv-data"-hack
 const table: FhiDiagramType = {
   id: FhiDiagramTypeId.table,
   icon: 'table',
-  name: 'Tabell',
-  options: OptionsChartTypeLine // to create hidden chart for csv-data
+  name: 'Tabell'
 }
 
 export class FhiDiagramTypes {

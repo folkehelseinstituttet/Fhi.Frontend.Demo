@@ -11,7 +11,7 @@ export interface FhiDiagramType {
   icon?: string;
   name: string;
   group?: string;
-  options: Options;
+  options?: Options;
   isMap?: boolean;
   mapFile?: string;
 }
