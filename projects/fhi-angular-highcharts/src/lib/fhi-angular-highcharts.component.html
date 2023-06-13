@@ -44,14 +44,23 @@
       </table>
     </div>
     <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
-      Data for:<br>
 
-      <span *ngFor="let dataPoint of getFlaggedDataPoints()">
-        {{ dataPoint }} <br>
-      </span>
+      <!-- This should be a popover button -->
+      Diagrammet inneholder data som ikke kan vises
+      <br>
 
-      ...kan ikke vises.
-      <a class="" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+      <!-- This should be popover content -->
+      <!--     PS. "Disse kategoriene..." is not correct, my sugestion below. -->
+      Følgende data vises ikke i diagrammet
+      <ul>
+        <li *ngFor="let dataPoint of getFlaggedDataPoints()">
+          {{ dataPoint }} <br>
+        </li>
+      </ul>
+
+      <!-- We need a link class... -->
+      <a class="x" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+
     </div>
     <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
       {{ diagramOptions.disclaimer }}
