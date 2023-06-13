@@ -17,7 +17,7 @@ import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-e
 import { TableExamplesComponent } from './fhi-angular-examples/table-examples/table-examples.component';
 import { TabsExampleComponent } from './ng-bootstrap-examples/tabs-example/tabs-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
-import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example/tooltip-example.component';
+import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
