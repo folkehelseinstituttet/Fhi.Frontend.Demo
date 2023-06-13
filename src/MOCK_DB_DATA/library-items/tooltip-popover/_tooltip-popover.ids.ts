@@ -1,3 +1,4 @@
 export const TootipPopoverIds = {
-  Tooltip: undefined
+  Tooltip: undefined,
+  Popover: undefined
 }
