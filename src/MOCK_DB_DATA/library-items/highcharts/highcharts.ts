@@ -136,7 +136,49 @@ function getDocumentationHtml(): string | null {
           </ul>
         </td>
       </tr>
-   </tbody>
+      <tr>
+        <th>disclaimer</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Fritekst nederst i footer, gjerne bruk til forbehold knyttet til dataene som vises.</td>
+      </tr>
+      <tr>
+        <th>flags</th>
+        <td><code>Array&lt;FhiDiagramFlag&gt;</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Alle flagg som kan finnes i datasettet (f.eks flagg som indikerer anonymisering)</td>
+      </tr>
+      <tr>
+        <th>lastUpdated</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Tekst som kommer etter label "Siste oppdatert" i footer. Valgfritt format, men "dd.mm.yyyy" er vanligst.</td>
+      </tr>
+      <tr>
+        <th>openSource</th>
+        <td><code>boolean</code></td>
+        <td>true</td>
+        <td>no</td>
+        <td>Hvis satt til <code>true</code>: lenken til Highcharts.com forsvinner, og <strong>lisens er påkrevd</strong>.</td>
+      </tr>
+      <tr>
+        <th>series</th>
+        <td><code>Array&lt;FhiDiagramSerie&gt;</code></td>
+        <td>-</td>
+        <td>yes</td>
+        <td>Dataene som brukes for å generere tabell, graf eller kart.</td>
+      </tr>
+      <tr>
+        <th>title</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>yes</td>
+        <td>Tittelen som kommer over diagrammet.</td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
@@ -146,7 +188,7 @@ function getDocumentationHtml(): string | null {
     <thead>
       <tr>
         <th scope="col">Output</th>
-        <th scope="col">Event type</th>
+        <th scope="col">Event&nbsp;type</th>
         <th scope="col">Description</th>
       </tr>
     </thead>
