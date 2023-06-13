@@ -45,13 +45,13 @@ function getDocumentationHtml(): string | null {
   </a>
 </p>
 <h4>Lenke til demokoden</h4>
-<p>
+<p class="mb-5">
   <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/src/app/views/shared/dynamic-library-examples/fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts">
     fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts
   </a>
 </p>
 
-<h3>API</h3>
+<h3 class="mb-5">API</h3>
 
 <h4>Inputs</h3>
 <div class="table-responsive mb-5">

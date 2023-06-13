@@ -165,9 +165,6 @@ export class FhiAngularHighchartsComponent {
   }
 
   private canShowFooter(): boolean {
-    if (this.diagramOptions.openSource) {
-      return false;
-    }
     if (this.flaggedSeries.length !== 0) {
       return true;
     }
