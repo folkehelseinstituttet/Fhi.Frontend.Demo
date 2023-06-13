@@ -23,7 +23,7 @@ export class FhiAngularHighchartsComponent {
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() navigateToDiagramType = new EventEmitter<string>();
+  @Output() diagramTypeNavigation = new EventEmitter<string>();
 
   highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
@@ -70,11 +70,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   onDiagramTypeNavigation(diagramType: FhiDiagramType) {
-    this.navigateToDiagramType.emit(diagramType.id);
+    this.diagramTypeNavigation.emit(diagramType.id);
   }
 
   setDiagramTypeGroupToTable() {
-    this.navigateToDiagramType.emit(FhiDiagramTypeId.table);
+    this.diagramTypeNavigation.emit(FhiDiagramTypeId.table);
   }
 
   tableCellDataOK(data: number | string): boolean {

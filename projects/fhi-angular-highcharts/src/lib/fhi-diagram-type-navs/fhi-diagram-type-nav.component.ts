@@ -16,7 +16,7 @@ export class FhiDiagramTypeNavComponent {
   @Input() currentDiagramTypeGroup!: string;
   @Input() currentDiagramTypeId!: string;
 
-  @Output() navigateToDiagramType = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
 
   chartSubmenuIsOpen = false;
   chartTypes!: FhiDiagramType[];
@@ -37,7 +37,7 @@ export class FhiDiagramTypeNavComponent {
   }
 
   navigate(diagramType: FhiDiagramType) {
-    this.navigateToDiagramType.emit(diagramType);
+    this.diagramTypeNavigation.emit(diagramType);
   }
 
   diagramTypeGroupIsChart(id: string) {
