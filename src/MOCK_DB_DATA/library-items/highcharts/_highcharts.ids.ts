@@ -1,5 +1,5 @@
 export const HighchartsIds = {
   Highcharts: undefined,
-  HighchartsWithMenuAndMap: undefined,
-  HighchartsWithMenu: undefined
+  HighchartsWithMenu: undefined,
+  HighchartsWithMenuAndFooter: undefined
 }
