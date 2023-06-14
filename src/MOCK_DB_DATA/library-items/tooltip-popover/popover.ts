@@ -34,7 +34,7 @@ function getCodeHtml(): string | null {
   Popover kan også brukes i løpende tekst.
 
   <a role="button"
-     class="popover-trigger"
+     class="fhi-popover-trigger"
      tabindex="0"
      triggers="manual"
      #p="ngbPopover"
