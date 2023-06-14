@@ -38,7 +38,7 @@ import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
-import { TooltipData } from 'src/MOCK_DB_DATA/library-items/tooltip/_tooltip.data';
+import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
@@ -82,7 +82,7 @@ export class MockDbService implements InMemoryDbService {
       TagsData,
       NavigationtileData,
       ToastData,
-      TooltipData,
+      TootipPopoverData,
       TreeViewData,
       TypographyData
     };

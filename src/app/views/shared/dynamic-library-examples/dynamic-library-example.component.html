@@ -114,7 +114,17 @@
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
-  <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
+  
+  <app-tooltip-and-popover-example
+    *ngSwitchCase="itemIds.Tooltip"
+    [itemId]="itemIds.Tooltip"
+    [itemIds]="itemIds">
+  </app-tooltip-and-popover-example>
+  <app-tooltip-and-popover-example
+    *ngSwitchCase="itemIds.Popover"
+    [itemId]="itemIds.Popover"
+    [itemIds]="itemIds">
+  </app-tooltip-and-popover-example>
 
   <app-tree-view-navigation-example
     *ngSwitchCase="itemIds.TreeViewNavigation">
