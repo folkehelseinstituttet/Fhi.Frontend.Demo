@@ -129,7 +129,7 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>no</td>
         <td>
-          Id'en til den menyen en ønsker. HVis utelatt så rendres ingen meny.
+          Id'en til den menyen en ønsker. Hvis utelatt så rendres ingen meny.
           Lovlige diagramTypeNavId'er:
           <ul>
             <li><code>default</code></li>
