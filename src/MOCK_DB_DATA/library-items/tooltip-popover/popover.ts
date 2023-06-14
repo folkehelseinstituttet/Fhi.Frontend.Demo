@@ -25,11 +25,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<button
-  type="button"
-  class="fhi-tag fhi-tag--category"
-	[autoClose]="'outside'"
-  [ngbPopover]="popContent">Klikk for å vise Popover</button>
+<button type="button"
+        class="fhi-tag fhi-tag--category"
+        [autoClose]="'outside'"
+        [ngbPopover]="popContent">Aktiver popover</button>
 
 <p class="mt-6">
   Popover kan også brukes i løpende tekst.
@@ -46,12 +45,10 @@ function getCodeHtml(): string | null {
 </p>
 
 <ng-template #popContent>
-  <p>For å publisere til publikumsgrensesnittet</p>
+  <p>Innholdet i popover</p>
   <ul>
-    <li>Opprett en visning</li>
-    <li>Gå til menyredigering</li>
-    <li><a href="javascript:void()">Koble visningen til et menypunkt</a></li>
-    <li>Sjekk at menypunktet er publisert</li>
+    <li>Kan inneholde</li>
+    <li>Rik tekst</li>
   </ul>
 </ng-template>`;
 }
