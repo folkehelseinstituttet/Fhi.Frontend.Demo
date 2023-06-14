@@ -45,21 +45,30 @@
     </div>
     <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
 
-      <!-- This should be a popover button -->
-      Diagrammet inneholder data som ikke kan vises
-      <br>
+    <p>
+      <a role="button"
+         class="fhi-popover-trigger"
+         tabindex="0"
+         triggers="manual"
+         #p="ngbPopover"
+         (click)="p.toggle()"
+         (keydown.enter)="p.toggle()"
+         [autoClose]="'outside'"
+         [ngbPopover]="popContent">Diagrammet inneholder data som ikke kan vises</a>
+    </p>
 
-      <!-- This should be popover content -->
-      <!--     PS. "Disse kategoriene..." is not correct, my sugestion below. -->
-      Følgende data vises ikke i diagrammet
+    <ng-template #popContent>
+      <!-- PS. "Disse kategoriene..." is not correct, my sugestion below. -->
+      <p>Følgende data vises ikke i diagrammet</p>
       <ul>
         <li *ngFor="let dataPoint of getFlaggedDataPoints()">
           {{ dataPoint }} <br>
         </li>
       </ul>
+    </ng-template>
 
-      <!-- We need a link class... -->
-      <a class="x" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+    <!-- We need a link class... -->
+    <a role="button" class="x" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
 
     </div>
     <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
