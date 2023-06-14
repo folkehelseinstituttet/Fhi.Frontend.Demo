@@ -155,7 +155,7 @@ function getDocumentationHtml(): string | null {
         <td><code>string</code></td>
         <td>-</td>
         <td>no</td>
-        <td>Tekst som kommer etter label "Siste oppdatert" i footer. Valgfritt format, men "dd.mm.yyyy" er vanligst.</td>
+        <td>Tekst som kommer etter label "Sist oppdatert" i footer. Valgfritt format, men "dd.mm.yyyy" er vanligst.</td>
       </tr>
       <tr>
         <th>openSource</th>
