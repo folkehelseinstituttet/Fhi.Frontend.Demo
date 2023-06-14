@@ -4,12 +4,13 @@ An opinionated wrapper to the official minimal [Highcharts wrapper for Angular](
 
 ## Dependencies
 
-| FHI AngularHighcharts | FHI Style | Bootstrap | Highcharts | HighchartsAngular | Angular | Node/NPM |
-| --------------------- | --------- | --------- | ---------- | ----------------- | ------- | -------- |
-| 0.4.x                 | 5         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
-| 0.3.x                 | 5         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
-| 0.2.0                 | 4         | 5         | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
-| 0.1.0                 | 4         | 5         | 10.3.0     | 3                 | 14      | 16/8 *   |
+| FHI AngularHighcharts | FHI Style | Bootstrap | NgBootstrap | Highcharts | HighchartsAngular | Angular | Node/NPM |
+| --------------------- | --------- | --------- | ----------- | ---------- | ----------------- | ------- | -------- |
+| Unreleased            | 5         | 5         | 14.x.x      | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
+| 0.4.x                 | 5         | 5         |             | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
+| 0.3.x                 | 5         | 5         |             | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
+| 0.2.0                 | 4         | 5         |             | 10.3.3     | 3.1.0             | 15      | 18/9 *   |
+| 0.1.0                 | 4         | 5         |             | 10.3.0     | 3                 | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
 _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
