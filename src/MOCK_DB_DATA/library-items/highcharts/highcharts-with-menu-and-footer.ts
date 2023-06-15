@@ -2,9 +2,9 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const HighchartsWithMenuAndMap: LibraryItem[] = [{
-  id: LibraryItemIds.HighchartsWithMenuAndMap,
-  title: 'FHI Angular Highcharts with menu',
+export const HighchartsWithMenuAndFooter: LibraryItem[] = [{
+  id: LibraryItemIds.HighchartsWithMenuAndFooter,
+  title: 'FHI Angular Highcharts with menu and footer',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -31,11 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Informasjon om hvordan ta i bruk denne modulen finner du her:
-  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
-    @folkehelseinstituttet/angular-highcharts
-  </a>
-</p>`;
+  return null;
 }

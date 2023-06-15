@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import cloneDeep from 'lodash-es/cloneDeep';
 import merge from 'lodash-es/merge';
-import { CaptionOptions, CreditsOptions, Options, SeriesOptionsType, TitleOptions, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
+import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
-import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
+import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-type.constants';
 // import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie, DataAnonymized } from '../fhi-diagram/fhi-diagram.models';
+import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
+import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models'
 
 @Injectable({
   providedIn: 'root'
@@ -24,20 +25,15 @@ export class OptionsService {
 
   private allStaticOptions = new Map();
 
-  updateOptions(diagramOptions: FhiDiagramOptions, allMapsLoaded: boolean): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramType.id));
-
-    // TODO: how to deal with title in exported charts?
-    // options.title = { text: diagramOptions.title, align: 'left' } as TitleOptions;
-
-    options.series = this.getSeries(diagramOptions.data, diagramOptions.diagramType.isMap, allMapsLoaded);
+  updateOptions(diagramOptions: FhiDiagramOptions, diagramType: FhiDiagramType, allMapsLoaded: boolean): Options {
+    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramTypeId));
+    options.series = this.getSeries(diagramOptions.series, diagramType.isMap, allMapsLoaded);
 
     if (!diagramOptions.openSource) {
-      options.caption = this.getCaptionText(options.caption, diagramOptions.lastUpdated, diagramOptions.disclaimer);
-      options.credits = this.getCredits(options.credits, diagramOptions.creditsHref, diagramOptions.creditsText, diagramOptions.diagramType.isMap);
+      options.credits = { enabled: false };
     }
-    if (!diagramOptions.diagramType.isMap) {
-      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.data);
+    if (!diagramType.isMap) {
+      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.series);
     }
     return options;
   }
@@ -57,41 +53,15 @@ export class OptionsService {
     return merge(chartsAndMaps, current, optionsCurrentChartType);
   }
 
-  private getCaptionText(caption: CaptionOptions | undefined, lastUpdated: string, disclaimerHtml: string | undefined) {
-    const disclaimer = (disclaimerHtml === undefined) ? false : true;
-    const lastUpdatedHtml = `<p>Oppdatert: ${lastUpdated}</p>`;
-    caption = (caption) ? caption : {};
-    caption.text = lastUpdatedHtml + ((disclaimer) ? disclaimerHtml : '');
-    if (!disclaimer) {
-      caption.y = 32;
-    }
-    return caption;
-  }
-
-  private getCredits(credits: CreditsOptions | undefined, href: string, text: string, isMap: boolean | undefined) {
-    credits = (credits) ? credits : {};
-    if (isMap) {
-      credits.text = '<a href="' + href + '">' + text + '</a>';
-    } else {
-      credits.href = href;
-      credits.text = text;
-    }
-    return credits;
-  }
-
-  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(data: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
       // TODO: MAP
       // return [this.geoJsonService.getHighmapsSerie(series[0])];
 
     } else {
-      const highchartsSeries = cloneDeep(series);
-      highchartsSeries.forEach((serie, index) => {
-        // Add anonymized to FhiDiagramSerie
-        series[index].dataAnonymized = serie.data
-          .filter(dataPoint => typeof dataPoint.y === 'string') as DataAnonymized[];
-
-        // Remove anonymized from Highcharts options series
+      const highchartsSeries = cloneDeep(data);
+      highchartsSeries.forEach((serie) => {
+        // Remove flagged data from Highcharts options series
         serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
       });
       return highchartsSeries as SeriesOptionsType[];
@@ -139,7 +109,6 @@ export class OptionsService {
     };
   }
 
-  // TODO: move to generic date-service
   public getISO8601DataFromNorwegianDate(nbNODate: string) {
     const dateList = nbNODate.split('.');
     return `${dateList[2]}-${dateList[1]}-${dateList[0]}`;

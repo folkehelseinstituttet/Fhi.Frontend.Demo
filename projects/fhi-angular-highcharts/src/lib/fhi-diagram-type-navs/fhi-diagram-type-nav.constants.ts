@@ -1,6 +1,6 @@
-import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-types';
+import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram/fhi-diagram-type.constants';
 
-export class FhiDiagramTypeNavs {
+export class FhiDiagramTypeNavId {
   static default = 'default';
 };
 

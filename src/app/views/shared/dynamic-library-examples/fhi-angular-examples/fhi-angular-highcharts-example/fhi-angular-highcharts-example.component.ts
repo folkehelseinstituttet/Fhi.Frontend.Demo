@@ -3,12 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import {
-  FhiDiagramOptions,
-  FhiDiagramTypes,
-  FhiDiagramType,
-  FhiDiagramTypeNavs,
-} from '@folkehelseinstituttet/angular-highcharts';
+import { FhiDiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
 
 @Component({
   selector: 'app-fhi-angular-highcharts-example',
@@ -30,7 +25,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
     if (this.itemId === this.itemIds.Highcharts) {
       this.loadData(MockData.TwoSeriesAar);
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndMap) {
+    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndFooter) {
       this.loadData(MockData.OneSerieFylke);
 
     } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
@@ -46,10 +41,9 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
       this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
         next: (data) => {
           this.diagramOptions = {
+            diagramTypeId: 'line',
             title: "Dødsfall etter årsak, 2008 - 2018",
-            data: data,
-            // diagramType: FhiDiagramTypes.line,
-            diagramType: FhiDiagramTypes.table,
+            series: data
           }
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -62,8 +56,24 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         next: (data) => {
           this.diagramOptions = {
             title: "Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020",
-            data: data,
-            diagramTypeNav: FhiDiagramTypeNavs.default
+            series: data,
+            diagramTypeId: 'column',
+            diagramTypeNavId: 'default',
+            flags: [{
+              symbol: '..',
+              label: 'Manglende data'
+            }, {
+              symbol: '.',
+              label: 'Lar seg ikke beregne'
+            }, {
+              symbol: ':',
+              label: 'Anonymisert'
+            }],
+            creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
+            creditsText: 'Nøkkeltall for folkehelse',
+            disclaimer: 'Disse dataene kan inneholde feil.',
+            lastUpdated: '06.06.2023',
+            openSource: false
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -76,8 +86,8 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         next: (data) => {
           this.diagramOptions = {
             title: "Dødsfall etter årsak, 2017 - 2021",
-            data: data,
-            diagramTypeNav: FhiDiagramTypeNavs.default
+            series: data,
+            diagramTypeNavId: 'default',
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -87,10 +97,10 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
     }
   }
 
-  onDiagramTypeNav(diagramType: FhiDiagramType) {
+  onDiagramTypeNavigation(diagramTypeId: string) {
     this.diagramOptions = {
       ...this.diagramOptions,
-      diagramType: diagramType,
+      diagramTypeId: diagramTypeId,
     };
   }
 }

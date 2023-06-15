@@ -5,13 +5,23 @@ import { OptionsChartTypeColumn } from '../highcharts-options/options-chart-type
 import { OptionsChartTypeColumnStacked } from '../highcharts-options/options-chart-type-column-stacked';
 import { OptionsChartTypeDonut } from '../highcharts-options/options-chart-type-donut';
 import { OptionsChartTypeLine } from '../highcharts-options/options-chart-type-line';
-import { OptionsMapFylker2019 } from '../highcharts-options/options-map-fylker-2019';
-import { OptionsMapFylker } from '../highcharts-options/options-map-fylker';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
 
 import { FhiDiagramType } from './fhi-diagram.models';
-import { FhiDiagramTypeId } from './fhi-diagram-type-id';
 
+export class FhiDiagramTypeId {
+  static area = 'area';
+  static bar = 'bar';
+  static barStacked = 'barStacked';
+  static column = 'column';
+  static columnStacked = 'columnStacked';
+  static donut = 'donut';
+  static line = 'line';
+  static mapFylker2019 = 'mapFylker2019';
+  static mapFylker = 'mapFylker';
+  static pie = 'pie';
+  static table = 'table';
+}
 
 export class FhiDiagramTypeGroups {
   static chart = 'chart';
@@ -72,7 +82,11 @@ const mapFylker2019: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker2019,
   icon: 'geo-alt',
   name: 'Fylkeskart før 2019',
-  options: OptionsMapFylker2019,
+  options: {
+    chart: {
+      map: FhiDiagramTypeId.mapFylker2019
+    }
+  },
   isMap: true,
   mapFile: 'assets/geo-json/no-all-2019.geo.json'
 }
@@ -81,7 +95,11 @@ const mapFylker: FhiDiagramType = {
   id: FhiDiagramTypeId.mapFylker,
   icon: 'geo-alt',
   name: 'Fylkeskart',
-  options: OptionsMapFylker,
+  options: {
+    chart: {
+      map: FhiDiagramTypeId.mapFylker
+    }
+  },
   isMap: true,
   mapFile: 'assets/geo-json/no-all.geo.json'
 }
@@ -93,12 +111,10 @@ const pie: FhiDiagramType = {
   options: OptionsChartTypePie
 }
 
-// TODO: remove all leftovers from deprecated "csv-data"-hack
 const table: FhiDiagramType = {
   id: FhiDiagramTypeId.table,
   icon: 'table',
-  name: 'Tabell',
-  options: OptionsChartTypeLine // to create hidden chart for csv-data
+  name: 'Tabell'
 }
 
 export class FhiDiagramTypes {

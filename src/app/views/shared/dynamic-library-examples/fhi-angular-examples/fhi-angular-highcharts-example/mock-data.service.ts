@@ -9,22 +9,23 @@ import { MockData } from './mock-data';
 export class MockDataService {
 
   getData(dataSetIndex: number): Observable<any> {
-    return new Observable<any>(observer => {
+    return new Observable<any>(dataSet => {
       switch (dataSetIndex) {
         case MockData.OneSerieFylke:
-          observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+
+          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
 
         case MockData.TwoSeriesAar:
-          observer.next(this.dodsfall_r_Ar_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Ar_c_Aarsak);
           break;
 
         case MockData.MultipleSeriesAar:
-          observer.next(this.dodsfall_r_Ar_c_Aarsak_LG);
+          dataSet.next(this.dodsfall_r_Ar_c_Aarsak_LG);
           break;
 
         default:
-          observer.next(this.dodsfall_r_Fylke_c_Aarsak);
+          dataSet.next(this.dodsfall_r_Fylke_c_Aarsak);
           break;
       }
     });
@@ -34,6 +35,8 @@ export class MockDataService {
   // ---------
   // Mock data
   // ---------
+
+  // TODO: remove all flags after all testing is done
 
   private dodsfall_r_Fylke_c_Aarsak = [
     {
@@ -215,7 +218,8 @@ export class MockDataService {
               },
               {
                   "name": "2021",
-                  "y": 660
+                  "y": ':'
+                  // "y": 660
               }
           ]
       },
@@ -231,7 +235,8 @@ export class MockDataService {
               },
               {
                   "name": "2018",
-                  "y": 1096
+                  "y": ':'
+                  // "y": 1096
               },
               {
                   "name": "2019",
@@ -258,11 +263,13 @@ export class MockDataService {
               },
               {
                   "name": "2018",
-                  "y": 603
+                  // "y": 603
+                  "y": ':'
               },
               {
                   "name": "2019",
-                  "y": 544
+                  // "y": 544
+                  "y": ':'
               },
               {
                   "name": "2020",
@@ -317,7 +324,8 @@ export class MockDataService {
               },
               {
                   "name": "2019",
-                  "y": 1203
+                  "y": ':'
+                  // "y": 1203
               },
               {
                   "name": "2020",

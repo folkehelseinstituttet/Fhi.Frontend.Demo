@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const HighchartsWithMenu: LibraryItem[] = [{
   id: LibraryItemIds.HighchartsWithMenu,
-  title: 'FHI Angular Highcharts with menu (2)',
+  title: 'FHI Angular Highcharts with menu',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -31,11 +31,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Informasjon om hvordan ta i bruk denne modulen finner du her:
-  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
-    @folkehelseinstituttet/angular-highcharts
-  </a>
-</p>`;
+  return null;
 }

@@ -1,11 +1,11 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { Highcharts } from './highcharts';
-import { HighchartsWithMenuAndMap } from './highcharts-with-menu-and-map';
+import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
 import { HighchartsWithMenu } from './highcharts-with-menu';
 
 export const HighchartsData: LibraryItem[] = [
   ...Highcharts,
-  ...HighchartsWithMenuAndMap,
-  ...HighchartsWithMenu
+  ...HighchartsWithMenu,
+  ...HighchartsWithMenuAndFooter
 ];
