@@ -1,7 +1,14 @@
 # Unreleased
 
-> May 15, 2023
+> Jun 15, 2023
 
+* :tada: **Enhancement** Update documentation of API
+* :boom: **Breaking** Change input property `FhiDiagramOptions.data` -> `FhiDiagramOptions.series`
+* :boom: **Breaking** Change input property `FhiDiagramOptions.diagramType` -> `FhiDiagramOptions.diagramTypeId`
+* :boom: **Breaking** Change input property `FhiDiagramOptions.diagramTypeNav` -> `FhiDiagramOptions.diagramTypeNavId`
+* :tada: **Enhancement** Add support for ngBootstrap
+* :tada: **Enhancement** Add input property for flags
+* :tada: **Enhancement** Add optional footer to diagram
 * :tada: **Enhancement** Move diagram title above diagram nav and use it for both table and charts/maps
 
 ## 0.4.0
