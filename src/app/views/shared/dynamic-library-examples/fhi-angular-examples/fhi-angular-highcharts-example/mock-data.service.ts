@@ -91,7 +91,7 @@ export class MockDataService {
 
   private dodsfall_r_Ar_c_Aarsak = [
     {
-      name: "Hjerte- og karsystemet| Kvinne",
+      name: "Hjerte- og karsystemet | Kvinne",
       data: [
         {
           name: "2008",
@@ -220,7 +220,7 @@ export class MockDataService {
       ],
     },
     {
-      name: "Hjerteinfarkt | Mann",
+      name: "Hjerteinfarkt     | Mann",
       stack: "Mann",
       // "linkedTo": ":previous",
       // "colorIndex": 0,
