@@ -53,13 +53,13 @@ export class OptionsService {
     return merge(chartsAndMaps, current, optionsCurrentChartType);
   }
 
-  private getSeries(data: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
       // TODO: MAP
       // return [this.geoJsonService.getHighmapsSerie(series[0])];
 
     } else {
-      const highchartsSeries = cloneDeep(data);
+      const highchartsSeries = cloneDeep(series);
       highchartsSeries.forEach((serie) => {
         // Remove flagged data from Highcharts options series
         serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')

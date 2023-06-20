@@ -106,8 +106,7 @@ export class FhiAngularHighchartsComponent {
 
   private formatSerieName(name: string | Array<string>): string {
     if (typeof name === 'string') {
-      return name.split(Seperator.in)
-        .join(Seperator.out);
+      return name.split(Seperator.in).join(Seperator.out);
     }
     return name.join(Seperator.out);
   }
