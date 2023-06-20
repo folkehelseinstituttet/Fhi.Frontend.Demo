@@ -12,6 +12,7 @@ import { DiagramTypeService } from './services/diagram-type.service';
 import { FhiDiagramType } from './fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { NameSeperatorIn, NameSeperatorOut } from './fhi-diagram-serie-name-seperator.constants';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -90,7 +91,7 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
     this.flaggedSeries.forEach(serie => {
       serie.flaggedDataPoints.forEach(dataPoint => {
-        flagged[n++] = serie.name.concat(' | ', dataPoint.name);
+        flagged[n++] = serie.name.concat(NameSeperatorOut, dataPoint.name);
       });
     });
     return flagged;
@@ -104,9 +105,10 @@ export class FhiAngularHighchartsComponent {
 
   private formatSerieName(name: string | Array<string>): string {
     if (typeof name === 'string') {
-      return name.split('|').join(' | ');;
+      return name.split(NameSeperatorIn)
+        .join(NameSeperatorOut);
     }
-    return name.join(' | ');
+    return name.join(NameSeperatorOut);
   }
 
   private updateFlaggedSeries() {

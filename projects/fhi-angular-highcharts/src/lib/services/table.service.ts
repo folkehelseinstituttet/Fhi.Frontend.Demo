@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
+import { NameSeperatorOut, NameSeperatorIn } from '../fhi-diagram-serie-name-seperator.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class TableService {
 
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const seriesMappedToNameOnly = series.map(serie => serie.name) as string[];
-    const tableHeaderRowCount = seriesMappedToNameOnly[0].split('|').length;
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(NameSeperatorOut).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
@@ -19,7 +20,7 @@ export class TableService {
       tableHeaderRows[j] = new Array(seriesMappedToNameOnly.length);
 
       for (let i = 0; i < seriesMappedToNameOnly.length; i++) {
-        const splitHeader = seriesMappedToNameOnly[i].split('|');
+        const splitHeader = seriesMappedToNameOnly[i].split(NameSeperatorOut);
         const currentCellName = splitHeader[j].trim();
 
         if (!isLastRow && currentCellName !== previousCellName) {
