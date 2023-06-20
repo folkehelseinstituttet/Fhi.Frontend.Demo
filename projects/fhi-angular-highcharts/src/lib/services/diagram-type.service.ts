@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
 import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
-import { NameSeperatorIn } from '../fhi-diagram-serie-name-seperator.constants';
+import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -114,7 +114,7 @@ export class DiagramTypeService {
 
   private getNumberOfDimensions(): number {
     const nameFirstSerie = this._series[0].name as string;
-    return nameFirstSerie.split(NameSeperatorIn).length + 1; // (n column dimentions) + (1 row dimention)
+    return nameFirstSerie.split(Seperator.in).length + 1; // (n column dimentions) + (1 row dimention)
   }
 
 }
