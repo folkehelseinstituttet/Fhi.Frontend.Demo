@@ -5,13 +5,13 @@ import merge from 'lodash-es/merge';
 import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
-import { FhiAllDiagramTypes } from '../fhi-diagram/fhi-diagram-type.constants';
+import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
 // import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram/fhi-diagram.models';
+import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
-import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models'
+import { FhiDiagramType } from '../fhi-diagram.models'
 
 @Injectable({
   providedIn: 'root'

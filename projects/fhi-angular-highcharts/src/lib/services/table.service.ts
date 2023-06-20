@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
 
 @Injectable({
   providedIn: 'root'
