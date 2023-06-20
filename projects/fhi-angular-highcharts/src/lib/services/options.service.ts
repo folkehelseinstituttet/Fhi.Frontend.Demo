@@ -63,9 +63,6 @@ export class OptionsService {
       highchartsSeries.forEach((serie) => {
         // Remove flagged data from Highcharts options series
         serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
-
-        // Make sure there is one space before and one space after every pipe
-        serie.name = serie.name.split('|').join(' | ');
       });
       return highchartsSeries as SeriesOptionsType[];
     }

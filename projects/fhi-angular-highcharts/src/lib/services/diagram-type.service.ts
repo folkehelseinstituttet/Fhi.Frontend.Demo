@@ -112,8 +112,8 @@ export class DiagramTypeService {
   }
 
   private getNumberOfDimensions(): number {
-    const nameFirstSerie = this._series[0].name;
-    return nameFirstSerie.split(',').length + 1;
+    const nameFirstSerie = this._series[0].name as string;
+    return nameFirstSerie.split('|').length + 1; // (n column dimentions) + (1 row dimention)
   }
 
 }

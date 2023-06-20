@@ -50,6 +50,7 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
+      this.formatSerieNames();
       this.updateFlaggedSeries();
       this.updateAvailableDiagramTypes();
       this.updateDiagramOptions();
@@ -89,10 +90,23 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
     this.flaggedSeries.forEach(serie => {
       serie.flaggedDataPoints.forEach(dataPoint => {
-        flagged[n++] = serie.name.concat(', ', dataPoint.name);
+        flagged[n++] = serie.name.concat(' | ', dataPoint.name);
       });
     });
     return flagged;
+  }
+
+  private formatSerieNames() {
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+    });
+  }
+
+  private formatSerieName(name: string | Array<string>): string {
+    if (typeof name === 'string') {
+      return name.split('|').join(' | ');;
+    }
+    return name.join(' | ');
   }
 
   private updateFlaggedSeries() {
@@ -101,7 +115,7 @@ export class FhiAngularHighchartsComponent {
       const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
       if (data.length !== 0) {
         this.flaggedSeries[n++] = {
-          name: serie.name,
+          name: serie.name as string,
           flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(data)
         };
       }
