@@ -13,13 +13,17 @@ export class FhiTreeViewSelectionComponent {
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
   @Input() items: Item[] = [];
-  @Input() name: string = '';
+  @Input() name: string;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
+    }
+
+    if (this.singleSelection && this.name === undefined) {
+      console.warn('[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>');
     }
   }
 
