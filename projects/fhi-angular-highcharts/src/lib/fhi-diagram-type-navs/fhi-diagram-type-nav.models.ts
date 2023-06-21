@@ -1,4 +1,4 @@
-import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
+import { FhiDiagramType } from '../fhi-diagram.models';
 
 export interface NavDiagramTypeGroup {
   diagramType: FhiDiagramType;

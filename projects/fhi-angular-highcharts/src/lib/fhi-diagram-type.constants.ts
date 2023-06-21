@@ -1,11 +1,11 @@
-import { OptionsChartTypeArea } from '../highcharts-options/options-chart-type-area';
-import { OptionsChartTypeBar } from '../highcharts-options/options-chart-type-bar';
-import { OptionsChartTypeBarStacked } from '../highcharts-options/options-chart-type-bar-stacked';
-import { OptionsChartTypeColumn } from '../highcharts-options/options-chart-type-column';
-import { OptionsChartTypeColumnStacked } from '../highcharts-options/options-chart-type-column-stacked';
-import { OptionsChartTypeDonut } from '../highcharts-options/options-chart-type-donut';
-import { OptionsChartTypeLine } from '../highcharts-options/options-chart-type-line';
-import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
+import { OptionsChartTypeArea } from './highcharts-options/options-chart-type-area';
+import { OptionsChartTypeBar } from './highcharts-options/options-chart-type-bar';
+import { OptionsChartTypeBarStacked } from './highcharts-options/options-chart-type-bar-stacked';
+import { OptionsChartTypeColumn } from './highcharts-options/options-chart-type-column';
+import { OptionsChartTypeColumnStacked } from './highcharts-options/options-chart-type-column-stacked';
+import { OptionsChartTypeDonut } from './highcharts-options/options-chart-type-donut';
+import { OptionsChartTypeLine } from './highcharts-options/options-chart-type-line';
+import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie';
 
 import { FhiDiagramType } from './fhi-diagram.models';
 

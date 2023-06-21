@@ -26,7 +26,7 @@ export interface FlagWithDataPointName extends FhiDiagramFlag {
 }
 
 export interface FlaggedSerie {
-  name: string;
+  name:	string;
   flaggedDataPoints: Array<FlagWithDataPointName>;
 }
 
@@ -40,9 +40,7 @@ export interface FhiDiagramFlag {
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
-  name:	string;
-  colorIndex?: number,
-  linkedTo?: string,
+  name:	string | Array<string>;
   stack?: string;
 }
 

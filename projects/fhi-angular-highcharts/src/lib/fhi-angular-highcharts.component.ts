@@ -4,14 +4,16 @@ import { Options } from 'highcharts';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithDataPointName, FlaggedSerie } from './fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithDataPointName, FlaggedSerie } from './fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 
-import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
-import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-type.constants';
+import { FhiDiagramType } from './fhi-diagram.models';
+import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
+
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -50,6 +52,7 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
+      this.formatSerieNames();
       this.updateFlaggedSeries();
       this.updateAvailableDiagramTypes();
       this.updateDiagramOptions();
@@ -89,10 +92,23 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
     this.flaggedSeries.forEach(serie => {
       serie.flaggedDataPoints.forEach(dataPoint => {
-        flagged[n++] = serie.name.concat(', ', dataPoint.name);
+        flagged[n++] = serie.name.concat(Seperator.out, dataPoint.name);
       });
     });
     return flagged;
+  }
+
+  private formatSerieNames() {
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+    });
+  }
+
+  private formatSerieName(name: string | Array<string>): string {
+    if (typeof name === 'string') {
+      return name.split(Seperator.in).join(Seperator.out);
+    }
+    return name.join(Seperator.out);
   }
 
   private updateFlaggedSeries() {
@@ -101,7 +117,7 @@ export class FhiAngularHighchartsComponent {
       const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
       if (data.length !== 0) {
         this.flaggedSeries[n++] = {
-          name: serie.name,
+          name: serie.name as string,
           flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(data)
         };
       }

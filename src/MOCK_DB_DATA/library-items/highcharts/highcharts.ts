@@ -53,7 +53,7 @@ function getDocumentationHtml(): string | null {
 
 <h3 class="mb-5">API</h3>
 
-<h4>Inputs</h3>
+<h4>Inputs</h4>
 <div class="table-responsive mb-5">
   <table class="table table-striped">
     <thead>
@@ -72,6 +72,29 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>yes</td>
         <td>Alle properties som trengs for å rendre en tabell, graf eller et kart.</td>
+      </tr>
+   </tbody>
+  </table>
+</div>
+
+<h4>Outputs</h3>
+<div class="table-responsive mb-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Output</th>
+        <th scope="col">Event&nbsp;type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>diagramTypeNavigation</th>
+        <td><code>string</code></td>
+        <td>
+          Hvis diagramtypemeny vises vil dette eventet fyre hver gang en navigasjon utføres.
+          Eventverdien er en av de lovlige <code>diagramTypeId</code>'ene.
+        </td>
       </tr>
    </tbody>
   </table>
@@ -148,7 +171,7 @@ function getDocumentationHtml(): string | null {
         <td><code>Array&lt;FhiDiagramFlag&gt;</code></td>
         <td>-</td>
         <td>no</td>
-        <td>Alle flagg som kan finnes i datasettet (f.eks flagg som indikerer anonymisering)</td>
+        <td>Alle flagg som kan finnes i datasettet (f.eks. flagg som indikerer anonymisering)</td>
       </tr>
       <tr>
         <th>lastUpdated</th>
@@ -182,26 +205,45 @@ function getDocumentationHtml(): string | null {
   </table>
 </div>
 
-<h4>Outputs</h3>
+<h4>FhiDiagramSerie, detaljer</h4>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">Output</th>
-        <th scope="col">Event&nbsp;type</th>
+        <th scope="col">Property</th>
+        <th scope="col">Type</th>
+        <th scope="col">Default</th>
+        <th scope="col">Required</th>
         <th scope="col">Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>diagramTypeNavigation</th>
-        <td><code>string</code></td>
+        <th>data</th>
+        <td><code>Array&lt;Data&gt;</code></td>
+        <td>-</td>
+        <td>yes</td>
+        <td>Alle datapunkt i en serie.</td>
+      </tr>
+      <tr>
+        <th>name</th>
+        <td><code>string&nbsp;|&nbsp;Array&lt;string&gt;</code></td>
+        <td>-</td>
+        <td>yes</td>
         <td>
-          Hvis diagramtypemeny vises vil dette eventet fyre hver gang en navigasjon utføres.
-          Eventverdien er en av de lovlige <code>diagramTypeId</code>'ene.
+          <b>Obs!</b> Type <code>string</code> er en formatert string. Pipe brukes som skilletegn
+          mellom kategorinavn hvis det er mer enn ett kategorinavn som er slått sammen til ett serienavn. Hvis en
+          vil slippe å forholde seg til et spesifikt skilletegn kan en nå velge å bruke en array bestående av kategorinavn i stedet.
         </td>
       </tr>
-   </tbody>
+      <tr>
+        <th>stack</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Brukes hvis en ønsker å gruppere serier i diagramtypene <code>barStacked</code> eller <code>columnStacked</code>.</td>
+      </tr>
+    </tbody>
   </table>
 </div>`;
 
