@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiDiagramTypeGroups } from '../fhi-diagram/fhi-diagram-type.constants';
-import { FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
+import { FhiDiagramTypeGroups } from '../fhi-diagram-type.constants';
+import { FhiDiagramType } from '../fhi-diagram.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';

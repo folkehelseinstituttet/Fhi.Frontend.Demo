@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
+import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -8,24 +9,24 @@ import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram/fhi-diagr
 export class TableService {
 
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
-    const commaSeparatedHeaderRow = series.map(s => s.name) as string[];
-    const tableHeaderRowCount = commaSeparatedHeaderRow[0].split(',').length;
+    const seriesMappedToNameOnly = series.map(serie => serie.name) as string[];
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.out).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
       const isLastRow = j + 1 === tableHeaderRowCount;
       let previousCellName: string;
       let colspanDivider = 0;
-      tableHeaderRows[j] = new Array(commaSeparatedHeaderRow.length);
+      tableHeaderRows[j] = new Array(seriesMappedToNameOnly.length);
 
-      for (let i = 0; i < commaSeparatedHeaderRow.length; i++) {
-        const splitHeader = commaSeparatedHeaderRow[i].split(',');
-        const currentCellName = splitHeader[j];
+      for (let i = 0; i < seriesMappedToNameOnly.length; i++) {
+        const splitHeader = seriesMappedToNameOnly[i].split(Seperator.out);
+        const currentCellName = splitHeader[j].trim();
 
         if (!isLastRow && currentCellName !== previousCellName) {
           tableHeaderRows[j][i] = {
             name: currentCellName,
-            colspan: commaSeparatedHeaderRow.length / 3
+            colspan: seriesMappedToNameOnly.length / 3
           };
           colspanDivider = colspanDivider + 1;
         }
@@ -35,7 +36,7 @@ export class TableService {
         previousCellName = currentCellName;
       }
       tableHeaderRows[j].forEach(i => {
-        i.colspan = commaSeparatedHeaderRow.length / colspanDivider
+        i.colspan = seriesMappedToNameOnly.length / colspanDivider
       });
       tableHeaderRows[j].unshift(undefined); // Label column
     }

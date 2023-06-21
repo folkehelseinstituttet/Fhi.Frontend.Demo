@@ -9,4 +9,4 @@ export {
   FhiDiagramOptions,
   FhiDiagramFlag,
   FhiDiagramSerie
-} from './lib/fhi-diagram/fhi-diagram.models';
+} from './lib/fhi-diagram.models';

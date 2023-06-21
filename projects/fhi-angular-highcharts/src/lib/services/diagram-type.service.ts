@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram/fhi-diagram.models';
-import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram/fhi-diagram-type.constants';
+import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
+import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -112,8 +113,8 @@ export class DiagramTypeService {
   }
 
   private getNumberOfDimensions(): number {
-    const nameFirstSerie = this._series[0].name;
-    return nameFirstSerie.split(',').length + 1;
+    const nameFirstSerie = this._series[0].name as string;
+    return nameFirstSerie.split(Seperator.in).length + 1; // (n column dimentions) + (1 row dimention)
   }
 
 }
