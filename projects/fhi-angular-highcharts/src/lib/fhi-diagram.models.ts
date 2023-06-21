@@ -41,8 +41,6 @@ export interface FhiDiagramFlag {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string | Array<string>;
-  colorIndex?: number,
-  linkedTo?: string,
   stack?: string;
 }
 
