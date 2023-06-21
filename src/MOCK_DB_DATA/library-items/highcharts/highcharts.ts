@@ -171,7 +171,7 @@ function getDocumentationHtml(): string | null {
         <td><code>Array&lt;FhiDiagramFlag&gt;</code></td>
         <td>-</td>
         <td>no</td>
-        <td>Alle flagg som kan finnes i datasettet (f.eks flagg som indikerer anonymisering)</td>
+        <td>Alle flagg som kan finnes i datasettet (f.eks. flagg som indikerer anonymisering)</td>
       </tr>
       <tr>
         <th>lastUpdated</th>
@@ -231,9 +231,9 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>yes</td>
         <td>
-          <b>Obs!</b>Type <code>string</code> er en formatert string. Pipe brukes som skilletegn
+          <b>Obs!</b> Type <code>string</code> er en formatert string. Pipe brukes som skilletegn
           mellom kategorinavn hvis det er mer enn ett kategorinavn som er slått sammen til ett serienavn. Hvis en
-          vil slippe å forholde seg til et spesifikt skilletegn kan en nå velge å bruke en array bestående av kategorinavn i stede.
+          vil slippe å forholde seg til et spesifikt skilletegn kan en nå velge å bruke en array bestående av kategorinavn i stedet.
         </td>
       </tr>
       <tr>
