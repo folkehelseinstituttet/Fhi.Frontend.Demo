@@ -53,7 +53,7 @@ function getDocumentationHtml(): string | null {
 
 <h3 class="mb-5">API</h3>
 
-<h4>Inputs</h3>
+<h4>Inputs</h4>
 <div class="table-responsive mb-5">
   <table class="table table-striped">
     <thead>
