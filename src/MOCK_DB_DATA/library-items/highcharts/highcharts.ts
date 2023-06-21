@@ -77,6 +77,29 @@ function getDocumentationHtml(): string | null {
   </table>
 </div>
 
+<h4>Outputs</h3>
+<div class="table-responsive mb-5">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Output</th>
+        <th scope="col">Event&nbsp;type</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>diagramTypeNavigation</th>
+        <td><code>string</code></td>
+        <td>
+          Hvis diagramtypemeny vises vil dette eventet fyre hver gang en navigasjon utføres.
+          Eventverdien er en av de lovlige <code>diagramTypeId</code>'ene.
+        </td>
+      </tr>
+   </tbody>
+  </table>
+</div>
+
 <h4>FhiDiagramOptions, detaljer</h4>
 <div class="table-responsive mb-5">
   <table class="table table-striped">
@@ -183,7 +206,7 @@ function getDocumentationHtml(): string | null {
 </div>
 
 <h4>FhiDiagramSerie, detaljer</h4>
-<div class="table-responsive mb-5">
+<div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -221,29 +244,6 @@ function getDocumentationHtml(): string | null {
         <td>Brukes hvis en ønsker å gruppere serier i diagramtypene <code>barStacked</code> eller <code>columnStacked</code>.</td>
       </tr>
     </tbody>
-  </table>
-</div>
-
-<h4>Outputs</h3>
-<div class="table-responsive">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">Output</th>
-        <th scope="col">Event&nbsp;type</th>
-        <th scope="col">Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>diagramTypeNavigation</th>
-        <td><code>string</code></td>
-        <td>
-          Hvis diagramtypemeny vises vil dette eventet fyre hver gang en navigasjon utføres.
-          Eventverdien er en av de lovlige <code>diagramTypeId</code>'ene.
-        </td>
-      </tr>
-   </tbody>
   </table>
 </div>`;
 
