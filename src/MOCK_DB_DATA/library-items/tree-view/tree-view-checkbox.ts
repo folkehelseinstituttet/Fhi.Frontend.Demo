@@ -80,6 +80,13 @@ function getDocumentationHtml(): string | null {
         <td>no</td>
         <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree. <code>[enableCheckAll]="true"</code> overrides <code>[singleSelection]</code></td>
       </tr>
+      <tr>
+        <th>[name]</th>
+        <td><code>string</code></td>
+        <td><code>''</code></td>
+        <td>no<br><span class="text-nowrap">[yes (if <code>[singleSelection]="true"</code>)]</span></td>
+        <td>Naming the radio selection</td>
+      </tr>
    </tbody>
   </table>
 </div>`;

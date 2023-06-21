@@ -13,6 +13,7 @@ export class FhiTreeViewSelectionComponent {
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
   @Input() items: Item[] = [];
+  @Input() name: string = '';
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 

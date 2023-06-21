@@ -10,15 +10,21 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
-  items: any[];
+  itemsCheck: any[];
+  itemsRadio: any[];
 
   ngOnInit() {
-    this.items = this.getTreeviewSelectionItems();
+    this.itemsCheck = this.getTreeviewSelectionItems();
+    this.itemsRadio = this.getTreeviewSelectionItems();
   }
 
-  onItemsChange(items: FhiTreeViewSelectionItem[]) {
+  onItemsChangeCheck(items: FhiTreeViewSelectionItem[]) {
     // console.log('onCheckedItemsChange()->items', items);
-    this.items = items;
+    this.itemsCheck = items;
+  }
+
+  onItemsChangeRadio(items: FhiTreeViewSelectionItem[]) {
+    this.itemsRadio = items;
   }
 
   private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {

@@ -1,16 +1,17 @@
 <div class="col-md-8 col-lg-6" *ngIf="itemId === itemIds.TreeViewCheckbox">
   <fhi-tree-view-selection
     [enableCheckAll]="true"
-    [items]="items"
-    (itemsChange)="onItemsChange($event)">
+    [items]="itemsCheck"
+    (itemsChange)="onItemsChangeCheck($event)">
   </fhi-tree-view-selection>
 </div>
 
 <div class="col-md-8 col-lg-6" *ngIf="itemId === itemIds.TreeViewRadio">
   <fhi-tree-view-selection
     [singleSelection]="true"
-    [items]="items"
-    (itemsChange)="onItemsChange($event)">
+    [name]="'radio'"
+    [items]="itemsRadio"
+    (itemsChange)="onItemsChangeRadio($event)">
   </fhi-tree-view-selection>
 
   <!-- <pre>
