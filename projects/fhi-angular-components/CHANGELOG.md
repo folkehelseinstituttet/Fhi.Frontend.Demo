@@ -2,7 +2,7 @@
 
 > Jun 21, 2023
 
-* :bug: **Bugfix** Name on radio button group
+* :bug: **Bugfix** Add name input to Tree view selection
 
 ## 1.0.0
 
