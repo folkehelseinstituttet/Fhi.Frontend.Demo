@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FhiTreeViewSelectionItem } from '@folkehelseinstituttet/angular-components';
 
@@ -13,9 +13,14 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   itemsCheck!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
 
+  constructor(
+    private changeDetector: ChangeDetectorRef
+  ) {}
+
   ngOnInit() {
     this.itemsCheck = this.getTreeviewSelectionItems();
     this.itemsRadio = this.getTreeviewSelectionItems();
+    this.changeDetector.detectChanges();
   }
 
   onItemsChangeCheck(items: FhiTreeViewSelectionItem[]) {
@@ -29,59 +34,44 @@ export class TreeViewSelectionExampleComponent implements OnInit {
 
   private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [{
-      name: 'Hele landet',
-      // isChecked: true,
-      // hasCheckedDescendant: true,
-      // isExpanded: true,
+      name: 'For utviklere',
       children: [{
-        name: 'Oslo',
-        isChecked: true,
-        children: [{
-          name: 'Oslo',
-          children: [{
-            name: 'Bydel Gamle Oslo',
-          }]
-        }]
+        name: 'Visuell identitet',
+      }, {
+        name: 'Komponenter',
+        children: [
+          {
+            name: 'Accordions'
+          },
+          {
+            name: 'Advanced select'
+          },
+          {
+            name: 'Alerts',
+          }
+        ]
+      }, {
+        name: 'Moduler',
+        children: [
+          { name: 'Global footer' },
+          { name: 'Global header' },
+          { name: 'Drawer' },
+          {
+            isChecked: true,
+            name: 'Tree view'
+          }
+        ]
+      }, {
+        name: 'Layout og sidemaler',
+      }],
+    }, {
+      name: 'For designere',
+      id: 'for-designere'
+    }, {
+      name: 'Github',
+      children: [{
+        name: 'Fhi.Frontend.Style',
       }]
-    // }, {
-    //   name: 'For utviklere',
-    //   children: [{
-    //     name: 'Visuell identitet',
-    //   }, {
-    //     name: 'Komponenter',
-    //     children: [
-    //       {
-    //         name: 'Accordions'
-    //       },
-    //       {
-    //         name: 'Advanced select'
-    //       },
-    //       {
-    //         name: 'Alerts',
-    //       }
-    //     ]
-    //   }, {
-    //     name: 'Moduler',
-    //     children: [
-    //       { name: 'Global footer' },
-    //       { name: 'Global header' },
-    //       { name: 'Drawer' },
-    //       {
-    //         isChecked: true,
-    //         name: 'Tree view'
-    //       }
-    //     ]
-    //   }, {
-    //     name: 'Layout og sidemaler',
-    //   }],
-    // }, {
-    //   name: 'For designere',
-    //   id: 'for-designere'
-    // }, {
-    //   name: 'Github',
-    //   children: [{
-    //     name: 'Fhi.Frontend.Style',
-    //   }]
     }];
   }
 

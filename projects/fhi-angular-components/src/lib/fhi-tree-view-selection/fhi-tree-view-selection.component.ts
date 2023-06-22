@@ -86,12 +86,12 @@ export class FhiTreeViewSelectionComponent {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
         if (item.children.every(item => item.descendantStateConfirmed)) {
-          if (item.children.find(item => item.isChecked)) {
+          if (item.children.find(item => item.isChecked) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           } else {
             this.setHasCheckedDescendantAndIsExpanded(false, item, initialState);
           }
-          if (item.children.find(item => item.hasCheckedDescendant)) {
+          if (item.children.find(item => item.hasCheckedDescendant) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           }
           item.descendantStateConfirmed = true;
@@ -100,6 +100,9 @@ export class FhiTreeViewSelectionComponent {
 
       } else if (!item.descendantStateConfirmed) {
         item.descendantStateConfirmed = true; // I.e. has no descendants
+        this.updateDecendantState(this.items, initialState);
+      }
+      if (items.length === 1 && !item.descendantStateConfirmed) {
         this.updateDecendantState(this.items, initialState);
       }
     });
