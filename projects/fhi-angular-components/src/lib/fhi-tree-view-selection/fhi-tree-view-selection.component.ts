@@ -21,9 +21,8 @@ export class FhiTreeViewSelectionComponent {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
-
     if (this.singleSelection && this.name === undefined) {
-      console.warn('[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>');
+      console.warn(this.getSingleSelectionWarningMSG());
     }
   }
 
@@ -122,6 +121,10 @@ export class FhiTreeViewSelectionComponent {
         this.createIds(item.children, ((id - 1) * 10) + 1);
       }
     });
+  }
+
+  private getSingleSelectionWarningMSG() {
+    return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
 
 }
