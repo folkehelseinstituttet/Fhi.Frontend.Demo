@@ -22,7 +22,7 @@ export class FhiTreeViewSelectionComponent {
       this.singleSelection = false;
     }
     if (this.singleSelection && this.name === undefined) {
-      console.warn(this.getSingleSelectionWarningMSG());
+      console.warn(this.getSingleSelectionWarningMsg());
     }
   }
 
@@ -126,7 +126,7 @@ export class FhiTreeViewSelectionComponent {
     });
   }
 
-  private getSingleSelectionWarningMSG() {
+  private getSingleSelectionWarningMsg() {
     return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
 
