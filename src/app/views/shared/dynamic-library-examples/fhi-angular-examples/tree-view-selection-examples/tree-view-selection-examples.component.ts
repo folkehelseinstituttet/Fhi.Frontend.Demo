@@ -10,8 +10,8 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
-  itemsCheck: any[];
-  itemsRadio: any[];
+  itemsCheck!: FhiTreeViewSelectionItem[];
+  itemsRadio!: FhiTreeViewSelectionItem[];
 
   ngOnInit() {
     this.itemsCheck = this.getTreeviewSelectionItems();
@@ -29,44 +29,59 @@ export class TreeViewSelectionExampleComponent implements OnInit {
 
   private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [{
-      name: 'For utviklere',
+      name: 'Hele landet',
+      // isChecked: true,
+      // hasCheckedDescendant: true,
+      // isExpanded: true,
       children: [{
-        name: 'Visuell identitet',
-      }, {
-        name: 'Komponenter',
-        children: [
-          {
-            name: 'Accordions'
-          },
-          {
-            name: 'Advanced select'
-          },
-          {
-            name: 'Alerts',
-          }
-        ]
-      }, {
-        name: 'Moduler',
-        children: [
-          { name: 'Global footer' },
-          { name: 'Global header' },
-          { name: 'Drawer' },
-          {
-            isChecked: true,
-            name: 'Tree view'
-          }
-        ]
-      }, {
-        name: 'Layout og sidemaler',
-      }],
-    }, {
-      name: 'For designere',
-      id: 'for-designere'
-    }, {
-      name: 'Github',
-      children: [{
-        name: 'Fhi.Frontend.Style',
+        name: 'Oslo',
+        isChecked: true,
+        children: [{
+          name: 'Oslo',
+          children: [{
+            name: 'Bydel Gamle Oslo',
+          }]
+        }]
       }]
+    // }, {
+    //   name: 'For utviklere',
+    //   children: [{
+    //     name: 'Visuell identitet',
+    //   }, {
+    //     name: 'Komponenter',
+    //     children: [
+    //       {
+    //         name: 'Accordions'
+    //       },
+    //       {
+    //         name: 'Advanced select'
+    //       },
+    //       {
+    //         name: 'Alerts',
+    //       }
+    //     ]
+    //   }, {
+    //     name: 'Moduler',
+    //     children: [
+    //       { name: 'Global footer' },
+    //       { name: 'Global header' },
+    //       { name: 'Drawer' },
+    //       {
+    //         isChecked: true,
+    //         name: 'Tree view'
+    //       }
+    //     ]
+    //   }, {
+    //     name: 'Layout og sidemaler',
+    //   }],
+    // }, {
+    //   name: 'For designere',
+    //   id: 'for-designere'
+    // }, {
+    //   name: 'Github',
+    //   children: [{
+    //     name: 'Fhi.Frontend.Style',
+    //   }]
     }];
   }
 
