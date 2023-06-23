@@ -1,4 +1,4 @@
-# Unreleased
+# 1.0.1
 
 > Jun 21, 2023
 
