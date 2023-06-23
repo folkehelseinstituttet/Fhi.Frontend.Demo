@@ -2,6 +2,7 @@
 
 > Jun 21, 2023
 
+* :bug: **Bugfix** Set correct `hasCheckedDescendant`-state also when only one `FhiTreeViewSelectionItem` on any given level in a `FhiTreeViewSelectionItem[]`
 * :bug: **Bugfix** Add name input to Tree view selection
 
 ## 1.0.0
@@ -11,7 +12,7 @@
 * :gift: **New** `FhiTreeViewSelectionComponent`
 * :boom: **Breaking** removed `FhiTreeViewCheckboxComponent`
 
-# 0.5.0
+## 0.5.0
 
 > May 15, 2023
 
