@@ -111,6 +111,8 @@ export class FhiAngularHighchartsComponent {
     return name.join(Seperator.out);
   }
 
+
+  // TODO: Check for decimals and negative numbers as well of flagged cells
   private updateFlaggedSeries() {
     let n = 0;
     this.diagramOptions.series.forEach((serie) => {
