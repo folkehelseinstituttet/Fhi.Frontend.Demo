@@ -91,6 +91,12 @@
     [itemIds]="itemIds"></app-form-element-examples>
 
   <app-table-examples
+    *ngSwitchCase="itemIds.FhiAngularTable"
+    [itemId]="itemIds.FhiAngularTable"
+    [itemIds]="itemIds">
+  </app-table-examples>
+  
+  <app-table-examples
     *ngSwitchCase="itemIds.TableSortable"
     [itemId]="itemIds.TableSortable"
     [itemIds]="itemIds">

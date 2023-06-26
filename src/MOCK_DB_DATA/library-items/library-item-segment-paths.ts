@@ -10,8 +10,9 @@ import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
-import { HighchartsData } from './highcharts/_highcharts.data';
+import { FhiAngularTableData } from './fhi-angular-table/_fhi-angular-table.data';
 import { FormsData } from './forms/_forms.data';
+import { HighchartsData } from './highcharts/_highcharts.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
@@ -71,6 +72,7 @@ export class LibraryItemSegmentPaths {
 
   // Modules
   static fhiAngularHighcharts = stringTransform(Object.keys({ HighchartsData })[0]);
+  static fhiAngularTables = stringTransform(Object.keys({ FhiAngularTableData })[0]);
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);

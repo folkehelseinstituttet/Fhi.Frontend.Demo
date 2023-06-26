@@ -12,6 +12,7 @@ export class TableExamplesComponent {
   
   table1: any = [];
   tableEditable: any = [];
+  fhiAngularTable: any = {};
   sortDirection: string = 'ascending';
   currentlySortedColumn: string = '';
   previousSortedColumn: string = '';
@@ -21,6 +22,7 @@ export class TableExamplesComponent {
   ngOnInit() {
     this.table1 = this.tableDataService.table1();
     this.tableEditable = this.tableDataService.tableEditable();
+    this.fhiAngularTable = this.tableDataService.tableLmr();
   }
 
   sortTable(column: string) {

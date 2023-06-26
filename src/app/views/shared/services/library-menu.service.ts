@@ -173,6 +173,9 @@ export class LibraryMenuService {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }, {
+      name: 'FHI Angular Tables',
+      link: LibraryItemSegmentPaths.fhiAngularTables
+    }, {
       name: 'FHI AngularHighcharts',
       link: LibraryItemSegmentPaths.fhiAngularHighcharts
     }, {
