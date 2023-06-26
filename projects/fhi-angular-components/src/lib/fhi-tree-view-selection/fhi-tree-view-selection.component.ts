@@ -21,9 +21,8 @@ export class FhiTreeViewSelectionComponent {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
-
     if (this.singleSelection && this.name === undefined) {
-      console.warn('[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>');
+      console.warn(this.getSingleSelectionWarningMsg());
     }
   }
 
@@ -87,12 +86,12 @@ export class FhiTreeViewSelectionComponent {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
         if (item.children.every(item => item.descendantStateConfirmed)) {
-          if (item.children.find(item => item.isChecked)) {
+          if (item.children.find(item => item.isChecked) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           } else {
             this.setHasCheckedDescendantAndIsExpanded(false, item, initialState);
           }
-          if (item.children.find(item => item.hasCheckedDescendant)) {
+          if (item.children.find(item => item.hasCheckedDescendant) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           }
           item.descendantStateConfirmed = true;
@@ -101,6 +100,9 @@ export class FhiTreeViewSelectionComponent {
 
       } else if (!item.descendantStateConfirmed) {
         item.descendantStateConfirmed = true; // I.e. has no descendants
+        this.updateDecendantState(this.items, initialState);
+      }
+      if (items.length === 1 && !item.descendantStateConfirmed) {
         this.updateDecendantState(this.items, initialState);
       }
     });
@@ -122,6 +124,10 @@ export class FhiTreeViewSelectionComponent {
         this.createIds(item.children, ((id - 1) * 10) + 1);
       }
     });
+  }
+
+  private getSingleSelectionWarningMsg() {
+    return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
 
 }

@@ -5,6 +5,9 @@
     (itemsChange)="onItemsChangeCheck($event)">
   </fhi-tree-view-selection>
 </div>
+<!-- <pre>
+  {{ itemsCheck | json }}
+</pre> -->
 
 <div class="col-md-8 col-lg-6" *ngIf="itemId === itemIds.TreeViewRadio">
   <fhi-tree-view-selection
@@ -13,8 +16,7 @@
     [items]="itemsRadio"
     (itemsChange)="onItemsChangeRadio($event)">
   </fhi-tree-view-selection>
-
-  <!-- <pre>
-    {{ items | json }}
-  </pre> -->
 </div>
+<!-- <pre>
+  {{ itemsRadio | json }}
+</pre> -->

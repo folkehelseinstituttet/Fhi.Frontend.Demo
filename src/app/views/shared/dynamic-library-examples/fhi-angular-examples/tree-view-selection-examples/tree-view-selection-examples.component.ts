@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FhiTreeViewSelectionItem } from '@folkehelseinstituttet/angular-components';
 
@@ -10,12 +10,17 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
-  itemsCheck: any[];
-  itemsRadio: any[];
+  itemsCheck!: FhiTreeViewSelectionItem[];
+  itemsRadio!: FhiTreeViewSelectionItem[];
+
+  constructor(
+    private changeDetector: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
     this.itemsCheck = this.getTreeviewSelectionItems();
     this.itemsRadio = this.getTreeviewSelectionItems();
+    this.changeDetector.detectChanges();
   }
 
   onItemsChangeCheck(items: FhiTreeViewSelectionItem[]) {
