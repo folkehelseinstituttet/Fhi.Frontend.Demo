@@ -1,8 +1,32 @@
-<div>
-    <div class="form-check form-switch mb-2">
-        <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault" (change)="chkIsOn = !chkIsOn">
-        <label class="form-check-label" for="flexSwitchCheckDefault">
-            Skru <span [innerHTML]="chkIsOn ? 'av' : 'på'"></span> denne bryteren
-        </label>
-    </div>
+<ng-container *ngIf="itemId === itemIds.FormRadioButtonTile">
+  <div class="fhi-form-check-tile" *ngFor="let radioTile of radioButtonTiles; index as i">
+    <input class="fhi-form-check-tile__input form-check-input" type="radio" name="radioButtonTiles" [id]="'radioTile-' + i">
+    
+    <label class="fhi-form-check-tile__label form-check-label" [for]="'radioTile-' + i">
+      <span class="fhi-form-check-tile__label-text">{{ radioTile.label }}</span>
+      <span class="fhi-form-check-tile__label-description" *ngIf="radioTile.description">{{ radioTile.description }}</span>
+    </label>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="itemId === itemIds.FormCheckboxTile">
+  <div class="fhi-form-check-tile" *ngFor="let radioTile of radioButtonTiles; index as i">
+    <input class="fhi-form-check-tile__input form-check-input" type="checkbox" [id]="'checkboxTile-' + i">
+    
+    <label class="fhi-form-check-tile__label form-check-label" [for]="'checkboxTile-' + i">
+      <span class="fhi-form-check-tile__label-text">{{ radioTile.label }}</span>
+      <span class="fhi-form-check-tile__label-description" *ngIf="radioTile.description">{{ radioTile.description }}</span>
+    </label>
+  </div>
+</ng-container>
+
+
+<div *ngIf="itemId === itemIds.FormSwitch">
+  <div class="form-check form-switch mb-2">
+    <input class="form-check-input visually-hidden" type="checkbox" id="flexSwitchCheckDefault" (change)="chkIsOn = !chkIsOn">
+    <label class="form-check-label" for="flexSwitchCheckDefault">
+        Skru <span [innerHTML]="chkIsOn ? 'av' : 'på'"></span> denne bryteren
+    </label>
+  </div>
 </div>

@@ -11,7 +11,7 @@ export interface FhiDiagramType {
   icon?: string;
   name: string;
   group?: string;
-  options: Options;
+  options?: Options;
   isMap?: boolean;
   mapFile?: string;
 }
@@ -21,34 +21,39 @@ export interface Data {
   y: number | string;
 }
 
-export interface DataAnonymized {
+export interface FlagWithDataPointName extends FhiDiagramFlag {
   name: string;
-  y: string;
 }
 
-export interface DataAnonymizedSerie {
-  name: string;
-  dataAnonymized: Array<DataAnonymized>;
+export interface FlaggedSerie {
+  name:	string;
+  flaggedDataPoints: Array<FlagWithDataPointName>;
+}
+
+
+// Public interfaces
+
+export interface FhiDiagramFlag {
+  symbol: string;
+  label: string;
 }
 
 export interface FhiDiagramSerie {
   data:	Array<Data>;
-  dataAnonymized?: Array<DataAnonymized>;
-  name:	string;
-  colorIndex?: number,
-  linkedTo?: string,
+  name:	string | Array<string>;
   stack?: string;
 }
 
 export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
-  data: Array<FhiDiagramSerie>;
-  diagramType?: FhiDiagramType;
-  diagramTypeNav?: string;
+  diagramTypeId?: string;
+  diagramTypeNavId?: string;
   disclaimer?: string;
+  flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
   openSource?: boolean;
+  series: Array<FhiDiagramSerie>;
   title: string;
 }
 

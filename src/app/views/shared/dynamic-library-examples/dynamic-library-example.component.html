@@ -33,8 +33,8 @@
     [itemIds]="itemIds">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.HighchartsWithMenuAndMap"
-    [itemId]="itemIds.HighchartsWithMenuAndMap"
+    *ngSwitchCase="itemIds.HighchartsWithMenuAndFooter"
+    [itemId]="itemIds.HighchartsWithMenuAndFooter"
     [itemIds]="itemIds">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
@@ -77,7 +77,18 @@
   </app-date-and-time-example>
 
   <app-datepicker *ngSwitchCase="itemIds.Datepicker"></app-datepicker>
-  <app-form-element-examples *ngSwitchCase="itemIds.FormSwitch"></app-form-element-examples>
+  <app-form-element-examples
+    *ngSwitchCase="itemIds.FormRadioButtonTile"
+    [itemId]="itemIds.FormRadioButtonTile"
+    [itemIds]="itemIds"></app-form-element-examples>
+  <app-form-element-examples
+    *ngSwitchCase="itemIds.FormCheckboxTile"
+    [itemId]="itemIds.FormCheckboxTile"
+    [itemIds]="itemIds"></app-form-element-examples>
+  <app-form-element-examples
+    *ngSwitchCase="itemIds.FormSwitch"
+    [itemId]="itemIds.FormSwitch"
+    [itemIds]="itemIds"></app-form-element-examples>
 
   <app-table-examples
     *ngSwitchCase="itemIds.TableSortable"
@@ -100,30 +111,35 @@
     [itemId]="itemIds.Tabs"
     [itemIds]="itemIds">
   </app-tabs-example>
-  <app-tabs-example
-    *ngSwitchCase="itemIds.TabsBottomBordered"
-    [itemId]="itemIds.TabsBottomBordered"
-    [itemIds]="itemIds"></app-tabs-example>
-  <app-tabs-example
-    *ngSwitchCase="itemIds.TabsOnBlueBackground"
-    [itemId]="itemIds.TabsOnBlueBackground"
-    [itemIds]="itemIds"></app-tabs-example>
-  <app-tabs-example
-    *ngSwitchCase="itemIds.TabsBlueAndBlueBackground"
-    [itemId]="itemIds.TabsBlueAndBlueBackground"
-    [itemIds]="itemIds"></app-tabs-example>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
-  <app-tooltip-example *ngSwitchCase="itemIds.Tooltip"></app-tooltip-example>
+  
+  <app-tooltip-and-popover-example
+    *ngSwitchCase="itemIds.Tooltip"
+    [itemId]="itemIds.Tooltip"
+    [itemIds]="itemIds">
+  </app-tooltip-and-popover-example>
+  <app-tooltip-and-popover-example
+    *ngSwitchCase="itemIds.Popover"
+    [itemId]="itemIds.Popover"
+    [itemIds]="itemIds">
+  </app-tooltip-and-popover-example>
 
   <app-tree-view-navigation-example
     *ngSwitchCase="itemIds.TreeViewNavigation">
   </app-tree-view-navigation-example>
 
-  <app-tree-view-checkbox-example
-    *ngSwitchCase="itemIds.TreeViewCheckbox">
-  </app-tree-view-checkbox-example>
+  <app-tree-view-selection-example
+    *ngSwitchCase="itemIds.TreeViewCheckbox"
+    [itemId]="itemIds.TreeViewCheckbox"
+    [itemIds]="itemIds">
+  </app-tree-view-selection-example>
+  <app-tree-view-selection-example
+    *ngSwitchCase="itemIds.TreeViewRadio"
+    [itemId]="itemIds.TreeViewRadio"
+    [itemIds]="itemIds">
+  </app-tree-view-selection-example>
 
   <app-angular-tree-view-builder-example
     *ngSwitchCase="itemIds.TreeViewBuilder">

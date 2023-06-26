@@ -1,10 +1,11 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Textarea: LibraryItem[] = [{
-  id: LibraryItemIds.FormTextarea,
-  title: 'Textarea',
-  type: LibraryItemType.html,
+export const TreeViewRadio: LibraryItem[] = [{
+  id: LibraryItemIds.TreeViewRadio,
+  title: 'Tree view selection - radio',
+  type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -15,10 +16,7 @@ export const Textarea: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<label for="exampleFormControlTextarea1" class="form-label" aria-describedby="hjelpeTekst2">Tekstfelt med flere linjer</label>
-<p class="form-text" id="hjelpeTekst2">Hjelpetekst, f.eks "Valgfritt felt"</p>
-<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>`;
+  return ``;
 }
 
 /*
@@ -26,7 +24,13 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<fhi-tree-view-selection
+  [name]="'radio'"
+  [(items)]="items"
+  [singleSelection]="true"
+>
+</fhi-tree-view-selection>`;
 }
 
 /*

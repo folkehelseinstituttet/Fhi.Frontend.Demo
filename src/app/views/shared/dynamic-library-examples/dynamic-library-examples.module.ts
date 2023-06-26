@@ -17,7 +17,7 @@ import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-e
 import { TableExamplesComponent } from './fhi-angular-examples/table-examples/table-examples.component';
 import { TabsExampleComponent } from './ng-bootstrap-examples/tabs-example/tabs-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
-import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-example/tooltip-example.component';
+import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
@@ -28,7 +28,7 @@ import { SearchExampleComponent } from './fhi-angular-examples/search-example/se
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
-import { TreeViewCheckboxExampleComponent } from './fhi-angular-examples/tree-view-checkbox-example/tree-view-checkbox-example.component';
+import { TreeViewSelectionExampleComponent } from './fhi-angular-examples/tree-view-selection-examples/tree-view-selection-examples.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
@@ -57,7 +57,7 @@ const FHI_EXAMPLES = [
   SearchExampleComponent,
   TableExamplesComponent,
   TreeViewNavigationExampleComponent,
-  TreeViewCheckboxExampleComponent,
+  TreeViewSelectionExampleComponent,
   TagExampleComponent
 ];
 

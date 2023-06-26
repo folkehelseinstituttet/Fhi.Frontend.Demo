@@ -28,7 +28,7 @@ import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
-import { TooltipData } from './tooltip/_tooltip.data';
+import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 import { TypographyData } from './typography/_typography.data';
 
@@ -67,7 +67,7 @@ export class LibraryItemSegmentPaths {
   static tabs = stringTransform(Object.keys({ TabsData })[0]);
   static tags = stringTransform(Object.keys({ TagsData })[0]);
   static toast = stringTransform(Object.keys({ ToastData })[0]);
-  static tooltip = stringTransform(Object.keys({ TooltipData })[0]);
+  static tooltip = stringTransform(Object.keys({ TootipPopoverData })[0]);
 
   // Modules
   static fhiAngularHighcharts = stringTransform(Object.keys({ HighchartsData })[0]);

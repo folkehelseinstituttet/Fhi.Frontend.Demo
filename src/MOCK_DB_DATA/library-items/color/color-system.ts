@@ -74,9 +74,8 @@ ${colorHtml('#d14641', 'fhi-red-2')}
 ${colorHtml('#de2968', 'fhi-pink-dark-1')}
 
 <p class="text-muted small mt-2 mb-0">Lyserosa</p>
-${colorHtml('#faedec', 'fhi-pink-light-1')}
-${colorHtml('#fad1cd', 'fhi-pink-light-2')}
-${colorHtml('#fba39b', 'fhi-pink-light-3')}`;
+${colorHtml('#ffe3e2', 'fhi-pink-light-1')}
+${colorHtml('#fad1cd', 'fhi-pink-light-2')}`;
 }
 
 /*

@@ -160,7 +160,7 @@ export class LibraryMenuService {
       name: 'Toast',
       link: LibraryItemSegmentPaths.toast
     }, {
-      name: 'Tooltip',
+      name: 'Tooltip & Popover',
       link: LibraryItemSegmentPaths.tooltip
     }]
   }

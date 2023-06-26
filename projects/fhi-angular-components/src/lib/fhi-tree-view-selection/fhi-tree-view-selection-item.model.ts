@@ -1,5 +1,5 @@
-export interface FhiTreeViewCheckboxItem {
-  children?: FhiTreeViewCheckboxItem[];
+export interface FhiTreeViewSelectionItem {
+  children?: FhiTreeViewSelectionItem[];
   descendantStateConfirmed?: boolean;
   id?: number | string;
   isChecked?: boolean;

@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Options } from 'highcharts';
-import HighchartsExporting from 'highcharts/modules/exporting';
-import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
-import HighchartsExportData from 'highcharts/modules/export-data';
 import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { DataAnonymizedSerie, FhiDiagramOptions, FhiDiagramSerie } from './fhi-diagram/fhi-diagram.models';
+import { Data, FhiDiagramOptions, FhiDiagramSerie, FlagWithDataPointName, FlaggedSerie } from './fhi-diagram.models';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 
-import { FhiDiagramType } from './fhi-diagram/fhi-diagram.models';
-import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { FhiDiagramType } from './fhi-diagram.models';
+import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
+import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
+import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
+
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -22,66 +21,63 @@ import { FhiDiagramTypeNavs } from './fhi-diagram-type-navs/fhi-diagram-type-nav
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiAngularHighchartsComponent {
-
-  Highcharts: typeof Highcharts = Highcharts;
-  highchartsOptions!: Options;
-
-  anonymizedSeries: DataAnonymizedSerie[] = [];
-  allMapsLoaded = false;
-  currentDiagramTypeGroup!: string;
-  diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavs = FhiDiagramTypeNavs;
-  numOfDimensions!: number;
-  numOfSeries!: number;
-  showDefaultChartTemplate = true;
-  tableHeaderRows = new Array();
-  tableBodyRows = new Array();
-
-  // TODO: the following is not just for table but should be rendered
-  //       as HTML for Highcharts as well.
-  //       Simplified solution without fancy styling must be created
-  //       use with Highcarts when download as SVG/PDF
-  tableTitle!: string;
-  tableLastUpdated!: string;
-  tableDisclaimer!: string;
-  tableCreditsHref!: string;
-  tableCreditsText!: string;
+  private diagramType: FhiDiagramType;
+  private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNav = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNavigation = new EventEmitter<string>();
+
+  highcharts: typeof Highcharts = Highcharts;
+  highchartsOptions!: Options;
+
+  allMapsLoaded = false;
+  showDefaultChartTemplate = true;
+  showFooter = false;
+
+  currentDiagramTypeGroup!: string;
+  diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeNavId = FhiDiagramTypeNavId;
+
+  tableHeaderRows = new Array();
+  tableBodyRows = new Array();
 
   constructor(
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
   ) {
-    HighchartsExporting(Highcharts);
-    HighchartsOfflineExporting(Highcharts);
-    HighchartsExportData(Highcharts);
     HighchartsMap(Highcharts);
     HighchartsAccessibility(Highcharts);
   }
 
   ngOnChanges() {
     try {
-      this.diagramTypeService.series = this.diagramOptions.data;
-      this.diagramOptions = this.setOptionalFhiDiagramOptions(this.diagramOptions);
-      this.currentDiagramTypeGroup = this.getCurrentDiagramTypeGroup(this.diagramOptions.diagramType);
+      this.formatSerieNames();
+      this.updateFlaggedSeries();
+      this.updateAvailableDiagramTypes();
+      this.updateDiagramOptions();
+      this.updateCurrentDiagramType();
+      this.updateCurrentDiagramTypeGroup();
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
-        this.updateTable(this.diagramTypeService.series);
+        this.updateTable();
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptions, this.allMapsLoaded);
-        this.setAnonymized()
+        this.highchartsOptions = this.optionsService
+          .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
       }
+      this.showFooter = this.canShowFooter();
+
     } catch (error) {
-      console.error(error);
-      console.error(this.getErrorMsg());
+      console.error(this.getErrorMsg(error));
     }
   }
 
-  onDiagramTypeNav(diagramType: FhiDiagramType) {
-    this.diagramTypeNav.emit(diagramType);
+  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+    this.diagramTypeNavigation.emit(diagramType.id);
+  }
+
+  setDiagramTypeGroupToTable() {
+    this.diagramTypeNavigation.emit(FhiDiagramTypeId.table);
   }
 
   tableCellDataOK(data: number | string): boolean {
@@ -91,52 +87,131 @@ export class FhiAngularHighchartsComponent {
     return false;
   }
 
-  private setOptionalFhiDiagramOptions(diagramOptions: FhiDiagramOptions): FhiDiagramOptions {
-    const d = diagramOptions;
-    return {
-      ...d,
-      diagramType: (d.diagramType) ? d.diagramType : FhiDiagramTypes.table,
-      openSource: (d.openSource) ? d.openSource : true,
-    }
+  getFlaggedDataPoints(): Array<string> {
+    const flagged: Array<string> = [];
+    let n = 0;
+    this.flaggedSeries.forEach(serie => {
+      serie.flaggedDataPoints.forEach(dataPoint => {
+        flagged[n++] = serie.name.concat(Seperator.out, dataPoint.name);
+      });
+    });
+    return flagged;
   }
 
-  private updateTable(series: FhiDiagramSerie[]) {
-    this.tableHeaderRows = this.tableService.getHeaderRows(series);
-    this.tableBodyRows = this.tableService.getDataRows(series);
-    this.tableTitle = this.diagramOptions.title;
+  private formatSerieNames() {
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+    });
   }
 
-  private getCurrentDiagramTypeGroup(diagramtype: FhiDiagramType): string {
-    if (diagramtype.id === FhiDiagramTypes.table.id) {
-      return FhiDiagramTypeGroups.table;
+  private formatSerieName(name: string | Array<string>): string {
+    if (typeof name === 'string') {
+      return name.split(Seperator.in).join(Seperator.out);
     }
-    if (diagramtype.isMap) {
-      return FhiDiagramTypeGroups.map;
-    }
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    return FhiDiagramTypeGroups.chart
+    return name.join(Seperator.out);
   }
 
-  private setAnonymized() {
-    this.diagramOptions.data.forEach((serie, index) => {
-      if (serie.dataAnonymized[0] !== undefined) {
-        this.anonymizedSeries[index] = {
-          name: serie.name,
-          dataAnonymized: serie.dataAnonymized
+  private updateFlaggedSeries() {
+    let n = 0;
+    this.diagramOptions.series.forEach((serie) => {
+      const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
+      if (data.length !== 0) {
+        this.flaggedSeries[n++] = {
+          name: serie.name as string,
+          flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(data)
         };
       }
     });
   }
 
-  private getErrorMsg() {
-    return `ERROR: @Input() diagramOptions === undefined
-    or @Input() diagramOptions.data === undefined
-    at FhiAngularHighchartsComponent.ngOnChanges
+  private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {
+    const flaggedDataPoints: FlagWithDataPointName[] = [];
+    let n = 0;
+    data.forEach(category => {
+      flaggedDataPoints[n++] = {
+        name: category.name,
+        symbol: category.y as string,
+        label: 'N/A'
+      };
+    });
+    return flaggedDataPoints;
+  }
+
+  private updateAvailableDiagramTypes() {
+    this.diagramTypeService.updateDiagramTypes(this.diagramOptions.series, this.flaggedSeries);
+  }
+
+  private updateDiagramOptions() {
+    const diagramTypeId = this.diagramOptions.diagramTypeId;
+    const flags = this.diagramOptions.flags;
+    const openSource = this.diagramOptions.openSource;
+
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      diagramTypeId: (diagramTypeId)
+        ? this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId)
+        : FhiDiagramTypeId.table,
+      flags: (flags) ? flags : undefined,
+      openSource: (openSource === undefined || openSource) ? true : false
+    }
+  }
+
+  private updateCurrentDiagramType() {
+    this.diagramType = this.diagramTypeService
+      .getDiagramTypeById(this.diagramOptions.diagramTypeId);
+  }
+
+  private updateCurrentDiagramTypeGroup() {
+    if (this.diagramOptions.diagramTypeId === FhiDiagramTypes.table.id) {
+      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
+      return;
+    }
+    if (this.diagramType.isMap) {
+      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
+      return;
+    }
+    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
+  }
+
+  private updateTable() {
+    const series: FhiDiagramSerie[] = this.diagramOptions.series;
+    this.tableHeaderRows = this.tableService.getHeaderRows(series);
+    this.tableBodyRows = this.tableService.getDataRows(series);
+  }
+
+  private canShowFooter(): boolean {
+    if (this.flaggedSeries.length !== 0) {
+      return true;
+    }
+    if (this.diagramOptions.lastUpdated !== undefined) {
+      return true;
+    }
+    if (this.diagramOptions.disclaimer !== undefined) {
+      return true;
+    }
+    if (this.diagramOptions.creditsHref !== undefined
+        && this.diagramOptions.creditsText !== undefined) {
+      return true;
+    }
+    return false;
+  }
+
+  private getErrorMsg(error: any) {
+    return `ERROR: @Input() diagramOptions === undefined,
+    diagramOptions.title === undefined or diagramOptions.series === undefined
+    at FhiAngularHighchartsComponent.ngOnChanges()
     FhiAngularHighchartsComponent can not be rendered.
+
     To avoid this error message:
-    test for yourOptions !== undefined
-    and yourOptions.data !== undefined before calling
-    <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>`;
+    Make sure [yourOptions] are valid before calling template:
+    <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
+
+    If [yourOptions] are in accordance with specification; contact maintainer of
+    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
+
+    Stacktrace:
+    ${error}`;
   }
 
 }

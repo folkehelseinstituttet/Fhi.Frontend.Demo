@@ -4,7 +4,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TreeViewCheckbox: LibraryItem[] = [{
   id: LibraryItemIds.TreeViewCheckbox,
-  title: 'Tree view checkbox',
+  title: 'Tree view selection - checkbox',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,7 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-checkbox [(items)]="items"></fhi-tree-view-checkbox>`;
+<fhi-tree-view-selection [(items)]="items"></fhi-tree-view-selection>`;
 }
 
 /*
@@ -38,7 +38,7 @@ function getDocumentationHtml(): string | null {
   <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-components">@folkehelseinstituttet/angular-components</a>.
 </p>
 <p>
-  API'et består kun av en input:
+  API:
 </p>
 <div class="table-responsive">
   <table class="table table-striped">
@@ -48,23 +48,44 @@ function getDocumentationHtml(): string | null {
         <th scope="col">Type</th>
         <th scope="col">Default</th>
         <th scope="col">Required</th>
-        <th scope="col">Description</th>
+        <th scope="col" style="min-width: 300px">Description</th>
       </tr>
     </thead>
     <tbody>
-      <!-- <tr>
+      <tr>
         <th>[enableCheckAll]</th>
         <td><code>boolean</code></td>
-        <td><code>true</code></td>
+        <td><code>false</code></td>
         <td>no</td>
-        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component.</td>
-      </tr> -->
+        <td>Whether or not a button for (un)checking all checkboxes at one level should be included in the UI of the component. <code>[enableCheckAll]="true"</code> overrides <code>[singleSelection]</code></td>
+      </tr>
       <tr>
-        <th>[(items)]</th>
-        <td><code>Array&lt;FhiTreeViewCheckboxItem&gt;</code></td>
+        <th>[items]</th>
+        <td><code>Array&lt;FhiTreeViewSelectionItem&gt;</code></td>
         <td><code>[]</code></td>
         <td>yes</td>
-        <td>A two way binding to access the state of all items in your checkbox tree.</td>
+        <td>All items in your checkbox tree.</td>
+      </tr>
+      <tr>
+        <th>(itemsChange)</th>
+        <td><code>Array&lt;FhiTreeViewSelectionItem&gt;</code></td>
+        <td><i>N/A</i></td>
+        <td>no</td>
+        <td>An output event for accessing the state of all items in your checkbox tree.</td>
+      </tr>
+      <tr>
+        <th>[singleSelection]</th>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>no</td>
+        <td>Renders as radio buttons instead of checkboxes, to allow for only one selection in the tree. <code>[enableCheckAll]="true"</code> overrides <code>[singleSelection]</code></td>
+      </tr>
+      <tr>
+        <th>[name]</th>
+        <td><code>string</code></td>
+        <td><code>''</code></td>
+        <td>no<br><span class="text-nowrap">[yes (if <code>[singleSelection]="true"</code>)]</span></td>
+        <td>Naming the radio selection</td>
       </tr>
    </tbody>
   </table>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { FhiDiagramSerie, FhiDiagramType } from '../fhi-diagram/fhi-diagram.models';
-import { FhiChartTypes, FhiMapTypes } from '../fhi-diagram/fhi-diagram-types';
-import { FhiDiagramTypeId } from '../fhi-diagram/fhi-diagram-type-id';
+import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
+import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,7 @@ export class DiagramTypeService {
   private _chartTypes!: FhiDiagramType[];
   private _mapTypes!: FhiDiagramType[];
   private _series!: FhiDiagramSerie[];
-
-  set series(series: FhiDiagramSerie[]) {
-    this._series = series;
-    this.updateAvailableTypes();
-  }
+  private flaggedSeries!: FlaggedSerie[]
 
   get series(): FhiDiagramSerie[] {
     return this._series;
@@ -29,6 +25,49 @@ export class DiagramTypeService {
     return this._mapTypes;
   }
 
+  updateDiagramTypes(series: FhiDiagramSerie[], flaggedSeries: FlaggedSerie[]) {
+    this._series = series;
+    this.flaggedSeries = flaggedSeries;
+    this.updateAvailableTypes();
+  }
+
+  getDiagramTypeById(diagramTypeId: string): FhiDiagramType {
+    const diagramType = FhiAllDiagramTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType;
+    } else {
+      throw new Error(`diagramType is undefined!
+        At DiagramTypeService.getDiagramTypeById()`);
+    }
+  }
+
+  getVerifiedDiagramTypeId(diagramTypeId: string): string {
+    let diagramType: FhiDiagramType;
+
+    diagramType = this.getChartType(diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType.id;
+    }
+    diagramType = this.getMapType(diagramTypeId);
+    if (diagramType !== undefined) {
+      return diagramType.id;
+    }
+    return FhiDiagramTypes.table.id;
+  }
+
+  private getChartType(diagramTypeId: string): FhiDiagramType {
+    const diagramType = this.chartTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    return diagramType;
+  }
+
+  private getMapType(diagramTypeId: string): FhiDiagramType {
+    const diagramType = this.mapTypes
+      .find(diagramType => diagramType.id === diagramTypeId);
+    return diagramType;
+  }
+
   private updateAvailableTypes() {
     this._chartTypes = this.updateAvailableChartTypes();
     this._mapTypes = this.updateAvailableMapTypes();
@@ -38,6 +77,11 @@ export class DiagramTypeService {
     let chartTypes = FhiChartTypes;
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfSeries = this.getNumberOfSeries();
+
+    // Remove line
+    if (numOfSeries > 1 && this.flaggedSeries.length !== 0) {
+      chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
+    }
 
     // Remove pie
     if (numOfSeries > 1) {
@@ -69,8 +113,8 @@ export class DiagramTypeService {
   }
 
   private getNumberOfDimensions(): number {
-    const nameFirstSerie = this._series[0].name;
-    return nameFirstSerie.split(',').length + 1;
+    const nameFirstSerie = this._series[0].name as string;
+    return nameFirstSerie.split(Seperator.in).length + 1; // (n column dimentions) + (1 row dimention)
   }
 
 }

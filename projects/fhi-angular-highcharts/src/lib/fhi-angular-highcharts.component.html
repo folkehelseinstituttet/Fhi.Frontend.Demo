@@ -1,5 +1,7 @@
-<ng-container *ngIf="diagramOptions !== undefined">
-  <ng-container *ngIf="diagramOptions.diagramTypeNav !== undefined">
+<article *ngIf="diagramOptions !== undefined">
+  <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
+
+  <ng-container *ngIf="diagramOptions.diagramTypeNavId !== undefined">
     <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
   </ng-container>
 
@@ -21,92 +23,128 @@
       </ng-template>
     </ng-container>
   </ng-container>
-</ng-container>
+
+  <ng-container *ngIf="showFooter">
+    <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
+  </ng-container>
+</article>
 
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="diagramOptions.diagramTypeNav === diagramTypeNavs.default"
+    *ngIf="diagramOptions.diagramTypeNavId === diagramTypeNavId.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
-    [currentDiagramType]="diagramOptions.diagramType"
-    (navigateToDiagramType)="onDiagramTypeNav($event)">
+    [currentDiagramTypeId]="diagramOptions.diagramTypeId"
+    (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
   </fhi-diagram-type-nav>
 </ng-template>
 
 <ng-template #chart>
   <highcharts-chart
     class="fhi-highcharts-chart"
-    [Highcharts]="Highcharts"
+    [Highcharts]="highcharts"
     [options]="highchartsOptions">
   </highcharts-chart>
-
-  <!-- DEBUGGING -->
-  <!-- <pre *ngIf="anonymizedSeries[0] !== undefined">Serier med "prikkede" verdier: <br>{{ anonymizedSeries | json }}</pre> -->
 </ng-template>
 
 <ng-template #map>
   <highcharts-chart
     class="fhi-highcharts-map"
-    [Highcharts]="Highcharts"
+    [Highcharts]="highcharts"
     [constructorType]="'mapChart'"
     [options]="highchartsOptions">
   </highcharts-chart>
 </ng-template>
 
 <ng-template #table>
-  <article class="fhi-highcharts-table">
-    <h1 class="h4">{{ tableTitle }}</h1>
-    <div class="table-responsive">
-      <table class="table table-striped table-sm mt-3">
-        <thead>
-          <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
-            <ng-container *ngFor="let tableCellData of headerRow; let i = index">
-              <ng-container *ngIf="tableCellData">
-                <td class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
-                    [attr.rowspan]="(tableCellData.rowspan) ? tableCellData.rowspan : null"
-                    *ngIf="i === 0; else tableHeaderCell"></td>
-                <ng-template #tableHeaderCell>
-                  <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
-                      [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
-                      [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
-                      scope="col">
-                    {{ tableCellData.name }}
-                  </th>
-                </ng-template>
+  <div class="table-responsive fhi-highcharts-table">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
+          <ng-container *ngFor="let tableCellData of headerRow; let i = index">
+            <ng-container *ngIf="tableCellData">
+              <td class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                  [attr.rowspan]="(tableCellData.rowspan) ? tableCellData.rowspan : null"
+                  *ngIf="i === 0; else tableHeaderCell"></td>
+              <ng-template #tableHeaderCell>
+                <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                    [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
+                    [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
+                    scope="col">
+                  {{ tableCellData.name }}
+                </th>
+              </ng-template>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
+          <ng-container *ngFor="let tableCellData of tableRow; let i = index">
+            <th *ngIf="i === 0" scope="row"
+                  class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
+              {{ tableCellData }}
+            </th>
+            <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
+              <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
+                {{ tableCellData | number }}
               </ng-container>
-            </ng-container>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
-            <ng-container *ngFor="let tableCellData of tableRow; let i = index">
-              <th *ngIf="i === 0" scope="row"
-                   class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
+              <ng-template #tableCellDataIsString>
                 {{ tableCellData }}
-              </th>
-              <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
-                <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
-                  {{ tableCellData | number }}
-                </ng-container>
-                <ng-template #tableCellDataIsString>
-                  {{ tableCellData }}
-                </ng-template>
-              </td>
-            </ng-container>
+              </ng-template>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
+
+<ng-template #diagramFooter>
+  <footer class="mt-3" *ngIf="showFooter">
+    <p *ngIf="diagramOptions.lastUpdated">
+      <strong>Sist oppdatert </strong>{{ diagramOptions.lastUpdated }}
+    </p>
+    <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
+      <strong>Kilde </strong>
+      <a href="{{ diagramOptions.creditsHref }}">{{ diagramOptions.creditsText }}</a>
+    </p>
+    <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
+      <strong>Tegnforklaringer</strong><br>
+      <table>
+        <tbody>
+          <tr *ngFor="let flag of diagramOptions.flags">
+            <td class="pe-2">{{ flag.symbol }}</td>
+            <td>{{ flag.label }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <footer class="fhi-highcharts-table__footer">
-      <div class="fhi-highcharts-table__caption">
-        <p class="fhi-highcharts-table__caption-last-update mb-0"
-           *ngIf="tableLastUpdated">Oppdatert: {{ tableLastUpdated }}</p>
-        <p class="fhi-highcharts-table__caption-disclaimer mb-0"
-           *ngIf="tableDisclaimer"
-           [innerHTML]="tableDisclaimer">
-        </p>
-        <a href="{{ tableCreditsHref }}" class="fhi-highcharts-table__credits">{{ tableCreditsText }}</a>
-      </div>
-    </footer>
-  </article>
+    <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
+      <p>
+        <a role="button"
+          class="fhi-popover-trigger"
+          tabindex="0"
+          triggers="manual"
+          #p="ngbPopover"
+          aria-haspopup="true"
+          (click)="p.toggle()"
+          (keydown.enter)="p.toggle()"
+          [autoClose]="'outside'"
+          [ngbPopover]="popContent">Diagrammet inneholder data som ikke kan vises</a>
+      </p>
+      <ng-template #popContent>
+        <p>Følgende data vises ikke i diagrammet</p>
+        <ul>
+          <li *ngFor="let dataPoint of getFlaggedDataPoints()">
+            {{ dataPoint }} <br>
+          </li>
+        </ul>
+      </ng-template>
+      <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+    </div>
+    <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
+      {{ diagramOptions.disclaimer }}
+    </p>
+  </footer>
 </ng-template>

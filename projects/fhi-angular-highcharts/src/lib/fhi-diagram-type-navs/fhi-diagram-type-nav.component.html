@@ -1,4 +1,4 @@
-<div class="fhi-diagram-type-nav mb-3" *ngIf="showNav">
+<div class="fhi-diagram-type-nav mb-3">
   <div class="btn-group fhi-btn-group mb-1"
        role="group"
        aria-label="Velg tabell, kart eller graf">
@@ -8,7 +8,6 @@
               type="radio"
               name="{{ 'diagram-type-nav' + navId }}"
               id="{{ group.id + navId }}"
-              aria-controls="diagram-type-children-nav"
               [attr.aria-haspopup]="diagramTypeGroupIsChart(group.id)"
               [disabled]="group.isDisabled"
               [checked]="group.id === currentDiagramTypeGroup"
@@ -24,10 +23,9 @@
   </div>
 
   <div class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
-        id="diagram-type-children-nav"
-        role="menu"
-        aria-label="Velg graftype"
-        *ngIf="chartSubmenuIsOpen">
+       role="group"
+       aria-label="Velg graftype"
+       *ngIf="chartSubmenuIsOpen">
 
     <ng-container *ngFor="let chartType of chartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"
@@ -35,13 +33,13 @@
               name="{{ 'chart-type-' + navId }}"
               name=""
               id="{{ chartType.id + navId }}"
-              [checked]="chartType.id === currentDiagramType.id"
+              [checked]="chartType.id === currentDiagramTypeId"
               (change)="navigate(chartType)">
 
       <label class="btn fhi-btn-group__btn border-0"
              for="{{ chartType.id + navId }}">
         <i [class]="'icon-md icon-' + chartType.icon"></i>
-        <span class="visually-hidden">{{ chartType.name }}</span>
+        <span class="visually-hidden text-dark">{{ chartType.name }}</span>
       </label>
     </ng-container>
   </div>

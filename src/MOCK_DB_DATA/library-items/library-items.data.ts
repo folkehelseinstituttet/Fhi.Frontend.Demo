@@ -27,7 +27,7 @@ import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
-import { TooltipData } from './tooltip/_tooltip.data';
+import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
@@ -60,7 +60,7 @@ export const AllData: LibraryItem[] = [
   ...TabsData,
   ...TagsData,
   ...ToastData,
-  ...TooltipData,
+  ...TootipPopoverData,
   ...TypographyData,
   ...TreeViewData
 ];

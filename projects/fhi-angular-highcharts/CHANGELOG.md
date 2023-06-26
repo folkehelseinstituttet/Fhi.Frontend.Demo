@@ -1,16 +1,37 @@
-# 0.4.0
+# Unreleased
+
+> Jun 21, 2023
+
+* :tada: **Enhancement** Change seperator in `serie.name` to `|`
+* :tada: **Enhancement** Add support for type `Array<string>` in `serie.name`
+* :tada: **Enhancement** Update documentation
+
+## 0.5.0
+
+> Jun 15, 2023
+
+* :tada: **Enhancement** Update documentation of API
+* :boom: **Breaking** Change input property `FhiDiagramOptions.data` -> `FhiDiagramOptions.series`
+* :boom: **Breaking** Change input property `FhiDiagramOptions.diagramType` -> `FhiDiagramOptions.diagramTypeId`
+* :boom: **Breaking** Change input property `FhiDiagramOptions.diagramTypeNav` -> `FhiDiagramOptions.diagramTypeNavId`
+* :tada: **Enhancement** Add support for ngBootstrap
+* :tada: **Enhancement** Add input property for flags
+* :tada: **Enhancement** Add optional footer to diagram
+* :tada: **Enhancement** Move diagram title above diagram nav and use it for both table and charts/maps
+
+## 0.4.0
 
 > Apr 26, 2023
 
-* :enhancement: **Enhancement** Add support for more than one heading row in table
-* :enhancement: **Enhancement** Add support for string values in table
-* :enhancement: **Enhancement** Add HighchartsAccessibility module
+* :tada: **Enhancement** Add support for more than one heading row in table
+* :tada: **Enhancement** Add support for string values in table
+* :tada: **Enhancement** Add HighchartsAccessibility module
 
 ## 0.3.0
 
 > Mar 29, 2023
 
-* :enhancement: **Enhancement** Support @folkehelseinstituttet/style v5
+* :tada: **Enhancement** Support @folkehelseinstituttet/style v5
 * :bug: **Bugfix** Change wrong @import path for css in README
 * :bug: **Bugfix** Change peerDependencies so they match the dependency matrix
 
