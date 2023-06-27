@@ -89,7 +89,7 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
     this.flaggedSeries.forEach(serie => {
       serie.flaggedDataPoints.forEach(dataPoint => {
-        flagged[n++] = serie.name.concat(Seperator.out, dataPoint.name);
+        flagged[n++] = serie.name.concat(Seperator.output, dataPoint.name);
       });
     });
     return flagged;
@@ -117,9 +117,9 @@ export class FhiAngularHighchartsComponent {
 
   private formatSerieName(name: string | Array<string>): string {
     if (typeof name === 'string') {
-      return name.split(Seperator.in).join(Seperator.out);
+      return name.split(Seperator.input).join(Seperator.output);
     }
-    return name.join(Seperator.out);
+    return name.join(Seperator.output);
   }
 
   private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: Data[], index: number) {
