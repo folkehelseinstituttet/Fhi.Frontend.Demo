@@ -214,8 +214,8 @@ export class MockDataService {
         },
         {
           name: "2021",
-          y: ":",
-          // "y": 660
+          // y: ":",
+          "y": 660
         },
       ],
     },
@@ -231,8 +231,8 @@ export class MockDataService {
         },
         {
           name: "2018",
-          y: ":",
-          // "y": 1096
+          // y: ":",
+          "y": 1096
         },
         {
           name: "2019",
@@ -259,13 +259,13 @@ export class MockDataService {
         },
         {
           name: "2018",
-          // "y": 603
-          y: ":",
+          "y": 603
+          // y: ":",
         },
         {
           name: "2019",
-          // "y": 544
-          y: ":",
+          "y": 544
+          // y: ":",
         },
         {
           name: "2020",
@@ -297,7 +297,7 @@ export class MockDataService {
         },
         {
           name: "2020",
-          y: 949.3,
+          y: 949,
         },
         {
           name: "2021",
@@ -312,7 +312,7 @@ export class MockDataService {
       data: [
         {
           name: "2017",
-          y: -1372,
+          y: 1372,
         },
         {
           name: "2018",
@@ -320,8 +320,8 @@ export class MockDataService {
         },
         {
           name: "2019",
-          y: ":",
-          // "y": 1203
+          // y: ":",
+          "y": 1203
         },
         {
           name: "2020",
