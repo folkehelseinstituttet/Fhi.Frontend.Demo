@@ -52,8 +52,7 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
-      this.formatSerieNames();
-      this.updateFlaggedSeries();
+      this.loopSeriesToUpdateAndExtractInfo();
       this.updateAvailableDiagramTypes();
       this.updateDiagramOptions();
       this.updateCurrentDiagramType();
@@ -64,6 +63,15 @@ export class FhiAngularHighchartsComponent {
       } else {
         this.highchartsOptions = this.optionsService
           .updateOptions(this.diagramOptions, this.diagramType, this.allMapsLoaded);
+
+        // this.highchartsOptions = this.optionsService
+        //   .updateOptions(this.diagramOptions, this.internalDiagramOptions);
+        //   {
+        //     allMapsLoaded,
+        //     diagramType,
+        //     seriesHasDecimalDataPoints,
+        //     seriesHasNegativeDataPoints
+        //   }
       }
       this.showFooter = this.canShowFooter();
 
@@ -98,10 +106,28 @@ export class FhiAngularHighchartsComponent {
     return flagged;
   }
 
-  private formatSerieNames() {
+  private loopSeriesToUpdateAndExtractInfo() {
     this.diagramOptions.series.forEach((serie) => {
+      let n = 0;
+      const decimalData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0);
+      const flaggedData = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
+      const negativeData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y < 0);
+
+      if (flaggedData.length !== 0) {
+        this.updateFlaggedSeries(serie, flaggedData, n);
+      }
+      if (decimalData.length !== 0) {
+        console.log('seriesHasDecimalDataPoints = true');
+        // this.internalDiagramOptions.seriesHasDecimalDataPoints = true;
+      }
+      if (negativeData.length !== 0) {
+        console.log('seriesHasNegativeDataPoints = true');
+        // this.internalDiagramOptions.seriesHasNegativeDataPoints = true;
+      }
       serie.name = this.formatSerieName(serie.name);
     });
+
+
   }
 
   private formatSerieName(name: string | Array<string>): string {
@@ -111,19 +137,11 @@ export class FhiAngularHighchartsComponent {
     return name.join(Seperator.out);
   }
 
-
-  // TODO: Check for decimals and negative numbers as well of flagged cells
-  private updateFlaggedSeries() {
-    let n = 0;
-    this.diagramOptions.series.forEach((serie) => {
-      const data = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
-      if (data.length !== 0) {
-        this.flaggedSeries[n++] = {
-          name: serie.name as string,
-          flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(data)
-        };
-      }
-    });
+  private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: Data[], n: number) {
+    this.flaggedSeries[n++] = {
+      name: serie.name as string,
+      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData)
+    };
   }
 
   private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {

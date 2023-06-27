@@ -297,7 +297,7 @@ export class MockDataService {
         },
         {
           name: "2020",
-          y: 949,
+          y: 949.3,
         },
         {
           name: "2021",
@@ -312,7 +312,7 @@ export class MockDataService {
       data: [
         {
           name: "2017",
-          y: 1372,
+          y: -1372,
         },
         {
           name: "2018",
