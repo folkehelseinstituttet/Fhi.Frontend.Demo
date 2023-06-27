@@ -20,7 +20,6 @@ import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DateAndTimeData } from 'src/MOCK_DB_DATA/library-items/date-and-time/_date-and-time.data';
 import { DatepickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
-import { FhiAngularTableData } from 'src/MOCK_DB_DATA/library-items/fhi-angular-table/_fhi-angular-table.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
@@ -65,7 +64,6 @@ export class MockDbService implements InMemoryDbService {
       DateAndTimeData,
       DatepickerData,
       DrawerData,
-      FhiAngularTableData,
       FormsData,
       HighchartsData,
       GlobalFooterData,

@@ -85,28 +85,4 @@ export class TableExamplesDataService {
       ]
     }
   };
-
-  tableLmr() {
-    return {
-      expandableRows: true,
-      // noWrapHeadings: true,
-      headings: [
-        {
-          name: 'Kolonne en'
-        },
-        {
-          name: 'Kolonne to'
-        },
-        {
-          name: 'Kolonne tre er mye lenger enn de andre'
-        },
-        {
-          name: 'Kolonne fire'
-        },
-        {
-          name: 'Kolonne fem'
-        }
-      ]
-    }
-  }
 }

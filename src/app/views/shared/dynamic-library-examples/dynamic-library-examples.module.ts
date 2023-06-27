@@ -21,7 +21,6 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-pop
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
-import { FhiAngularComponentTableExamplesComponent } from './fhi-angular-examples/fhi-angular-component-table-examples/fhi-angular-component-table-examples.component';
 import { FhiAngularHighchartsExampleComponent } from './fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component';
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
@@ -51,7 +50,6 @@ const NGB_EXAMPLES = [
 const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeExampleComponent,
-  FhiAngularComponentTableExamplesComponent,
   FhiAngularHighchartsExampleComponent,
   IconListComponent,
   FormElementExamplesComponent,

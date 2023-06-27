@@ -10,7 +10,6 @@ import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
-import { FhiAngularTableData } from './fhi-angular-table/_fhi-angular-table.data';
 import { FormsData } from './forms/_forms.data';
 import { HighchartsData } from './highcharts/_highcharts.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -44,7 +43,6 @@ export const AllData: LibraryItem[] = [
   ...DateAndTimeData,
   ...DatepickerData,
   ...DrawerData,
-  ...FhiAngularTableData,
   ...FormsData,
   ...HighchartsData,
   ...GlobalHeaderData,
