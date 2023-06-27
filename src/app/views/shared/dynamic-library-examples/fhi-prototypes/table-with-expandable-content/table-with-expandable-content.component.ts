@@ -55,6 +55,7 @@ export class TableWithExpandableContentComponent {
 
     this.demoTableConfig = {
       expandableRows: true,
+      noWrapHeadings: true,
       headings: [
         {
           name: 'ID',
