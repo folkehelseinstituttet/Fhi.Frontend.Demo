@@ -3,14 +3,13 @@
     <thead>
       <tr>
         <td *ngIf="tableConfig.expandableRows"></td>
-        <th scope="col"
-            *ngFor="let th of tableConfig.headings">
+        <th *ngFor="let th of tableConfig.headings">
           <span [ngClass]="{ 'text-nowrap': tableConfig.noWrapHeadings }">{{ th.name }}</span>
         </th>
       </tr>
     </thead>
     <tbody>
-      <ng-content [hoi]></ng-content>
+      <ng-content></ng-content>
     </tbody>
   </table>
 </div>
