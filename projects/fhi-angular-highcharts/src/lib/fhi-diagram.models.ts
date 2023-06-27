@@ -57,3 +57,10 @@ export interface FhiDiagramOptions {
   title: string;
 }
 
+export interface FhiAllDiagramOptions extends FhiDiagramOptions {
+  allMapsLoaded?: boolean;
+  diagramType?: FhiDiagramType;
+  seriesHasDecimalDataPoints?: boolean;
+  seriesHasNegativeDataPoints?: boolean;
+}
+

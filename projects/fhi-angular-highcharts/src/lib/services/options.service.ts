@@ -7,7 +7,7 @@ import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
 // import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
+import { FhiAllDiagramOptions, FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -25,15 +25,20 @@ export class OptionsService {
 
   private allStaticOptions = new Map();
 
-  updateOptions(diagramOptions: FhiDiagramOptions, diagramType: FhiDiagramType, allMapsLoaded: boolean): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramTypeId));
-    options.series = this.getSeries(diagramOptions.series, diagramType.isMap, allMapsLoaded);
+  updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
 
-    if (!diagramOptions.openSource) {
+    console.log('OptionsService.allDiagramOptions', allDiagramOptions);
+
+    const allMapsLoaded = allDiagramOptions.allMapsLoaded;
+    const diagramType = allDiagramOptions.diagramType;
+    const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
+    options.series = this.getSeries(allDiagramOptions.series, diagramType.isMap, allMapsLoaded);
+
+    if (!allDiagramOptions.openSource) {
       options.credits = { enabled: false };
     }
     if (!diagramType.isMap) {
-      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.series);
+      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, allDiagramOptions.series);
     }
     return options;
   }

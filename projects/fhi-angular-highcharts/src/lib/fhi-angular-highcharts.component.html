@@ -1,7 +1,7 @@
-<article *ngIf="diagramOptions !== undefined">
-  <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
+<article *ngIf="allDiagramOptions !== undefined">
+  <h1 class="h3 mb-3">{{ allDiagramOptions.title }}</h1>
 
-  <ng-container *ngIf="diagramOptions.diagramTypeNavId !== undefined">
+  <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
     <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
   </ng-container>
 
@@ -10,7 +10,7 @@
       <ng-container *ngTemplateOutlet="table"></ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="diagramTypeGroups.map">
-      <ng-container *ngIf="allMapsLoaded">
+      <ng-container *ngIf="allDiagramOptions.allMapsLoaded">
         <ng-container *ngTemplateOutlet="map"></ng-container>
       </ng-container>
     </ng-container>
@@ -32,9 +32,9 @@
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="diagramOptions.diagramTypeNavId === diagramTypeNavId.default"
+    *ngIf="allDiagramOptions.diagramTypeNavId === diagramTypeNavId.default"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
-    [currentDiagramTypeId]="diagramOptions.diagramTypeId"
+    [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
   </fhi-diagram-type-nav>
 </ng-template>
@@ -102,25 +102,25 @@
 
 <ng-template #diagramFooter>
   <footer class="mt-3" *ngIf="showFooter">
-    <p *ngIf="diagramOptions.lastUpdated">
-      <strong>Sist oppdatert </strong>{{ diagramOptions.lastUpdated }}
+    <p *ngIf="allDiagramOptions.lastUpdated">
+      <strong>Sist oppdatert </strong>{{ allDiagramOptions.lastUpdated }}
     </p>
-    <p *ngIf="diagramOptions.creditsText && diagramOptions.creditsHref">
+    <p *ngIf="allDiagramOptions.creditsText && allDiagramOptions.creditsHref">
       <strong>Kilde </strong>
-      <a href="{{ diagramOptions.creditsHref }}">{{ diagramOptions.creditsText }}</a>
+      <a href="{{ allDiagramOptions.creditsHref }}">{{ allDiagramOptions.creditsText }}</a>
     </p>
-    <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
+    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
       <strong>Tegnforklaringer</strong><br>
       <table>
         <tbody>
-          <tr *ngFor="let flag of diagramOptions.flags">
+          <tr *ngFor="let flag of allDiagramOptions.flags">
             <td class="pe-2">{{ flag.symbol }}</td>
             <td>{{ flag.label }}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="mb-3" *ngIf="diagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
+    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
       <p>
         <a role="button"
           class="fhi-popover-trigger"
@@ -143,8 +143,8 @@
       </ng-template>
       <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
     </div>
-    <p class="fst-italic small" *ngIf="diagramOptions.disclaimer">
-      {{ diagramOptions.disclaimer }}
+    <p class="fst-italic small" *ngIf="allDiagramOptions.disclaimer">
+      {{ allDiagramOptions.disclaimer }}
     </p>
   </footer>
 </ng-template>
