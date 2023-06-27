@@ -76,6 +76,7 @@ export class DiagramTypeService {
   private updateAvailableChartTypes(): FhiDiagramType[] {
     let chartTypes = FhiChartTypes;
     const numOfDimensions = this.getNumberOfDimensions();
+    const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const numOfSeries = this.getNumberOfSeries();
 
     // Remove line
@@ -84,7 +85,7 @@ export class DiagramTypeService {
     }
 
     // Remove pie
-    if (numOfSeries > 1) {
+    if (numOfDimensions > 2 || numOfSeries > 2) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
     }
 
@@ -95,7 +96,7 @@ export class DiagramTypeService {
     }
 
     // Remove bar & column
-    if (numOfDimensions > 2) {
+    if (numOfDataPointsPrSerie > 5 && numOfSeries > 8) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.bar);
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.column);
     }
@@ -110,6 +111,10 @@ export class DiagramTypeService {
 
   private getNumberOfSeries(): number {
     return this._series.length;
+  }
+
+  private getNumberOfDataPointsPrSerie(): number {
+    return this._series[0].data.length;
   }
 
   private getNumberOfDimensions(): number {
