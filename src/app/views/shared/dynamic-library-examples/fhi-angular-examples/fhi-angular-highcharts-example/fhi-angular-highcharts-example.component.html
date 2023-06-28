@@ -2,6 +2,10 @@
 
   <ng-container *ngIf="itemId === itemIds.Highcharts">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+    <!-- <fhi-angular-highcharts
+      [diagramOptions]="diagramOptions"
+      (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+    </fhi-angular-highcharts> -->
   </ng-container>
 
   <ng-container *ngIf="itemId === itemIds.HighchartsWithMenuAndFooter">

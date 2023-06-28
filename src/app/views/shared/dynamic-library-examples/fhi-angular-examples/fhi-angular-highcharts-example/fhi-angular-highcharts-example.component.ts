@@ -42,6 +42,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
         next: (data) => {
           this.diagramOptions = {
             diagramTypeId: 'line',
+            // diagramTypeNavId: 'default',
             title: "Dødsfall etter årsak, 2008 - 2018",
             series: data
           }

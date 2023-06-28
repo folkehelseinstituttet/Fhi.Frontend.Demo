@@ -81,6 +81,7 @@ export class OptionsService {
     yAxis = (yAxis) ? yAxis : {};
     if (allDiagramOptions.seriesHasDecimalDataPoints) {
       yAxis.allowDecimals = true;
+      yAxis.min = undefined;
     }
     if (allDiagramOptions.seriesHasNegativeDataPoints) {
       yAxis.min = undefined;

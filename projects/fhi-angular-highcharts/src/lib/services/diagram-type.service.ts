@@ -80,12 +80,15 @@ export class DiagramTypeService {
     const numOfSeries = this.getNumberOfSeries();
 
     // Remove line
-    if (numOfSeries > 1 && this.flaggedSeries.length !== 0) {
+    if (
+      (numOfDimensions > 1 && numOfSeries > 5) ||
+      (numOfSeries > 1 && this.flaggedSeries.length !== 0)
+    ) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
     }
 
     // Remove pie
-    if (numOfDimensions > 2 || numOfSeries > 2) {
+    if (numOfSeries > 2) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
     }
 
