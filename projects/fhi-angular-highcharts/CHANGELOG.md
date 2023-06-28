@@ -1,6 +1,6 @@
-# Unreleased
+# 0.6.0
 
-> Jun 21, 2023
+> Jun 28, 2023
 
 * :tada: **Enhancement** Add support for negiativ numbers and descimals
 * :tada: **Enhancement** Change seperator in `serie.name` to `|`
