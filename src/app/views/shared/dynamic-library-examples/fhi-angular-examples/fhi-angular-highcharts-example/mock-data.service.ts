@@ -193,8 +193,6 @@ export class MockDataService {
   private dodsfall_r_Ar_c_Aarsak_LG = [
     {
       name: "Hjerteinfarkt| Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 0,
       data: [
         {
           name: "2017",
@@ -221,9 +219,6 @@ export class MockDataService {
     },
     {
       name: "Hjerteinfarkt     | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 0,
       data: [
         {
           name: "2017",
@@ -250,8 +245,6 @@ export class MockDataService {
     },
     {
       name: "Annen iskemisk hjertesykdom|Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 1,
       data: [
         {
           name: "2017",
@@ -279,9 +272,6 @@ export class MockDataService {
     },
     {
       name: "Annen iskemisk hjertesykdom | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 1,
       data: [
         {
           name: "2017",
@@ -307,8 +297,6 @@ export class MockDataService {
     },
     {
       name: "Karsykdommer i hjernen | Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 2,
       data: [
         {
           name: "2017",
@@ -335,9 +323,6 @@ export class MockDataService {
     },
     {
       name: "Karsykdommer i hjernen | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 2,
       data: [
         {
           name: "2017",
