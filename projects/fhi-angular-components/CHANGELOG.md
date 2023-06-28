@@ -1,4 +1,10 @@
-# 1.0.1
+# Unreleased
+
+> Jun 28, 2023
+
+* :gift: **New** (Beta) `FhiTable`
+
+## 1.0.1
 
 > Jun 21, 2023
 
