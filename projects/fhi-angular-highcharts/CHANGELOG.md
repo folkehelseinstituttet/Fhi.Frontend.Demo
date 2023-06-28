@@ -2,6 +2,7 @@
 
 > Jun 21, 2023
 
+* :tada: **Enhancement** Add support for negiativ numbers and descimals
 * :tada: **Enhancement** Change seperator in `serie.name` to `|`
 * :tada: **Enhancement** Add support for type `Array<string>` in `serie.name`
 * :tada: **Enhancement** Update documentation
