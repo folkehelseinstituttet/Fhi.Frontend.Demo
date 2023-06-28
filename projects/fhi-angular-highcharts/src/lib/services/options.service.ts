@@ -2,16 +2,15 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import cloneDeep from 'lodash-es/cloneDeep';
 import merge from 'lodash-es/merge';
-import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions } from 'highcharts';
+import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions, YAxisOptions } from 'highcharts';
 import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
 // import { GeoJsonService } from './geo-json.service';
-import { FhiDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
+import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
-import { FhiDiagramType } from '../fhi-diagram.models'
 
 @Injectable({
   providedIn: 'root'
@@ -25,15 +24,19 @@ export class OptionsService {
 
   private allStaticOptions = new Map();
 
-  updateOptions(diagramOptions: FhiDiagramOptions, diagramType: FhiDiagramType, allMapsLoaded: boolean): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.diagramTypeId));
-    options.series = this.getSeries(diagramOptions.series, diagramType.isMap, allMapsLoaded);
+  updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
+    const isMap = allDiagramOptions.diagramType.isMap;
+    const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
+    const series = allDiagramOptions.series;
 
-    if (!diagramOptions.openSource) {
+    options.series = this.getSeries(series, isMap, allDiagramOptions.allMapsLoaded);
+
+    if (!allDiagramOptions.openSource) {
       options.credits = { enabled: false };
     }
-    if (!diagramType.isMap) {
-      options.xAxis = this.getXaxis(options.xAxis as XAxisOptions, diagramOptions.series);
+    if (!isMap) {
+      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
     }
     return options;
   }
@@ -68,10 +71,22 @@ export class OptionsService {
     }
   }
 
-  private getXaxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
+  private getXAxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
     xAxis = (xAxis) ? xAxis : {};
     xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
+  }
+
+  private getYAxis(yAxis: YAxisOptions, allDiagramOptions: FhiAllDiagramOptions): YAxisOptions | YAxisOptions[] {
+    yAxis = (yAxis) ? yAxis : {};
+    if (allDiagramOptions.seriesHasDecimalDataPoints) {
+      yAxis.allowDecimals = true;
+      yAxis.min = undefined;
+    }
+    if (allDiagramOptions.seriesHasNegativeDataPoints) {
+      yAxis.min = undefined;
+    }
+    return yAxis;
   }
 
   private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {

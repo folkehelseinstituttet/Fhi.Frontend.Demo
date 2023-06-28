@@ -1,4 +1,4 @@
 export class FhiDiagramSerieNameSeperator {
-  static in = '|';
-  static out = ' | ';
+  static input = '|';
+  static output = ' | ';
 };

@@ -41,7 +41,6 @@ export interface FhiDiagramFlag {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string | Array<string>;
-  stack?: string;
 }
 
 export interface FhiDiagramOptions {
@@ -55,5 +54,12 @@ export interface FhiDiagramOptions {
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   title: string;
+}
+
+export interface FhiAllDiagramOptions extends FhiDiagramOptions {
+  allMapsLoaded?: boolean;
+  diagramType?: FhiDiagramType;
+  seriesHasDecimalDataPoints?: boolean;
+  seriesHasNegativeDataPoints?: boolean;
 }
 

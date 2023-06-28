@@ -76,15 +76,19 @@ export class DiagramTypeService {
   private updateAvailableChartTypes(): FhiDiagramType[] {
     let chartTypes = FhiChartTypes;
     const numOfDimensions = this.getNumberOfDimensions();
+    const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const numOfSeries = this.getNumberOfSeries();
 
     // Remove line
-    if (numOfSeries > 1 && this.flaggedSeries.length !== 0) {
+    if (
+      (numOfDimensions > 1 && numOfSeries > 5) ||
+      (numOfSeries > 1 && this.flaggedSeries.length !== 0)
+    ) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
     }
 
     // Remove pie
-    if (numOfSeries > 1) {
+    if (numOfSeries > 2) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
     }
 
@@ -95,7 +99,7 @@ export class DiagramTypeService {
     }
 
     // Remove bar & column
-    if (numOfDimensions > 2) {
+    if (numOfDataPointsPrSerie > 5 && numOfSeries > 8) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.bar);
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.column);
     }
@@ -112,9 +116,13 @@ export class DiagramTypeService {
     return this._series.length;
   }
 
+  private getNumberOfDataPointsPrSerie(): number {
+    return this._series[0].data.length;
+  }
+
   private getNumberOfDimensions(): number {
     const nameFirstSerie = this._series[0].name as string;
-    return nameFirstSerie.split(Seperator.in).length + 1; // (n column dimentions) + (1 row dimention)
+    return nameFirstSerie.split(Seperator.input).length + 1; // (n column dimentions) + (1 row dimention)
   }
 
 }

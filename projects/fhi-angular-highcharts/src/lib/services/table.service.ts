@@ -10,7 +10,7 @@ export class TableService {
 
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const seriesMappedToNameOnly = series.map(serie => serie.name) as string[];
-    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.out).length;
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
@@ -20,7 +20,7 @@ export class TableService {
       tableHeaderRows[j] = new Array(seriesMappedToNameOnly.length);
 
       for (let i = 0; i < seriesMappedToNameOnly.length; i++) {
-        const splitHeader = seriesMappedToNameOnly[i].split(Seperator.out);
+        const splitHeader = seriesMappedToNameOnly[i].split(Seperator.output);
         const currentCellName = splitHeader[j].trim();
 
         if (!isLastRow && currentCellName !== previousCellName) {

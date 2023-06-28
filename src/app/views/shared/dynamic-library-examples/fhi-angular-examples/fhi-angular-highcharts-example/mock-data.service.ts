@@ -193,8 +193,6 @@ export class MockDataService {
   private dodsfall_r_Ar_c_Aarsak_LG = [
     {
       name: "Hjerteinfarkt| Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 0,
       data: [
         {
           name: "2017",
@@ -214,16 +212,13 @@ export class MockDataService {
         },
         {
           name: "2021",
-          y: ":",
-          // "y": 660
+          // y: ":",
+          "y": 660
         },
       ],
     },
     {
       name: "Hjerteinfarkt     | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 0,
       data: [
         {
           name: "2017",
@@ -231,8 +226,8 @@ export class MockDataService {
         },
         {
           name: "2018",
-          y: ":",
-          // "y": 1096
+          // y: ":",
+          "y": 1096
         },
         {
           name: "2019",
@@ -250,8 +245,6 @@ export class MockDataService {
     },
     {
       name: "Annen iskemisk hjertesykdom|Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 1,
       data: [
         {
           name: "2017",
@@ -259,13 +252,13 @@ export class MockDataService {
         },
         {
           name: "2018",
-          // "y": 603
-          y: ":",
+          "y": 603
+          // y: ":",
         },
         {
           name: "2019",
-          // "y": 544
-          y: ":",
+          "y": 544
+          // y: ":",
         },
         {
           name: "2020",
@@ -279,9 +272,6 @@ export class MockDataService {
     },
     {
       name: "Annen iskemisk hjertesykdom | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 1,
       data: [
         {
           name: "2017",
@@ -307,8 +297,6 @@ export class MockDataService {
     },
     {
       name: "Karsykdommer i hjernen | Kvinne",
-      stack: "Kvinne",
-      // "colorIndex": 2,
       data: [
         {
           name: "2017",
@@ -320,8 +308,8 @@ export class MockDataService {
         },
         {
           name: "2019",
-          y: ":",
-          // "y": 1203
+          // y: ":",
+          "y": 1203
         },
         {
           name: "2020",
@@ -335,9 +323,6 @@ export class MockDataService {
     },
     {
       name: "Karsykdommer i hjernen | Mann",
-      stack: "Mann",
-      // "linkedTo": ":previous",
-      // "colorIndex": 2,
       data: [
         {
           name: "2017",
