@@ -3,6 +3,7 @@ export const IncludedIcons = [
   'alcohol-drugs',
   'anesthesia',
   'arrow-clockwise',
+  'arrow-counterclockwise',
   'arrow-down',
   'arrow-down-up',
   'arrow-left',
