@@ -15,7 +15,7 @@ export class TableService {
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
       const isLastRow = j + 1 === tableHeaderRowCount;
-      let previousCellName: string;
+      let previousCellName: string | undefined = undefined;
       let colspanDivider = 0;
       tableHeaderRows[j] = new Array(seriesMappedToNameOnly.length);
 
@@ -38,7 +38,9 @@ export class TableService {
       tableHeaderRows[j].forEach(i => {
         i.colspan = seriesMappedToNameOnly.length / colspanDivider
       });
-      tableHeaderRows[j].unshift(undefined); // Label column
+      tableHeaderRows[j].unshift({}); // Label column
+
+      console.log('tableHeaderRows', tableHeaderRows);
     }
     tableHeaderRows[0][0] = { rowspan: tableHeaderRowCount }; // Label column
     return tableHeaderRows;

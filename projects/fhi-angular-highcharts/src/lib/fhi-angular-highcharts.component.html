@@ -32,9 +32,11 @@
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="allDiagramOptions.diagramTypeNavId === diagramTypeNavId.default"
+    *ngIf="allDiagramOptions.diagramTypeNavId === diagramTypeNavId.default
+           && allDiagramOptions.diagramTypeId !== undefined"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
+    [currentSeriesLength]="allDiagramOptions.series.length"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
   </fhi-diagram-type-nav>
 </ng-template>
@@ -65,12 +67,12 @@
             <ng-container *ngIf="tableCellData">
               <td class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
                   [attr.rowspan]="(tableCellData.rowspan) ? tableCellData.rowspan : null"
-                  *ngIf="i === 0; else tableHeaderCell"></td>
+                  *ngIf="i === 0 && tableCellData.rowspan; else tableHeaderCell"></td>
               <ng-template #tableHeaderCell>
                 <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
                     [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
                     [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
-                    scope="col">
+                    scope="col" *ngIf="tableCellData.name">
                   {{ tableCellData.name }}
                 </th>
               </ng-template>
