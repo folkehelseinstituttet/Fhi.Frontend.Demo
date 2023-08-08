@@ -16,6 +16,7 @@ import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
+import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DateAndTimeData } from 'src/MOCK_DB_DATA/library-items/date-and-time/_date-and-time.data';
 import { DatepickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
@@ -60,6 +61,7 @@ export class MockDbService implements InMemoryDbService {
       BreadcrumbData,
       ButtonGroupData,
       ButtonsData,
+      CardData,
       ColorData,
       DateAndTimeData,
       DatepickerData,

@@ -6,6 +6,7 @@ import { AlertsData } from './alerts/_alerts.data';
 import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
+import { CardData } from './cards/_cards.data';
 import { ColorData } from './color/_color.data';
 import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
@@ -39,6 +40,7 @@ export const AllData: LibraryItem[] = [
   ...BadgeData,
   ...BreadcrumbData,
   ...ButtonsData,
+  ...CardData,
   ...ColorData,
   ...DateAndTimeData,
   ...DatepickerData,
