@@ -39,8 +39,6 @@ export class TableService {
         i.colspan = seriesMappedToNameOnly.length / colspanDivider
       });
       tableHeaderRows[j].unshift({}); // Label column
-
-      console.log('tableHeaderRows', tableHeaderRows);
     }
     tableHeaderRows[0][0] = { rowspan: tableHeaderRowCount }; // Label column
     return tableHeaderRows;

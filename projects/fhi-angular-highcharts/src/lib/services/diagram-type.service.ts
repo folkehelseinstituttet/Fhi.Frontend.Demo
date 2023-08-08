@@ -5,7 +5,7 @@ import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, F
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DiagramTypeService {
   private _chartTypes!: FhiDiagramType[];
@@ -79,8 +79,9 @@ export class DiagramTypeService {
 
     // Remove line
     if (
-      (numOfDimensions > 1 && series.length > 5) ||
-      (series.length > 1 && this.flaggedSeries.length !== 0)
+      numOfDataPointsPrSerie === 1
+      || (numOfDimensions > 1 && series.length > 5)
+      || (series.length > 1 && this.flaggedSeries.length !== 0)
     ) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
     }

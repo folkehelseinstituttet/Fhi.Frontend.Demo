@@ -36,13 +36,6 @@ export class FhiDiagramTypeNavComponent {
   ngOnChanges() {
     this.chartTypes = this.diagramTypeService.chartTypes;
     this.mapTypes = this.diagramTypeService.mapTypes;
-
-    // console.log('this.chartTypes', this.chartTypes);
-    // console.log('this.previousSeriesLength', this.previousSeriesLength);
-    // console.log('this.seriesLength', this.currentSeriesLength);
-    // console.log('this.previousDiagramTypeId', this.previousDiagramTypeId);
-    // console.log('this.currentDiagramTypeId', this.currentDiagramTypeId);
-
     this.updateNavDiagramTypeGroups();
     this.updateChartSubmenuState();
   }
@@ -103,7 +96,7 @@ export class FhiDiagramTypeNavComponent {
     }
   }
 
-  // Get user selected chart type, or fall back chart type
+  // Get user selected chart type, or fallback chart type
   //   if user selected chart isn't legal for current data.
   private getChartType(): FhiDiagramType {
     const chartType = this.chartTypes.find(diagramType => {

@@ -13,11 +13,10 @@ import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class OptionsService {
 
-  // constructor(private geoJsonService: GeoJsonService) {
   constructor(private geoJsonService: GeoJsonService) {
     this.setAllStaticOptions();
   }
