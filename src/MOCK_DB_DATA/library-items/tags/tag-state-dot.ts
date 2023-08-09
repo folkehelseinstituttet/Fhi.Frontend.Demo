@@ -18,25 +18,25 @@ function getExampleHtml(): string {
   return `
 <p>
   <span class="fhi-tag fhi-tag--state-dot">
-    <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--info"></i>
+    <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--info"></i>
     System 1 er klart
   </span>
 </p>
 <p>
   <span class="fhi-tag fhi-tag--state-dot">
-    <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--on"></i>
+    <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--on"></i>
     System 2 slått på
   </span>
 </p>
 <p>
   <span class="fhi-tag fhi-tag--state-dot">
-    <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--warning"></i>
+    <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--warning"></i>
     System 3 - advarsel
   </span>
 </p>
 <p>
   <span class="fhi-tag fhi-tag--state-dot">
-    <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--off"></i>
+    <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--off"></i>
     System 4 - av
   </span>
 </p>`;
@@ -49,22 +49,22 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <span class="fhi-tag fhi-tag--state-dot">
-  <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--info"></i>
+  <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--info"></i>
   System 1 er klart
 </span>
 
 <span class="fhi-tag fhi-tag--state-dot">
-  <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--on"></i>
+  <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--on"></i>
   System 2 slått på
 </span>
 
 <span class="fhi-tag fhi-tag--state-dot">
-  <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--warning"></i>
+  <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--warning"></i>
   System 3 - advarsel
 </span>
 
 <span class="fhi-tag fhi-tag--state-dot">
-  <i class="icon-sm fhi-tag--state-dot__icon fhi-tag--state-dot__icon--off"></i>
+  <i class="fhi-tag--state-dot__icon fhi-tag--state-dot__icon--off"></i>
   System 4 - av
 </span>`;
 }
