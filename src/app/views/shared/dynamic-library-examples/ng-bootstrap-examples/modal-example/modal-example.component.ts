@@ -11,8 +11,12 @@ export class ModalExampleComponent {
 
   constructor(private modalService: NgbModal) {}
 
-  open(content, openSize = 'md') {
+  open(content: any, openSize = 'md') {
     this.modalService.open(content, { size: openSize, scrollable: true });
+  }
+
+  openFullscreen(content: any) {
+    this.modalService.open(content, { fullscreen: true });
   }
 
 }

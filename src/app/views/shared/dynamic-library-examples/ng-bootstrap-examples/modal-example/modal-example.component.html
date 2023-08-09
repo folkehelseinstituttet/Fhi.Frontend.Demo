@@ -13,8 +13,11 @@
 </ng-template>
 
 <p>
-  <button class="btn fhi-btn-flat" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
+  <button type="button" class="btn fhi-btn-flat" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
 </p>
 <p>
-  <button class="btn fhi-btn-flat" (click)="open(content, 'sm')">Åpne lite modalvindu</button>
+  <button type="button" class="btn fhi-btn-flat" (click)="open(content, 'sm')">Åpne lite modalvindu</button>
+</p>
+<p>
+  <button type="button" class="btn fhi-btn-flat" (click)="openFullscreen(content)">Åpne fullskjerm-modal</button>
 </p>
