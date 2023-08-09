@@ -29,7 +29,7 @@ function getExampleHtml(): string {
   }
 
   return `
-${colorHtml('#0875b4', 'fhi-blue-1', 'Primary')}
+${colorHtml('#0067c4', 'fhi-blue-1', 'Primary')}
 ${colorHtml('#edf4f7', 'fhi-blue-grey-2', 'Secondary', 'black')}
 ${colorHtml('#cceee4', 'fhi-green-1', 'Success', 'black')}
 ${colorHtml('#dbe6ec', 'fhi-blue-grey-3', 'Info', 'black')}
