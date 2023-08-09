@@ -15,4 +15,8 @@ export class ModalExampleComponent {
     this.modalService.open(content, { size: openSize, scrollable: true });
   }
 
+  openFullscreen(content) {
+    this.modalService.open(content, { fullscreen: true });
+  }
+
 }

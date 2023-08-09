@@ -61,6 +61,10 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
+  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/src/app/views/shared/dynamic-library-examples/ng-bootstrap-examples/modal-example">
+    Detaljer i dette kodeeksempelet på Github</a>.
+</p>
+<p>
   Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
 </p>`;
 }
