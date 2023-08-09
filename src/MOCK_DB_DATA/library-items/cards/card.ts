@@ -20,12 +20,12 @@ function getExampleHtml(): string {
 <div class="bg-light p-5 mx-n3 my-n5 mx-sm-n5">
   <div class="row">
     <div class="col-sm-8 col-md-6">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="card-title">Overskrift</h2>
-          <p class="card-text">Innhold</p>
+      <article class="fhi-card">
+        <h2 class="fhi-card__title">Overskrift</h2>
+        <div class="fhi-card__content">
+          <p>Innhold</p>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </div>`;
@@ -37,12 +37,12 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="card">
-  <div class="card-body">
-    <h2 class="card-title">Overskrift</h2>
-    <p class="card-text">Innhold</p>
+<article class="fhi-card">
+  <h2 class="fhi-card__title">Overskrift</h2>
+  <div class="fhi-card__content">
+    <p>Innhold</p>
   </div>
-</div>`;
+</article>`;
 }
 
 /*
