@@ -37,8 +37,11 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <span class="fhi-tag text-bg-info">Til informasjon.</span>
+
 <span class="fhi-tag text-bg-success">Suksess!</span>
+
 <span class="fhi-tag text-bg-warning">Advarsel!</span>
+
 <span class="fhi-tag text-bg-error">Feilmelding.</span>`;
 }
 
@@ -46,5 +49,6 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Brukes til å gjøre oppmerksom på endringer, nytt eller viktig innhold.</p>`;
 }

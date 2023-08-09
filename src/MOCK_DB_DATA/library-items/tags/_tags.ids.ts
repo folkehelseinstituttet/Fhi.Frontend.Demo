@@ -3,5 +3,6 @@ export const TagsIds = {
   TagFilterOption: undefined,
   TagMultipleSelection: undefined,
   TagSingleSelection: undefined,
-  TagState: undefined
+  TagState: undefined,
+  TagStateDot: undefined
 }
