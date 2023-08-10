@@ -5,6 +5,7 @@ import { BadgeIds } from "./badge/_badge.ids"
 import { BreadcrumbIds } from "./breadcrumb/_breadcrumb.ids"
 import { ButtonGroupIds } from "./button-group/_button-group.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
+import { CardIds } from "./cards/_cards.ids"
 import { ColorIds } from "./color/_color.ids"
 import { DateAndTimeIds } from "./date-and-time/_date-and-time.ids"
 import { DatepickerIds } from "./datepicker/_datepicker.ids"
@@ -41,6 +42,7 @@ const libraryItemIds = {
   ...ButtonGroupIds,
   ...BreadcrumbIds,
   ...ButtonsIds,
+  ...CardIds,
   ...ColorIds,
   ...DateAndTimeIds,
   ...DatepickerIds,

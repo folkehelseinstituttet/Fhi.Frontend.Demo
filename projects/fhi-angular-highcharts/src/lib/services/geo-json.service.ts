@@ -32,15 +32,15 @@ export class GeoJsonService {
 
   getHighmapsSerie(serie: FhiDiagramSerie): SeriesMapOptions {
     let mapSerie!: SeriesMapOptions;
-    serie.data.forEach((p, index) => {
+    serie.data.forEach((dataPoint, index) => {
       if (index === 0) {
         mapSerie = {
-          data: [[this.findHcKey(p.name), p.y]],
-          name: serie.name,
+          data: [[this.findHcKey(dataPoint.name), dataPoint.y as number]],
+          name: serie.name as string,
           type: 'map'
         };
       } else if (mapSerie.data !== undefined) {
-        mapSerie.data.push([this.findHcKey(p.name), p.y]);
+        mapSerie.data.push([this.findHcKey(dataPoint.name), dataPoint.y as number]);
       }
     });
     return mapSerie;

@@ -127,6 +127,9 @@ export class LibraryMenuService {
       name: 'Buttons',
       link: LibraryItemSegmentPaths.buttons
     }, {
+      name: 'Cards',
+      link: LibraryItemSegmentPaths.card
+    }, {
       name: 'Datepicker',
       link: LibraryItemSegmentPaths.datepicker
     }, {

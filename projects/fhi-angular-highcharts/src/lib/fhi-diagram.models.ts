@@ -8,7 +8,7 @@ export interface TableHeaderCell {
 
 export interface FhiDiagramType {
   id: string;
-  icon?: string;
+  icon: string;
   name: string;
   group?: string;
   options?: Options;

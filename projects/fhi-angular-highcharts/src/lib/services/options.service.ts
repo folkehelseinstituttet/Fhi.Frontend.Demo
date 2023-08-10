@@ -6,7 +6,7 @@ import { Options, SeriesOptionsType, XAxisLabelsOptions, XAxisOptions, YAxisOpti
 import { isValid, parseISO } from 'date-fns'
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
-// import { GeoJsonService } from './geo-json.service';
+import { GeoJsonService } from './geo-json.service';
 import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
@@ -17,19 +17,18 @@ import { OptionsMaps } from '../highcharts-options/options-maps';
 })
 export class OptionsService {
 
-  // constructor(private geoJsonService: GeoJsonService) {
-  constructor() {
+  constructor(private geoJsonService: GeoJsonService) {
     this.setAllStaticOptions();
   }
 
   private allStaticOptions = new Map();
 
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
-    const isMap = allDiagramOptions.diagramType.isMap;
+    const isMap = allDiagramOptions?.diagramType?.isMap;
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const series = allDiagramOptions.series;
 
-    options.series = this.getSeries(series, isMap, allDiagramOptions.allMapsLoaded);
+    options.series = this.getSeries(series, isMap, allDiagramOptions?.allMapsLoaded);
 
     if (!allDiagramOptions.openSource) {
       options.credits = { enabled: false };
@@ -50,16 +49,17 @@ export class OptionsService {
     });
   }
 
-  private setStaticOptions(optionsCurrentChartType: Options, isMap: boolean | undefined): Options {
+  private setStaticOptions(optionsCurrentChartType: Options | undefined, isMap: boolean | undefined): Options {
     const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
     const current = (isMap) ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
     return merge(chartsAndMaps, current, optionsCurrentChartType);
   }
 
-  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
     if (isMap && allMapsLoaded) {
+
       // TODO: MAP
-      // return [this.geoJsonService.getHighmapsSerie(series[0])];
+      return [this.geoJsonService.getHighmapsSerie(series[0])];
 
     } else {
       const highchartsSeries = cloneDeep(series);
