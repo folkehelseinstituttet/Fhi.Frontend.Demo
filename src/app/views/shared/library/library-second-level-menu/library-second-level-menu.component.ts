@@ -12,6 +12,7 @@ export class LibrarySecondLevelMenuComponent {
   @Input() menuItems: MenuItem[];
 
   activeNavTab = 0;
+  leftMenuMobileTriggerOpen = false;
   libraryItemFilter: LibraryItemFilter = { name: '' };
 
 }
