@@ -31,7 +31,7 @@ export class FhiDiagramTypeGroups {
 
 const area: FhiDiagramType = {
   id: FhiDiagramTypeId.area,
-  icon: undefined,
+  icon: 'table',
   name: '',
   options: OptionsChartTypeArea
 }
@@ -66,7 +66,7 @@ const columnStacked: FhiDiagramType = {
 
 const donut: FhiDiagramType = {
   id: FhiDiagramTypeId.donut,
-  icon: undefined,
+  icon: 'table',
   name: '',
   options: OptionsChartTypeDonut
 }

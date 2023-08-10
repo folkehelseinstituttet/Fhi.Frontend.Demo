@@ -30,7 +30,7 @@ export class FhiAngularHighchartsComponent {
 
   highcharts: typeof Highcharts = Highcharts;
   highchartsOptions!: Options;
-  allDiagramOptions: FhiAllDiagramOptions;
+  allDiagramOptions!: FhiAllDiagramOptions;
   showDefaultChartTemplate = true;
   showFooter = false;
   currentDiagramTypeGroup!: string;
@@ -171,7 +171,7 @@ export class FhiAngularHighchartsComponent {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
       return;
     }
-    if (this.allDiagramOptions.diagramType.isMap) {
+    if (this.allDiagramOptions.diagramType?.isMap) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
       return;
     }
