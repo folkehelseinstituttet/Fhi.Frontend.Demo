@@ -1,4 +1,13 @@
-# 0.6.0
+# Unreleased
+
+> Aug 10, 2023
+
+* :bug: **Bugfix**
+  * Fix problem with diagramTypeNav not updating when only number of series change and not the diagram type.
+  * Change number of series to < two for pie
+  * Change number of datapoint pr series to > 1 for line
+
+## 0.6.0
 
 > Jun 28, 2023
 
