@@ -37,7 +37,7 @@
                 }
 
                 .ng-input[aria-expanded="true"] > input {
-                    border-radius: calc(#{$fhi-core-input-height-xs} / 2);
+                    border-radius: calc(#{$fhi-core-input-height} / 2);
                 }
 
                 .ng-placeholder {
@@ -125,7 +125,7 @@
                     height: $fhi-core-px * 40;
 
                     .ng-input[aria-expanded="true"] > input {
-                        border-radius: calc(#{$fhi-core-input-height-lg} / 2);
+                        border-radius: calc(#{$fhi-core-input-height} / 2);
                     }
                 }
 
