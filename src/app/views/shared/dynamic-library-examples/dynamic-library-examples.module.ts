@@ -24,6 +24,7 @@ import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-tim
 import { FhiAngularHighchartsExampleComponent } from './fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component';
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
+import { ProgressBarExampleComponent } from './fhi-angular-examples/progress-bar-example/progress-bar-example.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 
@@ -54,6 +55,7 @@ const FHI_EXAMPLES = [
   IconListComponent,
   FormElementExamplesComponent,
   GlobalHeadersExampleComponent,
+  ProgressBarExampleComponent,
   SearchExampleComponent,
   TableExamplesComponent,
   TreeViewNavigationExampleComponent,
