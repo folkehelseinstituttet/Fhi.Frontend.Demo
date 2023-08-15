@@ -25,14 +25,15 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
+<!-- Eksempel i en Angular-komponent -->
 <div class="progress">
   <div class="progress-bar"
        role="progressbar"
-       aria-label="Label"
-       [attr.style]="'width: ' + valueNow + '%;'"
-       [attr.aria-valuenow]="valueNow"
+       aria-label="Label som forteller hva dette er progress på"
        aria-valuemin="0"
        aria-valuemax="100"
+       [attr.style]="'width: ' + valueNow + '%;'"
+       [attr.aria-valuenow]="valueNow"
   >
     {{ valueNow }}% (eller generell tekst)
   </div>
