@@ -148,8 +148,8 @@ export class LibraryMenuService {
       name: 'Search',
       link: LibraryItemSegmentPaths.search
     }, {
-      name: 'Spinners',
-      link: LibraryItemSegmentPaths.spinners
+      name: 'Progress indicators',
+      link: LibraryItemSegmentPaths.progressindicators
     }, {
       name: 'Tables',
       link: LibraryItemSegmentPaths.table

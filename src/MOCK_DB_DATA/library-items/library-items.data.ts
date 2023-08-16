@@ -23,7 +23,7 @@ import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from './search/_search.data';
-import { SpinnersData } from './spinners/_spinners.data';
+import { ProgressIndicatorsData } from './progress-indicators/_progress-indicators.data';
 import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
@@ -57,7 +57,7 @@ export const AllData: LibraryItem[] = [
   ...PrototypePageheaderData,
   ...PrototypeTableWithExpandableContentData,
   ...SearchData,
-  ...SpinnersData,
+  ...ProgressIndicatorsData,
   ...TableData,
   ...TabsData,
   ...TagsData,
