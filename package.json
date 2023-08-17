@@ -33,7 +33,7 @@
     "@angular/platform-browser-dynamic": "15.2.2",
     "@angular/router": "15.2.2",
     "@circlon/angular-tree-component": "^11.0.4",
-    "@folkehelseinstituttet/style": "5.4.0",
+    "@folkehelseinstituttet/style": "5.5.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.0",
     "@ng-select/ng-select": "^10.0.3",
     "@popperjs/core": "^2.11.6",
