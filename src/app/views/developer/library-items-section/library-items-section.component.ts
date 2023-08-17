@@ -6,10 +6,10 @@ import { LibraryItemsDataService } from '../../shared/services/library-items-dat
 import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
-  selector: 'app-list-of-variations',
-  templateUrl: './list-of-variations.component.html'
+  selector: 'app-library-items-section',
+  templateUrl: './library-items-section.component.html'
 })
-export class ListOfVariationsComponent implements OnInit, OnDestroy {
+export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;

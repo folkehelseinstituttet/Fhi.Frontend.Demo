@@ -1,4 +1,6 @@
-import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItems } from 'src/app/views/shared/models/library-item.model';
+
+import { HighchartsSectionIntro } from './_highcharts.intro';
 
 import { Highcharts } from './highcharts';
 import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
@@ -9,3 +11,10 @@ export const HighchartsData: LibraryItem[] = [
   ...HighchartsWithMenu,
   ...HighchartsWithMenuAndFooter
 ];
+
+export const HighchartsDataNew: LibraryItems = {
+  id: '',
+  title: '',
+  intro: HighchartsSectionIntro,
+  libraryItems: HighchartsData
+}

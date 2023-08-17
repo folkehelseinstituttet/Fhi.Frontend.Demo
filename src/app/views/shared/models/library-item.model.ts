@@ -13,3 +13,10 @@ export interface LibraryItem {
   documentationHtml: string | null;
   fullScreenEnabled?: boolean;
 }
+
+export interface LibraryItems {
+  id: string;
+  title: string;
+  intro: string;
+  libraryItems: Array<LibraryItem>;
+}
