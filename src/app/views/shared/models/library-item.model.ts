@@ -14,7 +14,7 @@ export interface LibraryItem {
   fullScreenEnabled?: boolean;
 }
 
-export interface LibraryItems {
+export interface LibraryItemsGroup {
   id: string;
   title: string;
   intro: string;

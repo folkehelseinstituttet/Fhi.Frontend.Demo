@@ -1,9 +1,12 @@
 <!-- <a class="nav-link" [routerLink]="'.'" [fragment]="menuItem.link">{{ menuItem.name }}</a> -->
 
-<section>
-  <!-- <app-section-intro></app-section-intro> -->
-  <h1>Section title</h1>
-
+<section class="ds-library-items">
+  <header class="mb-7">
+    <h1 class="h2">{{ sectionTitle }}</h1>
+    <div class="ds-library-items__section-intro"
+         [innerHtml]="sectionIntro | safe: 'html'">
+    </div>
+  </header>
 
   <app-library-item
     [libraryItem]="libraryItem"

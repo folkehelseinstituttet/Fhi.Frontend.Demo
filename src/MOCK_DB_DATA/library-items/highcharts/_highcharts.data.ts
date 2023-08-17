@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryItems } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemsGroup } from 'src/app/views/shared/models/library-item.model';
 
 import { HighchartsSectionIntro } from './_highcharts.intro';
 
@@ -12,9 +12,15 @@ export const HighchartsData: LibraryItem[] = [
   ...HighchartsWithMenuAndFooter
 ];
 
-export const HighchartsDataNew: LibraryItems = {
-  id: '',
-  title: '',
+export const HighchartsItems: LibraryItem[] = [
+  ...Highcharts,
+  ...HighchartsWithMenu,
+  ...HighchartsWithMenuAndFooter
+];
+
+export const HighchartsGroupData: LibraryItemsGroup = {
+  id: 'highchartsgroupdata',
+  title: 'HighchartsGroupData',
   intro: HighchartsSectionIntro,
-  libraryItems: HighchartsData
-}
+  libraryItems: HighchartsItems
+};

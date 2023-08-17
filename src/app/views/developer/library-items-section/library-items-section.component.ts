@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
-import { LibraryItem } from '../../shared/models/library-item.model';
+import { LibraryItem, LibraryItemsGroup } from '../../shared/models/library-item.model';
 
 @Component({
   selector: 'app-library-items-section',
@@ -11,9 +11,11 @@ import { LibraryItem } from '../../shared/models/library-item.model';
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
+  isDebugging = false;
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
-  isDebugging = false;
+  sectionTitle!: string;
+  sectionIntro!: string;
 
   private subscription: Subscription = new Subscription();
 
@@ -37,12 +39,31 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   private getLibraryItems() {
     const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
-    this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
-      .subscribe(libraryItems => {
-        this.libraryItems = libraryItems;
-        this.libraryItemsLoaded = true;
-      },
-      error => this.getErrorMessage(error));
+
+    if (lastSegmentPath === 'Highcharts') {
+      console.log('lastSegmentPath', lastSegmentPath);
+
+      this.libraryItemsDataService.getLibraryItemsGroup(lastSegmentPath)
+        .subscribe(libraryItemsGroup => {
+
+          console.log('libraryItemsGroup', libraryItemsGroup);
+
+          this.sectionTitle = libraryItemsGroup.title;
+          this.sectionIntro = libraryItemsGroup.intro;
+          this.libraryItems = libraryItemsGroup.libraryItems;
+
+          this.libraryItemsLoaded = true;
+        },
+        error => this.getErrorMessage(error));
+    } else {
+      this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
+        .subscribe(libraryItems => {
+          this.libraryItems = libraryItems;
+          this.libraryItemsLoaded = true;
+        },
+        error => this.getErrorMessage(error));
+    }
+
   }
 
   private getErrorMessage(error: object) {
