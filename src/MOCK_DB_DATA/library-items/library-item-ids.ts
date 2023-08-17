@@ -24,7 +24,7 @@ import { PrototypeFormsIds } from "./prototype-forms/_prototype-forms.ids"
 import { PrototypePageheaderIds } from "./prototype-pageheader/_prototype-pageheader.ids"
 import { PrototypeTableWithExpandableContentIds } from "./prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids"
 import { SearchIds } from "./search/_search.ids"
-import { SpinnersIds } from "./spinners/_spinners.ids"
+import { ProgressIndicatorsIds } from "./progress-indicators/_progress-indicators.ids"
 import { TableIds } from "./table/_table.ids"
 import { TabsIds } from "./tabs/_tabs.ids"
 import { TagsIds } from "./tags/_tags.ids"
@@ -60,7 +60,7 @@ const libraryItemIds = {
   ...PrototypePageheaderIds,
   ...PrototypeTableWithExpandableContentIds,
   ...SearchIds,
-  ...SpinnersIds,
+  ...ProgressIndicatorsIds,
   ...TableIds,
   ...TabsIds,
   ...TagsIds,

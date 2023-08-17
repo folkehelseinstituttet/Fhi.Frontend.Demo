@@ -16,18 +16,39 @@ export const TagState: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<p>
-  <span class="fhi-tag text-bg-info">Til informasjon.</span>
-</p>
-<p>
-  <span class="fhi-tag text-bg-success">Suksess!</span>
-</p>
-<p>
-  <span class="fhi-tag text-bg-warning">Advarsel!</span>
-</p>
-<p>
-  <span class="fhi-tag text-bg-error">Feilmelding.</span>
-</p>`;
+<div class="row">
+  <div class="col-auto mb-5 mb-sm-0">
+    <h3 class="h5 mb-3">Kun tekst</h3>
+    <p>
+      <span class="fhi-tag text-bg-info">Til informasjon.</span>
+    </p>
+    <p>
+      <span class="fhi-tag text-bg-success">Suksess!</span>
+    </p>
+    <p>
+      <span class="fhi-tag text-bg-warning">Advarsel!</span>
+    </p>
+    <p>
+      <span class="fhi-tag text-bg-error">Feilmelding.</span>
+    </p>
+  </div>
+
+  <div class="col-auto">
+    <h3 class="h5 mb-3">Knapp/lenke</h3>
+    <p>
+      <a href="#" class="fhi-tag text-bg-info">Til informasjon.</a>
+    </p>
+    <p>
+      <button type="button" class="fhi-tag text-bg-success">Suksess!</button>
+    </p>
+    <p>
+      <a href="#" class="fhi-tag text-bg-warning">Advarsel!</a>
+    </p>
+    <p>
+      <a href="#" class="fhi-tag text-bg-error">Feilmelding.</a>
+    </p>
+  </div>
+</div>`;
 }
 
 /*
@@ -38,9 +59,9 @@ function getCodeHtml(): string | null {
   return `
 <span class="fhi-tag text-bg-info">Til informasjon.</span>
 
-<span class="fhi-tag text-bg-success">Suksess!</span>
+<a href="#" class="fhi-tag text-bg-success">Suksess!</a>
 
-<span class="fhi-tag text-bg-warning">Advarsel!</span>
+<button type="button" class="fhi-tag text-bg-warning">Advarsel!</button>
 
 <span class="fhi-tag text-bg-error">Feilmelding.</span>`;
 }

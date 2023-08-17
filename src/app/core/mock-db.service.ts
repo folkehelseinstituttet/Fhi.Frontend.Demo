@@ -33,7 +33,7 @@ import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-for
 import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
-import { SpinnersData } from 'src/MOCK_DB_DATA/library-items/spinners/_spinners.data';
+import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
@@ -78,7 +78,7 @@ export class MockDbService implements InMemoryDbService {
       PrototypePageheaderData,
       PrototypeTableWithExpandableContentData,
       SearchData,
-      SpinnersData,
+      ProgressIndicatorsData,
       TableData,
       TabsData,
       TagsData,

@@ -24,7 +24,7 @@ import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 import { SearchData } from './search/_search.data';
-import { SpinnersData } from './spinners/_spinners.data';
+import { ProgressIndicatorsData } from './progress-indicators/_progress-indicators.data';
 import { TableData } from './table/_table.data';
 import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
@@ -64,7 +64,7 @@ export class LibraryItemSegmentPaths {
   static navigationtile = stringTransform(Object.keys({ NavigationtileData })[0]);
   static pagination = stringTransform(Object.keys({ PaginationData })[0]);
   static search = stringTransform(Object.keys({ SearchData })[0]);
-  static spinners = stringTransform(Object.keys({ SpinnersData })[0]);
+  static progressindicators = stringTransform(Object.keys({ ProgressIndicatorsData })[0]);
   static table = stringTransform(Object.keys({ TableData })[0]);
   static tabs = stringTransform(Object.keys({ TabsData })[0]);
   static tags = stringTransform(Object.keys({ TagsData })[0]);

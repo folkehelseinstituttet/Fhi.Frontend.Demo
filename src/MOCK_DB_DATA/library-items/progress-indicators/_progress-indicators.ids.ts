@@ -1,4 +1,5 @@
-export const SpinnersIds = {
+export const ProgressIndicatorsIds = {
+  ProgressBar: undefined,
   Spinner: undefined,
   SpinnerButton: undefined,
   SpinnerFlex: undefined,
