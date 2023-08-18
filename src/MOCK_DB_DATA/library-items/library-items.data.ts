@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
