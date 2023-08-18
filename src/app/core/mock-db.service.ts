@@ -43,12 +43,20 @@ import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popove
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
+
+// Testing new id and titel implementation!
+import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items.shared-data copy';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
+
+      // Testing new id and titel implementation!
+      LibraryItemsSharedData,
+
       LibraryItemIds,
       AllData,
 
@@ -69,6 +77,9 @@ export class MockDbService implements InMemoryDbService {
       FormsData,
 
       HighchartsData,
+
+      // TODO: create a mapping between FooGroupData and segmentpath foo
+
       HighchartsGroupData,
 
       GlobalFooterData,

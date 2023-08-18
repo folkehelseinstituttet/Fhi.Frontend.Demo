@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryItemsGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
 
 import { HighchartsSectionIntro } from './_highcharts.intro';
 
@@ -18,7 +18,7 @@ export const HighchartsItems: LibraryItem[] = [
   ...HighchartsWithMenuAndFooter
 ];
 
-export const HighchartsGroupData: LibraryItemsGroup = {
+export const HighchartsGroupData: LibraryItemGroup = {
   id: 'highchartsgroupdata',
   title: 'HighchartsGroupData',
   intro: HighchartsSectionIntro,

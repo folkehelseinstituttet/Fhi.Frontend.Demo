@@ -1,9 +1,8 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemsSharedData } from '../library-items.shared-data copy';
 
 export const Highcharts: LibraryItem[] = [{
-  id: LibraryItemIds.Highcharts,
+  id: LibraryItemsSharedData.Highcharts.id,
   title: 'FHI Angular Highcharts',
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),

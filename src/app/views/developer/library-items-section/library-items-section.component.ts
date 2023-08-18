@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
-import { LibraryItem, LibraryItemsGroup } from '../../shared/models/library-item.model';
+import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
   selector: 'app-library-items-section',
@@ -43,14 +43,14 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     if (lastSegmentPath === 'Highcharts') {
       console.log('lastSegmentPath', lastSegmentPath);
 
-      this.libraryItemsDataService.getLibraryItemsGroup(lastSegmentPath)
-        .subscribe(libraryItemsGroup => {
+      this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
+        .subscribe(libraryItemGroup => {
 
-          console.log('libraryItemsGroup', libraryItemsGroup);
+          console.log('libraryItemGroup', libraryItemGroup);
 
-          this.sectionTitle = libraryItemsGroup.title;
-          this.sectionIntro = libraryItemsGroup.intro;
-          this.libraryItems = libraryItemsGroup.libraryItems;
+          this.sectionTitle = libraryItemGroup.title;
+          this.sectionIntro = libraryItemGroup.intro;
+          this.libraryItems = libraryItemGroup.libraryItems;
 
           this.libraryItemsLoaded = true;
         },

@@ -4,9 +4,18 @@ export enum LibraryItemType {
   fhiAngular = 2
 }
 
-export interface LibraryItem {
+// Items
+
+export interface LibraryItemBase {
   id: string;
   title: string;
+}
+
+export interface LibraryItemsShared {
+  [key: string]: LibraryItemBase;
+}
+
+export interface LibraryItem extends LibraryItemBase {
   type: number;
   exampleHtml: string;
   codeHtml: string | null;
@@ -14,9 +23,22 @@ export interface LibraryItem {
   fullScreenEnabled?: boolean;
 }
 
-export interface LibraryItemsGroup {
+// Groups
+
+export interface LibraryGroupBase {
   id: string;
   title: string;
+}
+
+export interface LibraryGroupBaseAndApi extends LibraryGroupBase {
+  apiEndPoint: string;
+}
+
+export interface LibraryItemGroupsShared {
+  [key: string]: LibraryGroupBaseAndApi;
+}
+
+export interface LibraryItemGroup extends LibraryGroupBase {
   intro: string;
   libraryItems: Array<LibraryItem>;
 }

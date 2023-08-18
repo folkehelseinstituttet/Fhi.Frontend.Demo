@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsDataService } from '../services/library-items-data.service';
+import { LibraryItemsShared } from '../models/library-item.model';
 
 @Component({
   selector: 'app-dynamic-library-example',
@@ -13,10 +14,18 @@ export class DynamicLibraryExampleComponent {
   itemIds: any;
   itemIdsLoaded = false;
 
+  libraryItemsShared!: LibraryItemsShared;
+  libraryItemsSharedLoaded = false;
+
+
   constructor(private libraryItemsDataService: LibraryItemsDataService) { }
 
   ngOnInit() {
-    this.getLibraryItemIds();
+      this.getLibraryItemIds();
+
+      // Testing new id and titel implementation!
+      // TODO: shold be a service called in DeveloperComponent, since API is now kalled for every item!
+      this.geLibraryItemsShared();
   }
 
   private getLibraryItemIds() {
@@ -25,6 +34,17 @@ export class DynamicLibraryExampleComponent {
       .subscribe(libraryItemIds => {
         this.itemIds = libraryItemIds;
         this.itemIdsLoaded = true;
+      },
+      error => this.getErrorMessage(error));
+  }
+
+  private geLibraryItemsShared() {
+    this.itemIdsLoaded = false;
+    this.libraryItemsDataService.geLibraryItemsShared()
+      .subscribe(libraryItemsShared => {
+        console.log('libraryItemsShared', libraryItemsShared);
+        this.libraryItemsShared = libraryItemsShared;
+        this.libraryItemsSharedLoaded = true;
       },
       error => this.getErrorMessage(error));
   }

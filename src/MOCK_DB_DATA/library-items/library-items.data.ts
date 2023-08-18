@@ -1,4 +1,4 @@
-import { LibraryItem, LibraryItemsGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
 
 import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
@@ -36,7 +36,7 @@ import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
 
-export const AllDataNew: LibraryItem[] = [
+export const AllLibraryItemsData: LibraryItem[] = [
   ...HighchartsGroupData.libraryItems,
 ];
 

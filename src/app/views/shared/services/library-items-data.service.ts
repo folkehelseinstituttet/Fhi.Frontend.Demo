@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { LibraryItem, LibraryItemsGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup, LibraryItemsShared } from 'src/app/views/shared/models/library-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,18 @@ export class LibraryItemsDataService {
     return this.http.get<LibraryItem[]>(serverUrl);
   }
 
-  getLibraryItemsGroup(lastSegmentPath: string): Observable<LibraryItemsGroup> {
+  getLibraryItemGroup(lastSegmentPath: string): Observable<LibraryItemGroup> {
 
     const mockDataSetName = this.capitalizeFirstLetter(lastSegmentPath) + 'GroupData';
 
     let serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
-    return this.http.get<LibraryItemsGroup>(serverUrl);
+    return this.http.get<LibraryItemGroup>(serverUrl);
   }
 
+  geLibraryItemsShared(): Observable<LibraryItemsShared> {
+    let serverUrl = `${environment.apiBaseUrl}/LibraryItemsSharedData`;
+    return this.http.get<LibraryItemsShared>(serverUrl);
+  }
   getLibraryItemIds(): Observable<any> {
     let serverUrl = `${environment.apiBaseUrl}/LibraryItemIds`;
     return this.http.get<any>(serverUrl);
