@@ -12,10 +12,7 @@ import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
-
 // import { HighchartsData } from './highcharts/_highcharts.data';
-import { HighchartsGroupData } from './highcharts/_highcharts.data';
-
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
@@ -35,10 +32,6 @@ import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
-
-export const AllLibraryItemsData: LibraryItem[] = [
-  ...HighchartsGroupData.libraryItems,
-];
 
 export const AllData: LibraryItem[] = [
   ...AccordionData,

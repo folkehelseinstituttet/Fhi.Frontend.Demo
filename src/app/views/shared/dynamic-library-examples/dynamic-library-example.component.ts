@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { LibraryItemsDataService } from '../services/library-items-data.service';
+import { LibraryItemGroupsDataService } from '../services/library-item-groups-data.service';
 import { LibraryItemsShared } from '../models/library-item.model';
 import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
 
@@ -18,7 +18,7 @@ export class DynamicLibraryExampleComponent {
   libraryItemsShared!: LibraryItemsShared;
 
   constructor(
-    private libraryItemsDataService: LibraryItemsDataService,
+    private libraryItemsDataService: LibraryItemGroupsDataService,
     private libraryItemsSharedDataService: LibraryItemsSharedDataService
   ) { }
 

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
-import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
+import { LibraryItemGroupsDataService } from '../../shared/services/library-item-groups-data.service';
 import { LibraryItem } from '../../shared/models/library-item.model';
 
 @Component({
@@ -21,7 +21,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
-    private libraryItemsDataService: LibraryItemsDataService
+    private libraryItemsDataService: LibraryItemGroupsDataService
   ) { }
 
   ngOnInit() {
@@ -40,24 +40,20 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
 
-
-    // TODO: find 'fhiangularhighcharts' dynamically
-
     if (lastSegmentPath === 'fhiangularhighcharts') {
-      console.log('lastSegmentPath', lastSegmentPath);
+
+      // TODO: remove if test when all segmentPaths use getLibraryItemGroup()
+      //       and getLibraryItems() can deprecates.
 
       this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
         .subscribe(libraryItemGroup => {
-
-          console.log('libraryItemGroup', libraryItemGroup);
-
           this.sectionTitle = libraryItemGroup.title;
           this.sectionIntro = libraryItemGroup.intro;
           this.libraryItems = libraryItemGroup.libraryItems;
-
           this.libraryItemsLoaded = true;
         },
         error => this.getErrorMessage(error));
+
     } else {
       this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
         .subscribe(libraryItems => {

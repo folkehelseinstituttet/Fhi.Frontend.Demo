@@ -4,7 +4,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
   FhiAngularHighcharts: {
     id: 'fhiangularhighcharts',
     title: 'Fhi Angular Highcharts',
-    apiEndPoint: 'HighchartsGroupData', // Same as name on exported LibraryItemGroup constant name.
+    apiEndPoint: 'HighchartsGroupData'
   }
 };
 

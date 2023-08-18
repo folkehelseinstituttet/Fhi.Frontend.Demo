@@ -10,8 +10,9 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LibraryItemsSharedDataService {
-  _libraryItemsShared!: LibraryItemsShared;
   url = `${environment.apiBaseUrl}/LibraryItemsSharedData`;
+
+  private _libraryItemsShared!: LibraryItemsShared;
 
   constructor(private http: HttpClient) { }
 

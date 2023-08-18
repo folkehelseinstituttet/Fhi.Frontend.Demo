@@ -54,6 +54,10 @@ import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/libr
 
 import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 
+// TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
+// const AllData: LibraryItem[] = [
+//   ...HighchartsGroupData.libraryItems,
+// ];
 
 @Injectable({
   providedIn: 'root'
@@ -62,14 +66,15 @@ export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
 
-      // Testing new id and titel implementation!
+      // TODO: update README for adding new library-item to the library!
+
       LibraryItemsSharedData,
       LibraryItemGroupsSharedData,
-
-
-
-      LibraryItemIds,
       AllData,
+
+
+      LibraryItemIds, // TODO: deprecate when all items use new system
+
 
       // Items
       AccordionData,
@@ -86,10 +91,7 @@ export class MockDbService implements InMemoryDbService {
       DatepickerData,
       DrawerData,
       FormsData,
-
-      // HighchartsData, // OLD
       HighchartsGroupData, // NEW
-
       GlobalFooterData,
       GlobalHeaderData,
       IconsData,
