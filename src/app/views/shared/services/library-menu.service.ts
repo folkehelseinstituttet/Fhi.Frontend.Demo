@@ -172,16 +172,16 @@ export class LibraryMenuService {
   private getModulesMenu(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
     let menu: MenuItem[] = [];
     Object.keys(libraryItemGroups).forEach((key) => {
-      menu.push({
-        name: libraryItemGroups[key].title,
-        link: libraryItemGroups[key].id
-      })
+      if (libraryItemGroups[key].parentUrlSegment === UrlSegment.modules) {
+        menu.push({
+          name: libraryItemGroups[key].title,
+          link: libraryItemGroups[key].id
+        });
+      }
     });
-
-    console.log('menu', menu);
-
     return menu;
 
+    // TODO: deprecate when all items use new system
     return [{
       name: 'Date and time selection',
       link: LibraryItemSegmentPaths.dateandtimeselection

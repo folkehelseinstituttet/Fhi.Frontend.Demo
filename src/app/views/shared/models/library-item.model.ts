@@ -30,12 +30,13 @@ export interface LibraryGroupBase {
   title: string;
 }
 
-export interface LibraryGroupBaseAndApi extends LibraryGroupBase {
+export interface LibraryGroupExtended extends LibraryGroupBase {
   apiEndPoint: string; // TODO: method that checks that all LibraryItemGroupsShared[foo].apiEndPoint === foo
+  parentUrlSegment: string;
 }
 
 export interface LibraryItemGroupsShared {
-  [key: string]: LibraryGroupBaseAndApi;
+  [key: string]: LibraryGroupExtended;
 }
 
 export interface LibraryItemGroup extends LibraryGroupBase {
