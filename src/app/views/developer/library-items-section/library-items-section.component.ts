@@ -40,7 +40,10 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
 
-    if (lastSegmentPath === 'Highcharts') {
+
+    // TODO: find 'fhiangularhighcharts' dynamically
+
+    if (lastSegmentPath === 'fhiangularhighcharts') {
       console.log('lastSegmentPath', lastSegmentPath);
 
       this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)

@@ -16,8 +16,6 @@ export class DynamicLibraryExampleComponent {
   itemIdsLoaded = false;
 
   libraryItemsShared!: LibraryItemsShared;
-  libraryItemsSharedLoaded = false;
-
 
   constructor(
     private libraryItemsDataService: LibraryItemsDataService,
@@ -28,7 +26,7 @@ export class DynamicLibraryExampleComponent {
       this.getLibraryItemIds();
 
       // Testing new id and titel implementation!
-      this.geLibraryItemsShared();
+      this.getLibraryItemsShared();
   }
 
   private getLibraryItemIds() {
@@ -41,13 +39,11 @@ export class DynamicLibraryExampleComponent {
       error => this.getErrorMessage(error));
   }
 
-  private geLibraryItemsShared() {
-    this.itemIdsLoaded = false;
+  private getLibraryItemsShared() {
     this.libraryItemsSharedDataService.getLibraryItemsShared()
       .subscribe({
         next: libraryItemsShared => {
           this.libraryItemsShared = libraryItemsShared;
-          this.libraryItemsSharedLoaded = true;
         },
         error: error => this.getErrorMessage(error)
       });

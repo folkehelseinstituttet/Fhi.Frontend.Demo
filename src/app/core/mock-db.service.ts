@@ -22,7 +22,6 @@ import { DateAndTimeData } from 'src/MOCK_DB_DATA/library-items/date-and-time/_d
 import { DatepickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
-import { HighchartsData, HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
@@ -44,8 +43,17 @@ import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-vie
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 
+// -----------------------------------------
+//
 // Testing new id and titel implementation!
+//
+// -----------------------------------------
+
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items.shared-data copy';
+import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups.shared-data';
+
+import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +64,9 @@ export class MockDbService implements InMemoryDbService {
 
       // Testing new id and titel implementation!
       LibraryItemsSharedData,
+      LibraryItemGroupsSharedData,
+
+
 
       LibraryItemIds,
       AllData,
@@ -76,11 +87,8 @@ export class MockDbService implements InMemoryDbService {
       DrawerData,
       FormsData,
 
-      HighchartsData,
-
-      // TODO: create a mapping between FooGroupData and segmentpath foo
-
-      HighchartsGroupData,
+      // HighchartsData, // OLD
+      HighchartsGroupData, // NEW
 
       GlobalFooterData,
       GlobalHeaderData,

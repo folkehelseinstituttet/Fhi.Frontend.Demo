@@ -13,7 +13,7 @@ import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 
-import { HighchartsData } from './highcharts/_highcharts.data';
+// import { HighchartsData } from './highcharts/_highcharts.data';
 import { HighchartsGroupData } from './highcharts/_highcharts.data';
 
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -53,7 +53,7 @@ export const AllData: LibraryItem[] = [
   ...DatepickerData,
   ...DrawerData,
   ...FormsData,
-  ...HighchartsData,
+  // ...HighchartsData,
   ...GlobalHeaderData,
   ...IconsData,
   ...ModalData,

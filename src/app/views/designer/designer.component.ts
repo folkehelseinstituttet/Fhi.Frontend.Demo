@@ -26,7 +26,7 @@ export class DesignerComponent implements OnInit, OnDestroy {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
         if (this.libraryMenuService.updateSecondLevelMenu()) {
-          console.log(this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems());
+          // console.log(this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems());
           // this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }
       }));

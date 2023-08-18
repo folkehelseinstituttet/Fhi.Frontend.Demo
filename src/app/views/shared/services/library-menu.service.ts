@@ -5,6 +5,7 @@ import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from 'src/app/models/menu-item.model';
+import { LibraryItemGroupsShared } from '../models/library-item.model';
 
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
@@ -59,7 +60,7 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(): MenuItem[] {
+  getSecondLevelMenuItems(libraryItemGroupsShared: LibraryItemGroupsShared): MenuItem[] {
     if (this.currentTopLevelMenuItem === undefined) {
       return;
     }
@@ -71,7 +72,7 @@ export class LibraryMenuService {
         return this.getComponentsMenu();
 
       case TopLevelMenuItemNames.modules:
-        return this.getModulesMenu();
+        return this.getModulesMenu(libraryItemGroupsShared);
 
       case TopLevelMenuItemNames.layoutAndPageTemplates:
         return this.getLayoutAndPageTemplatesMenu();
@@ -168,7 +169,19 @@ export class LibraryMenuService {
     }]
   }
 
-  private getModulesMenu(): MenuItem[] {
+  private getModulesMenu(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
+    let menu: MenuItem[] = [];
+    Object.keys(libraryItemGroups).forEach((key) => {
+      menu.push({
+        name: libraryItemGroups[key].title,
+        link: libraryItemGroups[key].id
+      })
+    });
+
+    console.log('menu', menu);
+
+    return menu;
+
     return [{
       name: 'Date and time selection',
       link: LibraryItemSegmentPaths.dateandtimeselection
@@ -176,8 +189,8 @@ export class LibraryMenuService {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }, {
-      name: 'FHI AngularHighcharts',
-      link: LibraryItemSegmentPaths.fhiAngularHighcharts
+      name: libraryItemGroups.FhiAngularHighcharts.title,
+      link: libraryItemGroups.FhiAngularHighcharts.id
     }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter

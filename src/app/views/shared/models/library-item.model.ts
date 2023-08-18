@@ -7,7 +7,7 @@ export enum LibraryItemType {
 // Items
 
 export interface LibraryItemBase {
-  id: string;
+  id: string; // TODO: method that checks for identical id's
   title: string;
 }
 
@@ -26,12 +26,12 @@ export interface LibraryItem extends LibraryItemBase {
 // Groups
 
 export interface LibraryGroupBase {
-  id: string;
+  id: string; // TODO: method that checks for identical id's
   title: string;
 }
 
 export interface LibraryGroupBaseAndApi extends LibraryGroupBase {
-  apiEndPoint: string;
+  apiEndPoint: string; // TODO: method that checks that all LibraryItemGroupsShared[foo].apiEndPoint === foo
 }
 
 export interface LibraryItemGroupsShared {
