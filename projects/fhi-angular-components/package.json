@@ -1,6 +1,6 @@
 {
   "name": "@folkehelseinstituttet/angular-components",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo.git",
@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0",
-    "@folkehelseinstituttet/style": "^5.0.0",
+    "@folkehelseinstituttet/style": "^5.5.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.0",
     "@ng-select/ng-select": "^10.0.0",
     "bootstrap": "^5.0.0"

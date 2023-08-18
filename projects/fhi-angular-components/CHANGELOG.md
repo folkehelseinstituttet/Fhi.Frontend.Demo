@@ -1,10 +1,10 @@
-# Unreleased
+# 1.1.1
 
-> Aug 16, 2023
+> Aug 18, 2023
 
 * :bugfix: **Bugfix** Core variables change in @folkehelseinstituttet/style@5.5.0
 
-# 1.1.0
+## 1.1.0
 
 > Jun 28, 2023
 
