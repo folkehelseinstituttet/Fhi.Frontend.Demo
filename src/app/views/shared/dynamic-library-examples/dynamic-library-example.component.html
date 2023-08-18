@@ -31,19 +31,13 @@
 
   <!-- Testing new id and titel implementation! -->
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.Highcharts.id"
-    [itemId]="itemId"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.Highcharts.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.HighchartsWithMenuAndFooter"
-    [itemId]="itemId"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenuAndFooter.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.HighchartsWithMenu"
-    [itemId]="itemId"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenu.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
 
 

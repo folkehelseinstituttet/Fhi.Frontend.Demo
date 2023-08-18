@@ -1,17 +1,17 @@
 <ng-container *ngIf="!dataIsLoading else spinner">
 
-  <ng-container *ngIf="itemId === itemIds.Highcharts">
+  <ng-container *ngIf="itemId === libraryItemsShared.Highcharts.id">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
   </ng-container>
 
-  <ng-container *ngIf="itemId === itemIds.HighchartsWithMenuAndFooter">
+  <ng-container *ngIf="itemId === libraryItemsShared.HighchartsWithMenuAndFooter.id">
     <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
       (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
     </fhi-angular-highcharts>
   </ng-container>
 
-  <ng-container *ngIf="itemId === itemIds.HighchartsWithMenu">
+  <ng-container *ngIf="itemId === libraryItemsShared.HighchartsWithMenu.id">
     <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
       (diagramTypeNavigation)="onDiagramTypeNavigation($event)">

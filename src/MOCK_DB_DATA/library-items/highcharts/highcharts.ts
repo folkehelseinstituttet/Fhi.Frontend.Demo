@@ -3,7 +3,7 @@ import { LibraryItemsSharedData } from '../library-items.shared-data copy';
 
 export const Highcharts: LibraryItem[] = [{
   id: LibraryItemsSharedData.Highcharts.id,
-  title: 'FHI Angular Highcharts',
+  title: LibraryItemsSharedData.Highcharts.title,
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

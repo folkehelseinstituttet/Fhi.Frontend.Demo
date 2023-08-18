@@ -26,10 +26,6 @@ export class LibraryItemsDataService {
     return this.http.get<LibraryItemGroup>(serverUrl);
   }
 
-  geLibraryItemsShared(): Observable<LibraryItemsShared> {
-    let serverUrl = `${environment.apiBaseUrl}/LibraryItemsSharedData`;
-    return this.http.get<LibraryItemsShared>(serverUrl);
-  }
   getLibraryItemIds(): Observable<any> {
     let serverUrl = `${environment.apiBaseUrl}/LibraryItemIds`;
     return this.http.get<any>(serverUrl);
