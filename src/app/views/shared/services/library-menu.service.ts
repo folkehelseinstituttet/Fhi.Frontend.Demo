@@ -20,8 +20,8 @@ const TopLevelMenuItemNames = {
 })
 export class LibraryMenuService {
 
+  // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
   topLevelMenuItems!: MenuItem[];
-
   private currentTopLevelMenuItem!: MenuItem;
 
   constructor(private urlService: UrlService) { }
@@ -60,7 +60,26 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(libraryItemGroupsShared: LibraryItemGroupsShared): MenuItem[] {
+  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
+    let menu: MenuItem[] = [];
+    Object.keys(libraryItemGroups).forEach((key) => {
+      if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
+        menu.push({
+          name: libraryItemGroups[key].title,
+          link: libraryItemGroups[key].id
+        });
+      }
+    });
+    return menu;
+  }
+
+
+
+
+ // TODO: all methods below can be removed when all item groups uses the new getSecondLevelMenuItems()
+
+
+  getSecondLevelMenuItems_OLD(): MenuItem[] {
     if (this.currentTopLevelMenuItem === undefined) {
       return;
     }
@@ -72,7 +91,7 @@ export class LibraryMenuService {
         return this.getComponentsMenu();
 
       case TopLevelMenuItemNames.modules:
-        return this.getModulesMenu(libraryItemGroupsShared);
+        return this.getModulesMenu();
 
       case TopLevelMenuItemNames.layoutAndPageTemplates:
         return this.getLayoutAndPageTemplatesMenu();
@@ -169,28 +188,13 @@ export class LibraryMenuService {
     }]
   }
 
-  private getModulesMenu(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
-    let menu: MenuItem[] = [];
-    Object.keys(libraryItemGroups).forEach((key) => {
-      if (libraryItemGroups[key].parentUrlSegment === UrlSegment.modules) {
-        menu.push({
-          name: libraryItemGroups[key].title,
-          link: libraryItemGroups[key].id
-        });
-      }
-    });
-    return menu;
-
-    // TODO: deprecate when all items use new system
+  private getModulesMenu(): MenuItem[] {
     return [{
       name: 'Date and time selection',
       link: LibraryItemSegmentPaths.dateandtimeselection
     }, {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
-    }, {
-      name: libraryItemGroups.FhiAngularHighcharts.title,
-      link: libraryItemGroups.FhiAngularHighcharts.id
     }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter

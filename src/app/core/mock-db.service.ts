@@ -55,7 +55,7 @@ import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/libr
 import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
-// const AllData: LibraryItem[] = [
+// const AllLibraryItemsData: LibraryItem[] = [
 //   ...HighchartsGroupData.libraryItems,
 // ];
 
@@ -70,10 +70,9 @@ export class MockDbService implements InMemoryDbService {
 
       LibraryItemsSharedData,
       LibraryItemGroupsSharedData,
-      AllData,
-
 
       LibraryItemIds, // TODO: deprecate when all items use new system
+      AllData, // TODO: deprecate when all items use new system
 
 
       // Items

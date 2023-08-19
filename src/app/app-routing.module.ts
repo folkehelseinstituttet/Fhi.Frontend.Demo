@@ -12,10 +12,10 @@ const routes: Routes = [{
 }, {
   path: UrlSegment.developer,
   loadChildren: () => import('./views/developer/developer.module').then(m => m.DeveloperModule)
-}, {
-  path: UrlSegment.designer,
-  loadChildren: () => import('./views/designer/designer.module').then(m => m.DesignerModule)
-}, {
+// }, {
+//   path: UrlSegment.designer,
+//   loadChildren: () => import('./views/designer/designer.module').then(m => m.DesignerModule)
+ }, {
   path: '**',
   redirectTo: defaultPath
 }];

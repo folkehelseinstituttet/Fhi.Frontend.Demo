@@ -43,7 +43,9 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     if (lastSegmentPath === 'fhiangularhighcharts') {
 
       // TODO: remove if test when all segmentPaths use getLibraryItemGroup()
-      //       and getLibraryItems() can deprecates.
+      //       and getLibraryItems() can deprecates. And use mergeMap() instead
+      //       of nesting this subscription inside URL$-susbsrcription (see DeveloperComponent
+      //       for the mergeMap syntax)
 
       this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
         .subscribe(libraryItemGroup => {

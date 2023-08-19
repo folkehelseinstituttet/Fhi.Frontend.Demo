@@ -28,14 +28,15 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
     this.subscription.add(this.urlService.URL$.pipe(mergeMap(
       () => this.libraryItemGroupsSharedDataService.getLibraryItemGroupsShared()
     )).subscribe({
         next: libraryItemGroupsShared => {
+          this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
           this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
           if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
-            this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems(libraryItemGroupsShared);
+            this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems_OLD()
+              .concat(this.libraryMenuService.getSecondLevelMenuItems(libraryItemGroupsShared))
           }
         },
         error: error => console.log(error)
