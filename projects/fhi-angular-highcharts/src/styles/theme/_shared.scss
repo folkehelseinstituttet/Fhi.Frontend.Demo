@@ -21,6 +21,11 @@
 .highcharts-legend-title {
     font-size: $fhi-core-font-size-2;
 }
+.highcharts-legend-point-active {
+    .highcharts-point:not(.highcharts-point-inactive) {
+        opacity: 1;
+    }
+}
 .highcharts-axis-labels {
     >text {
         fill: $text-color;
