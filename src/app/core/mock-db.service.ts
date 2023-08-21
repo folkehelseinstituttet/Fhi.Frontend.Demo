@@ -49,8 +49,8 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 //
 // -----------------------------------------
 
-import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items.shared-data copy';
-import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups.shared-data';
+import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
+import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 

@@ -1,5 +1,5 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemsSharedData } from '../library-items.shared-data copy';
+import { LibraryItemsSharedData } from '../library-items-shared-data';
 
 export const HighchartsWithMenu: LibraryItem[] = [{
   id: LibraryItemsSharedData.HighchartsWithMenu.id,
