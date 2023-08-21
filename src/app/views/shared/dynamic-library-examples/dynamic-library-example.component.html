@@ -27,21 +27,20 @@
     [itemIds]="itemIds">
   </app-advanced-select-example>
 
+
+
+  <!-- Testing new id and titel implementation! -->
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.Highcharts"
-    [itemId]="itemIds.Highcharts"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.Highcharts.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.HighchartsWithMenuAndFooter"
-    [itemId]="itemIds.HighchartsWithMenuAndFooter"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenuAndFooter.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
   <app-fhi-angular-highcharts-example
-    *ngSwitchCase="itemIds.HighchartsWithMenu"
-    [itemId]="itemIds.HighchartsWithMenu"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenu.id" [itemId]="itemId">
   </app-fhi-angular-highcharts-example>
+
+
 
   <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
 
@@ -97,7 +96,7 @@
     [itemId]="itemIds.FhiAngularTable"
     [itemIds]="itemIds">
   </app-table-examples>
-  
+
   <app-table-examples
     *ngSwitchCase="itemIds.TableSortable"
     [itemId]="itemIds.TableSortable"
@@ -122,7 +121,7 @@
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
-  
+
   <app-tooltip-and-popover-example
     *ngSwitchCase="itemIds.Tooltip"
     [itemId]="itemIds.Tooltip"

@@ -22,7 +22,6 @@ import { DateAndTimeData } from 'src/MOCK_DB_DATA/library-items/date-and-time/_d
 import { DatepickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
-import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
@@ -43,14 +42,38 @@ import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popove
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
+
+// -----------------------------------------
+//
+// Testing new id and titel implementation!
+//
+// -----------------------------------------
+
+import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
+import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
+
+import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+
+// TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
+// const AllLibraryItemsData: LibraryItem[] = [
+//   ...HighchartsGroupData.libraryItems,
+// ];
+
 @Injectable({
   providedIn: 'root'
 })
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
-      LibraryItemIds,
-      AllData,
+
+      // TODO: update README for adding new library-item to the library!
+
+      LibraryItemsSharedData,
+      LibraryItemGroupsSharedData,
+
+      LibraryItemIds, // TODO: deprecate when all items use new system
+      AllData, // TODO: deprecate when all items use new system
+
 
       // Items
       AccordionData,
@@ -67,7 +90,7 @@ export class MockDbService implements InMemoryDbService {
       DatepickerData,
       DrawerData,
       FormsData,
-      HighchartsData,
+      HighchartsGroupData, // NEW
       GlobalFooterData,
       GlobalHeaderData,
       IconsData,

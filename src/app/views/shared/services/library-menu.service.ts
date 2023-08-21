@@ -5,6 +5,7 @@ import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from 'src/app/models/menu-item.model';
+import { LibraryItemGroupsShared } from '../models/library-item.model';
 
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
@@ -19,8 +20,8 @@ const TopLevelMenuItemNames = {
 })
 export class LibraryMenuService {
 
+  // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
   topLevelMenuItems!: MenuItem[];
-
   private currentTopLevelMenuItem!: MenuItem;
 
   constructor(private urlService: UrlService) { }
@@ -59,7 +60,26 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(): MenuItem[] {
+  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
+    let menu: MenuItem[] = [];
+    Object.keys(libraryItemGroups).forEach((key) => {
+      if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
+        menu.push({
+          name: libraryItemGroups[key].title,
+          link: libraryItemGroups[key].id
+        });
+      }
+    });
+    return menu;
+  }
+
+
+
+
+ // TODO: all methods below can be removed when all item groups uses the new getSecondLevelMenuItems()
+
+
+  getSecondLevelMenuItems_OLD(): MenuItem[] {
     if (this.currentTopLevelMenuItem === undefined) {
       return;
     }
@@ -175,9 +195,6 @@ export class LibraryMenuService {
     }, {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
-    }, {
-      name: 'FHI AngularHighcharts',
-      link: LibraryItemSegmentPaths.fhiAngularHighcharts
     }, {
       name: 'Global footer',
       link: LibraryItemSegmentPaths.globalfooter
