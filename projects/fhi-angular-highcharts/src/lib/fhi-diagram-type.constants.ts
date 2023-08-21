@@ -10,7 +10,7 @@ import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie
 import { FhiDiagramType } from './fhi-diagram.models';
 
 export class FhiDiagramTypeId {
-  static area = 'area';
+  // static area = 'area';
   static bar = 'bar';
   static barStacked = 'barStacked';
   static column = 'column';
@@ -29,12 +29,12 @@ export class FhiDiagramTypeGroups {
   static table = 'table'
 };
 
-const area: FhiDiagramType = {
-  id: FhiDiagramTypeId.area,
-  icon: 'table',
-  name: '',
-  options: OptionsChartTypeArea
-}
+// const area: FhiDiagramType = {
+//   id: FhiDiagramTypeId.area,
+//   icon: 'table',
+//   name: '',
+//   options: OptionsChartTypeArea
+// }
 
 const bar: FhiDiagramType = {
   id: FhiDiagramTypeId.bar,
@@ -66,8 +66,8 @@ const columnStacked: FhiDiagramType = {
 
 const donut: FhiDiagramType = {
   id: FhiDiagramTypeId.donut,
-  icon: 'table',
-  name: '',
+  icon: 'donut-chart',
+  name: 'Smultringdiagram',
   options: OptionsChartTypeDonut
 }
 
@@ -152,7 +152,8 @@ export const FhiChartTypes = [
   bar,
   columnStacked,
   barStacked,
-  pie
+  pie,
+  // donut
 ];
 
 export const FhiMapTypes = [

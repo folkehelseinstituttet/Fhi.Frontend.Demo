@@ -1,10 +1,14 @@
 export const OptionsChartTypePie = {
   chart: {
-    type: 'pie'
+    type: 'pie',
   },
   plotOptions: {
     pie: {
-      size: '80%'
-    }
-  }
+      dataLabels: {
+        enabled: false,
+      },
+      showInLegend: true,
+      size: '80%',
+    },
+  },
 };

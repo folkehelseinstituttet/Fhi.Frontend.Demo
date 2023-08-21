@@ -1,11 +1,15 @@
 export const OptionsChartTypeDonut = {
   chart: {
-    type: 'pie'
+    type: 'pie',
   },
   plotOptions: {
     pie: {
+      dataLabels: {
+        enabled: false,
+      },
       innerSize: '60%',
-      size: '80%'
-    }
-  }
+      showInLegend: true,
+      size: '80%',
+    },
+  },
 };

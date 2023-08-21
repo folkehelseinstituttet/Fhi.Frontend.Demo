@@ -96,15 +96,20 @@ export class FhiAngularHighchartsComponent {
   }
 
   private loopSeriesToUpdateAndExtractInfo() {
-    this.allDiagramOptions.series.forEach((serie) => {
+    const diagramTypeId = this.allDiagramOptions.diagramTypeId;
+    const seriesLength = this.allDiagramOptions.series.length;
+
+    this.allDiagramOptions.series.forEach((serie, index) => {
       const decimalData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0);
       const flaggedData = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
       const negativeData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y < 0);
       let n = 0;
 
+      // TODO: sjekk om n++ logikken under er rigktig ?!?
       if (flaggedData.length !== 0) {
         this.updateFlaggedSeries(serie, flaggedData, n++);
       }
+
       if (decimalData.length !== 0) {
         this.allDiagramOptions.seriesHasDecimalDataPoints = true;
       }
@@ -143,7 +148,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(this.allDiagramOptions.series, this.flaggedSeries);
+    this.diagramTypeService.updateDiagramTypes(
+      this.allDiagramOptions.diagramTypeSubset,
+      this.allDiagramOptions.series,
+      this.flaggedSeries,
+    );
   }
 
   private updateAllDiagramOptions() {

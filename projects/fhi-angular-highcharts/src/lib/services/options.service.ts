@@ -12,6 +12,8 @@ import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-m
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
+import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +27,7 @@ export class OptionsService {
 
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
     const isMap = allDiagramOptions?.diagramType?.isMap;
+    const isDonutOrPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie || allDiagramOptions.diagramTypeId === FhiDiagramTypeId.donut ? true : false;
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const series = allDiagramOptions.series;
 
@@ -36,6 +39,9 @@ export class OptionsService {
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
+    }
+    if (isDonutOrPie) {
+      this.setPieAndDonutOptions(options);
     }
     return options;
   }
@@ -121,6 +127,35 @@ export class OptionsService {
         const value: string = that.value.toString();
         return formatDate(this.getISO8601DataFromNorwegianDate(value), 'd/M', 'nb-NO');
       }
+    };
+  }
+
+  private setPieAndDonutOptions(options: any) {
+    options.legend = {
+      align: 'left',
+      itemMarginBottom: 3,
+      itemMarginTop: 3,
+      layout: 'vertical',
+      title: {
+        text: options.series[0].name,
+      },
+      verticalAlign: 'top',
+    };
+    options.responsive = {
+      rules: [
+        {
+          chartOptions: {
+            legend: {
+              align: 'center',
+              margin: 0,
+              maxHeight: 120,
+            },
+          },
+          condition: {
+            maxWidth: 400,
+          },
+        },
+      ],
     };
   }
 
