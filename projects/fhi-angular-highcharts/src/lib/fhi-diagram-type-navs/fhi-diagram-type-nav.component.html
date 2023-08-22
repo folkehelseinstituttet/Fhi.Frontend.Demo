@@ -4,7 +4,8 @@
        aria-label="Velg tabell, kart eller graf">
 
     <ng-container *ngFor="let group of navDiagramTypeGroups">
-      <input class="btn-check fhi-btn-group__check"
+      <ng-container *ngIf="!group.excludeFromMenu">
+        <input class="btn-check fhi-btn-group__check"
               type="radio"
               name="{{ 'diagram-type-nav' + navId }}"
               id="{{ group.id + navId }}"
@@ -13,19 +14,20 @@
               [checked]="group.id === currentDiagramTypeGroup"
               (change)="navigate(group.diagramType)">
 
-      <label class="btn fhi-btn-group__btn"
-             for="{{ group.id + navId }}"
-             [ngClass]="{ 'disabled': group.isDisabled }">
-        <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
-        {{ group.name }}
-      </label>
+        <label class="btn fhi-btn-group__btn"
+              for="{{ group.id + navId }}"
+              [ngClass]="{ 'disabled': group.isDisabled }">
+          <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
+          {{ group.name }}
+        </label>
+      </ng-container>
     </ng-container>
   </div>
 
   <div class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
        role="group"
        aria-label="Velg graftype"
-       *ngIf="chartSubmenuIsOpen">
+       *ngIf="chartSubmenuIsOpen && chartTypes.length > 1">
 
     <ng-container *ngFor="let chartType of chartTypes; index as i">
       <input class="btn-check fhi-btn-group__check"

@@ -11,6 +11,7 @@ export class DiagramTypeService {
   private _chartTypes!: FhiDiagramType[];
   private _mapTypes!: FhiDiagramType[];
   private _series!: FhiDiagramSerie[];
+  private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
 
   get series(): FhiDiagramSerie[] {
@@ -25,8 +26,9 @@ export class DiagramTypeService {
     return this._mapTypes;
   }
 
-  updateDiagramTypes(series: FhiDiagramSerie[], flaggedSeries: FlaggedSerie[]) {
+  updateDiagramTypes(diagramTypeSubset: string[] | undefined, series: FhiDiagramSerie[], flaggedSeries: FlaggedSerie[]) {
     this._series = series;
+    this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
     this.updateAvailableTypes();
   }
@@ -86,9 +88,10 @@ export class DiagramTypeService {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.line);
     }
 
-    // Remove pie
+    // Remove donut and pie
     if (series.length > 1) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
+      chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
     }
 
     // Remove stacked
@@ -103,11 +106,22 @@ export class DiagramTypeService {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.column);
     }
 
+    // Remove types not in user defined subset
+    if (this.diagramTypeSubset !== undefined) {
+      chartTypes = chartTypes.filter(type => this.diagramTypeSubset?.includes(type.id));
+    }
+
     return chartTypes;
   }
 
   private updateAvailableMapTypes(): FhiDiagramType[] {
-    const mapTypes = FhiMapTypes;
+    let mapTypes = FhiMapTypes;
+
+    // Remove types not in user defined subset
+    if (this.diagramTypeSubset !== undefined) {
+      mapTypes = mapTypes.filter(type => this.diagramTypeSubset?.includes(type.id));
+    }
+
     return mapTypes;
   }
 

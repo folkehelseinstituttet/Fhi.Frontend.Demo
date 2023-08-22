@@ -12,6 +12,8 @@ import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-m
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
+import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +27,7 @@ export class OptionsService {
 
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
     const isMap = allDiagramOptions?.diagramType?.isMap;
+    const isDonutOrPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie || allDiagramOptions.diagramTypeId === FhiDiagramTypeId.donut;
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const series = allDiagramOptions.series;
 
@@ -36,6 +39,9 @@ export class OptionsService {
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
+    }
+    if (isDonutOrPie) {
+      options.legend.title.text = options.series[0].name;
     }
     return options;
   }

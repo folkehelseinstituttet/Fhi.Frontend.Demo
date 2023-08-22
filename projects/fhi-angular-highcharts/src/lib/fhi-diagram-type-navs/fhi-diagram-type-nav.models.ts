@@ -6,4 +6,5 @@ export interface NavDiagramTypeGroup {
   id: string;
   isDisabled: boolean;
   name: string;
+  excludeFromMenu?: boolean;
 }

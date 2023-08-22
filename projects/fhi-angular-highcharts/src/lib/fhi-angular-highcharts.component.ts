@@ -96,11 +96,12 @@ export class FhiAngularHighchartsComponent {
   }
 
   private loopSeriesToUpdateAndExtractInfo() {
+    let n = 0;
+
     this.allDiagramOptions.series.forEach((serie) => {
       const decimalData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0);
       const flaggedData = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
       const negativeData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y < 0);
-      let n = 0;
 
       if (flaggedData.length !== 0) {
         this.updateFlaggedSeries(serie, flaggedData, n++);
@@ -143,7 +144,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(this.allDiagramOptions.series, this.flaggedSeries);
+    this.diagramTypeService.updateDiagramTypes(
+      this.allDiagramOptions.diagramTypeSubset,
+      this.allDiagramOptions.series,
+      this.flaggedSeries,
+    );
   }
 
   private updateAllDiagramOptions() {

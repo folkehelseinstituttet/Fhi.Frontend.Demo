@@ -18,6 +18,14 @@
         }
     }
 }
+.highcharts-legend-title {
+    font-size: $fhi-core-font-size-2;
+}
+.highcharts-legend-point-active {
+    .highcharts-point:not(.highcharts-point-inactive) {
+        opacity: 1;
+    }
+}
 .highcharts-axis-labels {
     >text {
         fill: $text-color;
@@ -67,5 +75,11 @@
         font-size: 11px;
         text-decoration: underline;
         fill: $inline-link-hover-color;
+    }
+}
+
+@include media-breakpoint-up(sm) {
+    .highcharts-legend-title {
+        font-size: $fhi-core-font-size-3;
     }
 }
