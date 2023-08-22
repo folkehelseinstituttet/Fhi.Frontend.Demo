@@ -57,6 +57,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
         error => this.getErrorMessage(error));
 
     } else {
+      this.sectionTitle = undefined;
       this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
         .subscribe(libraryItems => {
           this.libraryItems = libraryItems;
