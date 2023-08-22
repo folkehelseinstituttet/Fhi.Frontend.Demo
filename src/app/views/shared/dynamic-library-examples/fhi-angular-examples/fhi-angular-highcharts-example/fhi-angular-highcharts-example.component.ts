@@ -4,6 +4,8 @@ import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
 import { FhiDiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
+import { LibraryItemsSharedDataService } from '../../../services/library-items-shared-data.service';
+import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
   selector: 'app-fhi-angular-highcharts-example',
@@ -12,23 +14,27 @@ import { FhiDiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
 export class FhiAngularHighchartsExampleComponent implements OnInit {
 
   @Input() itemId!: string;
-  @Input() itemIds!: any;
 
+  libraryItemsShared!: LibraryItemsShared;
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
-  MockData = MockData;
 
-  constructor(private highchartsDataService: MockDataService) {}
+  constructor(
+    private highchartsDataService: MockDataService,
+    private libraryItemsSharedDataService: LibraryItemsSharedDataService
+  ) { }
 
   ngOnInit() {
-    if (this.itemId === this.itemIds.Highcharts) {
+    this.libraryItemsShared = this.libraryItemsSharedDataService.libraryItemsShared;
+
+    if (this.itemId === this.libraryItemsShared.Highcharts.id) {
       this.loadData(MockData.TwoSeriesAar);
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenuAndFooter) {
+    } else if (this.itemId === this.libraryItemsShared.HighchartsWithMenuAndFooter.id) {
       this.loadData(MockData.OneSerieFylke);
 
-    } else if (this.itemId === this.itemIds.HighchartsWithMenu) {
+    } else if (this.itemId === this.libraryItemsShared.HighchartsWithMenu.id) {
       this.loadData(MockData.MultipleSeriesAar);
     }
   }

@@ -8,7 +8,7 @@ If more than one variation of component is needed, the file structure will be:
 library-items/
   foo/
     _foo.data.ts
-    _foo.ids.ts
+    _foo.intro.ts
     foo-bar.ts
     foo-baz.ts
     etc.

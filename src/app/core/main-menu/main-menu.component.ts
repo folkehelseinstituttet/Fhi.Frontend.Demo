@@ -16,9 +16,9 @@ export class MainMenuComponent {
   mainMenuItems: MenuItem[] = [{
     name: 'For utviklere',
     link: `/${UrlSegment.developer}`
-  }, {
-    name: 'For designere',
-    link: `/${UrlSegment.designer}`
+  // }, {
+  //   name: 'For designere',
+  //   link: `/${UrlSegment.designer}`
   }];
 
   mainMenuClose(): void {

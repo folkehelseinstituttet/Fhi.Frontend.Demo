@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 
-import { LibraryItemsDataService } from '../services/library-items-data.service';
+import { LibraryItemGroupsDataService } from '../services/library-item-groups-data.service';
+import { LibraryItemsShared } from '../models/library-item.model';
+import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
 
 @Component({
   selector: 'app-dynamic-library-example',
@@ -13,10 +15,18 @@ export class DynamicLibraryExampleComponent {
   itemIds: any;
   itemIdsLoaded = false;
 
-  constructor(private libraryItemsDataService: LibraryItemsDataService) { }
+  libraryItemsShared!: LibraryItemsShared;
+
+  constructor(
+    private libraryItemsDataService: LibraryItemGroupsDataService,
+    private libraryItemsSharedDataService: LibraryItemsSharedDataService
+  ) { }
 
   ngOnInit() {
-    this.getLibraryItemIds();
+      this.getLibraryItemIds();
+
+      // Testing new id and titel implementation!
+      this.getLibraryItemsShared();
   }
 
   private getLibraryItemIds() {
@@ -27,6 +37,16 @@ export class DynamicLibraryExampleComponent {
         this.itemIdsLoaded = true;
       },
       error => this.getErrorMessage(error));
+  }
+
+  private getLibraryItemsShared() {
+    this.libraryItemsSharedDataService.getLibraryItemsShared()
+      .subscribe({
+        next: libraryItemsShared => {
+          this.libraryItemsShared = libraryItemsShared;
+        },
+        error: error => this.getErrorMessage(error)
+      });
   }
 
   private getErrorMessage(error: object) {
