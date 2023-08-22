@@ -1,4 +1,2 @@
-export const TemplateIds = {
-  Template1: undefined,
-  Template2: undefined
-}
+export const TemplateSectionIntro = `
+<p>Introtekst</p>`;

@@ -41,7 +41,6 @@ export interface FhiDiagramFlag {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string | Array<string>;
-  center?: Array<string>;
 }
 
 export interface FhiDiagramOptions {
