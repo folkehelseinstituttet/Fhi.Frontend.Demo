@@ -63,7 +63,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
           this.diagramOptions = {
             title: "Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020",
             series: data,
-            diagramTypeId: 'column',
+            diagramTypeId: 'pie',
             diagramTypeNavId: 'default',
             flags: [{
               symbol: '..',

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram-type.constants';
+import { FhiChartTypes, FhiDiagramTypeGroups, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
 import { FhiDiagramType } from '../fhi-diagram.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
@@ -81,7 +81,8 @@ export class FhiDiagramTypeNavComponent {
       icon: chartType.icon,
       id: FhiDiagramTypeGroups.chart,
       isDisabled: false,
-      name: 'Graf'
+      name: 'Graf',
+      excludeFromMenu: this.chartTypes.length === 0
     }
   }
 
@@ -92,7 +93,8 @@ export class FhiDiagramTypeNavComponent {
       icon: mapType.icon,
       id: FhiDiagramTypeGroups.map,
       isDisabled: true,
-      name: 'Kart'
+      name: 'Kart',
+      excludeFromMenu: this.mapTypes.length === 0
     }
   }
 
@@ -109,6 +111,9 @@ export class FhiDiagramTypeNavComponent {
       }
       return diagramType.id === this.currentDiagramTypeId;
     });
+    if (this.chartTypes.length === 0) {
+      return FhiChartTypes[0];
+    }
     if (chartType === undefined) {
       return this.chartTypes[0];
     }
@@ -117,6 +122,10 @@ export class FhiDiagramTypeNavComponent {
 
   private getMapType(): FhiDiagramType {
     const mapType = undefined; // Same implementation as for chart types when support for maps are added
+
+    if (this.mapTypes.length === 0) {
+      return FhiMapTypes[0];
+    }
     if (mapType === undefined) {
       return this.mapTypes[0];
     }
