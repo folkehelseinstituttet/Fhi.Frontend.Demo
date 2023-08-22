@@ -1,7 +1,7 @@
 import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemGroupsSharedData } from '../library-item-groups-shared-data';
+import { LibraryItemGroupsSharedData as Groups } from '../library-item-groups-shared-data';
 
-import { HighchartsSectionIntro } from './_highcharts.intro';
+import { HighchartsIntro } from './_highcharts.intro';
 
 import { Highcharts } from './highcharts';
 import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
@@ -13,9 +13,9 @@ export const HighchartsItems: LibraryItem[] = [
   ...HighchartsWithMenuAndFooter
 ];
 
-export const HighchartsGroupData: LibraryItemGroup = {
-  id: LibraryItemGroupsSharedData.FhiAngularHighcharts.id,
-  title: LibraryItemGroupsSharedData.FhiAngularHighcharts.title,
-  intro: HighchartsSectionIntro,
+export const HighchartsData: LibraryItemGroup = {
+  id: Groups.FhiAngularHighcharts.id,
+  title: Groups.FhiAngularHighcharts.title,
+  intro: HighchartsIntro,
   libraryItems: HighchartsItems
 };

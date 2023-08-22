@@ -1,2 +1,2 @@
-export const FooSectionIntro = `
+export const FooIntro = `
 <p>Introtekst</p>`;

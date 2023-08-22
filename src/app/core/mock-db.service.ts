@@ -52,11 +52,11 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
-import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
-//   ...HighchartsGroupData.libraryItems,
+//   ...HighchartsData.libraryItems,
 // ];
 
 @Injectable({
@@ -90,7 +90,7 @@ export class MockDbService implements InMemoryDbService {
       DatepickerData,
       DrawerData,
       FormsData,
-      HighchartsGroupData, // NEW
+      HighchartsData, // NEW
       GlobalFooterData,
       GlobalHeaderData,
       IconsData,
