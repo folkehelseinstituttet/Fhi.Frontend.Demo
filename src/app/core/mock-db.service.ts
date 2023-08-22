@@ -65,18 +65,14 @@ import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accor
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
-
-      // TODO: update README for adding new library-item to the library!
-
       LibraryItemsSharedData,
       LibraryItemGroupsSharedData,
 
-      LibraryItemIds, // TODO: deprecate when all items use new system
-      AllData, // TODO: deprecate when all items use new system
-
-
       // Items
       AccordionsData,
+      HighchartsData,
+
+      // Items OLD
       AdvancedSelectData,
       AlertsData,
       PrototypeAngularTreeData,
@@ -90,7 +86,6 @@ export class MockDbService implements InMemoryDbService {
       DatepickerData,
       DrawerData,
       FormsData,
-      HighchartsData, // NEW
       GlobalFooterData,
       GlobalHeaderData,
       IconsData,
@@ -109,7 +104,10 @@ export class MockDbService implements InMemoryDbService {
       ToastData,
       TootipPopoverData,
       TreeViewData,
-      TypographyData
+      TypographyData,
+
+      LibraryItemIds, // TODO: deprecate when all items use new system
+      AllData, // TODO: deprecate when all items use new system
     };
   }
 }

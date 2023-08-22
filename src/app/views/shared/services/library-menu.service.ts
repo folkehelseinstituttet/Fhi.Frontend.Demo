@@ -126,9 +126,6 @@ export class LibraryMenuService {
 
   private getComponentsMenu(): MenuItem[] {
     return [{
-    //   name: 'Accordions',
-    //   link: LibraryItemSegmentPaths.accordion
-    // }, {
       name: 'Advanced select',
       link: LibraryItemSegmentPaths.advancedSelect
     }, {
