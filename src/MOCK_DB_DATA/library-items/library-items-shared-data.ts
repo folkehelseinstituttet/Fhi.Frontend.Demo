@@ -11,6 +11,10 @@ import { LibraryItemsShared } from "src/app/views/shared/models/library-item.mod
  *     ];
  */
 export const LibraryItemsSharedData: LibraryItemsShared = {
+  ErrorPage404: {
+    id: 'errorpage404',
+    title: '404 - page not found'
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'FHI Angular Highcharts - basic setup'
