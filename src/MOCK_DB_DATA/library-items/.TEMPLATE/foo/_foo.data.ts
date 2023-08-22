@@ -1,5 +1,5 @@
 import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemGroupsSharedData as Groups } from '../library-item-groups-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 
 import { FooIntro } from './_foo.intro';
 
@@ -11,9 +11,9 @@ const FooItems: LibraryItem[] = [
   ...FooBaz
 ];
 
-export const FooGroupData: LibraryItemGroup = {
-  id: Groups.Foo.id,
-  title: Groups.Foo.title,
+export const FooData: LibraryItemGroup = {
+  id: GROUPS.Foo.id,
+  title: GROUPS.Foo.title,
   intro: FooIntro,
   libraryItems: FooItems
 };

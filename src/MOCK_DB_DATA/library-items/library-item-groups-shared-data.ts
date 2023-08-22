@@ -3,6 +3,15 @@ import { LibraryItemGroupsShared } from "src/app/views/shared/models/library-ite
 
 export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
 
+  // Components
+
+  Accordions: {
+    id: 'accordions',
+    title: 'Accordions',
+    apiEndPoint: 'AccordionsData',
+    parentUrlSegment: UrlSegment.components
+  },
+
   // Moduler
 
   FhiAngularHighcharts: {

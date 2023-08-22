@@ -1,6 +1,6 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { AccordionData } from './accordion/_accordion.data';
+// import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { AlertsData } from './alerts/_alerts.data';
 import { BadgeData } from './badge/_badge.data';
@@ -34,7 +34,7 @@ import { TreeViewData } from './tree-view/_tree-view.data';
 
 
 export const AllData: LibraryItem[] = [
-  ...AccordionData,
+  // ...AccordionData,
   ...AdvancedSelectData,
   ...AlertsData,
   ...BadgeData,

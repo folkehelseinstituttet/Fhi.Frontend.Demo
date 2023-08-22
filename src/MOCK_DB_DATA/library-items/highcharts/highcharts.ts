@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemsSharedData } from '../library-items-shared-data';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
 export const Highcharts: LibraryItem[] = [{
-  id: LibraryItemsSharedData.Highcharts.id,
-  title: LibraryItemsSharedData.Highcharts.title,
+  id: ITEMS.Highcharts.id,
+  title: ITEMS.Highcharts.title,
   type: LibraryItemType.fhiAngular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

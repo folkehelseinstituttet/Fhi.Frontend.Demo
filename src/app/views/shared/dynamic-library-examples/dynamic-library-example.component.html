@@ -1,20 +1,32 @@
 <div [ngSwitch]="itemId">
 
+  <!-- New id and titel implementation! -->
+
   <app-accordion-example
-    *ngSwitchCase="itemIds.Accordion"
-    [itemId]="itemIds.Accordion"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.AccordionDefault.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
   </app-accordion-example>
   <app-accordion-example
-    *ngSwitchCase="itemIds.AccordionFlush"
-    [itemId]="itemIds.AccordionFlush"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.AccordionFlush.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
   </app-accordion-example>
   <app-accordion-example
-    *ngSwitchCase="itemIds.FhiAccordionFlush"
-    [itemId]="itemIds.FhiAccordionFlush"
-    [itemIds]="itemIds">
+    *ngSwitchCase="libraryItemsShared.AccordionFlushDark.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
   </app-accordion-example>
+
+  <app-fhi-angular-highcharts-example
+    *ngSwitchCase="libraryItemsShared.Highcharts.id" [itemId]="itemId">
+  </app-fhi-angular-highcharts-example>
+  <app-fhi-angular-highcharts-example
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenuAndFooter.id" [itemId]="itemId">
+  </app-fhi-angular-highcharts-example>
+  <app-fhi-angular-highcharts-example
+    *ngSwitchCase="libraryItemsShared.HighchartsWithMenu.id" [itemId]="itemId">
+  </app-fhi-angular-highcharts-example>
+
+  <!-- / New id and titel implementation! -->
+
+
+
+
 
   <app-advanced-select-example
     *ngSwitchCase="itemIds.AdvancedSelectAutosuggest"
@@ -26,21 +38,6 @@
     [itemId]="itemIds.AdvancedSelectMultiselect"
     [itemIds]="itemIds">
   </app-advanced-select-example>
-
-
-
-  <!-- Testing new id and titel implementation! -->
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.Highcharts.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.HighchartsWithMenuAndFooter.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.HighchartsWithMenu.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-
-
 
   <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
 

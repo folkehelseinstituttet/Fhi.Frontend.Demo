@@ -20,7 +20,7 @@ library-items/
 
 1. Copy the folder `./.TEMPLATE/foo` and paste it in under `./`
 2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.intro`)
-3. Rename `const FooData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
+3. Rename `const FooItems` and `const FooData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
 4. Rename `const FooIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
 5. Rename `const FooBar` in `./your-new-items/your-new-item.ts`
 6. Add the following to `./library-item-groups-shared-data.ts`:
@@ -29,6 +29,8 @@ library-items/
     YourNewItems: {
       id: 'yournewitems', // must be uniqe
       title: 'Title for your new item group'
+      apiEndPoint: 'YourNewItemsData', // must be identical to exported constant in ./your-new-items/_your-new-items.data.ts
+      parentUrlSegment: UrlSegment.components
     },
     ```
 

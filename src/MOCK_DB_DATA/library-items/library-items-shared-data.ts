@@ -11,6 +11,18 @@ import { LibraryItemsShared } from "src/app/views/shared/models/library-item.mod
  *     ];
  */
 export const LibraryItemsSharedData: LibraryItemsShared = {
+  AccordionDefault: {
+    id: 'accordion-default',
+    title: 'Accordion - default'
+  },
+  AccordionFlush: {
+    id: 'accordion-flush',
+    title: 'Accordion - flush'
+  },
+  AccordionFlushDark: {
+    id: 'accordion-flush-dark',
+    title: 'Accordion - flush dark'
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'FHI Angular Highcharts - basic setup'

@@ -1,4 +1,4 @@
-import { AccordionIds } from "./accordion/_accordion.ids"
+// import { AccordionIds } from "./accordion/_accordion.ids"
 import { AdvancedSelectIds } from "./advanced-select/_advanced-select.ids"
 import { AlertsIds } from "./alerts/_alerts.ids"
 import { BadgeIds } from "./badge/_badge.ids"
@@ -34,7 +34,7 @@ import { TreeViewIds } from "./tree-view/_tree-view.ids"
 import { TypographyIds } from "./typography/_typography.ids"
 
 const libraryItemIds = {
-  ...AccordionIds,
+  // ...AccordionIds,
   ...AdvancedSelectIds,
   ...AlertsIds,
   ...PrototypeAngularTreeIds,

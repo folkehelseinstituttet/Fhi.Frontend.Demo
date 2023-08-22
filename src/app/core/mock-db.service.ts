@@ -8,7 +8,6 @@ import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids'
 import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
-import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
@@ -53,6 +52,7 @@ import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-i
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
@@ -76,7 +76,7 @@ export class MockDbService implements InMemoryDbService {
 
 
       // Items
-      AccordionData,
+      AccordionsData,
       AdvancedSelectData,
       AlertsData,
       PrototypeAngularTreeData,
