@@ -7,7 +7,7 @@ import { Highcharts } from './highcharts';
 import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
 import { HighchartsWithMenu } from './highcharts-with-menu';
 
-export const HighchartsItems: LibraryItem[] = [
+const HighchartsItems: LibraryItem[] = [
   ...Highcharts,
   ...HighchartsWithMenu,
   ...HighchartsWithMenuAndFooter

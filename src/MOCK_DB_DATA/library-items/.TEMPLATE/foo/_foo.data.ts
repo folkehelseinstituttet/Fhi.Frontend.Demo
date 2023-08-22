@@ -6,7 +6,7 @@ import { FooIntro } from './_foo.intro';
 import { FooBar } from './foo-bar';
 import { FooBaz } from './foo-baz';
 
-export const FooItems: LibraryItem[] = [
+const FooItems: LibraryItem[] = [
   ...FooBar,
   ...FooBaz
 ];

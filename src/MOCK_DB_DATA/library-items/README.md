@@ -1,6 +1,6 @@
 # New library items
 
-## File structure
+## File and folder structure
 
 If more than one variation of component is needed, the file structure will be:
 
@@ -48,6 +48,14 @@ library-items/
 1. Copy/paste `./existing-items/existing-item.ts`
 2. Rename new file: `./existing-items/your-new-item.ts`
 3. Rename the exported constant in `./existing-items/your-new-item.ts`
-4. Add a new property in object `ExistingItemsIds`, in `./existing-items.ids.ts`
-5. Add your new item to exported constant in `./existing-items/existing-items.data.ts`
+4. Add your new item to library items constant in `./existing-items/existing-items.data.ts`
+5. Add the following to `./library-items-shared-data.ts`:
+
+    ```ts
+    YourNewItem: {
+      id: 'yournewitem', // must be uniqe
+      title: 'Title for your new item'
+    },
+    ```
+
 6. Update all data in the `YourNewItem`-object in `./existing-items/your-new-item.ts`
