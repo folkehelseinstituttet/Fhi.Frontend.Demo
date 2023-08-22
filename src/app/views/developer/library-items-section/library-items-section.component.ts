@@ -40,7 +40,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     const lastSegmentPath = this.urlService.getLastSegmentPath();
     this.libraryItemsLoaded = false;
 
-    if (lastSegmentPath === 'fhiangularhighcharts') {
+    if (lastSegmentPath === 'fhiangularhighcharts' || lastSegmentPath === 'errorpages') {
 
       // TODO: remove if test when all segmentPaths use getLibraryItemGroup()
       //       and getLibraryItems() can deprecates. And use mergeMap() instead
@@ -59,6 +59,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     } else {
       this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
         .subscribe(libraryItems => {
+          this.sectionTitle = '';
           this.libraryItems = libraryItems;
           this.libraryItemsLoaded = true;
         },

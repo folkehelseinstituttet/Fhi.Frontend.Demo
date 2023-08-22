@@ -7,7 +7,8 @@ export const ErrorPage404: LibraryItem[] = [{
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
+  documentationHtml: getDocumentationHtml(),
+  fullScreenEnabled: true
 }];
 
 
@@ -15,7 +16,21 @@ export const ErrorPage404: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
+  return `
+<main class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-xxl-6">
+      <h1 class="fhi-error-page-heading">
+        Siden finnes ikke
+        <span class="fhi-error-page-heading__code">
+          <span class="visually-hidden"> - </span>
+          Statuskode 404
+        </span>
+      </h1>
+    </div>
+  </div>
+</main>
+`;
 }
 
 /*
@@ -23,7 +38,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<h1>404</h1>`;
+  return ``;
 }
 
 /*
