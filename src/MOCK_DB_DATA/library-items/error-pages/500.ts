@@ -23,6 +23,7 @@ function getExampleHtml(): string {
     Statuskode 500
   </span>
 </h1>
+
 <p>Her er det et eller annet på serveren som har gått galt.<br>
 Oppdater siden eller prøv igjen senere.</p>
 `;
@@ -40,5 +41,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
