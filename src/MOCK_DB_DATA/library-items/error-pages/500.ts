@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData } from '../library-items-shared-data';
 
-export const ErrorPage404: LibraryItem[] = [{
-  id: LibraryItemsSharedData.ErrorPage404.id,
-  title: LibraryItemsSharedData.ErrorPage404.title,
+export const ErrorPage500: LibraryItem[] = [{
+  id: LibraryItemsSharedData.ErrorPage500.id,
+  title: LibraryItemsSharedData.ErrorPage500.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -17,16 +17,14 @@ export const ErrorPage404: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <h1 class="fhi-error-page-heading">
-  Siden finnes ikke
+  Serverfeil
   <span class="fhi-error-page-heading__code">
     <span class="visually-hidden"> - </span>
-    Statuskode 404
+    Statuskode 500
   </span>
 </h1>
-<p>Beklager, denne siden finnes ikke. Det kan skyldes en feil i lenken eller at siden er slettet.<br>
-Naviger til annet sted i løsningen, eller <a href="/">gå til forsiden</a>.</p>
-
-<p><a href="#">Meld gjerne fra om brutt lenke</a></p>
+<p>Her er det et eller annet på serveren som har gått galt.<br>
+Oppdater siden eller prøv igjen senere.</p>
 `;
 }
 

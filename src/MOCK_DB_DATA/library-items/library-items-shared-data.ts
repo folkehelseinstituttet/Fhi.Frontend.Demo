@@ -27,6 +27,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'errorpage404',
     title: '404 - page not found'
   },
+  ErrorPage500: {
+    id: 'errorpage500',
+    title: '500 - server error'
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'FHI Angular Highcharts - basic setup'
