@@ -116,13 +116,13 @@ function getDocumentationHtml(): string | null {
           Default diagramtype når modul laster.
           Lovlige diagramTypeId'er:
           <ul>
-            <li><code>table</code></li>
-            <li><code>line</code></li>
-            <li><code>column</code></li>
             <li><code>bar</code></li>
-            <li><code>columnStacked</code></li>
             <li><code>barStacked</code></li>
+            <li><code>column</code></li>
+            <li><code>columnStacked</code></li>
+            <li><code>line</code></li>
             <li><code>pie</code></li>
+            <li><code>table</code></li>
           </ul>
         </td>
       </tr>
@@ -137,6 +137,18 @@ function getDocumentationHtml(): string | null {
           <ul>
             <li><code>default</code></li>
           </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>diagramTypeSubset</th>
+        <td><code>Array&lt;string&gt;</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>
+          Id'ene til diagramtypene en ønsker skal være tilgjengelige i menyen i tillegg til tabell
+          (tabell skal alltid være med, bl.a. av UU-hensyn).
+          Hvis utelatt så vises alle lovlige diagramtyper for gjeldende series i menyen.
+          Lovlige verdier er alle id'er listet opp under <strong>diagramTypeId</strong>.
         </td>
       </tr>
       <tr>
@@ -211,17 +223,10 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>yes</td>
         <td>
-          <b>Obs!</b> Type <code>string</code> er en formatert string. Pipe brukes som skilletegn
+          <b>Obs!</b> Type <code>string</code> er en formatert string, dvs. pipe (|) brukes som skilletegn
           mellom kategorinavn hvis det er mer enn ett kategorinavn som er slått sammen til ett serienavn. Hvis en
-          vil slippe å forholde seg til et spesifikt skilletegn kan en nå velge å bruke en array bestående av kategorinavn i stedet.
+          vil slippe å forholde seg til et spesifikt skilletegn kan en velge å bruke en array bestående av kategorinavn i stedet.
         </td>
-      </tr>
-      <tr>
-        <th>stack</th>
-        <td><code>string</code></td>
-        <td>-</td>
-        <td>no</td>
-        <td>Brukes hvis en ønsker å gruppere serier i diagramtypene <code>barStacked</code> eller <code>columnStacked</code>.</td>
       </tr>
     </tbody>
   </table>
