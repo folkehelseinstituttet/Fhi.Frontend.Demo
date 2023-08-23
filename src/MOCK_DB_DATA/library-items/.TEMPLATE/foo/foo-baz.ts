@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Template1: LibraryItem[] = [{
-  id: LibraryItemIds.Template1,
-  title: 'Template 1',
+export const FooBaz: LibraryItem[] = [{
+  id: ITEMS.FooBaz.id,
+  title: ITEMS.FooBaz.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

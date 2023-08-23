@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 import { UrlService } from 'src/app/services/url.service';
 import { LibraryItemGroupsDataService } from '../../shared/services/library-item-groups-data.service';
@@ -27,8 +28,10 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription.add(this.urlService.URL$
       .subscribe(() => {
+        const lastSegmentPath = this.urlService.getLastSegmentPath();
         this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
-        this.getLibraryItems();
+        this.libraryItemsLoaded = false;
+        this.getLibraryItems(lastSegmentPath);
       }));
   }
 
@@ -36,35 +39,31 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private getLibraryItems() {
-    const lastSegmentPath = this.urlService.getLastSegmentPath();
-    this.libraryItemsLoaded = false;
-
-    if (lastSegmentPath === 'fhiangularhighcharts') {
-
-      // TODO: remove if test when all segmentPaths use getLibraryItemGroup()
-      //       and getLibraryItems() can deprecates. And use mergeMap() instead
-      //       of nesting this subscription inside URL$-susbsrcription (see DeveloperComponent
-      //       for the mergeMap syntax)
-
-      this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
-        .subscribe(libraryItemGroup => {
+  private getLibraryItems(lastSegmentPath: string) {
+    this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
+      .subscribe({
+        next: libraryItemGroup => {
           this.sectionTitle = libraryItemGroup.title;
           this.sectionIntro = libraryItemGroup.intro;
           this.libraryItems = libraryItemGroup.libraryItems;
           this.libraryItemsLoaded = true;
         },
-        error => this.getErrorMessage(error));
+        error: error => this.getLibraryItems_OLD(lastSegmentPath, error)
+    });
+  }
 
-    } else {
-      this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
-        .subscribe(libraryItems => {
-          this.libraryItems = libraryItems;
-          this.libraryItemsLoaded = true;
-        },
-        error => this.getErrorMessage(error));
-    }
-
+  // TODO:
+  //   Remove if test when all segmentPaths use getLibraryItemGroup()
+  //   and getLibraryItems() can be deprecated.
+  private getLibraryItems_OLD(lastSegmentPath: string, error: any) {
+    // console.log('getLibraryItems_OLD -> error', error);
+    this.sectionTitle = undefined;
+    this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
+      .subscribe(libraryItems => {
+        this.libraryItems = libraryItems;
+        this.libraryItemsLoaded = true;
+      },
+      error => this.getErrorMessage(error));
   }
 
   private getErrorMessage(error: object) {

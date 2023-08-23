@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const AccordionFlush: LibraryItem[] = [{
-  id: LibraryItemIds.AccordionFlush,
-  title: 'Accordion - flush',
+export const AccordionFlushDark: LibraryItem[] = [{
+  id: ITEMS.AccordionFlushDark.id,
+  title: ITEMS.AccordionFlushDark.title,
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,8 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-accordion [closeOthers]="true" activeIds="custom-id-0"
-                 class="accordion-flush">
+<ngb-accordion class="accordion-flush fhi-accordion-flush">
   <ngb-panel id="custom-id-0" title="Item #1">
     <ng-template ngbPanelContent>
       <p>Item #1 content</p>

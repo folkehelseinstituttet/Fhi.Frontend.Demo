@@ -1,6 +1,5 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { AccordionData } from './accordion/_accordion.data';
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { AlertsData } from './alerts/_alerts.data';
 import { BadgeData } from './badge/_badge.data';
@@ -12,7 +11,6 @@ import { DateAndTimeData } from './date-and-time/_date-and-time.data';
 import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
-// import { HighchartsData } from './highcharts/_highcharts.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
@@ -34,7 +32,6 @@ import { TreeViewData } from './tree-view/_tree-view.data';
 
 
 export const AllData: LibraryItem[] = [
-  ...AccordionData,
   ...AdvancedSelectData,
   ...AlertsData,
   ...BadgeData,
@@ -46,7 +43,6 @@ export const AllData: LibraryItem[] = [
   ...DatepickerData,
   ...DrawerData,
   ...FormsData,
-  // ...HighchartsData,
   ...GlobalHeaderData,
   ...IconsData,
   ...ModalData,

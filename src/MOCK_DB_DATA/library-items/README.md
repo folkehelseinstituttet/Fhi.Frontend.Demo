@@ -1,6 +1,6 @@
 # New library items
 
-## File structure
+## File and folder structure
 
 If more than one variation of component is needed, the file structure will be:
 
@@ -18,22 +18,46 @@ library-items/
 
 ### How to create a new mock-db data file with a library item
 
-1. Copy/paste the folder `./.TEMPLATE`
-2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.ids`)
-3. Rename `const Template` in `./your-new-items/your-new-item.ts`
-4. Rename `const TemplateData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
-5. Rename `const TemplateIds` in `./your-new-items/_your-new-items.ids.ts` (keep suffix `Ids`)
-6. Add a new import and add imported object to `libraryItemIds` in `../library-item-ids.ts`
-7. Add a new import and constant in `../library-item-segment-paths.ts`
-8. Add `YourNewItemsData` to `AllData` in `../library-items.data.ts`
-9. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
-10. Add a new menu item to one of the methodes called within `getSecondLevelMenuItems()` in `src/app/shared/services/library-menu.service.ts`
+1. Copy the folder `./.TEMPLATE/foo` and paste it in under `./`
+2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.intro`)
+3. Rename `const FooItems` and `const FooData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
+4. Rename `const FooIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
+5. Rename `const FooBar` in `./your-new-items/your-new-item.ts`
+6. Add the following to `./library-item-groups-shared-data.ts`:
+
+    ```ts
+    YourNewItems: {
+      id: 'yournewitems', // must be uniqe
+      title: 'Title for your new item group'
+      apiEndPoint: 'YourNewItemsData', // must be identical to exported constant in ./your-new-items/_your-new-items.data.ts
+      parentUrlSegment: UrlSegment.components
+    },
+    ```
+
+7. Add the following to `./library-items-shared-data.ts`:
+
+    ```ts
+    YourNewItem: {
+      id: 'yournewitem', // must be uniqe
+      title: 'Title for your new item'
+    },
+    ```
+
+8. Add `YourNewItemsData` to the return object in `src/app/core/mock-db.service.ts`
 
 ### How to create a new library item in an exsisting mock-db data file
 
 1. Copy/paste `./existing-items/existing-item.ts`
 2. Rename new file: `./existing-items/your-new-item.ts`
 3. Rename the exported constant in `./existing-items/your-new-item.ts`
-4. Add a new property in object `ExistingItemsIds`, in `./existing-items.ids.ts`
-5. Add your new item to exported constant in `./existing-items/existing-items.data.ts`
+4. Add your new item to library items constant in `./existing-items/existing-items.data.ts`
+5. Add the following to `./library-items-shared-data.ts`:
+
+    ```ts
+    YourNewItem: {
+      id: 'yournewitem', // must be uniqe
+      title: 'Title for your new item'
+    },
+    ```
+
 6. Update all data in the `YourNewItem`-object in `./existing-items/your-new-item.ts`
