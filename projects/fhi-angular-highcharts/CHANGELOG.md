@@ -1,4 +1,11 @@
-# 0.6.1
+# Unreleased
+
+> Aug 23, 2023
+
+* :tada: **Enhancement** Visual improvements for diagramtype pie
+* :tada: **Enhancement** Make it possible to cherry pick diagram types (eg. excude map) in the diagram type menu
+
+## 0.6.1
 
 > Aug 10, 2023
 
