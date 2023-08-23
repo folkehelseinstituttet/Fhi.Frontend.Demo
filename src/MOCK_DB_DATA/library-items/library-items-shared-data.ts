@@ -12,8 +12,8 @@ import { LibraryItemsShared } from "src/app/views/shared/models/library-item.mod
  */
 export const LibraryItemsSharedData: LibraryItemsShared = {
   AccordionDefault: {
-    id: 'accordion-default',
-    title: 'Accordion - default'
+    id: 'accordion',
+    title: 'Accordion'
   },
   AccordionFlush: {
     id: 'accordion-flush',

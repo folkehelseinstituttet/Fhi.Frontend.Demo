@@ -6,8 +6,8 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
   // Components
 
   Accordions: {
-    id: 'accordions',
-    title: 'Accordions',
+    id: 'accordion',
+    title: 'Accordion',
     apiEndPoint: 'AccordionsData',
     parentUrlSegment: UrlSegment.components
   },

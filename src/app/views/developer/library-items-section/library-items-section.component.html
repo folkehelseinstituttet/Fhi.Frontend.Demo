@@ -2,10 +2,11 @@
 
 <section class="ds-library-items">
   <header class="mb-7" *ngIf="sectionTitle">
-    <h1 class="h2">{{ sectionTitle }}</h1>
+    <h1>{{ sectionTitle }}</h1>
     <div class="ds-library-items__section-intro" *ngIf="sectionIntro"
          [innerHtml]="sectionIntro | safe: 'html'">
     </div>
+    <hr>
   </header>
 
   <app-library-item
