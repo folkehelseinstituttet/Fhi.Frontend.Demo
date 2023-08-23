@@ -23,6 +23,7 @@ function getExampleHtml(): string {
     Statuskode 404
   </span>
 </h1>
+
 <p>Beklager, denne siden finnes ikke. Det kan skyldes en feil i lenken eller at siden er slettet.<br>
 Naviger til annet sted i løsningen, eller <a href="/">gå til forsiden</a>.</p>
 
@@ -42,5 +43,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
