@@ -31,25 +31,6 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<h3>Kom i gang</h3>
-<p>
-  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
-    @folkehelseinstituttet/angular-highcharts
-  </a>
-</p>
-<h4>Lenke til kildekode</h4>
-<p>
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-highcharts">
-    projects/fhi-angular-highcharts
-  </a>
-</p>
-<h4>Lenke til demokoden</h4>
-<p class="mb-5">
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/src/app/views/shared/dynamic-library-examples/fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts">
-    fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts
-  </a>
-</p>
-
 <h3 class="mb-5">API</h3>
 
 <h4>Inputs</h4>
