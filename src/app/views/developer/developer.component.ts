@@ -35,8 +35,10 @@ export class DeveloperComponent implements OnInit, OnDestroy {
           this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
           this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
           if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
-            this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems_OLD()
-              .concat(this.libraryMenuService.getSecondLevelMenuItems(libraryItemGroupsShared))
+            this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems(libraryItemGroupsShared)
+
+              // TODO: remove this when all items are using new system
+              .concat(this.libraryMenuService.getSecondLevelMenuItems_OLD())
           }
         },
         error: error => console.log(error)

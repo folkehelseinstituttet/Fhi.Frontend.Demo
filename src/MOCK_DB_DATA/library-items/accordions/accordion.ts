@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const FhiAccordionFlush: LibraryItem[] = [{
-  id: LibraryItemIds.FhiAccordionFlush,
-  title: 'Accordion - flush alternative',
+export const Accordion: LibraryItem[] = [{
+  id: ITEMS.AccordionDefault.id,
+  title: ITEMS.AccordionDefault.title,
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -25,20 +25,20 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-accordion class="accordion-flush fhi-accordion-flush">
-  <ngb-panel id="custom-id-0" title="Item #1">
+<ngb-accordion>
+  <ngb-panel id="custom-id-0" title="Element #1">
     <ng-template ngbPanelContent>
-      <p>Item #1 content</p>
+      <p>Innhold for element #1</p>
     </ng-template>
   </ngb-panel>
-  <ngb-panel id="custom-id-1" title="Item #2">
+  <ngb-panel id="custom-id-1" title="Element #2">
     <ng-template ngbPanelContent>
-      <p>Item #2 content</p>
+      <p>Innhold for element #2</p>
     </ng-template>
   </ngb-panel>
-  <ngb-panel id="custom-id-2" title="Item #3">
+  <ngb-panel id="custom-id-2" title="Element #3">
     <ng-template ngbPanelContent>
-      <p>Item #3 content</p>
+      <p>Innhold for element #3</p>
     </ng-template>
   </ngb-panel>
 </ngb-accordion>`;

@@ -8,7 +8,6 @@ import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids'
 import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
-import { AccordionData } from 'src/MOCK_DB_DATA/library-items/accordion/_accordion.data';
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
@@ -53,11 +52,12 @@ import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-i
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 import { ErrorPagesGroupData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
-import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
-//   ...HighchartsGroupData.libraryItems,
+//   ...HighchartsData.libraryItems,
 // ];
 
 @Injectable({
@@ -66,18 +66,14 @@ import { HighchartsGroupData } from 'src/MOCK_DB_DATA/library-items/highcharts/_
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
     return {
-
-      // TODO: update README for adding new library-item to the library!
-
       LibraryItemsSharedData,
       LibraryItemGroupsSharedData,
 
-      LibraryItemIds, // TODO: deprecate when all items use new system
-      AllData, // TODO: deprecate when all items use new system
-
-
       // Items
-      AccordionData,
+      AccordionsData,
+      HighchartsData,
+
+      // Items OLD
       AdvancedSelectData,
       AlertsData,
       PrototypeAngularTreeData,
@@ -92,7 +88,6 @@ export class MockDbService implements InMemoryDbService {
       DrawerData,
       ErrorPagesGroupData,
       FormsData,
-      HighchartsGroupData, // NEW
       GlobalFooterData,
       GlobalHeaderData,
       IconsData,
@@ -111,7 +106,10 @@ export class MockDbService implements InMemoryDbService {
       ToastData,
       TootipPopoverData,
       TreeViewData,
-      TypographyData
+      TypographyData,
+
+      LibraryItemIds, // TODO: deprecate when all items use new system
+      AllData, // TODO: deprecate when all items use new system
     };
   }
 }
