@@ -16,9 +16,9 @@ export const ErrorPage500: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<h1 class="fhi-error-page-heading">
+<h1 class="fhi-error-page__heading">
   Serverfeil
-  <span class="fhi-error-page-heading__status-code">
+  <span class="fhi-error-page__heading__status-code">
     <span class="visually-hidden"> - </span>
     Statuskode 500
   </span>
