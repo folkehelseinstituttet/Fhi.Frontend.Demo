@@ -23,6 +23,14 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'accordion-flush-dark',
     title: 'Accordion - flush dark'
   },
+  ErrorPage404: {
+    id: 'errorpage404',
+    title: '404 - page not found'
+  },
+  ErrorPage500: {
+    id: 'errorpage500',
+    title: '500 - server error'
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'FHI Angular Highcharts - basic setup'

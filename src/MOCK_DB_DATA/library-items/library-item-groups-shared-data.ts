@@ -19,6 +19,15 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Fhi Angular Highcharts',
     apiEndPoint: 'HighchartsData',
     parentUrlSegment: UrlSegment.modules
-  }
-};
+  },
 
+  
+  // Layout og sidemaler
+
+  ErrorPages: {
+    id: 'errorpages',
+    title: 'Error pages',
+    apiEndPoint: 'ErrorPagesGroupData',
+    parentUrlSegment: UrlSegment.layoutAndPageTemplates
+  },
+};

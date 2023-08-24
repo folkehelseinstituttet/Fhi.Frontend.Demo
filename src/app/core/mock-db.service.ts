@@ -51,6 +51,7 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
+import { ErrorPagesGroupData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
 
@@ -85,6 +86,7 @@ export class MockDbService implements InMemoryDbService {
       DateAndTimeData,
       DatepickerData,
       DrawerData,
+      ErrorPagesGroupData,
       FormsData,
       GlobalFooterData,
       GlobalHeaderData,
