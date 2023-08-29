@@ -45,6 +45,7 @@ export const IncludedIcons = [
   'dash-circle',
   'dash-circle-fill',
   'diabetes',
+  'donut-chart',
   'download',
   'droplet',
   'ear',
