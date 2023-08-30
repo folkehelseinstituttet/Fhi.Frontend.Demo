@@ -229,9 +229,9 @@ export class FhiAngularHighchartsComponent {
             this.updateMap();
           }
         },
-        // error: (error) => {
-        //   console.log('ERROR:', error);
-        // }
+        error: (error) => {
+          console.log('ERROR:', error);
+        }
       });
   }
 
