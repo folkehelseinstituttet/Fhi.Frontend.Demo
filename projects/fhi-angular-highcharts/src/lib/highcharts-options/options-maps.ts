@@ -23,7 +23,7 @@ export const OptionsMaps = {
     enabled: true,
     buttonOptions: {
       verticalAlign: buttonOptionsVerticalAlignValue,
-    }
+    },
   },
   colorAxis: {
     maxColor: '#32345C',

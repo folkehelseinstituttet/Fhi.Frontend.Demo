@@ -1,4 +1,17 @@
 .fhi-highcharts-map {
     display: block;
     width: 100%;
+    height: 450px;
+}
+
+@include media-breakpoint-up(md) {
+    .fhi-highcharts-map {
+        height: 600px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .fhi-highcharts-map {
+        height: 700px;
+    }
 }

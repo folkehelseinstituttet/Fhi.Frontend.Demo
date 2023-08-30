@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
+import * as Highmaps from "highcharts/highmaps";
 import { Options } from 'highcharts';
-import HighchartsMap from 'highcharts/modules/map';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
@@ -11,6 +12,7 @@ import {
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
+import { GeoJsonService } from './services/geo-json.service';
 
 import { FhiDiagramType } from './fhi-diagram.models';
 import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
@@ -29,10 +31,13 @@ export class FhiAngularHighchartsComponent {
   @Output() diagramTypeNavigation = new EventEmitter<string>();
 
   highcharts: typeof Highcharts = Highcharts;
+  highmaps: typeof Highmaps = Highmaps;
+
   highchartsOptions!: Options;
   allDiagramOptions!: FhiAllDiagramOptions;
   showDefaultChartTemplate = true;
   showFooter = false;
+  showMap = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavId = FhiDiagramTypeNavId;
@@ -40,12 +45,14 @@ export class FhiAngularHighchartsComponent {
   tableBodyRows = new Array();
 
   constructor(
+    private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
+    private geoJsonService: GeoJsonService,
   ) {
-    HighchartsMap(Highcharts);
     HighchartsAccessibility(Highcharts);
+    HighchartsAccessibility(Highmaps);
   }
 
   ngOnChanges() {
@@ -59,6 +66,8 @@ export class FhiAngularHighchartsComponent {
 
       if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
         this.updateTable();
+      } else if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
+        this.updateMap();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       }
@@ -146,6 +155,7 @@ export class FhiAngularHighchartsComponent {
   private updateAvailableDiagramTypes() {
     this.diagramTypeService.updateDiagramTypes(
       this.allDiagramOptions.diagramTypeSubset,
+      this.allDiagramOptions.mapTypeId,
       this.allDiagramOptions.series,
       this.flaggedSeries,
     );
@@ -176,7 +186,10 @@ export class FhiAngularHighchartsComponent {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
       return;
     }
-    if (this.allDiagramOptions.diagramType?.isMap) {
+    if (
+      this.allDiagramOptions.diagramTypeId === FhiDiagramTypeId.map &&
+      this.diagramTypeService.mapTypes.length !== 0
+    ) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
       return;
     }
@@ -188,6 +201,38 @@ export class FhiAngularHighchartsComponent {
     const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
+  }
+
+  private updateMap() {
+    const mapTypeId = this.allDiagramOptions.mapTypeId as string;
+    this.showMap = false;
+
+    if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
+      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.showMap = true;
+      this.changeDetector.detectChanges();
+    } else {
+      this.loadMap(mapTypeId);
+    }
+  }
+
+  private loadMap(mapTypeId: string) {
+    if (this.highmaps.maps === undefined) {
+      this.highmaps.maps = [];
+    }
+    this.geoJsonService.getMap(mapTypeId)
+      .pipe(first()).subscribe({
+        next: (map) => {
+          if (map !== undefined) {
+            this.highmaps.maps[mapTypeId] = map;
+            this.geoJsonService.updateMapFeatures(this.highmaps.maps[mapTypeId]);
+            this.updateMap();
+          }
+        },
+        // error: (error) => {
+        //   console.log('ERROR:', error);
+        // }
+      });
   }
 
   private canShowFooter(): boolean {

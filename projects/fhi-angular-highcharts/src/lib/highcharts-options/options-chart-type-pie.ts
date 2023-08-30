@@ -17,6 +17,7 @@ export const OptionsChartTypePie = {
       },
       showInLegend: true,
       size: '80%',
+      innerSize: '0%'
     },
   },
   legend: {

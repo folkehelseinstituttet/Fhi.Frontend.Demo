@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 import { FhiDiagramSerie } from '../fhi-diagram.models';
 import { SeriesMapOptions } from 'highcharts';
@@ -14,16 +14,33 @@ export class GeoJsonService {
 
   private mapFeatures!: any[];
 
-  getMap(mapFile: string | undefined): Observable<any> {
-    if (mapFile === undefined) {
-      throw new Error('No mapFile given, can\'t get map!');
+  getMap(mapTypeId: string | undefined): Observable<any> {
+    if (
+        // NB! The files
+        //   - assets/fhi-angular-highcharts-geo-json/mapFylker.geo.json
+        //   - assets/fhi-angular-highcharts-geo-json/mapFylker19.geo.json
+        //  must be present in the app consuming  the npm packet
+        //  @folkehelseinstituttet/angular-highcharts. This is not a good
+        //  solution, but it works until we can come up with a better one.
+        mapTypeId !== 'mapFylker' &&
+        mapTypeId !== 'mapFylker2019'
+    ) {
+      throw new Error('No supported mapTypeId given, can\'t get map!');
     }
-    const url = `${location.origin}/${mapFile}`;
-    return this.http.get<any>(url);
-  }
 
-  addMapToHighcharts(Highcharts: any, map: any, FhiDiagramTypeId: string) {
-    Highcharts.maps[FhiDiagramTypeId] = map;
+    let url1!: string;
+    const mapFolder = 'assets/fhi-angular-highcharts-geo-json';
+    const url2 = `${location.origin}/${mapFolder}/${mapTypeId}.geo.json`;
+
+    if (mapTypeId === 'mapFylker') {
+      url1 = 'https://code.highcharts.com/mapdata/countries/no/no-all.geo.json';
+    }
+    if (mapTypeId === 'mapFylker2019') {
+      url1 = 'https://code.highcharts.com/mapdata/historical/countries/no-2019/no-all-all-2019.geo.json';
+    }
+    return this.http.get<any>(url1).pipe(
+      catchError(() => this.http.get<any>(url2))
+    );
   }
 
   updateMapFeatures(map: any) {
@@ -48,21 +65,12 @@ export class GeoJsonService {
 
   private findHcKey(name: string): string {
     let hcKey!: string;
-    name = this.updateNamesNotMatchingMap(name);
     this.mapFeatures.forEach(feature => {
       if (name === feature.properties.name) {
         hcKey = feature.properties['hc-key'];
       }
     });
     return hcKey;
-  }
-
-  private updateNamesNotMatchingMap(name: string): string {
-    if (name === 'Oslo (f)') {
-      return 'Oslo';
-    } else {
-      return name;
-    }
   }
 
 }
