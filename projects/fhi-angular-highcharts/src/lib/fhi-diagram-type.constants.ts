@@ -1,3 +1,4 @@
+import { OptionsMaps } from './highcharts-options/options-maps';
 import { OptionsChartTypeArea } from './highcharts-options/options-chart-type-area';
 import { OptionsChartTypeBar } from './highcharts-options/options-chart-type-bar';
 import { OptionsChartTypeBarStacked } from './highcharts-options/options-chart-type-bar-stacked';
@@ -15,10 +16,9 @@ export class FhiDiagramTypeId {
   static barStacked = 'barStacked';
   static column = 'column';
   static columnStacked = 'columnStacked';
-  static donut = 'donut';
+  // static donut = 'donut';
   static line = 'line';
-  static mapFylker2019 = 'mapFylker2019';
-  static mapFylker = 'mapFylker';
+  static map = 'map';
   static pie = 'pie';
   static table = 'table';
 }
@@ -64,12 +64,12 @@ const columnStacked: FhiDiagramType = {
   options: OptionsChartTypeColumnStacked
 }
 
-const donut: FhiDiagramType = {
-  id: FhiDiagramTypeId.donut,
-  icon: 'donut-chart',
-  name: 'Smultringdiagram',
-  options: OptionsChartTypeDonut
-}
+// const donut: FhiDiagramType = {
+//   id: FhiDiagramTypeId.donut,
+//   icon: 'donut-chart',
+//   name: 'Smultringdiagram',
+//   options: OptionsChartTypeDonut
+// }
 
 const line: FhiDiagramType = {
   id: FhiDiagramTypeId.line,
@@ -78,30 +78,15 @@ const line: FhiDiagramType = {
   options: OptionsChartTypeLine
 }
 
-const mapFylker2019: FhiDiagramType = {
-  id: FhiDiagramTypeId.mapFylker2019,
+const map: FhiDiagramType = {
+  id: FhiDiagramTypeId.map,
   icon: 'geo-alt',
-  name: 'Fylkeskart før 2019',
+  name: 'Kart',
   options: {
     chart: {
-      map: FhiDiagramTypeId.mapFylker2019
+      map: undefined
     }
-  },
-  isMap: true,
-  mapFile: 'assets/geo-json/no-all-2019.geo.json'
-}
-
-const mapFylker: FhiDiagramType = {
-  id: FhiDiagramTypeId.mapFylker,
-  icon: 'geo-alt',
-  name: 'Fylkeskart',
-  options: {
-    chart: {
-      map: FhiDiagramTypeId.mapFylker
-    }
-  },
-  isMap: true,
-  mapFile: 'assets/geo-json/no-all.geo.json'
+  }
 }
 
 const pie: FhiDiagramType = {
@@ -125,8 +110,7 @@ export class FhiDiagramTypes {
   static columnStacked = columnStacked;
   // static donut = donut;
   static line = line;
-  static mapFylker2019 = mapFylker2019;
-  static mapFylker = mapFylker;
+  static map = map;
   static pie = pie;
   static table = table;
 }
@@ -139,8 +123,7 @@ export const FhiAllDiagramTypes = [
   columnStacked,
   // donut,
   line,
-  mapFylker2019,
-  mapFylker,
+  map,
   pie,
   table
 ];
@@ -156,7 +139,16 @@ export const FhiChartTypes = [
   // donut
 ];
 
+// This is kept as an array even though it may not get more than one item,
+// because the implementation in the diagram type nav is the same for
+// both FhiChartTypes and FhiMapTypes
 export const FhiMapTypes = [
-  mapFylker2019,
-  mapFylker
+  map
 ];
+
+// FhiMapTypeIds represents the different geo-json maps currently supported
+export const FhiMapTypeIds = [
+  'mapFylker2019',
+  'mapFylker'
+];
+

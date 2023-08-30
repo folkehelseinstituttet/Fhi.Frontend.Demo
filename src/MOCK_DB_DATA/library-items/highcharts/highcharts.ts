@@ -173,6 +173,20 @@ function getDocumentationHtml(): string | null {
         <td>Tekst som kommer etter label "Sist oppdatert" i footer. Valgfritt format, men "dd.mm.yyyy" er vanligst.</td>
       </tr>
       <tr>
+        <th>mapTypeId</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>
+          Hvilket kart en ønsker å bruke. Hvis ikke definert så vil ikke kart være tilgjengelig.
+          Lovlige mapTypeId'er:
+          <ul>
+            <li><code>mapFylker2019</code></li>
+            <li><code>mapFylker</code></li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
         <th>openSource</th>
         <td><code>boolean</code></td>
         <td>true</td>
@@ -226,6 +240,15 @@ function getDocumentationHtml(): string | null {
           <b>Obs!</b> Type <code>string</code> er en formatert string, dvs. pipe (|) brukes som skilletegn
           mellom kategorinavn hvis det er mer enn ett kategorinavn som er slått sammen til ett serienavn. Hvis en
           vil slippe å forholde seg til et spesifikt skilletegn kan en velge å bruke en array bestående av kategorinavn i stedet.
+        </td>
+      </tr>
+      <tr>
+        <th>stack</th>
+        <td><code>string</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>
+          Gir mulighet for for å gruppere serier i et diagram av typen <code>barStacked</code> og <code>columnStacked</code>.
         </td>
       </tr>
     </tbody>

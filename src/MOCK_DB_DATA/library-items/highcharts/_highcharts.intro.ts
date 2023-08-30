@@ -18,5 +18,5 @@ export const HighchartsIntro = `
   </a>
 </p>
 <p>
-  Foreløig ligger all API-dokumentasjon under fanen "Dokumentasjon" i det første eksempelet: <i>FHI Angular Highcharts - basic setup</i>
+  API-dokumentasjon ligger under fanen "Dokumentasjon" i det første eksempelet: <i>FHI Angular Highcharts - basic setup</i>
 </p>`;

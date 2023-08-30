@@ -10,7 +10,7 @@
       <ng-container *ngTemplateOutlet="table"></ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="diagramTypeGroups.map">
-      <ng-container *ngIf="allDiagramOptions.allMapsLoaded">
+      <ng-container *ngIf="showMap">
         <ng-container *ngTemplateOutlet="map"></ng-container>
       </ng-container>
     </ng-container>
@@ -36,26 +36,31 @@
            && allDiagramOptions.diagramTypeId !== undefined"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
+    [currentMapTypeId]="allDiagramOptions.mapTypeId"
     [currentSeriesLength]="allDiagramOptions.series.length"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
   </fhi-diagram-type-nav>
 </ng-template>
 
 <ng-template #chart>
-  <highcharts-chart
-    class="fhi-highcharts-chart"
-    [Highcharts]="highcharts"
-    [options]="highchartsOptions">
-  </highcharts-chart>
+  <div class="fhi-highcharts-wrapper">
+    <highcharts-chart
+      class="fhi-highcharts-chart"
+      [Highcharts]="highcharts"
+      [options]="highchartsOptions">
+    </highcharts-chart>
+  </div>
 </ng-template>
 
 <ng-template #map>
-  <highcharts-chart
-    class="fhi-highcharts-map"
-    [Highcharts]="highcharts"
-    [constructorType]="'mapChart'"
-    [options]="highchartsOptions">
-  </highcharts-chart>
+  <div class="fhi-highcharts-wrapper">
+    <highcharts-chart
+      class="fhi-highcharts-map"
+      [Highcharts]="highmaps"
+      [constructorType]="'mapChart'"
+      [options]="highchartsOptions">
+    </highcharts-chart>
+  </div>
 </ng-template>
 
 <ng-template #table>

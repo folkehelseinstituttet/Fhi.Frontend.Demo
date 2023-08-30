@@ -79,6 +79,7 @@ export class FhiAngularHighchartsExampleComponent implements OnInit {
             creditsText: 'Nøkkeltall for folkehelse',
             disclaimer: 'Disse dataene kan inneholde feil.',
             lastUpdated: '06.06.2023',
+            mapTypeId: 'mapFylker',
             openSource: false
           };
           this.dataIsLoading = false;

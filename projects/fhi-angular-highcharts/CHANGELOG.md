@@ -2,8 +2,10 @@
 
 > Aug 23, 2023
 
+* :tada: **Enhancement** Add support for two maps: "mapFylker2019" and "mapFylker"
 * :tada: **Enhancement** Visual improvements for diagramtype pie
-* :tada: **Enhancement** Make it possible to cherry pick diagram types (eg. excude map) in the diagram type menu
+* :tada: **Enhancement** Make it possible to cherry pick diagram types (eg. exclude map) in the diagram type menu
+* :bug: **Bugfix** Reintroduce property "stack" in interface FhiDiagramSerie since it was removed by mistake in a previous release
 
 ## 0.6.1
 

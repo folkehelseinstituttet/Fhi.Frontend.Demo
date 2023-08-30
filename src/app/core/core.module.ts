@@ -24,7 +24,11 @@ import { MainMenuComponent } from '../core/main-menu/main-menu.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
-      MockDbService, { apiBase: 'api/', delay: 0 }
+      MockDbService, {
+        apiBase: 'api/',
+        delay: 0,
+        passThruUnknownUrl: true
+       }
     )
   ],
   exports: [

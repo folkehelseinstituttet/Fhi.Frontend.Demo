@@ -13,6 +13,7 @@ import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
 import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
+import { is } from 'date-fns/locale';
 
 @Injectable({
   providedIn: 'root'
@@ -26,53 +27,55 @@ export class OptionsService {
   private allStaticOptions = new Map();
 
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
-    const isMap = allDiagramOptions?.diagramType?.isMap;
-    const isDonutOrPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie || allDiagramOptions.diagramTypeId === FhiDiagramTypeId.donut;
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
+    const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie
+    const isMap = options?.chart && 'map' in options?.chart;
     const series = allDiagramOptions.series;
 
-    options.series = this.getSeries(series, isMap, allDiagramOptions?.allMapsLoaded);
+    options.series = this.getSeries(series, isMap);
 
     if (!allDiagramOptions.openSource) {
       options.credits = { enabled: false };
+    }
+    if (isPie && options.legend && options.legend.title) {
+      options.legend.title.text = options.series[0].name;
     }
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
     }
-    if (isDonutOrPie) {
-      options.legend.title.text = options.series[0].name;
+    else if (options.chart !== undefined) {
+      options.chart.map = allDiagramOptions.mapTypeId;
     }
     return options;
   }
 
   private setAllStaticOptions() {
     FhiAllDiagramTypes.forEach(FhiDiagramType => {
-      const optionsCurrentChartType = FhiDiagramType.options;
-      const isMap = FhiDiagramType.isMap;
-      const staticOptions = this.setStaticOptions(optionsCurrentChartType, isMap);
+      const options = FhiDiagramType.options;
+      const isMap = options?.chart && 'map' in options?.chart;
+      const staticOptions = this.setStaticOptions(options, isMap);
       this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
     });
   }
 
-  private setStaticOptions(optionsCurrentChartType: Options | undefined, isMap: boolean | undefined): Options {
+  private setStaticOptions(options: Options | undefined, isMap: boolean | undefined): Options {
     const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
     const current = (isMap) ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
-    return merge(chartsAndMaps, current, optionsCurrentChartType);
+    return merge(chartsAndMaps, current, options);
   }
 
-  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
-    if (isMap && allMapsLoaded) {
+  // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
+    const highchartsSeries = cloneDeep(series);
+    highchartsSeries.forEach((serie) => {
+      // Remove flagged data from Highcharts options series
+      serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
+    });
 
-      // TODO: MAP
-      return [this.geoJsonService.getHighmapsSerie(series[0])];
-
+    if (isMap) {
+      return [this.geoJsonService.getHighmapsSerie(highchartsSeries[0])];
     } else {
-      const highchartsSeries = cloneDeep(series);
-      highchartsSeries.forEach((serie) => {
-        // Remove flagged data from Highcharts options series
-        serie.data = serie.data.filter(dataPoint =>  typeof dataPoint.y !== 'string')
-      });
       return highchartsSeries as SeriesOptionsType[];
     }
   }

@@ -4,14 +4,6 @@
 
 
 // Colors
-$inline-link-hover-color: #b10640;
-$text-color: #222222;
-$line-color-1: #dddddd;
-$line-color-2: #dddddd;
-$white: #ffffff;
-
-// Chart background, point stroke for markers and columns etc
-$background-color: #ffffff !default;
 
 // Neutral colors, grayscale by default. The default colors are defined by mixing the background-color with neutral, with a weight corresponding to the number in the name.
 $neutral-color-100: #000000 !default; // Strong text.
@@ -40,6 +32,15 @@ $colors:
     #B11643,
     #F7B500,
     #A9B7BF;
+
+$inline-link-hover-color: #b10640;
+$text-color: #222222;
+$line-color-1: #dddddd;
+$line-color-2: #dddddd;
+$white: #ffffff;
+
+// Chart background, point stroke for markers and columns etc
+$background-color: #ffffff !default;
 
 
 // Fonts

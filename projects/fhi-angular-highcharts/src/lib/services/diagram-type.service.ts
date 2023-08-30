@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
-import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import { FhiAllDiagramTypes, FhiChartTypes, FhiDiagramTypeId, FhiMapTypeIds, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
@@ -13,6 +13,7 @@ export class DiagramTypeService {
   private _series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
+  private mapTypeId!: string | undefined;
 
   get series(): FhiDiagramSerie[] {
     return this._series;
@@ -26,10 +27,16 @@ export class DiagramTypeService {
     return this._mapTypes;
   }
 
-  updateDiagramTypes(diagramTypeSubset: string[] | undefined, series: FhiDiagramSerie[], flaggedSeries: FlaggedSerie[]) {
+  updateDiagramTypes(
+    diagramTypeSubset: string[] | undefined,
+    mapTypeId: string | undefined,
+    series: FhiDiagramSerie[],
+    flaggedSeries: FlaggedSerie[]
+  ) {
     this._series = series;
     this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
+    this.mapTypeId = mapTypeId;
     this.updateAvailableTypes();
   }
 
@@ -74,10 +81,10 @@ export class DiagramTypeService {
   }
 
   private updateAvailableChartTypes(): FhiDiagramType[] {
-    let chartTypes = FhiChartTypes;
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
+    let chartTypes = FhiChartTypes;
 
     // Remove line
     if (
@@ -91,7 +98,7 @@ export class DiagramTypeService {
     // Remove donut and pie
     if (series.length > 1) {
       chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.pie);
-      chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
+      // chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
     }
 
     // Remove stacked
@@ -115,11 +122,13 @@ export class DiagramTypeService {
   }
 
   private updateAvailableMapTypes(): FhiDiagramType[] {
+    const series = this._series;
+    const mapTypeId = (() => FhiMapTypeIds.find(id => id === this.mapTypeId))();
     let mapTypes = FhiMapTypes;
 
-    // Remove types not in user defined subset
-    if (this.diagramTypeSubset !== undefined) {
-      mapTypes = mapTypes.filter(type => this.diagramTypeSubset?.includes(type.id));
+    // Remove all maps
+    if (mapTypeId === undefined || series.length > 1) {
+      mapTypes = [];
     }
 
     return mapTypes;

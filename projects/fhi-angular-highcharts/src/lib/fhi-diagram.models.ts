@@ -12,8 +12,6 @@ export interface FhiDiagramType {
   name: string;
   group?: string;
   options?: Options;
-  isMap?: boolean;
-  mapFile?: string;
 }
 
 export interface Data {
@@ -41,6 +39,7 @@ export interface FhiDiagramFlag {
 export interface FhiDiagramSerie {
   data:	Array<Data>;
   name:	string | Array<string>;
+  stack?: string;
 }
 
 export interface FhiDiagramOptions {
@@ -52,6 +51,7 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
+  mapTypeId?: string;
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   title: string;
