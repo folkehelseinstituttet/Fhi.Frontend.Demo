@@ -1,7 +1,8 @@
 # Unreleased
 
-> Aug 23, 2023
+> Aug 31, 2023
 
+* :tada: **Enhancement** Update dependencies: highcharts, highcharts-angular
 * :tada: **Enhancement** Add support for two maps: "mapFylker2019" and "mapFylker"
 * :tada: **Enhancement** Visual improvements for diagramtype pie
 * :tada: **Enhancement** Make it possible to cherry pick diagram types (eg. exclude map) in the diagram type menu

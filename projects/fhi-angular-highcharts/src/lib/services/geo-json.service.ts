@@ -16,14 +16,8 @@ export class GeoJsonService {
 
   getMap(mapTypeId: string | undefined): Observable<any> {
     if (
-        // NB! The files
-        //   - assets/fhi-angular-highcharts-geo-json/mapFylker.geo.json
-        //   - assets/fhi-angular-highcharts-geo-json/mapFylker19.geo.json
-        //  must be present in the app consuming  the npm packet
-        //  @folkehelseinstituttet/angular-highcharts. This is not a good
-        //  solution, but it works until we can come up with a better one.
-        mapTypeId !== 'mapFylker' &&
-        mapTypeId !== 'mapFylker2019'
+      mapTypeId !== 'mapFylker' &&
+      mapTypeId !== 'mapFylker2019'
     ) {
       throw new Error('No supported mapTypeId given, can\'t get map!');
     }
