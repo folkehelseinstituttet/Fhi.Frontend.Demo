@@ -295,6 +295,7 @@ tree-node-expander,
         }
 
         &:focus-visible {
+            opacity: 1;
             z-index: 1;
         }
     }
@@ -308,6 +309,11 @@ tree-node-expander,
             }
         }
     }
+}
+
+.tree-node-focused .node-content-wrapper-focused {
+    border-color: $fhi-core-blue-1 !important;
+    box-shadow: 0 0 0 1px $fhi-core-blue-1 inset;
 }
 
 tree-viewport {
