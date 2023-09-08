@@ -14,8 +14,8 @@ const HighchartsItems: LibraryItem[] = [
 ];
 
 export const HighchartsData: LibraryItemGroup = {
-  id: GROUPS.FhiAngularHighcharts.id,
-  title: GROUPS.FhiAngularHighcharts.title,
+  id: GROUPS.Highcharts.id,
+  title: GROUPS.Highcharts.title,
   intro: HighchartsIntro,
   libraryItems: HighchartsItems
 };

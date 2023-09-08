@@ -3,8 +3,8 @@ import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Accordion: LibraryItem[] = [{
-  id: ITEMS.AccordionDefault.id,
-  title: ITEMS.AccordionDefault.title,
+  id: ITEMS.Accordion.id,
+  title: ITEMS.Accordion.title,
   type: LibraryItemType.ngBootstrap,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

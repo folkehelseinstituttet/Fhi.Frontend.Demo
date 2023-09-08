@@ -11,8 +11,8 @@ library-items/
   accordions/ # Always plural, even if Bootstrap doesn't use plural in their documentation
     _accordions.data.ts # Always "_[folder-name].data.ts" 
     _accordions.intro.ts # Always "_[folder-name].intro.ts"
-    accordion.ts # Always "[folder-name (singular)].ts", and the default item doesn't need a suffix
-    accordion-flush.ts # Always "[folder-name (singular)]-[suffix].ts" when not default item
+    accordion.ts # Always "[folder-name (singular)].ts" if first item (suffix is optional)
+    accordion-flush.ts # Always "[folder-name (singular)]-[suffix].ts" if item nr. 2 or higher
     etc.
 ```
 
