@@ -7,7 +7,7 @@
     "@folkehelseinstituttet/style": "^5.0.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.0",
     "bootstrap": "^5.0.0",
-    "date-fns": "~2.3.0",
+    "date-fns": "^2.30.0",
     "highcharts": "11.1.0",
     "highcharts-angular": "3.1.2"
  },
