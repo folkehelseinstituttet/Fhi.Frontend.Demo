@@ -1,4 +1,5 @@
 <div [ngSwitch]="groupId">
+  <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId"></app-accordions>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId"></app-highcharts>
   <div *ngSwitchDefault>No item group matches given id...</div>
 </div>
@@ -6,20 +7,6 @@
 
 <!-- TODO: Remove old switch implementation when alt items use new system -->
 <div [ngSwitch]="itemId">
-
-
-  <app-accordion-example
-    *ngSwitchCase="items.Accordion.id" [itemId]="itemId" [itemIds]="items">
-  </app-accordion-example>
-  <app-accordion-example
-    *ngSwitchCase="items.AccordionFlush.id" [itemId]="itemId" [itemIds]="items">
-  </app-accordion-example>
-  <app-accordion-example
-    *ngSwitchCase="items.AccordionFlushDark.id" [itemId]="itemId" [itemIds]="items">
-  </app-accordion-example>
-
-
-
   <app-advanced-select-example
     *ngSwitchCase="itemIds.AdvancedSelectAutosuggest"
     [itemId]="itemIds.AdvancedSelectAutosuggest"
@@ -157,6 +144,7 @@
   <app-prototype-pageheader *ngSwitchCase="itemIds.PrototypePageheader"></app-prototype-pageheader>
   <app-prototype-table-with-expandable-content *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"></app-prototype-table-with-expandable-content>
 
-  <div *ngSwitchDefault>No component matches given id...</div>
+  <!-- Falling through to *ngSwitchDefault for all items using new system... -->
+  <!-- <div *ngSwitchDefault>No component matches given id...</div> -->
 
 </div>

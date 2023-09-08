@@ -11,7 +11,7 @@ library-items/
   accordions/ # Always plural, even if Bootstrap doesn't use plural in their documentation
     _accordions.data.ts # Always "_[folder-name].data.ts" 
     _accordions.intro.ts # Always "_[folder-name].intro.ts"
-    accordion.ts # Always "[folder-name (singular)].ts" if first item (suffix is optional)
+    accordion.ts # Always "[folder-name (singular)].ts" OR "[folder-name (singular)]-[suffix].ts" if first item (eg. suffix is optional)
     accordion-flush.ts # Always "[folder-name (singular)]-[suffix].ts" if item nr. 2 or higher
     etc.
 ```
@@ -20,26 +20,15 @@ library-items/
 
 If a library item in a group needs Angular code to work the code goes into folder: `app/views/shared/dynamic-library-examples/all-example-components/`
 
-Using Accordions to show naming convention if all examples in one angular component:
+NB! Only one component pr. item group.
+
+Using Accordions to show naming convention:
 
 ```bash
 example-components/
   accordions/ # Always same name as the corresponding library item group
     accordions.component.html 
     accordions.component.ts
-```
-
-Using TreeViews to show naming convention if more than one angular component for the library item group:
-
-```bash
-example-components/
-  tree-views/ # Always same name as the corresponding library item group
-    tree-view-navigation/ # EITHER: same as the corresponding library item if one item in the example component
-      tree-view-navigation.component.html
-      tree-view-navigation.component.ts
-    tree-view-selection/ # OR: same as the first part of the item names in the corresponding library items if more than one item in the example component
-      tree-view-selection.component.html
-      tree-view-selection.component.ts
 ```
 
 ## HOWTO's

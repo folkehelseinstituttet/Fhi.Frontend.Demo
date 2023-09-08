@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
 
-import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
+import { AccordionsComponent } from './example-components/accordions/accordions.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { DatepickerExampleComponent } from './ng-bootstrap-examples/datepicker/datepicker.component';
 import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
@@ -37,11 +37,11 @@ import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with
 import { AngularTreeViewBuilderExampleComponent } from './fhi-prototypes/angular-tree-view-builder-example/angular-tree-view-builder-example.component';
 
 const EXAMPLE_COMPONENTS = [
+  AccordionsComponent,
   HighchartsComponent,
 ];
 
 const NGB_EXAMPLES = [
-  AccordionExampleComponent,
   AlertDismissibleExampleComponent,
   DatepickerExampleComponent,
   LayoutExpandableFistColExampleComponent,

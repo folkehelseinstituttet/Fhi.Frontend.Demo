@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemGroupsDataService } from '../services/library-item-groups-data.service';
 import { LibraryItemsShared } from '../models/library-item.model';
 import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
+
+// TODO: data service allá LibraryItemsSharedDataService (not good practice to import from MOCK_DB_DATA!)
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 @Component({
