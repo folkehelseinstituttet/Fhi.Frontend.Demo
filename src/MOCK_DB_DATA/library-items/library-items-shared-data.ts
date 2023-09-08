@@ -37,9 +37,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'error-page-500',
     title: 'Error page - 500'
   },
-  Highcharts: {
-    id: 'highcharts',
-    title: 'FHI Angular Highcharts - basic setup'
+  HighchartsWithoutMenu: {
+    id: 'highcharts-without-menu',
+    title: 'FHI Angular Highcharts - without menu'
   },
   HighchartsWithMenu: {
     id: 'highcharts-with-menu',

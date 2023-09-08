@@ -23,7 +23,7 @@ If a library item in a group needs Angular code to work the code goes into folde
 Using Accordions to show naming convention if all examples in one angular component:
 
 ```bash
-all-example-components/
+example-components/
   accordions/ # Always same name as the corresponding library item group
     accordions.component.html 
     accordions.component.ts
@@ -32,7 +32,7 @@ all-example-components/
 Using TreeViews to show naming convention if more than one angular component for the library item group:
 
 ```bash
-all-example-components/
+example-components/
   tree-views/ # Always same name as the corresponding library item group
     tree-view-navigation/ # EITHER: same as the corresponding library item if one item in the example component
       tree-view-navigation.component.html

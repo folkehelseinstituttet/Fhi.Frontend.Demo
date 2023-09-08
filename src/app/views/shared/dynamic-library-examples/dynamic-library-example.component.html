@@ -1,30 +1,22 @@
+<div [ngSwitch]="groupId">
+  <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId"></app-highcharts>
+  <div *ngSwitchDefault>No item group matches given id...</div>
+</div>
+
+
+<!-- TODO: Remove old switch implementation when alt items use new system -->
 <div [ngSwitch]="itemId">
 
-  <!-- New id and titel implementation! -->
 
   <app-accordion-example
-    *ngSwitchCase="libraryItemsShared.Accordion.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
+    *ngSwitchCase="items.Accordion.id" [itemId]="itemId" [itemIds]="items">
   </app-accordion-example>
   <app-accordion-example
-    *ngSwitchCase="libraryItemsShared.AccordionFlush.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
+    *ngSwitchCase="items.AccordionFlush.id" [itemId]="itemId" [itemIds]="items">
   </app-accordion-example>
   <app-accordion-example
-    *ngSwitchCase="libraryItemsShared.AccordionFlushDark.id" [itemId]="itemId" [itemIds]="libraryItemsShared">
+    *ngSwitchCase="items.AccordionFlushDark.id" [itemId]="itemId" [itemIds]="items">
   </app-accordion-example>
-
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.Highcharts.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.HighchartsWithMenuAndFooter.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-  <app-fhi-angular-highcharts-example
-    *ngSwitchCase="libraryItemsShared.HighchartsWithMenu.id" [itemId]="itemId">
-  </app-fhi-angular-highcharts-example>
-
-  <!-- / New id and titel implementation! -->
-
-
 
 
 
