@@ -35,11 +35,11 @@ example-components/
 
 ### How to create a new library item group
 
-1. Copy the folder `./.TEMPLATE/foo` and paste it in under `./`
+1. Copy the folder `./.TEMPLATE/items` and paste it in under `./`
 2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.intro`)
-3. Rename `const FooItems` and `const FooData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
-4. Rename `const FooIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
-5. Rename `const FooBar` in `./your-new-items/your-new-item.ts`
+3. Rename `const Items` and `const Data` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
+4. Rename `const ItemsIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
+5. Rename `const ItemOne` in `./your-new-items/your-new-item.ts`
 6. Add the following to `./library-item-groups-shared-data.ts`:
 
     ```ts
