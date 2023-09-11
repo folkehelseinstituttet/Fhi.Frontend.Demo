@@ -5,7 +5,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const Accordion: LibraryItem[] = [{
   id: ITEMS.Accordion.id,
   title: ITEMS.Accordion.title,
-  type: LibraryItemType.ngBootstrap,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
