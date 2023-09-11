@@ -4,7 +4,6 @@ import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
 import { FhiDiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
-import { LibraryItemsSharedDataService } from '../../../services/library-items-shared-data.service';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
@@ -14,20 +13,17 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 export class HighchartsComponent implements OnInit {
 
   @Input() itemId!: string;
+  @Input() items!: LibraryItemsShared;
 
-  items!: LibraryItemsShared;
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
 
   constructor(
     private highchartsDataService: MockDataService,
-    private libraryItemsSharedDataService: LibraryItemsSharedDataService
   ) { }
 
   ngOnInit() {
-    this.items = this.libraryItemsSharedDataService.libraryItemsShared;
-
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
       this.loadData(MockData.TwoSeriesAar);
 

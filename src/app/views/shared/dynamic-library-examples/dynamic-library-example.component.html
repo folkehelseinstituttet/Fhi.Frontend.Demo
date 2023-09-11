@@ -1,6 +1,6 @@
 <div [ngSwitch]="groupId">
-  <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId"></app-accordions>
-  <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId"></app-highcharts>
+  <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
+  <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
   <div *ngSwitchDefault>No item group matches given id...</div>
 </div>
 
