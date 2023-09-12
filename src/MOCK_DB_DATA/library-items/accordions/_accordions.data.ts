@@ -7,7 +7,7 @@ import { Accordion } from './accordion';
 import { AccordionFlush } from './accordion-flush';
 import { AccordionFlushDark } from './accordion-flush-dark';
 
-const AccordionItems: LibraryItem[] = [
+const Accordions: LibraryItem[] = [
   ...Accordion,
   ...AccordionFlush,
   ...AccordionFlushDark
@@ -17,5 +17,5 @@ export const AccordionsData: LibraryItemGroup = {
   id: GROUPS.Accordions.id,
   title: GROUPS.Accordions.title,
   intro: AccordionsIntro,
-  libraryItems: AccordionItems
+  libraryItems: Accordions
 };

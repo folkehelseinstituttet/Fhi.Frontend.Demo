@@ -5,7 +5,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const AccordionFlush: LibraryItem[] = [{
   id: ITEMS.AccordionFlush.id,
   title: ITEMS.AccordionFlush.title,
-  type: LibraryItemType.ngBootstrap,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

@@ -2,9 +2,9 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const FooBar: LibraryItem[] = [{
-  id: ITEMS.FooBar.id,
-  title: ITEMS.FooBar.title,
+export const ItemTwo: LibraryItem[] = [{
+  id: ITEMS.ItemTwo.id,
+  title: ITEMS.ItemTwo.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

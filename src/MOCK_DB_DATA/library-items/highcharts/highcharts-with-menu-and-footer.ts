@@ -4,7 +4,7 @@ import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 export const HighchartsWithMenuAndFooter: LibraryItem[] = [{
   id: ITEMS.HighchartsWithMenuAndFooter.id,
   title: ITEMS.HighchartsWithMenuAndFooter.title,
-  type: LibraryItemType.fhiAngular,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

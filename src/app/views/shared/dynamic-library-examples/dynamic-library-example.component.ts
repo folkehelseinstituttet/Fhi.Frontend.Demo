@@ -4,21 +4,26 @@ import { LibraryItemGroupsDataService } from '../services/library-item-groups-da
 import { LibraryItemsShared } from '../models/library-item.model';
 import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
 
+// TODO: data service allá LibraryItemsSharedDataService (not good practice to import from MOCK_DB_DATA!)
+import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
+
 @Component({
   selector: 'app-dynamic-library-example',
   templateUrl: './dynamic-library-example.component.html'
 })
 export class DynamicLibraryExampleComponent {
 
+  @Input() groupId: string;
   @Input() itemId: string;
 
+  groups = LibraryItemGroupsSharedData;
   itemIds: any;
   itemIdsLoaded = false;
+  items!: LibraryItemsShared;
 
-  libraryItemsShared!: LibraryItemsShared;
 
   constructor(
-    private libraryItemsDataService: LibraryItemGroupsDataService,
+    private itemsDataService: LibraryItemGroupsDataService,
     private libraryItemsSharedDataService: LibraryItemsSharedDataService
   ) { }
 
@@ -31,7 +36,7 @@ export class DynamicLibraryExampleComponent {
 
   private getLibraryItemIds() {
     this.itemIdsLoaded = false;
-    this.libraryItemsDataService.getLibraryItemIds()
+    this.itemsDataService.getLibraryItemIds()
       .subscribe(libraryItemIds => {
         this.itemIds = libraryItemIds;
         this.itemIdsLoaded = true;
@@ -43,7 +48,7 @@ export class DynamicLibraryExampleComponent {
     this.libraryItemsSharedDataService.getLibraryItemsShared()
       .subscribe({
         next: libraryItemsShared => {
-          this.libraryItemsShared = libraryItemsShared;
+          this.items = libraryItemsShared;
         },
         error: error => this.getErrorMessage(error)
       });

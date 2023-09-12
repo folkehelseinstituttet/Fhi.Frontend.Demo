@@ -15,6 +15,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   isDebugging = false;
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
+  groupId!: string;
   sectionTitle!: string;
   sectionIntro!: string;
 
@@ -22,7 +23,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
-    private libraryItemsDataService: LibraryItemGroupsDataService
+    private itemsDataService: LibraryItemGroupsDataService
   ) { }
 
   ngOnInit() {
@@ -40,9 +41,10 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   }
 
   private getLibraryItems(lastSegmentPath: string) {
-    this.libraryItemsDataService.getLibraryItemGroup(lastSegmentPath)
+    this.itemsDataService.getLibraryItemGroup(lastSegmentPath)
       .subscribe({
         next: libraryItemGroup => {
+          this.groupId = libraryItemGroup.id;
           this.sectionTitle = libraryItemGroup.title;
           this.sectionIntro = libraryItemGroup.intro;
           this.libraryItems = libraryItemGroup.libraryItems;
@@ -58,7 +60,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   private getLibraryItems_OLD(lastSegmentPath: string, error: any) {
     // console.log('getLibraryItems_OLD -> error', error);
     this.sectionTitle = undefined;
-    this.libraryItemsDataService.getLibraryItems(lastSegmentPath)
+    this.itemsDataService.getLibraryItems(lastSegmentPath)
       .subscribe(libraryItems => {
         this.libraryItems = libraryItems;
         this.libraryItemsLoaded = true;

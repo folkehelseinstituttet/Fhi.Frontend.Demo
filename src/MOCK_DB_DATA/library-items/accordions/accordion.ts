@@ -3,9 +3,9 @@ import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Accordion: LibraryItem[] = [{
-  id: ITEMS.AccordionDefault.id,
-  title: ITEMS.AccordionDefault.title,
-  type: LibraryItemType.ngBootstrap,
+  id: ITEMS.Accordion.id,
+  title: ITEMS.Accordion.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

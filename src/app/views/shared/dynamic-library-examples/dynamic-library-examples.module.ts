@@ -7,7 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
 
-import { AccordionExampleComponent } from './ng-bootstrap-examples/accordion-example/accordion-example.component';
+import { AccordionsComponent } from './example-components/accordions/accordions.component';
 import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
 import { DatepickerExampleComponent } from './ng-bootstrap-examples/datepicker/datepicker.component';
 import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
@@ -21,7 +21,7 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-pop
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
 import { DateAndTimeExampleComponent } from './fhi-angular-examples/date-and-time-examples/date-and-time-example.component';
-import { FhiAngularHighchartsExampleComponent } from './fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component';
+import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { ProgressBarExampleComponent } from './fhi-angular-examples/progress-bar-example/progress-bar-example.component';
@@ -36,8 +36,12 @@ import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader
 import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
 import { AngularTreeViewBuilderExampleComponent } from './fhi-prototypes/angular-tree-view-builder-example/angular-tree-view-builder-example.component';
 
+const EXAMPLE_COMPONENTS = [
+  AccordionsComponent,
+  HighchartsComponent,
+];
+
 const NGB_EXAMPLES = [
-  AccordionExampleComponent,
   AlertDismissibleExampleComponent,
   DatepickerExampleComponent,
   LayoutExpandableFistColExampleComponent,
@@ -51,7 +55,6 @@ const NGB_EXAMPLES = [
 const FHI_EXAMPLES = [
   AdvancedSelectExampleComponent,
   DateAndTimeExampleComponent,
-  FhiAngularHighchartsExampleComponent,
   IconListComponent,
   FormElementExamplesComponent,
   GlobalHeadersExampleComponent,
@@ -73,6 +76,9 @@ const FHI_PROTOTYPES = [
 @NgModule({
   declarations: [
     DynamicLibraryExampleComponent,
+    ...EXAMPLE_COMPONENTS,
+
+    // TODO: remove
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES
@@ -85,6 +91,9 @@ const FHI_PROTOTYPES = [
   exports: [
     NgSelectModule,
     DynamicLibraryExampleComponent,
+    ...EXAMPLE_COMPONENTS,
+
+    // TODO: remove
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES

@@ -1,28 +1,45 @@
 # New library items
 
-## File and folder structure
+## Folder structure and file naming
 
-If more than one variation of component is needed, the file structure will be:
+### Library item group
+
+Using Accordions to show naming convention:
 
 ```bash
 library-items/
-  foo/
-    _foo.data.ts
-    _foo.intro.ts
-    foo-bar.ts
-    foo-baz.ts
+  accordions/ # Always plural, even if Bootstrap doesn't use plural in their documentation
+    _accordions.data.ts # Always "_[folder-name].data.ts" 
+    _accordions.intro.ts # Always "_[folder-name].intro.ts"
+    accordion.ts # Always "[folder-name (singular)].ts" OR "[folder-name (singular)]-[suffix].ts" if first item (eg. suffix is optional)
+    accordion-flush.ts # Always "[folder-name (singular)]-[suffix].ts" if item nr. 2 or higher
     etc.
 ```
 
-## HOW TO
+### Library item with "dynamic example"
 
-### How to create a new mock-db data file with a library item
+If a library item in a group needs Angular code to work the code goes into folder: `app/views/shared/dynamic-library-examples/all-example-components/`
 
-1. Copy the folder `./.TEMPLATE/foo` and paste it in under `./`
+NB! Only one component pr. item group.
+
+Using Accordions to show naming convention:
+
+```bash
+example-components/
+  accordions/ # Always same name as the corresponding library item group
+    accordions.component.html 
+    accordions.component.ts
+```
+
+## HOWTO's
+
+### How to create a new library item group
+
+1. Copy the folder `./.TEMPLATE/items` and paste it in under `./`
 2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.intro`)
-3. Rename `const FooItems` and `const FooData` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
-4. Rename `const FooIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
-5. Rename `const FooBar` in `./your-new-items/your-new-item.ts`
+3. Rename `const Items` and `const Data` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
+4. Rename `const ItemsIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
+5. Rename `const ItemOne` in `./your-new-items/your-new-item.ts`
 6. Add the following to `./library-item-groups-shared-data.ts`:
 
     ```ts

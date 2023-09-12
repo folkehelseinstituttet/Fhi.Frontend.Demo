@@ -1,7 +1,10 @@
 export enum LibraryItemType {
   html = 0,
-  ngBootstrap = 1,
-  fhiAngular = 2
+  angular = 1,
+
+  // TODO: deprecated
+  ngBootstrap = 2,
+  fhiAngular = 3
 }
 
 // Items

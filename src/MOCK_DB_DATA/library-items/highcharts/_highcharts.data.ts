@@ -3,19 +3,19 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 
 import { HighchartsIntro } from './_highcharts.intro';
 
-import { Highcharts } from './highcharts';
+import { HighchartsWithoutMenu } from './highcharts-without-menu';
 import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
 import { HighchartsWithMenu } from './highcharts-with-menu';
 
-const HighchartsItems: LibraryItem[] = [
-  ...Highcharts,
+const Highcharts: LibraryItem[] = [
+  ...HighchartsWithoutMenu,
   ...HighchartsWithMenu,
   ...HighchartsWithMenuAndFooter
 ];
 
 export const HighchartsData: LibraryItemGroup = {
-  id: GROUPS.FhiAngularHighcharts.id,
-  title: GROUPS.FhiAngularHighcharts.title,
+  id: GROUPS.Highcharts.id,
+  title: GROUPS.Highcharts.title,
   intro: HighchartsIntro,
-  libraryItems: HighchartsItems
+  libraryItems: Highcharts
 };

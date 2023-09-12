@@ -3,15 +3,21 @@ import { LibraryItemsShared } from "src/app/views/shared/models/library-item.mod
 /**
  * NB! Item order in this file doesn't have any effect.
  *     If you want to change order within a group this
- *     is done in src\MOCK_DB_DATA\library-items\foo\foo.data.ts
+ *     is done in src\MOCK_DB_DATA\library-items\[item-group]\[item-group].data.ts
  *
- *     export const FooItems: LibraryItem[] = [
- *       ...FooBar,
- *       ...FooBaz
- *     ];
+ *  Template for naming:
+ *
+ *  Item: {
+ *    id: 'item-one',
+ *    title: 'Item - one'
+ *  },
+ *  ItemTwo: {
+ *    id: 'item-two',
+ *    title: 'Item - two'
+ *  },
  */
 export const LibraryItemsSharedData: LibraryItemsShared = {
-  AccordionDefault: {
+  Accordion: {
     id: 'accordion',
     title: 'Accordion'
   },
@@ -24,23 +30,23 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Accordion - flush dark'
   },
   ErrorPage404: {
-    id: 'errorpage404',
-    title: '404 - page not found'
+    id: 'error-page-404',
+    title: 'Error page - 404'
   },
   ErrorPage500: {
-    id: 'errorpage500',
-    title: '500 - server error'
+    id: 'error-page-500',
+    title: 'Error page - 500'
   },
-  Highcharts: {
-    id: 'highcharts',
-    title: 'FHI Angular Highcharts - basic setup'
+  HighchartsWithoutMenu: {
+    id: 'highcharts-without-menu',
+    title: 'FHI Angular Highcharts - without menu'
   },
   HighchartsWithMenu: {
-    id: 'highchartswithmenu',
+    id: 'highcharts-with-menu',
     title: 'FHI Angular Highcharts - with menu'
   },
   HighchartsWithMenuAndFooter: {
-    id: 'highchartswithmenuandfooter',
+    id: 'highcharts-with-menu-and-footer',
     title: 'FHI Angular Highcharts - with menu and footer'
   }
 };
