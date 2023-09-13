@@ -1,11 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const DateRange: LibraryItem[] = [{
-  id: LibraryItemIds.DateRange,
-  title: 'Datointervall',
-  type: LibraryItemType.fhiAngular,
+export const TimeSelectorWeek: LibraryItem[] = [{
+  id: ITEMS.TimeSelectorWeek.id,
+  title: ITEMS.TimeSelectorWeek.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -18,18 +17,19 @@ export const DateRange: LibraryItem[] = [{
 function getExampleHtml(): string {
   return ``;
 }
-  
+
 /*
  * Return empty string to use a copy of exampleHtml as codeHtml.
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<fhi-week-selector></fhi-week-selector>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return ``;
 }

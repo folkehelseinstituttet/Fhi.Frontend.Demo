@@ -7,8 +7,6 @@ import { ButtonGroupData } from './button-group/_button-group.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { CardData } from './cards/_cards.data';
 import { ColorData } from './color/_color.data';
-import { DateAndTimeData } from './date-and-time/_date-and-time.data';
-import { DatepickerData } from './datepicker/_datepicker.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { FormsData } from './forms/_forms.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
@@ -55,7 +53,6 @@ export class LibraryItemSegmentPaths {
   static buttongroup = stringTransform(Object.keys({ ButtonGroupData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
   static card = stringTransform(Object.keys({ CardData })[0]);
-  static datepicker = stringTransform(Object.keys({ DatepickerData })[0]);
   static forms = stringTransform(Object.keys({ FormsData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
   static navigationtile = stringTransform(Object.keys({ NavigationtileData })[0]);
@@ -71,7 +68,6 @@ export class LibraryItemSegmentPaths {
   // Modules
   static globalfooter = stringTransform(Object.keys({ GlobalFooterData })[0]);
   static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
-  static dateandtimeselection = stringTransform(Object.keys({ DateAndTimeData })[0]);
   static drawer = stringTransform(Object.keys({ DrawerData })[0]);
   static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
 

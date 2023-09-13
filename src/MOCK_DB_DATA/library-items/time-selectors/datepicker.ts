@@ -1,11 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Datepicker: LibraryItem[] = [{
-  id: LibraryItemIds.Datepicker,
-  title: 'Datepicker',
-  type: LibraryItemType.fhiAngular,
+export const TimeSelectorDatepicker: LibraryItem[] = [{
+  id: ITEMS.TimeSelectorDatepicker.id,
+  title: ITEMS.TimeSelectorDatepicker.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()
@@ -16,14 +16,6 @@ export const Datepicker: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return ``;
-}
-
-/*
- * Return empty string to use a copy of exampleHtml as codeHtml.
- * Return null to remove Code from library-item.
- */
-function getCodeHtml(): string | null {
   return `
 <div class="fhi-datepicker">
   <label class="form-label fhi-datepicker__label"
@@ -50,7 +42,16 @@ function getCodeHtml(): string | null {
          aria-describedby="datepicker_description"
          ngbDatepicker
          #datepicker="ngbDatepicker"/>
-</div>
+</div>`;
+}
+
+/*
+ * Return empty string to use a copy of exampleHtml as codeHtml.
+ * Return null to remove Code from library-item.
+ */
+function getCodeHtml(): string | null {
+  return `
+<fhi-datepicker></fhi-datepicker>
 `;
 }
 
@@ -60,11 +61,9 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  Datepicker er implementert som en utvidet
-  <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>
-  i FHI Designsystem.
+  <a href="${CONST.FhiAngularComponents}/fhi-datepicker">FHI Datepicker</a> er en komponent i <a href="${CONST.FhiAngularComponents}">FHI Angular Components</a>.
 </p>
 <p>
-  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
+  Den er basert på <a href="">NgBootstrap Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
 </p>`;
 }

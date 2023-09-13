@@ -1,6 +1,7 @@
 <div [ngSwitch]="groupId">
   <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
+  <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <div *ngSwitchDefault>No item group matches given id...</div>
 </div>
 
@@ -37,23 +38,6 @@
 
   <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
 
-  <app-date-and-time-example
-    *ngSwitchCase="itemIds.DateRange"
-    [itemId]="itemIds.DateRange"
-    [itemIds]="itemIds">
-  </app-date-and-time-example>
-  <app-date-and-time-example
-    *ngSwitchCase="itemIds.YearSelection"
-    [itemId]="itemIds.YearSelection"
-    [itemIds]="itemIds">
-  </app-date-and-time-example>
-  <app-date-and-time-example
-    *ngSwitchCase="itemIds.WeekSelection"
-    [itemId]="itemIds.WeekSelection"
-    [itemIds]="itemIds">
-  </app-date-and-time-example>
-
-  <app-datepicker *ngSwitchCase="itemIds.Datepicker"></app-datepicker>
   <app-form-element-examples
     *ngSwitchCase="itemIds.FormRadioButtonTile"
     [itemId]="itemIds.FormRadioButtonTile"

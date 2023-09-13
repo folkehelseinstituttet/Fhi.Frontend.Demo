@@ -1,4 +1,6 @@
 import { Component, Injectable, Input } from '@angular/core';
+
+import { LibraryItemsShared } from '../../../models/library-item.model';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
@@ -25,16 +27,16 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 }
 
 @Component({
-  selector: 'app-date-and-time-example',
-  templateUrl: './date-and-time-example.component.html',
+  selector: 'app-time-selectors',
+  templateUrl: './time-selectors.component.html',
 
   providers: [
     { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
   ],
 })
-export class DateAndTimeExampleComponent {
+export class TimeSelectorsComponent {
   @Input() itemId!: string;
-  @Input() itemIds!: any;
+  @Input() items!: LibraryItemsShared;
   
   selectedFromYear: number;
   selectedToYear: number;
