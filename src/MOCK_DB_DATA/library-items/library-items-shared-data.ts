@@ -58,11 +58,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Date range'
   },
   TimeSelectorWeek: {
-    id: 'time-selectdor-week',
+    id: 'time-selector-week',
     title: 'Week selector'
   },
   TimeSelectorYear: {
-    id: 'time-selectdor-year',
+    id: 'time-selector-year',
     title: 'Year selector'
   },
 };
