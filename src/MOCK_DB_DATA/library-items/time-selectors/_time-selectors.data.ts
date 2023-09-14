@@ -3,10 +3,10 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 
 import { TimeSelectorsIntro } from './_time-selectors.intro';
 
-import { TimeSelectorDatepicker } from './datepicker';
-import { TimeSelectorDateRange } from './date-range';
-import { TimeSelectorWeek } from './week-selector';
-import { TimeSelectorYear } from './year-selector';
+import { TimeSelectorDatepicker } from './time-selector-datepicker';
+import { TimeSelectorDateRange } from './time-selector-date-range';
+import { TimeSelectorWeek } from './time-selector-week';
+import { TimeSelectorYear } from './time-selector-year';
 
 const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,

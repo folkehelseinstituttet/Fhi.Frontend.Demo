@@ -16,33 +16,7 @@ export const TimeSelectorDatepicker: LibraryItem[] = [{
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<div class="fhi-datepicker">
-  <label class="form-label fhi-datepicker__label"
-         for="datepicker_id"
-         id="datepicker_label">
-    Velg en dato
-  </label>
-
-  <p class="fhi-datepicker__description"
-     id="datepicker_description">dd.mm.åååå</p>
-  
-  <button class="fhi-datepicker__toggler" (click)="datepicker.toggle()">
-    <i class="icon-calendar"></i>
-    <span class="visually-hidden">Åpne datovelger</span>
-  </button>
-
-  <input class="form-control fhi-datepicker__form-control"
-         autocomplete="off"
-         id="datepicker_id"
-         inputmode="decimal"
-         outsideDays="hidden"
-         type="text"
-         aria-labelledby="datepicker_label"
-         aria-describedby="datepicker_description"
-         ngbDatepicker
-         #datepicker="ngbDatepicker"/>
-</div>`;
+  return ``;
 }
 
 /*
