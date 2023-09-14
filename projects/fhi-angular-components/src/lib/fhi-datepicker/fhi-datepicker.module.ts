@@ -5,12 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { FhiDatepickerComponent } from './fhi-datepicker.component';
 
 @NgModule({
-  declarations: [
-    FhiDatepickerComponent
-  ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    FhiDatepickerComponent
   ],
   exports: [
     FhiDatepickerComponent
