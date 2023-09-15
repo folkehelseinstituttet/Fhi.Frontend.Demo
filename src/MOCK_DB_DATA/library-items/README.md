@@ -43,7 +43,7 @@ example-components/
 ### How to create a new library item group
 
 1. Copy the folder `./.TEMPLATE/items` and paste it in under `./`
-2. Rename new folder, files and constantclass as described under [Folder structure and file naming](#folder-structure-and-file-naming)
+2. Rename new folder, files as described under [Folder structure and file naming](#folder-structure-and-file-naming)
 3. Rename `ItemOne` -> `YourNewItem` in `./your-new-items/your-new-item.ts`
 4. Rename `ItemsIntro` -> `YourNewItemsIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
 5. In `./your-new-items/_your-new-items.data.ts`

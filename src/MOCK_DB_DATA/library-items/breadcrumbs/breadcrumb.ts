@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Breadcrumb: LibraryItem[] = [{
-  id: LibraryItemIds.Breadcrumb,
-  title: 'Breadcrumb',
+  id: ITEMS.Breadcrumb.id,
+  title: ITEMS.Breadcrumb.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

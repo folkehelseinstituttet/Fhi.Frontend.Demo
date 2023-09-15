@@ -129,9 +129,6 @@ export class LibraryMenuService {
       name: 'Advanced select',
       link: LibraryItemSegmentPaths.advancedSelect
     }, {
-      name: 'Breadcrumb',
-      link: LibraryItemSegmentPaths.breadcrumb
-    }, {
       name: 'Button group',
       link: LibraryItemSegmentPaths.buttongroup
     }, {

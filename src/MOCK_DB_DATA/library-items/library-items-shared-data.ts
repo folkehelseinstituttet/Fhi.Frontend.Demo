@@ -45,6 +45,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'badge-rounded',
     title: 'Badge - rounded'
   },
+  Breadcrumb: {
+    id: 'breadcrumb',
+    title: 'Breadcrumb'
+  },
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404'

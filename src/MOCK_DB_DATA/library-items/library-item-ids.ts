@@ -1,5 +1,4 @@
 import { AdvancedSelectIds } from "./advanced-select/_advanced-select.ids"
-import { BreadcrumbIds } from "./breadcrumb/_breadcrumb.ids"
 import { ButtonGroupIds } from "./button-group/_button-group.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
 import { CardIds } from "./cards/_cards.ids"
@@ -33,7 +32,6 @@ const libraryItemIds = {
   ...AdvancedSelectIds,
   ...PrototypeAngularTreeIds,
   ...ButtonGroupIds,
-  ...BreadcrumbIds,
   ...ButtonsIds,
   ...CardIds,
   ...ColorIds,
