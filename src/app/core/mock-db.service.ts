@@ -9,7 +9,6 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
-import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
 import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
@@ -51,9 +50,10 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
+import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
+import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
-import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
@@ -71,12 +71,12 @@ export class MockDbService implements InMemoryDbService {
 
       // Items
       AccordionsData,
+      AlertsData,
       ErrorPagesData,
       HighchartsData,
 
       // Items OLD
       AdvancedSelectData,
-      AlertsData,
       PrototypeAngularTreeData,
       BadgeData,
       BreadcrumbData,
