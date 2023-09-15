@@ -47,7 +47,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   Breadcrumb: {
     id: 'breadcrumb',
-    title: 'Breadcrumb'
+    title: ''
   },
   ErrorPage404: {
     id: 'error-page-404',

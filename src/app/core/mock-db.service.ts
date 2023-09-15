@@ -77,7 +77,7 @@ export class MockDbService implements InMemoryDbService {
       ErrorPagesData,
       HighchartsData,
 
-      // Items OLD
+      // Items OLD: deprecate when all items use new system
       AdvancedSelectData,
       PrototypeAngularTreeData,
       ButtonGroupData,
