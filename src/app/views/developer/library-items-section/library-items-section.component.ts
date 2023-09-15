@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
 
 import { UrlService } from 'src/app/services/url.service';
 import { LibraryItemGroupsDataService } from '../../shared/services/library-item-groups-data.service';
