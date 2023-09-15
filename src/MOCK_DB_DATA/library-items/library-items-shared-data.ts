@@ -29,6 +29,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'accordion-flush-dark',
     title: 'Accordion - flush dark'
   },
+  AlertBasic: {
+    id: 'alert-basic',
+    title: 'Alert'
+  },
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404'

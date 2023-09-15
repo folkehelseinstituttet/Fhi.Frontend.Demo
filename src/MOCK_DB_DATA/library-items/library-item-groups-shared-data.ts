@@ -23,6 +23,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'AccordionsData',
     parentUrlSegment: UrlSegment.components
   },
+  Alerts: {
+    id: 'alerts',
+    title: 'Alerts',
+    apiEndPoint: 'AlertsData',
+    parentUrlSegment: UrlSegment.components
+  },
 
   // Moduler
 
