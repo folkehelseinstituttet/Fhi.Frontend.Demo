@@ -33,6 +33,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'alert-basic',
     title: 'Alert'
   },
+  AlertClosable: {
+    id: 'alert-closable',
+    title: 'Alert - closable'
+  },
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404'
