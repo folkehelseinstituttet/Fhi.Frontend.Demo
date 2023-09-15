@@ -1,11 +1,12 @@
 <div class="fhi-datepicker">
   <label class="form-label fhi-datepicker__label"
-         for="datepicker_id"
-         id="datepicker_label">
+         [for]="uniqueId">
     Velg en dato
   </label>
   
-  <button class="fhi-datepicker__toggler" (click)="datepicker.toggle()">
+  <button class="fhi-datepicker__toggler"
+          aria-haspopup="true"
+          (click)="datepicker.toggle()">
     <i class="icon-calendar"></i>
     <span class="visually-hidden">Åpne datovelger</span>
   </button>
@@ -13,15 +14,14 @@
   <input class="form-control fhi-datepicker__form-control"
          autocomplete="off"
          inputmode="decimal"
-         outsideDays="hidden"
-         [(ngModel)]="model"
          type="text"
-         aria-labelledby="datepicker_label"
-         aria-describedby="datepicker_description"
+         [outsideDays]="outsideDays"
+         [id]="uniqueId"
+         [(ngModel)]="model"
          ngbDatepicker
          #datepicker="ngbDatepicker"/>
 </div>
 
-<div class="mt-4">
+<!-- <div class="mt-4">
   <pre>Model: {{ model | json }}</pre>
-</div>
+</div> -->
