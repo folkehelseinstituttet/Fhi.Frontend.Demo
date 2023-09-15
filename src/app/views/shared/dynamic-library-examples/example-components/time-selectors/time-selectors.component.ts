@@ -10,6 +10,9 @@ import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
+
+  minDate = { year: 2020, month: 1, day: 1 };
+  maxDate = { year: 2030, month: 12, day: 31 };
   
   selectedFromYear: number;
   selectedToYear: number;
@@ -18,7 +21,7 @@ export class TimeSelectorsComponent {
 
   constructor(private calendar: NgbCalendar) {}
 
-  today = this.calendar.getToday();
+  selectedDay = this.calendar.getToday();
 
   yearList = [
     { id: 1, name: '2020' },

@@ -1,5 +1,7 @@
 <div *ngIf="itemId === items.TimeSelectorDatepicker.id">
-  <fhi-datepicker [date]="today"
+  <fhi-datepicker [date]="selectedDay"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
                   [outsideDays]="'hidden'"></fhi-datepicker>
   <br>
   <fhi-datepicker></fhi-datepicker>

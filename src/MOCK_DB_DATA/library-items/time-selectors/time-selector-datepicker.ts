@@ -39,5 +39,35 @@ function getDocumentationHtml(): string | null {
 </p>
 <p>
   Den er basert på <a href="">NgBootstrap Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
-</p>`;
+</p>
+
+<h3 class="mb-5">API</h3>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Type</th>
+        <th>Default</th>
+        <th>Required</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>date</th>
+        <td><code>FhiDatepickerDate</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Dette er forhåndsvalgt dato som vises i input<br>
+          <span class="text-nowrap"><code>{
+            year: "yyyy",
+            month: "mm",
+            day: "dd"
+          }</code></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>`;
 }
