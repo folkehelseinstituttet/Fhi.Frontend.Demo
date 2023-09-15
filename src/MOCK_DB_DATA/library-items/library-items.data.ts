@@ -1,7 +1,6 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
-import { BadgeData } from './badge/_badge.data';
 import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { CardData } from './cards/_cards.data';
@@ -32,7 +31,6 @@ import { TreeViewData } from './tree-view/_tree-view.data';
 
 export const AllData: LibraryItem[] = [
   ...AdvancedSelectData,
-  ...BadgeData,
   ...BreadcrumbData,
   ...ButtonsData,
   ...CardData,

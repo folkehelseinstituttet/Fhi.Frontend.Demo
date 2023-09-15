@@ -29,6 +29,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'AlertsData',
     parentUrlSegment: UrlSegment.components
   },
+  Badges: {
+    id: 'badges',
+    title: 'Badges',
+    apiEndPoint: 'BadgesData',
+    parentUrlSegment: UrlSegment.components
+  },
 
   // Moduler
 

@@ -10,7 +10,6 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 // Items
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
-import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
 import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
@@ -52,6 +51,7 @@ import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/libr
 
 import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
+import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 
@@ -72,13 +72,13 @@ export class MockDbService implements InMemoryDbService {
       // Items
       AccordionsData,
       AlertsData,
+      BadgesData,
       ErrorPagesData,
       HighchartsData,
 
       // Items OLD
       AdvancedSelectData,
       PrototypeAngularTreeData,
-      BadgeData,
       BreadcrumbData,
       ButtonGroupData,
       ButtonsData,
