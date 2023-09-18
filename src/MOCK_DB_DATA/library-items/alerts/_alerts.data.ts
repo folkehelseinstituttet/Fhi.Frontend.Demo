@@ -1,9 +1,19 @@
-import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 
-import { Alert } from './alert';
-import { AlertDismissible } from './alert-dismissable';
+import { AlertsIntro } from './_alerts.intro';
 
-export const AlertsData: LibraryItem[] = [
-  ...Alert,
-  ...AlertDismissible
+import { AlertBasic } from './alert-basic';
+import { AlertClosable } from './alert-closable';
+
+const Alerts: LibraryItem[] = [
+  ...AlertBasic,
+  ...AlertClosable
 ];
+
+export const AlertsData: LibraryItemGroup = {
+  id: GROUPS.Alerts.id,
+  title: GROUPS.Alerts.title,
+  intro: AlertsIntro,
+  libraryItems: Alerts
+};

@@ -1,5 +1,12 @@
 # New library items
 
+- [Folder structure and file naming](#folder-structure-and-file-naming)
+  - [Library item group](#library-item-group)
+  - [Library item with "dynamic example"](#library-item-with-dynamic-example)
+- [HOWTO's](#howtos)
+  - [How to create a new library item group](#how-to-create-a-new-library-item-group)
+  - [How to create a new library item in an exsisting mock-db data file](#how-to-create-a-new-library-item-in-an-exsisting-mock-db-data-file)
+
 ## Folder structure and file naming
 
 ### Library item group
@@ -36,10 +43,15 @@ example-components/
 ### How to create a new library item group
 
 1. Copy the folder `./.TEMPLATE/items` and paste it in under `./`
-2. Rename new folder and files (keep prefix `_` and suffix `.data`, and `.intro`)
-3. Rename `const Items` and `const Data` in `./your-new-items/_your-new-items.data.ts` (keep suffix `Data`)
-4. Rename `const ItemsIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
-5. Rename `const ItemOne` in `./your-new-items/your-new-item.ts`
+2. Rename new folder, files as described under [Folder structure and file naming](#folder-structure-and-file-naming)
+3. Rename `ItemOne` -> `YourNewItem` in `./your-new-items/your-new-item.ts`
+4. Rename `ItemsIntro` -> `YourNewItemsIntro` in `./your-new-items/_your-new-items.intro.ts` (keep suffix `Intro`)
+5. In `./your-new-items/_your-new-items.data.ts`
+   1. Update import `ItemsIntro` to `./_your-new-items.intro.ts`
+   2. Update import `ItemsOne` to `./_your-new-item.ts`
+   3. Rename `Items` -> `YourNewItems`
+   4. Rename `ItemsData` -> `YourNewItemsData` (keep suffix `Data`)
+   5. Rename `GROUPS.Items` -> `GROUPS.YourNewItems`
 6. Add the following to `./library-item-groups-shared-data.ts`:
 
     ```ts

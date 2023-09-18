@@ -1,11 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemGroupsDataService } from '../services/library-item-groups-data.service';
-import { LibraryItemsShared } from '../models/library-item.model';
+import { LibraryItemGroupsSharedDataService } from '../services/library-item-groups-shared-data.service';
+import { LibraryItemGroupsShared, LibraryItemsShared } from '../models/library-item.model';
 import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
-
-// TODO: data service allá LibraryItemsSharedDataService (not good practice to import from MOCK_DB_DATA!)
-import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 @Component({
   selector: 'app-dynamic-library-example',
@@ -16,7 +14,7 @@ export class DynamicLibraryExampleComponent {
   @Input() groupId: string;
   @Input() itemId: string;
 
-  groups = LibraryItemGroupsSharedData;
+  groups!: LibraryItemGroupsShared;
   itemIds: any;
   itemIdsLoaded = false;
   items!: LibraryItemsShared;
@@ -24,10 +22,12 @@ export class DynamicLibraryExampleComponent {
 
   constructor(
     private itemsDataService: LibraryItemGroupsDataService,
+    private libraryItemGroupsSharedDataService: LibraryItemGroupsSharedDataService,
     private libraryItemsSharedDataService: LibraryItemsSharedDataService
   ) { }
 
   ngOnInit() {
+      this.groups = this.libraryItemGroupsSharedDataService.libraryItemGroupsShared;
       this.getLibraryItemIds();
 
       // Testing new id and titel implementation!

@@ -1,7 +1,4 @@
 import { AdvancedSelectIds } from "./advanced-select/_advanced-select.ids"
-import { AlertsIds } from "./alerts/_alerts.ids"
-import { BadgeIds } from "./badge/_badge.ids"
-import { BreadcrumbIds } from "./breadcrumb/_breadcrumb.ids"
 import { ButtonGroupIds } from "./button-group/_button-group.ids"
 import { ButtonsIds } from "./buttons/_buttons.ids"
 import { CardIds } from "./cards/_cards.ids"
@@ -33,11 +30,8 @@ import { TypographyIds } from "./typography/_typography.ids"
 
 const libraryItemIds = {
   ...AdvancedSelectIds,
-  ...AlertsIds,
   ...PrototypeAngularTreeIds,
-  ...BadgeIds,
   ...ButtonGroupIds,
-  ...BreadcrumbIds,
   ...ButtonsIds,
   ...CardIds,
   ...ColorIds,
