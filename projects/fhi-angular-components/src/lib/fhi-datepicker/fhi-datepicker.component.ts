@@ -1,31 +1,31 @@
 import { Component, Injectable, Input } from '@angular/core';
-import { JsonPipe } from '@angular/common';
+import { formatDate, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbCalendar, NgbAlertModule, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FhiDatepickerDate } from './fhi-datepicker.model';
 
-@Injectable()
-export class CustomDateParserFormatter extends NgbDateParserFormatter {
-  readonly DELIMITER = '.';
+// @Injectable()
+// export class CustomDateParserFormatter extends NgbDateParserFormatter {
+//   readonly DELIMITER = '.';
 
-  parse(value: string): NgbDateStruct | null {
-    if (value) {
-      const date = value.split(this.DELIMITER);
-      return {
-        day: parseInt(date[0], 10),
-        month: parseInt(date[1], 10),
-        year: parseInt(date[2], 10),
-      };
-    }
-    return null;
-  }
+//   parse(value: string): NgbDateStruct | null {
+//     if (value) {
+//       const date = value.split(this.DELIMITER);
+//       return {
+//         day: parseInt(date[0], 10),
+//         month: parseInt(date[1], 10),
+//         year: parseInt(date[2], 10),
+//       };
+//     }
+//     return null;
+//   }
 
-  format(date: NgbDateStruct | null): string {
-    return date
-      ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year
-      : '';
-  }
-}
+//   format(date: NgbDateStruct | null): string {
+//     return date
+//       ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year
+//       : '';
+//   }
+// }
 
 @Component({
   selector: 'fhi-datepicker',
@@ -37,9 +37,9 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     FormsModule,
     JsonPipe
   ],
-  providers: [
-    { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-  ],
+  // providers: [
+  //   { provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
+  // ],
 })
 export class FhiDatepickerComponent {
   @Input() date: FhiDatepickerDate;
