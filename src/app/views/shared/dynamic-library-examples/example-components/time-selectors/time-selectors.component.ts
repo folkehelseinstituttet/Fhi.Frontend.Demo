@@ -11,9 +11,11 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = { year: 2020, month: 1, day: 1 };
-  maxDate = { year: 2030, month: 12, day: 31 };
+  minDate = new Date('July 20, 2019 00:00:00');
+  maxDate = new Date('July 20, 2026 00:00:00');
   
+  selectedDate = new Date().toISOString();
+
   selectedFromYear: number;
   selectedToYear: number;
   selectedYear: number;
@@ -21,7 +23,6 @@ export class TimeSelectorsComponent {
 
   constructor(private calendar: NgbCalendar) {}
 
-  selectedDay = this.calendar.getToday();
 
   yearList = [
     { id: 1, name: '2020' },
@@ -35,6 +36,11 @@ export class TimeSelectorsComponent {
 
   ngOnInit() {
     this.generateWeekList();
+    // console.debug('NOW:', new Date().toISOString());
+  }
+
+  getDate(date: any) {
+    console.log('hoi', date);
   }
 
   generateWeekList = () => {

@@ -1,8 +1,7 @@
-import { Component, Injectable, Input } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { formatDate, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbCalendar, NgbAlertModule, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { FhiDatepickerDate } from './fhi-datepicker.model';
+import { NgbAlertModule, NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 // @Injectable()
 // export class CustomDateParserFormatter extends NgbDateParserFormatter {
@@ -42,17 +41,32 @@ import { FhiDatepickerDate } from './fhi-datepicker.model';
   // ],
 })
 export class FhiDatepickerComponent {
-  @Input() date: FhiDatepickerDate;
-  @Input() outsideDays: string;
-  @Input() maxDate: NgbDateStruct;
-  @Input() minDate: NgbDateStruct;
+  @Input() date?: Date | any;
+  @Input() maxDate?: NgbDateStruct | any;
+  @Input() minDate?: NgbDateStruct | any;
+  @Input() outsideDays?: string;
+
+  @Output() dateSelected = new EventEmitter<string>();
 
   model: NgbDateStruct;
   uniqueId: string = 'datepickerId_' + Math.random().toString(36).substring(2, 20);
 
   ngOnInit() {
-    if (this.date) {
-      this.model = this.date;
+    this.model = this.convertDateToDateStruct(this.date);
+    this.maxDate = this.convertDateToDateStruct(this.maxDate);
+    this.minDate = this.convertDateToDateStruct(this.minDate);
+  }
+
+  dateSelection(date: any) {
+    this.dateSelected.emit(date);
+  }
+
+  private convertDateToDateStruct(date: string) {
+    const toDate = new Date(date);
+    return {
+      year  : toDate.getFullYear(),
+      month : toDate.getMonth() + 1,
+      day   : toDate.getDate()
     }
   }
 }

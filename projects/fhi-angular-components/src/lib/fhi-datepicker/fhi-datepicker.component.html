@@ -21,7 +21,8 @@
          [id]="uniqueId"
          [(ngModel)]="model"
          ngbDatepicker
-         #datepicker="ngbDatepicker"/>
+         #datepicker="ngbDatepicker"
+         (dateSelect)="dateSelection($event)"/>
 </div>
 
 <!-- <div class="mt-4">

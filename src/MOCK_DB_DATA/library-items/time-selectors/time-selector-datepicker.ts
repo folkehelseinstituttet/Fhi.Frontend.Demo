@@ -25,7 +25,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-datepicker></fhi-datepicker>
+<fhi-datepicker [date]="initialDate"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+                [outsideDays]="'hidden'"></fhi-datepicker>
 `;
 }
 
@@ -43,7 +46,8 @@ function getDocumentationHtml(): string | null {
 
 <h3 class="mb-5">API</h3>
 
-<div class="table-responsive">
+<h4>Inputs</h4>
+<div class="table-responsive mb-5">
   <table class="table">
     <thead>
       <tr>
@@ -57,15 +61,51 @@ function getDocumentationHtml(): string | null {
     <tbody>
       <tr>
         <th>date</th>
-        <td><code>FhiDatepickerDate</code></td>
+        <td><code>Date</code></td>
         <td>-</td>
         <td>no</td>
-        <td>Dette er forhåndsvalgt dato som vises i input<br>
-          <span class="text-nowrap"><code>{
-            year: "yyyy",
-            month: "mm",
-            day: "dd"
-          }</code></span></td>
+        <td>Dette er forhåndsvalgt dato for Datepicker.</td>
+      </tr>
+      <tr>
+        <th>maxDate</th>
+        <td><code>Date</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Siste dato som kan velges i Datepicker.</td>
+      </tr>
+      <tr>
+        <th>minDate</th>
+        <td><code>Date</code></td>
+        <td>-</td>
+        <td>no</td>
+        <td>Første dato som kan velges i Datepicker.</td>
+      </tr>
+      <tr>
+        <th>outsideDays</th>
+        <td><code>string</code></td>
+        <td><code>'visible'</code></td>
+        <td>no</td>
+        <td>Avsluttende datoer på forrige måned og startdatoer på neste måned vises på åpen Datepicker. Kan velge å skjule disse ved å sette til <code>'hidden'</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>Outputs</h4>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Output</th>
+        <th class="text-nowrap">Event type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>dateSelected</th>
+        <td><code>string</code></td>
+        <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres i ISO 8601 format.</td>
       </tr>
     </tbody>
   </table>
