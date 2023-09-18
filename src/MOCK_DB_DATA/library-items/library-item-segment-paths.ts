@@ -1,8 +1,5 @@
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
-import { AlertsData } from './alerts/_alerts.data';
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
-import { BadgeData } from './badge/_badge.data';
-import { BreadcrumbData } from './breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from './button-group/_button-group.data';
 import { ButtonsData } from './buttons/_buttons.data';
 import { CardData } from './cards/_cards.data';
@@ -47,9 +44,6 @@ export class LibraryItemSegmentPaths {
 
   // Components
   static advancedSelect = stringTransform(Object.keys({ AdvancedSelectData })[0]);
-  static alerts = stringTransform(Object.keys({ AlertsData })[0]);
-  static badge = stringTransform(Object.keys({ BadgeData })[0]);
-  static breadcrumb = stringTransform(Object.keys({ BreadcrumbData })[0]);
   static buttongroup = stringTransform(Object.keys({ ButtonGroupData })[0]);
   static buttons = stringTransform(Object.keys({ ButtonsData })[0]);
   static card = stringTransform(Object.keys({ CardData })[0]);

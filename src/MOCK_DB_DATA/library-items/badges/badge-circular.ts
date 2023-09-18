@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const BadgeCircular: LibraryItem[] = [{
-  id: LibraryItemIds.BadgeCircular,
-  title: 'Badge - circular',
+  id: ITEMS.BadgeCircular.id,
+  title: ITEMS.BadgeCircular.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

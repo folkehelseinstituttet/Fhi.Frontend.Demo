@@ -47,10 +47,10 @@ const ALERTS: Alert[] = [{
 ];
 
 @Component({
-  selector: 'app-alert-dismissible-example',
-  templateUrl: './alert-dismissible-example.component.html'
+  selector: 'app-alert-closable',
+  templateUrl: './alert-closable.component.html'
 })
-export class AlertDismissibleExampleComponent {
+export class AlertClosableComponent {
   alerts: Alert[];
 
   constructor() {

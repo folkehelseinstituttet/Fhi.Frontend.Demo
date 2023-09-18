@@ -8,7 +8,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DynamicLibraryExampleComponent } from './dynamic-library-example.component';
 
 import { AccordionsComponent } from './example-components/accordions/accordions.component';
-import { AlertDismissibleExampleComponent } from './ng-bootstrap-examples/alert-dismissible-example/alert-dismissible-example.component';
+import { AlertsComponent } from './example-components/alerts/alerts.component';
+import { AlertClosableComponent } from './example-components/alerts/alert-closable/alert-closable.component';
+import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
+
 import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
 import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
@@ -20,7 +23,6 @@ import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toa
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { AdvancedSelectExampleComponent } from './fhi-angular-examples/advanced-select-example/advanced-select-example.component';
-import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { FormElementExamplesComponent } from './fhi-angular-examples/form-element-examples/form-element-examples.component';
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { ProgressBarExampleComponent } from './fhi-angular-examples/progress-bar-example/progress-bar-example.component';
@@ -37,12 +39,13 @@ import { AngularTreeViewBuilderExampleComponent } from './fhi-prototypes/angular
 
 const EXAMPLE_COMPONENTS = [
   AccordionsComponent,
+  AlertsComponent,
+  AlertClosableComponent,
   HighchartsComponent,
   TimeSelectorsComponent,
 ];
 
 const NGB_EXAMPLES = [
-  AlertDismissibleExampleComponent,
   LayoutExpandableFistColExampleComponent,
   ModalExampleComponent,
   PaginationExampleComponent,

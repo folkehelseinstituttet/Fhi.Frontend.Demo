@@ -23,6 +23,25 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'AccordionsData',
     parentUrlSegment: UrlSegment.components
   },
+  Alerts: {
+    id: 'alerts',
+    title: 'Alerts',
+    apiEndPoint: 'AlertsData',
+    parentUrlSegment: UrlSegment.components
+  },
+  Badges: {
+    id: 'badges',
+    title: 'Badges',
+    apiEndPoint: 'BadgesData',
+    parentUrlSegment: UrlSegment.components
+  },
+  Breadcrumbs: {
+    id: 'breadcrumbs',
+    title: 'Breadcrumb',
+    apiEndPoint: 'BreadcrumbsData',
+    parentUrlSegment: UrlSegment.components
+  },
+
   TimeSelectors: {
     id: 'time-selectors',
     title: 'Time selectors',

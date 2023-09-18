@@ -29,6 +29,26 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'accordion-flush-dark',
     title: 'Accordion - flush dark'
   },
+  AlertBasic: {
+    id: 'alert-basic',
+    title: 'Alert'
+  },
+  AlertClosable: {
+    id: 'alert-closable',
+    title: 'Alert - closable'
+  },
+  BadgeCircular: {
+    id: 'badge-circular',
+    title: 'Badge - circular'
+  },
+  BadgeRounded: {
+    id: 'badge-rounded',
+    title: 'Badge - rounded'
+  },
+  Breadcrumb: {
+    id: 'breadcrumb',
+    title: ''
+  },
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404'

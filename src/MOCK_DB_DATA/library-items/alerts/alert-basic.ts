@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Alert: LibraryItem[] = [{
-  id: LibraryItemIds.Alert,
-  title: 'Alert',
+export const AlertBasic: LibraryItem[] = [{
+  id: ITEMS.AlertBasic.id,
+  title: ITEMS.AlertBasic.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

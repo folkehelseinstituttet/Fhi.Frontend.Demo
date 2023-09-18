@@ -9,10 +9,7 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
-import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
-import { BadgeData } from 'src/MOCK_DB_DATA/library-items/badge/_badge.data';
-import { BreadcrumbData } from 'src/MOCK_DB_DATA/library-items/breadcrumb/_breadcrumb.data';
 import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
@@ -42,7 +39,7 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 
 // -----------------------------------------
 //
-// Testing new id and titel implementation!
+// New id and titel implementation!
 //
 // -----------------------------------------
 
@@ -50,6 +47,9 @@ import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-i
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
 import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accordions.data';
+import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
+import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
+import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_breadcrumbs.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
@@ -70,16 +70,16 @@ export class MockDbService implements InMemoryDbService {
 
       // Items
       AccordionsData,
+      AlertsData,
+      BadgesData,
+      BreadcrumbsData,
       ErrorPagesData,
       HighchartsData,
       TimeSelectorsData,
 
-      // Items OLD
+      // Items OLD: deprecate when all items use new system
       AdvancedSelectData,
-      AlertsData,
       PrototypeAngularTreeData,
-      BadgeData,
-      BreadcrumbData,
       ButtonGroupData,
       ButtonsData,
       CardData,
