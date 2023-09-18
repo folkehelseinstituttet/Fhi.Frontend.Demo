@@ -1,11 +1,11 @@
 <div *ngIf="itemId === items.TimeSelectorDatepicker.id">
-  <fhi-datepicker [date]="selectedDate"
+  <fhi-datepicker [date]="initialDate"
                   [minDate]="minDate"
                   [maxDate]="maxDate"
                   [outsideDays]="'hidden'"
                   (dateSelected)="getDate($event)"></fhi-datepicker>
-  <!-- <br>
-  <fhi-datepicker></fhi-datepicker> -->
+  <button class="btn fhi-btn-primary mt-5" (click)="klikk()">Klikk!</button>
+  <p>{{ selectedDateISO }}</p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">

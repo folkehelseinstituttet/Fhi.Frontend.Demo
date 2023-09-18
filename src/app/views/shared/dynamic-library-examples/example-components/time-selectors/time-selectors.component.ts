@@ -14,7 +14,8 @@ export class TimeSelectorsComponent {
   minDate = new Date('July 20, 2019 00:00:00');
   maxDate = new Date('July 20, 2026 00:00:00');
   
-  selectedDate = new Date().toISOString();
+  initialDate = new Date().toISOString();
+  selectedDateISO = this.initialDate;
 
   selectedFromYear: number;
   selectedToYear: number;
@@ -36,11 +37,14 @@ export class TimeSelectorsComponent {
 
   ngOnInit() {
     this.generateWeekList();
-    // console.debug('NOW:', new Date().toISOString());
   }
 
-  getDate(date: any) {
-    console.log('hoi', date);
+  getDate(date: string) {
+    this.selectedDateISO = date;
+  }
+
+  klikk() {
+    console.log(this.selectedDateISO);
   }
 
   generateWeekList = () => {

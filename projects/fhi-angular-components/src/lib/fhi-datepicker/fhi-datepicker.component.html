@@ -22,9 +22,6 @@
          [(ngModel)]="model"
          ngbDatepicker
          #datepicker="ngbDatepicker"
+         (change)="updateDate($event)"
          (dateSelect)="dateSelection($event)"/>
 </div>
-
-<!-- <div class="mt-4">
-  <pre>Model: {{ model | json }}</pre>
-</div> -->

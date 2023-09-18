@@ -57,8 +57,21 @@ export class FhiDatepickerComponent {
     this.minDate = this.convertDateToDateStruct(this.minDate);
   }
 
+  updateDate(hoi: any) {
+    console.log(hoi.target.value);
+  }
+
   dateSelection(date: any) {
-    this.dateSelected.emit(date);
+    const currentLocalTime = new Date();
+    date = new Date(date.year,
+                    date.month - 1,
+                    date.day,
+                    currentLocalTime.getHours(),
+                    currentLocalTime.getMinutes(),
+                    currentLocalTime.getSeconds()
+                  );
+    const isoDate = date.toISOString();
+    this.dateSelected.emit(isoDate);
   }
 
   private convertDateToDateStruct(date: string) {
