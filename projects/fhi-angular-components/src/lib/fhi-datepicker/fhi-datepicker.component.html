@@ -22,6 +22,6 @@
          [(ngModel)]="model"
          ngbDatepicker
          #datepicker="ngbDatepicker"
-         (change)="updateDate($event)"
-         (dateSelect)="dateSelection($event)"/>
+         (change)="onDirectInputDate()"
+         (dateSelect)="onDateSelection($event)"/>
 </div>

@@ -4,8 +4,7 @@
                   [maxDate]="maxDate"
                   [outsideDays]="'hidden'"
                   (dateSelected)="getDate($event)"></fhi-datepicker>
-  <button class="btn fhi-btn-primary mt-5" (click)="klikk()">Klikk!</button>
-  <p>{{ selectedDateISO }}</p>
+  <p class="mt-3">Valgt dato: <b>{{ selectedDate }}</b></p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">

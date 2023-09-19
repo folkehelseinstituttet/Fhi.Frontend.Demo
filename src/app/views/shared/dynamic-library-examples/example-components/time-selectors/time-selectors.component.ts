@@ -1,7 +1,7 @@
 import { Component, Injectable, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { formatISO } from 'date-fns';
 
 @Component({
   selector: 'app-time-selectors',
@@ -11,19 +11,16 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = new Date('July 20, 2019 00:00:00');
-  maxDate = new Date('July 20, 2026 00:00:00');
+  minDate = new Date('2019, 7, 20');
+  maxDate = new Date('2024-09-19');
   
-  initialDate = new Date().toISOString();
-  selectedDateISO = this.initialDate;
+  initialDate = formatISO(new Date('2021, 10, 10'), { representation: 'date' });
+  selectedDate = this.initialDate;
 
   selectedFromYear: number;
   selectedToYear: number;
   selectedYear: number;
   selectedWeek: number;
-
-  constructor(private calendar: NgbCalendar) {}
-
 
   yearList = [
     { id: 1, name: '2020' },
@@ -40,11 +37,8 @@ export class TimeSelectorsComponent {
   }
 
   getDate(date: string) {
-    this.selectedDateISO = date;
-  }
-
-  klikk() {
-    console.log(this.selectedDateISO);
+    console.log(date);
+    this.selectedDate = date;
   }
 
   generateWeekList = () => {

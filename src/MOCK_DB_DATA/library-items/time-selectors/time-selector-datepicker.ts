@@ -61,21 +61,21 @@ function getDocumentationHtml(): string | null {
     <tbody>
       <tr>
         <th>date</th>
-        <td><code>Date</code></td>
+        <td><span class="text-nowrap">ISO8601 date <code>string</code></span></td>
         <td>-</td>
         <td>no</td>
         <td>Dette er forhåndsvalgt dato for Datepicker.</td>
       </tr>
       <tr>
         <th>maxDate</th>
-        <td><code>Date</code></td>
+        <td><span class="text-nowrap">ISO8601 date <code>string</code></span></td>
         <td>-</td>
         <td>no</td>
         <td>Siste dato som kan velges i Datepicker.</td>
       </tr>
       <tr>
         <th>minDate</th>
-        <td><code>Date</code></td>
+        <td><span class="text-nowrap">ISO8601 date <code>string</code></span></td>
         <td>-</td>
         <td>no</td>
         <td>Første dato som kan velges i Datepicker.</td>
