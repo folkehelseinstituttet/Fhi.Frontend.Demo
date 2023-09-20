@@ -1,4 +1,4 @@
-import { Component, Injectable, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
@@ -10,10 +10,10 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = '2019-09-20';
-  maxDate = '2024-09-20';
+  minDate = '2022-09-20';
+  maxDate = '2030-09-20';
   
-  initialDate = '2019-09-19';
+  initialDate = '2023-09-20';
   selectedDate = this.initialDate;
 
   selectedFromYear: number;
