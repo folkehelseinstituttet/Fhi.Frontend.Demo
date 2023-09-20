@@ -1,7 +1,6 @@
 import { Component, Injectable, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { formatISO } from 'date-fns';
 
 @Component({
   selector: 'app-time-selectors',
