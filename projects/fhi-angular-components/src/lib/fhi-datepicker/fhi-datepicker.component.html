@@ -12,16 +12,17 @@
   </button>
 
   <input class="form-control fhi-datepicker__form-control"
+         [ngClass]="{ 'is-invalid': !dateIsValid }"
          autocomplete="off"
          inputmode="decimal"
          type="text"
          [maxDate]="maxDate"
          [minDate]="minDate"
-         [outsideDays]="outsideDays"
          [id]="uniqueId"
          [(ngModel)]="model"
          ngbDatepicker
          #datepicker="ngbDatepicker"
          (change)="onDirectInputDate()"
          (dateSelect)="onDateSelection($event)"/>
+  <p class="invalid-feedback" *ngIf="!dateIsValid" [innerHTML]="errorMsg"></p>
 </div>

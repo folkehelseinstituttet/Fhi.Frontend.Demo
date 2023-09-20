@@ -27,8 +27,7 @@ function getCodeHtml(): string | null {
   return `
 <fhi-datepicker [date]="initialDate"
                 [minDate]="minDate"
-                [maxDate]="maxDate"
-                [outsideDays]="'hidden'"></fhi-datepicker>
+                [maxDate]="maxDate"></fhi-datepicker>
 `;
 }
 
@@ -80,13 +79,6 @@ function getDocumentationHtml(): string | null {
         <td>no</td>
         <td>Første dato som kan velges i Datepicker.</td>
       </tr>
-      <tr>
-        <th>outsideDays</th>
-        <td><code>string</code></td>
-        <td><code>'visible'</code></td>
-        <td>no</td>
-        <td>Avsluttende datoer på forrige måned og startdatoer på neste måned vises på åpen Datepicker. Kan velge å skjule disse ved å sette til <code>'hidden'</code>.</td>
-      </tr>
     </tbody>
   </table>
 </div>
@@ -105,7 +97,7 @@ function getDocumentationHtml(): string | null {
       <tr>
         <th>dateSelected</th>
         <td><code>string</code></td>
-        <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres i ISO 8601 format.</td>
+        <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres som ISO 8601 string.</td>
       </tr>
     </tbody>
   </table>

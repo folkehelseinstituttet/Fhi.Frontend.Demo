@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
-import { JsonPipe } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { NgbAlertModule, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { format, formatISO, parseISO, toDate } from 'date-fns';
+import { format, formatISO, isValid, parseISO, toDate } from 'date-fns';
 import { nb } from 'date-fns/locale';
 
 @Injectable()
@@ -34,44 +34,80 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   templateUrl: './fhi-datepicker.component.html',
   standalone: true,
   imports: [
-    NgbDatepickerModule,
-    NgbAlertModule,
     FormsModule,
-    JsonPipe
+    JsonPipe,
+    CommonModule,
+    NgbDatepickerModule,
+    NgbAlertModule
   ],
   providers: [
 		{ provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
 	],
 })
 export class FhiDatepickerComponent {
-  @Input() date?: Date | any;
-  @Input() maxDate?: NgbDateStruct | any;
-  @Input() minDate?: NgbDateStruct | any;
-  @Input() outsideDays?: string;
+  @Input() date?: string;
+  @Input() maximumDate?: string;
+  @Input() minimumDate?: string;
 
   @Output() dateSelected = new EventEmitter<string>();
 
+  dateIsValid: boolean = true;
+  errorMsg: string = '';
+  maxDateFormatted: Date;
+  maxDate: NgbDateStruct;
+  minDateFormatted: Date;
+  minDate: NgbDateStruct;
   model: NgbDateStruct;
   uniqueId: string = 'datepickerId_' + Math.random().toString(36).substring(2, 20);
 
   ngOnInit() {
     this.model = this.convertDateToNgbDateStruct(this.date);
-    this.maxDate = this.convertDateToNgbDateStruct(this.maxDate);
-    this.minDate = this.convertDateToNgbDateStruct(this.minDate);
+    this.maxDate = this.convertDateToNgbDateStruct(this.maximumDate);
+    this.minDate = this.convertDateToNgbDateStruct(this.minimumDate);
+    this.maxDateFormatted = new Date(this.maximumDate);
+    this.minDateFormatted = new Date(this.minimumDate);
   }
 
   onDirectInputDate() {
     const directInputDate: any = this.convertModelToDate(this.model);
-    this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
-    this.onDateSelection(this.model);
+    if (isValid(directInputDate)) {
+      this.dateIsValid = true;
+      const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
+      if (isInsideMinMaxRange) {
+        this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
+        this.onDateSelection(this.model);
+      } else {
+        this.dateIsValid = false;
+        this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
+      }
+    } else {
+      this.errorMsg = 'Du har lagt inn et datoformat som ikke støttes. Korrekt format er <strong>dd.mm.åååå</strong>';
+      this.dateIsValid = false;
+    }
   }
 
   onDateSelection(date: any) {
-    const currentLocalTime = new Date();
     date = this.convertModelToDate(date);
-    const isoDate = formatISO(date, { representation: 'date' });
-    
-    this.dateSelected.emit(isoDate);
+    if (isValid(date)) {
+      const isoDate = formatISO(date, { representation: 'date' });
+      this.dateIsValid = true;
+      this.dateSelected.emit(isoDate);
+    } else {
+      this.dateIsValid = false;
+      this.errorMsg = 'Det er lagt inn et datoformat som ikke støttes.';
+    }
+  }
+
+  private checkIfInsideRange(inputDate: any) {
+    inputDate = new Date(inputDate);
+    console.log(inputDate);
+    console.log(this.minDateFormatted);
+    console.log(this.maxDateFormatted);
+    console.log('- - -');
+    if (inputDate < this.minDateFormatted || inputDate > this.maxDateFormatted) {
+      return false;
+    }
+    return true;
   }
 
   private convertModelToDate(model: any) {

@@ -1,10 +1,12 @@
 <div *ngIf="itemId === items.TimeSelectorDatepicker.id">
   <fhi-datepicker [date]="initialDate"
-                  [minDate]="minDate"
-                  [maxDate]="maxDate"
-                  [outsideDays]="'hidden'"
+                  [minimumDate]="minDate"
+                  [maximumDate]="maxDate"
                   (dateSelected)="getDate($event)"></fhi-datepicker>
-  <p class="mt-3">Valgt dato: <b>{{ selectedDate }}</b></p>
+  <pre class="mt-5">
+// Output: {{ selectedDate }}
+// minDate: {{ minDate }}
+// maxDate: {{ maxDate }}</pre>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">

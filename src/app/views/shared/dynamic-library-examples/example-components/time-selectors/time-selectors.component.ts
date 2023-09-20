@@ -11,10 +11,10 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = new Date('2019, 7, 20');
-  maxDate = new Date('2024-09-19');
+  minDate = '2019-09-20';
+  maxDate = '2024-09-20';
   
-  initialDate = formatISO(new Date('2021, 10, 10'), { representation: 'date' });
+  initialDate = '2019-09-19';
   selectedDate = this.initialDate;
 
   selectedFromYear: number;
@@ -37,7 +37,6 @@ export class TimeSelectorsComponent {
   }
 
   getDate(date: string) {
-    console.log(date);
     this.selectedDate = date;
   }
 
