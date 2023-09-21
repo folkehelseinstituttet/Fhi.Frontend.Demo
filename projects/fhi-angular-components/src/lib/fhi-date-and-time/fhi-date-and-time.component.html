@@ -1,1 +1,16 @@
-<p>fhi-date-and-time works!</p>
+<div class="fhi-date-and-time">
+  <div class="d-flex">
+    <fhi-datepicker [label]="label" class="me-2"></fhi-datepicker>
+
+    <div class="fhi-date-and-time__time-container d-flex flex-column justify-content-end pb-1">
+      <div class="position-relative mt-5">
+        <i class="fhi-date-and-time__time-icon icon-clock position-absolute"></i>
+        <input class="form-control fhi-datepicker__form-control fhi-date-and-time__hours-and-minutes"
+               inputmode="decimal"
+               placeholder="tt:mm"
+               type="text" />
+        <!-- <p class="invalid-feedback">This is wrong!!!</p> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.fhi-date-and-time {
+    .fhi-datepicker {
+        padding-top: $fhi-core-space-5;
+
+        &__label {
+            position: absolute;
+            top: 0;
+            white-space: nowrap;
+        }
+    }
+
+    &__time-container {
+        flex-grow: 1;
+        position: relative;
+    }
+
+    &__time-icon {
+        margin-top: $fhi-core-px * 8;
+        margin-left: $fhi-core-px * 11;
+        top: 0;
+    }
+
+    &__hours-and-minutes {
+        padding-left: $fhi-core-px * 44;
+        width: $fhi-core-px * 105;
+    }
+}
