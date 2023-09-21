@@ -25,9 +25,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-datepicker [date]="initialDate"
+<fhi-datepicker [date]="today"
                 [minDate]="minDate"
-                [maxDate]="maxDate"></fhi-datepicker>
+                [maxDate]="maxDate"
+                (dateSelected)="getDate($event)"></fhi-datepicker>
 `;
 }
 
