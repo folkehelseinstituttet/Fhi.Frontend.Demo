@@ -103,20 +103,23 @@ export class FhiDatepickerComponent {
   }
 
   onDirectInputDate() {
-    const directInputDate: any = this.convertModelToDate(this.model);
-    if (isValid(directInputDate)) {
-      this.dateIsValid = true;
-      const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
-      if (isInsideMinMaxRange) {
-        this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
-        this.onDateSelection(this.model);
+    if (this.model) {
+      const directInputDate: any = this.convertModelToDate(this.model);
+      
+      if (isValid(directInputDate)) {
+        this.dateIsValid = true;
+        const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
+        if (isInsideMinMaxRange) {
+          this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
+          this.onDateSelection(this.model);
+        } else {
+          this.dateIsValid = false;
+          this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
+        }
       } else {
+        this.errorMsg = 'Du har lagt inn et datoformat som ikke støttes. Korrekt format er <strong>dd.mm.åååå</strong>';
         this.dateIsValid = false;
-        this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
       }
-    } else {
-      this.errorMsg = 'Du har lagt inn et datoformat som ikke støttes. Korrekt format er <strong>dd.mm.åååå</strong>';
-      this.dateIsValid = false;
     }
   }
 
