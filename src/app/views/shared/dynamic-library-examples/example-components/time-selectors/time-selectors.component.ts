@@ -10,11 +10,11 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = '2022-09-20';
+  minDate = '2020-09-20';
   maxDate = '2030-09-20';
   
-  initialDate = '2023-09-20';
-  selectedDate = this.initialDate;
+  today = new Date().toISOString();
+  selectedDate = this.today;
 
   selectedFromYear: number;
   selectedToYear: number;

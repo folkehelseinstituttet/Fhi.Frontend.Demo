@@ -1,5 +1,5 @@
 <div *ngIf="itemId === items.TimeSelectorDatepicker.id">
-  <fhi-datepicker [date]="initialDate"
+  <fhi-datepicker [date]="today"
                   [minimumDate]="minDate"
                   [maximumDate]="maxDate"
                   (dateSelected)="getDate($event)"></fhi-datepicker>
