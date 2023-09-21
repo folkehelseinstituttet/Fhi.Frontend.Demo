@@ -69,6 +69,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu-and-footer',
     title: 'FHI Angular Highcharts - with menu and footer'
   },
+  TimeSelectorDateAndTime: {
+    id: 'time-selector-date-and-time',
+    title: 'Date and time'
+  },
   TimeSelectorDatepicker: {
     id: 'time-selector-datepicker',
     title: 'Datepicker'

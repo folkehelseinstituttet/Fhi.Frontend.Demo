@@ -41,7 +41,6 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'BreadcrumbsData',
     parentUrlSegment: UrlSegment.components
   },
-
   TimeSelectors: {
     id: 'time-selectors',
     title: 'Time selectors',
