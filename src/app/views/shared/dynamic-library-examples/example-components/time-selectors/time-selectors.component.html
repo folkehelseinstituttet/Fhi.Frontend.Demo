@@ -1,4 +1,11 @@
-<div *ngIf="itemId === itemIds.DateRange">
+<div *ngIf="itemId === items.TimeSelectorDatepicker.id">
+  <fhi-datepicker [date]="initialDate"
+                  [minimumDate]="minDate"
+                  [maximumDate]="maxDate"
+                  (dateSelected)="getDate($event)"></fhi-datepicker>
+</div>
+
+<div *ngIf="itemId === items.TimeSelectorDateRange.id">
   <div class="alert alert-warning mb-5">
     <i class="icon-bell"></i>
     <div>
@@ -14,9 +21,6 @@
              id="datepickerFrom_label">
         Fra
       </label>
-
-      <p class="fhi-datepicker__description"
-         id="datepickerFrom_description">dd.mm.åååå</p>
       
       <button class="fhi-datepicker__toggler" (click)="datepicker_from.toggle()">
         <i class="icon-calendar"></i>
@@ -41,8 +45,6 @@
       <label class="form-label fhi-datepicker__label" for="datepickerTo">
         Til
       </label>
-
-      <p class="fhi-datepicker__description">dd.mm.åååå</p>
       
       <button class="fhi-datepicker__toggler" (click)="datepicker_to.toggle()">
         <i class="icon-calendar"></i>
@@ -62,7 +64,32 @@
 </div>
 
 
-<div *ngIf="itemId === itemIds.YearSelection">
+<div *ngIf="itemId === items.TimeSelectorWeek.id">
+  <div class="fhi-double-select">
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'year'"
+        [items]="yearList"
+        [label]="'År'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedYear">
+      </fhi-autosuggest>
+    </div>
+
+    <div class="fhi-double-select__item">
+      <fhi-autosuggest
+        [labelForId]="'week'"
+        [items]="weekList"
+        [label]="'Uke'"
+        [notFoundText]="'Ikke mulig'"
+        [(selectedItem)]="selectedWeek">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="itemId === items.TimeSelectorYear.id">
   <div class="fhi-double-select">
     <div class="fhi-double-select__item">
       <fhi-autosuggest
@@ -83,31 +110,6 @@
         [label]="'Til år'"
         [notFoundText]="'Ikke mulig'"
         [(selectedItem)]="selectedToYear">
-      </fhi-autosuggest>
-    </div>
-  </div>
-</div>
-
-
-<div *ngIf="itemId === itemIds.WeekSelection">
-  <div class="fhi-double-select">
-    <div class="fhi-double-select__item">
-      <fhi-autosuggest
-        [labelForId]="'year'"
-        [items]="yearList"
-        [label]="'År'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedYear">
-      </fhi-autosuggest>
-    </div>
-
-    <div class="fhi-double-select__item">
-      <fhi-autosuggest
-        [labelForId]="'week'"
-        [items]="weekList"
-        [label]="'Uke'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedWeek">
       </fhi-autosuggest>
     </div>
   </div>

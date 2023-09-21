@@ -42,6 +42,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     parentUrlSegment: UrlSegment.components
   },
 
+  TimeSelectors: {
+    id: 'time-selectors',
+    title: 'Time selectors',
+    apiEndPoint: 'TimeSelectorsData',
+    parentUrlSegment: UrlSegment.components
+  },
 
   // Moduler
 

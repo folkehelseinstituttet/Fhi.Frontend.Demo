@@ -14,8 +14,6 @@ import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_bu
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
-import { DateAndTimeData } from 'src/MOCK_DB_DATA/library-items/date-and-time/_date-and-time.data';
-import { DatepickerData } from 'src/MOCK_DB_DATA/library-items/datepicker/_datepicker.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { FormsData } from 'src/MOCK_DB_DATA/library-items/forms/_forms.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
@@ -54,6 +52,7 @@ import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
 import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_breadcrumbs.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
@@ -76,6 +75,7 @@ export class MockDbService implements InMemoryDbService {
       BreadcrumbsData,
       ErrorPagesData,
       HighchartsData,
+      TimeSelectorsData,
 
       // Items OLD: deprecate when all items use new system
       AdvancedSelectData,
@@ -84,8 +84,6 @@ export class MockDbService implements InMemoryDbService {
       ButtonsData,
       CardData,
       ColorData,
-      DateAndTimeData,
-      DatepickerData,
       DrawerData,
       FormsData,
       GlobalFooterData,

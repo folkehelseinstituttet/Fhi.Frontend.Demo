@@ -138,9 +138,6 @@ export class LibraryMenuService {
       name: 'Cards',
       link: LibraryItemSegmentPaths.card
     }, {
-      name: 'Datepicker',
-      link: LibraryItemSegmentPaths.datepicker
-    }, {
       name: 'Forms',
       link: LibraryItemSegmentPaths.forms
     }, {
@@ -178,9 +175,6 @@ export class LibraryMenuService {
 
   private getModulesMenu(): MenuItem[] {
     return [{
-      name: 'Date and time selection',
-      link: LibraryItemSegmentPaths.dateandtimeselection
-    }, {
       name: 'Drawer',
       link: LibraryItemSegmentPaths.drawer
     }, {
