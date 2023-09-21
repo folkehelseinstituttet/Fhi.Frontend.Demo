@@ -26,6 +26,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <fhi-datepicker [date]="today"
+                [label]="label"
                 [minDate]="minDate"
                 [maxDate]="maxDate"
                 (dateSelected)="getDate($event)"></fhi-datepicker>
@@ -65,6 +66,13 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>no</td>
         <td>Forhåndsvalgt dato for Datepicker.</td>
+      </tr>
+      <tr>
+        <th>label</th>
+        <td><span class="text-nowrap"><code>string</code></span></td>
+        <td>Velg dato</td>
+        <td>no</td>
+        <td>Label som kobler input-felt.</td>
       </tr>
       <tr>
         <th>maxDate</th>

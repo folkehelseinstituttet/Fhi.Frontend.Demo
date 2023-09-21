@@ -82,6 +82,7 @@ export class FhiDatepickerComponent {
   @Input() date?: string;
   @Input() maximumDate?: string;
   @Input() minimumDate?: string;
+  @Input() label?: string = 'Velg dato';
 
   @Output() dateSelected = new EventEmitter<string>();
 
