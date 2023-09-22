@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.component';
@@ -13,8 +13,19 @@ import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.compone
   ]
 })
 export class FhiDateAndTimeComponent {
-  @Input() label: string;
+  @Input() label?: string;
+  @Input() initialTime?: string;
 
   thisTime: string = 'time_' + Math.random().toString(36).substring(2, 20);
-  timeSelect: string = '11:52';
+  timeSelect: string;
+
+  ngOnInit() {
+    if (this.initialTime) {
+      this.timeSelect = this.initialTime;
+    }
+  }
+
+  onTimeChange() {
+    console.log(this.timeSelect);
+  }
 }
