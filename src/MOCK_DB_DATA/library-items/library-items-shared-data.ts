@@ -49,6 +49,46 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'breadcrumb',
     title: ''
   },
+  ButtonGroup: {
+    id: 'button-group',
+    title: 'Button - group'
+  },
+  ButtonPrimary: {
+    id: 'button-primary',
+    title: 'Button - primary'
+  },
+  ButtonSecondary: {
+    id: 'button-secondary',
+    title: 'Button - secondary'
+  },
+  ButtonFlat: {
+    id: 'button-flat',
+    title: 'Button - flat'
+  },
+  ButtonIcon: {
+    id: 'button-icon',
+    title: 'Button - icon'
+  },
+  NavTiles: {
+    id: 'nav-tiles',
+    title: 'Navigation tiles'
+  },
+  NavButtons: {
+    id: 'nav-buttons',
+    title: 'Menu buttons'
+  },
+  NavShortcuts: {
+    id: 'nav-shortcuts',
+    title: 'Shortcut link'
+  },
+  NavShortcutButtons: {
+    id: 'nav-shortcut-buttons',
+    title: 'Shortcut button'
+  },
+  NavTabs: {
+    id: 'nav-tabs',
+    title: 'Tabs'
+  },
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404'

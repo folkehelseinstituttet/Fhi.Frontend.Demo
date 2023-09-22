@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const ButtonGroup: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonGroup,
-  title: 'Button Group - radio',
+  id: ITEMS.ButtonGroup.id,
+  title: ITEMS.ButtonGroup.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

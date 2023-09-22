@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const BtnSecondary: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonSecondary,
-  title: 'Secondary button',
+export const ButtonFlat: LibraryItem[] = [{
+  id: ITEMS.ButtonFlat.id,
+  title: ITEMS.ButtonFlat.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,8 +16,8 @@ export const BtnSecondary: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-secondary">
-  Sekundær handling
+<button type="button" class="btn fhi-btn-flat">
+  Flat knapp
 </button>`;
 }
 

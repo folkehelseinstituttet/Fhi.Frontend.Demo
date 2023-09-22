@@ -1,19 +1,25 @@
-import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 
-import { BtnPrimary } from './btn-primary';
-import { BtnSecondary } from './btn-secondary';
-import { BtnFlat } from './btn-flat';
-import { BtnIcon } from './btn-icon';
-import { BtnShortcut } from './btn-shortcut';
-import { BtnShortcutLink } from './btn-shortcut-link';
-import { BtnMenuItem } from './btn-menu-item';
+import { ButtonsIntro } from './_buttons.intro';
 
-export const ButtonsData: LibraryItem[] = [
-  ...BtnPrimary,
-  ...BtnSecondary,
-  ...BtnFlat,
-  ...BtnIcon,
-  ...BtnShortcut,
-  ...BtnShortcutLink,
-  ...BtnMenuItem
+import { ButtonGroup } from './button-group';
+import { ButtonPrimary } from './button-primary';
+import { ButtonSecondary } from './button-secondary';
+import { ButtonFlat } from './button-flat';
+import { ButtonIcon } from './button-icon';
+
+const Buttons: LibraryItem[] = [
+  ...ButtonPrimary,
+  ...ButtonSecondary,
+  ...ButtonFlat,
+  ...ButtonIcon,
+  ...ButtonGroup,
 ];
+
+export const ButtonsData: LibraryItemGroup = {
+  id: GROUPS.Buttons.id,
+  title: GROUPS.Buttons.title,
+  intro: ButtonsIntro,
+  libraryItems: Buttons
+};
