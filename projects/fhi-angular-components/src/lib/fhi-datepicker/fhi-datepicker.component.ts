@@ -93,7 +93,7 @@ export class FhiDatepickerComponent {
   minDate: NgbDateStruct;
   minDateFormatted: Date;
   model: NgbDateStruct;
-  uniqueId: string = 'datepickerId_' + Math.random().toString(36).substring(2, 20);
+  uniqueId: string = 'datepicker_' + Math.random().toString(36).substring(2, 20);
 
   ngOnInit() {
     this.model = this.convertDateToNgbDateStruct(this.date);

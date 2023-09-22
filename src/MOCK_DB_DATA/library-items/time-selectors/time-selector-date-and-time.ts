@@ -38,6 +38,6 @@ function getDocumentationHtml(): string | null {
   <a href="${CONST.FhiAngularComponents}/fhi-date-and-time">FHI Date And Time</a> er en komponent i <a href="${CONST.FhiAngularComponents}">FHI Angular Components</a>.
 </p>
 <p>
-  Den er basert på <a href="">FHI Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
+  Den er basert på <a href="/developer/components/time-selectors#time-selector-datepicker">FHI Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
 </p>`;
 }

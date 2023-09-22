@@ -1,4 +1,9 @@
 .fhi-date-and-time {
+    fhi-datepicker {
+        display: block;
+        width: $date-picker-width;
+    }
+
     .fhi-datepicker {
         padding-top: $fhi-core-space-5;
 
@@ -6,11 +11,13 @@
             position: absolute;
             top: 0;
             white-space: nowrap;
+            z-index: 1;
         }
     }
 
     &__time-container {
         flex-grow: 1;
+        max-width: $date-picker-width;
         position: relative;
     }
 

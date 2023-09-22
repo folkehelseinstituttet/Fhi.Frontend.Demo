@@ -2,14 +2,16 @@
   <div class="d-flex">
     <fhi-datepicker [label]="label" class="me-2"></fhi-datepicker>
 
-    <div class="fhi-date-and-time__time-container d-flex flex-column justify-content-end pb-1">
+    <div class="fhi-date-and-time__time-container d-flex flex-column justify-content-start">
       <div class="position-relative mt-5">
-        <i class="fhi-date-and-time__time-icon icon-clock position-absolute"></i>
+        <label class="fhi-date-and-time__time-icon icon-clock position-absolute" [for]="thisTime"><span class="visually-hidden">Klokkeslett</span></label>
         <input class="form-control fhi-datepicker__form-control fhi-date-and-time__hours-and-minutes"
+               [id]="thisTime"
                inputmode="decimal"
                placeholder="tt:mm"
+               [(ngModel)]="timeSelect"
                type="text" />
-        <!-- <p class="invalid-feedback">This is wrong!!!</p> -->
+        <!-- <p class="invalid-feedback d-inline-block">This is just all wrong!!!</p> -->
       </div>
     </div>
   </div>

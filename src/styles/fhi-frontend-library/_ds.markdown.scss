@@ -44,11 +44,13 @@ pre[class*="language-"] {
     margin: 0;
 }
 
-code[class*="language-html"],
 pre[class*="language-html"] {
     color: darken($fhi-core-grey-2, 18%);
     margin-right: $fhi-core-space-7;
+}
 
+code[class*="language-html"],
+pre[class*="language-html"] {
     .token.property,
     .token.tag,
     .token.boolean,
