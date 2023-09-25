@@ -49,25 +49,25 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'breadcrumb',
     title: ''
   },
-  ButtonGroup: {
-    id: 'button-group',
-    title: 'Button - group'
-  },
   ButtonPrimary: {
     id: 'button-primary',
-    title: 'Button - primary'
+    title: 'Primary button'
   },
   ButtonSecondary: {
     id: 'button-secondary',
-    title: 'Button - secondary'
+    title: 'Secondary button'
   },
-  ButtonFlat: {
-    id: 'button-flat',
-    title: 'Button - flat'
+  ButtonLink: {
+    id: 'button-link',
+    title: 'Link button'
   },
   ButtonIcon: {
     id: 'button-icon',
-    title: 'Button - icon'
+    title: 'Icon button'
+  },
+  ButtonGroup: {
+    id: 'button-group',
+    title: 'Button group'
   },
   NavTiles: {
     id: 'nav-tiles',

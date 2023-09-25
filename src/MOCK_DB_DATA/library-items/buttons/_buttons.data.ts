@@ -6,13 +6,13 @@ import { ButtonsIntro } from './_buttons.intro';
 import { ButtonGroup } from './button-group';
 import { ButtonPrimary } from './button-primary';
 import { ButtonSecondary } from './button-secondary';
-import { ButtonFlat } from './button-flat';
+import { ButtonLink } from './button-link';
 import { ButtonIcon } from './button-icon';
 
 const Buttons: LibraryItem[] = [
   ...ButtonPrimary,
   ...ButtonSecondary,
-  ...ButtonFlat,
+  ...ButtonLink,
   ...ButtonIcon,
   ...ButtonGroup,
 ];
