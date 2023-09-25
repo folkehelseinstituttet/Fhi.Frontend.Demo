@@ -1,7 +1,8 @@
 # Unreleased
 
-> Sep 14, 2023
+> Sep 25, 2023
 
+* :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
 * :gift: **New** Add `FhiDatepickerModule`
 
 ## 1.1.1
