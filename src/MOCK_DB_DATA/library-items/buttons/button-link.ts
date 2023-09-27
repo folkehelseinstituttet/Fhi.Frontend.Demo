@@ -17,7 +17,7 @@ export const ButtonLink: LibraryItem[] = [{
 function getExampleHtml(): string {
   return `
 <button type="button" class="btn fhi-btn-link">
-  Knapp som ser ut som link
+  Knapp som ser ut som en lenke
 </button>`;
 }
 
