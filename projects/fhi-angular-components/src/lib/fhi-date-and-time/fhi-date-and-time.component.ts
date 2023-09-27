@@ -30,17 +30,30 @@ export class FhiDateAndTimeComponent {
     const allowedKeys: string = '0,1,2,3,4,5,6,7,8,9,:';
     const currentString = this.timeSelect;
     
-    if (allowedKeys.indexOf(key) !== -1) {
+    if (allowedKeys.indexOf(key) >= 0) {
       if (key !== ":" && currentString.length === 2) {
         this.timeSelect = currentString + ':';
       }
       
-      if (key === ":" && currentString.length === 2) {
-        this.timeSelect = '0' + this.timeSelect;
+      if (key === ":") {
+        if (currentString.length === 1) {
+          this.timeSelect = '';
+        }
+        if (currentString.length === 2) {
+          this.timeSelect = '0' + this.timeSelect;
+        }
+        if (currentString.length > 3) {
+          this.timeSelect = this.timeSelect.substring(0, 3);
+        }
+      }
+
+      if (currentString.length > 5) {
+        this.timeSelect = this.timeSelect.substring(0, 5);
       }
     } else {
-      console.log(key, this.timeSelect);
-      this.timeSelect.split(key).pop();
+      if (key.length === 1) {
+        this.timeSelect = this.timeSelect.replace(key, '');
+      }
     }
   }
 }
