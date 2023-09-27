@@ -1,10 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const BtnShortcut: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonShortcut,
-  title: 'Shortcut button',
+export const ButtonIcon: LibraryItem[] = [{
+  id: ITEMS.ButtonIcon.id,
+  title: ITEMS.ButtonIcon.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -17,10 +16,9 @@ export const BtnShortcut: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<a href="${CONST.voidURL}" class="btn fhi-btn-shortcut">
-  <i class="icon-arrow-right"></i>
-  <span class="btn__text">Snarvei-lenke</span>
-</a>`;
+<button type="button" class="btn fhi-btn-icon">
+  <i class="icon-bell"></i><span class="btn__text">Ikon-knapp</span>
+</button>`;
 }
 
 /*
@@ -28,11 +26,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<a href="" class="btn fhi-btn-shortcut">
-  <i class="icon-arrow-right"></i>
-  <span class="btn__text">Snarvei-lenke</span>
-</a>`;
+  return ``;
 }
 
 /*

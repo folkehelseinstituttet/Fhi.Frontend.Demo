@@ -16,34 +16,39 @@ const TopLevelMenuItemNames = {
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LibraryMenuService {
-
   // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
   topLevelMenuItems!: MenuItem[];
   private currentTopLevelMenuItem!: MenuItem;
 
-  constructor(private urlService: UrlService) { }
+  constructor(private urlService: UrlService) {}
 
   getTopLevelMenuItems(): MenuItem[] {
     const currentSegmentPath0 = this.urlService.getSegmentPath(0);
-    this.topLevelMenuItems = [{
-      name: TopLevelMenuItemNames.visualIdentity,
-      link: `/${currentSegmentPath0}/${UrlSegment.visualIdentity}`
-    }, {
-      name: TopLevelMenuItemNames.components,
-      link: `/${currentSegmentPath0}/${UrlSegment.components}`
-    }, {
-      name: TopLevelMenuItemNames.modules,
-      link: `/${currentSegmentPath0}/${UrlSegment.modules}`
-    }, {
-      name: TopLevelMenuItemNames.layoutAndPageTemplates,
-      link: `/${currentSegmentPath0}/${UrlSegment.layoutAndPageTemplates}`
-    }, {
-      name: TopLevelMenuItemNames.prototypes,
-      link: `/${currentSegmentPath0}/${UrlSegment.prototypes}`
-    }];
+    this.topLevelMenuItems = [
+      {
+        name: TopLevelMenuItemNames.visualIdentity,
+        link: `/${currentSegmentPath0}/${UrlSegment.visualIdentity}`,
+      },
+      {
+        name: TopLevelMenuItemNames.components,
+        link: `/${currentSegmentPath0}/${UrlSegment.components}`,
+      },
+      {
+        name: TopLevelMenuItemNames.modules,
+        link: `/${currentSegmentPath0}/${UrlSegment.modules}`,
+      },
+      {
+        name: TopLevelMenuItemNames.layoutAndPageTemplates,
+        link: `/${currentSegmentPath0}/${UrlSegment.layoutAndPageTemplates}`,
+      },
+      {
+        name: TopLevelMenuItemNames.prototypes,
+        link: `/${currentSegmentPath0}/${UrlSegment.prototypes}`,
+      },
+    ];
     return this.topLevelMenuItems;
   }
 
@@ -53,31 +58,35 @@ export class LibraryMenuService {
     const currentSegmentPath0 = this.urlService.getSegmentPath(0);
     const currentSegmentPath1 = this.urlService.getSegmentPath(1);
 
-    if (previousSegmentPath0 !== currentSegmentPath0 || previousSegmentPath1 !== currentSegmentPath1) {
+    if (
+      previousSegmentPath0 !== currentSegmentPath0 ||
+      previousSegmentPath1 !== currentSegmentPath1
+    ) {
       this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
       return true;
     }
     return false;
   }
 
-  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
+  getSecondLevelMenuItems(
+    libraryItemGroups: LibraryItemGroupsShared
+  ): MenuItem[] {
     let menu: MenuItem[] = [];
     Object.keys(libraryItemGroups).forEach((key) => {
-      if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
+      if (
+        libraryItemGroups[key].parentUrlSegment ===
+        this.urlService.getSegmentPath(1)
+      ) {
         menu.push({
           name: libraryItemGroups[key].title,
-          link: libraryItemGroups[key].id
+          link: libraryItemGroups[key].id,
         });
       }
     });
     return menu;
   }
 
-
-
-
- // TODO: all methods below can be removed when all item groups uses the new getSecondLevelMenuItems()
-
+  // TODO: all methods below can be removed when all item groups uses the new getSecondLevelMenuItems()
 
   getSecondLevelMenuItems_OLD(): MenuItem[] {
     if (this.currentTopLevelMenuItem === undefined) {
@@ -108,108 +117,123 @@ export class LibraryMenuService {
     if (topLevelMenuItem !== undefined) {
       return topLevelMenuItem;
     }
-    console.error('Current path is not matching any menu items.')
+    console.error('Current path is not matching any menu items.');
   }
 
   private getVisualIdentityMenu(): MenuItem[] {
-    return [{
-      name: 'Farger',
-      link: LibraryItemSegmentPaths.color
-    }, {
-      name: 'Ikoner',
-      link: LibraryItemSegmentPaths.icons
-    }, {
-      name: 'Typografi',
-      link: LibraryItemSegmentPaths.typography
-    }];
+    return [
+      {
+        name: 'Farger',
+        link: LibraryItemSegmentPaths.color,
+      },
+      {
+        name: 'Ikoner',
+        link: LibraryItemSegmentPaths.icons,
+      },
+      {
+        name: 'Typografi',
+        link: LibraryItemSegmentPaths.typography,
+      },
+    ];
   }
 
   private getComponentsMenu(): MenuItem[] {
-    return [{
-      name: 'Advanced select',
-      link: LibraryItemSegmentPaths.advancedSelect
-    }, {
-      name: 'Button group',
-      link: LibraryItemSegmentPaths.buttongroup
-    }, {
-      name: 'Buttons',
-      link: LibraryItemSegmentPaths.buttons
-    }, {
-      name: 'Cards',
-      link: LibraryItemSegmentPaths.card
-    }, {
-      name: 'Forms',
-      link: LibraryItemSegmentPaths.forms
-    }, {
-      name: 'Modal',
-      link: LibraryItemSegmentPaths.modal
-    }, {
-      name: 'Navigation tile',
-      link: LibraryItemSegmentPaths.navigationtile
-    }, {
-      name: 'Pagination',
-      link: LibraryItemSegmentPaths.pagination
-    }, {
-      name: 'Search',
-      link: LibraryItemSegmentPaths.search
-    }, {
-      name: 'Progress indicators',
-      link: LibraryItemSegmentPaths.progressindicators
-    }, {
-      name: 'Tables',
-      link: LibraryItemSegmentPaths.table
-    }, {
-      name: 'Tabs',
-      link: LibraryItemSegmentPaths.tabs
-    }, {
-      name: 'Tags',
-      link: LibraryItemSegmentPaths.tags
-    }, {
-      name: 'Toast',
-      link: LibraryItemSegmentPaths.toast
-    }, {
-      name: 'Tooltip & Popover',
-      link: LibraryItemSegmentPaths.tooltip
-    }]
+    return [
+      {
+        name: 'Advanced select',
+        link: LibraryItemSegmentPaths.advancedSelect,
+      },
+      {
+        name: 'Cards',
+        link: LibraryItemSegmentPaths.card,
+      },
+      {
+        name: 'Forms',
+        link: LibraryItemSegmentPaths.forms,
+      },
+      {
+        name: 'Modal',
+        link: LibraryItemSegmentPaths.modal,
+      },
+      {
+        name: 'Pagination',
+        link: LibraryItemSegmentPaths.pagination,
+      },
+      {
+        name: 'Search',
+        link: LibraryItemSegmentPaths.search,
+      },
+      {
+        name: 'Progress indicators',
+        link: LibraryItemSegmentPaths.progressindicators,
+      },
+      {
+        name: 'Tables',
+        link: LibraryItemSegmentPaths.table,
+      },
+      {
+        name: 'Tags',
+        link: LibraryItemSegmentPaths.tags,
+      },
+      {
+        name: 'Toast',
+        link: LibraryItemSegmentPaths.toast,
+      },
+      {
+        name: 'Tooltip & Popover',
+        link: LibraryItemSegmentPaths.tooltip,
+      },
+    ];
   }
 
   private getModulesMenu(): MenuItem[] {
-    return [{
-      name: 'Drawer',
-      link: LibraryItemSegmentPaths.drawer
-    }, {
-      name: 'Global footer',
-      link: LibraryItemSegmentPaths.globalfooter
-    }, {
-      name: 'Global header',
-      link: LibraryItemSegmentPaths.globalheader
-    }, {
-      name: 'Tree views',
-      link: LibraryItemSegmentPaths.treeview
-    }];
+    return [
+      {
+        name: 'Drawer',
+        link: LibraryItemSegmentPaths.drawer,
+      },
+      {
+        name: 'Global footer',
+        link: LibraryItemSegmentPaths.globalfooter,
+      },
+      {
+        name: 'Global header',
+        link: LibraryItemSegmentPaths.globalheader,
+      },
+      {
+        name: 'Tree views',
+        link: LibraryItemSegmentPaths.treeview,
+      },
+    ];
   }
 
   private getLayoutAndPageTemplatesMenu(): MenuItem[] {
-    return [{
-      name: 'Layout',
-      link: LibraryItemSegmentPaths.layoutandpagetemplates
-    }];
+    return [
+      {
+        name: 'Layout',
+        link: LibraryItemSegmentPaths.layoutandpagetemplates,
+      },
+    ];
   }
 
   private getPrototypesMenu(): MenuItem[] {
-    return [{
-      name: 'Global Header',
-      link: LibraryItemSegmentPaths.prototypepageheader
-    }, {
-      name: 'Forms',
-      link: LibraryItemSegmentPaths.prototypeforms
-    }, {
-      name: 'Tables',
-      link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent
-    }, {
-      name: 'Tree View Builder',
-      link: LibraryItemSegmentPaths.prototypeangulartreecomponent
-    }];
+    return [
+      {
+        name: 'Global Header',
+        link: LibraryItemSegmentPaths.prototypepageheader,
+      },
+      {
+        name: 'Forms',
+        link: LibraryItemSegmentPaths.prototypeforms,
+      },
+      {
+        name: 'Tables',
+        link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent,
+      },
+      {
+        name: 'Tree View Builder',
+        link: LibraryItemSegmentPaths.prototypeangulartreecomponent,
+      },
+    ];
   }
-
 }

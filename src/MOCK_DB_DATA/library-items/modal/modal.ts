@@ -42,7 +42,7 @@ function getCodeHtml(): string | null {
 </ng-template>
 
 <p>
-  <button class="btn fhi-btn-flat" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
+  <button class="btn fhi-btn-link" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
 </p>`;
 }
 

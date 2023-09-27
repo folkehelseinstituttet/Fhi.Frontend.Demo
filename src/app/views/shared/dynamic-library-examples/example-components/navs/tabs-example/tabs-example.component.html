@@ -1,17 +1,15 @@
-<ng-container class="" *ngIf="itemId === itemIds.Tabs">
-  <div class="fhi-nav-tabs">
-    <ul ngbNav #nav="ngbNav" class="nav-tabs">
-      <li ngbNavItem *ngFor="let tab of tabsList">
-        <a ngbNavLink>{{ tab.tabName }}</a>
-        <ng-template ngbNavContent>
-          <div [innerHTML]="tab.tabContent"></div>
-        </ng-template>
-      </li>
-    </ul>
+<div class="fhi-nav-tabs">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem *ngFor="let tab of tabsList">
+      <a ngbNavLink>{{ tab.tabName }}</a>
+      <ng-template ngbNavContent>
+        <div [innerHTML]="tab.tabContent"></div>
+      </ng-template>
+    </li>
+  </ul>
 
-    <div [ngbNavOutlet]="nav"></div>
-  </div>
-</ng-container>
+  <div [ngbNavOutlet]="nav"></div>
+</div>
 
 
 <!-- <ng-container *ngIf="itemId === itemIds.TabsOnBlueBackground">
@@ -29,7 +27,7 @@
         </div>
       </div>
     </div>
-  
+
     <div class="container fhi-header__main-menu-container">
       <nav class="fhi-main-menu" [ngClass]="{'fhi-main-menu--open': mainMenuIsOpen}">
         <div class="container fhi-main-menu__container">
@@ -80,7 +78,7 @@
               </ng-template>
             </li>
           </ul>
-      
+
           <div [ngbNavOutlet]="nav" class="px-3 px-sm-0"></div>
         </div>
       </div>

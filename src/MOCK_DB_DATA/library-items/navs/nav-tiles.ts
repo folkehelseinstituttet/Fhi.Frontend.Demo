@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const NavigationTile: LibraryItem[] = [{
-  id: LibraryItemIds.NavigationTile,
-  title: 'Navigation tile',
+export const NavTiles: LibraryItem[] = [{
+  id: ITEMS.NavTiles.id,
+  title: ITEMS.NavTiles.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
