@@ -10,9 +10,10 @@
                inputmode="decimal"
                placeholder="tt:mm"
                [(ngModel)]="timeSelect"
-               (keyup)="onTimeChange()"
+               (keyup)="onTimeChange($event)"
                type="text" />
         <!-- <p class="invalid-feedback d-inline-block">This is just all wrong!!!</p> -->
+        <p>{{ timeSelect }}</p>
       </div>
     </div>
   </div>
