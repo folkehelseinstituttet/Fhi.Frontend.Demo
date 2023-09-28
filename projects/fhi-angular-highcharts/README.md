@@ -11,6 +11,8 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
   - [Inputs](#inputs)
   - [Outputs](#outputs)
   - [Type FhiDiagramOptions](#type-fhidiagramoptions)
+  - [Type FhiDiagramSerie](#type-fhidiagramserie)
+  - [Type Data](#type-data)
 - [Changelog](#changelog)
 - [Contribute](#contribute)
 - [Demo](#demo)
@@ -120,8 +122,25 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `lastUpdated`       | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
 | `mapTypeId`         | `sting`                  | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. Legal values: `mapFylker`, `mapFylker2019`. |
 | `openSource`        | `boolean`                | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `series`            | `Array<FhiDiagramSerie>` | -         | yes      | The data used to render a diagram. |
+| `series`            | `Array<FhiDiagramSerie>` | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
 | `title`             | `string`                 | -         | yes      | The title above the diagram. |
+
+### Type FhiDiagramSerie
+
+| Property | Type                        | Default | Required | Description |
+| -------- | --------------------------- | ------- | -------- | ----------- |
+| `data`   | `Array<Data>`               | -       | yes      | The individual data points in a serie. See [Data](#type-data) for details. |
+| `name`   | `string` \| `Array<string>` | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependance on a given seperator, use an array of category names instead. |
+| `stack`  | `string`                    | -       | yes      | This option allows grouping series in a stacked chart. Only applies to diagramTypeId `barStacked`, `columnStacked`. |
+
+### Type Data
+
+Data is a custum type for FHI Angular Highcharts, but it is based on the smallest possible subset of the `chart.series.[chart type].data` object [as described under nr 3. here](https://api.highcharts.com/highcharts/series.line.data) (line chart used as example).
+
+| Property | Type                 | Default | Required | Description |
+| -------- | -------------------- | ------- | -------- | ----------- |
+| `name`   | `string`             | -       | yes      | The name of the data point as shown in the tooltip.
+| `y`      | `number` \| `string` | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value. |
 
 ## Changelog
 
