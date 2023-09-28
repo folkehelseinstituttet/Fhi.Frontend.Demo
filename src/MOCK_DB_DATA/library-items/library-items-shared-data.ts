@@ -91,11 +91,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   FormControlCheckboxTile: {
     id: 'form-control-checkbox-tile',
-    title: 'Checkbox - tile'
+    title: 'Checkbox tile'
   },
   FormControlRadioTile: {
     id: 'form-control-radio-tile',
-    title: 'Radio - tile'
+    title: 'Radio tile'
   },
   FormControlSelect: {
     id: 'form-control-select',
@@ -107,7 +107,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   FormControlAutosuggest: {
     id: 'form-control-autosuggest',
-    title: 'Autosuggest'
+    title: 'Select with autosuggest'
   },
   FormControlSwitch: {
     id: 'form-control-switch',
