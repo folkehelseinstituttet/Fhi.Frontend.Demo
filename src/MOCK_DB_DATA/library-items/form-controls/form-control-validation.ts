@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const Textarea: LibraryItem[] = [{
-  id: LibraryItemIds.FormTextarea,
-  title: 'Textarea',
+export const FormControlValidation: LibraryItem[] = [{
+  id: ITEMS.FormControlValidation.id,
+  title: ITEMS.FormControlValidation.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,9 +16,9 @@ export const Textarea: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<label for="exampleFormControlTextarea1" class="form-label" aria-describedby="hjelpeTekst2">Tekstfelt med flere linjer</label>
-<p class="form-text" id="hjelpeTekst2">Hjelpetekst, f.eks "Valgfritt felt"</p>
-<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>`;
+<label for="FormInputValidation" class="form-label">Tekstfelt med feilmelding</label>
+<input type="text" id="FormInputValidation" class="form-control is-invalid" placeholder="">
+<p class="invalid-feedback">En forståelig feilmelding.</p>`;
 }
 
 /*

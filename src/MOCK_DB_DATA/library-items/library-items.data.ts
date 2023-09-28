@@ -1,10 +1,8 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
 import { CardData } from './cards/_cards.data';
 import { ColorData } from './color/_color.data';
 import { DrawerData } from './drawer/_drawer.data';
-import { FormsData } from './forms/_forms.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
@@ -23,11 +21,9 @@ import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
 export const AllData: LibraryItem[] = [
-  ...AdvancedSelectData,
   ...CardData,
   ...ColorData,
   ...DrawerData,
-  ...FormsData,
   ...GlobalHeaderData,
   ...IconsData,
   ...ModalData,

@@ -1,15 +1,16 @@
 # Unreleased
 
-> Sep 25, 2023
+> Sep 28, 2023
 
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
+* :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 * :gift: **New** Add `FhiDatepickerModule`
 
 ## 1.1.1
 
 > Aug 18, 2023
 
-* :bugfix: **Bugfix** Core variables change in @folkehelseinstituttet/style@5.5.0
+* :bug: **Bugfix** Core variables change in @folkehelseinstituttet/style@5.5.0
 
 ## 1.1.0
 

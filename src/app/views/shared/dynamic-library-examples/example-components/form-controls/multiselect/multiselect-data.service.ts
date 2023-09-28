@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 
 export interface Person {
     id: string;
@@ -17,7 +16,7 @@ export interface Person {
 @Injectable({
     providedIn: 'root'
 })
-export class AdvancedSelectExampleDataService {
+export class MultiselectDataService {
 
   getPeople(term: string = null): Observable<Person[]> {
     let items = this.getMockPeople();
