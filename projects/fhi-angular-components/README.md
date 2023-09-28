@@ -8,7 +8,7 @@ _Contains Angular components used by Folkehelseinstituttet, which are based on [
   - [Use in your app](#use-in-your-app)
 - [Changelog](#changelog)
 - [Contribute](#contribute)
-- [Demo and documentation](#demo-and-documentation)
+- [Demo](#demo)
 
 ## Dependencies
 
@@ -61,8 +61,7 @@ You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Front
 
 Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/CONTRIBUTING.md)
 
-## Demo and documentation
+## Demo
 
-Live examples in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no)
-
-Repo for demo app: [Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
+- Live examples in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no)
+- Repo for demo app: [https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
