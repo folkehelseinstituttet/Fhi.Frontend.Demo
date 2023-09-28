@@ -10,8 +10,6 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 // Items
 import { AdvancedSelectData } from 'src/MOCK_DB_DATA/library-items/advanced-select/_advanced-select.data';
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
-import { ButtonGroupData } from 'src/MOCK_DB_DATA/library-items/button-group/_button-group.data';
-import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
@@ -28,14 +26,11 @@ import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/librar
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
-import { TabsData } from 'src/MOCK_DB_DATA/library-items/tabs/_tabs.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
-import { NavigationtileData } from 'src/MOCK_DB_DATA/library-items/navigation-tile/_navigation-tile.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
 import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
-
 
 // -----------------------------------------
 //
@@ -50,8 +45,10 @@ import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accor
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
 import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_breadcrumbs.data';
+import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
@@ -60,7 +57,7 @@ import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors
 // ];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MockDbService implements InMemoryDbService {
   createDb(): object {
@@ -73,15 +70,15 @@ export class MockDbService implements InMemoryDbService {
       AlertsData,
       BadgesData,
       BreadcrumbsData,
+      ButtonsData,
       ErrorPagesData,
       HighchartsData,
+      NavsData,
       TimeSelectorsData,
 
       // Items OLD: deprecate when all items use new system
       AdvancedSelectData,
       PrototypeAngularTreeData,
-      ButtonGroupData,
-      ButtonsData,
       CardData,
       ColorData,
       DrawerData,
@@ -98,9 +95,7 @@ export class MockDbService implements InMemoryDbService {
       SearchData,
       ProgressIndicatorsData,
       TableData,
-      TabsData,
       TagsData,
-      NavigationtileData,
       ToastData,
       TootipPopoverData,
       TreeViewData,

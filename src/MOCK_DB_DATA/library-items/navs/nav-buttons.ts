@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const BtnMenuItem: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonMenuItem,
-  title: 'Menu button',
+export const NavButtons: LibraryItem[] = [{
+  id: ITEMS.NavButtons.id,
+  title: ITEMS.NavButtons.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

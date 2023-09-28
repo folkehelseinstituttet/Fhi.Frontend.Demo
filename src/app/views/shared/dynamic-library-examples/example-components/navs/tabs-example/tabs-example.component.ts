@@ -5,9 +5,6 @@ import { Component, Input } from '@angular/core';
   templateUrl: './tabs-example.component.html'
 })
 export class TabsExampleComponent {
-  @Input() itemId!: string;
-  @Input() itemIds!: any;
-
   mainMenuIsOpen = false;
 
   tabsList: any = [

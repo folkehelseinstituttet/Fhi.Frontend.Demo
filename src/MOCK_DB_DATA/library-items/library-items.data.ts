@@ -1,7 +1,6 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { AdvancedSelectData } from './advanced-select/_advanced-select.data';
-import { ButtonsData } from './buttons/_buttons.data';
 import { CardData } from './cards/_cards.data';
 import { ColorData } from './color/_color.data';
 import { DrawerData } from './drawer/_drawer.data';
@@ -9,7 +8,6 @@ import { FormsData } from './forms/_forms.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { IconsData } from './icons/_icons.data';
 import { ModalData } from './modal/_modal.data';
-import { NavigationtileData } from './navigation-tile/_navigation-tile.data';
 import { PaginationData } from './pagination/_pagination.data';
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
@@ -18,17 +16,14 @@ import { PrototypeTableWithExpandableContentData } from './prototype-table-with-
 import { SearchData } from './search/_search.data';
 import { ProgressIndicatorsData } from './progress-indicators/_progress-indicators.data';
 import { TableData } from './table/_table.data';
-import { TabsData } from './tabs/_tabs.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
-
 export const AllData: LibraryItem[] = [
   ...AdvancedSelectData,
-  ...ButtonsData,
   ...CardData,
   ...ColorData,
   ...DrawerData,
@@ -36,7 +31,6 @@ export const AllData: LibraryItem[] = [
   ...GlobalHeaderData,
   ...IconsData,
   ...ModalData,
-  ...NavigationtileData,
   ...PaginationData,
   ...PrototypeAngularTreeData,
   ...PrototypeFormsData,
@@ -45,10 +39,9 @@ export const AllData: LibraryItem[] = [
   ...SearchData,
   ...ProgressIndicatorsData,
   ...TableData,
-  ...TabsData,
   ...TagsData,
   ...ToastData,
   ...TootipPopoverData,
   ...TypographyData,
-  ...TreeViewData
+  ...TreeViewData,
 ];

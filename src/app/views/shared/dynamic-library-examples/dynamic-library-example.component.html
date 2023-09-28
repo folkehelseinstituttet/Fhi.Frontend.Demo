@@ -1,9 +1,15 @@
 <div [ngSwitch]="groupId">
   <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
-  <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
   <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
+  <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
+  <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
-  <div *ngSwitchDefault>No item group matches given id...</div>
+  <!--
+    TODO:
+      Falling through to *ngSwitchDefault for all items using new system...
+      Uncomment this following line when all items use new system
+  -->
+  <!-- <div *ngSwitchDefault>No item group matches given id...</div> -->
 </div>
 
 
@@ -72,12 +78,6 @@
     [itemId]="itemIds.TableEditable"
     [itemIds]="itemIds">
   </app-table-examples>
-
-  <app-tabs-example
-    *ngSwitchCase="itemIds.Tabs"
-    [itemId]="itemIds.Tabs"
-    [itemIds]="itemIds">
-  </app-tabs-example>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>

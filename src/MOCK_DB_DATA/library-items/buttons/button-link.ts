@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const BtnPrimary: LibraryItem[] = [{
-  id: LibraryItemIds.ButtonPrimary,
-  title: 'Primary button',
+export const ButtonLink: LibraryItem[] = [{
+  id: ITEMS.ButtonLink.id,
+  title: ITEMS.ButtonLink.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,8 +16,8 @@ export const BtnPrimary: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-primary">
-  Hovedhandling
+<button type="button" class="btn fhi-btn-link">
+  Knapp som ser ut som en lenke
 </button>`;
 }
 
@@ -33,8 +33,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.
-</p>`;
+  return null;
 }
