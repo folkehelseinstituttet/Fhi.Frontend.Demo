@@ -13,13 +13,13 @@ _Contains Angular components used by Folkehelseinstituttet, which are based on [
 ## Dependencies
 
 | FHI Angular Components | FHI Style | Bootstrap | NgSelect | NgBootstrap | Angular | Node/NPM |
-| --------------------- | --------- | --------- | -------- | ----------- | ------- | -------- |
-| 1.1.1                 | 5.5.x     | 5         | 10       | 14          | 15      | 18/9 *   |
-| 1.x.x                 | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
-| 0.5.x                 | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
-| 0.4.x                 | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
-| 0.3.0                 | 4         | 5         | 10       | 14          | 15      | 18/9 *   |
-| 0.2.0                 | 4         | 5         | 9        | 13          | 14      | 16/8 *   |
+| ---------------------- | --------- | --------- | -------- | ----------- | ------- | -------- |
+| 1.1.1                  | 5.5.x     | 5         | 10       | 14          | 15      | 18/9 *   |
+| 1.x.x                  | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
+| 0.5.x                  | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
+| 0.4.x                  | 5         | 5         | 10       | 14          | 15      | 18/9 *   |
+| 0.3.0                  | 4         | 5         | 10       | 14          | 15      | 18/9 *   |
+| 0.2.0                  | 4         | 5         | 9        | 13          | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
 _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
@@ -42,7 +42,6 @@ After installing the package and all dependencies, add the following code to you
 ```ts
 // In a standalone component or a shared module (it's possible to only import components you need)
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
-
 ...
   imports: [FhiAngularComponentsModule]
 ...
