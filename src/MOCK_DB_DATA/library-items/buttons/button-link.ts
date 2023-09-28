@@ -1,15 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-<<<<<<<< HEAD:src/MOCK_DB_DATA/library-items/buttons/button-link.ts
 export const ButtonLink: LibraryItem[] = [{
   id: ITEMS.ButtonLink.id,
   title: ITEMS.ButtonLink.title,
-========
-export const ButtonFlat: LibraryItem[] = [{
-  id: ITEMS.ButtonFlat.id,
-  title: ITEMS.ButtonFlat.title,
->>>>>>>> enhancement/new-system--form-controls--tmp:src/MOCK_DB_DATA/library-items/buttons/button-flat.ts
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
