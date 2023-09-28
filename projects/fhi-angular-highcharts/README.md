@@ -8,6 +8,8 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
   - [Add to app](#add-to-app)
   - [Remove warnings](#remove-warnings)
 - [API](#api)
+  - [Inputs](#inputs)
+  - [Outputs](#outputs)
 - [Changelog](#changelog)
 - [Contribute](#contribute)
 - [Demo](#demo)
@@ -90,6 +92,18 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 ```
 
 ## API
+
+### Inputs
+
+| Input              | Type                | Default | Required | Description |
+| -----------------  | ------------------- | ------- | -------- | ----------- |
+| **diagramOptions** | `FhiDiagramOptions` | -       | yes      | All properties needed to render a diagram |
+
+### Outputs
+
+| Output                    | Event type | Description |
+| ------------------------  | ---------- | ----------- |
+| **diagramTypeNavigation** | `string`   | If diagram type navigation i visible, this event will fire on every navigation. Outputs a `diagramTypeId`. |
 
 ## Changelog
 
