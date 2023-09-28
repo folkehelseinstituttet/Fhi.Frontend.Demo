@@ -70,7 +70,7 @@ function getDocumentationHtml(): string | null {
       <tr>
         <th>label</th>
         <td><span class="text-nowrap"><code>string</code></span></td>
-        <td>Velg dato</td>
+        <td><code>"Velg dato"</code></td>
         <td>no</td>
         <td>Label som kobler input-felt.</td>
       </tr>
@@ -104,7 +104,7 @@ function getDocumentationHtml(): string | null {
     </thead>
     <tbody>
       <tr>
-        <th>dateSelected</th>
+        <th>dateSelect</th>
         <td><code>string</code></td>
         <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres som ISO 8601 string.</td>
       </tr>

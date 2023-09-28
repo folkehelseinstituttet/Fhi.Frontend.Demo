@@ -15,6 +15,7 @@ export class TimeSelectorsComponent {
   
   today = new Date().toISOString();
   selectedDate = this.today;
+  selectedDateAndTime: string;
 
   selectedFromYear: number;
   selectedToYear: number;
@@ -37,6 +38,11 @@ export class TimeSelectorsComponent {
 
   getDate(date: string) {
     this.selectedDate = date;
+  }
+  
+  getDateAndTime(dateAndTime: string) {
+    console.log(this.selectedDateAndTime);
+    this.selectedDateAndTime = dateAndTime;
   }
 
   generateWeekList = () => {

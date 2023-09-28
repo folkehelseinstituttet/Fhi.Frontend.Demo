@@ -84,7 +84,7 @@ export class FhiDatepickerComponent {
   @Input() minimumDate?: string;
   @Input() label?: string = 'Velg dato';
 
-  @Output() dateSelected = new EventEmitter<string>();
+  @Output() dateSelect = new EventEmitter<string>();
 
   dateIsValid: boolean = true;
   errorMsg: string = '';
@@ -129,7 +129,7 @@ export class FhiDatepickerComponent {
     if (isValid(date)) {
       const isoDate = formatISO(date, { representation: 'date' });
       this.dateIsValid = true;
-      this.dateSelected.emit(isoDate);
+      this.dateSelect.emit(isoDate);
     } else {
       this.dateIsValid = false;
       this.errorMsg = 'Det er lagt inn et datoformat som ikke støttes.';

@@ -2,11 +2,12 @@
   <fhi-datepicker [date]="today"
                   [minimumDate]="minDate"
                   [maximumDate]="maxDate"
-                  (dateSelected)="getDate($event)"></fhi-datepicker>
+                  (dateSelect)="getDate($event)"></fhi-datepicker>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-and-time label="Velg dato og tidspunkt"></fhi-date-and-time>
+  <fhi-date-and-time label="Velg dato og tidspunkt"
+                     (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
