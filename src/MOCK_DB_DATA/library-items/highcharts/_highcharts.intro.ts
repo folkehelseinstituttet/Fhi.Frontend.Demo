@@ -1,22 +1,50 @@
+import { LibraryItemConstants as CONST } from '../library-item-constants';
+
 export const HighchartsIntro = `
-<p>
-  Kom i gang:
-  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
-    @folkehelseinstituttet/angular-highcharts
-  </a>
+<p class="lead">
+  Folkehelseintitutte har valgt å bruker Highcharts for å vise diagrammer med FHI-design.
 </p>
 <p>
-  Lenke til kildekode:
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-highcharts">
-    projects/fhi-angular-highcharts
-  </a>
-</p>
+  For å gjøre det så enkelt som mulig å vise diagrammer i en Angular applikasjonen er
+  det blitt utviklet en egen modul som tilgjengliggjør et veldig begrenset, men gjennomtenkt utvalg av det Highcharts har å tilby.
 <p>
-  Lenke til demokoden:
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/src/app/views/shared/dynamic-library-examples/fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts">
-    fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts
-  </a>
 </p>
-<p>
-  API-dokumentasjon ligger under fanen "Dokumentasjon" i det første eksempelet: <i>FHI Angular Highcharts - basic setup</i>
-</p>`;
+  Siden det å vise diagrammer i en web-applikasjon er utfordrene å få til på en god måte, så er denne modulen i stadig utvikling,
+  vi jobber med å fikse feil og mangler vi vet om, og håper alle som tar denne modulen i bruk vil hjelpe oss med å gjøre den bedre.
+</p>
+
+<h2 class="h3">Nyttige lenker</h2>
+
+<ul>
+  <li>
+    <a href="${CONST.FhiAngularHighchartsGithubUrl}/README.md#API">
+      API-dokumentasjon
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularHighchartsGithubUrl}">
+      Kildekode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.ExampleComponentsGithubUrl}/highcharts">
+      Demokode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularHighchartsNpmUrl}">
+      NPM-pakke
+    </a>
+  </li>
+  <li>
+    <a href="https://www.highcharts.com">
+      highcharts.com
+    </a>
+  </li>
+  <li>
+    <a href="https://github.com/highcharts/highcharts-angular">
+      Official minimal Highcharts wrapper for Angular
+    </a>
+  </li>
+</ul>`;
+
