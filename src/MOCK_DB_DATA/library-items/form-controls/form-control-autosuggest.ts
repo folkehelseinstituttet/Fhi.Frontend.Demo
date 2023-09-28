@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const AdvancedSelectAutosuggest: LibraryItem[] = [{
-  id: LibraryItemIds.AdvancedSelectAutosuggest,
-  title: 'Advanced select - autosuggest',
-  type: LibraryItemType.fhiAngular,
+export const FormControlAutosuggest: LibraryItem[] = [{
+  id: ITEMS.FormControlAutosuggest.id,
+  title: ITEMS.FormControlAutosuggest.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const AdvancedSelectMultiselect: LibraryItem[] = [{
-  id: LibraryItemIds.AdvancedSelectMultiselect,
-  title: 'Advanced select - multiselect',
-  type: LibraryItemType.fhiAngular,
+export const FormControlMultiselect: LibraryItem[] = [{
+  id: ITEMS.FormControlMultiselect.id,
+  title: ITEMS.FormControlMultiselect.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

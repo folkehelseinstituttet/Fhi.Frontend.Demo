@@ -140,16 +140,8 @@ export class LibraryMenuService {
   private getComponentsMenu(): MenuItem[] {
     return [
       {
-        name: 'Advanced select',
-        link: LibraryItemSegmentPaths.advancedSelect,
-      },
-      {
         name: 'Cards',
         link: LibraryItemSegmentPaths.card,
-      },
-      {
-        name: 'Forms',
-        link: LibraryItemSegmentPaths.forms,
       },
       {
         name: 'Modal',

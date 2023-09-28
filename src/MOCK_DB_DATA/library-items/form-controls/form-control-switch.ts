@@ -1,10 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const Switch: LibraryItem[] = [{
-  id: LibraryItemIds.FormSwitch,
-  title: 'Switch',
-  type: LibraryItemType.fhiAngular,
+export const FormControlSwitch: LibraryItem[] = [{
+  id: ITEMS.FormControlSwitch.id,
+  title: ITEMS.FormControlSwitch.title,
+  type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
   documentationHtml: getDocumentationHtml()

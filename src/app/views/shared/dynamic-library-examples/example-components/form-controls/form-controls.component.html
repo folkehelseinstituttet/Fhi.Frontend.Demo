@@ -1,0 +1,47 @@
+<ng-container *ngIf="itemId === items.FormControlMultiselect.id">
+  <app-multiselect></app-multiselect>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.FormControlAutosuggest.id">
+  <fhi-autosuggest
+    description="Velg/søk etter bilmerke"
+    [items]="cars"
+    label="Biler"
+    labelForId="biler-1"
+    notFoundText="Ingen treff"
+    placeholder="Søk"
+    [(selectedItem)]="selectedCar">
+  </fhi-autosuggest>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.FormControlCheckboxTile.id">
+  <div class="fhi-form-check-tile" *ngFor="let tile of tiles; index as i">
+    <input class="fhi-form-check-tile__input form-check-input" type="checkbox" [id]="'checkboxTile-' + i">
+
+    <label class="fhi-form-check-tile__label form-check-label" [for]="'checkboxTile-' + i">
+      <span class="fhi-form-check-tile__label-text">{{ tile.label }}</span>
+      <span class="fhi-form-check-tile__label-description" *ngIf="tile.description">{{ tile.description }}</span>
+    </label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.FormControlRadioTile.id">
+  <div class="fhi-form-check-tile" *ngFor="let tile of tiles; index as i">
+    <input class="fhi-form-check-tile__input form-check-input" type="radio" name="radioButtonTiles" [id]="'radioTile-' + i">
+
+    <label class="fhi-form-check-tile__label form-check-label" [for]="'radioTile-' + i">
+      <span class="fhi-form-check-tile__label-text">{{ tile.label }}</span>
+      <span class="fhi-form-check-tile__label-description" *ngIf="tile.description">{{ tile.description }}</span>
+    </label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.FormControlSwitch.id">
+  <div class="form-check form-switch mb-2">
+    <input class="form-check-input visually-hidden" type="checkbox"
+           id="flexSwitchCheckDefault" (change)="checked = !checked">
+    <label class="form-check-label" for="flexSwitchCheckDefault">
+        Skru <span [innerHTML]="checked ? 'av' : 'på'"></span> denne bryteren
+    </label>
+  </div>
+</ng-container>
