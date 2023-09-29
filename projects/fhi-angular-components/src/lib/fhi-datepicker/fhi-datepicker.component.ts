@@ -101,6 +101,9 @@ export class FhiDatepickerComponent {
     this.minDate = this.convertDateToNgbDateStruct(this.minimumDate);
     this.maxDateFormatted = new Date(this.maximumDate);
     this.minDateFormatted = new Date(this.minimumDate);
+    if (this.date) {
+      // this.dateSelect.emit(this.date);
+    }
   }
 
   onDirectInputDate() {

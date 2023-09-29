@@ -3,6 +3,9 @@
                   [minimumDate]="minDate"
                   [maximumDate]="maxDate"
                   (dateSelect)="getDate($event)"></fhi-datepicker>
+  <div class="mt-3">
+    <code>{{ selectedDate }}</code>
+  </div>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
