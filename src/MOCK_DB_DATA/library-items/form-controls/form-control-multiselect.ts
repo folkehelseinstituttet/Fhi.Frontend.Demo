@@ -46,7 +46,7 @@ function getDocumentationHtml(): string | null {
   <a href="https://www.npmjs.com/package/@ng-select/ng-select">Angular ng-select</a>,
   og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
-  være langt til som en "dependency".
+  være lagt til som en "dependency".
 </p>
 
 <h2 class="h5">Nyttige lenker</h2>

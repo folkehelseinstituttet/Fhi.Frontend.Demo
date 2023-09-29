@@ -11,7 +11,7 @@ export const HighchartsIntro = `
   Den er bygget på <a href="https://github.com/highcharts/highcharts-angular">Highcharts Angular</a>,
   og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularHighchartsNpmUrl}">@folkehelseinstituttet/angular-highcharts</a>
-  være langt til som en "dependency".
+  være lagt til som en "dependency".
 <p>
 </p>
   Det å vise diagrammer i en web-applikasjon er i utgangspunktet utfordrene å få til på en god måte.
