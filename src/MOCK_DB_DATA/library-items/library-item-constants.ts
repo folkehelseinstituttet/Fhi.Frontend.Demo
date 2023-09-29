@@ -1,5 +1,8 @@
 const bootstrapVersion = '5.2';
 const bootstrapDocBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}`;
+const npmBaseUrl = 'https://www.npmjs.com/package/@folkehelseinstituttet';
+const githubBaseUrl = 'https://github.com/folkehelseinstituttet';
+const githubFrontendDemoUrl = `${githubBaseUrl}/Fhi.Frontend.Demo/tree/dev`;
 
 export class LibraryItemConstants {
 
@@ -9,7 +12,15 @@ export class LibraryItemConstants {
   static BootstrapFormsBaseUrl = `${bootstrapDocBaseUrl}/forms`;
   static BootstrapUtilitiesBaseUrl = `${bootstrapDocBaseUrl}/utilities`;
 
-  static FhiAngularComponents = 'https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-components/src/lib';
+  static FhiAngularComponentsNpmUrl = `${npmBaseUrl}/angular-components`;
+  static FhiAngularComponentsGithubUrl = `${githubFrontendDemoUrl}/projects/fhi-angular-components`;
+  static FhiAngularComponentsGithubLibUrl = `${this.FhiAngularComponentsGithubUrl}/src/lib`;
+
+  static FhiAngularHighchartsNpmUrl = `${npmBaseUrl}/angular-highcharts`;
+  static FhiAngularHighchartsGithubUrl = `${githubFrontendDemoUrl}/projects/fhi-angular-highcharts`;
+  static FhiAngularHighchartsGithubLibUrl = `${this.FhiAngularHighchartsGithubUrl}/src/lib`;
+
+  static ExampleComponentsGithubUrl = `${githubFrontendDemoUrl}/src/app/views/shared/dynamic-library-examples/example-components`;
 
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 

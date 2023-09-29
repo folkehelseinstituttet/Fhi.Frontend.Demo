@@ -1,22 +1,41 @@
+import { LibraryItemConstants as CONST } from '../library-item-constants';
+
 export const HighchartsIntro = `
-<p>
-  Kom i gang:
-  <a href="https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts">
-    @folkehelseinstituttet/angular-highcharts
-  </a>
+<p class="lead">
+  Folkehelseintitutte har valgt å bruker Highcharts for å vise diagrammer med FHI-design.
 </p>
 <p>
-  Lenke til kildekode:
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/projects/fhi-angular-highcharts">
-    projects/fhi-angular-highcharts
-  </a>
-</p>
+  For å gjøre det så enkelt som mulig å ta i bruk Highcharts, er det utviklet en komponent
+  som tilgjengeliggjør et bearbeidet utvalg av det <a href="https://www.highcharts.com">Highcharts</a>
+  har å tilby.
+  Den er bygget på <a href="https://github.com/highcharts/highcharts-angular">Highcharts Angular</a>,
+  og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
+  <a href="${CONST.FhiAngularHighchartsNpmUrl}">@folkehelseinstituttet/angular-highcharts</a>
+  være lagt til som en "dependency".
 <p>
-  Lenke til demokoden:
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/src/app/views/shared/dynamic-library-examples/fhi-angular-examples/fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts">
-    fhi-angular-highcharts-example/fhi-angular-highcharts-example.component.ts
-  </a>
 </p>
-<p>
-  API-dokumentasjon ligger under fanen "Dokumentasjon" i det første eksempelet: <i>FHI Angular Highcharts - basic setup</i>
-</p>`;
+  Det å vise diagrammer i en web-applikasjon er i utgangspunktet utfordrene å få til på en god måte.
+  Ekstra utfordrene blir det siden vi må støtte dynamiske data, i tillegg til riktig design og universell
+  utforming. Vi jobber med å fikse feil og mangler vi vet om, og håper alle som tar i bruk
+  "FHI Angular Highcharts" vil hjelpe oss med å gjøre denne komponenten bedre.
+</p>
+
+<h2 class="h3">Nyttige lenker</h2>
+
+<ul>
+  <li>
+    <a href="${CONST.FhiAngularHighchartsGithubUrl}/README.md#API">
+      API-dokumentasjon
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularHighchartsGithubUrl}">
+      Kildekode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.ExampleComponentsGithubUrl}/highcharts">
+      Demokode
+    </a>
+  </li>
+</ul>`;
