@@ -100,30 +100,30 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 | Input | Type | Default | Required | Description |
 | ----- | ---- | ------- | -------- | ----------- |
-| `diagramOptions` | `FhiDiagramOptions` | - | yes | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. |
+| `[diagramOptions]` | `FhiDiagramOptions` | - | yes | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. |
 
 ### Outputs
 
 | Output | Event type | Description |
 | -------| ---------- | ----------- |
-| `diagramTypeNavigation` | `string` | If diagram type navigation i visible, this event will fire on every navigation. Outputs a `diagramTypeId`. |
+| `(diagramTypeNavigation)` | `string` | If diagram type navigation i visible, this event will fire on every navigation. Outputs a `diagramTypeId`. |
 
 ### Type FhiDiagramOptions
 
-| Property            | Type                     | Default   | Required | Description |
-| ------------------- | ------------------------ | --------- | -------- | ----------- |
-| `creditsHref`       | `string`                 | -         | no       | Link to source ref. in footer. |
-| `creditsText`       | `string`                 | -         | no       | Text to source ref. in footer. |
-| `diagramTypeId`     | `string`                 | `table`   | no       | ID to specify default diagram type. Legal values: `bar`, `barStacked`, `column`, `columnStacked`, `line`, `map`, `pie`, `table`. |
-| `diagramTypeNavId`  | `string`                 | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Legal values: `default`. |
-| `diagramTypeSubset` | `Array<string>`          | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for given series will show in the navigation. Legal values in array are all legal values for `diagramTypeId`. |
-| `disclaimer`        | `string`                 | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
-| `flags`             | `Array<FhiDiagramFlag>`  | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
-| `lastUpdated`       | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
-| `mapTypeId`         | `sting`                  | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. Legal values: `mapFylker`, `mapFylker2019`. |
-| `openSource`        | `boolean`                | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `series`            | `Array<FhiDiagramSerie>` | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
-| `title`             | `string`                 | -         | yes      | The title above the diagram. |
+| Property              | Type                     | Default   | Required | Description |
+| --------------------- | ------------------------ | --------- | -------- | ----------- |
+| `creditsHref`         | `string`                 | -         | no       | Link to source ref. in footer. |
+| `creditsText`         | `string`                 | -         | no       | Text to source ref. in footer. |
+| `diagramTypeId`       | `string`                 | `table`   | no       | ID to specify default diagram type. Legal values: `bar`, `barStacked`, `column`, `columnStacked`, `line`, `map`, `pie`, `table`. |
+| `diagramTypeNavId`    | `string`                 | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Legal values: `default`. |
+| `[diagramTypeSubset]` | `Array<string>`          | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for given series will show in the navigation. Legal values in array are all legal values for `diagramTypeId`. |
+| `disclaimer`          | `string`                 | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
+| `[flags]`             | `Array<FhiDiagramFlag>`  | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
+| `lastUpdated`         | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
+| `mapTypeId`           | `sting`                  | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. Legal values: `mapFylker`, `mapFylker2019`. |
+| `[openSource]`        | `boolean`                | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
+| `[series]`            | `Array<FhiDiagramSerie>` | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
+| `title`               | `string`                 | -         | yes      | The title above the diagram. |
 
 ### Type FhiDiagramSerie
 
