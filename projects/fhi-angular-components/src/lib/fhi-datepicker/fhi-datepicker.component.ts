@@ -102,7 +102,7 @@ export class FhiDatepickerComponent {
     this.maxDateFormatted = new Date(this.maximumDate);
     this.minDateFormatted = new Date(this.minimumDate);
     if (this.date) {
-      // this.dateSelect.emit(this.date);
+      this.onDateSelection(this.model);
     }
   }
 

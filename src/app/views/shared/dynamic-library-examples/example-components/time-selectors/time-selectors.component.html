@@ -3,14 +3,14 @@
                   [minimumDate]="minDate"
                   [maximumDate]="maxDate"
                   (dateSelect)="getDate($event)"></fhi-datepicker>
-  <div class="mt-3">
-    <code>{{ selectedDate }}</code>
-  </div>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
   <fhi-date-and-time label="Velg dato og tidspunkt"
                      (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
+  <div class="mt-4">
+    <code>{{ selectedDateAndTime }}</code>
+  </div>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
@@ -18,7 +18,7 @@
     <i class="icon-bell"></i>
     <div>
       <p>Dette eksempelet viser hvordan man kan sette opp et datointervall med to Datepickere og brukes på eget ansvar.</p>
-      <p class="mb-0">Datointervall blir oppdatert når <a href="/developer/components/Datepicker">Datepicker</a> blir levert som en Angular-komponent.</p>
+      <p class="mb-0">Datointervall blir oppdatert når <a href="/developer/components/time-selectors#time-selector-datepicker">Datepicker</a> blir levert som en Angular-komponent.</p>
     </div>
   </div>
 

@@ -25,7 +25,8 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-date-and-time label="Velg dato og tidspunkt"></fhi-date-and-time>
+<fhi-date-and-time label="Velg dato og tidspunkt"
+                   (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
 `;
 }
 
