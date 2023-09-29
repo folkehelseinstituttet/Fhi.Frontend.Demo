@@ -25,7 +25,7 @@
     <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
             *ngFor="let selected of selectedItems" (click)="unselect(selected)">
       {{ getSelectedName(selected) }}
-      <i class="icon-xmark"></i>
+      <i class="icon-x"></i>
     </button>
     <button type="button" class="btn fhi-btn-link"
             *ngIf="selectedItems.length > 1" (click)="unselectAll()">

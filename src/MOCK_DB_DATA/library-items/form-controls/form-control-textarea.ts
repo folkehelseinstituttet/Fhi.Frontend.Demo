@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const Select: LibraryItem[] = [{
-  id: LibraryItemIds.FormSelect,
-  title: 'Select',
+export const FormControlTextarea: LibraryItem[] = [{
+  id: ITEMS.FormControlTextarea.id,
+  title: ITEMS.FormControlTextarea.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -16,12 +16,11 @@ export const Select: LibraryItem[] = [{
  */
 function getExampleHtml(): string {
   return `
-<label for="FormSelect" class="form-label">Ledetekst for select</label>
-<select class="form-select" id="FormSelect">
-  <option>Aktiver for å gjøre et valg</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-</select>`;
+<label for="exampleFormControlTextarea1" class="form-label" aria-describedby="hjelpeTekst2">
+  Tekstfelt med flere linjer
+</label>
+<p class="form-text" id="hjelpeTekst2">Hjelpetekst, f.eks "Valgfritt felt"</p>
+<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>`;
 }
 
 /*

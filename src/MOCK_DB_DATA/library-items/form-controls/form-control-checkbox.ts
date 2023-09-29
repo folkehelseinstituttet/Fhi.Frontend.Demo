@@ -1,9 +1,9 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const Checkbox: LibraryItem[] = [{
-  id: LibraryItemIds.FormCheckbox,
-  title: 'Checkbox',
+export const FormControlCheckbox: LibraryItem[] = [{
+  id: ITEMS.FormControlCheckbox.id,
+  title: ITEMS.FormControlCheckbox.title,
   type: LibraryItemType.html,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),

@@ -73,6 +73,50 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'nav-tiles',
     title: 'Navigation tiles'
   },
+  FormControlInput: {
+    id: 'form-control-input',
+    title: 'Text input'
+  },
+  FormControlTextarea: {
+    id: 'form-control-textarea',
+    title: 'Textarea'
+  },
+  FormControlCheckbox: {
+    id: 'form-control-checkbox',
+    title: 'Checkbox'
+  },
+  FormControlRadio: {
+    id: 'form-control-radio',
+    title: 'Radio'
+  },
+  FormControlCheckboxTile: {
+    id: 'form-control-checkbox-tile',
+    title: 'Checkbox tile'
+  },
+  FormControlRadioTile: {
+    id: 'form-control-radio-tile',
+    title: 'Radio tile'
+  },
+  FormControlSelect: {
+    id: 'form-control-select',
+    title: 'Select'
+  },
+  FormControlMultiselect: {
+    id: 'form-control-multiselect',
+    title: 'Multiselect'
+  },
+  FormControlAutosuggest: {
+    id: 'form-control-autosuggest',
+    title: 'Select with autosuggest'
+  },
+  FormControlSwitch: {
+    id: 'form-control-switch',
+    title: 'Switch'
+  },
+  FormControlValidation: {
+    id: 'form-control-validation',
+    title: 'Validation'
+  },
   NavButtons: {
     id: 'nav-buttons',
     title: 'Menu buttons'

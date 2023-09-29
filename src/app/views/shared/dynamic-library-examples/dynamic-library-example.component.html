@@ -1,6 +1,7 @@
 <div [ngSwitch]="groupId">
   <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
   <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
+  <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
@@ -15,16 +16,6 @@
 
 <!-- TODO: Remove old switch implementation when alt items use new system -->
 <div [ngSwitch]="itemId">
-  <app-advanced-select-example
-    *ngSwitchCase="itemIds.AdvancedSelectAutosuggest"
-    [itemId]="itemIds.AdvancedSelectAutosuggest"
-    [itemIds]="itemIds">
-  </app-advanced-select-example>
-  <app-advanced-select-example
-    *ngSwitchCase="itemIds.AdvancedSelectMultiselect"
-    [itemId]="itemIds.AdvancedSelectMultiselect"
-    [itemIds]="itemIds">
-  </app-advanced-select-example>
 
   <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
 
@@ -43,19 +34,6 @@
   <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
 
   <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
-
-  <app-form-element-examples
-    *ngSwitchCase="itemIds.FormRadioButtonTile"
-    [itemId]="itemIds.FormRadioButtonTile"
-    [itemIds]="itemIds"></app-form-element-examples>
-  <app-form-element-examples
-    *ngSwitchCase="itemIds.FormCheckboxTile"
-    [itemId]="itemIds.FormCheckboxTile"
-    [itemIds]="itemIds"></app-form-element-examples>
-  <app-form-element-examples
-    *ngSwitchCase="itemIds.FormSwitch"
-    [itemId]="itemIds.FormSwitch"
-    [itemIds]="itemIds"></app-form-element-examples>
 
   <app-table-examples
     *ngSwitchCase="itemIds.FhiAngularTable"
