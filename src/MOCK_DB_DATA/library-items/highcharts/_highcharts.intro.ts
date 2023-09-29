@@ -41,4 +41,3 @@ export const HighchartsIntro = `
     </a>
   </li>
 </ul>`;
-
