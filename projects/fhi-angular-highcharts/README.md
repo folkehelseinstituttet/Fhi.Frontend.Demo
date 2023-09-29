@@ -40,7 +40,7 @@ Install with [npm](https://www.npmjs.com): `npm install @folkehelseinstituttet/a
 
 ### Add to app
 
-After installing the package and all dependencies, add the following code to you're app:
+After installing the package and all dependencies, add the following code to your app:
 
 ```scss
 // In global css-file (usually style.scss)
