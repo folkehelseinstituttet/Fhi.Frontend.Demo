@@ -41,7 +41,6 @@ export class TimeSelectorsComponent {
   }
   
   getDateAndTime(dateAndTime: string) {
-    console.log(this.selectedDateAndTime);
     this.selectedDateAndTime = dateAndTime;
   }
 

@@ -75,14 +75,14 @@ export class FhiDateAndTimeComponent {
   }
 
   private concatenateDateAndTime() {
-    this.dateAndTimeSelected = this.dateSelected + 'T' + this.timeEntered + ':00Z';
+    this.dateAndTimeSelected = this.dateSelected + 'T' + this.timeEntered;
     const parsedISO = parseISO(this.dateAndTimeSelected);
-    console.log('RAW:', this.dateAndTimeSelected);
-    console.log('date:', parsedISO);
+    // console.log('RAW:', this.dateAndTimeSelected);
+    // console.log('date:', parsedISO);
 
     if (isValid(parsedISO)) {
-      console.log('parsed ISO:', parsedISO);
       const formattedISO = formatISO(parsedISO);
+      // console.log('formatted ISO:', formattedISO);
       this.dateAndTimeSelect.emit(formattedISO);
     }
   }
