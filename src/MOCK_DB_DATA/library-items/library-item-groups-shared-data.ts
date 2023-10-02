@@ -53,29 +53,24 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'FormControlsData',
     parentUrlSegment: UrlSegment.components
   },
+  Highcharts: {
+    id: 'highcharts',
+    title: 'Highcharts',
+    apiEndPoint: 'HighchartsData',
+    parentUrlSegment: UrlSegment.components
+  },
   Navs: {
     id: 'navs',
     title: 'Navigation',
     apiEndPoint: 'NavsData',
     parentUrlSegment: UrlSegment.components
   },
-
   TimeSelectors: {
     id: 'time-selectors',
     title: 'Time selectors',
     apiEndPoint: 'TimeSelectorsData',
     parentUrlSegment: UrlSegment.components
   },
-
-  // Moduler
-
-  Highcharts: {
-    id: 'highcharts',
-    title: 'Fhi Angular Highcharts',
-    apiEndPoint: 'HighchartsData',
-    parentUrlSegment: UrlSegment.modules
-  },
-
 
   // Layout og sidemaler
 

@@ -36,7 +36,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  <a href="${CONST.FhiAngularComponents}/fhi-datepicker">FHI Datepicker</a> er en komponent i <a href="${CONST.FhiAngularComponents}">FHI Angular Components</a>. Den er basert på <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>.
+  <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-datepicker">FHI Datepicker</a> er en komponent i <a href="${CONST.FhiAngularComponentsGithubLibUrl}">FHI Angular Components</a>.
 </p>
 <p>
   Dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.

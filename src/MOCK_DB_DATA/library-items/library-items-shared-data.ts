@@ -69,9 +69,13 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'button-group',
     title: 'Button group'
   },
-  NavTiles: {
-    id: 'nav-tiles',
-    title: 'Navigation tiles'
+  ErrorPage404: {
+    id: 'error-page-404',
+    title: 'Error page - 404'
+  },
+  ErrorPage500: {
+    id: 'error-page-500',
+    title: 'Error page - 500'
   },
   FormControlInput: {
     id: 'form-control-input',
@@ -117,6 +121,22 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'form-control-validation',
     title: 'Validation'
   },
+  HighchartsWithoutMenu: {
+    id: 'highcharts-without-menu',
+    title: 'Highcharts without menu'
+  },
+  HighchartsWithMenu: {
+    id: 'highcharts-with-menu',
+    title: 'Highcharts with menu'
+  },
+  HighchartsWithMenuAndFooter: {
+    id: 'highcharts-with-menu-and-footer',
+    title: 'Highcharts with menu and footer'
+  },
+  NavTiles: {
+    id: 'nav-tiles',
+    title: 'Navigation tiles'
+  },
   NavButtons: {
     id: 'nav-buttons',
     title: 'Menu buttons'
@@ -132,26 +152,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   NavTabs: {
     id: 'nav-tabs',
     title: 'Tabs'
-  },
-  ErrorPage404: {
-    id: 'error-page-404',
-    title: 'Error page - 404'
-  },
-  ErrorPage500: {
-    id: 'error-page-500',
-    title: 'Error page - 500'
-  },
-  HighchartsWithoutMenu: {
-    id: 'highcharts-without-menu',
-    title: 'FHI Angular Highcharts - without menu'
-  },
-  HighchartsWithMenu: {
-    id: 'highcharts-with-menu',
-    title: 'FHI Angular Highcharts - with menu'
-  },
-  HighchartsWithMenuAndFooter: {
-    id: 'highcharts-with-menu-and-footer',
-    title: 'FHI Angular Highcharts - with menu and footer'
   },
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
