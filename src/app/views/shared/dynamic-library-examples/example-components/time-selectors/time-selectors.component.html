@@ -3,14 +3,18 @@
                   [minimumDate]="minDate"
                   [maximumDate]="maxDate"
                   (dateSelect)="getDate($event)"></fhi-datepicker>
+  <!-- <p class="mt-4">
+    <code>{{ selectedDate }}</code>
+  </p> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-and-time label="Velg dato og tidspunkt"
+  <fhi-date-and-time [date]="today"
+                     label="Velg dato og tidspunkt"
                      (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
-  <div class="mt-4">
+  <!-- <div class="mt-4">
     <code>{{ selectedDateAndTime }}</code>
-  </div>
+  </div> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">

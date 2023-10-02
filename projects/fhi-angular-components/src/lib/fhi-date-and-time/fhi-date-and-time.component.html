@@ -1,6 +1,7 @@
 <div class="fhi-date-and-time">
   <div class="d-flex">
-    <fhi-datepicker [label]="label"
+    <fhi-datepicker [date]="date"
+                    [label]="label"
                     class="me-2"
                     (dateSelect)="onGetDate($event)"></fhi-datepicker>
 
@@ -8,14 +9,14 @@
       <div class="position-relative mt-5">
         <label class="fhi-date-and-time__time-icon icon-clock position-absolute" [for]="thisTimeId"><span class="visually-hidden">Klokkeslett</span></label>
         <input class="form-control fhi-datepicker__form-control fhi-date-and-time__hours-and-minutes"
+               [ngClass]="{ 'is-invalid': !dateAndTimeIsValid }"
                [id]="thisTimeId"
                inputmode="decimal"
                placeholder="tt:mm"
                [(ngModel)]="timeEntered"
                (keyup)="onTimeChange($event)"
                type="text" />
-        <!-- <p class="invalid-feedback d-inline-block">This is just all wrong!!!</p> -->
-        <!-- <p>{{ timeSelect }}</p> -->
+        <p class="invalid-feedback d-inline-block" *ngIf="!dateAndTimeIsValid" [innerHTML]="errorMsg"></p>
       </div>
     </div>
   </div>
