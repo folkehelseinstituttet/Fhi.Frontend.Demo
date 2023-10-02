@@ -103,6 +103,8 @@ export class FhiDatepickerComponent {
     this.minDateFormatted = new Date(this.minimumDate);
     if (this.date) {
       this.onDateSelection(this.model);
+    } else {
+      this.dateSelect.emit(undefined);
     }
   }
 
@@ -124,6 +126,10 @@ export class FhiDatepickerComponent {
         this.errorMsg = 'Du har lagt inn et datoformat som ikke støttes. Korrekt format er <strong>dd.mm.åååå</strong>';
         this.dateIsValid = false;
       }
+    } else {
+      this.dateIsValid = false;
+      this.errorMsg = 'Ingen dato valgt';
+      this.dateSelect.emit(undefined);
     }
   }
 
