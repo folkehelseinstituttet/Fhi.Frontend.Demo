@@ -5,11 +5,9 @@ import { FhiWeekSelectorComponent } from './fhi-week-selector.component';
 
 
 @NgModule({
-  declarations: [
-    FhiWeekSelectorComponent
-  ],
   imports: [
-    CommonModule
+    CommonModule,
+    FhiWeekSelectorComponent
   ]
 })
 export class FhiWeekSelectorModule { }
