@@ -123,7 +123,7 @@ export class FhiDatepickerComponent {
           this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
         }
       } else {
-        this.errorMsg = 'Du har lagt inn en dato som ikke finnes. Korrekt format er <strong>dd.mm.åååå</strong>';
+        this.errorMsg = 'Du har lagt inn en dato som ikke finnes eller har feil format. Korrekt format er <strong>dd.mm.åååå</strong>';
         this.dateIsValid = false;
         this.dateSelect.emit(undefined);
       }
