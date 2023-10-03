@@ -6,6 +6,7 @@ import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
+import { FhiWeekSelectorModule } from './fhi-week-selector/fhi-week-selector.module';
 
 
 const FHI_ANGULAR_MODULES = [
@@ -14,7 +15,8 @@ const FHI_ANGULAR_MODULES = [
   FhiMultiselectModule,
   FhiTableModule,
   FhiTreeViewNavigationModule,
-  FhiTreeViewSelectionModule
+  FhiTreeViewSelectionModule,
+  FhiWeekSelectorModule
 ];
 
 @NgModule({
