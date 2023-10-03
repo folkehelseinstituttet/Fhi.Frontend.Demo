@@ -71,7 +71,7 @@ export class FhiDateAndTimeComponent {
 
       if (this.timeEntered.length === 5) {
         this.checkIfTimeIsValid();
-        this.errorMsg = 'Ugyldig tidsformat';
+        this.errorMsg = 'Ugyldig tid';
       }
     } else {
       if (key.length === 1) {
