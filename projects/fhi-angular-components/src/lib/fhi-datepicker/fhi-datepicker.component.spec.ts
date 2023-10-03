@@ -8,7 +8,7 @@ describe('FhiDatepickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiDatepickerComponent ]
+      imports: [ FhiDatepickerComponent ]
     })
     .compileComponents();
 

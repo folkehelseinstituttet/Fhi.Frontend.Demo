@@ -8,7 +8,7 @@ describe('FhiDateAndTimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiDateAndTimeComponent ]
+      imports: [ FhiDateAndTimeComponent ]
     })
     .compileComponents();
 
