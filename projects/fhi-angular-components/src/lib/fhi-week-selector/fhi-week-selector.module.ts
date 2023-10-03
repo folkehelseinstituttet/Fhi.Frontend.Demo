@@ -8,6 +8,9 @@ import { FhiWeekSelectorComponent } from './fhi-week-selector.component';
   imports: [
     CommonModule,
     FhiWeekSelectorComponent
+  ],
+  exports: [
+    FhiWeekSelectorComponent
   ]
 })
 export class FhiWeekSelectorModule { }
