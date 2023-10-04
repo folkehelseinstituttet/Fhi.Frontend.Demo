@@ -82,8 +82,9 @@ export class FhiDatepickerComponent {
   @Input() date?: string;
   @Input() maximumDate?: string;
   @Input() minimumDate?: string;
+  @Input() label?: string = 'Velg dato';
 
-  @Output() dateSelected = new EventEmitter<string>();
+  @Output() dateSelect = new EventEmitter<string>();
 
   dateIsValid: boolean = true;
   errorMsg: string = '';
@@ -92,7 +93,7 @@ export class FhiDatepickerComponent {
   minDate: NgbDateStruct;
   minDateFormatted: Date;
   model: NgbDateStruct;
-  uniqueId: string = 'datepickerId_' + Math.random().toString(36).substring(2, 20);
+  uniqueId: string = 'datepicker_' + Math.random().toString(36).substring(2, 20);
 
   ngOnInit() {
     this.model = this.convertDateToNgbDateStruct(this.date);
@@ -100,23 +101,36 @@ export class FhiDatepickerComponent {
     this.minDate = this.convertDateToNgbDateStruct(this.minimumDate);
     this.maxDateFormatted = new Date(this.maximumDate);
     this.minDateFormatted = new Date(this.minimumDate);
+    if (this.date) {
+      this.onDateSelection(this.model);
+    } else {
+      this.dateSelect.emit(undefined);
+    }
   }
 
   onDirectInputDate() {
-    const directInputDate: any = this.convertModelToDate(this.model);
-    if (isValid(directInputDate)) {
-      this.dateIsValid = true;
-      const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
-      if (isInsideMinMaxRange) {
-        this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
-        this.onDateSelection(this.model);
+    if (this.model) {
+      const directInputDate: any = this.convertModelToDate(this.model);
+      
+      if (isValid(directInputDate)) {
+        this.dateIsValid = true;
+        const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
+        if (isInsideMinMaxRange) {
+          this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
+          this.onDateSelection(this.model);
+        } else {
+          this.dateIsValid = false;
+          this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
+        }
       } else {
+        this.errorMsg = 'Du har lagt inn en dato som ikke finnes eller har feil format. Korrekt format er <strong>dd.mm.åååå</strong>';
         this.dateIsValid = false;
-        this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
+        this.dateSelect.emit(undefined);
       }
     } else {
-      this.errorMsg = 'Du har lagt inn et datoformat som ikke støttes. Korrekt format er <strong>dd.mm.åååå</strong>';
+      this.errorMsg = 'Ingen dato valgt';
       this.dateIsValid = false;
+      this.dateSelect.emit(undefined);
     }
   }
 
@@ -125,7 +139,7 @@ export class FhiDatepickerComponent {
     if (isValid(date)) {
       const isoDate = formatISO(date, { representation: 'date' });
       this.dateIsValid = true;
-      this.dateSelected.emit(isoDate);
+      this.dateSelect.emit(isoDate);
     } else {
       this.dateIsValid = false;
       this.errorMsg = 'Det er lagt inn et datoformat som ikke støttes.';

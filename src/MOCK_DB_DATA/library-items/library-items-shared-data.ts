@@ -153,6 +153,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'nav-tabs',
     title: 'Tabs'
   },
+  TimeSelectorDateAndTime: {
+    id: 'time-selector-date-and-time',
+    title: 'Date and time'
+  },
   TimeSelectorDatepicker: {
     id: 'time-selector-datepicker',
     title: 'Datepicker'

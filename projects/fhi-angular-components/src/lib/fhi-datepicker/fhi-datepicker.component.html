@@ -1,8 +1,6 @@
 <div class="fhi-datepicker">
   <label class="form-label fhi-datepicker__label"
-         [for]="uniqueId">
-    Velg en dato
-  </label>
+         [for]="uniqueId">{{ label }}</label>
   
   <button class="fhi-datepicker__toggler"
           aria-haspopup="true"
@@ -15,6 +13,7 @@
          [ngClass]="{ 'is-invalid': !dateIsValid }"
          autocomplete="off"
          inputmode="decimal"
+         placeholder="dd.mm.åååå"
          type="text"
          [maxDate]="maxDate"
          [minDate]="minDate"
