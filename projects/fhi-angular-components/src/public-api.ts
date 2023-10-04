@@ -7,6 +7,9 @@ export * from './lib/fhi-angular-components.module';
 export * from './lib/fhi-autosuggest/fhi-autosuggest.component';
 export * from './lib/fhi-autosuggest/fhi-autosuggest.module';
 
+export * from './lib/fhi-date-and-time/fhi-date-and-time.component';
+export * from './lib/fhi-date-and-time/fhi-date-and-time.module';
+
 export * from './lib/fhi-datepicker/fhi-datepicker.component';
 export * from './lib/fhi-datepicker/fhi-datepicker.module';
 

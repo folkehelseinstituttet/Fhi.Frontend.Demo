@@ -25,9 +25,8 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-datepicker [date]="initialDate"
-                [minDate]="minDate"
-                [maxDate]="maxDate"></fhi-datepicker>
+<fhi-datepicker [date]="today"
+                (dateSelect)="getDate($event)"></fhi-datepicker>
 `;
 }
 
@@ -40,7 +39,7 @@ function getDocumentationHtml(): string | null {
   <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-datepicker">FHI Datepicker</a> er en komponent i <a href="${CONST.FhiAngularComponentsGithubLibUrl}">FHI Angular Components</a>.
 </p>
 <p>
-  Den er basert på <a href="">NgBootstrap Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
+  Dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
 </p>
 
 <h3 class="mb-5">API</h3>
@@ -64,6 +63,13 @@ function getDocumentationHtml(): string | null {
         <td>-</td>
         <td>no</td>
         <td>Forhåndsvalgt dato for Datepicker.</td>
+      </tr>
+      <tr>
+        <th>label</th>
+        <td><span class="text-nowrap"><code>string</code></span></td>
+        <td><code>"Velg dato"</code></td>
+        <td>no</td>
+        <td>Label som kobler input-felt.</td>
       </tr>
       <tr>
         <th>maxDate</th>
@@ -95,7 +101,7 @@ function getDocumentationHtml(): string | null {
     </thead>
     <tbody>
       <tr>
-        <th>dateSelected</th>
+        <th>dateSelect</th>
         <td><code>string</code></td>
         <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres som ISO 8601 string.</td>
       </tr>
