@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgbAlertModule, NgbDateParserFormatter, NgbDatepickerI18n, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { format, formatISO, isValid, toDate } from 'date-fns';
+import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { getWeek } from 'date-fns';
 
 @Component({
   selector: 'fhi-week-selector',
@@ -32,15 +32,19 @@ export class FhiWeekSelectorComponent {
   week: string;
   weekIsValid: boolean = true;
 
-  ngOnInit() {
-    
-  }
-
   onDirectInputWeek() {
 
   }
 
   onWeekSelection(date: any) {
-    console.log(this.week);
+    this.getWeekOnDate(date);
+  }
+  
+  private getWeekOnDate(date: any) {
+    const week = getWeek(new Date(date.year, date.month - 1, date.day), {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4
+    });
+    this.week = date.year + ' - ' + week;
   }
 }

@@ -4,27 +4,33 @@
           [for]="uniqueId">{{ label }}</label>
     
     <button class="fhi-datepicker__toggler"
+            style="z-index: 2"
             aria-haspopup="true"
             (click)="datepicker.toggle()">
       <i class="icon-calendar"></i>
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
 
-    <input class="form-control fhi-datepicker__form-control"
-          [ngClass]="{ 'is-invalid': !weekIsValid }"
-          autocomplete="off"
-          inputmode="decimal"
-          placeholder="åååå - uke"
-          type="text"
-          [maxDate]="maxDate"
-          [minDate]="minDate"
-          [id]="uniqueId"
-          [(ngModel)]="week"
-          [showWeekNumbers]="true"
-          ngbDatepicker
-          #datepicker="ngbDatepicker"
-          (change)="onDirectInputWeek()"
-          (dateSelect)="onWeekSelection($event)"/>
+    <div class="position-relative" style="z-index: 1">
+      <input class="form-control fhi-datepicker__form-control invisible"
+             autocomplete="off"
+             type="text"
+             [maxDate]="maxDate"
+             [minDate]="minDate"
+             [(ngModel)]="model"
+             [showWeekNumbers]="true"
+             ngbDatepicker
+             #datepicker="ngbDatepicker"
+             (dateSelect)="onWeekSelection($event)"/>
+      <input class="form-control fhi-datepicker__form-control position-absolute top-0"
+             [ngClass]="{ 'is-invalid': !weekIsValid }"
+             autocomplete="off"
+             [id]="uniqueId"
+             [(ngModel)]="week"
+             inputmode="decimal"
+             (change)="onDirectInputWeek()"
+             placeholder="åååå - uke"/>
+    </div>
     <p class="invalid-feedback" *ngIf="!weekIsValid" [innerHTML]="errorMsg"></p>
   </div>
 </div>
