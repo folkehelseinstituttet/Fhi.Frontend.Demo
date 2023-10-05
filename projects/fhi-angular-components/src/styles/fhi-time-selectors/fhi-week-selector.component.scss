@@ -34,6 +34,7 @@
     position: relative;
   }
 
+  .ngb-dp-showweek,
   .ngb-dp-week-number {
     border-right: 1px solid $fhi-core-grey-1;
     display: flex;
@@ -41,7 +42,9 @@
     font-family: $fhi-core-font-family-sans-serif-bold;
     font-size: inherit;
     justify-content: center;
+  }
 
+  .ngb-dp-week-number {
     + .ngb-dp-day {
       margin-left: calc(100% / 8 * -1);
       position: relative;

@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-week-selector></fhi-week-selector>`;
+<fhi-week-selector (weekSelect)="getWeek($event)"></fhi-week-selector>`;
 }
 
 /*

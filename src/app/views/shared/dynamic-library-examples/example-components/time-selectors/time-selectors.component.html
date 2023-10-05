@@ -9,9 +9,7 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-and-time [date]="today"
-                     label="Velg dato og tidspunkt"
-                     (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
+  <fhi-date-and-time (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
   <!-- <div class="mt-4">
     <code>{{ selectedDateAndTime }}</code>
   </div> -->
@@ -19,7 +17,10 @@
 
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
-  <fhi-week-selector></fhi-week-selector>
+  <fhi-week-selector (weekSelect)="getWeek($event)"></fhi-week-selector>
+  <!-- <p class="mt-4">
+    <code>{{ weekSelected }}</code>
+  </p> -->
 </div>
 
 

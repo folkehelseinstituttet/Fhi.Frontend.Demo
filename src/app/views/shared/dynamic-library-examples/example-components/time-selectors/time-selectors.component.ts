@@ -22,6 +22,8 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedWeek: number;
 
+  weekSelected: string;
+
   yearList = [
     { id: 1, name: '2020' },
     { id: 2, name: '2021' },
@@ -42,6 +44,10 @@ export class TimeSelectorsComponent {
   
   getDateAndTime(dateAndTime: string) {
     this.selectedDateAndTime = dateAndTime;
+  }
+
+  getWeek(week: string) {
+    this.weekSelected = week;
   }
 
   generateWeekList = () => {

@@ -2,8 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getWeek } from 'date-fns';
+
+import { CustomDatepickerI18n } from '../shared-services/datepicker-i18n.service';
 
 @Component({
   selector: 'fhi-week-selector',
@@ -14,7 +16,10 @@ import { getWeek } from 'date-fns';
     FormsModule,
     NgbDatepickerModule,
     NgbAlertModule
-  ]
+  ],
+  providers: [
+    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }
+	],
 })
 export class FhiWeekSelectorComponent {
   @Input() date?: string;
@@ -46,5 +51,6 @@ export class FhiWeekSelectorComponent {
       firstWeekContainsDate: 4
     });
     this.week = date.year + ' - ' + week;
+    this.weekSelect.emit(date.year + '-W' + week);
   }
 }
