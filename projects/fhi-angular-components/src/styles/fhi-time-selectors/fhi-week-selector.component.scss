@@ -16,6 +16,17 @@
   .fhi-datepicker [ngbDatepickerDayView].bg-primary {
     background-color: transparent !important;
     color: inherit !important;
+
+    &::before {
+      border-top: 1px solid $fhi-core-grey-3;
+      border-bottom: 1px solid $fhi-core-grey-3;
+      content: "";
+      display: block;
+      height: $fhi-core-px * 37;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
   }
 
   .ngb-dp-week {
