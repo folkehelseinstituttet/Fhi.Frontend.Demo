@@ -17,7 +17,7 @@
     background-color: transparent !important;
     color: inherit !important;
 
-    &::before {
+    &::after {
       border-top: 1px solid $fhi-core-grey-3;
       border-bottom: 1px solid $fhi-core-grey-3;
       content: "";
@@ -25,7 +25,7 @@
       height: $fhi-core-px * 37;
       left: 0;
       position: absolute;
-      width: 100%;
+      width: $fhi-core-px * 308;
     }
   }
 
@@ -69,15 +69,17 @@
     }
   }
 
-  [tabindex="0"] {
-    ~ .ngb-dp-day:last-child {
-      @include week-background($fhi-core-blue-grey-3);
-    }
-  }
-
   .ngb-dp-day {
     .btn-light:hover {
       background-color: transparent;
+    }
+
+    &[tabindex="0"] {
+      z-index: unset;
+      
+      ~ .ngb-dp-day:last-child {
+        @include week-background($fhi-core-blue-grey-3);
+      }
     }
 
     &:hover {
