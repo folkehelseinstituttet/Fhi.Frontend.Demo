@@ -41,10 +41,23 @@
     font-family: $fhi-core-font-family-sans-serif-bold;
     font-size: inherit;
     justify-content: center;
+
+    + .ngb-dp-day {
+      margin-left: calc(100% / 8 * -1);
+      position: relative;
+      width: 200%;
+
+      .btn-light {
+        margin-left: 50%;
+        padding-top: 25%;
+        padding-bottom: 25%;
+      }
+    }
   }
   
   .ngb-dp-today > [ngbDatepickerDayView].btn-light,
   [ngbDatepickerDayView].active {
+    // reset date picking
     box-shadow: none !important;
     outline: none !important;
   }
@@ -56,18 +69,19 @@
     }
   }
 
+  [tabindex="0"] {
+    ~ .ngb-dp-day:last-child {
+      @include week-background($fhi-core-blue-grey-3);
+    }
+  }
+
   .ngb-dp-day {
     .btn-light:hover {
       background-color: transparent;
     }
 
-    &[tabindex="0"] {
-      ~ .ngb-dp-day:last-child {
-        @include week-background($fhi-core-blue-grey-3);
-      }
-    }
-
     &:hover {
+      &:last-child,
       ~ .ngb-dp-day:last-child {
         @include week-background($fhi-core-pink-light-2);
       }
