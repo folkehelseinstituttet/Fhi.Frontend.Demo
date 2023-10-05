@@ -155,11 +155,15 @@ export class FhiDatepickerComponent {
   }
 
   private convertModelToDate(model: any) {
-    let leadingZero = '';
+    let leadingZeroDay = '';
+    let leadingZeroMonth = '';
     if (model.month < 10) {
-      leadingZero = '0';
+      leadingZeroMonth = '0';
     }
-    const dateISOString = model.year + '-' + leadingZero + model.month + '-' + model.day;
+    if (model.day < 10) {
+      leadingZeroDay = '0';
+    }
+    const dateISOString = model.year + '-' + leadingZeroMonth + model.month + '-' + leadingZeroDay + model.day;
     const date = toDate(new Date(dateISOString));
     return date;
   }
