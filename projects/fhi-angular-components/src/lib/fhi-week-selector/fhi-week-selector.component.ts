@@ -35,10 +35,26 @@ export class FhiWeekSelectorComponent {
   model: NgbDateStruct;
   uniqueId: string = 'weekselector_' + Math.random().toString(36).substring(2, 20);
   week: string;
+  weekEntered: string;
   weekIsValid: boolean = true;
 
-  onDirectInputWeek() {
+  onDirectInputWeek(event: any) {
+    const key = event.key;
+    const allowedKeys = '0,1,2,3,4,5,6,7,8,9';
+    
+    if (allowedKeys.indexOf(key) >= 0) {
+      this.weekEntered = this.week;
+    } else {
+      if (key.length === 1) {
+        this.week = this.weekEntered;
+      }
+    }
 
+    if (this.week.length === 4 || this.week.length === 5 || this.week.length === 6 || this.week.length === 7) {
+      if (key.length === 1) {
+        this.week = this.week.substring(0, 4) + ' - ';
+      }
+    }
   }
 
   onWeekSelection(date: any) {

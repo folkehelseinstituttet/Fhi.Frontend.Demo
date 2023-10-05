@@ -28,7 +28,7 @@
              [id]="uniqueId"
              [(ngModel)]="week"
              inputmode="decimal"
-             (change)="onDirectInputWeek()"
+             (keyup)="onDirectInputWeek($event)"
              placeholder="åååå - uke"/>
     </div>
     <p class="invalid-feedback" *ngIf="!weekIsValid" [innerHTML]="errorMsg"></p>

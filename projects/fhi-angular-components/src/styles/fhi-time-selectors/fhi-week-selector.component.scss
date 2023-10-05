@@ -86,7 +86,7 @@
     }
 
     &:hover {
-      &:last-child,
+      &:last-child[role],
       ~ .ngb-dp-day:last-child {
         @include week-background($fhi-core-pink-light-2);
       }
