@@ -17,7 +17,7 @@ import { formatISO, isValid, parseISO, getTime } from 'date-fns';
 })
 export class FhiDateAndTimeComponent {
   @Input() date?: string;
-  @Input() label?: string;
+  @Input() label?: string = 'Velg dato og tidspunkt';
   @Input() initialTime?: string;
 
   @Output() dateAndTimeSelect = new EventEmitter<string>();
