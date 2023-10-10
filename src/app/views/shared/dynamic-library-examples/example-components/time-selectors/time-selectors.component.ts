@@ -46,7 +46,8 @@ export class TimeSelectorsComponent {
     this.selectedDateAndTime = dateAndTime;
   }
 
-  getWeek(week: string) {
+  getTheWeek(week: any) {
+    console.log(week);
     this.weekSelected = week;
   }
 
