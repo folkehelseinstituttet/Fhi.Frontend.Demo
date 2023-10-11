@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FilterPipeModule } from 'ngx-filter-pipe';
+// import { FilterPipeModule } from 'ngx-filter-pipe';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
-import { FhiAngularTreeViewBuilderModule } from '@folkehelseinstituttet/angular-tree-view-builder';
+// import { FhiAngularTreeViewBuilderModule } from '@folkehelseinstituttet/angular-tree-view-builder';
 
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -23,11 +23,11 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    FilterPipeModule,
+    // FilterPipeModule,
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    FhiAngularTreeViewBuilderModule
+    // FhiAngularTreeViewBuilderModule
   ],
   exports: [
     SafePipe,
@@ -36,11 +36,11 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    FilterPipeModule,
+    // FilterPipeModule,
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    FhiAngularTreeViewBuilderModule
+    // FhiAngularTreeViewBuilderModule
   ]
 })
 export class SharedModule { }

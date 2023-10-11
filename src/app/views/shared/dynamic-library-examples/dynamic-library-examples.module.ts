@@ -14,7 +14,7 @@ import { FormControlsComponent } from './example-components/form-controls/form-c
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
-import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
+// import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
@@ -43,7 +43,7 @@ const EXAMPLE_COMPONENTS = [
   HighchartsComponent,
   NavsComponent,
   TabsExampleComponent,
-  TimeSelectorsComponent,
+  // TimeSelectorsComponent,
 ];
 
 const NGB_EXAMPLES = [
