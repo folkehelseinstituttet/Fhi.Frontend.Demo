@@ -11,7 +11,7 @@ const I18N_VALUES = {
 };
 
 @Injectable()
-export class CustomDatepickerI18n extends NgbDatepickerI18n {
+export class FhiCustomDatepickerI18n extends NgbDatepickerI18n {
 	constructor(
     @Inject(LOCALE_ID)
     private locale: string
