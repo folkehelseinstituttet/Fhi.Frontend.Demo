@@ -77,6 +77,14 @@ export class FhiWeekSelectorComponent implements ControlValueAccessor, AfterView
     this.weekSelect.emit(value);
   }
 
+  toggle() {
+    this.datePicker?.toggle();
+  }
+
+  isOpen() {
+    return this.datePicker?.isOpen() ?? false;
+  }
+
   selectedDateChange(value: FhiWeekSelectorValue | string | null | any) {
     if (!value) {
       this.onWeekSelection(null);
@@ -91,7 +99,6 @@ export class FhiWeekSelectorComponent implements ControlValueAccessor, AfterView
         }
       } else {
         let date = FhiWeekSelectorComponent.calculateDate(value.week, value.year);
-        console.log('d a t e :' ,date);
         this.onWeekSelection(date);
       }
     }
@@ -122,6 +129,7 @@ export class FhiWeekSelectorComponent implements ControlValueAccessor, AfterView
     }
     if (this.onTouched) this.onTouched();
     if (this.onChange) {
+      console.log('onChange', fromDate);
       if (fromDate) {
         this.weekSelectorValue = FhiWeekSelectorComponent.getYearWeekValue(fromDate);
       } else {
