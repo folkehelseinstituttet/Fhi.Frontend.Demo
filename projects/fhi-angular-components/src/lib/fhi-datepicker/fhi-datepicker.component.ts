@@ -5,11 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { NgbAlertModule, NgbDateParserFormatter, NgbDatepickerI18n, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { format, formatISO, isValid, toDate } from 'date-fns';
 
-import { CustomDatepickerI18n } from '../shared-services/datepicker-i18n.service';
+import { FhiCustomDatepickerI18n } from '../shared-services/fhi-datepicker-i18n.service';
 
 
 @Injectable()
-export class CustomDateParserFormatter extends NgbDateParserFormatter {
+export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
   readonly DELIMITER = '.';
 
   parse(value: string): NgbDateStruct | null {
@@ -42,8 +42,8 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     NgbAlertModule
   ],
   providers: [
-		{ provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }
+		{ provide: NgbDateParserFormatter, useClass: FhiCustomDateParserFormatter },
+    { provide: NgbDatepickerI18n, useClass: FhiCustomDatepickerI18n }
 	],
 })
 export class FhiDatepickerComponent {

@@ -21,6 +21,7 @@
              [id]="uniqueId"
              [maxDate]="maxDate"
              [minDate]="minDate"
+             #datePicker="ngbDatepicker"
              [(ngModel)]="selectedWeek"
              (ngModelChange)="selectedDateChange($event)"
              [showWeekNumbers]="true"

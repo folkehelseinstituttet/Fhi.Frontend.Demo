@@ -1,17 +1,14 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, forwardRef, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import { NgbDatepickerI18n, NgbAlertModule, NgbDate, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerI18n, NgbAlertModule, NgbDate, NgbDateAdapter, NgbDateParserFormatter, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { getWeek } from 'date-fns';
 
-import { CustomDatepickerI18n } from '../shared-services/datepicker-i18n.service';
+import { FhiCustomDatepickerI18n } from '../shared-services/fhi-datepicker-i18n.service';
 import { FhiWeekParserFormatter } from './fhi-week-parser-formatter';
-
-export class WeekSelectValue {
-  year: number;
-  week: number;
-}
+import { FhiCustomAdapter } from "./fhi-week-selector-adapter";
+import { FhiWeekSelectorValue } from './fhi-week-selector-value.model';
 
 @Component({
   selector: 'fhi-week-selector',
@@ -24,17 +21,33 @@ export class WeekSelectValue {
     NgbAlertModule
   ],
   providers: [
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
-    { provide: NgbDateParserFormatter, useClass: FhiWeekParserFormatter }
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => FhiWeekSelectorComponent),
+      multi: true
+    },
+    { 
+      provide: NgbDatepickerI18n,
+      useClass: FhiCustomDatepickerI18n
+    },
+    { 
+      provide: NgbDateParserFormatter,
+      useClass: FhiWeekParserFormatter
+    },
+    {
+      provide: NgbDateAdapter,
+      useClass: FhiCustomAdapter
+    }     
 	],
 })
-export class FhiWeekSelectorComponent {
+export class FhiWeekSelectorComponent implements ControlValueAccessor, AfterViewInit {
+  @ViewChild('datePicker', { static: false }) datePicker: NgbInputDatepicker;
   @Input() date?: string;
   @Input() label: string = 'Velg uke';
   @Input() maximumDate?: string;
   @Input() minimumDate?: string;
 
-  @Output() weekSelect = new EventEmitter<WeekSelectValue>();
+  @Output() weekSelect = new EventEmitter<FhiWeekSelectorValue>();
 
   errorMsg: string = '';
   fromDate: NgbDate;
@@ -50,25 +63,36 @@ export class FhiWeekSelectorComponent {
   onChange: (_: any) => void;
   onTouched: any;
 
-  set weekPickerValue(value: WeekSelectValue) {
+  ngAfterViewInit() {
+    if (this.fromDate) {
+      setTimeout(() => {
+        this.datePicker.navigateTo(this.fromDate);
+      });
+    }
+  }
+
+  set weekSelectorValue(value: FhiWeekSelectorValue) {
+    console.log('w e e k S e l e c t o r V a l u e :', value);
     this.onChange(value);
     this.weekSelect.emit(value);
   }
 
-  selectedDateChange(value: WeekSelectValue | string | null | any) {
+  selectedDateChange(value: FhiWeekSelectorValue | string | null | any) {
     if (!value) {
       this.onWeekSelection(null);
     } else {
       if (typeof value === 'string') {
-        // Return invalid weekPickerValue validateWeek(): ValidatorFn will return error
+        // Return invalid weekSelectorValue validateWeek(): ValidatorFn will return error
         if (this.onChange) {
-          this.weekPickerValue = {
+          this.weekSelectorValue = {
             year: -1,
             week: -1
           };
         }
       } else {
-        this.onWeekSelection(value);
+        let date = FhiWeekSelectorComponent.calculateDate(value.week, value.year);
+        console.log('d a t e :' ,date);
+        this.onWeekSelection(date);
       }
     }
   }
@@ -99,14 +123,14 @@ export class FhiWeekSelectorComponent {
     if (this.onTouched) this.onTouched();
     if (this.onChange) {
       if (fromDate) {
-        this.weekPickerValue = FhiWeekSelectorComponent.getYearWeekValue(fromDate);
+        this.weekSelectorValue = FhiWeekSelectorComponent.getYearWeekValue(fromDate);
       } else {
-        this.weekPickerValue = null;
+        this.weekSelectorValue = null;
       }
     }
   }
 
-  static getYearWeekValue(date: Date): WeekSelectValue {
+  static getYearWeekValue(date: Date): FhiWeekSelectorValue {
     const week = getWeek(new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())), {
       weekStartsOn: 1,
       firstWeekContainsDate: 4
@@ -135,5 +159,16 @@ export class FhiWeekSelectorComponent {
 
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
+  }
+
+  writeValue(value: FhiWeekSelectorValue | null): void {
+    let selectDate: NgbDate | null = null;
+    if (value) {
+      if (this.datePicker) this.datePicker.manualDateChange(`${value.year}-${value.week}`, true);
+      selectDate = FhiWeekSelectorComponent.calculateDate(value.week, value.year);
+    } else {
+      if (this.datePicker) this.datePicker.manualDateChange('', true);
+    }
+    this.onWeekSelection(selectDate);
   }
 }
