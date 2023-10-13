@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-// import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgPipesModule } from 'ngx-pipes';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
@@ -23,7 +23,7 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    // FilterPipeModule,
+    NgPipesModule,
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
@@ -36,7 +36,7 @@ import { SafePipe } from './pipes/safe.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    // FilterPipeModule,
+    NgPipesModule,
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
