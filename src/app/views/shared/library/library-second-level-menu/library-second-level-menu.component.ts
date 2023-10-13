@@ -14,4 +14,5 @@ export class LibrarySecondLevelMenuComponent {
   activeNavTab = 0;
   leftMenuMobileTriggerOpen = false;
   libraryItemFilter: LibraryItemFilter = { name: '' };
+
 }
