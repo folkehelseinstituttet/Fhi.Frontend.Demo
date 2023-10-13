@@ -1,9 +1,9 @@
 # FhiAngularTreeViewBuilder
 
-A menu builder built with [@circlon/angular-tree-component](https://www.npmjs.com/package/@circlon/angular-tree-component/)
+A menu builder built with [@ali-hm/angular-tree-component](https://www.npmjs.com/package/@ali-hm/angular-tree-component/)
 
 ## Dependencies
 
 | FHI AngularTreeViewBuilder | FHI Style | NgBootstrap | Angular Tree Component | Angular | Node/NPM |
 | -------------------------- | --------- | ----------- | ---------------------- | ------- | -------- |
-| Unreleased                 | 4         | 14          | 11                     | 15      | 18/9 *   |
+| Unreleased                 | 5         | 15          | 12                     | 16      | 18/9 *   |

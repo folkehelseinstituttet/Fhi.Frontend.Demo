@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
-// import { FhiAngularTreeViewBuilderModule } from '@folkehelseinstituttet/angular-tree-view-builder';
+import { FhiAngularTreeViewBuilderModule } from '@folkehelseinstituttet/angular-tree-view-builder';
 
 import { SafePipe } from './pipes/safe.pipe';
 
@@ -27,7 +27,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    // FhiAngularTreeViewBuilderModule
+    FhiAngularTreeViewBuilderModule
   ],
   exports: [
     SafePipe,
@@ -40,7 +40,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    // FhiAngularTreeViewBuilderModule
+    FhiAngularTreeViewBuilderModule
   ]
 })
 export class SharedModule { }
