@@ -32,12 +32,18 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>FHI Angular Tree View Builder er et eksempel på implementering av <a href="https://www.npmjs.com/package/@circlon/angular-tree-component">Circlon Angular Tree Component</a>. Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for flere detaljer om bruk.</p>
-
+<p>
+  FHI Angular Tree View Builder er et eksempel på implementering av en
+  <a href="https://www.npmjs.com/package/@ali-hm/angular-tree-component">Circlon Angular Tree Component (fork)</a>.
+  Se deres <a href="https://angular2-tree.readme.io/docs">dokumentasjon</a> for flere detaljer om bruk.
+</p>
 <div class="alert alert-warning mb-5">
   <i class="icon-bell"></i>
   <div>
-    <p>Brukes bare på fagsystemer / interne applikasjoner, da den ikke er god nok på universell utforming for offentlig tilgjengelige nettsteder.</p>
+    <p>
+      Brukes bare på fagsystemer / interne applikasjoner, da den ikke er god
+      nok på universell utforming for offentlig tilgjengelige nettsteder.
+    </p>
   </div>
 </div>`;
 }
