@@ -22,7 +22,8 @@ export class IconListComponent {
     { size: 'lg', px: '32'},
     { size: 'xl', px: '40'}
   ];
-  searchInput!: string;
+  filteredIcons = [...Icons];
+  searchInput: string = '';
 
   fhiIconIndex = this.icons.indexOf('fhi-logo');
   
@@ -34,9 +35,14 @@ export class IconListComponent {
     }
   }
 
-  checkIfEscapeFilter(event: KeyboardEvent) {
+  filterIcons(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.searchInput = '';
+    }
+    if (this.searchInput !== '') {
+      this.filteredIcons = this.icons.filter(s => s.includes(this.searchInput));
+    } else {
+      this.filteredIcons = this.icons;
     }
   }
 
