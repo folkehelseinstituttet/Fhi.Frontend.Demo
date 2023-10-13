@@ -43,8 +43,10 @@
 <hr>
 
 <div class="d-flex flex-wrap ds-icons-wrapper">
+  <!-- <div class="ds-icon mb-4"
+       *ngFor="let icon of icons | filterBy: searchInput"> -->
   <div class="ds-icon mb-4"
-       *ngFor="let icon of icons | filterBy: searchInput">
+       *ngFor="let icon of icons">
     <i [class]="'icon-' + icon + ' icon-' + iconSizeSelected"
        (mouseenter)="tooltipOpen(t)" (mouseleave)="t.close()"
        [ngbTooltip]="tipContent" #t="ngbTooltip" [autoClose]="false" triggers="manual"
@@ -58,7 +60,8 @@
       {{ icon }}
     </small>
   </div>
-  <p *ngIf="(icons | filterBy: searchInput)?.length === 0">
+  <!-- <p *ngIf="(icons | filterBy: searchInput)?.length === 0"> -->
+  <p *ngIf="(icons)?.length === 0">
     Ingen ikoner å vise
   </p>
 </div>
