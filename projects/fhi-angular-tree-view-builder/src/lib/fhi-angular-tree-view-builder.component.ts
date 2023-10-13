@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { ITreeState, ITreeOptions, TreeComponent } from '@circlon/angular-tree-component';
+import { ITreeState, ITreeOptions, TreeComponent } from '@ali-hm/angular-tree-component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
