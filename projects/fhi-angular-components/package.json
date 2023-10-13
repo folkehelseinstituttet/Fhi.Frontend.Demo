@@ -7,11 +7,11 @@
     "directory": "projects/fhi-angular-components"
   },
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0",
-    "@folkehelseinstituttet/style": "^5.5.0",
-    "@ng-bootstrap/ng-bootstrap": "^14.0.0",
-    "@ng-select/ng-select": "^10.0.0",
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@folkehelseinstituttet/style": "^5.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^15.0.0",
+    "@ng-select/ng-select": "^11.0.0",
     "bootstrap": "^5.0.0",
     "date-fns": "^2.30.0"
   },

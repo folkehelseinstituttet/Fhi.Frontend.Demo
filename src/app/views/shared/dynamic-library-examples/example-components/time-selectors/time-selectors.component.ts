@@ -36,11 +36,11 @@ export class TimeSelectorsComponent {
     this.generateWeekList();
   }
 
-  getDate(date: string) {
+  getDate(date: any) {
     this.selectedDate = date;
   }
   
-  getDateAndTime(dateAndTime: string) {
+  getDateAndTime(dateAndTime: any) {
     this.selectedDateAndTime = dateAndTime;
   }
 
