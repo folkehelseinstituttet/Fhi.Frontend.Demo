@@ -17,6 +17,8 @@
 
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
+  <fhi-time-selector-week></fhi-time-selector-week>
+
   <fhi-week-selector (weekSelect)="getTheWeek($event)"></fhi-week-selector>
   <p class="mt-4">
     <code>{{ weekSelected }}</code>
