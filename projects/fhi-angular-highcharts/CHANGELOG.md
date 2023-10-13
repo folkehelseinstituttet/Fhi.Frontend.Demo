@@ -1,6 +1,6 @@
 # Unreleased
 
-> Okt 13, 2023
+> Oct 13, 2023
 
 * :bug: **Bugfix** Allow dependency `date-fns` to be installed with latest version
 * :tada: **Enhancement** Update peerDependencies
