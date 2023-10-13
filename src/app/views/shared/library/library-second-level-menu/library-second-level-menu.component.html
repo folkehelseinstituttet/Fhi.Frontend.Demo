@@ -3,16 +3,7 @@
 </button>
 
 <div class="ds-left-menu" [ngClass]="{ 'd-none d-xl-block': !leftMenuMobileTriggerOpen }">
-  <div class="mb-3">
-    <input class="form-control form-control-lg" type="text"
-          [(ngModel)]="libraryItemFilter.name" placeholder="Søk" autofocus>
-    <!-- <p class="p-3" *ngIf="(menuItems | filterBy: libraryItemFilter)?.length === 0"> -->
-    <p class="p-3" *ngIf="(menuItems)?.length === 0">
-      Søket gir ingen treff <br><br>
-    </p>
-  </div>
   <ul class="nav flex-column d-inline-block pb-2">
-    <!-- <li class="nav-item" *ngFor="let menuItem of menuItems | filterBy: libraryItemFilter"> -->
     <li class="nav-item" *ngFor="let menuItem of menuItems">
       <a class="nav-link" routerLinkActive="active" [routerLink]="'./' + menuItem.link" (click)="leftMenuMobileTriggerOpen = false">{{ menuItem.name }}</a>
     </li>
