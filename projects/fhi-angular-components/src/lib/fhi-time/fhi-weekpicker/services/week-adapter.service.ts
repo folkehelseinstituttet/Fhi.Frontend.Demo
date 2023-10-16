@@ -23,7 +23,7 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
 
   toModel(date: NgbDateStruct | null): YearWeek | null {
     if (date) {
-      const yearWeek = FhiTimeUtilities.getYearWeekValue(
+      const yearWeek = FhiTimeUtilities.getYearWeek(
         new Date(Date.UTC(date.year, date.month - 1, date.day))
       );
       return yearWeek;

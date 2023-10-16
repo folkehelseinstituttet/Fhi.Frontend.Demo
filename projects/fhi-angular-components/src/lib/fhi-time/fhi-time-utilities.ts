@@ -4,6 +4,8 @@ import { getWeek } from "date-fns";
 import { YearWeek } from "./fhi-weekpicker/year-week.model";
 import { FhiTimeConstants } from "./fhi-time-constants";
 
+// TODO: this is just "week utilities"
+
 export class FhiTimeUtilities {
   static calculateDate(week: number, year: number): NgbDate | null {
     if (week < 1 || week > 53 || year < 1900) return null;
@@ -20,7 +22,7 @@ export class FhiTimeUtilities {
     );
   }
 
-  static getYearWeekValue(date: Date): YearWeek {
+  static getYearWeek(date: Date): YearWeek {
     const week = getWeek(
       new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
       {
@@ -32,13 +34,23 @@ export class FhiTimeUtilities {
   }
 
   static getDateFromYearWeekString(yearWeek: string): NgbDateStruct | null {
+    if (!yearWeek) {
+      return null;
+    }
     const parts = yearWeek.split(FhiTimeConstants.delimiter);
+
     if (parts.length < 2 || parts.length > 2) {
       return null;
     }
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
-    let date = FhiTimeUtilities.calculateDate(week, year);
+    const date = FhiTimeUtilities.calculateDate(week, year);
+
+    console.log('date', date);
+
+    if (!date || date.day === null || date.month === null || date.year === null) {
+      return null;
+    }
     return date;
   }
 
@@ -47,8 +59,17 @@ export class FhiTimeUtilities {
       return '';
     }
     const jsDate = new Date(date.year, date.month - 1, date.day);
-    const yearWeekValue = FhiTimeUtilities.getYearWeekValue(jsDate);
-    return `${yearWeekValue.year}${FhiTimeConstants.delimiter}${yearWeekValue.week}`;
+    const yearWeek = FhiTimeUtilities.getYearWeek(jsDate);
+    return `${yearWeek.year}${FhiTimeConstants.delimiter}${yearWeek.week}`;
   }
+
+  // static getYearWeekStringFromDate(: NgbDateStruct): string {
+  //   if (date === null) {
+  //     return '';
+  //   }
+  //   const jsDate = new Date(date.year, date.month - 1, date.day);
+  //   const yearWeek = FhiTimeUtilities.getYearWeek(jsDate);
+  //   return `${yearWeek.year}${FhiTimeConstants.delimiter}${yearWeek.week}`;
+  // }
 
 }

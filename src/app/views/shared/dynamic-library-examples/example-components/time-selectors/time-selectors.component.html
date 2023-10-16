@@ -20,7 +20,10 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
-  <fhi-weekpicker [yearWeek]="'2022-12'" (weekSelect)="onWeekSelect($event)">
+  <fhi-weekpicker 
+    [yearAndWeek]="'1900-40'"
+    [id]="'id'"
+    (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
   <p class="mt-4">
     <code>{{ selectedWeek | json }}</code>

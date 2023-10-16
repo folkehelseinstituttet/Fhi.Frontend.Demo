@@ -1,6 +1,6 @@
 <div class="fhi-week-selector">
   <div class="fhi-datepicker">
-    <label class="form-label fhi-datepicker__label" [for]="'id'">
+    <label class="form-label fhi-datepicker__label" [for]="id">
       {{ "label" }}
     </label>
 
@@ -13,6 +13,9 @@
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
 
+      <!-- [ngModel]="yearAndWeek"
+      (ngModelChange)="onNgModelChange($event)" -->
+
     <input
       type="text"
       autocomplete="off"
@@ -22,8 +25,9 @@
       [placeholder]="placeholder"
       [showWeekNumbers]="true"
       [startDate]="startDate"
-      [value]="yearWeek"
-      (dateSelect)="onWeekSelect($event)"
+      [value]="yearAndWeek"
+      (blur)="onBlur()"
+      (dateSelect)="onDateSelect($event)"
       ngbDatepicker
       #datepicker="ngbDatepicker"
     />

@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-time-selectors',
+  selector: 'app-time-selectors', 
   templateUrl: './time-selectors.component.html',
 })
 export class TimeSelectorsComponent {

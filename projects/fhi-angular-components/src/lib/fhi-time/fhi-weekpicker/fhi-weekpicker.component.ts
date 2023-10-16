@@ -20,6 +20,7 @@ import { FhiDatepickerI18nService } from "../fhi-datepicker-i18n.service";
 import { WeekParserFormatterService } from "./services/week-parser-formatter.service";
 import { WeekAdapterService } from "./services/week-adapter.service";
 import { FhiTimeUtilities } from "../fhi-time-utilities";
+import { WeekValidatorService } from "./services/week-validator.service";
 
 @Component({
   selector: "fhi-weekpicker",
@@ -28,6 +29,7 @@ import { FhiTimeUtilities } from "../fhi-time-utilities";
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
+    WeekValidatorService,
     {
       provide: NgbDatepickerI18n,
       useClass: FhiDatepickerI18nService,
@@ -43,38 +45,42 @@ import { FhiTimeUtilities } from "../fhi-time-utilities";
   ],
 })
 export class FhiWeekpickerComponent {
-  @Input() yearWeek: string | null = null;
+  @Input() id: string;
+  @Input() yearAndWeek: string | null = null;
   @Output() weekSelect = new EventEmitter<any>();
 
   startDate!: NgbDateStruct;
   placeholder = "åååå-uu"; // TODO: localize
-  id: "id"; // TODO: input
+
+  // TODO: Error handling by a service with subscriptions
   errorMsg!: string;
   yearWeekIsInvalid = false;
 
+  constructor(private weekValidatorService: WeekValidatorService) { }
+
   ngOnChanges() {
-    const date = FhiTimeUtilities.getDateFromYearWeekString(this.yearWeek);
-    try {
-      if (date === null) {
-        this.errorMsg = `Format invalid. Must be "${this.placeholder}"`;
-        this.yearWeekIsInvalid = true;
-      } else {
-        this.startDate = date;
-      }
-    } catch (error) {
-      console.error(error);
+    const date = FhiTimeUtilities.getDateFromYearWeekString(this.yearAndWeek);
+    if (this.yearAndWeek !== null && date === null) {
+      this.errorMsg = `Format invalid. Must be "${this.placeholder}"`; // TODO: localize
+      this.yearWeekIsInvalid = true;
+    } else {
+      this.startDate = date;
     }
   }
 
-  onWeekSelect(date: NgbDateStruct) {
-    console.log("onWeekSelect", date);
-    const yearWeek = FhiTimeUtilities.getYearWeekStringFromDate(date);
-    this.weekSelect.emit(yearWeek);
+  onDateSelect(date: NgbDateStruct) {
+    const yearAndWeek = FhiTimeUtilities.getYearWeekStringFromDate(date);
+    this.weekSelect.emit(yearAndWeek);
   }
+
+  onBlur() {
+    this.weekSelect.emit(this.weekValidatorService.validYearWeek);
+  }
+
 }
 
 // 1. OK NgbDatepickerI18n
 // 2. OK NgbDateAdapter
 // 3. OK NgbDateParserFormatter
 // 4. OK An optional new model
-// 5. Config
+// 5. Config?
