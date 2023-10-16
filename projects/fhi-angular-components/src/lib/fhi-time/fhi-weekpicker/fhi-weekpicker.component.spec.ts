@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiTimeSelectorWeekComponent } from './fhi-time-selector-week.component';
+import { FhiTimeSelectorWeekComponent } from './fhi-weekpicker.component';
 
 describe('FhiTimeSelectorWeekComponent', () => {
   let component: FhiTimeSelectorWeekComponent;

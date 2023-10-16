@@ -20,7 +20,6 @@ export class TimeSelectorsComponent {
   selectedFromYear: number;
   selectedToYear: number;
   selectedYear: number;
-  selectedWeek: number;
 
   weekSelected: string;
 
@@ -33,6 +32,8 @@ export class TimeSelectorsComponent {
   ];
 
   weekList = [];
+
+  selectedWeek: any;
 
   ngOnInit() {
     this.generateWeekList();
@@ -55,6 +56,10 @@ export class TimeSelectorsComponent {
     for (let i = 1; i <= 53; i++) {
       this.weekList.push({ id: i, name: 'Uke ' + i });
     }
+  }
+
+  onWeekSelect(week: any) {
+    this.selectedWeek = week;
   }
 
 }

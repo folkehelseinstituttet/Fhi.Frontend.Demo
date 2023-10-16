@@ -4,14 +4,14 @@
           [for]="uniqueId">{{ label }}</label>
     
     <button class="fhi-datepicker__toggler"
-            style="z-index: 2"
             aria-haspopup="true"
             (click)="datepicker.toggle()">
+            <!-- style="z-index: 2" -->
       <i class="icon-calendar"></i>
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
 
-    <div class="position-relative" style="z-index: 1">
+    <!-- <div class="position-relative" style="z-index: 1"> -->
       <input class="form-control fhi-datepicker__form-control"
              [ngClass]="{ 'is-invalid': !weekIsValid }"
              autocomplete="off"
@@ -28,7 +28,7 @@
              ngbDatepicker
              #datepicker="ngbDatepicker"
              (dateSelect)="onWeekSelection($event)"/>
-    </div>
+    <!-- </div> -->
     <p class="invalid-feedback" *ngIf="!weekIsValid" [innerHTML]="errorMsg"></p>
   </div>
 </div>
