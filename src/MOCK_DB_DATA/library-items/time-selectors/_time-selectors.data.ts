@@ -12,9 +12,9 @@ import { TimeSelectorYear } from './time-selector-year';
 const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,
   ...TimeSelectorDateAndTime,
-  ...TimeSelectorDateRange,
   ...TimeSelectorWeek,
   ...TimeSelectorYear,
+  ...TimeSelectorDateRange,
 ];
 
 export const TimeSelectorsData: LibraryItemGroup = {
