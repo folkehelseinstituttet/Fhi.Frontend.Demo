@@ -46,7 +46,7 @@ import { WeekValidatorService } from "./services/week-validator.service";
 })
 export class FhiWeekpickerComponent {
   @Input() id: string;
-  @Input() yearAndWeek: string | null = null;
+  @Input() initValue: string | null = null;
   @Output() weekSelect = new EventEmitter<any>();
 
   startDate!: NgbDateStruct;
@@ -59,8 +59,8 @@ export class FhiWeekpickerComponent {
   constructor(private weekValidatorService: WeekValidatorService) { }
 
   ngOnChanges() {
-    const date = FhiTimeUtilities.getDateFromYearWeekString(this.yearAndWeek);
-    if (this.yearAndWeek !== null && date === null) {
+    const date = FhiTimeUtilities.getDateFromYearWeekString(this.initValue);
+    if (this.initValue !== null && date === null) {
       this.errorMsg = `Format invalid. Must be "${this.placeholder}"`; // TODO: localize
       this.yearWeekIsInvalid = true;
     } else {
@@ -83,4 +83,6 @@ export class FhiWeekpickerComponent {
 // 2. OK NgbDateAdapter
 // 3. OK NgbDateParserFormatter
 // 4. OK An optional new model
-// 5. Config?
+// 5. OK ValidatorService
+// 6. Config?
+// 7. Global localizationService?

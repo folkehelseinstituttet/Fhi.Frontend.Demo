@@ -21,8 +21,8 @@
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
   <fhi-weekpicker 
-    [yearAndWeek]="'1900-40'"
     [id]="'id'"
+    [initValue]="'2020-40'"
     (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
   <p class="mt-4">

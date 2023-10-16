@@ -13,9 +13,6 @@
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
 
-      <!-- [ngModel]="yearAndWeek"
-      (ngModelChange)="onNgModelChange($event)" -->
-
     <input
       type="text"
       autocomplete="off"
@@ -25,7 +22,7 @@
       [placeholder]="placeholder"
       [showWeekNumbers]="true"
       [startDate]="startDate"
-      [value]="yearAndWeek"
+      [value]="initValue"
       (blur)="onBlur()"
       (dateSelect)="onDateSelect($event)"
       ngbDatepicker
