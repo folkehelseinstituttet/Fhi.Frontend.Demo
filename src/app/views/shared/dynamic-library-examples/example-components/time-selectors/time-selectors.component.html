@@ -102,7 +102,10 @@
 
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
-  <fhi-year-selector></fhi-year-selector>
+  <fhi-year-selector
+    [initialYearList]="simpleYearList"
+    (selectedYearChange)="selectYear()"></fhi-year-selector>
+  <p class="mt-4"><code>{{ selectedYear }}</code></p>
   <!-- <div class="fhi-double-select">
     <div class="fhi-double-select__item">
       <fhi-autosuggest

@@ -1,1 +1,9 @@
-<p>fhi-year-selector works!</p>
+<div class="fhi-year-selector">
+  <fhi-autosuggest
+    [labelForId]="uniqueId"
+    [items]="yearList"
+    [label]="'Fra år'"
+    [notFoundText]="'Ikke mulig'"
+    [(selectedItem)]="selectedYear">
+  </fhi-autosuggest>
+</div>
