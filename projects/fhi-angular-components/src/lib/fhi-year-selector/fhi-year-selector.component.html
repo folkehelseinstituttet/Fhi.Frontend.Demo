@@ -2,8 +2,9 @@
   <fhi-autosuggest
     [labelForId]="uniqueId"
     [items]="yearList"
-    [label]="'Fra år'"
-    [notFoundText]="'Ikke mulig'"
-    [(selectedItem)]="selectedYear">
+    [label]="label"
+    [notFoundText]="'Ugyldig år'"
+    [(selectedItem)]="selectedYearId"
+    (selectedItemChange)="getSelectedYear()">
   </fhi-autosuggest>
 </div>

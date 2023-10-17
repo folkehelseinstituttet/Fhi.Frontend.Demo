@@ -9,19 +9,22 @@ import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module'
 })
 export class FhiYearSelectorComponent {
   @Input() initialYearList: number[];
+  @Input() label: string = 'År';
 
   @Output() selectedYearChange = new EventEmitter<number>();
 
   yearList: [] | any = [];
-  selectedYear: number;
+  selectedYear: string;
+  selectedYearId: number;
   uniqueId: string = 'yearselect_' + Math.random().toString(36).substring(2, 20);
 
   ngOnInit() {
     this.populateYearList();
   }
-
-  selectedItem() {
-    this.selectedYearChange.emit(this.selectedYear);
+  
+  getSelectedYear() {
+    this.selectedYear = this.yearList.find((year: any) => year.id === this.selectedYearId);
+    this.selectedYearChange.emit(this.selectedYear['name']);
   }
 
   private populateYearList() {
