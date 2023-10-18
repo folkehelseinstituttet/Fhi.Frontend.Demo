@@ -10,7 +10,7 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 export class FhiAutosuggestComponent {
 
   @Input() items: Array<FhiAutosuggestItem> = [];
-  @Input() labelForId: string = undefined;
+  @Input() labelForId: string = 'id' + Math.random().toString().substring(2);
   @Input() placeholder: string = '';
 
   @Input() description: string = undefined;
