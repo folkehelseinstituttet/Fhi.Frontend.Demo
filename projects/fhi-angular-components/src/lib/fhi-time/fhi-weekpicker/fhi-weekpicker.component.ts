@@ -65,17 +65,20 @@ export class FhiWeekpickerComponent {
     if (changes.week) {
       this.weekChangeActions();
     }
-    // if (changes.maxWeek) {
-    //   console.log('changes.maxWeek', changes.maxWeek);
-    // }
+    if (changes.maxWeek) {
+      this.maxWeekChangeActions();
+    }
     if (changes.minWeek) {
       this.minWeekChangeActions();
     }
   }
+
+  private maxWeekChangeActions() {
+    this.maxDate = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
+  }
+
   private minWeekChangeActions() {
-    console.log('changes.minWeek', this.minWeek);
     this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
-    console.log('changes.minWeek', this.minDate);
   }
 
   onDateSelect(date: NgbDateStruct) {

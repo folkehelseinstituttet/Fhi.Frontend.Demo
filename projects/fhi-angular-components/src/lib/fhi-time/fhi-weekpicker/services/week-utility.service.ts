@@ -18,10 +18,6 @@ export class WeekUtilityService {
     const date = new Date(
       firstDay.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000
     );
-    // console.log(date.getUTCFullYear());
-    // console.log(date.getMonth() + 1);
-    // console.log(date.getDate());
-
     return {
       year: date.getUTCFullYear(),
       month: date.getMonth() + 1,
