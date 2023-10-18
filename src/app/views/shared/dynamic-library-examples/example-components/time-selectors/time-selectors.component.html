@@ -24,20 +24,21 @@
     [id]="'id'"
     [week]="week"
     [minWeek]="'1910-1'"
-    [maxWeek]="'2020-1'">
+    [maxWeek]="'2020-1'"
+    (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
   <p class="mt-4">
     <code>{{ selectedWeek | json }}</code>
   </p>
-  <button type="button" class="btn fhi-btn-primary"
+  <button type="button" class="btn fhi-btn-link"
           (click)="changeWeekInput()">
     Bytt uke
   </button>
 
-  <fhi-week-selector (weekSelect)="getTheWeek($event)"></fhi-week-selector>
+  <!-- <fhi-week-selector (weekSelect)="getTheWeek($event)"></fhi-week-selector>
   <p class="mt-4">
     <code>{{ weekSelected }}</code>
-  </p>
+  </p> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
