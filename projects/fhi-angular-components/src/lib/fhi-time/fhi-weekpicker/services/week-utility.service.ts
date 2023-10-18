@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { getWeek, getYear } from 'date-fns';
+import { getWeek, getYear, min } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
 
@@ -9,6 +9,14 @@ export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
   private maxYear = getYear(new Date());
   private minYear = 1900;
+
+  updateMaxYear(maxDate: NgbDateStruct) {
+    this.maxYear = maxDate.year;
+  }
+
+  updateMinYear(minDate: NgbDateStruct) {
+    this.minYear = minDate.year;
+  }
   
   calculateDate(week: number, year: number): NgbDateStruct | null {
     if (week < 1 || week > 53 || year < this.minYear || year > this.maxYear) {
@@ -18,10 +26,14 @@ export class WeekUtilityService {
     const date = new Date(
       firstDay.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000
     );
+    const fullYear = date.getUTCFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
     return {
-      year: date.getUTCFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate()
+      year: fullYear ? fullYear : null,
+      month: month ? month : null,
+      day: day ? day : null
     };
   }
 

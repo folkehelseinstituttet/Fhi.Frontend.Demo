@@ -75,10 +75,12 @@ export class FhiWeekpickerComponent {
 
   private maxWeekChangeActions() {
     this.maxDate = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
+    this.weekUtilityService.updateMaxYear(this.maxDate);
   }
 
   private minWeekChangeActions() {
     this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
+    this.weekUtilityService.updateMinYear(this.minDate);
   }
 
   onDateSelect(date: NgbDateStruct) {

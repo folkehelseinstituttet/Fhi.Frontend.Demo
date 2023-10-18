@@ -41,7 +41,9 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       // console.log('WeekParserFormatterService, date 2', date);
       return date;
     }
-    // console.log('WeekParserFormatterService, date 3', null);
+
+    // TODO: how to handle no input if week is not required...
+    console.log('WeekParserFormatterService, date 3', null);
     return null;
   }
 
