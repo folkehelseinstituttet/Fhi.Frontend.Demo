@@ -77,7 +77,7 @@
 
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
-  <div class="fhi-double-select">
+  <!-- <div class="fhi-double-select">
     <div class="fhi-double-select__item">
       <fhi-autosuggest
         [labelForId]="'year'"
@@ -97,14 +97,14 @@
         [(selectedItem)]="selectedWeek">
       </fhi-autosuggest>
     </div>
-  </div>
+  </div> -->
 </div>
 
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
   <fhi-year-selector
     [label]="'Velg år'"
-    [initialYearList]="simpleYearList"
+    [initialYearList]="yearList"
+    [initialSelectedYear]="'2011'"
     (selectedYearChange)="selectYear($event)"></fhi-year-selector>
-  <p class="mt-4"><code>{{ yearSelected }}</code></p>
 </div>

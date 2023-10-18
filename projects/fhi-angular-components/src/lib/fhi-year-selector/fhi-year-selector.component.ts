@@ -8,7 +8,8 @@ import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module'
   imports: [FhiAutosuggestModule]
 })
 export class FhiYearSelectorComponent {
-  @Input() initialYearList: number[];
+  @Input() initialSelectedYear: string;
+  @Input() initialYearList: string[];
   @Input() label: string = 'År';
 
   @Output() selectedYearChange = new EventEmitter<number>();
@@ -24,6 +25,7 @@ export class FhiYearSelectorComponent {
   
   getSelectedYear() {
     this.selectedYear = this.yearList.find((year: any) => year.id === this.selectedYearId);
+    console.log(this.selectedYear);
     this.selectedYearChange.emit(this.selectedYear['name']);
   }
 
@@ -41,5 +43,14 @@ export class FhiYearSelectorComponent {
         this.yearList.push(idYear);
       }
     }
+    if (this.initialSelectedYear) {
+      this.selectInitialYear();
+    }
+  }
+
+  private selectInitialYear() {
+    this.selectedYear = this.yearList.find((year: any) => year.name === this.initialSelectedYear);
+    this.selectedYearId = this.selectedYear['id'];
+    this.selectedYearChange.emit(this.selectedYear['name']);
   }
 }
