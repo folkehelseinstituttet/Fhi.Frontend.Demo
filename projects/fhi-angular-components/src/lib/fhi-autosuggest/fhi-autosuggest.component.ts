@@ -21,7 +21,9 @@ export class FhiAutosuggestComponent {
   @Output() selectedItemChange = new EventEmitter<number>();
 
   onChange() {
-    this.selectedItemChange.emit(this.selectedItem);
+    if (this.selectedItem) {
+      this.selectedItemChange.emit(this.selectedItem);
+    }
   }
 
 }

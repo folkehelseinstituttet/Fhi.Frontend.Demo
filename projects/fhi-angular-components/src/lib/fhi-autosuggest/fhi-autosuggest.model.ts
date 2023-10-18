@@ -1,5 +1,5 @@
 export interface FhiAutosuggestItem {
-  id: number | string;
+  id: number;
   name: string;
   [key: string]: any;
 }

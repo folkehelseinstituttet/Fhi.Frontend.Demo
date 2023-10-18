@@ -22,9 +22,9 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedWeek: number;
 
-  yearSelected: number;
+  yearSelected: string;
 
-  yearList = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
+  // yearList = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
 
   weekList = [];
 
@@ -32,8 +32,8 @@ export class TimeSelectorsComponent {
     this.generateWeekList();
   }
 
-  selectYear(event: number) {
-    this.yearSelected = event;
+  onYearSelect(year: string) {
+    this.yearSelected = year;
   }
 
   getDate(date: any) {
