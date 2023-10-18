@@ -33,7 +33,8 @@ export class TimeSelectorsComponent {
 
   weekList = [];
 
-  selectedWeek: any;
+  selectedWeek!: string;
+  week = '2019-53';
 
   ngOnInit() {
     this.generateWeekList();
@@ -60,6 +61,12 @@ export class TimeSelectorsComponent {
 
   onWeekSelect(week: any) {
     this.selectedWeek = week;
+  }
+
+  changeWeekInput() {
+    const a = '2019-53';
+    const b = '2018-3';
+    this.week = (this.week === a) ? b : a;
   }
 
 }
