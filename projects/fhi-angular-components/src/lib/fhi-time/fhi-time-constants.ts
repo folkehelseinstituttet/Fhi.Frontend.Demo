@@ -1,3 +1,6 @@
 export class FhiTimeConstants {
-  static delimiter = '-';
+
+  // TODO: i18n
+  static weekpickerPlaceholder = 'åååå-u[u]';
+  static weekpickerLabel = 'Velg uke';
 }

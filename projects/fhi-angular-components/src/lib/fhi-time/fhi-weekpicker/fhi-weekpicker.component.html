@@ -1,7 +1,7 @@
 <div class="fhi-week-selector">
   <div class="fhi-datepicker">
     <label class="form-label fhi-datepicker__label" [for]="id">
-      {{ "label" }}
+      {{ label }}
     </label>
 
     <button
@@ -17,17 +17,19 @@
       type="text"
       autocomplete="off"
       class="form-control fhi-datepicker__form-control"
-      [class.is-invalid]="yearWeekIsInvalid"
+      [class.is-invalid]="!isValid"
       [id]="id"
       [placeholder]="placeholder"
       [showWeekNumbers]="true"
       [startDate]="startDate"
-      [value]="initValue"
+      [value]="week"
       (blur)="onBlur()"
+      (keydown.enter)="onEnter()"
+      (input)="onInput()"
       (dateSelect)="onDateSelect($event)"
       ngbDatepicker
       #datepicker="ngbDatepicker"
     />
-    <p class="invalid-feedback" *ngIf="yearWeekIsInvalid" [innerHTML]="errorMsg"></p>
+    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="errorMsg"></p>
   </div>
 </div>

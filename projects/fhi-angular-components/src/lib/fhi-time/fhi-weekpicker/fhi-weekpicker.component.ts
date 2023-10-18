@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, SimpleChanges } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 
@@ -19,8 +13,9 @@ import {
 import { FhiDatepickerI18nService } from "../fhi-datepicker-i18n.service";
 import { WeekParserFormatterService } from "./services/week-parser-formatter.service";
 import { WeekAdapterService } from "./services/week-adapter.service";
-import { FhiTimeUtilities } from "../fhi-time-utilities";
 import { WeekValidatorService } from "./services/week-validator.service";
+import { FhiTimeConstants } from "../fhi-time-constants";
+import { WeekUtilityService } from "./services/week-utility.service";
 
 @Component({
   selector: "fhi-weekpicker",
@@ -30,6 +25,7 @@ import { WeekValidatorService } from "./services/week-validator.service";
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
     WeekValidatorService,
+    WeekUtilityService,
     {
       provide: NgbDatepickerI18n,
       useClass: FhiDatepickerI18nService,
@@ -46,43 +42,84 @@ import { WeekValidatorService } from "./services/week-validator.service";
 })
 export class FhiWeekpickerComponent {
   @Input() id: string;
-  @Input() initValue: string | null = null;
+  @Input() week: string | null = null;
+  @Input() label: string = FhiTimeConstants.weekpickerLabel;
+  @Input() maxWeek: string;
+  @Input() minWeek: string;
+
   @Output() weekSelect = new EventEmitter<any>();
 
+  minDate: NgbDateStruct;
+  maxDate: NgbDateStruct;
   startDate!: NgbDateStruct;
-  placeholder = "åååå-uu"; // TODO: localize
-
-  // TODO: Error handling by a service with subscriptions
+  placeholder = FhiTimeConstants.weekpickerPlaceholder;
   errorMsg!: string;
-  yearWeekIsInvalid = false;
+  isValid!: boolean;
 
-  constructor(private weekValidatorService: WeekValidatorService) { }
+  constructor(
+    private weekValidatorService: WeekValidatorService,
+    private weekUtilityService: WeekUtilityService
+  ) { }
 
-  ngOnChanges() {
-    const date = FhiTimeUtilities.getDateFromYearWeekString(this.initValue);
-    if (this.initValue !== null && date === null) {
-      this.errorMsg = `Format invalid. Must be "${this.placeholder}"`; // TODO: localize
-      this.yearWeekIsInvalid = true;
-    } else {
-      this.startDate = date;
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.week) {
+      this.weekChangeActions();
     }
+    // if (changes.maxWeek) {
+    //   console.log('changes.maxWeek', changes.maxWeek);
+    // }
+    if (changes.minWeek) {
+      this.minWeekChangeActions();
+    }
+  }
+  private minWeekChangeActions() {
+    console.log('changes.minWeek', this.minWeek);
+    this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
+    console.log('changes.minWeek', this.minDate);
   }
 
   onDateSelect(date: NgbDateStruct) {
-    const yearAndWeek = FhiTimeUtilities.getYearWeekStringFromDate(date);
-    this.weekSelect.emit(yearAndWeek);
+    const week = this.weekUtilityService.getYearWeekStringFromDate(date);
+    this.isValid = true;
+    this.weekValidatorService.isValid = true;
+    this.weekSelect.emit(week);
+  }
+
+  onInput() {
+    if (this.weekValidatorService.isValid) {
+      this.isValid = true;
+    } else {
+      this.errorMsg = this.weekValidatorService.errorMsg;
+      this.isValid = false;
+    }
   }
 
   onBlur() {
-    this.weekSelect.emit(this.weekValidatorService.validYearWeek);
+    this.emitValidYearWeekString();
   }
 
-}
+  onEnter() {
+    this.emitValidYearWeekString();
+  }
 
-// 1. OK NgbDatepickerI18n
-// 2. OK NgbDateAdapter
-// 3. OK NgbDateParserFormatter
-// 4. OK An optional new model
-// 5. OK ValidatorService
-// 6. Config?
-// 7. Global localizationService?
+  private emitValidYearWeekString() {
+    const week = this.weekValidatorService.validYearWeekString;
+    if (this.weekValidatorService.isValid) {
+      this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+      this.weekSelect.emit(this.weekUtilityService.getYearWeekStringFromDate(this.startDate));
+    }
+  }
+
+  private weekChangeActions() {
+    const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
+    if (this.week !== null && date === null) {
+      this.weekValidatorService.setErrorMsg(this.week);
+      this.errorMsg = this.weekValidatorService.errorMsg;
+      this.isValid = false;
+    } else {
+      this.startDate = date;
+      this.week = this.weekUtilityService.getYearWeekStringFromDate(date);
+      this.isValid = true;
+    }
+  }
+}
