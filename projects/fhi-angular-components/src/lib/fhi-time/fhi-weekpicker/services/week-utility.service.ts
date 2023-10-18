@@ -26,14 +26,10 @@ export class WeekUtilityService {
     const date = new Date(
       firstDay.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000
     );
-    const fullYear = date.getUTCFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
     return {
-      year: fullYear ? fullYear : null,
-      month: month ? month : null,
-      day: day ? day : null
+      year: date.getUTCFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
     };
   }
 
@@ -61,7 +57,7 @@ export class WeekUtilityService {
     const week = parseInt(parts[1], 10);
     const date = this.calculateDate(week, year);
 
-    if (!date || date.day === null || date.month === null || date.year === null) {
+    if (!date || isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
       return null;
     }
     return date;

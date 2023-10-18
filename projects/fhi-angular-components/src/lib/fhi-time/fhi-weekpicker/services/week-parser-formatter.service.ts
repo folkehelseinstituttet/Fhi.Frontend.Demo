@@ -34,6 +34,8 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
         // console.log('WeekParserFormatterService, date 1', { year: -1, month: -1, day: -1 });
         this.weekValidatorService.isValid = false;
         this.weekValidatorService.setErrorMsg(value, WeekErrorStates.notValidWeek);
+        // TODO: how to distinguish between WeekErrorStates.notValidWeek and
+        //       WeekErrorStates.outside of minWeek/maxWeek
         return { year: -1, month: -1, day: -1 };
       }
       this.weekValidatorService.isValid = true;
