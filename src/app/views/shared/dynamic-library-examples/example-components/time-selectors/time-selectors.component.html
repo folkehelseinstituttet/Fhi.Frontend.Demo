@@ -104,7 +104,10 @@
 <div *ngIf="itemId === items.TimeSelectorYear.id">
   <fhi-year-selector
     [label]="'Velg år'"
-    [initialYearList]="yearList"
-    [initialSelectedYear]="'2011'"
-    (selectedYearChange)="selectYear($event)"></fhi-year-selector>
+    [year]="'2011'"
+    (yearSelect)="onYearSelect($event)"
+  >
+  </fhi-year-selector>
+
+  {{ yearSelected | json }}
 </div>
