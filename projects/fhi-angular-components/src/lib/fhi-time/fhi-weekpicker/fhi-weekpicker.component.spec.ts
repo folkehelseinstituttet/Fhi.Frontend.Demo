@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiTimeSelectorWeekComponent } from './fhi-weekpicker.component';
+import { FhiWeekpickerComponent } from './fhi-weekpicker.component';
 
-describe('FhiTimeSelectorWeekComponent', () => {
-  let component: FhiTimeSelectorWeekComponent;
-  let fixture: ComponentFixture<FhiTimeSelectorWeekComponent>;
+describe('FhiWeekpickerComponent', () => {
+  let component: FhiWeekpickerComponent;
+  let fixture: ComponentFixture<FhiWeekpickerComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FhiTimeSelectorWeekComponent]
+      imports: [FhiWeekpickerComponent]
     });
-    fixture = TestBed.createComponent(FhiTimeSelectorWeekComponent);
+    fixture = TestBed.createComponent(FhiWeekpickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
