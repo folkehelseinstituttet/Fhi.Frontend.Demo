@@ -23,13 +23,9 @@ export class TimeSelectorsComponent {
 
   // weekSelected: string;
 
-  yearList = [
-    { id: 1, name: '2020' },
-    { id: 2, name: '2021' },
-    { id: 3, name: '2022' },
-    { id: 4, name: '2023' },
-    { id: 5, name: '2024' }
-  ];
+  yearSelected: string;
+
+  // yearList = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
 
   // weekList = [];
 
@@ -39,6 +35,10 @@ export class TimeSelectorsComponent {
   // ngOnInit() {
   //   this.generateWeekList();
   // }
+
+  onYearSelect(year: string) {
+    this.yearSelected = year;
+  }
 
   getDate(date: any) {
     this.selectedDate = date;

@@ -15,6 +15,7 @@ const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorWeek,
   ...TimeSelectorDateRange,
   ...TimeSelectorYear,
+  ...TimeSelectorDateRange,
 ];
 
 export const TimeSelectorsData: LibraryItemGroup = {

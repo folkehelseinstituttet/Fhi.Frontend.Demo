@@ -117,29 +117,10 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
-  <div class="fhi-double-select">
-    <div class="fhi-double-select__item">
-      <fhi-autosuggest
-        [labelForId]="'year-from'"
-        [items]="yearList"
-        [label]="'Fra år'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedFromYear"
-      >
-      </fhi-autosuggest>
-    </div>
-
-    <div class="fhi-double-select__item">
-      <span class="fhi-double-select__dash"></span>
-
-      <fhi-autosuggest
-        [labelForId]="'year-to'"
-        [items]="yearList"
-        [label]="'Til år'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedToYear"
-      >
-      </fhi-autosuggest>
-    </div>
-  </div>
+  <fhi-year-selector
+    [label]="'Velg år'"
+    [year]="'2011'"
+    (yearSelect)="onYearSelect($event)"
+  >
+  </fhi-year-selector>
 </div>
