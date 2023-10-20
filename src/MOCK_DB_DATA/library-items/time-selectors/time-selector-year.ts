@@ -24,7 +24,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-selector></fhi-year-selector>`;
+<fhi-year-selector [label]="'Velg år'"
+                   [initialYearList]="yearList"
+                   [initialSelectedYear]="'2011'"
+                   (selectedYearChange)="selectYear($event)"></fhi-year-selector>`;
 }
 
 /*

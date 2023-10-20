@@ -10,7 +10,7 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 export class FhiAutosuggestComponent {
 
   @Input() items: Array<FhiAutosuggestItem> = [];
-  @Input() labelForId: string = undefined;
+  @Input() labelForId: string = 'id' + Math.random().toString().substring(2);
   @Input() placeholder: string = '';
 
   @Input() description: string = undefined;
@@ -21,7 +21,9 @@ export class FhiAutosuggestComponent {
   @Output() selectedItemChange = new EventEmitter<number>();
 
   onChange() {
-    this.selectedItemChange.emit(this.selectedItem);
+    if (this.selectedItem) {
+      this.selectedItemChange.emit(this.selectedItem);
+    }
   }
 
 }
