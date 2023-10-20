@@ -11,11 +11,15 @@ export class WeekUtilityService {
   private minYear = 1900;
 
   updateMaxYear(maxDate: NgbDateStruct) {
-    this.maxYear = maxDate.year;
+    if (maxDate) {
+      this.maxYear = maxDate.year;
+    }
   }
 
   updateMinYear(minDate: NgbDateStruct) {
-    this.minYear = minDate.year;
+    if (minDate) {
+      this.minYear = minDate.year;
+    }
   }
   
   calculateDate(week: number, year: number): NgbDateStruct | null {
