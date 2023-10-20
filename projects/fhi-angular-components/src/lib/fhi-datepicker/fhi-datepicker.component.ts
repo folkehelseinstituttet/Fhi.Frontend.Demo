@@ -1,47 +1,15 @@
-import { Component, EventEmitter, Inject, Injectable, Input, Output, LOCALE_ID } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { NgbAlertModule, NgbDateParserFormatter, NgbDatepickerI18n, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { format, formatISO, isValid, toDate } from 'date-fns';
 
-const I18N_VALUES = {
-	nb: {
-		weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],
-    months: ['jan', 'feb', 'mar', 'apr', 'mai', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'des'],
-    weekLabel: 'uke'
-	},
-};
-
-@Injectable()
-export class CustomDatepickerI18n extends NgbDatepickerI18n {
-	constructor(
-    @Inject(LOCALE_ID)
-    private locale: string
-  ) {
-		super();
-	}
-
-	getWeekdayLabel(weekday: number): string {
-		return I18N_VALUES[this.locale].weekdays[weekday - 1];
-	}
-	getWeekLabel(): string {
-		return I18N_VALUES[this.locale].weekLabel;
-	}
-	getMonthShortName(month: number): string {
-		return I18N_VALUES[this.locale].months[month - 1];
-	}
-	getMonthFullName(month: number): string {
-		return this.getMonthShortName(month);
-	}
-	getDayAriaLabel(date: NgbDateStruct): string {
-		return `${date.day}.${date.month}.${date.year}`;
-	}
-}
+import { FhiCustomDatepickerI18n } from '../shared-services/fhi-datepicker-i18n.service';
 
 
 @Injectable()
-export class CustomDateParserFormatter extends NgbDateParserFormatter {
+export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
   readonly DELIMITER = '.';
 
   parse(value: string): NgbDateStruct | null {
@@ -74,8 +42,8 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     NgbAlertModule
   ],
   providers: [
-		{ provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter },
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n }
+		{ provide: NgbDateParserFormatter, useClass: FhiCustomDateParserFormatter },
+    { provide: NgbDatepickerI18n, useClass: FhiCustomDatepickerI18n }
 	],
 })
 export class FhiDatepickerComponent {
@@ -155,11 +123,15 @@ export class FhiDatepickerComponent {
   }
 
   private convertModelToDate(model: any) {
-    let leadingZero = '';
+    let leadingZeroDay = '';
+    let leadingZeroMonth = '';
     if (model.month < 10) {
-      leadingZero = '0';
+      leadingZeroMonth = '0';
     }
-    const dateISOString = model.year + '-' + leadingZero + model.month + '-' + model.day;
+    if (model.day < 10) {
+      leadingZeroDay = '0';
+    }
+    const dateISOString = model.year + '-' + leadingZeroMonth + model.month + '-' + leadingZeroDay + model.day;
     const date = toDate(new Date(dateISOString));
     return date;
   }

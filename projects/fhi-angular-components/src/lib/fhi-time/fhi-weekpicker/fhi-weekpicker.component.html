@@ -1,0 +1,37 @@
+<div class="fhi-week-selector">
+  <div class="fhi-datepicker">
+    <label class="form-label fhi-datepicker__label" [for]="id">
+      {{ label }}
+    </label>
+
+    <button
+      class="fhi-datepicker__toggler"
+      aria-haspopup="true"
+      (click)="datepicker.toggle()"
+    >
+      <i class="icon-calendar"></i>
+      <span class="visually-hidden">Åpne ukesvelger</span>
+    </button>
+
+    <input
+      type="text"
+      autocomplete="off"
+      class="form-control fhi-datepicker__form-control"
+      [class.is-invalid]="!isValid"
+      [id]="id"
+      [placeholder]="placeholder"
+      [showWeekNumbers]="true"
+      [maxDate]="maxDate"
+      [minDate]="minDate"
+      [startDate]="startDate"
+      [value]="week"
+      (blur)="onBlur()"
+      (keydown.enter)="onEnter()"
+      (input)="onInput()"
+      (dateSelect)="onDateSelect($event)"
+      ngbDatepicker
+      #datepicker="ngbDatepicker"
+    />
+    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="errorMsg"></p>
+  </div>
+</div>

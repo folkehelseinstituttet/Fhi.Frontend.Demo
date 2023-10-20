@@ -7,10 +7,12 @@ import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
+import { FhiWeekSelectorModule } from './fhi-week-selector/fhi-week-selector.module';
 import { FhiYearSelectorModule } from './fhi-year-selector/fhi-year-selector.module';
 
+import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 
-const FHI_ANGULAR_MODULES = [
+const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
   FhiDateAndTimeModule,
   FhiDatepickerModule,
@@ -18,11 +20,13 @@ const FHI_ANGULAR_MODULES = [
   FhiTableModule,
   FhiTreeViewNavigationModule,
   FhiTreeViewSelectionModule,
+  FhiWeekSelectorModule,
+  FhiWeekpickerComponent,
   FhiYearSelectorModule
 ];
 
 @NgModule({
-  imports: FHI_ANGULAR_MODULES,
-  exports: FHI_ANGULAR_MODULES
+  imports: FHI_ANGULAR_MODULES_AND_COMPONENTS,
+  exports: FHI_ANGULAR_MODULES_AND_COMPONENTS
 })
 export class FhiAngularComponentsModule { }

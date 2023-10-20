@@ -1,19 +1,42 @@
 <div *ngIf="itemId === items.TimeSelectorDatepicker.id">
-  <fhi-datepicker [date]="today"
-                  [minimumDate]="minDate"
-                  [maximumDate]="maxDate"
-                  (dateSelect)="getDate($event)"></fhi-datepicker>
+  <fhi-datepicker
+    [date]="today"
+    [minimumDate]="minDate"
+    [maximumDate]="maxDate"
+    (dateSelect)="getDate($event)"
+  ></fhi-datepicker>
   <!-- <p class="mt-4">
     <code>{{ selectedDate }}</code>
   </p> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-and-time [date]="today"
-                     label="Velg dato og tidspunkt"
-                     (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
-  <!-- <p class="mt-4">
+  <fhi-date-and-time
+    (dateAndTimeSelect)="getDateAndTime($event)"
+  ></fhi-date-and-time>
+  <!-- <div class="mt-4">
     <code>{{ selectedDateAndTime }}</code>
+  </div> -->
+</div>
+
+<div *ngIf="itemId === items.TimeSelectorWeek.id">
+  <fhi-weekpicker 
+    [id]="'id'"
+    [week]="week"
+    [minWeek]="'1910-1'"
+    [maxWeek]="'2020-50'"
+    (weekSelect)="onWeekSelect($event)">
+  </fhi-weekpicker>
+  <!-- <p class="mt-4">
+    <code>{{ selectedWeek | json }}</code>
+  </p>
+  <button type="button" class="btn fhi-btn-link"
+          (click)="changeWeekInput()">
+    Bytt uke
+  </button> -->
+  <!-- <fhi-week-selector (weekSelect)="getTheWeek($event)"></fhi-week-selector>
+  <p class="mt-4">
+    <code>{{ weekSelected }}</code>
   </p> -->
 </div>
 
@@ -21,34 +44,50 @@
   <div class="alert alert-warning mb-5">
     <i class="icon-bell"></i>
     <div>
-      <p>Dette eksempelet viser hvordan man kan sette opp et datointervall med to Datepickere og brukes på eget ansvar.</p>
-      <p class="mb-0">Datointervall blir oppdatert når <a href="/developer/components/time-selectors#time-selector-datepicker">Datepicker</a> blir levert som en Angular-komponent.</p>
+      <p>
+        Dette eksempelet viser hvordan man kan sette opp et datointervall med to
+        Datepickere og brukes på eget ansvar.
+      </p>
+      <p class="mb-0">
+        Datointervall blir oppdatert når
+        <a href="/developer/components/time-selectors#time-selector-datepicker"
+          >Datepicker</a
+        >
+        blir levert som en Angular-komponent.
+      </p>
     </div>
   </div>
 
   <div class="fhi-double-datepicker">
     <div class="fhi-double-datepicker__item fhi-datepicker">
-      <label class="form-label fhi-datepicker__label"
-             for="datepickerFrom"
-             id="datepickerFrom_label">
+      <label
+        class="form-label fhi-datepicker__label"
+        for="datepickerFrom"
+        id="datepickerFrom_label"
+      >
         Fra
       </label>
-      
-      <button class="fhi-datepicker__toggler" (click)="datepicker_from.toggle()">
+
+      <button
+        class="fhi-datepicker__toggler"
+        (click)="datepicker_from.toggle()"
+      >
         <i class="icon-calendar"></i>
         <span class="visually-hidden">Åpne datovelger</span>
       </button>
-    
-      <input class="form-control fhi-datepicker__form-control"
-             autocomplete="off"
-             id="datepickerFrom"
-             inputmode="decimal"
-             outsideDays="hidden"
-             type="text"
-             aria-labelledby="datepickerFrom_label"
-             aria-describedby="datepickerFrom_description"
-             ngbDatepicker
-             #datepicker_from="ngbDatepicker"/>
+
+      <input
+        class="form-control fhi-datepicker__form-control"
+        autocomplete="off"
+        id="datepickerFrom"
+        inputmode="decimal"
+        outsideDays="hidden"
+        type="text"
+        aria-labelledby="datepickerFrom_label"
+        aria-describedby="datepickerFrom_description"
+        ngbDatepicker
+        #datepicker_from="ngbDatepicker"
+      />
     </div>
 
     <div class="fhi-double-datepicker__item fhi-datepicker">
@@ -57,49 +96,25 @@
       <label class="form-label fhi-datepicker__label" for="datepickerTo">
         Til
       </label>
-      
+
       <button class="fhi-datepicker__toggler" (click)="datepicker_to.toggle()">
         <i class="icon-calendar"></i>
         <span class="visually-hidden">Åpne datovelger</span>
       </button>
-    
-      <input class="form-control fhi-datepicker__form-control"
-            autocomplete="off"
-            id="datepickerTo"
-            inputmode="decimal"
-            outsideDays="hidden"
-            type="text"
-            ngbDatepicker
-            #datepicker_to="ngbDatepicker"/>
+
+      <input
+        class="form-control fhi-datepicker__form-control"
+        autocomplete="off"
+        id="datepickerTo"
+        inputmode="decimal"
+        outsideDays="hidden"
+        type="text"
+        ngbDatepicker
+        #datepicker_to="ngbDatepicker"
+      />
     </div>
   </div>
 </div>
-
-
-<div *ngIf="itemId === items.TimeSelectorWeek.id">
-  <!-- <div class="fhi-double-select">
-    <div class="fhi-double-select__item">
-      <fhi-autosuggest
-        [labelForId]="'year'"
-        [items]="yearList"
-        [label]="'År'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedYear">
-      </fhi-autosuggest>
-    </div>
-
-    <div class="fhi-double-select__item">
-      <fhi-autosuggest
-        [labelForId]="'week'"
-        [items]="weekList"
-        [label]="'Uke'"
-        [notFoundText]="'Ikke mulig'"
-        [(selectedItem)]="selectedWeek">
-      </fhi-autosuggest>
-    </div>
-  </div> -->
-</div>
-
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
   <fhi-year-selector

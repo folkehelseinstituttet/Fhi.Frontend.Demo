@@ -13,6 +13,7 @@ const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,
   ...TimeSelectorDateAndTime,
   ...TimeSelectorWeek,
+  ...TimeSelectorDateRange,
   ...TimeSelectorYear,
   ...TimeSelectorDateRange,
 ];

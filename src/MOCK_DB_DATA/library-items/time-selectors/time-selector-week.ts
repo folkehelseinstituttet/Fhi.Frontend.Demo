@@ -24,7 +24,14 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-week-selector></fhi-week-selector>`;
+<fhi-weekpicker 
+  [id]="'id'"
+  [week]="week"
+  [minWeek]="'1910-1'"
+  [maxWeek]="'2020-50'"
+  (weekSelect)="onWeekSelect($event)">
+</fhi-weekpicker>
+`;
 }
 
 /*
