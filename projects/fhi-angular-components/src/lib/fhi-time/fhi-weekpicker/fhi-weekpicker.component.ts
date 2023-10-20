@@ -42,7 +42,7 @@ import { WeekUtilityService } from "./services/week-utility.service";
 })
 export class FhiWeekpickerComponent {
   @Input() id: string;
-  @Input() week: string | null = null;
+  @Input() week: string;
   @Input() label: string = FhiTimeConstants.weekpickerLabel;
   @Input() maxWeek: string;
   @Input() minWeek: string;
@@ -61,6 +61,10 @@ export class FhiWeekpickerComponent {
     private weekUtilityService: WeekUtilityService
   ) { }
 
+  ngOnInit() {
+    this.weekChangeActions();
+  }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.maxWeek) {
       this.maxWeekChangeActions();
@@ -68,7 +72,7 @@ export class FhiWeekpickerComponent {
     if (changes.minWeek) {
       this.minWeekChangeActions();
     }
-    if (changes.week) {
+    if (changes.week && !changes.week.isFirstChange()) {
       this.weekChangeActions();
     }
   }
@@ -76,11 +80,12 @@ export class FhiWeekpickerComponent {
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
     this.isValid = true;
-    this.weekValidatorService.isValid = true;
     this.weekSelect.emit(week);
   }
 
   onInput() {
+    // WeekParserFormatterService takes care of the input.
+    // Just view state is managed here.
     if (this.weekValidatorService.isValid) {
       this.isValid = true;
     } else {
@@ -107,8 +112,7 @@ export class FhiWeekpickerComponent {
 
   private weekChangeActions() {
     const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
-    if (this.week !== null && date === null) {
-      this.weekValidatorService.setErrorMsg(this.week);
+    if (this.week && date === null) {
       this.errorMsg = this.weekValidatorService.errorMsg;
       this.isValid = false;
     } else {

@@ -4,8 +4,7 @@ import {
   NgbDateStruct,
 } from "@ng-bootstrap/ng-bootstrap";
 
-import { WeekErrorStates } from "../week-error-states";
-import { WeekValidatorService } from "./week-validator.service";
+import { WeekErrorStates, WeekValidatorService } from "./week-validator.service";
 import { WeekUtilityService } from "./week-utility.service";
 
 /**
@@ -24,28 +23,27 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
     if (value) {
 
       if (value.length > 7) {
-        this.weekValidatorService.isValid = false;
-        this.weekValidatorService.setErrorMsg(value, WeekErrorStates.toManycharacters);
+        this.weekValidatorService.setErrorMsg(WeekErrorStates.toManyCharacters);
+        return;
+      }
+      if (value.length > 1 && value.length < 6) {
+        this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
         return;
       }
       const date = this.weekUtilityService.getDateFromYearWeekString(value);
 
       if (date === null) {
-        // console.log('WeekParserFormatterService, date 1', { year: -1, month: -1, day: -1 });
-        this.weekValidatorService.isValid = false;
-        this.weekValidatorService.setErrorMsg(value, WeekErrorStates.notValidWeek);
-        // TODO: how to distinguish between WeekErrorStates.notValidWeek and
-        //       WeekErrorStates.outside of minWeek/maxWeek
         return { year: -1, month: -1, day: -1 };
       }
-      this.weekValidatorService.isValid = true;
       this.weekValidatorService.validYearWeekString = value;
-      // console.log('WeekParserFormatterService, date 2', date);
       return date;
     }
 
-    // TODO: how to handle no input if week is not required...
-    console.log('WeekParserFormatterService, date 3', null);
+    if (this.weekValidatorService.weekIsRequired) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekIsRequired);
+    } else {
+      this.weekValidatorService.isValid = true;
+    }
     return null;
   }
 

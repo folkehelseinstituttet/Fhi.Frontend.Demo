@@ -3,12 +3,16 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, getYear, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
+import { WeekErrorStates, WeekValidatorService } from './week-validator.service';
+import { toNumber } from 'lodash-es';
 
 @Injectable()
 export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
   private maxYear = getYear(new Date());
   private minYear = 1900;
+
+  constructor(private weekValidatorService: WeekValidatorService) { }
 
   updateMaxYear(maxDate: NgbDateStruct) {
     if (maxDate) {
@@ -34,14 +38,15 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
-    console.log('yearWeek', yearWeek);
     if (yearWeek.week < 1 || yearWeek.week > 53 || yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
       return null;
     }
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.not53WeeksInThisYear);
       return null;
     }
     const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
@@ -53,6 +58,7 @@ export class WeekUtilityService {
       day: tmpDate.getDate()
     };
     if (isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
       return null;
     }
     return date;
@@ -60,18 +66,22 @@ export class WeekUtilityService {
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
     if (!yearWeekString) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
       return null;
     }
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
+      return null;
+    }
+    if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.onlyNumbersAllowed);
       return null;
     }
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
-    const date = this.getDateFromYearWeek({ week, year });
-
-    return date;
+    return this.getDateFromYearWeek({ week, year });
   }
 
   getYearWeekStringFromDate(date: NgbDateStruct): string {
