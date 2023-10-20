@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { getISOWeek, getWeek, getYear } from 'date-fns';
+import { getISOWeek, getWeek, getYear, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
 
@@ -20,28 +20,20 @@ export class WeekUtilityService {
   
   calculateDate(week: number, year: number): NgbDateStruct | null {
     if (week < 1 || week > 53 || year < this.minYear || year > this.maxYear) {
-
-      console.log('calculateDate() 1', null);
       return null;
     }
-    const firstDay = new Date(year + '-1-4');
+  
+    const lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
+    const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
-    console.log('firstDay', firstDay);
-    console.log('getISOWeek(firstDay)', getISOWeek(firstDay));
+    // Test for years without 53rd week
+    if (week === 53 && lastWeekCurrentYear !== 53) {
+      return null;
+    }
 
-    const date = new Date(
-      firstDay.getTime() + (week - 1) * 7 * 24 * 60 * 60 * 1000
-    );
-
-
-    // console.log('calculateDate() dateFns', parse(year + '-' + week,'YYYY-I', new Date(), {
-    //   useAdditionalWeekYearTokens: true
-    // }));
-    console.log('calculateDate() 2', {
-      year: date.getUTCFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate()
-    });
+    const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
+    const millisecondsDiff = (lastWeekCurrentYear - week) * millisecondsInOneWeek;
+    const date = new Date(lastDayCurrentYear.getTime() - millisecondsDiff);
 
     return {
       year: date.getUTCFullYear(),
