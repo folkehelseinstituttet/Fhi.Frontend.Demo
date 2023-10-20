@@ -27,19 +27,6 @@
     [maxWeek]="'2020-50'"
     (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
-
-
-  <p class="mt-4">
-    <code>{{ selectedWeek | json }}</code>
-  </p>
-  <button type="button" class="btn fhi-btn-link"
-          (click)="changeWeekInput()">
-    Bytt uke
-  </button>
-  <!-- <fhi-week-selector (weekSelect)="getTheWeek($event)"></fhi-week-selector>
-  <p class="mt-4">
-    <code>{{ weekSelected }}</code>
-  </p> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
