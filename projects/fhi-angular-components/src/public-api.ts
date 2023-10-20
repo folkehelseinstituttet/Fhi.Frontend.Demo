@@ -32,7 +32,4 @@ export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.component';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.module';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection-item.model';
 
-export * from './lib/fhi-week-selector/fhi-week-selector.component';
-export * from './lib/fhi-week-selector/fhi-week-selector.module';
-
 export * from './lib/fhi-time/fhi-weekpicker/fhi-weekpicker.component';
