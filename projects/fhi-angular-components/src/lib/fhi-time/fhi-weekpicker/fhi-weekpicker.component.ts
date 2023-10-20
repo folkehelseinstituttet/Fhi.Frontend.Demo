@@ -62,25 +62,15 @@ export class FhiWeekpickerComponent {
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.week) {
-      this.weekChangeActions();
-    }
     if (changes.maxWeek) {
       this.maxWeekChangeActions();
     }
     if (changes.minWeek) {
       this.minWeekChangeActions();
     }
-  }
-
-  private maxWeekChangeActions() {
-    this.maxDate = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
-    this.weekUtilityService.updateMaxYear(this.maxDate);
-  }
-
-  private minWeekChangeActions() {
-    this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
-    this.weekUtilityService.updateMinYear(this.minDate);
+    if (changes.week) {
+      this.weekChangeActions();
+    }
   }
 
   onDateSelect(date: NgbDateStruct) {
@@ -126,5 +116,15 @@ export class FhiWeekpickerComponent {
       this.week = this.weekUtilityService.getYearWeekStringFromDate(date);
       this.isValid = true;
     }
+  }
+
+  private maxWeekChangeActions() {
+    this.maxDate = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
+    this.weekUtilityService.updateMaxYear(this.maxDate);
+  }
+
+  private minWeekChangeActions() {
+    this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
+    this.weekUtilityService.updateMinYear(this.minDate);
   }
 }

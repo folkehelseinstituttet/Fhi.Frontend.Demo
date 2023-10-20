@@ -22,7 +22,19 @@ export class WeekUtilityService {
     }
   }
   
+  getYearWeek(date: Date): YearWeek {
+    const week = getWeek(
+      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
+      {
+        weekStartsOn: 1,
+        firstWeekContainsDate: 4,
+      }
+    );
+    return { year: date.getFullYear(), week: week };
+  }
+
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
+    console.log('yearWeek', yearWeek);
     if (yearWeek.week < 1 || yearWeek.week > 53 || yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
       return null;
     }
@@ -44,17 +56,6 @@ export class WeekUtilityService {
       return null;
     }
     return date;
-  }
-
-  getYearWeek(date: Date): YearWeek {
-    const week = getWeek(
-      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
-      {
-        weekStartsOn: 1,
-        firstWeekContainsDate: 4,
-      }
-    );
-    return { year: date.getFullYear(), week: week };
   }
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
