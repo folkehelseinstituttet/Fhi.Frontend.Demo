@@ -30,7 +30,7 @@ export class TimeSelectorsComponent {
   // weekList = [];
 
   selectedWeek!: string;
-  week = '2019-53';
+  week = '2019-25';
 
   // ngOnInit() {
   //   this.generateWeekList();
