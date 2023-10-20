@@ -11,4 +11,7 @@ import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.compone
 export class FhiWeekRangeComponent {
   @Input() fromWeekLabel: string = 'Fra uke';
   @Input() toWeekLabel: string = 'Til uke';
+
+  fromWeekId: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
+  toWeekId: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
 }

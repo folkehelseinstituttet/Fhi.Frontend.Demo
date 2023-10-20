@@ -1,9 +1,11 @@
 <div class="fhi-week-range">
   <div class="d-flex">
     <fhi-weekpicker [label]="fromWeekLabel"
-                    [id]="'fra_uke'"></fhi-weekpicker>
-    <span class="fhi-week-range__divider">&ndash;</span>
+                    [id]="fromWeekId"></fhi-weekpicker>
+    <span>
+      <span class="fhi-week-range__divider">&ndash;</span>
+    </span>
     <fhi-weekpicker [label]="toWeekLabel"
-                    [id]="'til_uke'"></fhi-weekpicker>
+                    [id]="toWeekId"></fhi-weekpicker>
   </div>
 </div>
