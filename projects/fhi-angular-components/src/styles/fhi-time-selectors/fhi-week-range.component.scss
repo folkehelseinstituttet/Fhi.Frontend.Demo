@@ -1,0 +1,9 @@
+.fhi-week-range {
+  &__divider {
+    display: block;
+    position: relative;
+    text-align: center;
+    top: $fhi-core-px * 38;
+    width: $fhi-core-px * 40;
+  }
+}
