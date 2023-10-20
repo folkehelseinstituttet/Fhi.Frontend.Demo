@@ -22,28 +22,28 @@ export class WeekUtilityService {
     }
   }
   
-  calculateDate(week: number, year: number): NgbDateStruct | null {
-    if (week < 1 || week > 53 || year < this.minYear || year > this.maxYear) {
+  getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
+    if (yearWeek.week < 1 || yearWeek.week > 53 || yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
       return null;
     }
-  
-    const lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
+    const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
-    // Test for years without 53rd week
-    if (week === 53 && lastWeekCurrentYear !== 53) {
+    if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
       return null;
     }
-
     const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
-    const millisecondsDiff = (lastWeekCurrentYear - week) * millisecondsInOneWeek;
-    const date = new Date(lastDayCurrentYear.getTime() - millisecondsDiff);
-
-    return {
-      year: date.getUTCFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate()
+    const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
+    const tmpDate = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
+    const date = {
+      year: tmpDate.getUTCFullYear(),
+      month: tmpDate.getMonth() + 1,
+      day: tmpDate.getDate()
     };
+    if (isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
+      return null;
+    }
+    return date;
   }
 
   getYearWeek(date: Date): YearWeek {
@@ -68,11 +68,8 @@ export class WeekUtilityService {
     }
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
-    const date = this.calculateDate(week, year);
+    const date = this.getDateFromYearWeek({ week, year });
 
-    if (!date || isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
-      return null;
-    }
     return date;
   }
 

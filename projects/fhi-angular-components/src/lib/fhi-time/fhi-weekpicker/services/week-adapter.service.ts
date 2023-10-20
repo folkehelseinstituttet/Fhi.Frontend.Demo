@@ -19,19 +19,17 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
     if (value) {
       if (typeof value === "string") {
         return null;
-      } else {
-        return this.weekUtilityService.calculateDate(value.week, value.year);
       }
+      return this.weekUtilityService.getDateFromYearWeek(value);
     }
     return null;
   }
 
   toModel(date: NgbDateStruct | null): YearWeek | null {
     if (date) {
-      const yearWeek = this.weekUtilityService.getYearWeek(
+      return this.weekUtilityService.getYearWeek(
         new Date(Date.UTC(date.year, date.month - 1, date.day))
       );
-      return yearWeek;
     }
     return null;
   }
