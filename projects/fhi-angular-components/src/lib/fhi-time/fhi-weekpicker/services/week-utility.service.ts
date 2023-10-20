@@ -38,10 +38,26 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
-    if (yearWeek.week < 1 || yearWeek.week > 53 || yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
+    if (yearWeek.week < 1 || yearWeek.week > 53) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
+      return null;
+    }
+
+
+    // TODO: better error msg's...
+    // if (yearWeek < this.minWeek || yearWeek > this.maxWeek) {
+    //   // Include this.minWeek - this.maxWeek in error msg.
+    //   this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
+    //   return null;
+    // }
+    // ...and check for 2020-51 when [maxWeek]="'2020-50'" (and other combinations)
+    if (yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
       return null;
     }
+
+
+
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
