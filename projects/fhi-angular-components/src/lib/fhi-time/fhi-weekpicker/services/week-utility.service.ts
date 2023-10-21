@@ -72,14 +72,9 @@ export class WeekUtilityService {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.not53WeeksInThisYear);
       return null;
     }
-    const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
-    const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
-    const tmpDate = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
-    const date = {
-      year: tmpDate.getUTCFullYear(),
-      month: tmpDate.getMonth() + 1,
-      day: tmpDate.getDate()
-    };
+
+    const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
+
     if (isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
       return null;
@@ -122,5 +117,16 @@ export class WeekUtilityService {
     const jsDate = new Date(date.year, date.month - 1, date.day);
     const yearWeek = this.getYearWeek(jsDate);
     return `${yearWeek.year}${this.weekpickerDelimiter}${yearWeek.week}`;
+  }
+
+  private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
+    const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
+    const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
+    const tmpDate = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
+    return {
+      year: tmpDate.getUTCFullYear(),
+      month: tmpDate.getMonth() + 1,
+      day: tmpDate.getDate()
+    };
   }
 }
