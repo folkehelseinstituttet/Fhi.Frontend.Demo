@@ -19,6 +19,7 @@ export class WeekValidatorService {
   private _errorMsg!: string;
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
 
+  validationTriggeredByParser = false;
   weekIsRequired = false;
 
   set isValid(value: boolean) {
@@ -37,11 +38,17 @@ export class WeekValidatorService {
   }
 
   set errorMsg(value: string) {
+    // TODO: This may be confusing... maybe skip getters and setters all togheter...?
     this.isValid = false;
     this._errorMsg = value;
   }
   get errorMsg(): string {
     return this._errorMsg;
+  }
+
+  setValidationTriggeredByParser(value: boolean) {
+    console.log('validationTriggeredByParser', value);
+    this.validationTriggeredByParser = value;
   }
 
   setErrorMsg(errorState: number) {

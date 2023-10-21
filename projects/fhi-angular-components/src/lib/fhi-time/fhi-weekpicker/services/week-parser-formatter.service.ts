@@ -20,6 +20,8 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
+    this.weekValidatorService.setValidationTriggeredByParser(true);
+
     if (value) {
 
       if (value.length > 7) {
@@ -35,6 +37,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       if (date === null) {
         return { year: -1, month: -1, day: -1 };
       }
+
       this.weekValidatorService.validYearWeekString = value;
       return date;
     }

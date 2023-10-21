@@ -23,7 +23,7 @@ export class TimeSelectorsComponent {
 
   yearSelected: string;
 
-  week = '2015-53';
+  week = '2020-51';
 
   onYearSelect(year: string) {
     this.yearSelected = year;

@@ -85,9 +85,14 @@ export class WeekUtilityService {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
       return null;
     }
+
+    console.log('2. yearWeekString', yearWeekString);
+
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
+      console.log('3. yearWeekString', yearWeekString);
+      console.log('parts', parts);
       this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
       return null;
     }
