@@ -9,39 +9,44 @@ import { toNumber } from 'lodash-es';
 @Injectable()
 export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
-  private maxDate: NgbDateStruct;
-  private minDate: NgbDateStruct;
-
-
-  // TODO: deprecated
-  private maxYear = getYear(new Date());
-  private minYear = 1900;
-
+  private maxDate = this.getInitMaxDate();
+  private minDate = this.getInitMinDate();
 
   constructor(private weekValidatorService: WeekValidatorService) { }
 
-  updateMaxDate(date: NgbDateStruct) {
-    this.maxDate = date;
+  getMaxDate(): NgbDateStruct {
+    return this.maxDate;
   }
 
-  updateMinDate(date: NgbDateStruct) {
-    this.minDate = date;
-  }
- 
-
-
-  // TODO: deprecated
-  updateMaxYear(maxDate: NgbDateStruct) {
-    if (maxDate) {
-      this.maxYear = maxDate.year;
-    }
-  }
-  updateMinYear(minDate: NgbDateStruct) {
-    if (minDate) {
-      this.minYear = minDate.year;
-    }
+  getMinDate(): NgbDateStruct {
+    return this.minDate;
   }
 
+  setMaxDate(date: NgbDateStruct) {
+    this.maxDate = (date) ? date : this.getInitMaxDate();
+  }
+
+  setMinDate(date: NgbDateStruct) {
+    this.minDate = (date) ? date : this.getInitMinDate();
+  }
+
+  getInitMaxDate(): NgbDateStruct {
+    const today = new Date();
+    return {
+      year: today.getUTCFullYear(),
+      month: today.getMonth() + 1,
+      day: today.getDate()
+    };
+  }
+
+  getInitMinDate(): NgbDateStruct {
+    const minDate = new Date(1900, 0);
+    return {
+      year: minDate.getUTCFullYear() + 1,
+      month: minDate.getMonth() + 1,
+      day: minDate.getDate()
+    };
+  }
 
   getYearWeek(date: Date): YearWeek {
     const week = getWeek(
@@ -68,7 +73,7 @@ export class WeekUtilityService {
     //   return null;
     // }
     // ...and check for 2020-51 when [maxWeek]="'2020-50'" (and other combinations)
-    if (yearWeek.year < this.minYear || yearWeek.year > this.maxYear) {
+    if (yearWeek.year < this.minDate.year || yearWeek.year > this.maxDate.year) {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
       return null;
     }

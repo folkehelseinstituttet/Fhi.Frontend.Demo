@@ -42,7 +42,7 @@ import { WeekUtilityService } from "./services/week-utility.service";
 })
 export class FhiWeekpickerComponent {
   @Input() id: string;
-  @Input() week: string;
+  @Input() week: string | null;
   @Input() label: string = FhiTimeConstants.weekpickerLabel;
   @Input() maxWeek: string;
   @Input() minWeek: string;
@@ -62,14 +62,16 @@ export class FhiWeekpickerComponent {
   ) { }
 
   ngOnInit() {
+    this.maxWeekChangeActions();
+    this.minWeekChangeActions();
     this.weekChangeActions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.maxWeek) {
+    if (changes.maxWeek && !changes.maxWeek.isFirstChange()) {
       this.maxWeekChangeActions();
     }
-    if (changes.minWeek) {
+    if (changes.minWeek && !changes.minWeek.isFirstChange()) {
       this.minWeekChangeActions();
     }
     if (changes.week && !changes.week.isFirstChange()) {
@@ -111,6 +113,10 @@ export class FhiWeekpickerComponent {
   }
 
   private weekChangeActions() {
+    if (this.week === undefined) {
+      this.week = null;
+      return;
+    }
     const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
     if (date !== null) {
       this.startDate = date;
@@ -118,12 +124,26 @@ export class FhiWeekpickerComponent {
   }
 
   private maxWeekChangeActions() {
-    this.maxDate = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
-    this.weekUtilityService.updateMaxYear(this.maxDate);
+    if (this.maxWeek === undefined) {
+      this.maxDate = this.weekUtilityService.getMaxDate();
+      return;
+    }
+    const date = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
+    if (date !== null) {
+      this.maxDate = date;
+      this.weekUtilityService.setMaxDate(date);
+    }
   }
 
   private minWeekChangeActions() {
-    this.minDate = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
-    this.weekUtilityService.updateMinYear(this.minDate);
+    if (this.minWeek === undefined) {
+      this.minDate = this.weekUtilityService.getMinDate();
+      return;
+    }
+    const date = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
+    if (date !== null) {
+      this.minDate = date;
+      this.weekUtilityService.setMinDate(date);
+    }
   }
 }

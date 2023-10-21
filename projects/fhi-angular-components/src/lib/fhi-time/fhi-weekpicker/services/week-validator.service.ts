@@ -36,15 +36,15 @@ export class WeekValidatorService {
   }
 
   setErrorMsg(errorState: number) {
-    this.isValid = false;
     if (this.validationTriggeredByParser) {
+      this.isValid = false;
       this.errorMsg = this.getErrorMsg(errorState);
     } else {
       throw new Error(`
-One of the following inputs has either wrong format, or an illegal value:\n
+One of the following inputs has either wrong format, or an illegal value:
 @Input() maxWeek
 @Input() minWeek
-@Input() week!\n`);
+@Input() week!`);
     }
     this.validationTriggeredByParser = false;
   }
