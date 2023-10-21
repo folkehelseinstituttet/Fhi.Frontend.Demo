@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, getYear, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
@@ -65,21 +65,6 @@ export class WeekUtilityService {
       return null;
     }
 
-
-    // TODO: better error msg's...
-    // if (yearWeek < this.minWeek || yearWeek > this.maxWeek) {
-    //   // Include this.minWeek - this.maxWeek in error msg.
-    //   this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
-    //   return null;
-    // }
-    // ...and check for 2020-51 when [maxWeek]="'2020-50'" (and other combinations)
-    if (yearWeek.year < this.minDate.year || yearWeek.year > this.maxDate.year) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
-      return null;
-    }
-
-
-
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
@@ -99,6 +84,10 @@ export class WeekUtilityService {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
       return null;
     }
+    if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
+      return null;
+    }
     return date;
   }
 
@@ -108,13 +97,12 @@ export class WeekUtilityService {
       return null;
     }
 
-    console.log('2. yearWeekString', yearWeekString);
-
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      console.log('3. yearWeekString', yearWeekString);
-      console.log('parts', parts);
+      // TODO: better test for parts
+      // console.log('3. yearWeekString', yearWeekString);
+      // console.log('parts', parts);
       this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
       return null;
     }
