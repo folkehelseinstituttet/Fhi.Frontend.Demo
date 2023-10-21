@@ -14,20 +14,13 @@ export enum WeekErrorStates {
 
 @Injectable()
 export class WeekValidatorService {
-  private _isValid!: boolean;
   private _validYearWeekString!: string;
-  private _errorMsg!: string;
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
+  private validationTriggeredByParser = false;
 
-  validationTriggeredByParser = false;
+  errorMsg: string;
+  isValid!: boolean;
   weekIsRequired = false;
-
-  set isValid(value: boolean) {
-    this._isValid = value;
-  }
-  get isValid(): boolean {
-    return this._isValid;
-  }
 
   set validYearWeekString(value: string) {
     this.isValid = true;
@@ -37,54 +30,43 @@ export class WeekValidatorService {
     return this._validYearWeekString;
   }
 
-  set errorMsg(value: string) {
-    // TODO: This may be confusing... maybe skip getters and setters all togheter...?
-    this.isValid = false;
-    this._errorMsg = value;
-  }
-  get errorMsg(): string {
-    return this._errorMsg;
-  }
-
   setValidationTriggeredByParser(value: boolean) {
     console.log('validationTriggeredByParser', value);
     this.validationTriggeredByParser = value;
   }
 
   setErrorMsg(errorState: number) {
+    this.isValid = false;
+    this.errorMsg = this.getErrorMsg(errorState);
+    this.validationTriggeredByParser = false;
+  }
+  
+  private getErrorMsg(errorState: number): string {
     switch (errorState) {
       case WeekErrorStates.toManyCharacters:
-        this.errorMsg = this.getToManyCharactersMsg();
-        break;
+        return this.getToManyCharactersMsg();
 
       case WeekErrorStates.toFewCharacters:
-        this.errorMsg = this.getToFewCharactersMsg();
-        break;
+        return this.getToFewCharactersMsg();
 
       case WeekErrorStates.not53WeeksInThisYear:
-        this.errorMsg = this.getNot53WeeksInThisYearMsg();
-        break;
+        return this.getNot53WeeksInThisYearMsg();
 
       // TODO: do we need this one?
       case WeekErrorStates.notValidWeek:
-        this.errorMsg = this.getNotValidWeekMsg();
-        break;
+        return this.getNotValidWeekMsg();
 
       case WeekErrorStates.notValidWeekNumber:
-        this.errorMsg = this.getNotValidWeekNumberMsg();
-        break;
+        return this.getNotValidWeekNumberMsg();
 
       case WeekErrorStates.onlyNumbersAllowed:
-        this.errorMsg = this.getOnlyNumbersAllowedMsg();
-        break;
+        return this.getOnlyNumbersAllowedMsg();
 
       case WeekErrorStates.weekIsRequired:
-        this.errorMsg = this.getWeekIsRequiredMsg();
-        break;
+        return this.getWeekIsRequiredMsg();
 
       case WeekErrorStates.weekOutsideMaxAndMinWeek:
-        this.errorMsg = this.getWeekOutsideMaxAndMinWeekMsg();
-        break;
+        return this.getWeekOutsideMaxAndMinWeekMsg();
     }
   }
   
