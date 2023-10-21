@@ -82,12 +82,12 @@ export class FhiWeekpickerComponent {
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
     this.isValid = true;
+    this.startDate = date;
     this.weekSelect.emit(week);
   }
 
   onInput() {
-    // WeekParserFormatterService takes care of the input.
-    // Just view state is managed here.
+    // WeekParserFormatterService takes care of the input, just view state is managed here.
     if (this.weekValidatorService.isValid) {
       this.isValid = true;
     } else {

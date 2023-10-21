@@ -31,7 +31,6 @@ export class WeekValidatorService {
   }
 
   setValidationTriggeredByParser(value: boolean) {
-    console.log('validationTriggeredByParser', value);
     this.validationTriggeredByParser = value;
   }
 
