@@ -39,7 +39,7 @@ export class WeekUtilityService {
 
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
     if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
+      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeekNumber);
       return null;
     }
 

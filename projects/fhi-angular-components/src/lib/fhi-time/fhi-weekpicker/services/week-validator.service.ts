@@ -6,9 +6,10 @@ export enum WeekErrorStates {
   toFewCharacters = 2,
   not53WeeksInThisYear = 3,
   notValidWeek = 4,
-  onlyNumbersAllowed = 5,
-  weekIsRequired = 6,
-  weekOutsideMaxAndMinWeek = 7
+  notValidWeekNumber = 5,
+  onlyNumbersAllowed = 6,
+  weekIsRequired = 7,
+  weekOutsideMaxAndMinWeek = 8
 }
 
 @Injectable()
@@ -57,8 +58,13 @@ export class WeekValidatorService {
         this.errorMsg = this.getNot53WeeksInThisYearMsg();
         break;
 
+      // TODO: do we need this one?
       case WeekErrorStates.notValidWeek:
         this.errorMsg = this.getNotValidWeekMsg();
+        break;
+
+      case WeekErrorStates.notValidWeekNumber:
+        this.errorMsg = this.getNotValidWeekNumberMsg();
         break;
 
       case WeekErrorStates.onlyNumbersAllowed:
@@ -89,6 +95,10 @@ export class WeekValidatorService {
 
   private getNotValidWeekMsg(): string {
     return `Du har lagt inn en ukeverdi som ikke finnes, eller er på feil format. ${this.correctFormat}`;
+  }
+
+  private getNotValidWeekNumberMsg(): string {
+    return `Du har lagt inn en ukeverdi som ikke finnes. Uke må være f.o.m. <strong>1</strong> t.o.m. <strong>53</strong>.`;
   }
 
   private getOnlyNumbersAllowedMsg(): string {
