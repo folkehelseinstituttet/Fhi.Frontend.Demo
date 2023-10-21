@@ -54,7 +54,7 @@ export class FhiWeekpickerComponent {
   startDate!: NgbDateStruct;
   placeholder = FhiTimeConstants.weekpickerPlaceholder;
   errorMsg!: string;
-  isValid!: boolean;
+  isValid = true;
 
   constructor(
     private weekValidatorService: WeekValidatorService,
@@ -112,13 +112,8 @@ export class FhiWeekpickerComponent {
 
   private weekChangeActions() {
     const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
-    if (this.week && date === null) {
-      this.errorMsg = this.weekValidatorService.errorMsg;
-      this.isValid = false;
-    } else {
+    if (date !== null) {
       this.startDate = date;
-      this.week = this.weekUtilityService.getYearWeekStringFromDate(date);
-      this.isValid = true;
     }
   }
 

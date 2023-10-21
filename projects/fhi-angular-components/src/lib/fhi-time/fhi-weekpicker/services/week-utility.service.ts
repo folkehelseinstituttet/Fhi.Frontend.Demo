@@ -9,23 +9,40 @@ import { toNumber } from 'lodash-es';
 @Injectable()
 export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
+  private maxDate: NgbDateStruct;
+  private minDate: NgbDateStruct;
+
+
+  // TODO: deprecated
   private maxYear = getYear(new Date());
   private minYear = 1900;
 
+
   constructor(private weekValidatorService: WeekValidatorService) { }
 
+  updateMaxDate(date: NgbDateStruct) {
+    this.maxDate = date;
+  }
+
+  updateMinDate(date: NgbDateStruct) {
+    this.minDate = date;
+  }
+ 
+
+
+  // TODO: deprecated
   updateMaxYear(maxDate: NgbDateStruct) {
     if (maxDate) {
       this.maxYear = maxDate.year;
     }
   }
-
   updateMinYear(minDate: NgbDateStruct) {
     if (minDate) {
       this.minYear = minDate.year;
     }
   }
-  
+
+
   getYearWeek(date: Date): YearWeek {
     const week = getWeek(
       new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
