@@ -1,11 +1,21 @@
 <div class="fhi-week-range">
   <div class="d-flex">
     <fhi-weekpicker [label]="fromWeekLabel"
-                    [id]="fromWeekId"></fhi-weekpicker>
+                    [id]="fromWeekId"
+                    [week]="weekFrom"
+                    [minWeek]="minWeekFrom"
+                    [maxWeek]="maxWeekFrom"
+                    (weekSelect)="getFromWeek($event)"></fhi-weekpicker>
     <span>
       <span class="fhi-week-range__divider">&ndash;</span>
     </span>
     <fhi-weekpicker [label]="toWeekLabel"
-                    [id]="toWeekId"></fhi-weekpicker>
+                    [id]="toWeekId"
+                    [week]="weekTo"
+                    [minWeek]="minWeekTo"
+                    [maxWeek]="maxWeekTo"
+                    (weekSelect)="getToWeek($event)"></fhi-weekpicker>
   </div>
+  
+  <p class="mt-4"><span class="d-inline-block" style="width: 180px"><code>{{ fromWeek }}</code></span> <code>{{ toWeek }}</code></p>
 </div>
