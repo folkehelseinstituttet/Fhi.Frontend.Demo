@@ -33,7 +33,6 @@ export class FhiWeekRangeComponent {
   validRange: boolean = false;
   
   constructor(
-    private weekValidatorService: WeekValidatorService,
     private weekUtilityService: WeekUtilityService
   ) {}
 
