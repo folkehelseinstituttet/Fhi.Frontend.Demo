@@ -5,4 +5,12 @@
     transform: translateY($fhi-core-px * 38);
     width: $fhi-core-px * 40;
   }
+
+  .fhi-weekpicker {
+    width: $datepicker-width;
+  }
+
+  &__invalid-feedback {
+    max-width: $fhi-core-px * 320;
+  }
 }

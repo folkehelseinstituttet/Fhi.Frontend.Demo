@@ -7,16 +7,14 @@ import { YearWeek } from '../year-week.model';
 @Injectable()
 export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
-  private maxYear = getYear(new Date());
+  private maxYear = getYear(new Date()) + 1;
   private minYear = 1900;
 
   updateMaxYear(maxDate: NgbDateStruct) {
-    console.log('updateMaxYear', maxDate);
     this.maxYear = maxDate.year;
   }
 
   updateMinYear(minDate: NgbDateStruct) {
-    console.log('updateMinYear', minDate);
     this.minYear = minDate.year;
   }
   
