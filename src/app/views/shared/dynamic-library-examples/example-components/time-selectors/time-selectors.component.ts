@@ -23,6 +23,7 @@ export class TimeSelectorsComponent {
 
   weekFrom: string = '2010-27';
   weekTo: string = '2013-13';
+  weekRange: any;
 
   // weekSelected: string;
 
@@ -47,6 +48,10 @@ export class TimeSelectorsComponent {
   
   getDateAndTime(dateAndTime: any) {
     this.selectedDateAndTime = dateAndTime;
+  }
+
+  getWeekRange(weekRange: any) {
+    this.weekRange = weekRange;
   }
 
   // getTheWeek(week: any) {

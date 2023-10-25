@@ -40,12 +40,10 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">
-  <fhi-week-range
-    [weekFrom]="weekFrom"
-    [weekTo]="weekTo">
+  <fhi-week-range (weekRangeSelect)="getWeekRange($event)">
   </fhi-week-range>
 
-  <p class="pt-4"><code>{{ weekFrom }} - {{ weekTo }}</code></p>
+  <p class="pt-4"><code>{{ weekRange | json }}</code></p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">

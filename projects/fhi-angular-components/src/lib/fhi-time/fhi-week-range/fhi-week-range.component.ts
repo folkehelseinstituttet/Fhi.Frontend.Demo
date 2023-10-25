@@ -22,7 +22,7 @@ export class FhiWeekRangeComponent {
   @Input() maxWeek: string = getYear(new Date()) + 1 + '-52';
   @Input() minWeek: string = '1900-1';
 
-  @Output() weekRange = new EventEmitter<Object>();
+  @Output() weekRangeSelect = new EventEmitter<Object>();
 
   fromWeekId: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
   maxWeekFrom: string;
@@ -30,7 +30,8 @@ export class FhiWeekRangeComponent {
   minWeekFrom: string;
   minWeekTo: string;
   toWeekId: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
-  validRange: boolean = false;
+  validRange: boolean = true;
+  selectedRange: any = { weekFrom: null, weekTo: null };
   
   constructor(
     private weekUtilityService: WeekUtilityService
@@ -42,18 +43,42 @@ export class FhiWeekRangeComponent {
     this.minWeekFrom = this.minWeek;
     this.minWeekTo = this.minWeek;
 
+    if (this.weekFrom) {
+      this.minWeekTo = this.weekFrom;
+      this.selectedRange.weekFrom = this.weekFrom;
+    }
+    if (this.weekTo) {
+      this.maxWeekFrom = this.weekTo;
+      this.selectedRange.weekTo = this.weekTo;
+    }
     if (this.weekFrom && this.weekTo) {
       this.checkWeekRangeValidity();
     }
   }
 
-  getFromWeek(event: string) {
+  fromWeekSelect(event: string) {
+    console.log('fromWeekSelect', event);
     this.weekFrom = event;
-    this.checkWeekRangeValidity();
+    this.minWeekTo = this.weekFrom;
+    if (this.weekTo) {
+      this.checkWeekRangeValidity();
+    }
+    if (this.validRange && this.weekTo) {
+      this.selectedRange.weekFrom = event;
+      this.weekRangeSelect.emit(this.selectedRange);
+    }
   }
-  getToWeek(event: string) {
+  toWeekSelect(event: string) {
+    console.log('toWeekSelect', event);
     this.weekTo = event;
-    this.checkWeekRangeValidity();
+    this.maxWeekFrom = this.weekTo;
+    if (this.weekFrom) {
+      this.checkWeekRangeValidity();
+    }
+    if (this.validRange && this.weekFrom) {
+      this.selectedRange.weekTo = event;
+      this.weekRangeSelect.emit(this.selectedRange);
+    }
   }
 
   private checkWeekRangeValidity() {
@@ -64,9 +89,10 @@ export class FhiWeekRangeComponent {
     const toDateTimestamp = new Date(toNgbDateStruct.year + '-' + toNgbDateStruct.month + '-' + toNgbDateStruct.day).getTime();
 
     if (toDateTimestamp - fromDateTimestamp < 0) {
-      this.validRange = true;
-    } else {
       this.validRange = false;
+      this.weekRangeSelect.emit({ weekFrom: null, weekTo: null });
+    } else {
+      this.validRange = true;
     }
   }
 }
