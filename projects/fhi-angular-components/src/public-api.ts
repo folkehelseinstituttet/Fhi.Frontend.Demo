@@ -14,7 +14,6 @@ export * from './lib/fhi-datepicker/fhi-datepicker.component';
 export * from './lib/fhi-datepicker/fhi-datepicker.module';
 
 export * from './lib/fhi-year-selector/fhi-year-selector.component';
-export * from './lib/fhi-year-selector/fhi-year-selector.module';
 
 export * from './lib/fhi-multiselect/fhi-multiselect.component';
 export * from './lib/fhi-multiselect/fhi-multiselect.module';
