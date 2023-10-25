@@ -173,4 +173,8 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-year',
     title: 'Year selector'
   },
+  TimeSelectorYearRange: {
+    id: 'time-selector-year-range',
+    title: 'Year range'
+  },
 };
