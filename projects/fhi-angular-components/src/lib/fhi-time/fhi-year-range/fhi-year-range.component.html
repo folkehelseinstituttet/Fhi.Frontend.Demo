@@ -2,13 +2,17 @@
   <div class="d-flex">
     
     <fhi-year-selector
-      [label]="labelFromYear">
+      [label]="labelFromYear"
+      [maxYear]="maxYear"
+      (yearSelect)="onFromYearSelect($event)">
     </fhi-year-selector>
 
     <span class="fhi-year-range__divider">&ndash;</span>
 
     <fhi-year-selector
-      [label]="labelToYear">
+      [label]="labelToYear"
+      [minYear]="minYear"
+      (yearSelect)="onToYearSelect($event)">
     </fhi-year-selector>
 
   </div>
