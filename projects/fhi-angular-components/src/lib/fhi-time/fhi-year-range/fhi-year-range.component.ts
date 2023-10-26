@@ -21,10 +21,6 @@ export class FhiYearRangeComponent {
   fromYearList: FhiAutosuggestItem[] = [];
   toYearList: FhiAutosuggestItem[] = [];
 
-  ngOnInit() {
-    
-  }
-
   onFromYearSelect(event: string) {
     this.minYear = toNumber(event);
   }
