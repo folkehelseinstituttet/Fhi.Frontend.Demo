@@ -26,7 +26,7 @@ export class WeekValidatorService {
   isValid!: boolean;
   weekIsRequired = false;
 
-  setValidYearWeekStringAndSharedValidState(value: string) {
+  setValidYearWeekStringAndValidState(value: string) {
     this.validYearWeekString = value;
     this.isValid = true;
   }

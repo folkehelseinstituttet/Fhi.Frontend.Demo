@@ -22,36 +22,40 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   parse(value: string): NgbDateStruct | null {
     this.weekValidatorService.setValidationContext(WeekValidationContext.weekParserFormatterParse);
 
+    // TODO: update all logic in parse() so that it works after removing "onInit()" from template...
+
     if (value) {
-
-      if (value.length > 7) {
-        this.weekValidatorService.setErrorMsg(WeekErrorState.toManyCharacters);
-        return null;
-      }
-
-      const date = this.weekUtilityService.getDateFromYearWeekString(value);
-
-      if (date === null) {
-        return { year: -1, month: -1, day: -1 };
-      }
-
-      this.weekValidatorService.setValidYearWeekStringAndSharedValidState(value);
-      return date;
+      return this.getDate(value);
     }
-
-
-    // TODO: is there a better way to solve the required problem?
-    if (this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
-    } else {
-      this.weekValidatorService.isValid = true;
-    }
-
-
+    this.handleValidationIfValueIsRequired();
     return null;
   }
 
   format(date: NgbDateStruct | null): string {
     return this.weekUtilityService.getYearWeekStringFromDate(date);
   }
+
+  private getDate(value: string): NgbDateStruct | null {
+    if (value.length > 7) {
+      this.weekValidatorService.setErrorMsg(WeekErrorState.toManyCharacters);
+      return null;
+    }
+    const date = this.weekUtilityService.getDateFromYearWeekString(value);
+
+    if (date === null) {
+      return { year: -1, month: -1, day: -1 };
+    }
+    this.weekValidatorService.setValidYearWeekStringAndValidState(value);
+    return date;
+  }
+
+  // TODO: is there a better way to solve the "required problem"?
+  private handleValidationIfValueIsRequired() {
+    if (this.weekValidatorService.weekIsRequired) {
+      this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
+    } else {
+      this.weekValidatorService.isValid = true;
+    }
+  }
+
 }
