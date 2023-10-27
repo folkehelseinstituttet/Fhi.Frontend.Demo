@@ -76,10 +76,6 @@ export class WeekUtilityService {
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
-    if (isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.notValidWeek);
-      return null;
-    }
     if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.weekOutsideMaxAndMinWeek);
       return null;
