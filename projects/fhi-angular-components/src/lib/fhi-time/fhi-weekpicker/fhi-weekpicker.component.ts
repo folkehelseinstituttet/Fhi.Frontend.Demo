@@ -13,7 +13,7 @@ import {
 import { FhiDatepickerI18nService } from "../fhi-datepicker-i18n.service";
 import { WeekParserFormatterService } from "./services/week-parser-formatter.service";
 import { WeekAdapterService } from "./services/week-adapter.service";
-import { WeekValidatorService } from "./services/week-validator.service";
+import { WeekValidationContext, WeekValidatorService } from "./services/week-validator.service";
 import { FhiTimeConstants } from "../fhi-time-constants";
 import { WeekUtilityService } from "./services/week-utility.service";
 
@@ -68,6 +68,9 @@ export class FhiWeekpickerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    // console.log('SimpleChanges', changes);
+    // this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerNgOnChanges);
+
     if (changes.maxWeek && !changes.maxWeek.isFirstChange()) {
       this.maxWeekChangeActions();
     }
@@ -81,8 +84,8 @@ export class FhiWeekpickerComponent {
 
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
+    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
     this.isValid = true;
-    this.startDate = date;
     this.weekSelect.emit(week);
   }
 

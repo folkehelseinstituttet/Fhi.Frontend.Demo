@@ -49,14 +49,15 @@ export class WeekUtilityService {
   }
 
   getYearWeek(date: Date): YearWeek {
-    const week = getWeek(
-      new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())),
-      {
-        weekStartsOn: 1,
-        firstWeekContainsDate: 4,
-      }
-    );
-    return { year: date.getFullYear(), week: week };
+    let year = date.getFullYear();
+    const week = getWeek(date, {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4,
+    });
+    if (week === 53 && date.getMonth() === 0 && date.getDate() < 4) {
+      year = year - 1;
+    }
+    return { year: year, week: week };
   }
 
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {

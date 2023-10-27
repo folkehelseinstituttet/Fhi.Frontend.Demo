@@ -14,8 +14,10 @@ export enum WeekErrorStates {
 }
 
 export enum WeekValidationContext {
-  weekParser = 1,
-  weekAdapter = 2,
+  weekpickerNgOnChanges = 1,
+  weekpickerOnDateSelect = 2,
+  weekParserFormatterParse = 3,
+  weekAdapterFromModel = 4
 }
 
 @Injectable()
@@ -41,15 +43,15 @@ export class WeekValidatorService {
   }
 
   setErrorMsg(errorState: number) {
-    if (this.validationContext === WeekValidationContext.weekParser) {
-      this.isValid = false;
-      this.errorMsg = this.getErrorMsg(errorState);
+    this.isValid = false;
+
+    console.log('WeekValidationContext', this.validationContext);
+    console.log('errorState', errorState);
+
+    if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges) {
+      this.throwInputValueError();
     } else {
-      throw new Error(`
-One of the following inputs has either wrong format, or an illegal value:
-@Input() maxWeek
-@Input() minWeek
-@Input() week!`);
+      this.errorMsg = this.getErrorMsg(errorState);
     }
   }
   
@@ -114,5 +116,12 @@ One of the following inputs has either wrong format, or an illegal value:
     return `Du har lagt inn en ukeverdi som ligger utenfor tillatt tidsrom.`;
   }
 
+  private throwInputValueError() {
+    throw new Error(`
+One of the following inputs has either wrong format, or an illegal value:
+@Input() maxWeek
+@Input() minWeek
+@Input() week!`);
+  }
 }
 

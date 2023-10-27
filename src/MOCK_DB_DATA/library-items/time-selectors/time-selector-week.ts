@@ -26,7 +26,7 @@ function getCodeHtml(): string | null {
   return `
 <fhi-weekpicker 
   [id]="'id'"
-  [week]="week"
+  [week]="'2015-53'"
   [minWeek]="'1910-1'"
   [maxWeek]="'2020-50'"
   (weekSelect)="onWeekSelect($event)">

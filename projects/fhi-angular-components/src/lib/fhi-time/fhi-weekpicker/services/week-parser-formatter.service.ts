@@ -4,7 +4,7 @@ import {
   NgbDateStruct,
 } from "@ng-bootstrap/ng-bootstrap";
 
-import { WeekErrorStates, WeekValidationContext, WeekValidatorService } from "./week-validator.service";
+import { WeekErrorStates, WeekValidatorService } from "./week-validator.service";
 import { WeekUtilityService } from "./week-utility.service";
 
 /**
@@ -20,8 +20,6 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
-    this.weekValidatorService.setValidationContext(WeekValidationContext.weekParser);
-
     if (value) {
 
       if (value.length > 7) {
@@ -45,11 +43,15 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       return date;
     }
 
+
+    // TODO: is there a better way to solve this problem?
     if (this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.setErrorMsg(WeekErrorStates.weekIsRequired);
     } else {
       this.weekValidatorService.isValid = true;
     }
+
+
     return null;
   }
 
