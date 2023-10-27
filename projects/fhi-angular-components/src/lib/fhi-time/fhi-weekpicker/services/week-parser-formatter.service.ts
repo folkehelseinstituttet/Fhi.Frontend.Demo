@@ -4,7 +4,7 @@ import {
   NgbDateStruct,
 } from "@ng-bootstrap/ng-bootstrap";
 
-import { WeekErrorStates, WeekValidationContext, WeekValidatorService } from "./week-validator.service";
+import { WeekErrorState, WeekValidationContext, WeekValidatorService } from "./week-validator.service";
 import { WeekUtilityService } from "./week-utility.service";
 
 /**
@@ -25,13 +25,13 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
     if (value) {
 
       if (value.length > 7) {
-        this.weekValidatorService.setErrorMsg(WeekErrorStates.toManyCharacters);
+        this.weekValidatorService.setErrorMsg(WeekErrorState.toManyCharacters);
         return null;
       }
 
       // TODO: don't test for toFewCharacters here, do it in getDateFromYearWeekString()
       if (value.length > 1 && value.length < 6) {
-        this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
+        this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
         return null;
       }
 
@@ -48,7 +48,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
 
     // TODO: is there a better way to solve this problem?
     if (this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekIsRequired);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
     } else {
       this.weekValidatorService.isValid = true;
     }

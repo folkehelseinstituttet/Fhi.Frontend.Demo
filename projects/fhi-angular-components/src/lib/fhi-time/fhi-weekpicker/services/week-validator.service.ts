@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { FhiTimeConstants } from "../../fhi-time-constants";
 
-// TODO: singular?
-export enum WeekErrorStates {
+export enum WeekErrorState {
   toManyCharacters = 1,
   toFewCharacters = 2,
   not53WeeksInThisYear = 3,
@@ -53,29 +52,29 @@ export class WeekValidatorService {
   
   private getErrorMsg(errorState: number): string {
     switch (errorState) {
-      case WeekErrorStates.toManyCharacters:
+      case WeekErrorState.toManyCharacters:
         return this.getToManyCharactersMsg();
 
-      case WeekErrorStates.toFewCharacters:
+      case WeekErrorState.toFewCharacters:
         return this.getToFewCharactersMsg();
 
-      case WeekErrorStates.not53WeeksInThisYear:
+      case WeekErrorState.not53WeeksInThisYear:
         return this.getNot53WeeksInThisYearMsg();
 
       // TODO: do we need this one?
-      case WeekErrorStates.notValidWeek:
+      case WeekErrorState.notValidWeek:
         return this.getNotValidWeekMsg();
 
-      case WeekErrorStates.notValidWeekNumber:
+      case WeekErrorState.notValidWeekNumber:
         return this.getNotValidWeekNumberMsg();
 
-      case WeekErrorStates.onlyNumbersAllowed:
+      case WeekErrorState.onlyNumbersAllowed:
         return this.getOnlyNumbersAllowedMsg();
 
-      case WeekErrorStates.weekIsRequired:
+      case WeekErrorState.weekIsRequired:
         return this.getWeekIsRequiredMsg();
 
-      case WeekErrorStates.weekOutsideMaxAndMinWeek:
+      case WeekErrorState.weekOutsideMaxAndMinWeek:
         return this.getWeekOutsideMaxAndMinWeekMsg();
     }
   }

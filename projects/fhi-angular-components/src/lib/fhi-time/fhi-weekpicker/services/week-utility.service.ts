@@ -3,7 +3,7 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, getYear, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
-import { WeekErrorStates, WeekValidatorService } from './week-validator.service';
+import { WeekErrorState, WeekValidatorService } from './week-validator.service';
 import { toNumber } from 'lodash-es';
 
 @Injectable()
@@ -62,7 +62,7 @@ export class WeekUtilityService {
 
   getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
     if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeekNumber);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.notValidWeekNumber);
       return null;
     }
 
@@ -70,18 +70,18 @@ export class WeekUtilityService {
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.not53WeeksInThisYear);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.not53WeeksInThisYear);
       return null;
     }
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
     if (isNaN(date.day) || isNaN(date.month) || isNaN(date.year)) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.notValidWeek);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.notValidWeek);
       return null;
     }
     if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.weekOutsideMaxAndMinWeek);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.weekOutsideMaxAndMinWeek);
       return null;
     }
     return date;
@@ -89,7 +89,7 @@ export class WeekUtilityService {
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
     if (!yearWeekString) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
 
@@ -99,11 +99,11 @@ export class WeekUtilityService {
       // TODO: better test for parts
       // console.log('3. yearWeekString', yearWeekString);
       // console.log('parts', parts);
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
-      this.weekValidatorService.setErrorMsg(WeekErrorStates.onlyNumbersAllowed);
+      this.weekValidatorService.setErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return null;
     }
     const year = parseInt(parts[0], 10);
