@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../fhi-autosuggest/fhi-autosuggest.model';
 
+import { FhiConstantsService } from '../shared-services/fhi-constants.service';
+
 import { getYear } from 'date-fns';
 import { toNumber } from 'lodash-es';
 
@@ -9,12 +11,13 @@ import { toNumber } from 'lodash-es';
   selector: 'fhi-year-selector',
   standalone: true,
   templateUrl: './fhi-year-selector.component.html',
-  imports: [FhiAutosuggestModule]
+  imports: [ FhiAutosuggestModule ],
+  providers: [ FhiConstantsService ]
 })
 export class FhiYearSelectorComponent {
   @Input() label: string = 'År';
-  @Input() maxYear: number = getYear(new Date()) + 10;
-  @Input() minYear: number = 1900;
+  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
+  @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
   @Input() year: string;
   
   @Output() yearSelect = new EventEmitter<string>();
@@ -23,6 +26,8 @@ export class FhiYearSelectorComponent {
   
   selectedYear: FhiAutosuggestItem;
   selectedYearId: number;
+
+  constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
   ngOnInit() {
     this.populateYearList();
