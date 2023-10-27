@@ -1,7 +1,8 @@
 # Unreleased
 
-> Oct 13, 2023
+> Oct 27, 2023
 
+* :gift: **New** Added Year Range selector
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
 * :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 * :gift: **New** Add `FhiDatepickerModule`
