@@ -10,6 +10,6 @@ import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.comp
   templateUrl: './fhi-date-range.component.html',
 })
 export class FhiDateRangeComponent {
-  @Input() labelFromDate: string = 'Fra dato';
-  @Input() labelToDate: string = 'Til dato';
+  @Input() labelDateFrom: string = 'Fra dato';
+  @Input() labelDateTo: string = 'Til dato';
 }
