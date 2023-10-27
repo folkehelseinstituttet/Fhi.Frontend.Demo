@@ -26,12 +26,15 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
 
       if (value.length > 7) {
         this.weekValidatorService.setErrorMsg(WeekErrorStates.toManyCharacters);
-        return;
+        return null;
       }
+
+      // TODO: don't test for toFewCharacters here, do it in getDateFromYearWeekString()
       if (value.length > 1 && value.length < 6) {
         this.weekValidatorService.setErrorMsg(WeekErrorStates.toFewCharacters);
-        return;
+        return null;
       }
+
       const date = this.weekUtilityService.getDateFromYearWeekString(value);
 
       if (date === null) {

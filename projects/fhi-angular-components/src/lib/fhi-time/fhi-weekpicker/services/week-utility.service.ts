@@ -31,20 +31,20 @@ export class WeekUtilityService {
   }
 
   getInitMaxDate(): NgbDateStruct {
-    const today = new Date();
+    const date = new Date();
     return {
-      year: today.getUTCFullYear(),
-      month: today.getMonth() + 1,
-      day: today.getDate()
+      year: date.getUTCFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
     };
   }
 
   getInitMinDate(): NgbDateStruct {
-    const minDate = new Date(1900, 0);
+    const date = new Date(1900, 0);
     return {
-      year: minDate.getUTCFullYear() + 1,
-      month: minDate.getMonth() + 1,
-      day: minDate.getDate()
+      year: date.getUTCFullYear() + 1,
+      month: date.getMonth() + 1,
+      day: date.getDate()
     };
   }
 
@@ -122,11 +122,11 @@ export class WeekUtilityService {
   private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
     const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
     const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
-    const tmpDate = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
+    const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
     return {
-      year: tmpDate.getUTCFullYear(),
-      month: tmpDate.getMonth() + 1,
-      day: tmpDate.getDate()
+      year: date.getUTCFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
     };
   }
 }
