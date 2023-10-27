@@ -1,7 +1,17 @@
 <div class="fhi-date-range">
-  <fhi-datepicker [label]="labelDateFrom"></fhi-datepicker>
+  <fhi-datepicker
+    [label]="labelDateFrom"
+    [maximumDate]="maxDate"
+    (dateSelect)="dateFromSelect($event)">
+  </fhi-datepicker>
 
-  <span class="fhi-date-range__divider">&ndash;</span>
+  <span><!-- sic -->
+    <span class="fhi-date-range__divider">&ndash;</span>
+  </span>
 
-  <fhi-datepicker [label]="labelDateTo"></fhi-datepicker>
+  <fhi-datepicker
+    [label]="labelDateTo"
+    [minimumDate]="minDate"
+    (dateSelect)="dateToSelect($event)">
+  </fhi-datepicker>
 </div>

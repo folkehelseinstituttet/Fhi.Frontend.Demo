@@ -12,4 +12,15 @@ import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.comp
 export class FhiDateRangeComponent {
   @Input() labelDateFrom: string = 'Fra dato';
   @Input() labelDateTo: string = 'Til dato';
+
+  maxDate: any;
+  minDate: any;
+
+  dateFromSelect(dateFrom: string) {
+    console.log('Fra:', dateFrom);
+  }
+
+  dateToSelect(dateTo: string) {
+    console.log('Til:', dateTo);
+  }
 }
