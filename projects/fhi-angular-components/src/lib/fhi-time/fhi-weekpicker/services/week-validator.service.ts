@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { FhiTimeConstants } from "../../fhi-time-constants";
 
+// TODO: singular?
 export enum WeekErrorStates {
   toManyCharacters = 1,
   toFewCharacters = 2,
@@ -12,11 +13,16 @@ export enum WeekErrorStates {
   weekOutsideMaxAndMinWeek = 8
 }
 
+export enum WeekValidationContext {
+  weekParser = 1,
+  weekAdapter = 2,
+}
+
 @Injectable()
 export class WeekValidatorService {
   private _validYearWeekString!: string;
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
-  private validationTriggeredByParser = false;
+  private validationContext!: number;
 
   errorMsg: string;
   isValid!: boolean;
@@ -30,12 +36,12 @@ export class WeekValidatorService {
     return this._validYearWeekString;
   }
 
-  setValidationTriggeredByParser(value: boolean) {
-    this.validationTriggeredByParser = value;
+  setValidationContext(context: number) {
+    this.validationContext = context;
   }
 
   setErrorMsg(errorState: number) {
-    if (this.validationTriggeredByParser) {
+    if (this.validationContext === WeekValidationContext.weekParser) {
       this.isValid = false;
       this.errorMsg = this.getErrorMsg(errorState);
     } else {
@@ -45,7 +51,6 @@ One of the following inputs has either wrong format, or an illegal value:
 @Input() minWeek
 @Input() week!`);
     }
-    this.validationTriggeredByParser = false;
   }
   
   private getErrorMsg(errorState: number): string {
