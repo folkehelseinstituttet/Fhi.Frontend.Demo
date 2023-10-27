@@ -99,7 +99,7 @@ export class FhiWeekpickerComponent {
     if (this.weekValidatorService.isValid) {
       this.isValid = true;
       this.setStartDateAndEmitValidYearWeekString(
-        this.weekValidatorService.validYearWeekString
+        this.weekValidatorService.getValidYearWeekString()
       );
       return;
     }

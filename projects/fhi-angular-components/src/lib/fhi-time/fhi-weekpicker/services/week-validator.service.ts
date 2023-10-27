@@ -20,7 +20,7 @@ export enum WeekValidationContext {
 
 @Injectable()
 export class WeekValidatorService {
-  private _validYearWeekString!: string;
+  private validYearWeekString!: string;
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private validationContext!: number;
 
@@ -28,12 +28,13 @@ export class WeekValidatorService {
   isValid!: boolean;
   weekIsRequired = false;
 
-  set validYearWeekString(value: string) {
+  setValidYearWeekString(value: string) {
     this.isValid = true;
-    this._validYearWeekString = value;
+    this.validYearWeekString = value;
   }
-  get validYearWeekString(): string {
-    return this._validYearWeekString;
+
+  getValidYearWeekString(): string {
+    return this.validYearWeekString;
   }
 
   setValidationContext(context: number) {
