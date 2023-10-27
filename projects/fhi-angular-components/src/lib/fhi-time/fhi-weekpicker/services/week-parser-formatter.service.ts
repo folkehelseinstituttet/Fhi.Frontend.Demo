@@ -41,7 +41,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
         return { year: -1, month: -1, day: -1 };
       }
 
-      this.weekValidatorService.setValidYearWeekString(value);
+      this.weekValidatorService.setValidYearWeekStringAndSharedValidState(value);
       return date;
     }
 
