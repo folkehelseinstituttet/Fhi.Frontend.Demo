@@ -29,12 +29,6 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
         return null;
       }
 
-      // TODO: don't test for toFewCharacters here, do it in getDateFromYearWeekString()
-      if (value.length > 1 && value.length < 6) {
-        this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
-        return null;
-      }
-
       const date = this.weekUtilityService.getDateFromYearWeekString(value);
 
       if (date === null) {
@@ -46,7 +40,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
     }
 
 
-    // TODO: is there a better way to solve this problem?
+    // TODO: is there a better way to solve the required problem?
     if (this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
     } else {

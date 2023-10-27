@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { getISOWeek, getWeek, getYear, lastDayOfYear } from 'date-fns';
+import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
 import { WeekErrorState, WeekValidatorService } from './week-validator.service';
@@ -60,7 +60,7 @@ export class WeekUtilityService {
     return { year: year, week: week };
   }
 
-  getDateFromYearWeek(yearWeek?: YearWeek): NgbDateStruct | null {
+  getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
     if (yearWeek.week < 1 || yearWeek.week > 53) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.notValidWeekNumber);
       return null;
@@ -84,7 +84,7 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
-    if (!yearWeekString) {
+    if (yearWeekString.length > 1 && yearWeekString.length < 6) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
@@ -93,17 +93,19 @@ export class WeekUtilityService {
 
     if (parts.length < 2 || parts.length > 2) {
       // TODO: better test for parts
-      // console.log('3. yearWeekString', yearWeekString);
       // console.log('parts', parts);
-      this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
+      console.error('Feil format, skal bare være en bindestrek!');
       return null;
     }
+
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return null;
     }
+
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
+
     return this.getDateFromYearWeek({ week, year });
   }
 
