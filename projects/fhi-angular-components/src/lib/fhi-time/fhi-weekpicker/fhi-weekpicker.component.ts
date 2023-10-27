@@ -83,35 +83,33 @@ export class FhiWeekpickerComponent {
 
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
-    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
     this.isValid = true;
-    this.weekSelect.emit(week);
-  }
-
-  onInput() {
-    // WeekParserFormatterService takes care of the input, just view state is managed here.
-    if (this.weekValidatorService.isValid) {
-      this.isValid = true;
-    } else {
-      this.errorMsg = this.weekValidatorService.errorMsg;
-      this.isValid = false;
-    }
+    this.setStartDateAndEmitValidYearWeekString(week);
   }
 
   onBlur() {
-    this.emitValidYearWeekString();
+    this.validateAndEmit();
   }
 
   onEnter() {
-    this.emitValidYearWeekString();
+    this.validateAndEmit();
   }
 
-  private emitValidYearWeekString() {
+  private validateAndEmit() {
     if (this.weekValidatorService.isValid) {
-      const week = this.weekValidatorService.validYearWeekString;
-      this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
-      this.weekSelect.emit(week);
+      this.isValid = true;
+      this.setStartDateAndEmitValidYearWeekString(
+        this.weekValidatorService.validYearWeekString
+      );
+      return;
     }
+    this.errorMsg = this.weekValidatorService.errorMsg;
+    this.isValid = false;
+  }
+
+  private setStartDateAndEmitValidYearWeekString(week: string) {
+    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+    this.weekSelect.emit(week);
   }
 
   private weekChangeActions() {

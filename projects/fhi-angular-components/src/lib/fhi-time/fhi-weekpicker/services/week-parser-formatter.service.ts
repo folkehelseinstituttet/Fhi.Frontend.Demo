@@ -4,7 +4,7 @@ import {
   NgbDateStruct,
 } from "@ng-bootstrap/ng-bootstrap";
 
-import { WeekErrorStates, WeekValidatorService } from "./week-validator.service";
+import { WeekErrorStates, WeekValidationContext, WeekValidatorService } from "./week-validator.service";
 import { WeekUtilityService } from "./week-utility.service";
 
 /**
@@ -20,6 +20,8 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
+    this.weekValidatorService.setValidationContext(WeekValidationContext.weekParserFormatterParse);
+
     if (value) {
 
       if (value.length > 7) {

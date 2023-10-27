@@ -14,7 +14,8 @@ export enum WeekErrorStates {
 }
 
 export enum WeekValidationContext {
-  weekpickerNgOnChanges = 1
+  weekpickerNgOnChanges = 1,
+  weekParserFormatterParse = 2
 }
 
 @Injectable()
