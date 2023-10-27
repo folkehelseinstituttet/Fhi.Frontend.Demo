@@ -14,10 +14,7 @@ export enum WeekErrorStates {
 }
 
 export enum WeekValidationContext {
-  weekpickerNgOnChanges = 1,
-  weekpickerOnDateSelect = 2,
-  weekParserFormatterParse = 3,
-  weekAdapterFromModel = 4
+  weekpickerNgOnChanges = 1
 }
 
 @Injectable()
@@ -44,9 +41,6 @@ export class WeekValidatorService {
 
   setErrorMsg(errorState: number) {
     this.isValid = false;
-
-    console.log('WeekValidationContext', this.validationContext);
-    console.log('errorState', errorState);
 
     if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges) {
       this.throwInputValueError();

@@ -68,8 +68,7 @@ export class FhiWeekpickerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // console.log('SimpleChanges', changes);
-    // this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerNgOnChanges);
+    this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerNgOnChanges);
 
     if (changes.maxWeek && !changes.maxWeek.isFirstChange()) {
       this.maxWeekChangeActions();
