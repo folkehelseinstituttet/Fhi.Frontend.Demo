@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -47,10 +47,10 @@ export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
 	],
 })
 export class FhiDatepickerComponent {
-  @Input() date?: string;
-  @Input() maximumDate?: string;
-  @Input() minimumDate?: string;
-  @Input() label?: string = 'Velg dato';
+  @Input() date: string;
+  @Input() maximumDate: string;
+  @Input() minimumDate: string;
+  @Input() label: string = 'Velg dato';
 
   @Output() dateSelect = new EventEmitter<string>();
 
@@ -74,6 +74,10 @@ export class FhiDatepickerComponent {
     } else {
       this.dateSelect.emit(undefined);
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.updateMinMaxDates(changes);
   }
 
   onDirectInputDate() {
@@ -142,6 +146,15 @@ export class FhiDatepickerComponent {
       year  : toDate.getFullYear(),
       month : toDate.getMonth() + 1,
       day   : toDate.getDate()
+    }
+  }
+
+  private updateMinMaxDates(changes: SimpleChanges) {
+    if (changes.maximumDate) {
+      this.maxDate = this.convertDateToNgbDateStruct(this.maximumDate);
+    }
+    if (changes.minimumDate) {
+      this.minDate = this.convertDateToNgbDateStruct(this.minimumDate);
     }
   }
 }

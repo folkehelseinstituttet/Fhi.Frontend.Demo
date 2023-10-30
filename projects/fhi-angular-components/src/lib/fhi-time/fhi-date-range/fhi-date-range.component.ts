@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.component';
@@ -10,17 +10,62 @@ import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.comp
   templateUrl: './fhi-date-range.component.html',
 })
 export class FhiDateRangeComponent {
+  @Input() dateFrom: string;
+  @Input() dateTo: string;
   @Input() labelDateFrom: string = 'Fra dato';
   @Input() labelDateTo: string = 'Til dato';
+  @Input() maximumDate: string;
+  @Input() minimumDate: string;
 
+  validRange: boolean = true;
+  errorMsg: string;
+  fromDate: any;
+  toDate: any;
   maxDate: any;
   minDate: any;
+  invalidRangeCssClass: string;
+  latestChangedRangeEnd: string;
+
+  ngOnInit() {
+    if (this.minimumDate) {
+      this.minDate = this.minimumDate;
+    }
+    if (this.maximumDate) {
+      this.maxDate = this.maximumDate;
+    }
+  }
 
   dateFromSelect(dateFrom: string) {
-    console.log('Fra:', dateFrom);
+    if (dateFrom) {
+      this.minDate = dateFrom;
+      this.fromDate = dateFrom;
+      this.checkIfValidRange('from');
+    }
   }
 
   dateToSelect(dateTo: string) {
-    console.log('Til:', dateTo);
+    if (dateTo) {
+      this.maxDate = dateTo;
+      this.toDate = dateTo;
+      this.checkIfValidRange('to');
+    }
+  }
+
+  private checkIfValidRange(rangeEnd: string) {
+    if (this.fromDate && this.toDate) {
+      const from: any = new Date(this.fromDate);
+      const to: any = new Date(this.toDate);
+      const range = to - from;
+
+      if (range < 0) {
+        this.validRange = false;
+        this.errorMsg = '<strong>' + this.labelDateFrom + '</strong> må være før eller samtidig som <strong>' + this.labelDateTo + '</strong>';
+        this.latestChangedRangeEnd = rangeEnd;
+        // this.invalidRangeCssClass = rangeEndChangedLatest === 'to' ? 'fhi-date-range--is-invalid-to' : 'fhi-date-range--is-invalid-from';
+      } else {
+        this.validRange = true;
+        this.errorMsg = '';
+      }
+    }
   }
 }
