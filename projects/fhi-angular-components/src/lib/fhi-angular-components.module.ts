@@ -11,6 +11,7 @@ import { FhiWeekSelectorModule } from './fhi-week-selector/fhi-week-selector.mod
 import { FhiYearSelectorModule } from './fhi-year-selector/fhi-year-selector.module';
 
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
+import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
@@ -22,6 +23,7 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiTreeViewSelectionModule,
   FhiWeekSelectorModule,
   FhiWeekpickerComponent,
+  FhiWeekRangeComponent,
   FhiYearSelectorModule
 ];
 
