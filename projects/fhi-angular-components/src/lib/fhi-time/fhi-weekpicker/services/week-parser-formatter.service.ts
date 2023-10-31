@@ -22,8 +22,6 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   parse(value: string): NgbDateStruct | null {
     this.weekValidatorService.setValidationContext(WeekValidationContext.weekParserFormatterParse);
 
-    // TODO: update all logic in parse() so that it works after removing "onInit()" from template...
-
     if (value) {
       return this.getDate(value);
     }
@@ -45,7 +43,8 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
     if (date === null) {
       return { year: -1, month: -1, day: -1 };
     }
-    this.weekValidatorService.setValidYearWeekStringAndValidState(value);
+    this.weekValidatorService.setValidYearWeekString(value);
+    this.weekValidatorService.setValidState(true);
     return date;
   }
 
