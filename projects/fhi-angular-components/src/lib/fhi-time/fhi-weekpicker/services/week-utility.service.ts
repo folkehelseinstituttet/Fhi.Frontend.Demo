@@ -3,7 +3,7 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
-import { WeekErrorState, WeekValidatorService } from './week-validator.service';
+import { WeekErrorState, WeekValidationContext, WeekValidatorService } from './week-validator.service';
 import { toNumber } from 'lodash-es';
 
 @Injectable()
@@ -76,8 +76,8 @@ export class WeekUtilityService {
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
-    if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.weekOutsideMaxAndMinWeek);
+    if (this.isOutsideMaxOrMin(date) && this.weekValidationContextIsNotMaxOrMin()) {
+      this.weekValidatorService.setErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
       return null;
     }
     return date;
@@ -130,5 +130,14 @@ export class WeekUtilityService {
       month: date.getMonth() + 1,
       day: date.getDate()
     };
+  }
+
+  private isOutsideMaxOrMin(date: NgbDateStruct) {
+    return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
+  }
+
+  private weekValidationContextIsNotMaxOrMin() {
+    return this.weekValidatorService.getValidationContext() !== WeekValidationContext.weekpickerMaxWeekChangeActions &&
+      this.weekValidatorService.getValidationContext() !== WeekValidationContext.weekpickerMinWeekChangeActions;
   }
 }

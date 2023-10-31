@@ -9,13 +9,15 @@ export enum WeekErrorState {
   notValidWeekNumber = 5,
   onlyNumbersAllowed = 6,
   weekIsRequired = 7,
-  weekOutsideMaxAndMinWeek = 8
+  weekOutsideMaxOrMin = 8
 }
 
 export enum WeekValidationContext {
   weekpickerNgOnChanges = 1,
   weekpickerSetStartDateAndEmit = 2,
-  weekParserFormatterParse = 3
+  weekpickerMaxWeekChangeActions = 3,
+  weekpickerMinWeekChangeActions = 4,
+  weekParserFormatterParse = 5
 }
 
 @Injectable()
@@ -40,10 +42,16 @@ export class WeekValidatorService {
     this.validationContext = context;
   }
 
+  getValidationContext(): number {
+    return this.validationContext;
+  }
+
   setErrorMsg(errorState: number) {
     this.isValid = false;
 
-    if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges) {
+    if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges ||
+        this.validationContext === WeekValidationContext.weekpickerMaxWeekChangeActions ||
+        this.validationContext === WeekValidationContext.weekpickerMinWeekChangeActions) {
       this.throwInputValueError();
     } else {
       this.errorMsg = this.getErrorMsg(errorState);
@@ -73,8 +81,8 @@ export class WeekValidatorService {
       case WeekErrorState.weekIsRequired:
         return this.getWeekIsRequiredMsg();
 
-      case WeekErrorState.weekOutsideMaxAndMinWeek:
-        return this.getWeekOutsideMaxAndMinWeekMsg();
+      case WeekErrorState.weekOutsideMaxOrMin:
+        return this.getWeekOutsideMaxOrMinMsg();
     }
   }
   
@@ -106,7 +114,7 @@ export class WeekValidatorService {
     return `Verdi for uke er påkrevd.`;
   }
 
-  private getWeekOutsideMaxAndMinWeekMsg(): string {
+  private getWeekOutsideMaxOrMinMsg(): string {
     return `Du har lagt inn en ukeverdi som ligger utenfor tillatt tidsrom.`;
   }
 
