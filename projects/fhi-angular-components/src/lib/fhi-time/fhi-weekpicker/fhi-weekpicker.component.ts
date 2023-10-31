@@ -96,10 +96,6 @@ export class FhiWeekpickerComponent {
   }
 
   private validateAndEmit() {
-
-    // console.log('validateAndEmit(), this.isValid', this.isValid);
-    // console.log('validateAndEmit(), this.weekValidatorService.isValid', this.weekValidatorService.isValid);
-
     if (this.weekValidatorService.isValid) {
       this.isValid = true;
       this.setStartDateAndEmit(

@@ -5,10 +5,11 @@ export enum WeekErrorState {
   toManyCharacters = 1,
   toFewCharacters = 2,
   not53WeeksInThisYear = 3,
-  notValidWeekNumber = 4,
-  onlyNumbersAllowed = 5,
-  weekIsRequired = 6,
-  weekOutsideMaxAndMinWeek = 7
+  notOneDelimiter = 4,
+  notValidWeekNumber = 5,
+  onlyNumbersAllowed = 6,
+  weekIsRequired = 7,
+  weekOutsideMaxAndMinWeek = 8
 }
 
 export enum WeekValidationContext {
@@ -40,9 +41,6 @@ export class WeekValidatorService {
   }
 
   setErrorMsg(errorState: number) {
-
-    console.log('errorState', errorState);
-
     this.isValid = false;
 
     if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges) {
@@ -62,6 +60,9 @@ export class WeekValidatorService {
 
       case WeekErrorState.not53WeeksInThisYear:
         return this.getNot53WeeksInThisYearMsg();
+
+      case WeekErrorState.notOneDelimiter:
+        return this.getNotOneDelimiterMsg();
 
       case WeekErrorState.notValidWeekNumber:
         return this.getNotValidWeekNumberMsg();
@@ -87,6 +88,10 @@ export class WeekValidatorService {
 
   private getNot53WeeksInThisYearMsg(): string {
     return `Året du har valgt har ikke 53 uker.`;
+  }
+
+  private getNotOneDelimiterMsg(): string {
+    return `Du har lagt inn en ukeverdi som har for få, eller for mange bindestreker. ${this.correctFormat}`;
   }
 
   private getNotValidWeekNumberMsg(): string {

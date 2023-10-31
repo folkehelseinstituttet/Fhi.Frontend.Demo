@@ -84,15 +84,12 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
-
-    console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);  
-
     if (this.weekValidatorService.weekIsRequired && yearWeekString === null) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
       return null;
     }
 
-    if (yearWeekString.length > 1 && yearWeekString.length < 6) {
+    if (yearWeekString.length < 6) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
@@ -100,9 +97,7 @@ export class WeekUtilityService {
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      // TODO: better test for parts
-      // console.log('parts', parts);
-      console.error('Feil format, skal bare være en bindestrek!');
+      this.weekValidatorService.setErrorMsg(WeekErrorState.notOneDelimiter);
       return null;
     }
 

@@ -20,9 +20,6 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
-
-    console.log('parse(value):', value);
-
     this.weekValidatorService.setValidationContext(WeekValidationContext.weekParserFormatterParse);
 
     if (value) {
