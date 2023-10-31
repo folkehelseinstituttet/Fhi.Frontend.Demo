@@ -21,11 +21,14 @@ export class TimeSelectorsComponent {
   selectedToYear: number;
   selectedYear: number;
 
+  selectedYearRange: any;
+  weekFrom: string = '2010-27';
+  weekTo: string = '2013-13';
+  weekRange: any;
+
   // weekSelected: string;
 
   yearSelected: string;
-
-  // yearList = ['2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'];
 
   // weekList = [];
 
@@ -48,6 +51,10 @@ export class TimeSelectorsComponent {
     this.selectedDateAndTime = dateAndTime;
   }
 
+  getWeekRange(weekRange: any) {
+    this.weekRange = weekRange;
+  }
+
   // getTheWeek(week: any) {
   //   console.log(week);
   //   this.weekSelected = week;
@@ -58,6 +65,10 @@ export class TimeSelectorsComponent {
   //     this.weekList.push({ id: i, name: 'Uke ' + i });
   //   }
   // }
+
+  yearRangeSelect(yearRange: any) {
+    this.selectedYearRange = yearRange;
+  }
 
   onWeekSelect(week: any) {
     this.selectedWeek = week;
