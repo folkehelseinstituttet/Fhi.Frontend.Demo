@@ -1,7 +1,7 @@
 .fhi-date-and-time {
     fhi-datepicker {
         display: block;
-        width: $date-picker-width;
+        width: $datepicker-width;
     }
 
     .fhi-datepicker {
@@ -17,7 +17,7 @@
 
     &__time-container {
         flex-grow: 1;
-        max-width: $date-picker-width;
+        max-width: $datepicker-width;
         position: relative;
     }
 

@@ -21,7 +21,23 @@ export class TimeSelectorsComponent {
   selectedToYear: number;
   selectedYear: number;
 
+  selectedYearRange: any;
+  weekFrom: string = '2010-27';
+  weekTo: string = '2013-13';
+  weekRange: any;
+
+  // weekSelected: string;
+
   yearSelected: string;
+
+  // weekList = [];
+
+  selectedWeek!: string;
+  week = '2019-25';
+
+  // ngOnInit() {
+  //   this.generateWeekList();
+  // }
 
   onYearSelect(year: string) {
     this.yearSelected = year;
@@ -33,6 +49,25 @@ export class TimeSelectorsComponent {
   
   getDateAndTime(dateAndTime: any) {
     this.selectedDateAndTime = dateAndTime;
+  }
+
+  getWeekRange(weekRange: any) {
+    this.weekRange = weekRange;
+  }
+
+  // getTheWeek(week: any) {
+  //   console.log(week);
+  //   this.weekSelected = week;
+  // }
+
+  // generateWeekList = () => {
+  //   for (let i = 1; i <= 53; i++) {
+  //     this.weekList.push({ id: i, name: 'Uke ' + i });
+  //   }
+  // }
+
+  yearRangeSelect(yearRange: any) {
+    this.selectedYearRange = yearRange;
   }
 
   onWeekSelect(week: any) {

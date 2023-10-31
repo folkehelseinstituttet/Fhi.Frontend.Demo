@@ -1,11 +1,13 @@
 # Unreleased
 
-> Oct 20, 2023
+> Oct 31, 2023
 
 <!-- NB! Updates to FhiAutosuggest is not ready for release -->
 * :boom: **Breaking** Updates to `FhiAutosuggest`
 
 * :gift: **New** Add `FhiWeekpickerComponent`
+* :gift: **New** Added Year Range selector
+* :gift: **New** Added Week Range selector
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
 * :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 * :gift: **New** Add `FhiDatepickerModule`

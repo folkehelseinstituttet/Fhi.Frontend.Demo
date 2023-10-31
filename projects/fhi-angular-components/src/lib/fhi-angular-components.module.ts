@@ -7,9 +7,11 @@ import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
-import { FhiYearSelectorModule } from './fhi-year-selector/fhi-year-selector.module';
 
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
+import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
+import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
+import { FhiYearSelectorComponent } from './fhi-year-selector/fhi-year-selector.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
@@ -20,7 +22,9 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiTreeViewNavigationModule,
   FhiTreeViewSelectionModule,
   FhiWeekpickerComponent,
-  FhiYearSelectorModule
+  FhiWeekRangeComponent,
+  FhiYearRangeComponent,
+  FhiYearSelectorComponent
 ];
 
 @NgModule({

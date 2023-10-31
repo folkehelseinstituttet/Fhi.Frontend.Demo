@@ -1,9 +1,9 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const TimeSelectorYear: LibraryItem[] = [{
-  id: ITEMS.TimeSelectorYear.id,
-  title: ITEMS.TimeSelectorYear.title,
+export const TimeSelectorYearRange: LibraryItem[] = [{
+  id: ITEMS.TimeSelectorYearRange.id,
+  title: ITEMS.TimeSelectorYearRange.title,
   type: LibraryItemType.angular,
   exampleHtml: getExampleHtml(),
   codeHtml: getCodeHtml(),
@@ -24,10 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-selector [label]="'Velg år'"
-                   [initialYearList]="yearList"
-                   [initialSelectedYear]="'2011'"
-                   (selectedYearChange)="selectYear($event)"></fhi-year-selector>`;
+<fhi-year-range (yearRangeSelect)="yearRangeSelect($event)"></fhi-year-range>`;
 }
 
 /*
