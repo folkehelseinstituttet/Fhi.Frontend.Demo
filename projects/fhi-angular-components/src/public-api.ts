@@ -36,3 +36,4 @@ export * from './lib/fhi-week-selector/fhi-week-selector.module';
 
 export * from './lib/fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 export * from './lib/fhi-time/fhi-year-range/fhi-year-range.component';
+export * from './lib/fhi-time/fhi-week-range/fhi-week-range.component';

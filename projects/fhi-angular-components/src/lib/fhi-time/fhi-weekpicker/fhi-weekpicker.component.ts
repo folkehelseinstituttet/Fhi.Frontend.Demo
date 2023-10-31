@@ -87,6 +87,7 @@ export class FhiWeekpickerComponent {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
     this.isValid = true;
     this.weekValidatorService.isValid = true;
+    this.weekValidatorService.validYearWeekString = week;
     this.weekSelect.emit(week);
   }
 
