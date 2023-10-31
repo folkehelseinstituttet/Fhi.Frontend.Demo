@@ -2,6 +2,7 @@
 
 > Oct 31, 2023
 
+* :gift: **New** Added Date Range selector
 * :gift: **New** Added Year Range selector
 * :gift: **New** Added Week Range selector
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
