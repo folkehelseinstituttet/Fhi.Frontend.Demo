@@ -21,6 +21,8 @@ export class TimeSelectorsComponent {
   selectedToYear: number;
   selectedYear: number;
 
+  selectedYearRange: any;
+
   // weekSelected: string;
 
   yearSelected: string;
@@ -58,6 +60,10 @@ export class TimeSelectorsComponent {
   //     this.weekList.push({ id: i, name: 'Uke ' + i });
   //   }
   // }
+
+  yearRangeSelect(yearRange: any) {
+    this.selectedYearRange = yearRange;
+  }
 
   onWeekSelect(week: any) {
     this.selectedWeek = week;

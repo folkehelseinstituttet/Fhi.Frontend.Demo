@@ -126,5 +126,8 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYearRange.id">
-  <fhi-year-range></fhi-year-range>
+  <fhi-year-range
+    (yearRangeSelect)="yearRangeSelect($event)"
+  >
+  </fhi-year-range>
 </div>

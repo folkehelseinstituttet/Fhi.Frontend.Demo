@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-range></fhi-year-range>`;
+<fhi-year-range (yearRangeSelect)="yearRangeSelect($event)"></fhi-year-range>`;
 }
 
 /*

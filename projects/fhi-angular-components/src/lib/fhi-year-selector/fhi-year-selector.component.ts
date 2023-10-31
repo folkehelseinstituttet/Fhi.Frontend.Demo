@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../fhi-autosuggest/fhi-autosuggest.model';
 
 import { FhiConstantsService } from '../shared-services/fhi-constants.service';
 
-import { getYear } from 'date-fns';
 import { toNumber } from 'lodash-es';
 
 @Component({
