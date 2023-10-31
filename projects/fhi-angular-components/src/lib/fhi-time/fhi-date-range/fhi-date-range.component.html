@@ -1,8 +1,9 @@
 <div class="fhi-date-range"
-     [ngClass]="!validRange && latestChangedRangeEnd === 'to'
-        ? 'fhi-date-range--is-invalid-to'
-        : 'fhi-date-range--is-invalid-from'">
+     [ngClass]="!validRange
+        ? latestChangedRangeEnd === 'to' ? 'fhi-date-range--is-invalid-to' : 'fhi-date-range--is-invalid-from'
+        : ''">
   <fhi-datepicker
+    class="fhi-date-range__datepicker-from"
     [label]="labelDateFrom"
     [minimumDate]="minimumDate"
     [maximumDate]="maxDate"
@@ -14,6 +15,7 @@
   </span>
 
   <fhi-datepicker
+    class="fhi-date-range__datepicker-to"
     [label]="labelDateTo"
     [minimumDate]="minDate"
     [maximumDate]="maximumDate"

@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.component';
@@ -16,6 +16,8 @@ export class FhiDateRangeComponent {
   @Input() labelDateTo: string = 'Til dato';
   @Input() maximumDate: string;
   @Input() minimumDate: string;
+
+  @Output() dateRangeSelect = new EventEmitter<any>();
 
   validRange: boolean = true;
   errorMsg: string;
@@ -61,10 +63,13 @@ export class FhiDateRangeComponent {
         this.validRange = false;
         this.errorMsg = '<strong>' + this.labelDateFrom + '</strong> må være før eller samtidig som <strong>' + this.labelDateTo + '</strong>';
         this.latestChangedRangeEnd = rangeEnd;
-        // this.invalidRangeCssClass = rangeEndChangedLatest === 'to' ? 'fhi-date-range--is-invalid-to' : 'fhi-date-range--is-invalid-from';
       } else {
         this.validRange = true;
         this.errorMsg = '';
+        this.dateRangeSelect.emit({
+          fromDate: this.fromDate,
+          toDate: this.toDate
+        })
       }
     }
   }

@@ -18,4 +18,20 @@
       white-space: nowrap;
     }
   }
+
+  &--is-invalid-from {
+    .fhi-date-range__datepicker-from {
+      .form-control {
+        border-color: $fhi-core-pink-dark-1;
+      }
+    }
+  }
+
+  &--is-invalid-to {
+    .fhi-date-range__datepicker-to {
+      .form-control {
+        border-color: $fhi-core-pink-dark-1;
+      }
+    }
+  }
 }
