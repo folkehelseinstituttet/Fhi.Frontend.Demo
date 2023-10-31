@@ -20,6 +20,9 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
+
+    console.log('parse(value):', value);
+
     this.weekValidatorService.setValidationContext(WeekValidationContext.weekParserFormatterParse);
 
     if (value) {
@@ -44,11 +47,10 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       return { year: -1, month: -1, day: -1 };
     }
     this.weekValidatorService.setValidYearWeekString(value);
-    this.weekValidatorService.setValidState(true);
+    this.weekValidatorService.isValid = true;
     return date;
   }
 
-  // TODO: is there a better way to solve the "required problem"?
   private handleValidationIfValueIsRequired() {
     if (this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);

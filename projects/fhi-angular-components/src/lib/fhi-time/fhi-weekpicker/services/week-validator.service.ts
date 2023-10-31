@@ -13,7 +13,8 @@ export enum WeekErrorState {
 
 export enum WeekValidationContext {
   weekpickerNgOnChanges = 1,
-  weekParserFormatterParse = 2
+  weekpickerSetStartDateAndEmit = 2,
+  weekParserFormatterParse = 3
 }
 
 @Injectable()
@@ -23,15 +24,11 @@ export class WeekValidatorService {
   private validationContext!: number;
 
   errorMsg: string;
-  isValid!: boolean;
+  isValid = true;
   weekIsRequired = false;
 
   setValidYearWeekString(value: string) {
     this.validYearWeekString = value;
-  }
-
-  setValidState(state: boolean) {
-    this.isValid = state;
   }
 
   getValidYearWeekString(): string {
@@ -43,6 +40,9 @@ export class WeekValidatorService {
   }
 
   setErrorMsg(errorState: number) {
+
+    console.log('errorState', errorState);
+
     this.isValid = false;
 
     if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges) {

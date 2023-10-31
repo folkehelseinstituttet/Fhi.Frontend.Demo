@@ -84,6 +84,14 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
+
+    console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);  
+
+    if (this.weekValidatorService.weekIsRequired && yearWeekString === null) {
+      this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
+      return null;
+    }
+
     if (yearWeekString.length > 1 && yearWeekString.length < 6) {
       this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
       return null;
