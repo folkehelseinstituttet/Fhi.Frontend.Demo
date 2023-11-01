@@ -5,6 +5,7 @@
         [label]="labelYear"
         [minYear]="minYear"
         [maxYear]="maxYear"
+        [year]="year"
         (yearSelect)="onYearSelect($event)"
       >
       </fhi-year-selector>
@@ -19,8 +20,8 @@
         [items]="monthList"
         [label]="labelMonth"
         [notFoundText]="'Ugyldig måned'"
-        [selectedItem]="selectedMonthId"
-        (selectedItemChange)="onSelectedItemChangeMonth($event)">
+        [selectedItem]="month"
+        (selectedItemChange)="onSelectedMonth($event)">
       </fhi-autosuggest>
     </div>
   </div>

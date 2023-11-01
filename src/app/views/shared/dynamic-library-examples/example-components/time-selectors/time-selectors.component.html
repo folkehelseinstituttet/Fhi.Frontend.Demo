@@ -57,7 +57,10 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonth.id">
-  <fhi-month-selector></fhi-month-selector>
+  <fhi-month-selector
+    [year]="'2000'"
+    [month]="4">
+  </fhi-month-selector>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
