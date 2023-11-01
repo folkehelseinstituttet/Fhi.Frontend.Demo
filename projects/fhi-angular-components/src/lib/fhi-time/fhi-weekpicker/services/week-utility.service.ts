@@ -54,12 +54,6 @@ export class WeekUtilityService {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
     });
-
-    // console.log('*******************');
-    // console.log('week', week);
-    // console.log('date.getMonth()', date.getMonth());
-    // console.log('date.getDate()', date.getDate());
-
     if (week === 1 && date.getMonth() === 11) {
       year = year + 1;
     }
@@ -85,10 +79,10 @@ export class WeekUtilityService {
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
-    console.log('date', date);
-    console.log('');
-
-    if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
+    if (
+      !this.weekValidatorService.getIsMinWeekOrMaxWeek() &&
+      (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate))
+    ) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
       return null;
     }
@@ -96,11 +90,6 @@ export class WeekUtilityService {
   }
 
   getDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
-
-
-    // console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
-
-
     if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
       return null;

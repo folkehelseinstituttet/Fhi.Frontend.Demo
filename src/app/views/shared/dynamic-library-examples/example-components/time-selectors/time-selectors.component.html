@@ -24,12 +24,12 @@
     [id]="'id'"
     [week]="'2015-53'"
     [minWeek]="'1910-1'"
+    [maxWeek]="'2024-50'"
     (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
 </div>
 
   <!-- TODO:
-    - maxWeek beyond today is failing
     - maxWeek today should not be possible unless sunday... 
       or should it be legal to pick a week that isn't over yet...?
     [maxWeek]="'2023-50'" -->
