@@ -30,7 +30,7 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
   toModel(date: NgbDateStruct | null): YearWeek | null {
     if (date) {
       return this.weekUtilityService.getYearWeek(
-        new Date(Date.UTC(date.year, date.month - 1, date.day))
+        new Date(date.year, date.month - 1, date.day)
       );
     }
     return null;

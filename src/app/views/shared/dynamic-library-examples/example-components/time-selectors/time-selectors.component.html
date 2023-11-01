@@ -22,11 +22,10 @@
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
   <fhi-weekpicker 
     [id]="'id'"
-    [week]="'2011-1'"
+    [week]="'2015-53'"
+    [minWeek]="'1910-1'"
     (weekSelect)="onWeekSelect($event)">
   </fhi-weekpicker>
-    <!-- [minWeek]="'1910-1'"
-    [maxWeek]="'2020-50'" -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">
