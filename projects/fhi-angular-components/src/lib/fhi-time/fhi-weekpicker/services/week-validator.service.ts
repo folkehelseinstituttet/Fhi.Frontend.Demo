@@ -30,8 +30,18 @@ export class WeekValidatorService {
   isValid = true;
   weekIsRequired = false;
 
-  setValidYearWeekString(value: string) {
+  updateValidWeekStringAndState(value: string) {
     this.validYearWeekString = value;
+    this.isValid = true;
+  }
+
+  updateErrorMsgAndState(errorState: number) {
+    this.errorMsg = this.getErrorMsg(errorState);
+    this.isValid = false;
+  }
+
+  getIsValid(): boolean {
+    return this.isValid;
   }
 
   getValidYearWeekString(): string {
@@ -46,18 +56,43 @@ export class WeekValidatorService {
     return this.validationContext;
   }
 
-  setErrorMsg(errorState: number) {
-    this.isValid = false;
-
-    if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges ||
-        this.validationContext === WeekValidationContext.weekpickerMaxWeekChangeActions ||
-        this.validationContext === WeekValidationContext.weekpickerMinWeekChangeActions) {
-      this.throwInputValueError();
-    } else {
-      this.errorMsg = this.getErrorMsg(errorState);
-    }
+  throwInputValueError(input: string) {
+    throw new Error(`
+The following input has either wrong format, or an illegal value: @Input() ${input}\n
+Klient error message: ${this.errorMsg}\n`);
   }
   
+
+
+
+
+
+  handleValidationIfValueIsRequired() {
+    if (this.weekIsRequired) {
+      this.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
+    } else {
+      this.isValid = true;
+    }
+  }
+
+  // updateErrorMsgAndState(errorState: number) {
+  //   this.isValid = false;
+
+  //   console.log('this.validationContext', this.validationContext);
+
+  //   if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges ||
+  //       this.validationContext === WeekValidationContext.weekpickerMaxWeekChangeActions ||
+  //       this.validationContext === WeekValidationContext.weekpickerMinWeekChangeActions) {
+  //     this.throwInputValueErrorOLD();
+  //   } else {
+  //     this.errorMsg = this.getErrorMsg(errorState);
+  //   }
+  // }
+
+
+
+
+
   private getErrorMsg(errorState: number): string {
     switch (errorState) {
       case WeekErrorState.toManyCharacters:
@@ -116,14 +151,6 @@ export class WeekValidatorService {
 
   private getWeekOutsideMaxOrMinMsg(): string {
     return `Du har lagt inn en ukeverdi som ligger utenfor tillatt tidsrom.`;
-  }
-
-  private throwInputValueError() {
-    throw new Error(`
-One of the following inputs has either wrong format, or an illegal value:
-@Input() maxWeek
-@Input() minWeek
-@Input() week!`);
   }
 }
 

@@ -62,7 +62,7 @@ export class WeekUtilityService {
 
   getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
     if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.notValidWeekNumber);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.notValidWeekNumber);
       return null;
     }
 
@@ -70,39 +70,39 @@ export class WeekUtilityService {
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.not53WeeksInThisYear);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.not53WeeksInThisYear);
       return null;
     }
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
     if (this.isOutsideMaxOrMin(date) && this.weekValidationContextIsNotMaxOrMin()) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekOutsideMaxOrMin);
       return null;
     }
     return date;
   }
 
   getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
-    if (this.weekValidatorService.weekIsRequired && yearWeekString === null) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.weekIsRequired);
-      return null;
-    }
+    // if (this.weekValidatorService.weekIsRequired && yearWeekString === null) {
+    //   this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
+    //   return null;
+    // }
 
     if (yearWeekString.length < 6) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.toFewCharacters);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.toFewCharacters);
       return null;
     }
 
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.notOneDelimiter);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.notOneDelimiter);
       return null;
     }
 
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
-      this.weekValidatorService.setErrorMsg(WeekErrorState.onlyNumbersAllowed);
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.onlyNumbersAllowed);
       return null;
     }
 
@@ -122,6 +122,12 @@ export class WeekUtilityService {
   }
 
   private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
+
+    // console.log('----------------------');
+    // console.log('lastWeekCurrentYear', lastWeekCurrentYear);
+    // console.log('yearWeek', yearWeek);
+    // console.log('lastDayCurrentYear', lastDayCurrentYear);
+
     const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
     const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
     const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);

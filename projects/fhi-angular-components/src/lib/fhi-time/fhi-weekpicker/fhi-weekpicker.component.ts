@@ -68,7 +68,7 @@ export class FhiWeekpickerComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerNgOnChanges);
+    // this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerNgOnChanges);
 
     if (changes.maxWeek && !changes.maxWeek.isFirstChange()) {
       this.maxWeekChangeActions();
@@ -83,8 +83,8 @@ export class FhiWeekpickerComponent {
 
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
-    this.isValid = true;
-    this.setStartDateAndEmit(week);
+    this.weekValidatorService.updateValidWeekStringAndState(week);
+    this.validateAndEmit(week);
   }
 
   onBlur() {
@@ -95,34 +95,35 @@ export class FhiWeekpickerComponent {
     this.validateAndEmit();
   }
 
-  private validateAndEmit() {
-    if (this.weekValidatorService.isValid) {
-      this.isValid = true;
-      this.setStartDateAndEmit(
-        this.weekValidatorService.getValidYearWeekString()
-      );
+  private validateAndEmit(week?: string) {
+    this.isValid = (week !== undefined) ? true : this.weekValidatorService.getIsValid();
+
+    if (this.isValid) {
+      this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+      this.weekSelect.emit(week);
       return;
     }
+    // console.log('validateAndEmit(), week', this.weekValidatorService.getValidYearWeekString());
+    // console.log('weekValidatorService.errorMsg', this.weekValidatorService.errorMsg);
+    // this.weekValidatorService.handleValidationIfValueIsRequired();
     this.errorMsg = this.weekValidatorService.errorMsg;
-    this.isValid = false;
   }
 
-  private setStartDateAndEmit(week: string) {
-    this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerSetStartDateAndEmit);
-    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
-    this.weekSelect.emit(week);
-  }
+  // private setStartDateAndEmit(week: string) {
+  //   this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerSetStartDateAndEmit);
+  //   this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+  //   this.weekSelect.emit(week);
+  // }
 
   private weekChangeActions() {
     if (this.week === undefined) {
       this.week = null;
     }
-    if (!this.weekValidatorService.weekIsRequired) {
-      return;
-    }
     const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
     if (date !== null) {
       this.startDate = date;
+    } else {
+      this.weekValidatorService.throwInputValueError('week');
     }
   }
 
@@ -131,12 +132,14 @@ export class FhiWeekpickerComponent {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
-    this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerMaxWeekChangeActions);
+    // this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerMaxWeekChangeActions);
 
     const date = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
     if (date !== null) {
       this.maxDate = date;
       this.weekUtilityService.setMaxDate(date);
+    } else {
+      this.weekValidatorService.throwInputValueError('maxWeek');
     }
   }
 
@@ -145,12 +148,14 @@ export class FhiWeekpickerComponent {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }
-    this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerMinWeekChangeActions);
+    // this.weekValidatorService.setValidationContext(WeekValidationContext.weekpickerMinWeekChangeActions);
 
     const date = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
     if (date !== null) {
       this.minDate = date;
       this.weekUtilityService.setMinDate(date);
+    } else {
+      this.weekValidatorService.throwInputValueError('minWeek');
     }
   }
 }
