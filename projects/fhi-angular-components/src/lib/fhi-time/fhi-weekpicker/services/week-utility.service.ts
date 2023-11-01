@@ -83,11 +83,18 @@ export class WeekUtilityService {
     return date;
   }
 
-  getDateFromYearWeekString(yearWeekString: string): NgbDateStruct | null {
-    // if (this.weekValidatorService.weekIsRequired && yearWeekString === null) {
-    //   this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
-    //   return null;
-    // }
+  getDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
+
+    console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
+
+    if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
+      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
+      return null;
+    }
+
+    if (yearWeekString === null) {
+      return { year: -1, month: -1, day: -1 };
+    }
 
     if (yearWeekString.length < 6) {
       this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.toFewCharacters);

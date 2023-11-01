@@ -56,9 +56,9 @@ export class WeekValidatorService {
     return this.validationContext;
   }
 
-  throwInputValueError(input: string) {
+  throwInputValueError(inputName: string) {
     throw new Error(`
-The following input has either wrong format, or an illegal value: @Input() ${input}\n
+The following input has either wrong format, or an illegal value: @Input() ${inputName}\n
 Klient error message: ${this.errorMsg}\n`);
   }
   
