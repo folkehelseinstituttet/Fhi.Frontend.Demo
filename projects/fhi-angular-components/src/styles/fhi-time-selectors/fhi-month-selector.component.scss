@@ -1,0 +1,16 @@
+.fhi-month-selector {
+  &__month {
+    width: $fhi-core-px * 130;
+  }
+  
+  &__year {
+    width: $fhi-core-px * 110;
+  }
+
+  &__divider {
+    display: block;
+    text-align: center;
+    transform: translateY($fhi-core-px * 38);
+    width: $fhi-core-px * 40;
+  }
+}

@@ -23,7 +23,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `<fhi-month-selector></fhi-month-selector>`;
 }
 
 /*

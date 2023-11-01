@@ -1,1 +1,27 @@
-<p>fhi-month-selector works!</p>
+<div class="fhi-month-selector">
+  <div class="d-flex">
+    <div class="fhi-month-selector__year">
+      <fhi-year-selector
+        [label]="labelYear"
+        [minYear]="minYear"
+        [maxYear]="maxYear"
+        (yearSelect)="onYearSelect($event)"
+      >
+      </fhi-year-selector>
+    </div>
+
+    <span><!-- sic -->
+      <span class="fhi-month-selector__divider">&ndash;</span>
+    </span>
+
+    <div class="fhi-month-selector__month">
+      <fhi-autosuggest
+        [items]="monthList"
+        [label]="labelMonth"
+        [notFoundText]="'Ugyldig måned'"
+        [selectedItem]="selectedMonthId"
+        (selectedItemChange)="onSelectedItemChangeMonth($event)">
+      </fhi-autosuggest>
+    </div>
+  </div>
+</div>
