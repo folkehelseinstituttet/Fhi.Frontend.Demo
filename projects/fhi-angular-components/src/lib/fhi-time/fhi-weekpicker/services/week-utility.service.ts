@@ -143,37 +143,22 @@ export class WeekUtilityService {
   }
 
   private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
-    const millisecondsPrWeek = 7 * 24 * 60 * 60 * 1000;
-    let weekDiffInMilliseconds: number;
-    let weekDiff: number;
-
-    if (lastWeekCurrentYear === 53) {
-      weekDiff = 53 - yearWeek.week;
-    } 
-    else if (lastWeekCurrentYear === 52) {
-      console.error('lastWeekCurrentYear === 52');
-      weekDiff = 52 - (yearWeek.week - 2/7);
-    }
-    else if (lastWeekCurrentYear === 1) {
-      console.error('lastWeekCurrentYear === 1');
-      weekDiff = 52 - (yearWeek.week - 6/7);
-    }
-
-    console.log('----------------------');
-    console.log('weekDiff', weekDiff);
-    console.log('yearWeek', yearWeek);
-    console.log('lastDayCurrentYear', lastDayCurrentYear);
-    // console.log('lastWeekCurrentYear', lastWeekCurrentYear);
-
-
-    weekDiffInMilliseconds = weekDiff * millisecondsPrWeek;
-
+    const weekDiffInMilliseconds = this.getWeekDiffInMilliseconds(
+      yearWeek.week, lastDayCurrentYear.getDay(), lastWeekCurrentYear
+    );
     const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
-
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
       day: date.getDate()
     };
+  }
+
+  private getWeekDiffInMilliseconds(week: number, lastDayOfYear: number, lastWeekCurrentYear: number) {
+    const weeksInYear = (lastWeekCurrentYear === 52) ? 52 : 53;
+    const missingDaysInLastWeekOfYear = (lastDayOfYear === 0) ? 0 : 7 - lastDayOfYear;
+    const millisecondsPrWeek = 7 * 24 * 60 * 60 * 1000;
+    const weekDiff = weeksInYear - (missingDaysInLastWeekOfYear / 7) + (3 / 7) - week;
+    return weekDiff * millisecondsPrWeek;
   }
 }

@@ -28,6 +28,12 @@
   </fhi-weekpicker>
 </div>
 
+  <!-- TODO:
+    - maxWeek beyond today is failing
+    - maxWeek today should not be possible unless sunday... 
+      or should it be legal to pick a week that isn't over yet...?
+    [maxWeek]="'2023-50'" -->
+
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">
   <!-- <fhi-week-range
     (weekRangeSelect)="getWeekRange($event)">
