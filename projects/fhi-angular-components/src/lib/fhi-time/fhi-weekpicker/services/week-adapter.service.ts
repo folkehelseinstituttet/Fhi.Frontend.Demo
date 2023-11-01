@@ -15,6 +15,8 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
     super();
   }
 
+  // TODO: reduce number of validation by storing values
+
   fromModel(value: YearWeek | string | null): NgbDateStruct | null {
     if (value) {
       if (typeof value === "string") {

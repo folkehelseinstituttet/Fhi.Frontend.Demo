@@ -25,10 +25,13 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
     }
     if (!this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.setValidYearWeekString('');
-      return { year: -1, month: -1, day: -1 };
+      return { year: -1, month: -1, day: -1 }; // TODO: could this be just null, ie. removed?
     }
     return null;
   }
+
+
+  // TODO: reduce number of validation by storing values
 
   format(date: NgbDateStruct | null): string {
     return this.weekUtilityService.getYearWeekStringFromDate(date);
@@ -47,7 +50,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       return null;
     }
     if (date === null) {
-      return { year: -1, month: -1, day: -1 };
+      return { year: -1, month: -1, day: -1 }; // TODO: could this be just null
     }
     this.weekValidatorService.setValidYearWeekString(value);
     return date;

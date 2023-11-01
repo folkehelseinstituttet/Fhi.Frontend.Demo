@@ -33,7 +33,7 @@ export class WeekUtilityService {
   getInitMaxDate(): NgbDateStruct {
     const date = new Date();
     return {
-      year: date.getUTCFullYear(),
+      year: date.getFullYear(),
       month: date.getMonth() + 1,
       day: date.getDate()
     };
@@ -42,7 +42,7 @@ export class WeekUtilityService {
   getInitMinDate(): NgbDateStruct {
     const date = new Date(1900, 0);
     return {
-      year: date.getUTCFullYear() + 1,
+      year: date.getFullYear() + 1,
       month: date.getMonth() + 1,
       day: date.getDate()
     };
@@ -54,7 +54,16 @@ export class WeekUtilityService {
       weekStartsOn: 1,
       firstWeekContainsDate: 4,
     });
-    if (week === 53 && date.getMonth() === 0 && date.getDate() < 4) {
+
+    // console.log('*******************');
+    // console.log('week', week);
+    // console.log('date.getMonth()', date.getMonth());
+    // console.log('date.getDate()', date.getDate());
+
+    if (week === 1 && date.getMonth() === 11) {
+      year = year + 1;
+    }
+    if (week === 53 && date.getMonth() === 0) {
       year = year - 1;
     }
     return { year: year, week: week };
@@ -69,20 +78,15 @@ export class WeekUtilityService {
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
-
-    console.log('----------------------');
-    console.log('lastWeekCurrentYear', lastWeekCurrentYear);
-    console.log('yearWeek', yearWeek);
-    console.log('lastDayCurrentYear', lastDayCurrentYear);
-    console.log('');
-
-
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
       return null;
     }
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
+
+    console.log('date', date);
+    console.log('');
 
     if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
@@ -94,7 +98,7 @@ export class WeekUtilityService {
   getDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
 
 
-    console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
+    // console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
 
 
     if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
@@ -103,7 +107,7 @@ export class WeekUtilityService {
     }
 
     if (yearWeekString === null) {
-      return { year: -1, month: -1, day: -1 };
+      return { year: -1, month: -1, day: -1 }; // TODO: could this be just null
     }
 
     if (yearWeekString.length < 6) {
@@ -139,11 +143,35 @@ export class WeekUtilityService {
   }
 
   private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
-    const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
-    const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
+    const millisecondsPrWeek = 7 * 24 * 60 * 60 * 1000;
+    let weekDiffInMilliseconds: number;
+    let weekDiff: number;
+
+    if (lastWeekCurrentYear === 53) {
+      weekDiff = 53 - yearWeek.week;
+    } 
+    else if (lastWeekCurrentYear === 52) {
+      console.error('lastWeekCurrentYear === 52');
+      weekDiff = 52 - (yearWeek.week - 2/7);
+    }
+    else if (lastWeekCurrentYear === 1) {
+      console.error('lastWeekCurrentYear === 1');
+      weekDiff = 52 - (yearWeek.week - 6/7);
+    }
+
+    console.log('----------------------');
+    console.log('weekDiff', weekDiff);
+    console.log('yearWeek', yearWeek);
+    console.log('lastDayCurrentYear', lastDayCurrentYear);
+    // console.log('lastWeekCurrentYear', lastWeekCurrentYear);
+
+
+    weekDiffInMilliseconds = weekDiff * millisecondsPrWeek;
+
     const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
+
     return {
-      year: date.getUTCFullYear(),
+      year: date.getFullYear(),
       month: date.getMonth() + 1,
       day: date.getDate()
     };
