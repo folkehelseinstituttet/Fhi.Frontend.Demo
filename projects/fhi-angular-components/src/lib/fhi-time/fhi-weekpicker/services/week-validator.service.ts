@@ -12,19 +12,10 @@ export enum WeekErrorState {
   weekOutsideMaxOrMin = 8
 }
 
-export enum WeekValidationContext {
-  weekpickerNgOnChanges = 1,
-  weekpickerSetStartDateAndEmit = 2,
-  weekpickerMaxWeekChangeActions = 3,
-  weekpickerMinWeekChangeActions = 4,
-  weekParserFormatterParse = 5
-}
-
 @Injectable()
 export class WeekValidatorService {
   private validYearWeekString!: string;
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
-  private validationContext!: number;
 
   errorMsg: string;
   isValid = true;
@@ -48,50 +39,11 @@ export class WeekValidatorService {
     return this.validYearWeekString;
   }
 
-  setValidationContext(context: number) {
-    this.validationContext = context;
-  }
-
-  getValidationContext(): number {
-    return this.validationContext;
-  }
-
   throwInputValueError(inputName: string) {
     throw new Error(`
 The following input has either wrong format, or an illegal value: @Input() ${inputName}\n
 Klient error message: ${this.errorMsg}\n`);
   }
-  
-
-
-
-
-
-  handleValidationIfValueIsRequired() {
-    if (this.weekIsRequired) {
-      this.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
-    } else {
-      this.isValid = true;
-    }
-  }
-
-  // updateErrorMsgAndState(errorState: number) {
-  //   this.isValid = false;
-
-  //   console.log('this.validationContext', this.validationContext);
-
-  //   if (this.validationContext === WeekValidationContext.weekpickerNgOnChanges ||
-  //       this.validationContext === WeekValidationContext.weekpickerMaxWeekChangeActions ||
-  //       this.validationContext === WeekValidationContext.weekpickerMinWeekChangeActions) {
-  //     this.throwInputValueErrorOLD();
-  //   } else {
-  //     this.errorMsg = this.getErrorMsg(errorState);
-  //   }
-  // }
-
-
-
-
 
   private getErrorMsg(errorState: number): string {
     switch (errorState) {
