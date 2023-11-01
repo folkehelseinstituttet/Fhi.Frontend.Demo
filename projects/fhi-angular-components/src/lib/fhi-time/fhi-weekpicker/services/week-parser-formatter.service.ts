@@ -32,14 +32,14 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
 
   private getDate(value: string): NgbDateStruct | null {
     if (value.length > 7) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.toManyCharacters);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.toManyCharacters);
       return null;
     }
 
     const date = this.weekUtilityService.getDateFromYearWeekString(value);
 
     if (date === null && this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
       return null;
     }
 
@@ -47,7 +47,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       return { year: -1, month: -1, day: -1 };
     }
 
-    this.weekValidatorService.updateValidWeekStringAndState(value);
+    this.weekValidatorService.setIsValid(true);
     return date;
   }
 }

@@ -62,7 +62,7 @@ export class WeekUtilityService {
 
   getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
     if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.notValidWeekNumber);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.notValidWeekNumber);
       return null;
     }
 
@@ -70,14 +70,14 @@ export class WeekUtilityService {
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.not53WeeksInThisYear);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
       return null;
     }
 
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
     if (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate)) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekOutsideMaxOrMin);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
       return null;
     }
     return date;
@@ -88,7 +88,7 @@ export class WeekUtilityService {
     console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
 
     if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.weekIsRequired);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
       return null;
     }
 
@@ -97,19 +97,19 @@ export class WeekUtilityService {
     }
 
     if (yearWeekString.length < 6) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.toFewCharacters);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
 
     const parts = yearWeekString.split(this.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.notOneDelimiter);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.notOneDelimiter);
       return null;
     }
 
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
-      this.weekValidatorService.updateErrorMsgAndState(WeekErrorState.onlyNumbersAllowed);
+      this.weekValidatorService.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return null;
     }
 
