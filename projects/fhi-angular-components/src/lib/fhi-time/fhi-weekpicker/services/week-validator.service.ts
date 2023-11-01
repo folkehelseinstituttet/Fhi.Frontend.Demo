@@ -16,7 +16,6 @@ export enum WeekErrorState {
 export class WeekValidatorService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private isValid = true;
-  private isMinWeekOrMaxWeek = false;
   private validYearWeekString!: string;
 
   errorMsg: string;
@@ -38,14 +37,6 @@ export class WeekValidatorService {
 
   getIsValid(): boolean {
     return this.isValid;
-  }
-
-  setIsMinWeekOrMaxWeek(value: boolean) {
-    this.isMinWeekOrMaxWeek = value;
-  }
-
-  getIsMinWeekOrMaxWeek(): boolean {
-    return this.isMinWeekOrMaxWeek;
   }
 
   throwInputValueError(inputName: string) {

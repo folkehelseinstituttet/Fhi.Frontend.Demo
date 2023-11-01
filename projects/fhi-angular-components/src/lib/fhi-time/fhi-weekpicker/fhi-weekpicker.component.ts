@@ -125,10 +125,7 @@ export class FhiWeekpickerComponent {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
-
-    this.weekValidatorService.setIsMinWeekOrMaxWeek(true);
-    const date = this.weekUtilityService.getDateFromYearWeekString(this.maxWeek);
-    this.weekValidatorService.setIsMinWeekOrMaxWeek(false);
+    const date = this.weekUtilityService.getMinDateOrMaxDateFromYearWeekString(this.maxWeek);
 
     if (date !== null) {
       this.maxDate = date;
@@ -143,10 +140,7 @@ export class FhiWeekpickerComponent {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }
-
-    this.weekValidatorService.setIsMinWeekOrMaxWeek(true);
-    const date = this.weekUtilityService.getDateFromYearWeekString(this.minWeek);
-    this.weekValidatorService.setIsMinWeekOrMaxWeek(false);
+    const date = this.weekUtilityService.getMinDateOrMaxDateFromYearWeekString(this.minWeek);
 
     if (date !== null) {
       this.minDate = date;

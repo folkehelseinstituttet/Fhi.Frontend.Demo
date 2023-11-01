@@ -11,6 +11,7 @@ export class WeekUtilityService {
   private readonly weekpickerDelimiter = '-';
   private maxDate = this.getInitMaxDate();
   private minDate = this.getInitMinDate();
+  private isMinWeekOrMaxWeek = false;
 
   constructor(private weekValidatorService: WeekValidatorService) { }
 
@@ -80,7 +81,7 @@ export class WeekUtilityService {
     const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
 
     if (
-      !this.weekValidatorService.getIsMinWeekOrMaxWeek() &&
+      !this.isMinWeekOrMaxWeek &&
       (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate))
     ) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
@@ -120,6 +121,13 @@ export class WeekUtilityService {
     const week = parseInt(parts[1], 10);
 
     return this.getDateFromYearWeek({ week, year });
+  }
+
+  getMinDateOrMaxDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
+    this.isMinWeekOrMaxWeek = true;
+    const date = this.getDateFromYearWeekString(yearWeekString);
+    this.isMinWeekOrMaxWeek = false;
+    return date;
   }
 
   getYearWeekStringFromDate(date: NgbDateStruct): string {
