@@ -19,7 +19,7 @@ export class WeekValidatorService {
   private validYearWeekString!: string;
 
   errorMsg: string;
-  weekIsRequired = true;
+  weekIsRequired = false;
 
   updateErrorMsg(errorState: number) {
     this.errorMsg = this.getErrorMsg(errorState);
@@ -41,8 +41,10 @@ export class WeekValidatorService {
 
   throwInputValueError(inputName: string) {
     throw new Error(`
-The following input has either wrong format, or an illegal value: @Input() ${inputName}\n
-Klient error message: ${this.errorMsg}\n`);
+The following input has either wrong format, or an illegal value:
+@Input() ${inputName}\n
+Error message if user input for week had been the cause of the error:
+"${this.errorMsg}"\n`);
   }
 
   private getErrorMsg(errorState: number): string {

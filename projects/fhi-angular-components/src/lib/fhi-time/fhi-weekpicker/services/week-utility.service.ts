@@ -69,6 +69,14 @@ export class WeekUtilityService {
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
 
+
+    console.log('----------------------');
+    console.log('lastWeekCurrentYear', lastWeekCurrentYear);
+    console.log('yearWeek', yearWeek);
+    console.log('lastDayCurrentYear', lastDayCurrentYear);
+    console.log('');
+
+
     if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
       return null;
@@ -85,7 +93,9 @@ export class WeekUtilityService {
 
   getDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
 
+
     console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
+
 
     if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
@@ -129,12 +139,6 @@ export class WeekUtilityService {
   }
 
   private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
-
-    // console.log('----------------------');
-    // console.log('lastWeekCurrentYear', lastWeekCurrentYear);
-    // console.log('yearWeek', yearWeek);
-    // console.log('lastDayCurrentYear', lastDayCurrentYear);
-
     const millisecondsInOneWeek = 7 * 24 * 60 * 60 * 1000;
     const weekDiffInMilliseconds = (lastWeekCurrentYear - yearWeek.week) * millisecondsInOneWeek;
     const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
