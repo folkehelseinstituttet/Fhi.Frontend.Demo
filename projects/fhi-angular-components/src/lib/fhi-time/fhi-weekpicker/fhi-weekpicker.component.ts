@@ -81,8 +81,8 @@ export class FhiWeekpickerComponent {
 
   onDateSelect(date: NgbDateStruct) {
     const week = this.weekUtilityService.getYearWeekStringFromDate(date);
-    this.weekValidatorService.setIsValid(true);
-    this.validateAndEmit(week);
+    this.weekValidatorService.setValidYearWeekString(week);
+    this.validateAndEmit();
   }
 
   onBlur() {
@@ -93,8 +93,9 @@ export class FhiWeekpickerComponent {
     this.validateAndEmit();
   }
 
-  private validateAndEmit(week?: string) {
-    this.isValid = (week !== undefined) ? true : this.weekValidatorService.getIsValid();
+  private validateAndEmit() {
+    const week = this.weekValidatorService.getValidYearWeekString();
+    this.isValid = this.weekValidatorService.getIsValid();
 
     if (this.isValid) {
       this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);

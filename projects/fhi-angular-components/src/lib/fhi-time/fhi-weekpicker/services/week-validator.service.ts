@@ -16,21 +16,27 @@ export enum WeekErrorState {
 export class WeekValidatorService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private isValid = true;
+  private validYearWeekString!: string;
 
   errorMsg: string;
-  weekIsRequired = false;
-
-  setIsValid(value: boolean) {
-    this.isValid = value;
-  }
-
-  getIsValid(): boolean {
-    return this.isValid;
-  }
+  weekIsRequired = true;
 
   updateErrorMsg(errorState: number) {
     this.errorMsg = this.getErrorMsg(errorState);
     this.isValid = false;
+  }
+
+  setValidYearWeekString(value: string) {
+    this.validYearWeekString = value;
+    this.isValid = true;
+  }
+
+  getValidYearWeekString(): string {
+    return this.validYearWeekString;
+  }
+
+  getIsValid(): boolean {
+    return this.isValid;
   }
 
   throwInputValueError(inputName: string) {
