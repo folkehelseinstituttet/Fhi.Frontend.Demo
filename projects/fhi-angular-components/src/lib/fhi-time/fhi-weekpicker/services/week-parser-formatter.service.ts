@@ -20,13 +20,15 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
+    this.weekValidatorService.setUnvalidatedYearWeekString(value);
     if (value) {
-      return this.getDate(value);
+      return this.weekUtilityService.getDateFromYearWeekString(value);
+      // return this.getDate(value);
     }
-    if (!this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.setValidYearWeekString('');
-      return { year: -1, month: -1, day: -1 }; // TODO: could this be just null, ie. removed?
-    }
+    // if (!this.weekValidatorService.weekIsRequired) {
+    //   this.weekValidatorService.setValidYearWeekString('');
+    //   return { year: -1, month: -1, day: -1 }; // TODO: could this be just null, ie. removed?
+    // }
     return null;
   }
 

@@ -80,10 +80,7 @@ export class FhiWeekpickerComponent {
   }
 
   onDateSelect(date: NgbDateStruct) {
-    this.weekValidatorService.setValidYearWeekString(
-      this.weekUtilityService.getYearWeekStringFromDate(date)
-    );
-    this.validateAndEmit();
+    this.validateAndEmit(date);
   }
 
   onBlur() {
@@ -94,16 +91,27 @@ export class FhiWeekpickerComponent {
     this.validateAndEmit();
   }
 
-  private validateAndEmit() {
-    const week = this.weekValidatorService.getValidYearWeekString();
-    this.isValid = this.weekValidatorService.getIsValid();
+  private validateAndEmit(date?: NgbDateStruct) {
+    let week: string;
 
-    if (this.isValid) {
-      this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
-      this.weekSelect.emit(week);
+    if (date) {
+      week = this.weekUtilityService.getYearWeekStringFromDate(date);
+      this.isValid = true;
+    } else {
+      week = this.weekValidatorService.getUnvalidatedYearWeekString();
+      this.isValid = this.weekValidatorService.validateYearWeekString(week);
+    }
+
+    if (!this.isValid) {
+      this.errorMsg = this.weekValidatorService.errorMsg;
       return;
     }
-    this.errorMsg = this.weekValidatorService.errorMsg;
+
+    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+    this.weekSelect.emit(week);
+
+    // TODO: when all works again: look at select, blur, enter and change 
+    //                             and see if more code can be reused!
   }
 
   private weekChangeActions() {
