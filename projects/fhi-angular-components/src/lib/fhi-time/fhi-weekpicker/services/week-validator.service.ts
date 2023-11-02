@@ -27,10 +27,10 @@ export class WeekValidatorService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private isValid = true;
   private validYearWeekString!: string;
-  private unvalidatedYearWeekString!: string;
+  private unvalidatedYearWeekString = '';
+  private weekIsRequired = false;
 
   errorMsg: string;
-  weekIsRequired = false;
 
 
   constructor(
@@ -48,10 +48,6 @@ export class WeekValidatorService {
     this.isValid = true;
   }
 
-  getValidYearWeekString(): string {
-    return this.validYearWeekString;
-  }
-
   getIsValid(): boolean {
     return this.isValid;
   }
@@ -67,11 +63,17 @@ export class WeekValidatorService {
   isValidYearWeekString(value: string): boolean {
     this.errorMsg = undefined;
 
+    console.log('isValidYearWeekString(value):', value);
+
     // Testing the string
 
     if (value.length === 0 && this.weekIsRequired) {
-      console.log('value.length === 0');
+      this.updateErrorMsg(WeekErrorState.weekIsRequired);
       return false;
+    }
+    if (value.length === 0) {
+      console.log('value.length === 0');
+      return true;
     }
     if (value.length > 0 && value.length < 6) {
       this.updateErrorMsg(WeekErrorState.toFewCharacters);

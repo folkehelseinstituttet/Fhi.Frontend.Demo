@@ -44,7 +44,7 @@ import { WeekSharedDataService } from "./services/week-shared-data.service";
 })
 export class FhiWeekpickerComponent {
   @Input() id: string;
-  @Input() week: string | null;
+  @Input() week: string;
   @Input() label: string = FhiTimeConstants.weekpickerLabel;
   @Input() maxWeek: string;
   @Input() minWeek: string;
@@ -112,7 +112,7 @@ export class FhiWeekpickerComponent {
       return;
     }
 
-    this.startDate = this.weekUtilityService.getDateFromYearWeekString(week);
+    this.startDate = this.weekUtilityService.getDateFromValidYearWeekString(week);
     this.weekSelect.emit(week);
 
     // TODO: when all works again: look at select, blur, enter and change 
@@ -120,21 +120,18 @@ export class FhiWeekpickerComponent {
   }
 
   private weekChangeActions() {
-    if (this.week === undefined) {
-      this.week = null;
+    if (this.week === undefined || this.week === null) {
+      this.week = '';
     }
-    const date = this.weekUtilityService.getDateFromYearWeekString(this.week);
-
-    if (date !== null) {
-      this.startDate = date;
-      this.weekValidatorService.setValidYearWeekString(this.week);
-    } else {
+    if (!this.weekValidatorService.isValidYearWeekString(this.week)) {
       this.weekValidatorService.throwInputValueError('week');
+      return;
     }
+    this.startDate = this.weekUtilityService.getDateFromValidYearWeekString(this.week);
   }
 
   private maxWeekChangeActions() {
-    if (this.maxWeek === undefined) {
+    if (this.maxWeek === undefined || this.maxWeek === null) {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
@@ -149,7 +146,7 @@ export class FhiWeekpickerComponent {
   }
 
   private minWeekChangeActions() {
-    if (this.minWeek === undefined) {
+    if (this.minWeek === undefined || this.minWeek === null) {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }

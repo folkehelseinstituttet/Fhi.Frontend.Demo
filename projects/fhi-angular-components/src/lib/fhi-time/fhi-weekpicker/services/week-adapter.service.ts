@@ -18,6 +18,9 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
   // TODO: reduce number of validation by storing values
 
   fromModel(value: YearWeek | string | null): NgbDateStruct | null {
+
+    console.warn('fromModel(value):', value);
+
     if (value) {
       if (typeof value === "string") {
         return null;
@@ -29,7 +32,11 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
     return null;
   }
 
+
   toModel(date: NgbDateStruct | null): YearWeek | null {
+
+    console.warn('toModel(date):', date);
+
     if (date) {
       return this.weekUtilityService.getYearWeek(
         new Date(date.year, date.month - 1, date.day)

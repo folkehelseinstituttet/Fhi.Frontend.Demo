@@ -78,7 +78,10 @@ export class WeekUtilityService {
     return `${yearWeek.year}${this.weekSharedDataService.weekpickerDelimiter}${yearWeek.week}`;
   }
 
-  getDateFromValidYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
+  getDateFromValidYearWeekString(yearWeekString: string): NgbDateStruct | null {
+
+    // TODO: add a guard for yearWeekString not valid!
+
     if (yearWeekString === null) {
       return null;
     }

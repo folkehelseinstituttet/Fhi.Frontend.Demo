@@ -20,6 +20,9 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
+
+    console.warn('parse(value):', value);
+
     this.weekValidatorService.setUnvalidatedYearWeekString(value);
     if (value) {
       return this.utilityService.getDateFromYearWeekString(value);
@@ -36,25 +39,28 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   // TODO: reduce number of validation by storing values
 
   format(date: NgbDateStruct | null): string {
+
+    console.warn('format(date):', date);
+
     return this.utilityService.getYearWeekStringFromDate(date);
   }
 
-  private getDate(value: string): NgbDateStruct | null {
-    if (value.length > 7) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.toManyCharacters);
-      return null;
-    }
+  // private getDate(value: string): NgbDateStruct | null {
+  //   if (value.length > 7) {
+  //     this.weekValidatorService.updateErrorMsg(WeekErrorState.toManyCharacters);
+  //     return null;
+  //   }
 
-    const date = this.utilityService.getDateFromYearWeekString(value);
+  //   const date = this.utilityService.getDateFromYearWeekString(value);
 
-    if (date === null && this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
-      return null;
-    }
-    if (date === null) {
-      return { year: -1, month: -1, day: -1 }; // TODO: could this be just null
-    }
-    this.weekValidatorService.setValidYearWeekString(value);
-    return date;
-  }
+  //   if (date === null && this.weekValidatorService.weekIsRequired) {
+  //     this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
+  //     return null;
+  //   }
+  //   if (date === null) {
+  //     return { year: -1, month: -1, day: -1 }; // TODO: could this be just null
+  //   }
+  //   this.weekValidatorService.setValidYearWeekString(value);
+  //   return date;
+  // }
 }
