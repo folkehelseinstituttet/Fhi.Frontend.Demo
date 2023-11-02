@@ -22,6 +22,8 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
       if (typeof value === "string") {
         return null;
       }
+
+      // TODO: when is this called, and is it always walid?
       return this.weekUtilityService.getDateFromYearWeek(value);
     }
     return null;

@@ -14,7 +14,7 @@ import { WeekUtilityService } from "./week-utility.service";
 export class WeekParserFormatterService extends NgbDateParserFormatter {
   constructor(
     private weekValidatorService: WeekValidatorService,
-    private weekUtilityService: WeekUtilityService
+    private utilityService: WeekUtilityService
   ) {
     super();
   }
@@ -22,7 +22,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   parse(value: string): NgbDateStruct | null {
     this.weekValidatorService.setUnvalidatedYearWeekString(value);
     if (value) {
-      return this.weekUtilityService.getDateFromYearWeekString(value);
+      return this.utilityService.getDateFromYearWeekString(value);
       // return this.getDate(value);
     }
     // if (!this.weekValidatorService.weekIsRequired) {
@@ -36,7 +36,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   // TODO: reduce number of validation by storing values
 
   format(date: NgbDateStruct | null): string {
-    return this.weekUtilityService.getYearWeekStringFromDate(date);
+    return this.utilityService.getYearWeekStringFromDate(date);
   }
 
   private getDate(value: string): NgbDateStruct | null {
@@ -45,7 +45,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
       return null;
     }
 
-    const date = this.weekUtilityService.getDateFromYearWeekString(value);
+    const date = this.utilityService.getDateFromYearWeekString(value);
 
     if (date === null && this.weekValidatorService.weekIsRequired) {
       this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);

@@ -3,17 +3,22 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { YearWeek } from '../year-week.model';
-import { WeekErrorState, WeekValidatorService } from './week-validator.service';
+
+// import { WeekErrorState, WeekValidatorService } from './week-validator.service';
+
 import { toNumber } from 'lodash-es';
+import { WeekSharedDataService } from './week-shared-data.service';
 
 @Injectable()
 export class WeekUtilityService {
-  private readonly weekpickerDelimiter = '-';
   private maxDate = this.getInitMaxDate();
   private minDate = this.getInitMinDate();
   private isMinWeekOrMaxWeek = false;
 
-  constructor(private weekValidatorService: WeekValidatorService) { }
+  constructor(
+    // private weekValidatorService: WeekValidatorService,
+    private weekSharedDataService: WeekSharedDataService,
+  ) { }
 
   getMaxDate(): NgbDateStruct {
     return this.maxDate;
@@ -70,14 +75,14 @@ export class WeekUtilityService {
     }
     const jsDate = new Date(date.year, date.month - 1, date.day);
     const yearWeek = this.getYearWeek(jsDate);
-    return `${yearWeek.year}${this.weekpickerDelimiter}${yearWeek.week}`;
+    return `${yearWeek.year}${this.weekSharedDataService.weekpickerDelimiter}${yearWeek.week}`;
   }
 
   getDateFromValidYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
     if (yearWeekString === null) {
       return null;
     }
-    const parts = yearWeekString.split(this.weekpickerDelimiter);
+    const parts = yearWeekString.split(this.weekSharedDataService.weekpickerDelimiter);
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
     return this.getDateFromYearWeek__NEW({ week, year });
@@ -96,40 +101,14 @@ export class WeekUtilityService {
 
   // TODO: deprecated
   
-  getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
-    if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.notValidWeekNumber);
-      return null;
-    }
-
-    const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
-    const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
-
-    if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
-      return null;
-    }
-
-    const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
-
-    if (
-      !this.isMinWeekOrMaxWeek &&
-      (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate))
-    ) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
-      return null;
-    }
-    return date;
-  }
-  // TODO: deprecated
   getDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {
 
-    console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
+    // console.log('getDateFromYearWeekString(yearWeekString)', yearWeekString);
 
-    if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
-      return null;
-    }
+    // if (yearWeekString === null && this.weekValidatorService.weekIsRequired) {
+    //   this.weekValidatorService.updateErrorMsg(WeekErrorState.weekIsRequired);
+    //   return null;
+    // }
 
     if (yearWeekString === null) {
       return null;
@@ -144,19 +123,19 @@ export class WeekUtilityService {
 
 
     if (yearWeekString.length < 6) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.toFewCharacters);
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.toFewCharacters);
       return null;
     }
 
-    const parts = yearWeekString.split(this.weekpickerDelimiter);
+    const parts = yearWeekString.split(this.weekSharedDataService.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.notOneDelimiter);
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.notOneDelimiter);
       return null;
     }
 
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
-      this.weekValidatorService.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return null;
     }
 
@@ -164,6 +143,32 @@ export class WeekUtilityService {
     const week = parseInt(parts[1], 10);
 
     return this.getDateFromYearWeek({ week, year });
+  }
+  // TODO: deprecated
+  getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
+    if (yearWeek.week < 1 || yearWeek.week > 53) {
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.notValidWeekNumber);
+      return null;
+    }
+
+    const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
+    const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
+
+    if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
+      return null;
+    }
+
+    const date = this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
+
+    if (
+      !this.isMinWeekOrMaxWeek &&
+      (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate))
+    ) {
+      // this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
+      return null;
+    }
+    return date;
   }
   // TODO: this one should be handled in better way if possibel
   getMinDateOrMaxDateFromYearWeekString(yearWeekString: string | null): NgbDateStruct | null {

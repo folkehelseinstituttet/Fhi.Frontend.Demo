@@ -16,6 +16,7 @@ import { WeekAdapterService } from "./services/week-adapter.service";
 import { WeekValidatorService } from "./services/week-validator.service";
 import { FhiTimeConstants } from "../fhi-time-constants";
 import { WeekUtilityService } from "./services/week-utility.service";
+import { WeekSharedDataService } from "./services/week-shared-data.service";
 
 @Component({
   selector: "fhi-weekpicker",
@@ -24,6 +25,7 @@ import { WeekUtilityService } from "./services/week-utility.service";
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
+    WeekSharedDataService,
     WeekValidatorService,
     WeekUtilityService,
     {
@@ -99,7 +101,10 @@ export class FhiWeekpickerComponent {
       this.isValid = true;
     } else {
       week = this.weekValidatorService.getUnvalidatedYearWeekString();
-      this.isValid = this.weekValidatorService.validateYearWeekString(week);
+      this.isValid = this.weekValidatorService.isValidYearWeekString(week);
+
+      console.log('validateAndEmit (blur/enter), week', week);
+      console.log('validateAndEmit (blur/enter), isValid', this.isValid);
     }
 
     if (!this.isValid) {
