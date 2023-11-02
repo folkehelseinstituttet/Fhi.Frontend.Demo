@@ -10,7 +10,6 @@
   &__divider {
     display: block;
     text-align: center;
-    transform: translateY($fhi-core-px * 38);
-    width: $fhi-core-px * 40;
+    width: $fhi-core-space-3;
   }
 }
