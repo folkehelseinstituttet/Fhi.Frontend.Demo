@@ -1,0 +1,18 @@
+.fhi-month-range {
+  &__fieldset {
+    margin-bottom: $fhi-core-space-4;
+  }
+
+  &__legend {
+    float: none;
+    font-family: $fhi-core-font-family-sans-serif-medium;
+    font-size: $fhi-core-font-size-3;
+    font-weight: 600;
+  }
+
+  .fhi-month-selector {
+    &__divider {
+      width: $fhi-core-space-4;
+    }
+  }
+}

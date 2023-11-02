@@ -1,1 +1,19 @@
-<p>fhi-month-range works!</p>
+<div class="fhi-month-range row">
+  <fieldset class="fhi-month-range__fieldset col-12 col-md-auto">
+    <legend class="fhi-month-range__legend">Fra</legend>
+    <fhi-month-selector
+      [labelYear]="labelYearFrom"
+      [labelMonth]="labelMonthFrom"
+    >
+    </fhi-month-selector>
+  </fieldset>
+
+  <fieldset class="fhi-month-range__fieldset col-12 col-md-6">
+    <legend class="fhi-month-range__legend">Til</legend>
+    <fhi-month-selector
+      [labelYear]="labelYearTo"
+      [labelMonth]="labelMonthTo"
+    >
+    </fhi-month-selector>
+  </fieldset>
+</div>
