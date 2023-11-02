@@ -120,7 +120,7 @@ export class FhiWeekpickerComponent {
   }
 
   private weekChangeActions() {
-    if (this.week === undefined || this.week === null) {
+    if (typeof this.week !== 'string') {
       this.week = '';
     }
     if (!this.weekValidatorService.isValidYearWeekString(this.week)) {
@@ -131,32 +131,28 @@ export class FhiWeekpickerComponent {
   }
 
   private maxWeekChangeActions() {
-    if (this.maxWeek === undefined || this.maxWeek === null) {
+    if (typeof this.maxWeek !== 'string') {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
-    const date = this.weekUtilityService.getMinDateOrMaxDateFromYearWeekString(this.maxWeek);
-
-    if (date !== null) {
-      this.maxDate = date;
-      this.weekUtilityService.setMaxDate(date);
-    } else {
+    if (!this.weekValidatorService.isValidYearWeekString(this.maxWeek)) {
       this.weekValidatorService.throwInputValueError('maxWeek');
+      return;
     }
+    this.maxDate = this.weekUtilityService.getDateFromValidYearWeekString(this.maxWeek);
+    this.weekUtilityService.setMaxDate(this.maxDate);
   }
 
   private minWeekChangeActions() {
-    if (this.minWeek === undefined || this.minWeek === null) {
+    if (typeof this.minWeek !== 'string') {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }
-    const date = this.weekUtilityService.getMinDateOrMaxDateFromYearWeekString(this.minWeek);
-
-    if (date !== null) {
-      this.minDate = date;
-      this.weekUtilityService.setMinDate(date);
-    } else {
+    if (!this.weekValidatorService.isValidYearWeekString(this.minWeek)) {
       this.weekValidatorService.throwInputValueError('minWeek');
+      return;
     }
+    this.minDate = this.weekUtilityService.getDateFromValidYearWeekString(this.minWeek);
+    this.weekUtilityService.setMaxDate(this.minDate);
   }
 }

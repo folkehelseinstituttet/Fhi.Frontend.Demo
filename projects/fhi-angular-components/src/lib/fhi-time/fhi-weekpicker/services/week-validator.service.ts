@@ -72,7 +72,6 @@ export class WeekValidatorService {
       return false;
     }
     if (value.length === 0) {
-      console.log('value.length === 0');
       return true;
     }
     if (value.length > 0 && value.length < 6) {
@@ -120,7 +119,7 @@ export class WeekValidatorService {
       return false;
     }
 
-    // Testing weekOutsideMaxOrMin
+    // TODO: Testing weekOutsideMaxOrMin
 
     // if (
     //   !this.isMinWeekOrMaxWeek &&
