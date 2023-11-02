@@ -4,15 +4,15 @@ import { CommonModule } from '@angular/common';
 import { getYear } from 'date-fns';
 
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
-import { WeekUtilityService } from '../fhi-weekpicker/services/week-utility.service';
-import { WeekValidatorService } from '../fhi-weekpicker/services/week-validator.service';
+// import { WeekUtilityService } from '../fhi-weekpicker/services/week-utility.service';
+// import { WeekValidatorService } from '../fhi-weekpicker/services/week-validator.service';
 
 @Component({
   selector: 'fhi-week-range',
   standalone: true,
   templateUrl: './fhi-week-range.component.html',
   imports: [ CommonModule, FhiWeekpickerComponent ],
-  providers: [ WeekValidatorService, WeekUtilityService ]
+  // providers: [ WeekValidatorService, WeekUtilityService ]
 })
 export class FhiWeekRangeComponent {
   @Input() weekFrom: string | null = null;
@@ -34,7 +34,7 @@ export class FhiWeekRangeComponent {
   selectedRange: any = { weekFrom: null, weekTo: null };
   
   constructor(
-    private weekUtilityService: WeekUtilityService
+    // private weekUtilityService: WeekUtilityService
   ) {}
 
   ngOnInit() {
@@ -82,17 +82,17 @@ export class FhiWeekRangeComponent {
   }
 
   private checkWeekRangeValidity() {
-    const fromNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekFrom);
-    const toNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekTo);
+    // const fromNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekFrom);
+    // const toNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekTo);
     
-    const fromDateTimestamp = new Date(fromNgbDateStruct.year + '-' + fromNgbDateStruct.month + '-' + fromNgbDateStruct.day).getTime();
-    const toDateTimestamp = new Date(toNgbDateStruct.year + '-' + toNgbDateStruct.month + '-' + toNgbDateStruct.day).getTime();
+    // const fromDateTimestamp = new Date(fromNgbDateStruct.year + '-' + fromNgbDateStruct.month + '-' + fromNgbDateStruct.day).getTime();
+    // const toDateTimestamp = new Date(toNgbDateStruct.year + '-' + toNgbDateStruct.month + '-' + toNgbDateStruct.day).getTime();
 
-    if (toDateTimestamp - fromDateTimestamp < 0) {
-      this.validRange = false;
-      this.weekRangeSelect.emit({ weekFrom: null, weekTo: null });
-    } else {
-      this.validRange = true;
-    }
+    // if (toDateTimestamp - fromDateTimestamp < 0) {
+    //   this.validRange = false;
+    //   this.weekRangeSelect.emit({ weekFrom: null, weekTo: null });
+    // } else {
+    //   this.validRange = true;
+    // }
   }
 }
