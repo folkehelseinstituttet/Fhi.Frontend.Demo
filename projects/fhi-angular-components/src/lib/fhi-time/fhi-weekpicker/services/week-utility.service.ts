@@ -80,15 +80,21 @@ export class WeekUtilityService {
     if (yearWeekString === null) {
       return null;
     }
+
+    // TODO: DRY!
     const parts = yearWeekString.split(this.weekSharedDataService.weekpickerDelimiter);
     const year = parseInt(parts[0], 10);
     const week = parseInt(parts[1], 10);
+
     return this.getDateFromYearWeek__NEW({ week, year });
   }
 
   getDateFromYearWeek__NEW(yearWeek: YearWeek): NgbDateStruct | null {
+
+    // TODO: DRY!
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
+
     return this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
   }
 

@@ -60,13 +60,7 @@ export class WeekValidatorService {
     return this.unvalidatedYearWeekString;
   }
 
-  isValidYearWeekString(value: string, isMinWeekOrMaxWeek = false): boolean {
-    this.errorMsg = undefined;
-
-    console.log('isValidYearWeekString(value):', value);
-
-    // Testing the string
-
+  validYearWeekStringLength(value: string): boolean {
     if (value.length === 0 && this.weekIsRequired) {
       this.updateErrorMsg(WeekErrorState.weekIsRequired);
       return false;
@@ -82,6 +76,18 @@ export class WeekValidatorService {
       this.updateErrorMsg(WeekErrorState.toManyCharacters);
       return false;
     }
+  }
+
+  isValidYearWeekString(value: string, isMinWeekOrMaxWeek = false): boolean {
+    this.errorMsg = undefined;
+
+    console.log('isValidYearWeekString(value):', value);
+
+
+    if (!this.validYearWeekStringLength(value)) {
+      return false;
+    }
+
 
     // Testing parts of the string
 
