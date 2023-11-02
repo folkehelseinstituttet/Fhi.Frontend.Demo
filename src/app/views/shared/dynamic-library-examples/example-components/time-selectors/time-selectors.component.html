@@ -62,6 +62,12 @@
   <!-- <p class="pt-4"><code>{{ monthSelected | json }}</code></p> -->
 </div>
 
+<div *ngIf="itemId === items.TimeSelectorMonthRange.id">
+  <fhi-month-range></fhi-month-range>
+
+  <!-- <p class="pt-4"><code>{{ monthSelected | json }}</code></p> -->
+</div>
+
 <div *ngIf="itemId === items.TimeSelectorYear.id">
   <fhi-year-selector
     [label]="'Velg år'"
