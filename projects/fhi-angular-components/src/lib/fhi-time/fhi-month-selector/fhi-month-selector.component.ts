@@ -27,7 +27,7 @@ export class FhiMonthSelectorComponent {
   @Input() month: number;
   @Input() year: string;
 
-  @Output() monthSelect = new EventEmitter<any>();
+  @Output() monthSelect = new EventEmitter<string>();
 
   monthList: FhiAutosuggestItem[] = [];
   monthNames: string[] = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
@@ -42,12 +42,13 @@ export class FhiMonthSelectorComponent {
   }
 
   onYearSelect(yearName: string) {
-    console.log(yearName);
+    this.year = yearName;
+    this.concatenateYearDate();
   }
 
   onSelectedMonth(monthId: number) {
     this.selectedMonth = this.monthList.find((month: FhiAutosuggestItem) => month.id === monthId);
-    console.log(this.selectedMonth);
+    this.concatenateYearDate();
   }
 
   private populateMonthList() {
@@ -61,6 +62,12 @@ export class FhiMonthSelectorComponent {
     }
     if (this.month) {
       this.selectedMonth = this.monthList.find((month: FhiAutosuggestItem) => month.id === this.month);
+    }
+  }
+
+  private concatenateYearDate() {
+    if (this.year && this.selectedMonth) {
+      this.monthSelect.emit(this.year + '-' + this.selectedMonth.id);
     }
   }
 }

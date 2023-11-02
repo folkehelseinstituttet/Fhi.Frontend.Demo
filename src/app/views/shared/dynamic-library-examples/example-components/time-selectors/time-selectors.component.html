@@ -57,10 +57,9 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonth.id">
-  <fhi-month-selector
-    [year]="'2000'"
-    [month]="4">
-  </fhi-month-selector>
+  <fhi-month-selector (monthSelect)="onMonthSelect($event)"></fhi-month-selector>
+
+  <!-- <p class="pt-4"><code>{{ monthSelected | json }}</code></p> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
