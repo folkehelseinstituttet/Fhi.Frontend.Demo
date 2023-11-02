@@ -135,7 +135,7 @@ export class FhiWeekpickerComponent {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
-    if (!this.weekValidatorService.isValidYearWeekString(this.maxWeek)) {
+    if (!this.weekValidatorService.isValidYearWeekString(this.maxWeek, true)) {
       this.weekValidatorService.throwInputValueError('maxWeek');
       return;
     }
@@ -148,7 +148,7 @@ export class FhiWeekpickerComponent {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }
-    if (!this.weekValidatorService.isValidYearWeekString(this.minWeek)) {
+    if (!this.weekValidatorService.isValidYearWeekString(this.minWeek, true)) {
       this.weekValidatorService.throwInputValueError('minWeek');
       return;
     }

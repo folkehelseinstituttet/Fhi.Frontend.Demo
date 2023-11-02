@@ -60,7 +60,7 @@ export class WeekValidatorService {
     return this.unvalidatedYearWeekString;
   }
 
-  isValidYearWeekString(value: string): boolean {
+  isValidYearWeekString(value: string, isMinWeekOrMaxWeek = false): boolean {
     this.errorMsg = undefined;
 
     console.log('isValidYearWeekString(value):', value);
@@ -122,7 +122,7 @@ export class WeekValidatorService {
     // TODO: Testing weekOutsideMaxOrMin
 
     // if (
-    //   !this.isMinWeekOrMaxWeek &&
+    //   !isMinWeekOrMaxWeek &&
     //   (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate))
     // ) {
     //   this.weekValidatorService.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
