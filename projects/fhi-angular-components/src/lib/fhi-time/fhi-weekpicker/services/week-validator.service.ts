@@ -60,7 +60,7 @@ export class WeekValidatorService {
     return this.unvalidatedYearWeekString;
   }
 
-  private validYearWeekStringLength(value: string): boolean {
+  private isValidYearWeekStringLength(value: string): boolean {
     if (value.length === 0 && this.weekIsRequired) {
       this.updateErrorMsg(WeekErrorState.weekIsRequired);
       return false;
@@ -76,20 +76,21 @@ export class WeekValidatorService {
       this.updateErrorMsg(WeekErrorState.toManyCharacters);
       return false;
     }
+    return true;
   }
 
-  private validYearWeekStringParts(value: string): boolean {
+  private isValidYearWeekStringParts(value: string): boolean {
     const parts = value.split(this.weekSharedDataService.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
       this.updateErrorMsg(WeekErrorState.notOneDelimiter);
       return false;
     }
-
     if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
       this.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return false;
     }
+    return true;
   }
 
   isValidYearWeekString(value: string, isMinWeekOrMaxWeek = false): boolean {
@@ -97,13 +98,10 @@ export class WeekValidatorService {
 
     console.log('isValidYearWeekString(value):', value);
 
-    if (!this.validYearWeekStringLength(value)) {
+    if (!this.isValidYearWeekStringLength(value)) {
       return false;
     }
-    if (!this.validYearWeekStringParts(value)) {
-      return false;
-    }
-    if (!this.validYearWeekStringParts(value)) {
+    if (!this.isValidYearWeekStringParts(value)) {
       return false;
     }
 
