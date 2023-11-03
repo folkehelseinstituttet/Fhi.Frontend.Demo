@@ -28,6 +28,7 @@ export class TimeSelectorsComponent {
   // weekSelected: string;
 
   yearSelected: string;
+  monthSelected: string;
 
   // weekList = [];
 
@@ -40,6 +41,10 @@ export class TimeSelectorsComponent {
 
   onYearSelect(year: string) {
     this.yearSelected = year;
+  }
+
+  onMonthSelect(yearMonth: string) {
+    this.monthSelected = yearMonth;
   }
 
   getDate(date: any) {

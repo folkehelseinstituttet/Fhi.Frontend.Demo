@@ -1,7 +1,8 @@
 # Unreleased
 
-> Oct 31, 2023
+> Nov 2, 2023
 
+* :gift: **New** Added Month selector
 * :gift: **New** Added Date Range selector
 * :gift: **New** Added Year Range selector
 * :gift: **New** Added Week Range selector
