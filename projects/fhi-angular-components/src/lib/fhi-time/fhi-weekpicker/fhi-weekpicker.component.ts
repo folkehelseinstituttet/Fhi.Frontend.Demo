@@ -107,35 +107,37 @@ export class FhiWeekpickerComponent {
   }
 
   private validateAndEmit() {
-    let date: NgbDateStruct;
     const week = this.weekValidatorService.getUnvalidatedYearWeekString();
+    const date = this.getValidDate(week);
 
-    if (this.weekValidatorService.isValidYearWeekString(week)) {
-      date = this.getDate();
-      this.isValid = true;
-    }
-    if (this.isValid && date !== null) {
-      this.isValid = this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date);
-    }
-    if (this.isValid) {
+    if (date !== undefined) {
       this.startDate = date;
+      this.isValid = true;
       this.weekSelect.emit(week);
       return;
     }
+    this.isValid = false;
     this.errorMsg = this.weekValidatorService.errorMsg;
   }
 
-  // private isValidDate(): boolean {
-  // }
-
   private weekChangeActions() {
-    let date: NgbDateStruct;
-    let isValid = false;
-
     if (typeof this.week !== 'string') {
       this.week = '';
     }
-    if (this.weekValidatorService.isValidYearWeekString(this.week)) {
+    const date = this.getValidDate(this.week);
+
+    if (date !== undefined) {
+      this.startDate = date;
+      return;
+    }
+    this.weekValidatorService.throwInputValueError('week');
+  }
+
+  private getValidDate(week: string): NgbDateStruct | null | undefined {
+    let date: NgbDateStruct;
+    let isValid = false;
+
+    if (this.weekValidatorService.isValidYearWeekString(week)) {
       date = this.getDate();
       isValid = true;
     }
@@ -143,10 +145,9 @@ export class FhiWeekpickerComponent {
       isValid = this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date);
     }
     if (isValid) {
-      this.startDate = date;
-      return;
+      return date;
     }
-    this.weekValidatorService.throwInputValueError('week');
+    return undefined;
   }
 
   private maxWeekChangeActions() {
