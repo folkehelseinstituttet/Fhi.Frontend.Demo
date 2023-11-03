@@ -21,12 +21,9 @@ export enum WeekErrorState {
 @Injectable()
 export class WeekValidatorService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
+  private errorMsg: string;
   private unvalidatedYearWeekString = '';
   private weekIsRequired = false;
-
-
-  errorMsg: string;
-
 
   constructor(
 
@@ -36,10 +33,6 @@ export class WeekValidatorService {
     private weekUtilityService: WeekUtilityService
   ) { }
 
-  updateErrorMsg(errorState: number) {
-    this.errorMsg = this.getErrorMsg(errorState);
-  }
-
   setUnvalidatedYearWeekString(value: string) {
     this.unvalidatedYearWeekString = value;
   }
@@ -48,6 +41,14 @@ export class WeekValidatorService {
     return this.unvalidatedYearWeekString;
   }
 
+  getInvalidFeedbackText(): string {
+    return this.errorMsg;
+  }
+
+
+  private updateErrorMsg(errorState: number) {
+    this.errorMsg = this.getErrorMsg(errorState);
+  }
 
   private isValidYearWeekStringLength(value: string): boolean {
     if (value.length === 0) {

@@ -55,7 +55,7 @@ export class FhiWeekpickerComponent {
   maxDate: NgbDateStruct;
   startDate!: NgbDateStruct;
   placeholder = FhiTimeConstants.weekpickerPlaceholder;
-  errorMsg!: string;
+  invalidFeedbackText!: string;
   isValid = true;
 
   constructor(
@@ -117,7 +117,7 @@ export class FhiWeekpickerComponent {
       return;
     }
     this.isValid = false;
-    this.errorMsg = this.weekValidatorService.errorMsg;
+    this.invalidFeedbackText = this.weekValidatorService.getInvalidFeedbackText();
   }
 
   private weekChangeActions() {
