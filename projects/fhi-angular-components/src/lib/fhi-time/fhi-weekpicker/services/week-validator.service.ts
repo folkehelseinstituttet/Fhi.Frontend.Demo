@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import { toNumber } from 'lodash-es';
 
-import { FhiTimeConstants } from "../../fhi-time-constants";
-import { YearWeek } from "../year-week.model";
-import { WeekUtilityService } from "./week-utility.service";
-import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { FhiTimeConstants } from '../../fhi-time-constants';
+import { YearWeek } from '../year-week.model';
+import { WeekUtilityService } from './week-utility.service';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 export enum WeekErrorState {
   toManyCharacters = 1,
@@ -40,9 +40,40 @@ export class WeekValidatorService {
     return this.errorMsg;
   }
 
+  isValidYearWeekString(value: string): boolean {
+    this.errorMsg = undefined;
 
-  private updateErrorMsg(errorState: number) {
-    this.errorMsg = this.getErrorMsg(errorState);
+    if (value.length === 0 && !this.weekIsRequired) {
+      this.weekUtilityService.setValidYearWeekString('');
+      return true;
+    }
+    if (!this.isValidYearWeekStringLength(value)) {
+      return false;
+    }
+    if (!this.isValidYearWeekStringParts(value)) {
+      return false;
+    }
+    if (!this.isValidYearWeekObject(value)) {
+      return false;
+    }
+    this.weekUtilityService.setValidYearWeekString(value);
+    return true;
+  }
+
+  weekWithinMaxWeekAndMinWeek(date: NgbDateStruct | null): boolean {
+    if (this.weekUtilityService.isOutsideMaxOrMin(date)) {
+      this.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
+      return false;
+    }
+    return true;
+  }
+
+  throwInputValueError(inputName: string) {
+    throw new Error(`
+The following input has either wrong format, or an illegal value:
+@Input() ${inputName}\n
+Error message if user input for week had been the cause of the error:
+"${this.errorMsg}"\n`);
   }
 
   private isValidYearWeekStringLength(value: string): boolean {
@@ -61,28 +92,7 @@ export class WeekValidatorService {
     return true;
   }
 
-
-  isValidYearWeekString(value: string): boolean {
-    this.errorMsg = undefined;
-
-
-    console.log('isValidYearWeekString(value):', value);
-
-
-    // Accepting string length 0 if week is not required
-    if (value.length === 0 && !this.weekIsRequired) {
-      this.weekUtilityService.setValidYearWeekString('');
-      return true;
-    }
-
-    if (!this.isValidYearWeekStringLength(value)) {
-      return false;
-    }
-
-
-
-    // Testing parts of the string
-
+  private isValidYearWeekStringParts(value: string): boolean {
     const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
@@ -93,52 +103,32 @@ export class WeekValidatorService {
       this.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
       return false;
     }
+    return true;
+  }
 
-    // Testing the yearWeekObject
-
+  private isValidYearWeekObject(value: string): boolean {
+    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
     const yearWeek: YearWeek =  {
       year: parseInt(parts[0], 10),
       week: parseInt(parts[1], 10)
     };
-    
     if (yearWeek.week < 1 || yearWeek.week > 53) {
       this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
       return false;
     }
-    this.weekUtilityService.setValidYearWeek(yearWeek);
-
-    // Testing lastWeekCurrentYear
-
-    // TODO: This is not optimal...
-    const lastWeekCurrentYear = this.weekUtilityService.getLastWeekCurrentYear(yearWeek.year);
-
-    if (yearWeek.week === 53 && lastWeekCurrentYear !== 53) {
+    if (
+      this.weekUtilityService.getLastWeekCurrentYear(yearWeek.year) !== 53 &&
+      yearWeek.week === 53
+    ) {
       this.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
       return false;
     }
-
-
-    this.weekUtilityService.setValidYearWeekString(value);
+    this.weekUtilityService.setValidYearWeek(yearWeek);
     return true;
   }
 
-  weekWithinMaxWeekAndMinWeek(date: NgbDateStruct | null): boolean {
-
-    // console.log('this.weekUtilityService.getIsOutsideMaxOrMin(date)', this.weekUtilityService.isOutsideMaxOrMin(date));
-
-    if (this.weekUtilityService.isOutsideMaxOrMin(date)) {
-      this.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
-      return false;
-    }
-    return true;
-  }
-
-  throwInputValueError(inputName: string) {
-    throw new Error(`
-The following input has either wrong format, or an illegal value:
-@Input() ${inputName}\n
-Error message if user input for week had been the cause of the error:
-"${this.errorMsg}"\n`);
+  private updateErrorMsg(errorState: number) {
+    this.errorMsg = this.getErrorMsg(errorState);
   }
 
   private getErrorMsg(errorState: number): string {
