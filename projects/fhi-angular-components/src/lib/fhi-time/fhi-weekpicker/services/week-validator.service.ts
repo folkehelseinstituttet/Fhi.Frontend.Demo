@@ -18,7 +18,7 @@ export enum WeekErrorState {
 }
 
 @Injectable()
-export class WeekValidatorService {
+export class WeekValidationService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private errorMsg: string;
   private unvalidatedYearWeekString = '';

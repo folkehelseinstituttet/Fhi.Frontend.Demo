@@ -13,7 +13,7 @@ import {
 import { FhiDatepickerI18nService } from "../fhi-datepicker-i18n.service";
 import { WeekParserFormatterService } from "./services/week-parser-formatter.service";
 import { WeekAdapterService } from "./services/week-adapter.service";
-import { WeekValidatorService } from "./services/week-validator.service";
+import { WeekValidationService } from "./services/week-validator.service";
 import { FhiTimeConstants } from "../fhi-time-constants";
 import { WeekUtilityService } from "./services/week-utility.service";
 
@@ -24,7 +24,7 @@ import { WeekUtilityService } from "./services/week-utility.service";
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
-    WeekValidatorService,
+    WeekValidationService,
     WeekUtilityService,
     {
       provide: NgbDatepickerI18n,
@@ -57,7 +57,7 @@ export class FhiWeekpickerComponent {
   isValid = true;
 
   constructor(
-    private weekValidatorService: WeekValidatorService,
+    private weekValidationService: WeekValidationService,
     private weekUtilityService: WeekUtilityService
   ) { }
 
@@ -105,7 +105,7 @@ export class FhiWeekpickerComponent {
   }
 
   private validateAndEmit() {
-    const week = this.weekValidatorService.getUnvalidatedYearWeekString();
+    const week = this.weekValidationService.getUnvalidatedYearWeekString();
     const date = this.getValidDate(week);
 
     if (date !== undefined) {
@@ -115,7 +115,7 @@ export class FhiWeekpickerComponent {
       return;
     }
     this.isValid = false;
-    this.invalidFeedbackText = this.weekValidatorService.getInvalidFeedbackText();
+    this.invalidFeedbackText = this.weekValidationService.getInvalidFeedbackText();
   }
 
   private weekChangeActions() {
@@ -128,19 +128,19 @@ export class FhiWeekpickerComponent {
       this.startDate = date;
       return;
     }
-    this.weekValidatorService.throwInputValueError('week');
+    this.weekValidationService.throwInputValueError('week');
   }
 
   private getValidDate(week: string): NgbDateStruct | null | undefined {
     let date: NgbDateStruct;
     let isValid = false;
 
-    if (this.weekValidatorService.isValidYearWeekString(week)) {
+    if (this.weekValidationService.isValidYearWeekString(week)) {
       date = this.getDate();
       isValid = true;
     }
     if (isValid && date !== null) {
-      isValid = this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date);
+      isValid = this.weekValidationService.weekWithinMaxWeekAndMinWeek(date);
     }
     if (isValid) {
       return date;
@@ -153,12 +153,12 @@ export class FhiWeekpickerComponent {
       this.maxDate = this.weekUtilityService.getMaxDate();
       return;
     }
-    if (this.weekValidatorService.isValidYearWeekString(this.maxWeek)) {
+    if (this.weekValidationService.isValidYearWeekString(this.maxWeek)) {
       this.maxDate = this.getDate();
       this.weekUtilityService.setMaxDate(this.maxDate);
       return;
     }
-    this.weekValidatorService.throwInputValueError('maxWeek');
+    this.weekValidationService.throwInputValueError('maxWeek');
   }
 
   private minWeekChangeActions() {
@@ -166,12 +166,12 @@ export class FhiWeekpickerComponent {
       this.minDate = this.weekUtilityService.getMinDate();
       return;
     }
-    if (this.weekValidatorService.isValidYearWeekString(this.minWeek)) {
+    if (this.weekValidationService.isValidYearWeekString(this.minWeek)) {
       this.minDate = this.getDate();
       this.weekUtilityService.setMinDate(this.minDate);
       return;
     }
-    this.weekValidatorService.throwInputValueError('minWeek');
+    this.weekValidationService.throwInputValueError('minWeek');
   }
 
   private getDate(): NgbDateStruct | null {

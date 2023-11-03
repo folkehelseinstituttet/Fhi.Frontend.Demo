@@ -4,7 +4,7 @@ import {
   NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { WeekValidatorService } from './week-validator.service';
+import { WeekValidationService } from './week-validator.service';
 import { WeekUtilityService } from './week-utility.service';
 
 /**
@@ -13,7 +13,7 @@ import { WeekUtilityService } from './week-utility.service';
 @Injectable()
 export class WeekParserFormatterService extends NgbDateParserFormatter {
   constructor(
-    private weekValidatorService: WeekValidatorService,
+    private weekValidationService: WeekValidationService,
     private utilityService: WeekUtilityService
   ) {
     super();
@@ -21,7 +21,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
 
   parse(value: string): NgbDateStruct | null {
     // console.warn('parse(value):', value);
-    this.weekValidatorService.setUnvalidatedYearWeekString(value);
+    this.weekValidationService.setUnvalidatedYearWeekString(value);
     return null;
   }
 
