@@ -14,8 +14,6 @@ export class WeekUtilityService {
   private validYearWeek!: YearWeek;
   private validYearWeekString!: string;
 
-
-  // TODO: This is not optimal...
   getLastWeekCurrentYear(year: number): number {
     this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
     this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
