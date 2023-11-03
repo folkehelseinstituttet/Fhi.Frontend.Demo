@@ -59,10 +59,6 @@ export class TimeSelectorsComponent {
     this.selectedDateAndTime = dateAndTime;
   }
 
-  getWeekRange(weekRange: any) {
-    this.weekRange = weekRange;
-  }
-
   // getTheWeek(week: any) {
   //   console.log(week);
   //   this.weekSelected = week;
@@ -80,6 +76,10 @@ export class TimeSelectorsComponent {
 
   onWeekSelect(week: any) {
     console.info(week);
+  }
+
+  onWeekRangeSelect(weekRange: any) {
+    console.info(weekRange);
   }
 
 }

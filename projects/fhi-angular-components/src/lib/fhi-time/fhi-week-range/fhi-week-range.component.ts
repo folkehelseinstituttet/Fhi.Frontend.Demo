@@ -4,42 +4,44 @@ import { CommonModule } from '@angular/common';
 import { getYear } from 'date-fns';
 
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
-// import { WeekUtilityService } from '../fhi-weekpicker/services/week-utility.service';
-// import { WeekValidatorService } from '../fhi-weekpicker/services/week-validator.service';
+import { FhiTimeConstants } from '../fhi-time-constants';
+import { WeekRange } from './week-range.model';
 
 @Component({
   selector: 'fhi-week-range',
   standalone: true,
   templateUrl: './fhi-week-range.component.html',
   imports: [ CommonModule, FhiWeekpickerComponent ],
-  // providers: [ WeekValidatorService, WeekUtilityService ]
 })
 export class FhiWeekRangeComponent {
-  @Input() weekFrom: string | null = null;
-  @Input() weekTo: string | null = null;
+  @Input() weekFrom: string;
+  @Input() weekTo: string;
   @Input() labelWeekFrom: string = 'Fra uke';
   @Input() labelWeekTo: string = 'Til uke';
   @Input() maxWeek: string = getYear(new Date()) + 1 + '-52';
   @Input() minWeek: string = '1900-1';
 
-  @Output() weekRangeSelect = new EventEmitter<Object>();
+  @Output() weekRangeSelect = new EventEmitter<WeekRange>();
 
-  fromWeekId: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
+  idFrom: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
+  idTo: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
+
   maxWeekFrom: string;
   maxWeekTo: string;
+
   minWeekFrom: string;
   minWeekTo: string;
-  toWeekId: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
-  validRange: boolean = true;
-  selectedRange: any = { weekFrom: null, weekTo: null };
-  
-  constructor(
-    // private weekUtilityService: WeekUtilityService
-  ) {}
+
+  selectedRange: WeekRange = {
+    weekFrom: undefined,
+    weekTo: undefined
+  };
+  isValid = true;
 
   ngOnInit() {
     this.maxWeekFrom = this.maxWeek;
     this.maxWeekTo = this.maxWeek;
+
     this.minWeekFrom = this.minWeek;
     this.minWeekTo = this.minWeek;
 
@@ -51,48 +53,61 @@ export class FhiWeekRangeComponent {
       this.maxWeekFrom = this.weekTo;
       this.selectedRange.weekTo = this.weekTo;
     }
-    if (this.weekFrom && this.weekTo) {
-      this.checkWeekRangeValidity();
-    }
-  }
 
-  fromWeekSelect(event: string) {
-    console.log('fromWeekSelect', event);
-    this.weekFrom = event;
-    this.minWeekTo = this.weekFrom;
-    if (this.weekTo) {
-      this.checkWeekRangeValidity();
-    }
-    if (this.validRange && this.weekTo) {
-      this.selectedRange.weekFrom = event;
-      this.weekRangeSelect.emit(this.selectedRange);
-    }
-  }
-  toWeekSelect(event: string) {
-    console.log('toWeekSelect', event);
-    this.weekTo = event;
-    this.maxWeekFrom = this.weekTo;
-    if (this.weekFrom) {
-      this.checkWeekRangeValidity();
-    }
-    if (this.validRange && this.weekFrom) {
-      this.selectedRange.weekTo = event;
-      this.weekRangeSelect.emit(this.selectedRange);
-    }
-  }
-
-  private checkWeekRangeValidity() {
-    // const fromNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekFrom);
-    // const toNgbDateStruct = this.weekUtilityService.getDateFromYearWeekString(this.weekTo);
-    
-    // const fromDateTimestamp = new Date(fromNgbDateStruct.year + '-' + fromNgbDateStruct.month + '-' + fromNgbDateStruct.day).getTime();
-    // const toDateTimestamp = new Date(toNgbDateStruct.year + '-' + toNgbDateStruct.month + '-' + toNgbDateStruct.day).getTime();
-
-    // if (toDateTimestamp - fromDateTimestamp < 0) {
-    //   this.validRange = false;
-    //   this.weekRangeSelect.emit({ weekFrom: null, weekTo: null });
-    // } else {
-    //   this.validRange = true;
+    // TODO: validating input should only throw errors
+    //       - it's something wrong in the system, the user hasn't done anyting wrong
+    // if (this.weekFrom && this.weekTo) {
+    //   this.checkWeekRangeValidity();
     // }
+  }
+
+  // TODO: change actions
+  // ngOnChanges(changes: SimpleChanges) {
+  // }
+
+
+  onWeekFromSelect(yearWeek: string) {
+    this.weekFrom = yearWeek;
+    this.minWeekTo = yearWeek;
+    this.selectedRange.weekFrom = yearWeek;
+
+    if (this.weekTo) {
+      this.isValid =this.isValidWeekRange();
+    }
+    if (this.isValid && this.weekTo) {
+      this.weekRangeSelect.emit(this.selectedRange);
+    }
+  }
+
+  onWeekToSelect(yearWeek: string) {
+    this.weekTo = yearWeek;
+    this.maxWeekFrom = yearWeek;
+    this.selectedRange.weekTo = yearWeek;
+
+    if (this.weekFrom) {
+      this.isValid =this.isValidWeekRange();
+    }
+    if (this.isValid && this.weekFrom) {
+      this.weekRangeSelect.emit(this.selectedRange);
+    }
+  }
+
+  private isValidWeekRange(): boolean {
+    const yearWeekTo = this.getYearWeekAsNumber(this.weekTo);
+    const yearWeekFrom = this.getYearWeekAsNumber(this.weekFrom);
+
+    if (yearWeekTo - yearWeekFrom < 0) {
+      return false;
+    }
+    return true;
+  }
+
+  private getYearWeekAsNumber(yearWeek: string): number {
+    let yearWeekAsNumber: number;
+    const parts = yearWeek.split(FhiTimeConstants.weekpickerDelimiter);
+    const year = parseInt(parts[0], 10);
+    const week = parseInt(parts[1], 10);
+    yearWeekAsNumber = year * 100 + week;
+    return yearWeekAsNumber;
   }
 }
