@@ -86,7 +86,10 @@ export class FhiWeekpickerComponent {
   }
 
   onDateSelect(date: NgbDateStruct) {
-    this.validateAndEmit(date);
+    const week = this.weekUtilityService.getYearWeekStringFromDate(date);
+    this.startDate = date;
+    this.isValid = true;
+    this.weekSelect.emit(week);
   }
 
   onBlur() {
@@ -103,26 +106,27 @@ export class FhiWeekpickerComponent {
     }
   }
 
-  private validateAndEmit(date?: NgbDateStruct) {
-    let week: string;
+  private validateAndEmit() {
+    let date: NgbDateStruct;
+    const week = this.weekValidatorService.getUnvalidatedYearWeekString();
 
-    if (date) {
-      week = this.weekUtilityService.getYearWeekStringFromDate(date);
-      this.isValid = true;
-    } else {
-      week = this.weekValidatorService.getUnvalidatedYearWeekString();
-      this.isValid = this.weekValidatorService.isValidYearWeekString(week);
+    if (this.weekValidatorService.isValidYearWeekString(week)) {
       date = this.getDate();
+      this.isValid = true;
     }
-
-    if (this.isValid && this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date)) {
+    if (this.isValid && date !== null) {
+      this.isValid = this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date);
+    }
+    if (this.isValid) {
       this.startDate = date;
       this.weekSelect.emit(week);
-    } else {
-      this.isValid = false;
-      this.errorMsg = this.weekValidatorService.errorMsg;
+      return;
     }
+    this.errorMsg = this.weekValidatorService.errorMsg;
   }
+
+  // private isValidDate(): boolean {
+  // }
 
   private weekChangeActions() {
     let date: NgbDateStruct;
@@ -135,9 +139,6 @@ export class FhiWeekpickerComponent {
       date = this.getDate();
       isValid = true;
     }
-
-    // console.log('weekChangeActions() -> date', date);
-
     if (isValid && date !== null) {
       isValid = this.weekValidatorService.weekWithinMaxWeekAndMinWeek(date);
     }

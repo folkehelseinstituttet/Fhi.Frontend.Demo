@@ -72,6 +72,7 @@ export class WeekUtilityService {
     };
   }
 
+  // TODO: check that all boolean methods starts with "is", like this one
   isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
     // console.log('this.maxDate', this.maxDate);
     // console.log('this.minDate', this.minDate);
