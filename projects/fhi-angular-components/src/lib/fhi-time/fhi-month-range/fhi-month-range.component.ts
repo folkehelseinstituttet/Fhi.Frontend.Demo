@@ -12,6 +12,8 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
   providers: [ FhiConstantsService ]
 })
 export class FhiMonthRangeComponent {
+  @Input() fieldsetLegendFrom: string = 'Fra';
+  @Input() fieldsetLegendTo: string = 'Til';
   @Input() labelMonthFrom: string = 'måned';
   @Input() labelMonthTo: string = 'måned';
   @Input() labelYearFrom: string = 'år';

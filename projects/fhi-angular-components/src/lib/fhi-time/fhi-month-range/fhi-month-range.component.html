@@ -1,6 +1,6 @@
 <div class="fhi-month-range row">
   <fieldset class="fhi-month-range__fieldset col-12 col-md-auto">
-    <legend class="fhi-month-range__legend">Fra</legend>
+    <legend class="fhi-month-range__legend">{{ fieldsetLegendFrom }}</legend>
     <fhi-month-selector
       [labelYear]="labelYearFrom"
       [labelMonth]="labelMonthFrom"
@@ -8,12 +8,12 @@
     </fhi-month-selector>
   </fieldset>
 
-  <span class="col-auto">
-    <span>&ndash;</span>
+  <span class="fhi-month-range__divider col-auto px-0">
+    <span class="fhi-month-range__divider-dash">&ndash;</span>
   </span>
 
   <fieldset class="fhi-month-range__fieldset col-12 col-md-6">
-    <legend class="fhi-month-range__legend">Til</legend>
+    <legend class="fhi-month-range__legend">{{ fieldsetLegendTo }}</legend>
     <fhi-month-selector
       [labelYear]="labelYearTo"
       [labelMonth]="labelMonthTo"
