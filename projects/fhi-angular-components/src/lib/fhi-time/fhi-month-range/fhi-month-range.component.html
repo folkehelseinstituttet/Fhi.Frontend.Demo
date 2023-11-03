@@ -4,6 +4,9 @@
     <fhi-month-selector
       [labelYear]="labelYearFrom"
       [labelMonth]="labelMonthFrom"
+      [minYear]="minYear"
+      [maxYear]="maxYearFrom"
+      (monthSelect)="onMonthFromSelect($event)"
     >
     </fhi-month-selector>
   </fieldset>
@@ -17,6 +20,9 @@
     <fhi-month-selector
       [labelYear]="labelYearTo"
       [labelMonth]="labelMonthTo"
+      [minYear]="minYearTo"
+      [maxYear]="maxYear"
+      (monthSelect)="onMonthToSelect($event)"
     >
     </fhi-month-selector>
   </fieldset>

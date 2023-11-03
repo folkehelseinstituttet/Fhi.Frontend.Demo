@@ -21,5 +21,21 @@ export class FhiMonthRangeComponent {
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
+  maxYearFrom: number;
+  minYearTo: number;
+
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
+
+  ngOnInit() {
+    this.maxYearFrom = this.maxYear;
+    this.minYearTo = this.minYear;
+  }
+
+  onMonthFromSelect(event: any) {
+    console.log('from:', event);
+  }
+
+  onMonthToSelect(event: any) {
+    console.log('to:', event);
+  }
 }
