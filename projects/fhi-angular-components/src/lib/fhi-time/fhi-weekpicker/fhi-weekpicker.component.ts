@@ -73,10 +73,11 @@ export class FhiWeekpickerComponent {
   }
 
   onDateSelect(date: NgbDateStruct) {
-    const week = this.weekUtilityService.getYearWeekStringFromDate(date);
-    this.startDate = date;
     this.isValid = true;
-    this.weekSelect.emit(week);
+    this.startDate = date;
+    this.weekSelect.emit(
+      this.weekUtilityService.getYearWeekStringFromDate(date)
+    );
   }
 
   onBlur() {
