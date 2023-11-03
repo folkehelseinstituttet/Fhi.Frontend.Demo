@@ -5,12 +5,13 @@
 <!-- NB! Updates to FhiAutosuggest is not ready for release -->
 * :boom: **Breaking** Updates to `FhiAutosuggest`
 
-* :gift: **New** Add `FhiWeekpickerComponent`
-* :gift: **New** Added Year Range selector
-* :gift: **New** Added Week Range selector
+* :gift: **New** Add Date Range selector
+* :gift: **New** Add Weekpicker
+* :gift: **New** Add Year Range selector
+* :gift: **New** Add Week Range selector
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
 * :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
-* :gift: **New** Add `FhiDatepickerModule`
+* :gift: **New** Add DatepickerModule
 * :tada: **Enhancement** Update peerDependencies
 
 ## 1.1.1

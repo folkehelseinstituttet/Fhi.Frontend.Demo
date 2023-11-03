@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FhiAutosuggestModule } from './fhi-autosuggest/fhi-autosuggest.module';
 import { FhiDateAndTimeModule } from './fhi-date-and-time/fhi-date-and-time.module';
 import { FhiDatepickerModule } from './fhi-datepicker/fhi-datepicker.module';
+import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
@@ -17,6 +18,7 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
   FhiDateAndTimeModule,
   FhiDatepickerModule,
+  FhiDateRangeComponent,
   FhiMultiselectModule,
   FhiTableModule,
   FhiTreeViewNavigationModule,
