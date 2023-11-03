@@ -1,10 +1,11 @@
 # Unreleased
 
-> Oct 31, 2023
+> Nov 2, 2023
 
 <!-- NB! Updates to FhiAutosuggest is not ready for release -->
 * :boom: **Breaking** Updates to `FhiAutosuggest`
 
+* :gift: **New** Added Month selector
 * :gift: **New** Add Date Range selector
 * :gift: **New** Add Weekpicker
 * :gift: **New** Add Year Range selector
