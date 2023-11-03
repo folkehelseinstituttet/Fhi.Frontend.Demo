@@ -10,10 +10,33 @@ import { WeekSharedDataService } from './week-shared-data.service';
 export class WeekUtilityService {
   private maxDate = this.getInitMaxDate();
   private minDate = this.getInitMinDate();
+  private lastDayCurrentYear!: Date;
+  private lastWeekCurrentYear!: number;
+  private validYearWeek!: YearWeek;
+  private validYearWeekString!: string;
+
+  // get validYearWeekString(): string {
+  //   return this._validYearWeekString;
+  // }
 
   constructor(
     private weekSharedDataService: WeekSharedDataService,
   ) { }
+
+  // TODO: This is not optimal...
+  getLastWeekCurrentYear(year: number): number {
+    this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
+    this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
+    return this.lastWeekCurrentYear;
+  }
+
+  setValidYearWeek(yearWeek: YearWeek) {
+    this.validYearWeek = yearWeek;
+  }
+
+  setValidYearWeekString(value: string) {
+    this.validYearWeekString = value;
+  }
 
   getMaxDate(): NgbDateStruct {
     return this.maxDate;
@@ -43,10 +66,16 @@ export class WeekUtilityService {
   getInitMinDate(): NgbDateStruct {
     const date = new Date(1900, 0);
     return {
-      year: date.getFullYear() + 1,
+      year: date.getFullYear(),
       month: date.getMonth() + 1,
       day: date.getDate()
     };
+  }
+
+  isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
+    // console.log('this.maxDate', this.maxDate);
+    // console.log('this.minDate', this.minDate);
+    return (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate));
   }
 
   getYearWeek(date: Date): YearWeek {
@@ -73,32 +102,24 @@ export class WeekUtilityService {
     return `${yearWeek.year}${this.weekSharedDataService.weekpickerDelimiter}${yearWeek.week}`;
   }
 
-  getDateFromValidYearWeekString(yearWeekString: string): NgbDateStruct | null {
-
-    // TODO: add a guard for yearWeekString not valid!
-
-    if (yearWeekString === null) {
+  getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
+    if (this.validYearWeekString === undefined) {
+      throw new Error(`WeekUtilityService.getDateAfterValidatinYearWeekString() is called before yearWeekString is validated.`);
+    }
+    if (this.validYearWeekString === '') {
       return null;
     }
-
-    // TODO: DRY!
-    const parts = yearWeekString.split(this.weekSharedDataService.weekpickerDelimiter);
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
-
-    return this.getDateFromYearWeek__NEW({ week, year });
+    return this.getDate(this.validYearWeek, this.lastWeekCurrentYear, this.lastDayCurrentYear);
+    // TODO: is a reset needed? this.validYearWeekString = undefined
   }
 
-  getDateFromYearWeek__NEW(yearWeek: YearWeek): NgbDateStruct | null {
-
-    // TODO: DRY!
+  getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
-
-    return this.getDate(lastWeekCurrentYear, yearWeek, lastDayCurrentYear);
+    return this.getDate(yearWeek, lastWeekCurrentYear, lastDayCurrentYear);
   }
 
-  private getDate(lastWeekCurrentYear: number, yearWeek: YearWeek, lastDayCurrentYear: Date): NgbDateStruct {
+  private getDate(yearWeek: YearWeek, lastWeekCurrentYear: number, lastDayCurrentYear: Date): NgbDateStruct {
     const weekDiffInMilliseconds = this.getWeekDiffInMilliseconds(
       yearWeek.week, lastDayCurrentYear.getDay(), lastWeekCurrentYear
     );
