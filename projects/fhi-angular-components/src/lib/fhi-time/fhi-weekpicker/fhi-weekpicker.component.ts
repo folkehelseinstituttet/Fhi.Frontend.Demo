@@ -1,25 +1,18 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, SimpleChanges } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbDatepickerI18n, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-  NgbDateAdapter,
-  NgbDateParserFormatter,
-  NgbDateStruct,
-  NgbDatepickerI18n,
-  NgbDatepickerModule,
-} from "@ng-bootstrap/ng-bootstrap";
-
-import { FhiDatepickerI18nService } from "../fhi-datepicker-i18n.service";
-import { WeekParserFormatterService } from "./services/week-parser-formatter.service";
-import { WeekAdapterService } from "./services/week-adapter.service";
-import { WeekValidationService } from "./services/week-validator.service";
-import { FhiTimeConstants } from "../fhi-time-constants";
-import { WeekUtilityService } from "./services/week-utility.service";
+import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
+import { WeekParserFormatterService } from './services/week-parser-formatter.service';
+import { WeekAdapterService } from './services/week-adapter.service';
+import { WeekValidationService } from './services/week-validator.service';
+import { FhiTimeConstants } from '../fhi-time-constants';
+import { WeekUtilityService } from './services/week-utility.service';
 
 @Component({
-  selector: "fhi-weekpicker",
-  templateUrl: "./fhi-weekpicker.component.html",
+  selector: 'fhi-weekpicker',
+  templateUrl: './fhi-weekpicker.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
@@ -63,11 +56,7 @@ export class FhiWeekpickerComponent {
 
   ngOnInit() {
     this.maxWeekChangeActions();
-    // console.log('1.this.maxDate', this.maxDate);
-    // console.log('1.this.minDate', this.minDate);
     this.minWeekChangeActions();
-    // console.log('2.this.maxDate', this.maxDate);
-    // console.log('2.this.minDate', this.minDate);
     this.weekChangeActions();
   }
 
