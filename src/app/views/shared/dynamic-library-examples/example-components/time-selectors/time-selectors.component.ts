@@ -16,11 +16,10 @@ export class TimeSelectorsComponent {
   today = new Date().toISOString();
   selectedDate = this.today;
   selectedDateAndTime: string;
-
+  selectedDateRange: any;
   selectedFromYear: number;
   selectedToYear: number;
   selectedYear: number;
-
   selectedYearRange: any;
   weekFrom: string = '2010-27';
   weekTo: string = '2013-13';
@@ -45,6 +44,10 @@ export class TimeSelectorsComponent {
 
   getDate(date: any) {
     this.selectedDate = date;
+  }
+
+  getDateRange(dateRange: any) {
+    this.selectedDateRange = dateRange;
   }
   
   getDateAndTime(dateAndTime: any) {
