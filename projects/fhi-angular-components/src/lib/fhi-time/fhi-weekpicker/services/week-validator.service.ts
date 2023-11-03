@@ -3,7 +3,6 @@ import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from "../../fhi-time-constants";
 import { YearWeek } from "../year-week.model";
-import { WeekSharedDataService } from "./week-shared-data.service";
 import { WeekUtilityService } from "./week-utility.service";
 import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
 
@@ -26,10 +25,6 @@ export class WeekValidatorService {
   private weekIsRequired = false;
 
   constructor(
-
-    // TODO: use FhiTimeConstants instead unless some realy good reason for keeping WeekSharedDataService
-    private weekSharedDataService: WeekSharedDataService,
-  
     private weekUtilityService: WeekUtilityService
   ) { }
 
@@ -88,7 +83,7 @@ export class WeekValidatorService {
 
     // Testing parts of the string
 
-    const parts = value.split(this.weekSharedDataService.weekpickerDelimiter);
+    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
       this.updateErrorMsg(WeekErrorState.notOneDelimiter);

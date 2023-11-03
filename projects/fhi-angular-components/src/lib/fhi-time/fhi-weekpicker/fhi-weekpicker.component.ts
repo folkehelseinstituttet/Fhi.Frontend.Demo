@@ -16,7 +16,6 @@ import { WeekAdapterService } from "./services/week-adapter.service";
 import { WeekValidatorService } from "./services/week-validator.service";
 import { FhiTimeConstants } from "../fhi-time-constants";
 import { WeekUtilityService } from "./services/week-utility.service";
-import { WeekSharedDataService } from "./services/week-shared-data.service";
 
 @Component({
   selector: "fhi-weekpicker",
@@ -25,7 +24,6 @@ import { WeekSharedDataService } from "./services/week-shared-data.service";
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
-    WeekSharedDataService,
     WeekValidatorService,
     WeekUtilityService,
     {

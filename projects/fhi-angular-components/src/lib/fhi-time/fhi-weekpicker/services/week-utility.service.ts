@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
-import { toNumber } from 'lodash-es';
 
+import { FhiTimeConstants } from "../../fhi-time-constants";
 import { YearWeek } from '../year-week.model';
-import { WeekSharedDataService } from './week-shared-data.service';
 
 @Injectable()
 export class WeekUtilityService {
@@ -15,13 +14,6 @@ export class WeekUtilityService {
   private validYearWeek!: YearWeek;
   private validYearWeekString!: string;
 
-  // get validYearWeekString(): string {
-  //   return this._validYearWeekString;
-  // }
-
-  constructor(
-    private weekSharedDataService: WeekSharedDataService,
-  ) { }
 
   // TODO: This is not optimal...
   getLastWeekCurrentYear(year: number): number {
@@ -100,7 +92,7 @@ export class WeekUtilityService {
     }
     const jsDate = new Date(date.year, date.month - 1, date.day);
     const yearWeek = this.getYearWeek(jsDate);
-    return `${yearWeek.year}${this.weekSharedDataService.weekpickerDelimiter}${yearWeek.week}`;
+    return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
   getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
