@@ -97,6 +97,12 @@ export class FhiWeekpickerComponent {
     this.validateAndEmit();
   }
 
+  onFocus() {
+    if (!this.isValid) {
+      this.isValid = true;
+    }
+  }
+
   private validateAndEmit(date?: NgbDateStruct) {
     let week: string;
 

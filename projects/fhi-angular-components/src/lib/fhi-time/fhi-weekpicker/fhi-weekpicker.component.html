@@ -25,6 +25,7 @@
       [minDate]="minDate"
       [startDate]="startDate"
       [value]="week"
+      (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"
       (dateSelect)="onDateSelect($event)"
