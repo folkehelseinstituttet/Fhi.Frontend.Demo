@@ -64,11 +64,11 @@ export class WeekUtilityService {
     };
   }
 
-  // TODO: check that all boolean methods starts with "is", like this one
   isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
-    // console.log('this.maxDate', this.maxDate);
-    // console.log('this.minDate', this.minDate);
-    return (NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate));
+    return (
+      NgbDate.from(date).before(this.minDate) || 
+      NgbDate.from(date).after(this.maxDate)
+    );
   }
 
   getYearWeek(date: Date): YearWeek {
@@ -102,8 +102,9 @@ export class WeekUtilityService {
     if (this.validYearWeekString === '') {
       return null;
     }
-    return this.getDate(this.validYearWeek, this.lastWeekCurrentYear, this.lastDayCurrentYear);
-    // TODO: is a reset needed? this.validYearWeekString = undefined
+    const date = this.getDate(this.validYearWeek, this.lastWeekCurrentYear, this.lastDayCurrentYear);
+    this.validYearWeekString = undefined;
+    return date;
   }
 
   getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {

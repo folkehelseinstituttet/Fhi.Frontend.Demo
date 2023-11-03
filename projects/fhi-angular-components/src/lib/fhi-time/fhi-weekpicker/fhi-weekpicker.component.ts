@@ -98,12 +98,15 @@ export class FhiWeekpickerComponent {
     const date = this.getValidDate(week);
 
     if (date !== undefined) {
-      this.startDate = date;
       this.isValid = true;
+    } else {
+      this.isValid = false;
+    }
+    if (this.isValid && date !== null) {
+      this.startDate = date;
       this.weekSelect.emit(week);
       return;
     }
-    this.isValid = false;
     this.invalidFeedbackText = this.weekValidationService.getInvalidFeedbackText();
   }
 
@@ -129,7 +132,7 @@ export class FhiWeekpickerComponent {
       isValid = true;
     }
     if (isValid && date !== null) {
-      isValid = this.weekValidationService.weekWithinMaxWeekAndMinWeek(date);
+      isValid = this.weekValidationService.isWeekWithinMaxWeekAndMinWeek(date);
     }
     if (isValid) {
       return date;

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
 import { YearWeek } from '../year-week.model';
 import { WeekUtilityService } from './week-utility.service';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 export enum WeekErrorState {
   toManyCharacters = 1,
@@ -22,7 +22,7 @@ export class WeekValidationService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private errorMsg: string;
   private unvalidatedYearWeekString = '';
-  private weekIsRequired = false;
+  private weekIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
 
   constructor(
     private weekUtilityService: WeekUtilityService
@@ -60,7 +60,7 @@ export class WeekValidationService {
     return true;
   }
 
-  weekWithinMaxWeekAndMinWeek(date: NgbDateStruct | null): boolean {
+  isWeekWithinMaxWeekAndMinWeek(date: NgbDateStruct | null): boolean {
     if (this.weekUtilityService.isOutsideMaxOrMin(date)) {
       this.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
       return false;
