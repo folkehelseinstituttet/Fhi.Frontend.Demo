@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { toNumber } from 'lodash-es';
+
 import { FhiMonthSelectorComponent } from '../fhi-month-selector/fhi-month-selector.component';
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
@@ -32,10 +34,12 @@ export class FhiMonthRangeComponent {
   }
 
   onMonthFromSelect(event: any) {
-    console.log('from:', event);
+    const dashPos = event.indexOf('-');
+    this.minYearTo = toNumber(event.substring(0, dashPos));
   }
 
   onMonthToSelect(event: any) {
-    console.log('to:', event);
+    const dashPos = event.indexOf('-');
+    this.maxYearFrom = toNumber(event.substring(0, dashPos));
   }
 }
