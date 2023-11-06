@@ -80,6 +80,7 @@
     &[tabindex="0"] {
       z-index: unset;
       
+      &:last-child,
       ~ .ngb-dp-day:last-child {
         @include week-background($fhi-core-blue-grey-3);
       }
