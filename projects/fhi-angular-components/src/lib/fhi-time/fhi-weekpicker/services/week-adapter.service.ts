@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { NgbDateAdapter, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { Injectable } from '@angular/core';
+import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { YearWeek } from "../year-week.model";
-import { WeekUtilityService } from "./week-utility.service";
+import { YearWeek } from '../year-week.model';
+import { WeekUtilityService } from './week-utility.service';
 
 /**
  * This Service handles how the date is represented in scripts i.e. ngModel.
@@ -16,23 +16,23 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
   }
 
   fromModel(value: YearWeek | string | null): NgbDateStruct | null {
+    // console.warn('fromModel(value):', value);
     if (value) {
-      if (typeof value === "string") {
+      if (typeof value === 'string') {
         return null;
-      } else {
-        var date = this.weekUtilityService.calculateDate(value.week, value.year);
       }
-      return date;
+      return this.weekUtilityService.getDateFromYearWeek(value);
     }
     return null;
   }
 
+
   toModel(date: NgbDateStruct | null): YearWeek | null {
+    // console.warn('toModel(date):', date);
     if (date) {
-      const yearWeek = this.weekUtilityService.getYearWeek(
-        new Date(Date.UTC(date.year, date.month - 1, date.day))
+      return this.weekUtilityService.getYearWeek(
+        new Date(date.year, date.month - 1, date.day)
       );
-      return yearWeek;
     }
     return null;
   }

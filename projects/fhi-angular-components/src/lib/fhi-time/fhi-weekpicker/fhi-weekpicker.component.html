@@ -25,13 +25,13 @@
       [minDate]="minDate"
       [startDate]="startDate"
       [value]="week"
+      (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"
-      (input)="onInput()"
       (dateSelect)="onDateSelect($event)"
       ngbDatepicker
       #datepicker="ngbDatepicker"
     />
-    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="errorMsg"></p>
+    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="invalidFeedbackText"></p>
   </div>
 </div>

@@ -31,9 +31,6 @@ export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.component';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.module';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection-item.model';
 
-export * from './lib/fhi-week-selector/fhi-week-selector.component';
-export * from './lib/fhi-week-selector/fhi-week-selector.module';
-
 export * from './lib/fhi-time/fhi-date-range/fhi-date-range.component';
 export * from './lib/fhi-time/fhi-month-range/fhi-month-range.component';
 export * from './lib/fhi-time/fhi-month-selector/fhi-month-selector.component';
