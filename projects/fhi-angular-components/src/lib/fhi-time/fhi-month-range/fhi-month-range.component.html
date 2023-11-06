@@ -1,14 +1,32 @@
 <div class="fhi-month-range row">
   <fieldset class="fhi-month-range__fieldset col-12 col-md-auto">
     <legend class="fhi-month-range__legend">{{ fieldsetLegendFrom }}</legend>
-    <fhi-month-selector
-      [labelYear]="labelYearFrom"
-      [labelMonth]="labelMonthFrom"
-      [minYear]="minYear"
-      [maxYear]="maxYearFrom"
-      (monthSelect)="onMonthFromSelect($event)"
-    >
-    </fhi-month-selector>
+    <div class="fhi-month-selector">
+      <div class="d-flex">
+        <div class="fhi-month-selector__year">
+          <fhi-year-selector
+            [label]="labelYearFrom"
+            [minYear]="minYear"
+            [maxYear]="maxYearFrom"
+            [year]="yearFrom"
+            (yearSelect)="onYearFromSelect($event)"
+          >
+          </fhi-year-selector>
+        </div>
+    
+        <span class="fhi-month-selector__divider"></span>
+    
+        <div class="fhi-month-selector__month">
+          <fhi-autosuggest
+            [items]="monthList"
+            [label]="labelMonthFrom"
+            [notFoundText]="'Ugyldig måned'"
+            [selectedItem]="monthFrom"
+            (selectedItemChange)="onMonthFromSelect($event)">
+          </fhi-autosuggest>
+        </div>
+      </div>
+    </div>
   </fieldset>
 
   <span class="fhi-month-range__divider col-auto px-0">
@@ -17,21 +35,36 @@
 
   <fieldset class="fhi-month-range__fieldset col-12 col-md-6">
     <legend class="fhi-month-range__legend">{{ fieldsetLegendTo }}</legend>
-    <fhi-month-selector
-      [labelYear]="labelYearTo"
-      [labelMonth]="labelMonthTo"
-      [minYear]="minYearTo"
-      [maxYear]="maxYear"
-      (monthSelect)="onMonthToSelect($event)"
-    >
-    </fhi-month-selector>
+    <div class="fhi-month-selector">
+      <div class="d-flex">
+        <div class="fhi-month-selector__year">
+          <fhi-year-selector
+            [label]="labelYearTo"
+            [minYear]="minYearTo"
+            [maxYear]="maxYear"
+            [year]="yearTo"
+            (yearSelect)="onYearToSelect($event)"
+          >
+          </fhi-year-selector>
+        </div>
+    
+        <span class="fhi-month-selector__divider"></span>
+    
+        <div class="fhi-month-selector__month">
+          <fhi-autosuggest
+            [items]="monthList"
+            [label]="labelMonthTo"
+            [notFoundText]="'Ugyldig måned'"
+            [selectedItem]="monthTo"
+            (selectedItemChange)="onMonthToSelect($event)">
+          </fhi-autosuggest>
+        </div>
+      </div>
+    </div>
   </fieldset>
 
   <div class="col-12 mt-n3" *ngIf="!validRange">
     <p class="invalid-feedback" [ngClass]="{ 'd-block': !validRange }">
-      <strong>{{ fieldsetLegendFrom }} {{ labelYearFrom }}/{{ labelMonthFrom }}</strong>
-      kan ikke være etter
-      <strong>{{ fieldsetLegendTo.toLowerCase() }} {{ labelYearTo }}/{{ labelMonthTo }}</strong>
-      .</p>
+      <strong>{{ fieldsetLegendFrom }}</strong> kan ikke være etter <strong>{{ fieldsetLegendTo.toLowerCase() }}</strong>.</p>
   </div>
 </div>

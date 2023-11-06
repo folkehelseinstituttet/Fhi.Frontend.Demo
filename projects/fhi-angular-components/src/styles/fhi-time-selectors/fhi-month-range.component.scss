@@ -20,6 +20,10 @@
   &__divider-dash {
     margin-top: auto;
   }
+
+  .form-label {
+    @extend .visually-hidden;
+  }
 }
 
 @include media-breakpoint-up(lg) {
