@@ -26,4 +26,12 @@
     >
     </fhi-month-selector>
   </fieldset>
+
+  <div class="col-12 mt-n3" *ngIf="!validRange">
+    <p class="invalid-feedback" [ngClass]="{ 'd-block': !validRange }">
+      <strong>{{ fieldsetLegendFrom }} {{ labelYearFrom }}/{{ labelMonthFrom }}</strong>
+      kan ikke være etter
+      <strong>{{ fieldsetLegendTo.toLowerCase() }} {{ labelYearTo }}/{{ labelMonthTo }}</strong>
+      .</p>
+  </div>
 </div>
