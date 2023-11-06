@@ -59,13 +59,13 @@
 <div *ngIf="itemId === items.TimeSelectorMonth.id">
   <fhi-month-selector (monthSelect)="onMonthSelect($event)"></fhi-month-selector>
 
-  <!-- <p class="pt-4"><code>{{ monthSelected | json }}</code></p> -->
+  <p class="pt-4"><code>{{ monthSelected | json }}</code></p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonthRange.id">
   <fhi-month-range (monthRangeSelect)="onMonthRangeSelect($event)"></fhi-month-range>
 
-  <!-- <p class="pt-4"><code>{{ monthSelected | json }}</code></p> -->
+  <p class="pt-4"><code>{{ monthRangeSelected | json }}</code></p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
