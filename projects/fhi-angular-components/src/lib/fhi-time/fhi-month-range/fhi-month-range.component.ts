@@ -45,10 +45,10 @@ export class FhiMonthRangeComponent {
     { id: 11, name: 'November' },
     { id: 12, name: 'Desember'}
   ];
-  monthFromList: FhiAutosuggestItem[] = [...this.monthListFull];
-  monthToList: FhiAutosuggestItem[] = [...this.monthListFull];
   monthFrom: number;
+  monthFromList: FhiAutosuggestItem[] = [...this.monthListFull];
   monthTo: number;
+  monthToList: FhiAutosuggestItem[] = [...this.monthListFull];
   validRange: boolean = true;
   yearFrom: string;
   yearTo: string;
