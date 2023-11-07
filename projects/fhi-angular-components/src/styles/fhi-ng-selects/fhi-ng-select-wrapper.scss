@@ -61,7 +61,7 @@
                 @extend .icon-chevron-down;
                 background-position: center center;
                 background-repeat: no-repeat;
-                height: $fhi-core-px * 48;
+                height: $fhi-core-px * 40;
                 width: $fhi-core-px * 40;
             }
         }
@@ -126,12 +126,6 @@
 
                     .ng-input[aria-expanded="true"] > input {
                         border-radius: calc(#{$fhi-core-input-height} / 2);
-                    }
-                }
-
-                .ng-arrow-wrapper {
-                    .ng-arrow {
-                        height: $fhi-core-px * 40;
                     }
                 }
             }

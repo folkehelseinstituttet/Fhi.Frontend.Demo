@@ -1,11 +1,16 @@
 .fhi-date-range {
   display: flex;
+  flex-wrap: wrap;
 
   &__divider {
     display: block;
     text-align: center;
     transform: translateY($fhi-core-px * 38);
     width: $fhi-core-px * 40;
+  }
+
+  &__datepicker-from {
+    margin-bottom: $fhi-core-space-3;
   }
 
   .fhi-datepicker {
@@ -32,6 +37,14 @@
       .form-control {
         border-color: $fhi-core-pink-dark-1;
       }
+    }
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  .fhi-date-range {
+    &__datepicker-from {
+      margin-bottom: 0;
     }
   }
 }
