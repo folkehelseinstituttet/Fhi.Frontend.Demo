@@ -21,7 +21,7 @@
       </div>
     </ng-template>
   </ng-select>
-  <div class="fhi-multiselect__selected">
+  <div class="fhi-multiselect__selected" *ngIf="tagsEnabled">
     <button class="fhi-tag fhi-tag--filter-option mt-2 me-1"
             *ngFor="let selected of selectedItems" (click)="unselect(selected)">
       {{ getSelectedName(selected) }}
