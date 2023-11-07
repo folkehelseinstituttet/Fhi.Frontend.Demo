@@ -27,10 +27,8 @@ export class FhiMonthRangeComponent {
   
   fieldsetLegendFrom: string = 'Fra måned';
   fieldsetLegendTo: string = 'Til måned';
-  labelMonthFrom: string = 'måned';
-  labelMonthTo: string = 'måned';
-  labelYearFrom: string = 'år';
-  labelYearTo: string = 'år';
+  labelMonth: string = 'måned';
+  labelYear: string = 'år';
   maxYearFrom: number;
   minYearTo: number;
   monthListFull: FhiAutosuggestItem[] = [
@@ -47,7 +45,8 @@ export class FhiMonthRangeComponent {
     { id: 11, name: 'November' },
     { id: 12, name: 'Desember'}
   ];
-  monthList: FhiAutosuggestItem[] = this.monthListFull;
+  monthFromList: FhiAutosuggestItem[] = [...this.monthListFull];
+  monthToList: FhiAutosuggestItem[] = [...this.monthListFull];
   monthFrom: number;
   monthTo: number;
   validRange: boolean = true;
@@ -102,6 +101,26 @@ export class FhiMonthRangeComponent {
     }
     if (toMonth - fromMonth < 0) {
       this.validRange = false;
+    }
+    
+    if (
+        this.yearFrom === this.yearTo &&
+        this.yearFrom !== undefined &&
+        this.yearTo !== undefined
+      ) {
+      this.adjustMonthList();
+    } else {
+      this.monthFromList = [...this.monthListFull];
+      this.monthToList = [...this.monthListFull];
+    }
+  }
+
+  private adjustMonthList() {
+    if (this.monthFrom !== undefined) {
+      this.monthToList = this.monthListFull.slice(this.monthFrom - 1);
+    }
+    if (this.monthTo !== undefined) {
+      this.monthFromList = this.monthListFull.slice(0, (12 - this.monthTo) * -1);
     }
   }
 }
