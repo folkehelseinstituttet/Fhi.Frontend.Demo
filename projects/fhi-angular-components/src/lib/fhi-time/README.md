@@ -29,28 +29,38 @@ _Has a task in Azure DevOps:_
 
 - **FhiDatepickerComponent**
   - `@Output() dateSelect`
-  - Type: `string`
-  - Example: `åååå-mm-dd`
+  - Alternative 1
+    - Type: `string`
+    - Example: `yyyy-mm-dd`
+  - Alternative 2
+    - Type: `FhiDate`
+    - Example: `{ year: yyyy, month: m[m], day: d[d] }`
 
 - **FhiDateAndTmeComponent**
   - `@Output() dateAndTimeSelect`
   - Type: `FhiDateAndTime`
-  - Example: `{ date: 'åååå-mm-dd', time: 'tt:mm' }`
+  - Alternative 1
+    - Example: `{ date: 'yyyy-mm-dd', time: { hour: h[h], minute: m[m], [ second: s[s] ] } }`
+  - Alternative 2
+    - Example: `{ date: FhiDate, time: { hour: h[h], minute: m[m], [ second: s[s] ] } }`
 
 - **FhiDateRangeComponent**
   - `@Output() dateRangeSelect`
   - Type: `FhiDateRange`
-  - Example: `{ from: 'åååå-mm-dd', to: 'åååå-mm-dd' }`
+  - Alternative 1
+    - Example: `{ from: 'yyyy-mm-dd', to: 'yyyy-mm-dd' }`
+  - Alternative 1
+    - Example: `{ from: FhiDate, to: FhiDate }`
 
 - **FhiWeekpickerComponent**
   - `@Output() weekSelect`
   - Type: `FhiWeek`
-  - Example: `{ year: åååå, week: uu }`
+  - Example: `{ year: yyyy, week: u[u] }`
 
 - **FhiWeekRangeComponent**
   - `@Output() weekRangeSelect`
   - Type: `FhiweekRange`
-  - Example: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }`
+  - Example: `{ from: { year: yyyy, week: u[u] }, to: { year: yyyy, week: u[u] } }`
 
 - **FhiMonthSelectorComponent**
   - `@Output() monthSelect`
@@ -59,18 +69,18 @@ _Has a task in Azure DevOps:_
 
 - **FhiMonthRangeComponent**
   - `@Output() monthRangeSelect`
-  - Type: `FhiweekRange`
-  - Example: `{ from: { year: åååå, week: u[u] }, to: { year: åååå, week: u[u] } }`
+  - Type: `FhiMonthRange`
+  - Example: `{ from: { year: yyyy, month: m[m] }, to: { year: yyyy, month: m[m] } }`
 
 - **FhiYearSelectorComponent**
   - `@Output() yearSelect`
   - Type: `number[]`
-  - Example: `[ åååå, ... ]`
+  - Example: `[ yyyy, ... ]`
 
 - **FhiYearRangeComponent**
   - `@Output() monthRangeSelect`
-  - Type: `FhiweekRange`
-  - Example: `{ from: { year: åååå, week: u[u] }, to: { year: åååå, week: u[u] } }`
+  - Type: `FhiYearRange`
+  - Example: `{ from: yyyy, to: yyyy }`
 
 ### Inputs
 
