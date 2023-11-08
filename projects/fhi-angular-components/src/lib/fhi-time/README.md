@@ -2,121 +2,164 @@
 
 A set of components for time related user interactions.
 
-## TODO
+## TODO: How to syncronize all components
 
-- [ ] FhiDatepicker
-  - Move into `./fhi-time`
-  - Update according to documentation below
+_Has a task in Azure DevOps:_
 
-- [ ] FhiDateAndTime
-  - Move into `./fhi-time`
-  - Add a model `FhiDateAndTime`
-  - Update according to documentation below
-
-- [ ] FhiYearSelector
-  - Move into `./fhi-time`
-  - Update according to documentation below
-
-- [ ] FhiMonthSelector
-  - Remove year, and make it into a multiselect for months
-  - Update according to documentation below
-
-- [ ] FhiDateRange
-  - Add a model `FhiDateRange`
-  - Update according to documentation below
-
-etc...
-
-## HOW TO SYNCRONIZE ALL COMPONENTS
-
-### All @Output's
-
-- **FhiDatepicker**
-  - `@Output dateSelect`, emitted value: `åååå-mm-dd` (string)
-
-- **FhiDateAndTme**
-  - `@Output dateAndTimeSelect`, emitted value: `{ date: 'åååå-mm-dd', time: 'tt:mm' }` (object: `FhiDateAndTime`)
-
-- **FhiDateRange**
-  - `@Output dateRangeSelect`, emitted value: `{ from: 'åååå-mm-dd', to: 'åååå-mm-dd' }` (object: `FhiDateRange`)
-
-- **FhiWeekpicker**
-  - `@Output weekSelect`, emitted value: `{ year: åååå, week: uu }` (object: `FhiWeek`)
-
-- **FhiWeekRange**
-  - `@Output weekRangeSelect`, emitted value: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }` (object: `FhiweekRange`)
-
-- **FhiMonthSelector**
-  - `@Output monthSelect`, emitted value: `[ 1, 2, ... ]` (Array: `number[]`)
-
-- **FhiMonthRange**
-  - `@Output monthRangeSelect`, emitted value: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }` (object: `FhiweekRange`)
-
-- **FhiYearSelector**
-
-- **FhiYearRange**
-
-### Liste over @Input/@Output
-
-- `FhiYearSelectorComponent`
-  - @Input
-    - `label`
-    - `year`
-    - `years`
-    - `years`
-  - @Output
-    - `yearSelect`
-
-- `FhiDatepicerComponent`
-  - @Input
-    - `id`
-  - @Output
-    - `dateSelect`
-
-- `FhiWeekRangeComponent`
-  - @Input
-    - `weekFrom`
-    - `weekTo`
-    - `labelWeekFrom`
-    - `labelWeekTo`
-    - `maxWeek`
-    - `minWeek`
-  - @Output
-    - `weekRangeSelect`
-
-### Inputs
-
-- ID bør alltid være med som input
-- Hvis ID er optional så
-  - bør den være det for alle tidskomponenter
-  - løsning for å sette verdi bør være den samme
-  - men verdien må være unik
+- [x] FhiDatepickerComponent
+- [x] FhiDateAndTmeComponent
+- [ ] FhiDateRangeComponent
+- [x] FhiWeekpickerComponent
+- [ ] FhiWeekRangeComponent
+- [x] FhiMonthSelectorComponent
+- [ ] FhiMonthRangeComponent
+- [x] FhiYearSelectorComponent
+- [ ] FhiYearRangeComponent
 
 ### Outputs
 
-- Bestemme oss for, og synkronisere alle output-format! (hør med andre hva de helst vil ha som format)
+#### In general
 
-- Outputs in use when nested time components
-  `(foo)="onFooFrom"`
-  `(foo)="onFooTo"`
+- Decide on and synchronize all output formats! (ask others what they prefer as a format)
+- Outputs in use when nested time components:
+  - `(foo)="onFooFrom"`
+  - `(foo)="onFooTo"`
 
-### Feilmeldinger
+#### List of all outputs (work in progress)
 
-Må være konsistente på tvers av alle tidskomponenter
+- **FhiDatepickerComponent**
+  - `@Output() dateSelect`
+  - Type: `string`
+  - Example: `åååå-mm-dd`
 
-### Konstanter
+- **FhiDateAndTmeComponent**
+  - `@Output() dateAndTimeSelect`
+  - Type: `FhiDateAndTime`
+  - Example: `{ date: 'åååå-mm-dd', time: 'tt:mm' }`
 
-Vi må se på hvordan vi skal forholde oss til konstanter.
-Dette gjelder forsåvidt ikke bare tid...
+- **FhiDateRangeComponent**
+  - `@Output() dateRangeSelect`
+  - Type: `FhiDateRange`
+  - Example: `{ from: 'åååå-mm-dd', to: 'åååå-mm-dd' }`
 
-### Delte resurser
+- **FhiWeekpickerComponent**
+  - `@Output() weekSelect`
+  - Type: `FhiWeek`
+  - Example: `{ year: åååå, week: uu }`
 
-Hvilke resurser skal deles, og hvor skal de ligge?
+- **FhiWeekRangeComponent**
+  - `@Output() weekRangeSelect`
+  - Type: `FhiweekRange`
+  - Example: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }`
 
-### Organisering av SCSS
+- **FhiMonthSelectorComponent**
+  - `@Output() monthSelect`
+  - Type: `number[]`
+  - Example: `[ m[m], ... ]`
 
-Vi må se på hvordan vi skal organsisere css'en på en konsistent måte.
+- **FhiMonthRangeComponent**
+  - `@Output() monthRangeSelect`
+  - Type: `FhiweekRange`
+  - Example: `{ from: { year: åååå, week: u[u] }, to: { year: åååå, week: u[u] } }`
 
-### Eksempelkode
+- **FhiYearSelectorComponent**
+  - `@Output() yearSelect`
+  - Type: `number[]`
+  - Example: `[ åååå, ... ]`
 
-All eksempelkode må være riktig i forhold til hva en faktisk finner i koden når en går og ser på eksempelet, og eksemplene bør være noenlunde like sånn logisk sett.
+- **FhiYearRangeComponent**
+  - `@Output() monthRangeSelect`
+  - Type: `FhiweekRange`
+  - Example: `{ from: { year: åååå, week: u[u] }, to: { year: åååå, week: u[u] } }`
+
+### Inputs
+
+#### In general
+
+- ID should always be included as input (always optional?)
+- If ID is optional:
+  - it should be for all time components
+  - solution to set value should be the same in all time components
+  - but the value must be unique
+
+#### List of all inputs (work in progress)
+
+- **FhiDatepickerComponent**
+  - `@Input() id`
+
+- **FhiDateRangeComponent**
+  - `@Input() id`
+  - `@Input() maxDate`
+  - `@Input() minDate`
+
+- **FhiDateAndTmeComponent**
+  - `@Input() id`
+
+- **FhiWeekpickerComponent**
+  - `@Input() id`
+
+- **FhiWeekRangeComponent**
+  - `@Input() id`
+  - `@Input() maxWeek`
+  - `@Input() minWeek`
+
+- **FhiMonthSelectorComponent**
+  - `@Input() id`
+  - `@Input() singelMonth` boolean
+
+- **FhiMonthRangeComponent**
+  - `@Input() id`
+  - `@Input() maxMonth`
+  - `@Input() minMonth`
+
+- **FhiYearSelectorComponent**
+  - `@Input() id`
+  - `@Input() singelYear` boolean
+
+- **FhiYearRangeComponent**
+  - `@Input() id`
+  - `@Input() maxYear`
+  - `@Input() minYear`
+
+### Labels, legends (?), placeholders
+
+- Should not be inputs.
+- Must be consistent på across all time components.
+
+### Error messages
+
+Error messages must be consistent på across all time components.
+
+### Shared resources
+
+Which resources should be shared, and where should they be located?
+
+#### Shared constants
+
+We need to look at how to deal with constants.
+(This does not only apply to time...)
+
+### Organize SCSS
+
+We have to look at how to organize the CSS in a consistent way.
+
+### Presentation
+
+- Order: is the order under used under input/output above OK?
+- Example
+  - Showing output in `<code>`
+- Markup example
+  - All example markup must be correct in relation to what you actually find in the code when you go and look at the example, and the examples should be logically similar.
+  - Inputs/outputs
+  - Formatting? As Prettier does it?
+- Documentaion
+  - Should be logically similar.
+  - Should follow the template  below.
+
+### Documentaion template
+
+We use [form-control-autosuggest.ts](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/src/MOCK_DB_DATA/library-items/form-controls/form-control-autosuggest.ts) as template and make adjustments if needed.
+
+### Global documentaion for all time components
+
+We must document how to set up an Angular app with correct locale etc...
