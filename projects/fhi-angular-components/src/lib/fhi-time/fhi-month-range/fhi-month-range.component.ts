@@ -120,7 +120,12 @@ export class FhiMonthRangeComponent {
       this.monthToList = this.monthListFull.slice(this.monthFrom - 1);
     }
     if (this.monthTo !== undefined) {
-      this.monthFromList = this.monthListFull.slice(0, (12 - this.monthTo) * -1);
+      const offsetFrom = (12 - this.monthTo) * -1;
+      if (offsetFrom < 0) {
+        this.monthFromList = this.monthListFull.slice(0, offsetFrom);
+      } else {
+        this.monthFromList = [...this.monthListFull];
+      }
     }
   }
 }
