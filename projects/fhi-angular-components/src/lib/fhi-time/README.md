@@ -2,17 +2,59 @@
 
 A set of components for time related user interactions.
 
-## FHI Time API-doc
+## TODO
 
-...eller hvodan å samkjøre alle tidskomponentene.
+- [ ] FhiDatepicker
+  - Move into `./fhi-time`
+  - Update according to documentation below
 
-### TODO
+- [ ] FhiDateAndTime
+  - Move into `./fhi-time`
+  - Add a model `FhiDateAndTime`
+  - Update according to documentation below
 
-- [ ] ...
+- [ ] FhiYearSelector
+  - Move into `./fhi-time`
+  - Update according to documentation below
 
-### Feilmeldinger
+- [ ] FhiMonthSelector
+  - Remove year, and make it into a multiselect for months
+  - Update according to documentation below
 
-Må være konsistente på tvers av alle tidskomponenter
+- [ ] FhiDateRange
+  - Add a model `FhiDateRange`
+  - Update according to documentation below
+
+etc...
+
+## HOW TO SYNCRONIZE ALL COMPONENTS
+
+### All @Output's
+
+- **FhiDatepicker**
+  - `@Output dateSelect`, emitted value: `åååå-mm-dd` (string)
+
+- **FhiDateAndTme**
+  - `@Output dateAndTimeSelect`, emitted value: `{ date: 'åååå-mm-dd', time: 'tt:mm' }` (object: `FhiDateAndTime`)
+
+- **FhiDateRange**
+  - `@Output dateRangeSelect`, emitted value: `{ from: 'åååå-mm-dd', to: 'åååå-mm-dd' }` (object: `FhiDateRange`)
+
+- **FhiWeekpicker**
+  - `@Output weekSelect`, emitted value: `{ year: åååå, week: uu }` (object: `FhiWeek`)
+
+- **FhiWeekRange**
+  - `@Output weekRangeSelect`, emitted value: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }` (object: `FhiweekRange`)
+
+- **FhiMonthSelector**
+  - `@Output monthSelect`, emitted value: `[ 1, 2, ... ]` (Array: `number[]`)
+
+- **FhiMonthRange**
+  - `@Output monthRangeSelect`, emitted value: `{ from: { year: åååå, week: uu }, to: { year: åååå, week: uu } }` (object: `FhiweekRange`)
+
+- **FhiYearSelector**
+
+- **FhiYearRange**
 
 ### Liste over @Input/@Output
 
@@ -57,6 +99,10 @@ Må være konsistente på tvers av alle tidskomponenter
 - Outputs in use when nested time components
   `(foo)="onFooFrom"`
   `(foo)="onFooTo"`
+
+### Feilmeldinger
+
+Må være konsistente på tvers av alle tidskomponenter
 
 ### Konstanter
 
