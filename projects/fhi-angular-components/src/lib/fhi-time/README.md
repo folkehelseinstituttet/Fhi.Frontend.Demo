@@ -4,18 +4,6 @@ A set of components for time related user interactions.
 
 ## TODO: How to syncronize all components
 
-_Has a task in Azure DevOps:_
-
-- [x] FhiDatepickerComponent
-- [x] FhiDateAndTmeComponent
-- [ ] FhiDateRangeComponent
-- [x] FhiWeekpickerComponent
-- [ ] FhiWeekRangeComponent
-- [x] FhiMonthSelectorComponent
-- [ ] FhiMonthRangeComponent
-- [x] FhiYearSelectorComponent
-- [ ] FhiYearRangeComponent
-
 ### Outputs
 
 #### In general
@@ -31,18 +19,18 @@ _Has a task in Azure DevOps:_
   - `@Output() dateSelect`
   - Alternative 1
     - Type: `string`
-    - Example: `yyyy-mm-dd`
+    - Example: `2023-11-09`
   - Alternative 2
     - Type: `FhiDate`
-    - Example: `{ year: yyyy, month: m[m], day: d[d] }`
+    - Example: `{ year: 2023, month: 11, day: 9 }` (Same as NgBootstrap's dateicker)
 
-- **FhiDateAndTmeComponent**
+- **FhiDateTmeComponent**
   - `@Output() dateAndTimeSelect`
   - Type: `FhiDateAndTime`
   - Alternative 1
-    - Example: `{ date: 'yyyy-mm-dd', time: { hour: h[h], minute: m[m], [ second: s[s] ] } }`
+    - Example: `2023-11-09T08:10:00Z`
   - Alternative 2
-    - Example: `{ date: FhiDate, time: { hour: h[h], minute: m[m], [ second: s[s] ] } }`
+    - Example: `{ date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } }`
 
 - **FhiDateRangeComponent**
   - `@Output() dateRangeSelect`
@@ -99,10 +87,10 @@ _Has a task in Azure DevOps:_
 
 - **FhiDateRangeComponent**
   - `@Input() id`
-  - `@Input() maxDate`
   - `@Input() minDate`
+  - `@Input() maxDate`
 
-- **FhiDateAndTmeComponent**
+- **FhiDateTmeComponent**
   - `@Input() id`
 
 - **FhiWeekpickerComponent**
@@ -110,8 +98,8 @@ _Has a task in Azure DevOps:_
 
 - **FhiWeekRangeComponent**
   - `@Input() id`
-  - `@Input() maxWeek`
   - `@Input() minWeek`
+  - `@Input() maxWeek`
 
 - **FhiMonthSelectorComponent**
   - `@Input() id`
@@ -119,8 +107,8 @@ _Has a task in Azure DevOps:_
 
 - **FhiMonthRangeComponent**
   - `@Input() id`
-  - `@Input() maxMonth`
   - `@Input() minMonth`
+  - `@Input() maxMonth`
 
 - **FhiYearSelectorComponent**
   - `@Input() id`
@@ -128,8 +116,8 @@ _Has a task in Azure DevOps:_
 
 - **FhiYearRangeComponent**
   - `@Input() id`
-  - `@Input() maxYear`
   - `@Input() minYear`
+  - `@Input() maxYear`
 
 ### Labels, legends (?), placeholders
 
