@@ -2,7 +2,13 @@
 
 A set of components for time related user interactions.
 
-## TODO: How to syncronize all components
+## How to add i18n to your Angular app
+
+TODO: how to do it...
+
+## TMP: Notes for 1. iteration of FHI time components
+
+TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for release
 
 ### Outputs
 
