@@ -3,7 +3,7 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { YearWeek } from '../year-week.model';
+import { FhiWeek } from '../fhi-week.model';
 
 @Injectable()
 export class WeekUtilityService {
@@ -11,7 +11,7 @@ export class WeekUtilityService {
   private minDate = this.getInitMinDate();
   private lastDayCurrentYear!: Date;
   private lastWeekCurrentYear!: number;
-  private validYearWeek!: YearWeek;
+  private validYearWeek!: FhiWeek;
   private validYearWeekString!: string;
 
   getLastWeekCurrentYear(year: number): number {
@@ -20,7 +20,7 @@ export class WeekUtilityService {
     return this.lastWeekCurrentYear;
   }
 
-  setValidYearWeek(yearWeek: YearWeek) {
+  setValidYearWeek(yearWeek: FhiWeek) {
     this.validYearWeek = yearWeek;
   }
 
@@ -66,7 +66,7 @@ export class WeekUtilityService {
     return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
 
-  getYearWeek(date: Date): YearWeek {
+  getYearWeek(date: Date): FhiWeek {
     let year = date.getFullYear();
     const week = getWeek(date, {
       weekStartsOn: 1,
@@ -108,14 +108,14 @@ export class WeekUtilityService {
     return date;
   }
 
-  getDateFromYearWeek(yearWeek: YearWeek): NgbDateStruct | null {
+  getDateFromYearWeek(yearWeek: FhiWeek): NgbDateStruct | null {
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
     return this.getDate(yearWeek, lastWeekCurrentYear, lastDayCurrentYear);
   }
 
   private getDate(
-    yearWeek: YearWeek,
+    yearWeek: FhiWeek,
     lastWeekCurrentYear: number,
     lastDayCurrentYear: Date,
   ): NgbDateStruct {

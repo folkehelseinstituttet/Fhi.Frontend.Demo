@@ -3,7 +3,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { YearWeek } from '../year-week.model';
+import { FhiWeek } from '../fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
 export enum WeekErrorState {
@@ -106,7 +106,7 @@ Error message if user input for week had been the cause of the error:
 
   private isValidYearWeekObject(value: string): boolean {
     const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
-    const yearWeek: YearWeek = {
+    const yearWeek: FhiWeek = {
       year: parseInt(parts[0], 10),
       week: parseInt(parts[1], 10),
     };

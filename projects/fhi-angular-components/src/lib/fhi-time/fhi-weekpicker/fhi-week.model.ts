@@ -1,4 +1,4 @@
-export class YearWeek {
+export class FhiWeek {
   year: number;
   week: number;
 }
