@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiYearSelectorComponent } from '../../fhi-year-selector/fhi-year-selector.component';
+import { FhiYearSelectorComponent } from '../fhi-year-selector/fhi-year-selector.component';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';

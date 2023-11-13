@@ -5,7 +5,7 @@ import { isValid } from 'date-fns';
 
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
-import { FhiYearSelectorComponent } from '../../fhi-year-selector/fhi-year-selector.component';
+import { FhiYearSelectorComponent } from '../fhi-year-selector/fhi-year-selector.component';
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
 @Component({

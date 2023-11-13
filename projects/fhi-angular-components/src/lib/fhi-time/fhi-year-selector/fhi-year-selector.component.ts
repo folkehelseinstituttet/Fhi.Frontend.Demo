@@ -9,10 +9,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module';
-import { FhiAutosuggestItem } from '../fhi-autosuggest/fhi-autosuggest.model';
+import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
+import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
-import { FhiConstantsService } from '../shared-services/fhi-constants.service';
+import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
 @Component({
   selector: 'fhi-year-selector',
