@@ -14,8 +14,8 @@ export class FormControlsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  checked: boolean = false;
-  tiles: any = [
+  checked = false;
+  tiles = [
     {
       label: 'Ledetekst valg 1',
       description: 'Her er det plass til en liten beskrivelse.',
@@ -30,7 +30,7 @@ export class FormControlsComponent {
   ];
 
   // Autosuggest
-  selectedCar: number;
+  selectedCarId: number;
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab' },

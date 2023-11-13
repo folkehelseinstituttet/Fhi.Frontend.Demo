@@ -3,8 +3,8 @@
     [items]="yearList"
     [label]="label"
     [notFoundText]="'Ugyldig år'"
-    [selectedItem]="selectedYearId"
-    (selectedItemChange)="onSelectedItemChange($event)"
+    [itemSelect]="year"
+    (itemSelectChange)="onItemSelectChange($event)"
   >
   </fhi-autosuggest>
 </div>

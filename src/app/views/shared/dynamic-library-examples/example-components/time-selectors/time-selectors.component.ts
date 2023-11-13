@@ -22,8 +22,8 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedYearRange: any;
   monthRangeSelected: any;
-  weekFrom: string = '2010-27';
-  weekTo: string = '2013-13';
+  weekFrom = '2010-27';
+  weekTo = '2013-13';
   weekRange: any;
 
   // weekSelected: string;
@@ -40,15 +40,15 @@ export class TimeSelectorsComponent {
   //   this.generateWeekList();
   // }
 
-  onYearSelect(year: string) {
-    this.yearSelected = year;
+  onYearSelect(year: number[]) {
+    console.info(year);
   }
 
   onMonthSelect(yearMonth: string) {
     this.monthSelected = yearMonth;
   }
 
-  onMonthRangeSelect(monthRange: Object) {
+  onMonthRangeSelect(monthRange: object) {
     this.monthRangeSelected = monthRange;
   }
 

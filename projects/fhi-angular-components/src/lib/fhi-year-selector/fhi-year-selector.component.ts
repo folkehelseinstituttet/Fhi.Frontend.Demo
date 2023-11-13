@@ -1,62 +1,63 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+
 import { FhiAutosuggestModule } from '../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../fhi-autosuggest/fhi-autosuggest.model';
 
 import { FhiConstantsService } from '../shared-services/fhi-constants.service';
 
-import { toNumber } from 'lodash-es';
-
 @Component({
   selector: 'fhi-year-selector',
-  standalone: true,
   templateUrl: './fhi-year-selector.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
   imports: [FhiAutosuggestModule],
   providers: [FhiConstantsService],
 })
-export class FhiYearSelectorComponent {
-  @Input() label: string = 'År';
+export class FhiYearSelectorComponent implements OnInit, OnChanges {
+  @Input() label = 'År';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
-  @Input() year: string;
+  @Input() year: number;
 
-  @Output() yearSelect = new EventEmitter<string>();
+  @Output() yearSelect = new EventEmitter<Array<number>>();
 
   yearList: FhiAutosuggestItem[] = [];
-
-  selectedYear: FhiAutosuggestItem;
-  selectedYearId: number;
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
   ngOnInit() {
-    this.populateYearList();
+    this.updateYearList();
   }
 
-  ngOnChanges() {
-    this.populateYearList();
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      (changes.minYear && !changes.minYear.isFirstChange()) ||
+      (changes.maxYear && !changes.maxYear.isFirstChange())
+    ) {
+      this.updateYearList();
+    }
   }
 
-  onSelectedItemChange(selectedYearId: number) {
-    this.selectedYear = this.yearList.find(
-      (year: FhiAutosuggestItem) => year.id === selectedYearId,
-    );
-    this.yearSelect.emit(this.selectedYear.name);
+  onItemSelectChange(year: number) {
+    this.yearSelect.emit([year]);
   }
 
-  private populateYearList() {
+  private updateYearList() {
     this.yearList = [];
     for (let i = this.minYear; i <= this.maxYear; i++) {
-      const year: string = `${i}`;
       this.yearList.push({
-        id: toNumber(year),
-        name: year,
+        id: i,
+        name: i.toString(),
       });
-    }
-    if (this.year) {
-      this.selectedYear = this.yearList.find(
-        (year: FhiAutosuggestItem) => year.name === this.year,
-      );
-      this.selectedYearId = this.selectedYear.id;
     }
   }
 }
