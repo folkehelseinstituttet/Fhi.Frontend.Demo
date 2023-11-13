@@ -11,13 +11,9 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
 @Component({
   selector: 'fhi-month-selector',
   standalone: true,
-  imports: [
-    CommonModule,
-    FhiAutosuggestModule,
-    FhiYearSelectorComponent
-  ],
+  imports: [CommonModule, FhiAutosuggestModule, FhiYearSelectorComponent],
   templateUrl: './fhi-month-selector.component.html',
-  providers: [ FhiConstantsService ]
+  providers: [FhiConstantsService],
 })
 export class FhiMonthSelectorComponent {
   @Input() labelYear: string = 'År';
@@ -30,7 +26,20 @@ export class FhiMonthSelectorComponent {
   @Output() monthSelect = new EventEmitter<string>();
 
   monthList: FhiAutosuggestItem[] = [];
-  monthNames: string[] = ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'];
+  monthNames: string[] = [
+    'Januar',
+    'Februar',
+    'Mars',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'August',
+    'September',
+    'Oktober',
+    'November',
+    'Desember',
+  ];
 
   selectedMonth: FhiAutosuggestItem;
   selectedYear: FhiAutosuggestItem;
@@ -47,7 +56,9 @@ export class FhiMonthSelectorComponent {
   }
 
   onSelectedMonth(monthId: number) {
-    this.selectedMonth = this.monthList.find((month: FhiAutosuggestItem) => month.id === monthId);
+    this.selectedMonth = this.monthList.find(
+      (month: FhiAutosuggestItem) => month.id === monthId,
+    );
     this.concatenateYearDate();
   }
 
@@ -57,11 +68,13 @@ export class FhiMonthSelectorComponent {
       const month: string = `${i}`;
       this.monthList.push({
         id: toNumber(month),
-        name: this.monthNames[i-1]
+        name: this.monthNames[i - 1],
       });
     }
     if (this.month) {
-      this.selectedMonth = this.monthList.find((month: FhiAutosuggestItem) => month.id === this.month);
+      this.selectedMonth = this.monthList.find(
+        (month: FhiAutosuggestItem) => month.id === this.month,
+      );
     }
   }
 
