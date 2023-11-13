@@ -11,35 +11,31 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-and-time
-    (dateAndTimeSelect)="getDateAndTime($event)"
-  ></fhi-date-and-time>
+  <fhi-date-and-time (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
   <!-- <div class="mt-4">
     <code>{{ selectedDateAndTime }}</code>
   </div> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeek.id">
-  <fhi-weekpicker 
+  <fhi-weekpicker
     [id]="'id'"
     [week]="'2015-53'"
     [minWeek]="'1910-5'"
-    (weekSelect)="onWeekSelect($event)">
-  </fhi-weekpicker>
+    (weekSelect)="onWeekSelect($event)"
+  ></fhi-weekpicker>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">
-  <fhi-week-range
-    (weekRangeSelect)="onWeekRangeSelect($event)">
-  </fhi-week-range>
+  <fhi-week-range (weekRangeSelect)="onWeekRangeSelect($event)"></fhi-week-range>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
   <fhi-date-range
     minimumDate="2020-01-01"
     maximumDate="2023-12-31"
-    (dateRangeSelect)="getDateRange($event)">
-  </fhi-date-range>
+    (dateRangeSelect)="getDateRange($event)"
+  ></fhi-date-range>
 
   <!-- <p class="pt-4"><code>{{ selectedDateRange | json }}</code></p> -->
 </div>
@@ -47,7 +43,9 @@
 <div *ngIf="itemId === items.TimeSelectorMonth.id">
   <fhi-month-selector (monthSelect)="onMonthSelect($event)"></fhi-month-selector>
 
-  <p class="pt-4"><code>{{ monthSelected | json }}</code></p>
+  <p class="pt-4">
+    <code>{{ monthSelected | json }}</code>
+  </p>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonthRange.id">
@@ -57,10 +55,5 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYear.id">
-  <fhi-year-selector
-    [label]="'Velg år'"
-    [year]="'2011'"
-    (yearSelect)="onYearSelect($event)"
-  >
-  </fhi-year-selector>
+  <fhi-year-selector [label]="'Velg år'" [year]="'2011'" (yearSelect)="onYearSelect($event)"></fhi-year-selector>
 </div>
