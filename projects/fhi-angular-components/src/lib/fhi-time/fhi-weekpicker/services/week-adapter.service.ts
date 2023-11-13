@@ -9,9 +9,7 @@ import { WeekUtilityService } from './week-utility.service';
  */
 @Injectable()
 export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
-  constructor(
-    private weekUtilityService: WeekUtilityService
-  ) {
+  constructor(private weekUtilityService: WeekUtilityService) {
     super();
   }
 
@@ -26,13 +24,10 @@ export class WeekAdapterService extends NgbDateAdapter<YearWeek> {
     return null;
   }
 
-
   toModel(date: NgbDateStruct | null): YearWeek | null {
     // console.warn('toModel(date):', date);
     if (date) {
-      return this.weekUtilityService.getYearWeek(
-        new Date(date.year, date.month - 1, date.day)
-      );
+      return this.weekUtilityService.getYearWeek(new Date(date.year, date.month - 1, date.day));
     }
     return null;
   }

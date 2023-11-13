@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
-import { FhiTimeConstants } from "../../fhi-time-constants";
+import { FhiTimeConstants } from '../../fhi-time-constants';
 import { YearWeek } from '../year-week.model';
 
 @Injectable()
@@ -37,11 +37,11 @@ export class WeekUtilityService {
   }
 
   setMaxDate(date: NgbDateStruct) {
-    this.maxDate = (date) ? date : this.getInitMaxDate();
+    this.maxDate = date ? date : this.getInitMaxDate();
   }
 
   setMinDate(date: NgbDateStruct) {
-    this.minDate = (date) ? date : this.getInitMinDate();
+    this.minDate = date ? date : this.getInitMinDate();
   }
 
   getInitMaxDate(): NgbDateStruct {
@@ -49,7 +49,7 @@ export class WeekUtilityService {
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate()
+      day: date.getDate(),
     };
   }
 
@@ -58,15 +58,12 @@ export class WeekUtilityService {
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate()
+      day: date.getDate(),
     };
   }
 
   isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
-    return (
-      NgbDate.from(date).before(this.minDate) || 
-      NgbDate.from(date).after(this.maxDate)
-    );
+    return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
 
   getYearWeek(date: Date): YearWeek {
@@ -95,12 +92,18 @@ export class WeekUtilityService {
 
   getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
     if (this.validYearWeekString === undefined) {
-      throw new Error(`WeekUtilityService.getDateAfterValidatinYearWeekString() is called before yearWeekString is validated.`);
+      throw new Error(
+        `WeekUtilityService.getDateAfterValidatinYearWeekString() is called before yearWeekString is validated.`,
+      );
     }
     if (this.validYearWeekString === '') {
       return null;
     }
-    const date = this.getDate(this.validYearWeek, this.lastWeekCurrentYear, this.lastDayCurrentYear);
+    const date = this.getDate(
+      this.validYearWeek,
+      this.lastWeekCurrentYear,
+      this.lastDayCurrentYear,
+    );
     this.validYearWeekString = undefined;
     return date;
   }
@@ -111,23 +114,33 @@ export class WeekUtilityService {
     return this.getDate(yearWeek, lastWeekCurrentYear, lastDayCurrentYear);
   }
 
-  private getDate(yearWeek: YearWeek, lastWeekCurrentYear: number, lastDayCurrentYear: Date): NgbDateStruct {
+  private getDate(
+    yearWeek: YearWeek,
+    lastWeekCurrentYear: number,
+    lastDayCurrentYear: Date,
+  ): NgbDateStruct {
     const weekDiffInMilliseconds = this.getWeekDiffInMilliseconds(
-      yearWeek.week, lastDayCurrentYear.getDay(), lastWeekCurrentYear
+      yearWeek.week,
+      lastDayCurrentYear.getDay(),
+      lastWeekCurrentYear,
     );
     const date = new Date(lastDayCurrentYear.getTime() - weekDiffInMilliseconds);
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate()
+      day: date.getDate(),
     };
   }
 
-  private getWeekDiffInMilliseconds(week: number, lastDayOfYear: number, lastWeekCurrentYear: number) {
-    const weeksInYear = (lastWeekCurrentYear === 52) ? 52 : 53;
-    const missingDaysInLastWeekOfYear = (lastDayOfYear === 0) ? 0 : 7 - lastDayOfYear;
+  private getWeekDiffInMilliseconds(
+    week: number,
+    lastDayOfYear: number,
+    lastWeekCurrentYear: number,
+  ) {
+    const weeksInYear = lastWeekCurrentYear === 52 ? 52 : 53;
+    const missingDaysInLastWeekOfYear = lastDayOfYear === 0 ? 0 : 7 - lastDayOfYear;
     const millisecondsPrWeek = 7 * 24 * 60 * 60 * 1000;
-    const weekDiff = weeksInYear - (missingDaysInLastWeekOfYear / 7) + (3 / 7) - week;
+    const weekDiff = weeksInYear - missingDaysInLastWeekOfYear / 7 + 3 / 7 - week;
     return weekDiff * millisecondsPrWeek;
   }
 }

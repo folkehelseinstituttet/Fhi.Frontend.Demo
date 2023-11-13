@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-time-selectors', 
+  selector: 'app-time-selectors',
   templateUrl: './time-selectors.component.html',
 })
 export class TimeSelectorsComponent {
@@ -12,7 +12,7 @@ export class TimeSelectorsComponent {
 
   minDate = '2020-09-20';
   maxDate = '2030-09-20';
-  
+
   today = new Date().toISOString();
   selectedDate = this.today;
   selectedDateAndTime: string;
@@ -59,7 +59,7 @@ export class TimeSelectorsComponent {
   getDateRange(dateRange: any) {
     this.selectedDateRange = dateRange;
   }
-  
+
   getDateAndTime(dateAndTime: any) {
     this.selectedDateAndTime = dateAndTime;
   }
@@ -86,5 +86,4 @@ export class TimeSelectorsComponent {
   onWeekRangeSelect(weekRange: any) {
     console.info(weekRange);
   }
-
 }
