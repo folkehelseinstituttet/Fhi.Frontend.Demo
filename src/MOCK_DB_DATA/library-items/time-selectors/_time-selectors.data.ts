@@ -22,12 +22,12 @@ const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorWeek,
   ...TimeSelectorWeekRange,
   ...TimeSelectorYear,
-  ...TimeSelectorYearRange
+  ...TimeSelectorYearRange,
 ];
 
 export const TimeSelectorsData: LibraryItemGroup = {
   id: GROUPS.TimeSelectors.id,
   title: GROUPS.TimeSelectors.title,
   intro: TimeSelectorsIntro,
-  libraryItems: TimeSelectors
+  libraryItems: TimeSelectors,
 };
