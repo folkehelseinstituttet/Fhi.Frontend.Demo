@@ -13,16 +13,17 @@
           >
           </fhi-year-selector>
         </div>
-    
+
         <span class="fhi-month-selector__divider"></span>
-    
+
         <div class="fhi-month-selector__month">
           <fhi-autosuggest
             [items]="monthFromList"
             [label]="labelMonth"
             [notFoundText]="'Ugyldig måned'"
             [selectedItem]="monthFrom"
-            (selectedItemChange)="onMonthFromSelect($event)">
+            (selectedItemChange)="onMonthFromSelect($event)"
+          >
           </fhi-autosuggest>
         </div>
       </div>
@@ -47,16 +48,17 @@
           >
           </fhi-year-selector>
         </div>
-    
+
         <span class="fhi-month-selector__divider"></span>
-    
+
         <div class="fhi-month-selector__month">
           <fhi-autosuggest
             [items]="monthToList"
             [label]="labelMonth"
             [notFoundText]="'Ugyldig måned'"
             [selectedItem]="monthTo"
-            (selectedItemChange)="onMonthToSelect($event)">
+            (selectedItemChange)="onMonthToSelect($event)"
+          >
           </fhi-autosuggest>
         </div>
       </div>
@@ -65,6 +67,9 @@
 
   <div class="col-12 mt-n3" *ngIf="!validRange">
     <p class="invalid-feedback" [ngClass]="{ 'd-block': !validRange }">
-      <strong>{{ fieldsetLegendFrom }}</strong> kan ikke være etter <strong>{{ fieldsetLegendTo.toLowerCase() }}</strong>.</p>
+      <strong>{{ fieldsetLegendFrom }}</strong> kan ikke være etter
+      <strong>{{ fieldsetLegendTo.toLowerCase() }}</strong
+      >.
+    </p>
   </div>
 </div>

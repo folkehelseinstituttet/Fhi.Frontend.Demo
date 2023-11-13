@@ -11,8 +11,8 @@ import { toNumber } from 'lodash-es';
   selector: 'fhi-year-range',
   standalone: true,
   templateUrl: './fhi-year-range.component.html',
-  imports: [ FhiYearSelectorComponent ],
-  providers: [ FhiConstantsService ]
+  imports: [FhiYearSelectorComponent],
+  providers: [FhiConstantsService],
 })
 export class FhiYearRangeComponent {
   @Input() labelFromYear: string = 'Fra år';
@@ -21,7 +21,7 @@ export class FhiYearRangeComponent {
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
   @Output() yearRangeSelect = new EventEmitter<any>();
-  
+
   fromYearList: FhiAutosuggestItem[] = [];
   toYearList: FhiAutosuggestItem[] = [];
   selectedFrom: number;
@@ -44,8 +44,8 @@ export class FhiYearRangeComponent {
   private getRange() {
     const range = {
       fromYear: this.selectedFrom,
-      toYear: this.selectedTo
-    }
+      toYear: this.selectedTo,
+    };
 
     if (this.selectedFrom && this.selectedTo) {
       this.yearRangeSelect.emit(range);

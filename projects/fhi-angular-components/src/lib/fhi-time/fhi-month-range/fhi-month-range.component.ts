@@ -11,20 +11,16 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
 @Component({
   selector: 'fhi-month-range',
   standalone: true,
-  imports: [
-    CommonModule,
-    FhiAutosuggestModule,
-    FhiYearSelectorComponent
-  ],
+  imports: [CommonModule, FhiAutosuggestModule, FhiYearSelectorComponent],
   templateUrl: './fhi-month-range.component.html',
-  providers: [ FhiConstantsService ]
+  providers: [FhiConstantsService],
 })
 export class FhiMonthRangeComponent {
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
-  
+
   @Output() monthRangeSelect = new EventEmitter<Object>();
-  
+
   fieldsetLegendFrom: string = 'Fra måned';
   fieldsetLegendTo: string = 'Til måned';
   labelMonth: string = 'måned';
@@ -43,7 +39,7 @@ export class FhiMonthRangeComponent {
     { id: 9, name: 'September' },
     { id: 10, name: 'Oktober' },
     { id: 11, name: 'November' },
-    { id: 12, name: 'Desember'}
+    { id: 12, name: 'Desember' },
   ];
   monthFrom: number;
   monthFromList: FhiAutosuggestItem[] = [...this.monthListFull];
@@ -83,31 +79,31 @@ export class FhiMonthRangeComponent {
   }
 
   private checkValidity() {
-    const fromMonth: any = new Date(Number(this.yearFrom), this.monthFrom -1);
+    const fromMonth: any = new Date(Number(this.yearFrom), this.monthFrom - 1);
     const toMonth: any = new Date(Number(this.yearTo), this.monthTo, 0);
-    
+
     if (toMonth - fromMonth >= 0) {
       this.monthRangeSelect.emit({
         start: {
           year: Number(this.yearFrom),
-          month: this.monthFrom
+          month: this.monthFrom,
         },
         end: {
           year: Number(this.yearTo),
-          month: this.monthTo
-        }
+          month: this.monthTo,
+        },
       });
       this.validRange = true;
     }
     if (toMonth - fromMonth < 0) {
       this.validRange = false;
     }
-    
+
     if (
-        this.yearFrom === this.yearTo &&
-        this.yearFrom !== undefined &&
-        this.yearTo !== undefined
-      ) {
+      this.yearFrom === this.yearTo &&
+      this.yearFrom !== undefined &&
+      this.yearTo !== undefined
+    ) {
       this.adjustMonthList();
     } else {
       this.monthFromList = [...this.monthListFull];
