@@ -173,7 +173,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-month-range',
     title: 'Month range',
   },
-  TimeSelectorWeek: {
+  TimeSelectorWeekpicker: {
     id: 'time-selector-weekpicker',
     title: 'Weekpicker',
   },
