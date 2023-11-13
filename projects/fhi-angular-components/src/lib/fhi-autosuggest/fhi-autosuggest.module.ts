@@ -6,16 +6,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FhiAutosuggestComponent } from './fhi-autosuggest.component';
 
 @NgModule({
-  declarations: [
-    FhiAutosuggestComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgSelectModule
-  ],
-  exports: [
-    FhiAutosuggestComponent
-  ]
+  declarations: [FhiAutosuggestComponent],
+  imports: [CommonModule, FormsModule, NgSelectModule],
+  exports: [FhiAutosuggestComponent],
 })
-export class FhiAutosuggestModule { }
+export class FhiAutosuggestModule {}

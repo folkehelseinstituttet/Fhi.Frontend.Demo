@@ -1,14 +1,19 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
 @Component({
   selector: 'fhi-autosuggest',
   templateUrl: './fhi-autosuggest.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class FhiAutosuggestComponent {
-
   @Input() items: Array<FhiAutosuggestItem> = [];
   @Input() labelForId: string = 'id' + Math.random().toString().substring(2);
   @Input() placeholder: string = '';
@@ -25,5 +30,4 @@ export class FhiAutosuggestComponent {
       this.selectedItemChange.emit(this.selectedItem);
     }
   }
-
 }
