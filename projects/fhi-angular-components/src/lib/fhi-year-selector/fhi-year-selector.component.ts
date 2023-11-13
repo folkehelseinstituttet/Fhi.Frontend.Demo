@@ -10,19 +10,19 @@ import { toNumber } from 'lodash-es';
   selector: 'fhi-year-selector',
   standalone: true,
   templateUrl: './fhi-year-selector.component.html',
-  imports: [ FhiAutosuggestModule ],
-  providers: [ FhiConstantsService ]
+  imports: [FhiAutosuggestModule],
+  providers: [FhiConstantsService],
 })
 export class FhiYearSelectorComponent {
   @Input() label: string = 'År';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
   @Input() year: string;
-  
+
   @Output() yearSelect = new EventEmitter<string>();
 
   yearList: FhiAutosuggestItem[] = [];
-  
+
   selectedYear: FhiAutosuggestItem;
   selectedYearId: number;
 
@@ -35,10 +35,11 @@ export class FhiYearSelectorComponent {
   ngOnChanges() {
     this.populateYearList();
   }
-  
+
   onSelectedItemChange(selectedYearId: number) {
-    this.selectedYear = this.yearList
-      .find((year: FhiAutosuggestItem) => year.id === selectedYearId);
+    this.selectedYear = this.yearList.find(
+      (year: FhiAutosuggestItem) => year.id === selectedYearId,
+    );
     this.yearSelect.emit(this.selectedYear.name);
   }
 
@@ -48,11 +49,13 @@ export class FhiYearSelectorComponent {
       const year: string = `${i}`;
       this.yearList.push({
         id: toNumber(year),
-        name: year
+        name: year,
       });
     }
     if (this.year) {
-      this.selectedYear = this.yearList.find((year: FhiAutosuggestItem) => year.name === this.year);
+      this.selectedYear = this.yearList.find(
+        (year: FhiAutosuggestItem) => year.name === this.year,
+      );
       this.selectedYearId = this.selectedYear.id;
     }
   }
