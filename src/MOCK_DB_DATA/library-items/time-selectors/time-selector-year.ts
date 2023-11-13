@@ -25,9 +25,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-selector 
-  [label]="'Velg år'" 
-  [year]="'2011'" 
+<fhi-year-selector
+  [minYear]="2000"
+  [maxYear]="2030"
+  [years]="[2011]"
   (yearSelect)="onYearSelect($event)"
 ></fhi-year-selector>
 `;

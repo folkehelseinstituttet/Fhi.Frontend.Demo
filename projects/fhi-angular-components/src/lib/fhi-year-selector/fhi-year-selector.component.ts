@@ -23,22 +23,29 @@ import { FhiConstantsService } from '../shared-services/fhi-constants.service';
   providers: [FhiConstantsService],
 })
 export class FhiYearSelectorComponent implements OnInit, OnChanges {
-  @Input() label = 'År';
+  @Input() label = 'Velg år';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
-  @Input() year: number;
+  @Input() years: number[];
 
-  @Output() yearSelect = new EventEmitter<Array<number>>();
+  @Output() yearSelect = new EventEmitter<number[]>();
 
-  yearList: FhiAutosuggestItem[] = [];
+  year!: number;
+  yearItems!: FhiAutosuggestItem[];
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
   ngOnInit() {
+    if (this.years?.length > 0) {
+      this.year = this.years[0];
+    }
     this.updateYearList();
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.years && !changes.years.isFirstChange()) {
+      this.year = this.years[0];
+    }
     if (
       (changes.minYear && !changes.minYear.isFirstChange()) ||
       (changes.maxYear && !changes.maxYear.isFirstChange())
@@ -52,9 +59,9 @@ export class FhiYearSelectorComponent implements OnInit, OnChanges {
   }
 
   private updateYearList() {
-    this.yearList = [];
+    this.yearItems = [];
     for (let i = this.minYear; i <= this.maxYear; i++) {
-      this.yearList.push({
+      this.yearItems.push({
         id: i,
         name: i.toString(),
       });
