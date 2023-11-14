@@ -3,7 +3,7 @@
     <fhi-years
       [label]="labelFromYear"
       [maxYear]="maxYear"
-      (yearSelect)="onYearSelect($event, 'from')"
+      (yearSelect)="onYearSelect($event, rangeContext.from)"
     >
     </fhi-years>
 
@@ -12,7 +12,7 @@
     <fhi-years
       [label]="labelToYear"
       [minYear]="minYear"
-      (yearSelect)="onYearSelect($event, 'to')"
+      (yearSelect)="onYearSelect($event, rangeContext.to)"
     >
     </fhi-years>
   </div>

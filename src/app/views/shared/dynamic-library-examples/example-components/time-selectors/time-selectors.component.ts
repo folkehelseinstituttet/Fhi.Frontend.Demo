@@ -83,7 +83,7 @@ export class TimeSelectorsComponent {
     console.info(year);
   }
 
-  yearRangeSelect(yearRange: any) {
+  onYearRangeSelect(yearRange: any) {
     console.info(yearRange);
   }
 }

@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
-import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
+import { FhiYearRange } from './fhi-year-range.model';
+import { RangeContext } from '../range-context.enum';
 
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
-
-import { toNumber } from 'lodash-es';
 
 @Component({
   selector: 'fhi-year-range',
@@ -20,40 +19,39 @@ export class FhiYearRangeComponent {
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
-  @Output() yearRangeSelect = new EventEmitter<any>();
+  @Output() yearRangeSelect = new EventEmitter<FhiYearRange>();
 
-  fromYearList: FhiAutosuggestItem[] = [];
-  toYearList: FhiAutosuggestItem[] = [];
-  selectedFrom: number;
-  selectedTo: number;
+  fromYear: number;
+  toYear: number;
+  rangeContext = RangeContext;
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
-  onYearSelect(year: number[], context: string) {
-    console.log('year', year);
-    console.log('context', context);
+  onYearSelect(year: number[], context: number) {
+    if (context === RangeContext.from) {
+      this.updateFromYear(year[0]);
+    } else {
+      this.updateToYear(year[0]);
+    }
+    if (this.fromYear && this.toYear) {
+      this.yearRangeSelect.emit(this.getRange());
+    }
   }
 
-  onFromYearSelect(event: string) {
-    this.minYear = toNumber(event);
-    this.selectedFrom = this.minYear;
-    this.getRange();
+  updateFromYear(year: number) {
+    this.minYear = year;
+    this.fromYear = year;
   }
 
-  onToYearSelect(event: string) {
-    this.maxYear = toNumber(event);
-    this.selectedTo = this.maxYear;
-    this.getRange();
+  updateToYear(year: number) {
+    this.maxYear = year;
+    this.toYear = year;
   }
 
   private getRange() {
-    const range = {
-      fromYear: this.selectedFrom,
-      toYear: this.selectedTo,
+    return {
+      from: this.fromYear,
+      to: this.toYear,
     };
-
-    if (this.selectedFrom && this.selectedTo) {
-      this.yearRangeSelect.emit(range);
-    }
   }
 }
