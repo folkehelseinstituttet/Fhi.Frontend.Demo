@@ -50,11 +50,17 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - `@Output() monthSelect`
   - Type: `number[]`
   - Example: `[ m[m], ... ]`
+  - It's very likely that we'll need this one as well, ie. just months without year.
 
-- **FhiMonthRangeComponent**
+- **FhiYearMonthComponent**
+  - `@Output() monthSelect`
+  - Type: `FhiMonth`
+  - Example: `{ year: yyyy, month: m[m] }`
+
+- **FhiYearMonthRangeComponent**
   - `@Output() monthRangeSelect`
-  - Type: `FhiMonthRange`
-  - Example: `{ from: { year: yyyy, month: m[m] }, to: { year: yyyy, month: m[m] } }`
+  - Type: `FhiYearMonthRange`
+  - Example: `{ from: FhiMonth, to: FhiMonth }`
 
 - **FhiYearsComponent**
   - `@Output() yearSelect`
@@ -119,13 +125,15 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - `@Input() maxWeek`
 
 - **FhiMonthsComponent**
+  - It's very likely that we'll need this one as well, ie. just months without year.
+
+- **FhiYearMonthComponent**
   - `@Input() id`
   - `@Input() month`
   - `@Input() minMonth`
   - `@Input() maxMonth`
-  - `@Input() label` (default: "Velg måneder", and we don't set this input in our demo-app examples)
 
-- **FhiMonthRangeComponent**
+- **FhiYearMonthRangeComponent**
   - `@Input() id`
   - `@Input() monthRange`
   - `@Input() minMonth`
@@ -133,7 +141,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
 
 - **FhiYearsComponent**
   - `@Input() id`
-  - `@Input() year`
+  - `@Input() years`
   - `@Input() minYear`
   - `@Input() maxYear`
   - `@Input() label` (default: "Velg år", and we don't set this input in our demo-app examples)
