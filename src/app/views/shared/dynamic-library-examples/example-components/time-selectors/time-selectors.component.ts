@@ -40,10 +40,6 @@ export class TimeSelectorsComponent {
   //   this.generateWeekList();
   // }
 
-  onYearSelect(year: number[]) {
-    console.info(year);
-  }
-
   onMonthSelect(yearMonth: string) {
     this.monthSelected = yearMonth;
   }
@@ -75,15 +71,19 @@ export class TimeSelectorsComponent {
   //   }
   // }
 
-  yearRangeSelect(yearRange: any) {
-    this.selectedYearRange = yearRange;
-  }
-
   onWeekSelect(week: any) {
     console.info(week);
   }
 
   onWeekRangeSelect(weekRange: any) {
     console.info(weekRange);
+  }
+
+  onYearSelect(year: number[]) {
+    console.info(year);
+  }
+
+  yearRangeSelect(yearRange: any) {
+    console.info(yearRange);
   }
 }
