@@ -14,37 +14,27 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
 
 #### In general
 
-- Decide on and synchronize all output formats! (ask others what they prefer as a format)
-- Outputs in use when nested time components:
-  - `(foo)="onFooFrom"`
-  - `(foo)="onFooTo"`
+- Outputs in use when nested time components, better solution with year as example:
+  - `(years)="onYearsSelect($event, 'from')"` -> `onFoo(years: number[], context: string) {}`
+  - `(years)="onYearsSelect($event, 'to')"` -> `onFoo(years: number[], context: string) {}`
+  - and context can be defined as an enum
 
 #### List of all outputs (work in progress)
 
 - **FhiDatepickerComponent**
   - `@Output() dateSelect`
-  - Alternative 1
-    - Type: `string`
-    - Example: `2023-11-09`
-  - Alternative 2
     - Type: `FhiDate`
     - Example: `{ year: 2023, month: 11, day: 9 }` (Same as NgBootstrap's dateicker)
 
 - **FhiDateTmeComponent**
-  - `@Output() dateAndTimeSelect`
-  - Type: `FhiDateAndTime`
-  - Alternative 1
-    - Example: `2023-11-09T08:10:00Z`
-  - Alternative 2
-    - Example: `{ date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } }`
+  - `@Output() dateTimeSelect`
+  - Type: `FhiDateTime`
+  - Example: `{ date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } }`
 
 - **FhiDateRangeComponent**
   - `@Output() dateRangeSelect`
   - Type: `FhiDateRange`
-  - Alternative 1
-    - Example: `{ from: 'yyyy-mm-dd', to: 'yyyy-mm-dd' }`
-  - Alternative 1
-    - Example: `{ from: FhiDate, to: FhiDate }`
+  - Example: `{ from: FhiDate, to: FhiDate }`
 
 - **FhiWeekpickerComponent**
   - `@Output() weekSelect`
@@ -56,7 +46,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - Type: `FhiweekRange`
   - Example: `{ from: { year: yyyy, week: u[u] }, to: { year: yyyy, week: u[u] } }`
 
-- **FhiMonthSelectorComponent**
+- **FhiMonthsComponent**
   - `@Output() monthSelect`
   - Type: `number[]`
   - Example: `[ m[m], ... ]`
@@ -66,7 +56,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - Type: `FhiMonthRange`
   - Example: `{ from: { year: yyyy, month: m[m] }, to: { year: yyyy, month: m[m] } }`
 
-- **FhiYearSelectorComponent**
+- **FhiYearsComponent**
   - `@Output() yearSelect`
   - Type: `number[]`
   - Example: `[ yyyy, ... ]`
@@ -80,55 +70,79 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
 
 #### In general
 
-- ID should always be included as input (always optional?)
-- If ID is optional:
-  - it should be for all time components
-  - solution to set value should be the same in all time components
-  - but the value must be unique
+- ID's:
+  - ID's should always be included as input (always optional?)
+  - If ID is optional:
+    - it should be for all time components
+    - solution to set value should be the same in all time components
+    - but the value must be unique
+- Labels:
+  - Must be inputs in "child components"
+  - No label input in time components which are never used as children
+  - **PS. All labes must be styled i the same way...**
+- Legends (?), placeholders:
+  - Should not be inputs.
+  - Must be consistent på across all time components.
 
 #### List of all inputs (work in progress)
 
 - **FhiDatepickerComponent**
   - `@Input() id`
+  - `@Input() date`
+  - `@Input() minDate`
+  - `@Input() maxDate`
+  - `@Input() label` (default: "Velg dato", and we don't set this input in our demo-app examples)
 
 - **FhiDateRangeComponent**
   - `@Input() id`
+  - `@Input() dateRange`
   - `@Input() minDate`
   - `@Input() maxDate`
 
 - **FhiDateTmeComponent**
   - `@Input() id`
+  - `@Input() dateTime`
+  - `@Input() minDateTime`
+  - `@Input() maxDateTime`
 
 - **FhiWeekpickerComponent**
   - `@Input() id`
+  - `@Input() week`
+  - `@Input() minWeek`
+  - `@Input() maxWeek`
+  - `@Input() label` (default: "Velg uke", and we don't set this input in our demo-app examples)
 
 - **FhiWeekRangeComponent**
   - `@Input() id`
+  - `@Input() weekRange`
   - `@Input() minWeek`
   - `@Input() maxWeek`
 
-- **FhiMonthSelectorComponent**
+- **FhiMonthsComponent**
   - `@Input() id`
-  - `@Input() singelMonth` boolean
+  - `@Input() month`
+  - `@Input() minMonth`
+  - `@Input() maxMonth`
+  - `@Input() label` (default: "Velg måneder", and we don't set this input in our demo-app examples)
 
 - **FhiMonthRangeComponent**
   - `@Input() id`
+  - `@Input() monthRange`
   - `@Input() minMonth`
   - `@Input() maxMonth`
 
-- **FhiYearSelectorComponent**
+- **FhiYearsComponent**
   - `@Input() id`
-  - `@Input() singelYear` boolean
+  - `@Input() year`
+  - `@Input() minYear`
+  - `@Input() maxYear`
+  - `@Input() label` (default: "Velg år", and we don't set this input in our demo-app examples)
 
 - **FhiYearRangeComponent**
   - `@Input() id`
+  - `@Input() yearRange`
   - `@Input() minYear`
   - `@Input() maxYear`
-
-### Labels, legends (?), placeholders
-
-- Should not be inputs.
-- Must be consistent på across all time components.
 
 ### Error messages
 
