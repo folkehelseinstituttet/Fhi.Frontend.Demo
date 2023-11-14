@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { isValid } from 'date-fns';
-
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearSelectorComponent } from '../fhi-year-selector/fhi-year-selector.component';
@@ -19,12 +17,12 @@ export class FhiMonthRangeComponent {
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
-  @Output() monthRangeSelect = new EventEmitter<Object>();
+  @Output() monthRangeSelect = new EventEmitter<object>();
 
-  fieldsetLegendFrom: string = 'Fra måned';
-  fieldsetLegendTo: string = 'Til måned';
-  labelMonth: string = 'måned';
-  labelYear: string = 'år';
+  fieldsetLegendFrom = 'Fra måned';
+  fieldsetLegendTo = 'Til måned';
+  labelMonth = 'måned';
+  labelYear = 'år';
   maxYearFrom: number;
   minYearTo: number;
   monthListFull: FhiAutosuggestItem[] = [
@@ -45,7 +43,7 @@ export class FhiMonthRangeComponent {
   monthFromList: FhiAutosuggestItem[] = [...this.monthListFull];
   monthTo: number;
   monthToList: FhiAutosuggestItem[] = [...this.monthListFull];
-  validRange: boolean = true;
+  validRange = true;
   yearFrom: string;
   yearTo: string;
 
@@ -54,6 +52,11 @@ export class FhiMonthRangeComponent {
   ngOnInit() {
     this.maxYearFrom = this.maxYear;
     this.minYearTo = this.minYear;
+  }
+
+  onYearSelect(year: number[], context: string) {
+    console.log('year', year);
+    console.log('context', context);
   }
 
   onYearFromSelect(event: any) {
@@ -66,6 +69,11 @@ export class FhiMonthRangeComponent {
     this.yearTo = event;
     this.maxYearFrom = event;
     this.checkValidity();
+  }
+
+  onMonthSelect(month: number[], context: string) {
+    console.log('month', month);
+    console.log('context', context);
   }
 
   onMonthFromSelect(event: any) {
