@@ -10,24 +10,24 @@ import { TimeSelectorMonth } from './time-selector-month';
 import { TimeSelectorMonthRange } from './time-selector-month-range';
 import { TimeSelectorWeek } from './time-selector-week';
 import { TimeSelectorWeekRange } from './time-selector-week-range';
-import { TimeSelectorYear } from './time-selector-year';
+import { TimeSelectorYears } from './time-selector-years';
 import { TimeSelectorYearRange } from './time-selector-year-range';
 
 const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,
-  ...TimeSelectorDateAndTime,
   ...TimeSelectorDateRange,
-  ...TimeSelectorMonth,
-  ...TimeSelectorMonthRange,
+  ...TimeSelectorDateAndTime,
   ...TimeSelectorWeek,
   ...TimeSelectorWeekRange,
-  ...TimeSelectorYear,
-  ...TimeSelectorYearRange
+  ...TimeSelectorMonth,
+  ...TimeSelectorMonthRange,
+  ...TimeSelectorYears,
+  ...TimeSelectorYearRange,
 ];
 
 export const TimeSelectorsData: LibraryItemGroup = {
   id: GROUPS.TimeSelectors.id,
   title: GROUPS.TimeSelectors.title,
   intro: TimeSelectorsIntro,
-  libraryItems: TimeSelectors
+  libraryItems: TimeSelectors,
 };

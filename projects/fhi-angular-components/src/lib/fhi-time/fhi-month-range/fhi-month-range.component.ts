@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
-import { FhiYearSelectorComponent } from '../fhi-year-selector/fhi-year-selector.component';
+import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
 @Component({
   selector: 'fhi-month-range',
   standalone: true,
-  imports: [CommonModule, FhiAutosuggestModule, FhiYearSelectorComponent],
+  imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
   templateUrl: './fhi-month-range.component.html',
   providers: [FhiConstantsService],
 })

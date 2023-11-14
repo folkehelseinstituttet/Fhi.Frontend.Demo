@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiYearSelectorComponent } from '../fhi-year-selector/fhi-year-selector.component';
+import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
@@ -11,7 +11,7 @@ import { toNumber } from 'lodash-es';
   selector: 'fhi-year-range',
   standalone: true,
   templateUrl: './fhi-year-range.component.html',
-  imports: [FhiYearSelectorComponent],
+  imports: [FhiYearsComponent],
   providers: [FhiConstantsService],
 })
 export class FhiYearRangeComponent {

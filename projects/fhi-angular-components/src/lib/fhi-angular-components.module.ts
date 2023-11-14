@@ -14,7 +14,7 @@ import { FhiMonthSelectorComponent } from './fhi-time/fhi-month-selector/fhi-mon
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
-import { FhiYearSelectorComponent } from './fhi-time/fhi-year-selector/fhi-year-selector.component';
+import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
@@ -30,7 +30,7 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiWeekpickerComponent,
   FhiWeekRangeComponent,
   FhiYearRangeComponent,
-  FhiYearSelectorComponent,
+  FhiYearsComponent,
 ];
 
 @NgModule({

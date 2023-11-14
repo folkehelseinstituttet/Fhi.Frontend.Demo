@@ -1,10 +1,10 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const TimeSelectorYear: LibraryItem[] = [
+export const TimeSelectorYears: LibraryItem[] = [
   {
-    id: ITEMS.TimeSelectorYear.id,
-    title: ITEMS.TimeSelectorYear.title,
+    id: ITEMS.TimeSelectorYears.id,
+    title: ITEMS.TimeSelectorYears.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -25,12 +25,12 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-selector
+<fhi-years
   [minYear]="2000"
   [maxYear]="2030"
   [years]="[2011]"
   (yearSelect)="onYearSelect($event)"
-></fhi-year-selector>
+></fhi-years>
 `;
 }
 

@@ -15,14 +15,14 @@ import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model'
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
 @Component({
-  selector: 'fhi-year-selector',
-  templateUrl: './fhi-year-selector.component.html',
+  selector: 'fhi-years',
+  templateUrl: './fhi-years.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [FhiAutosuggestModule],
   providers: [FhiConstantsService],
 })
-export class FhiYearSelectorComponent implements OnInit, OnChanges {
+export class FhiYearsComponent implements OnInit, OnChanges {
   @Input() label = 'Velg år';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;

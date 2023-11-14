@@ -54,11 +54,6 @@
   <pre class="pt-3" *ngIf="monthRangeSelected">{{ monthRangeSelected | json }}</pre>
 </div>
 
-<div *ngIf="itemId === items.TimeSelectorYear.id">
-  <fhi-year-selector
-    [minYear]="2000"
-    [maxYear]="2030"
-    [years]="[2011]"
-    (yearSelect)="onYearSelect($event)"
-  ></fhi-year-selector>
+<div *ngIf="itemId === items.TimeSelectorYears.id">
+  <fhi-years [minYear]="2000" [maxYear]="2030" [years]="[2011]" (yearSelect)="onYearSelect($event)"></fhi-years>
 </div>
