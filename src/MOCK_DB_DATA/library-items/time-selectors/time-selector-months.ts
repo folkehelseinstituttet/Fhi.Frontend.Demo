@@ -1,15 +1,16 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const TimeSelectorMonth: LibraryItem[] = [{
-  id: ITEMS.TimeSelectorMonth.id,
-  title: ITEMS.TimeSelectorMonth.title,
-  type: LibraryItemType.angular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const TimeSelectorMonths: LibraryItem[] = [
+  {
+    id: ITEMS.TimeSelectorMonths.id,
+    title: ITEMS.TimeSelectorMonths.title,
+    type: LibraryItemType.angular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
@@ -17,7 +18,7 @@ export const TimeSelectorMonth: LibraryItem[] = [{
 function getExampleHtml(): string {
   return ``;
 }
-  
+
 /*
  * Return empty string to use a copy of exampleHtml as codeHtml.
  * Return null to remove Code from library-item.

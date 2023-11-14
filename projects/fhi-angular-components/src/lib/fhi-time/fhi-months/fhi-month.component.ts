@@ -9,13 +9,13 @@ import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 
 @Component({
-  selector: 'fhi-month-selector',
+  selector: 'fhi-months',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
-  templateUrl: './fhi-month-selector.component.html',
+  templateUrl: './fhi-months.component.html',
   providers: [FhiConstantsService],
 })
-export class FhiMonthSelectorComponent {
+export class FhiMonthsComponent {
   @Input() labelYear: string = 'År';
   @Input() labelMonth: string = 'Måned';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;

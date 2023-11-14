@@ -40,18 +40,12 @@
   <!-- <p class="pt-4"><code>{{ selectedDateRange | json }}</code></p> -->
 </div>
 
-<div *ngIf="itemId === items.TimeSelectorMonth.id">
-  <fhi-month-selector (monthSelect)="onMonthSelect($event)"></fhi-month-selector>
-
-  <p class="pt-4">
-    <code>{{ monthSelected | json }}</code>
-  </p>
+<div *ngIf="itemId === items.TimeSelectorMonths.id">
+  <fhi-months (monthSelect)="onMonthSelect($event)"></fhi-months>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonthRange.id">
   <fhi-month-range (monthRangeSelect)="onMonthRangeSelect($event)"></fhi-month-range>
-
-  <pre class="pt-3" *ngIf="monthRangeSelected">{{ monthRangeSelected | json }}</pre>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYears.id">

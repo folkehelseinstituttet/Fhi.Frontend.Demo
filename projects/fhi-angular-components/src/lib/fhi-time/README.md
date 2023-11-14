@@ -56,7 +56,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - Type: `FhiweekRange`
   - Example: `{ from: { year: yyyy, week: u[u] }, to: { year: yyyy, week: u[u] } }`
 
-- **FhiMonthSelectorComponent**
+- **FhiMonthsComponent**
   - `@Output() monthSelect`
   - Type: `number[]`
   - Example: `[ m[m], ... ]`
@@ -107,7 +107,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - `@Input() minWeek`
   - `@Input() maxWeek`
 
-- **FhiMonthSelectorComponent**
+- **FhiMonthsComponent**
   - `@Input() id`
   - `@Input() singelMonth` boolean
 
