@@ -12,7 +12,7 @@ export class FhiMultiselectComponent {
   @Input() items: Array<FhiMultiselectItem> = [];
   @Input() labelForId: string = undefined;
   @Input() placeholder: string = '';
-
+  @Input() disableTags: boolean;
   @Input() description: string = undefined;
   @Input() label: string = 'Label';
   @Input() notFoundText: string = 'Ingen elementer funnet';
