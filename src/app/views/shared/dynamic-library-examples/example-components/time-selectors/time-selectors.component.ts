@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import { FhiMonth } from 'dist/fhi-angular-components/lib/fhi-time/fhi-month.model';
 
 @Component({
   selector: 'app-time-selectors',
@@ -40,14 +41,6 @@ export class TimeSelectorsComponent {
   //   this.generateWeekList();
   // }
 
-  onMonthSelect(yearMonth: string) {
-    this.monthSelected = yearMonth;
-  }
-
-  onMonthRangeSelect(monthRange: object) {
-    this.monthRangeSelected = monthRange;
-  }
-
   getDate(date: any) {
     this.selectedDate = date;
   }
@@ -77,6 +70,14 @@ export class TimeSelectorsComponent {
 
   onWeekRangeSelect(weekRange: any) {
     console.info(weekRange);
+  }
+
+  onMonthSelect(months: FhiMonth[]) {
+    console.info(months);
+  }
+
+  onMonthRangeSelect(monthRange: object) {
+    this.monthRangeSelected = monthRange;
   }
 
   onYearSelect(year: number[]) {

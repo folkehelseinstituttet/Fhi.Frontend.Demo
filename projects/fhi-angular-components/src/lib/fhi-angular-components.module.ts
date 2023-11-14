@@ -10,7 +10,7 @@ import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
 import { FhiMonthRangeComponent } from './fhi-time/fhi-month-range/fhi-month-range.component';
-import { FhiMonthsComponent } from './fhi-time/fhi-months/fhi-month.component';
+import { FhiMonthsComponent } from './fhi-time/fhi-months/fhi-months.component';
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';

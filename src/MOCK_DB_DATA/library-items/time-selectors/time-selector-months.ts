@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<fhi-month-selector></fhi-month-selector>`;
+  return `<fhi-months (monthSelect)="onMonthSelect($event)"></fhi-months>`;
 }
 
 /*

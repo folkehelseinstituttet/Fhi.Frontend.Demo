@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiMonthsComponent } from './fhi-month.component';
+import { FhiMonthsComponent } from './fhi-months.component';
 
 describe('FhiMonthsComponent', () => {
   let component: FhiMonthsComponent;

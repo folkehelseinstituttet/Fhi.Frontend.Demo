@@ -39,7 +39,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
     if (this.years?.length > 0) {
       this.year = this.years[0];
     }
-    this.updateYearList();
+    this.updateYearItems();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -50,7 +50,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
       (changes.minYear && !changes.minYear.isFirstChange()) ||
       (changes.maxYear && !changes.maxYear.isFirstChange())
     ) {
-      this.updateYearList();
+      this.updateYearItems();
     }
   }
 
@@ -58,7 +58,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
     this.yearSelect.emit([year]);
   }
 
-  private updateYearList() {
+  private updateYearItems() {
     this.yearItems = [];
     for (let i = this.minYear; i <= this.maxYear; i++) {
       this.yearItems.push({
