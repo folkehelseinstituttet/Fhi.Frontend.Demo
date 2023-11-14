@@ -21,6 +21,7 @@ export class TimeSelectorsComponent {
   selectedToYear: number;
   selectedYear: number;
   selectedYearRange: any;
+  monthRangeSelected: any;
   weekFrom: string = '2010-27';
   weekTo: string = '2013-13';
   weekRange: any;
@@ -45,6 +46,10 @@ export class TimeSelectorsComponent {
 
   onMonthSelect(yearMonth: string) {
     this.monthSelected = yearMonth;
+  }
+
+  onMonthRangeSelect(monthRange: Object) {
+    this.monthRangeSelected = monthRange;
   }
 
   getDate(date: any) {
