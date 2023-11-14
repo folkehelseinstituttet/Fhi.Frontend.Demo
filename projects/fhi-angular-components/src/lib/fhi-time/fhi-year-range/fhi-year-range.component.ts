@@ -15,8 +15,8 @@ import { toNumber } from 'lodash-es';
   providers: [FhiConstantsService],
 })
 export class FhiYearRangeComponent {
-  @Input() labelFromYear: string = 'Fra år';
-  @Input() labelToYear: string = 'Til år';
+  @Input() labelFromYear = 'Fra år';
+  @Input() labelToYear = 'Til år';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
@@ -28,6 +28,11 @@ export class FhiYearRangeComponent {
   selectedTo: number;
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
+
+  onYearSelect(year: number[], context: string) {
+    console.log('year', year);
+    console.log('context', context);
+  }
 
   onFromYearSelect(event: string) {
     this.minYear = toNumber(event);
