@@ -79,6 +79,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
 - Labels:
   - Must be inputs in "child components"
   - No label input in time components which are never used as children
+  - **PS. All labes must be styled i the same way...**
 - Legends (?), placeholders:
   - Should not be inputs.
   - Must be consistent på across all time components.
