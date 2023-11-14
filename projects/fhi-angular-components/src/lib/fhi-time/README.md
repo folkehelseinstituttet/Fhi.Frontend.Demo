@@ -14,9 +14,10 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
 
 #### In general
 
-- Outputs in use when nested time components... is this a good solution:
-  - `(foo)="onFooFrom"`
-  - `(foo)="onFooTo"`
+- Outputs in use when nested time components, better solution with year as example:
+  - `(years)="onYearsSelect($event, 'from')"` -> `onFoo(years: number[], context: string) {}`
+  - `(years)="onYearsSelect($event, 'to')"` -> `onFoo(years: number[], context: string) {}`
+  - and context can be defined as an enum
 
 #### List of all outputs (work in progress)
 
