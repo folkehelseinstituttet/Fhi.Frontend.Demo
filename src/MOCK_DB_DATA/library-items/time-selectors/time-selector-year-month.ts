@@ -1,10 +1,10 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const TimeSelectorMonths: LibraryItem[] = [
+export const TimeSelectorYearMonth: LibraryItem[] = [
   {
-    id: ITEMS.TimeSelectorMonths.id,
-    title: ITEMS.TimeSelectorMonths.title,
+    id: ITEMS.TimeSelectorYearMonth.id,
+    title: ITEMS.TimeSelectorYearMonth.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<fhi-months (monthSelect)="onMonthSelect($event)"></fhi-months>`;
+  return `<fhi-year-month (monthSelect)="onMonthSelect($event)"></fhi-year-month>`;
 }
 
 /*

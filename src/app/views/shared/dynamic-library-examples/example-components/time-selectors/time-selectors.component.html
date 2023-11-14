@@ -40,8 +40,8 @@
   <!-- <p class="pt-4"><code>{{ selectedDateRange | json }}</code></p> -->
 </div>
 
-<div *ngIf="itemId === items.TimeSelectorMonths.id">
-  <fhi-months (monthSelect)="onMonthSelect($event)"></fhi-months>
+<div *ngIf="itemId === items.TimeSelectorYearMonth.id">
+  <fhi-year-month (monthSelect)="onMonthSelect($event)"></fhi-year-month>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorMonthRange.id">

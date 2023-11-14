@@ -10,13 +10,13 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
 import { FhiMonth } from '../fhi-month.model';
 
 @Component({
-  selector: 'fhi-months',
+  selector: 'fhi-year-month',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
-  templateUrl: './fhi-months.component.html',
+  templateUrl: './fhi-year-month.component.html',
   providers: [FhiConstantsService],
 })
-export class FhiMonthsComponent implements OnInit {
+export class FhiYearMonthComponent implements OnInit {
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
   @Input() months: FhiMonth[];
