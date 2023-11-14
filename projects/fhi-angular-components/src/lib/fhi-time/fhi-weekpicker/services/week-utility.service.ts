@@ -46,10 +46,11 @@ export class WeekUtilityService {
 
   getInitMaxDate(): NgbDateStruct {
     const date = new Date();
+    const dayOfWeek = date.getDay();
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate(),
+      day: date.getDate() + 7 - date.getDay(),
     };
   }
 

@@ -14,7 +14,6 @@ export class WeekAdapterService extends NgbDateAdapter<FhiWeek> {
   }
 
   fromModel(value: FhiWeek | string | null): NgbDateStruct | null {
-    // console.warn('fromModel(value):', value);
     if (value) {
       if (typeof value === 'string') {
         return null;
@@ -25,7 +24,6 @@ export class WeekAdapterService extends NgbDateAdapter<FhiWeek> {
   }
 
   toModel(date: NgbDateStruct | null): FhiWeek | null {
-    // console.warn('toModel(date):', date);
     if (date) {
       return this.weekUtilityService.getYearWeek(new Date(date.year, date.month - 1, date.day));
     }

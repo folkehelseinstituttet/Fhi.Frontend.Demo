@@ -17,13 +17,11 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
-    // console.warn('parse(value):', value);
     this.weekValidationService.setUnvalidatedYearWeekString(value);
     return null;
   }
 
   format(date: NgbDateStruct | null): string {
-    // console.warn('format(date):', date);
     return this.utilityService.getYearWeekStringFromDate(date);
   }
 }

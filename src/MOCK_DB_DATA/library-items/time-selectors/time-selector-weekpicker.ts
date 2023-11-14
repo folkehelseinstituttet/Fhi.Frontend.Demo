@@ -25,13 +25,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-weekpicker 
-  [id]="'id'"
-  [week]="'2015-53'"
-  [minWeek]="'1910-1'"
-  [maxWeek]="'2020-50'"
-  (weekSelect)="onWeekSelect($event)">
-</fhi-weekpicker>
+  <fhi-weekpicker (weekSelect)="onWeekSelect($event)"></fhi-weekpicker>
 `;
 }
 
@@ -39,5 +33,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return ``;
+  return null;
 }
