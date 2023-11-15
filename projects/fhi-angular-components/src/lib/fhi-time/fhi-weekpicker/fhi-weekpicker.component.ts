@@ -17,10 +17,11 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
+import { FhiWeek } from './fhi-week.model';
+import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
 import { WeekAdapterService } from './services/week-adapter.service';
 import { WeekValidationService } from './services/week-validator.service';
-import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekUtilityService } from './services/week-utility.service';
 
 @Component({
