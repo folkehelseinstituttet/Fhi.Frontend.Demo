@@ -1,12 +1,13 @@
 <div class="fhi-week-range">
   <div class="d-flex">
-    <fhi-weekpicker 
+    <fhi-weekpicker
       [label]="labelWeekFrom"
       [id]="idFrom"
       [week]="weekFrom"
       [minWeek]="minWeekFrom"
       [maxWeek]="maxWeekFrom"
-      (weekSelect)="onWeekFromSelect($event)">
+      (weekSelect)="onWeekFromSelect($event)"
+    >
     </fhi-weekpicker>
     <span>
       <span class="fhi-week-range__divider">&ndash;</span>
@@ -17,12 +18,15 @@
       [week]="weekTo"
       [minWeek]="minWeekTo"
       [maxWeek]="maxWeekTo"
-      (weekSelect)="onWeekToSelect($event)">
+      (weekSelect)="onWeekToSelect($event)"
+    >
     </fhi-weekpicker>
   </div>
 
   <div role="alert" aria-live="polite">
-    <p class="invalid-feedback fhi-week-range__invalid-feedback"
-       [ngClass]="{ 'd-block': !isValid }"><strong>{{ labelWeekFrom }}</strong> må være før <strong>{{ labelWeekTo }}</strong>.</p>
+    <p class="invalid-feedback fhi-week-range__invalid-feedback" [ngClass]="{ 'd-block': !isValid }">
+      <strong>{{ labelWeekFrom }}</strong> må være før <strong>{{ labelWeekTo }}</strong
+      >.
+    </p>
   </div>
 </div>

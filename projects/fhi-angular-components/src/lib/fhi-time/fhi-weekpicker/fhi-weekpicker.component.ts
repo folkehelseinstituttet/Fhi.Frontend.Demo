@@ -1,7 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct, NgbDatepickerI18n, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDateAdapter,
+  NgbDateParserFormatter,
+  NgbDateStruct,
+  NgbDatepickerI18n,
+  NgbDatepickerModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
@@ -51,8 +64,8 @@ export class FhiWeekpickerComponent {
 
   constructor(
     private weekValidationService: WeekValidationService,
-    private weekUtilityService: WeekUtilityService
-  ) { }
+    private weekUtilityService: WeekUtilityService,
+  ) {}
 
   ngOnInit() {
     this.maxWeekChangeActions();
@@ -75,9 +88,7 @@ export class FhiWeekpickerComponent {
   onDateSelect(date: NgbDateStruct) {
     this.isValid = true;
     this.startDate = date;
-    this.weekSelect.emit(
-      this.weekUtilityService.getYearWeekStringFromDate(date)
-    );
+    this.weekSelect.emit(this.weekUtilityService.getYearWeekStringFromDate(date));
   }
 
   onBlur() {
@@ -170,5 +181,4 @@ export class FhiWeekpickerComponent {
   private getDate(): NgbDateStruct | null {
     return this.weekUtilityService.getDateAfterValidatinYearWeekString();
   }
-
 }
