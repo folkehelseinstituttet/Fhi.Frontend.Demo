@@ -23,8 +23,6 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedYearRange: any;
   monthRangeSelected: any;
-  weekFrom: string = '2010-27';
-  weekTo: string = '2013-13';
   weekRange: any;
 
   // weekSelected: string;
