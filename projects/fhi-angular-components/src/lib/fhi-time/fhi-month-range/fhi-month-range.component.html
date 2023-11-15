@@ -1,30 +1,32 @@
 <div class="fhi-month-range row">
   <fieldset class="fhi-month-range__fieldset col-12 col-md-auto">
-    <legend class="fhi-month-range__legend">{{ fieldsetLegendFrom }}</legend>
+    <legend class="fhi-month-range__legend">
+      {{ constants.fieldsetLegendFrom }}
+    </legend>
     <div class="fhi-month-selector">
       <div class="d-flex">
         <div class="fhi-month-selector__year">
-          <!-- <fhi-year-selector
-            [label]="labelYear"
+          <fhi-years
+            [label]="constants.labelYear"
             [minYear]="minYear"
-            [maxYear]="maxYearFrom"
-            [year]="yearFrom"
-            (yearSelect)="onYearFromSelect($event)"
+            [maxYear]="maxYear"
+            [years]="years"
+            (yearSelect)="onYearSelect($event, rangeContext.from)"
           >
-          </fhi-year-selector> -->
+          </fhi-years>
         </div>
 
         <span class="fhi-month-selector__divider"></span>
 
         <div class="fhi-month-selector__month">
-          <!-- <fhi-autosuggest
-            [items]="monthFromList"
-            [label]="labelMonth"
-            [notFoundText]="'Ugyldig måned'"
-            [selectedItem]="monthFrom"
-            (selectedItemChange)="onMonthFromSelect($event)"
+          <fhi-autosuggest
+            [items]="monthItems"
+            [label]="constants.labelMonth"
+            [notFoundText]="constants.notFoundText"
+            [itemSelect]="monthId"
+            (itemSelectChange)="onItemSelectChange($event, rangeContext.from)"
           >
-          </fhi-autosuggest> -->
+          </fhi-autosuggest>
         </div>
       </div>
     </div>
@@ -35,40 +37,42 @@
   </span>
 
   <fieldset class="fhi-month-range__fieldset col-12 col-md-6">
-    <legend class="fhi-month-range__legend">{{ fieldsetLegendTo }}</legend>
+    <legend class="fhi-month-range__legend">
+      {{ constants.fieldsetLegendTo }}
+    </legend>
     <div class="fhi-month-selector">
       <div class="d-flex">
         <div class="fhi-month-selector__year">
-          <!-- <fhi-year-selector
-            [label]="labelYear"
-            [minYear]="minYearTo"
+          <fhi-years
+            [label]="constants.labelYear"
+            [minYear]="minYear"
             [maxYear]="maxYear"
-            [year]="yearTo"
-            (yearSelect)="onYearToSelect($event)"
+            [years]="years"
+            (yearSelect)="onYearSelect($event, rangeContext.to)"
           >
-          </fhi-year-selector> -->
+          </fhi-years>
         </div>
 
         <span class="fhi-month-selector__divider"></span>
 
         <div class="fhi-month-selector__month">
-          <!-- <fhi-autosuggest
-            [items]="monthToList"
-            [label]="labelMonth"
-            [notFoundText]="'Ugyldig måned'"
-            [selectedItem]="monthTo"
-            (selectedItemChange)="onMonthToSelect($event)"
+          <fhi-autosuggest
+            [items]="monthItems"
+            [label]="constants.labelMonth"
+            [notFoundText]="constants.notFoundText"
+            [itemSelect]="monthId"
+            (itemSelectChange)="onItemSelectChange($event, rangeContext.to)"
           >
-          </fhi-autosuggest> -->
+          </fhi-autosuggest>
         </div>
       </div>
     </div>
   </fieldset>
 
-  <div class="col-12 mt-n3" *ngIf="!validRange">
-    <p class="invalid-feedback" [ngClass]="{ 'd-block': !validRange }">
-      <strong>{{ fieldsetLegendFrom }}</strong> kan ikke være etter
-      <strong>{{ fieldsetLegendTo.toLowerCase() }}</strong
+  <div class="col-12 mt-n3" *ngIf="!isValid">
+    <p class="invalid-feedback" [ngClass]="{ 'd-block': !isValid }">
+      <strong>{{ constants.fieldsetLegendFrom }}</strong> kan ikke være etter
+      <strong>{{ constants.fieldsetLegendTo.toLowerCase() }}</strong
       >.
     </p>
   </div>

@@ -17,22 +17,23 @@ import { FhiTimeConstants } from '../fhi-time-constants';
   templateUrl: './fhi-year-month.component.html',
 })
 export class FhiYearMonthComponent implements OnInit {
-  @Input() minMonth: FhiMonth;
-  @Input() maxMonth: FhiMonth;
+  // TODO
+  // @Input() minMonth: FhiMonth;
+  // @Input() maxMonth: FhiMonth;
+
   @Input() month: FhiMonth = { year: undefined, month: undefined };
 
   @Output() monthSelect = new EventEmitter<FhiMonth>();
 
   minYear = this.getMinYear();
   maxYear = this.getMaxYear();
+  years: number[];
   monthId: number;
   monthItems!: FhiAutosuggestItem[];
-  years: number[];
 
   ngOnInit() {
     this.updateMonthItems();
   }
-  // TODO: ngOnChanges (see weekpicker)
 
   onYearSelect(years: number[]) {
     this.years = years;
@@ -45,7 +46,6 @@ export class FhiYearMonthComponent implements OnInit {
   }
 
   private validateAndEmit() {
-    // TODO: validation (see weekpicker)
     if (this.years && this.monthId) {
       this.monthSelect.emit({
         year: this.years[0],
@@ -65,12 +65,10 @@ export class FhiYearMonthComponent implements OnInit {
     }
   }
 
-  // TODO: move into global fhi-time service
   private getMinYear() {
     return 1900;
   }
 
-  // TODO: move into global fhi-time service
   private getMaxYear() {
     return getYear(new Date());
   }
