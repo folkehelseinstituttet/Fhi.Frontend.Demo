@@ -61,7 +61,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - Type: `number[]`
   - Example: `[ m[m], ... ]`
 
-- **FhiMonthRangeComponent**
+- **FhiYearMonthRangeComponent**
   - `@Output() monthRangeSelect`
   - Type: `FhiMonthRange`
   - Example: `{ from: { year: yyyy, month: m[m] }, to: { year: yyyy, month: m[m] } }`
@@ -111,7 +111,7 @@ TODO: Remove this tmp-chapter when 1. iteration of fhi-time/* is ready for relea
   - `@Input() id`
   - `@Input() singelMonth` boolean
 
-- **FhiMonthRangeComponent**
+- **FhiYearMonthRangeComponent**
   - `@Input() id`
   - `@Input() minMonth`
   - `@Input() maxMonth`

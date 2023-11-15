@@ -177,7 +177,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-year-month',
     title: 'Year month',
   },
-  TimeSelectorMonthRange: {
+  TimeSelectorYearMonthRange: {
     id: 'time-selector-month-range',
     title: 'Month range',
   },

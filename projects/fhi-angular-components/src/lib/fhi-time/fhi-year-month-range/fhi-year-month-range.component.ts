@@ -8,15 +8,16 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
 import { RangeContext } from '../range-context.enum';
 import { getYear } from 'date-fns';
 import { FhiMonth } from '../fhi-month.model';
+import { FhiTimeConstants } from '../fhi-time-constants';
 
 @Component({
-  selector: 'fhi-month-range',
+  selector: 'fhi-year-month-range',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
-  templateUrl: './fhi-month-range.component.html',
+  templateUrl: './fhi-year-month-range.component.html',
   providers: [FhiConstantsService],
 })
-export class FhiMonthRangeComponent implements OnInit {
+export class FhiYearMonthRangeComponent implements OnInit {
   // TODO
   // @Input() minMonth: FhiMonth;
   // @Input() maxMonth: FhiMonth;
@@ -35,8 +36,7 @@ export class FhiMonthRangeComponent implements OnInit {
   isValid = true;
 
   ngOnInit() {
-    console.log(this.id);
-    // this.updateMonthItems();
+    this.monthItems = this.getMonthItems();
   }
 
   onYearSelect(years: number[], context: number) {
@@ -70,6 +70,18 @@ export class FhiMonthRangeComponent implements OnInit {
         },
       });
     }
+  }
+
+  private getMonthItems() {
+    const monthNames = FhiTimeConstants.monthNames;
+    const monthItems = [];
+    for (let i = 1; i <= 12; i++) {
+      monthItems.push({
+        id: i,
+        name: monthNames[i - 1],
+      });
+    }
+    return monthItems;
   }
 
   private getConstants() {

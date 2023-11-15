@@ -32,7 +32,7 @@ export class FhiYearMonthComponent implements OnInit {
   monthItems!: FhiAutosuggestItem[];
 
   ngOnInit() {
-    this.updateMonthItems();
+    this.monthItems = this.getMonthItems();
   }
 
   onYearSelect(years: number[]) {
@@ -54,15 +54,16 @@ export class FhiYearMonthComponent implements OnInit {
     }
   }
 
-  private updateMonthItems() {
+  private getMonthItems() {
     const monthNames = FhiTimeConstants.monthNames;
-    this.monthItems = [];
+    const monthItems = [];
     for (let i = 1; i <= 12; i++) {
-      this.monthItems.push({
+      monthItems.push({
         id: i,
         name: monthNames[i - 1],
       });
     }
+    return monthItems;
   }
 
   private getMinYear() {

@@ -7,7 +7,7 @@ import { TimeSelectorDatepicker } from './time-selector-datepicker';
 import { TimeSelectorDateAndTime } from './time-selector-date-and-time';
 import { TimeSelectorDateRange } from './time-selector-date-range';
 import { TimeSelectorYearMonth } from './time-selector-year-month';
-import { TimeSelectorMonthRange } from './time-selector-month-range';
+import { TimeSelectorYearMonthRange } from './time-selector-year-month-range';
 import { TimeSelectorWeek } from './time-selector-week';
 import { TimeSelectorWeekRange } from './time-selector-week-range';
 import { TimeSelectorYears } from './time-selector-years';
@@ -20,7 +20,7 @@ const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorWeek,
   ...TimeSelectorWeekRange,
   ...TimeSelectorYearMonth,
-  ...TimeSelectorMonthRange,
+  ...TimeSelectorYearMonthRange,
   ...TimeSelectorYears,
   ...TimeSelectorYearRange,
 ];

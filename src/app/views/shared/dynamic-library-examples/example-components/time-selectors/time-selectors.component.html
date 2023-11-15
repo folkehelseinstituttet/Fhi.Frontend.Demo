@@ -44,8 +44,8 @@
   <fhi-year-month (monthSelect)="onMonthSelect($event)"></fhi-year-month>
 </div>
 
-<div *ngIf="itemId === items.TimeSelectorMonthRange.id">
-  <fhi-month-range [id]="" (monthRangeSelect)="onMonthRangeSelect($event)"></fhi-month-range>
+<div *ngIf="itemId === items.TimeSelectorYearMonthRange.id">
+  <fhi-year-month-range (monthRangeSelect)="onMonthRangeSelect($event)"></fhi-year-month-range>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYears.id">
