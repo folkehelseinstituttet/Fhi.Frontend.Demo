@@ -54,10 +54,10 @@ export class FhiMonthRangeCopyComponent {
     this.minYearTo = this.minYear;
   }
 
-  onYearSelect(year: number[], context: string) {
-    console.log('year', year);
-    console.log('context', context);
-  }
+  // onYearSelect(year: number[], context: string) {
+  //   console.log('year', year);
+  //   console.log('context', context);
+  // }
 
   onYearFromSelect(event: any) {
     this.yearFrom = event;
@@ -71,10 +71,10 @@ export class FhiMonthRangeCopyComponent {
     this.checkValidity();
   }
 
-  onMonthSelect(month: number[], context: string) {
-    console.log('month', month);
-    console.log('context', context);
-  }
+  // onMonthSelect(month: number[], context: string) {
+  //   console.log('month', month);
+  //   console.log('context', context);
+  // }
 
   onMonthFromSelect(event: any) {
     this.monthFrom = event;

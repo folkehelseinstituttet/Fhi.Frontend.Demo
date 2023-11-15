@@ -8,9 +8,8 @@
         <div class="fhi-month-selector__year">
           <fhi-years
             [label]="constants.labelYear"
-            [minYear]="minYear"
-            [maxYear]="maxYear"
-            [years]="years"
+            [minYear]="minMonth.year"
+            [maxYear]="maxYearFrom"
             (yearSelect)="onYearSelect($event, rangeContext.from)"
           >
           </fhi-years>
@@ -20,10 +19,10 @@
 
         <div class="fhi-month-selector__month">
           <fhi-autosuggest
-            [items]="monthItems"
+            [items]="fromMonthItems"
             [label]="constants.labelMonth"
             [notFoundText]="constants.notFoundText"
-            [itemSelect]="monthId"
+            [itemSelect]="undefined"
             (itemSelectChange)="onItemSelectChange($event, rangeContext.from)"
           >
           </fhi-autosuggest>
@@ -45,9 +44,8 @@
         <div class="fhi-month-selector__year">
           <fhi-years
             [label]="constants.labelYear"
-            [minYear]="minYear"
-            [maxYear]="maxYear"
-            [years]="years"
+            [minYear]="minYearTo"
+            [maxYear]="maxMonth.year"
             (yearSelect)="onYearSelect($event, rangeContext.to)"
           >
           </fhi-years>
@@ -57,10 +55,10 @@
 
         <div class="fhi-month-selector__month">
           <fhi-autosuggest
-            [items]="monthItems"
+            [items]="toMonthItems"
             [label]="constants.labelMonth"
             [notFoundText]="constants.notFoundText"
-            [itemSelect]="monthId"
+            [itemSelect]="undefined"
             (itemSelectChange)="onItemSelectChange($event, rangeContext.to)"
           >
           </fhi-autosuggest>

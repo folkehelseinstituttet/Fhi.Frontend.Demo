@@ -1,74 +1,102 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { getYear } from 'date-fns';
+
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
-import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 import { RangeContext } from '../range-context.enum';
-import { getYear } from 'date-fns';
 import { FhiMonth } from '../fhi-month.model';
 import { FhiTimeConstants } from '../fhi-time-constants';
+import { FhiMonthRange } from './fhi-month-range.model';
 
 @Component({
   selector: 'fhi-year-month-range',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
   templateUrl: './fhi-year-month-range.component.html',
-  providers: [FhiConstantsService],
 })
 export class FhiYearMonthRangeComponent implements OnInit {
-  // TODO
-  // @Input() minMonth: FhiMonth;
-  // @Input() maxMonth: FhiMonth;
   @Input() id = this.getRandomId();
-  @Input() monthRange: FhiMonth = { year: undefined, month: undefined };
+  @Input() minMonth: FhiMonth;
+  @Input() maxMonth: FhiMonth;
+  // TODO: @Input() monthRange: FhiMonthRange = { from: undefined, to: undefined };
 
-  @Output() monthRangeSelect = new EventEmitter<object>();
+  @Output() monthRangeSelect = new EventEmitter<FhiMonthRange>();
 
-  constants = this.getConstants();
-  minYear = this.getMinYear();
-  maxYear = this.getMaxYear();
-  years: number[];
-  rangeContext = RangeContext;
-  monthId: number;
-  monthItems!: FhiAutosuggestItem[];
   isValid = true;
+  constants = this.getConstants();
+  rangeContext = RangeContext;
+  fromMonth: FhiMonth;
+  toMonth: FhiMonth;
+  fromMonthItems!: FhiAutosuggestItem[];
+  toMonthItems!: FhiAutosuggestItem[];
+  minYearTo: number;
+  maxYearFrom: number;
 
   ngOnInit() {
-    this.monthItems = this.getMonthItems();
+    if (this.minMonth === undefined) {
+      this.minMonth = this.getMinMonth();
+    }
+    if (this.maxMonth === undefined) {
+      this.maxMonth = this.getMaxMonth();
+    }
+    this.fromMonth = this.getMinMonth();
+    this.toMonth = this.getMaxMonth();
+
+    this.minYearTo = this.minMonth.year;
+    this.maxYearFrom = this.maxMonth.year;
+
+    this.toMonthItems = this.getMonthItems();
+    this.fromMonthItems = this.getMonthItems();
   }
 
   onYearSelect(years: number[], context: number) {
     if (context === RangeContext.from) {
-      // this.updateFromYear(year[0]);
+      this.fromMonth.year = years[0];
+      this.minYearTo = years[0];
     } else {
-      // this.updateToYear(year[0]);
+      this.toMonth.year = years[0];
+      this.maxYearFrom = years[0];
     }
     this.validateAndEmit();
   }
 
   onItemSelectChange(monthId: number, context: number) {
     if (context === RangeContext.from) {
-      // this.updateFromYear(year[0]);
+      this.fromMonth.month = monthId;
+      this.updateMonthItems(monthId, context);
     } else {
-      // this.updateToYear(year[0]);
+      this.toMonth.month = monthId;
+      this.updateMonthItems(monthId, context);
     }
     this.validateAndEmit();
   }
 
   private validateAndEmit() {
-    if (this.years && this.monthId) {
-      this.monthRangeSelect.emit({
-        to: {
-          year: this.years[0],
-          month: this.monthId,
-        },
-        from: {
-          year: this.years[0],
-          month: this.monthId,
-        },
-      });
+    const fromMonth = this.fromMonth.year + this.fromMonth.month;
+    const toMonth = this.toMonth.year + this.toMonth.month;
+
+    if (fromMonth > toMonth) {
+      this.isValid = false;
+      return;
+    }
+    this.isValid = true;
+    this.monthRangeSelect.emit({
+      from: this.fromMonth,
+      to: this.toMonth,
+    });
+  }
+
+  private updateMonthItems(monthId: number, context: number) {
+    if (this.fromMonth.year < this.toMonth.year) {
+      return;
+    }
+    if (context === RangeContext.from) {
+      this.toMonthItems = this.getMonthItems().slice(monthId - 1);
+    } else {
+      this.fromMonthItems = this.getMonthItems().slice(0, monthId);
     }
   }
 
@@ -92,6 +120,14 @@ export class FhiYearMonthRangeComponent implements OnInit {
       labelYear: 'år',
       notFoundText: 'Ugyldig måned',
     };
+  }
+
+  private getMinMonth() {
+    return { year: this.getMinYear(), month: 1 };
+  }
+
+  private getMaxMonth() {
+    return { year: this.getMaxYear(), month: 12 };
   }
 
   private getMinYear() {

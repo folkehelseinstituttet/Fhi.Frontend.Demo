@@ -59,6 +59,9 @@ export class FhiYearsComponent implements OnInit, OnChanges {
   }
 
   private updateYearItems() {
+    if (!this.minYear || !this.maxYear) {
+      return;
+    }
     this.yearItems = [];
     for (let i = this.minYear; i <= this.maxYear; i++) {
       this.yearItems.push({

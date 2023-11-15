@@ -27,23 +27,23 @@ export class FhiYearRangeComponent {
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
-  onYearSelect(year: number[], context: number) {
+  onYearSelect(years: number[], context: number) {
     if (context === RangeContext.from) {
-      this.updateFromYear(year[0]);
+      this.updateMinYearAndFromYear(years[0]);
     } else {
-      this.updateToYear(year[0]);
+      this.updateMaxYearAndToYear(years[0]);
     }
     if (this.fromYear && this.toYear) {
       this.yearRangeSelect.emit(this.getRange());
     }
   }
 
-  updateFromYear(year: number) {
+  private updateMinYearAndFromYear(year: number) {
     this.minYear = year;
     this.fromYear = year;
   }
 
-  updateToYear(year: number) {
+  private updateMaxYearAndToYear(year: number) {
     this.maxYear = year;
     this.toYear = year;
   }
