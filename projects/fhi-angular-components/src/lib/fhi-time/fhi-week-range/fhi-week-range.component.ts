@@ -15,8 +15,6 @@ import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
   imports: [CommonModule, FhiWeekpickerComponent],
 })
 export class FhiWeekRangeComponent {
-  @Input() labelWeekFrom = 'Fra uke';
-  @Input() labelWeekTo = 'Til uke';
   @Input() maxWeek: FhiWeek = { year: getYear(new Date()) + 1, week: 52 };
   @Input() minWeek: FhiWeek = { year: 1900, week: 1 };
   @Input() weekFrom: FhiWeek;
@@ -26,6 +24,9 @@ export class FhiWeekRangeComponent {
 
   idFrom: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
   idTo: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
+
+  labelWeekFrom = FhiTimeConstants.weekRangeLabelFrom;
+  labelWeekTo = FhiTimeConstants.weekRangeLabelTo;
 
   maxWeekFrom: FhiWeek;
   maxWeekTo: FhiWeek;
