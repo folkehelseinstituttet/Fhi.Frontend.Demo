@@ -11,7 +11,7 @@ import { WeekRange } from './week-range.model';
   selector: 'fhi-week-range',
   standalone: true,
   templateUrl: './fhi-week-range.component.html',
-  imports: [ CommonModule, FhiWeekpickerComponent ],
+  imports: [CommonModule, FhiWeekpickerComponent],
 })
 export class FhiWeekRangeComponent {
   @Input() weekFrom: string;
@@ -34,7 +34,7 @@ export class FhiWeekRangeComponent {
 
   selectedRange: WeekRange = {
     weekFrom: undefined,
-    weekTo: undefined
+    weekTo: undefined,
   };
   isValid = true;
 
@@ -65,14 +65,13 @@ export class FhiWeekRangeComponent {
   // ngOnChanges(changes: SimpleChanges) {
   // }
 
-
   onWeekFromSelect(yearWeek: string) {
     this.weekFrom = yearWeek;
     this.minWeekTo = yearWeek;
     this.selectedRange.weekFrom = yearWeek;
 
     if (this.weekTo) {
-      this.isValid =this.isValidWeekRange();
+      this.isValid = this.isValidWeekRange();
     }
     if (this.isValid && this.weekTo) {
       this.weekRangeSelect.emit(this.selectedRange);
@@ -85,7 +84,7 @@ export class FhiWeekRangeComponent {
     this.selectedRange.weekTo = yearWeek;
 
     if (this.weekFrom) {
-      this.isValid =this.isValidWeekRange();
+      this.isValid = this.isValidWeekRange();
     }
     if (this.isValid && this.weekFrom) {
       this.weekRangeSelect.emit(this.selectedRange);
