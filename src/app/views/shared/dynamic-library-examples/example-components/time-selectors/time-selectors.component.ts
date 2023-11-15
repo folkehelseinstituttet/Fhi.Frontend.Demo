@@ -72,8 +72,8 @@ export class TimeSelectorsComponent {
     console.info(weekRange);
   }
 
-  onMonthSelect(months: FhiMonth[]) {
-    console.info(months);
+  onMonthSelect(month: FhiMonth) {
+    console.info(month);
   }
 
   onMonthRangeSelect(monthRange: object) {

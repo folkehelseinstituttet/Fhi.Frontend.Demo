@@ -15,10 +15,10 @@
 
     <div class="fhi-month-selector__month">
       <fhi-autosuggest
-        [items]="monthList"
+        [items]="monthItems"
         [label]="'Måned'"
         [notFoundText]="'Ugyldig måned'"
-        [itemSelect]="month"
+        [itemSelect]="monthId"
         (itemSelectChange)="onItemSelectChange($event)"
       >
       </fhi-autosuggest>

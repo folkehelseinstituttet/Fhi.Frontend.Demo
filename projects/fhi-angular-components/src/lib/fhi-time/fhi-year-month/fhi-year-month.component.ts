@@ -1,97 +1,77 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { toNumber } from 'lodash-es';
+import { getYear } from 'date-fns';
 
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
-import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
 import { FhiMonth } from '../fhi-month.model';
+
+import { FhiTimeConstants } from '../fhi-time-constants';
 
 @Component({
   selector: 'fhi-year-month',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
   templateUrl: './fhi-year-month.component.html',
-  providers: [FhiConstantsService],
 })
 export class FhiYearMonthComponent implements OnInit {
-  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
-  @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
-  @Input() months: FhiMonth[];
+  @Input() minMonth: FhiMonth;
+  @Input() maxMonth: FhiMonth;
+  @Input() month: FhiMonth = { year: undefined, month: undefined };
 
-  @Output() monthSelect = new EventEmitter<FhiMonth[]>();
+  @Output() monthSelect = new EventEmitter<FhiMonth>();
 
-  month!: number;
-  years!: number[];
-
-  monthList: FhiAutosuggestItem[] = [];
-  monthNames: string[] = [
-    'Januar',
-    'Februar',
-    'Mars',
-    'April',
-    'Mai',
-    'Juni',
-    'Juli',
-    'August',
-    'September',
-    'Oktober',
-    'November',
-    'Desember',
-  ];
-
-  selectedMonth: FhiAutosuggestItem;
-  selectedYear: FhiAutosuggestItem;
-
-  constructor(private FHI_CONSTANTS: FhiConstantsService) {}
+  minYear = this.getMinYear();
+  maxYear = this.getMaxYear();
+  monthId: number;
+  monthItems!: FhiAutosuggestItem[];
+  years: number[];
 
   ngOnInit() {
     this.updateMonthItems();
-    // this.populateMonthList();
   }
+  // TODO: ngOnChanges (see weekpicker)
 
   onYearSelect(years: number[]) {
-    console.log('years', years);
-    // this.year = yearName;
-    // this.concatenateYearDate();
+    this.years = years;
+    this.validateAndEmit();
   }
 
-  onItemSelectChange(month: number) {
-    console.log('month', month);
+  onItemSelectChange(monthId: number) {
+    this.monthId = monthId;
+    this.validateAndEmit();
   }
 
-  onSelectedMonth(monthId: number) {
-    this.selectedMonth = this.monthList.find(
-      (month: FhiAutosuggestItem) => month.id === monthId,
-    );
-    // this.concatenateYearDate();
+  private validateAndEmit() {
+    // TODO: validation (see weekpicker)
+    if (this.years && this.monthId) {
+      this.monthSelect.emit({
+        year: this.years[0],
+        month: this.monthId,
+      });
+    }
   }
 
   private updateMonthItems() {
-    console.log('Update!');
+    const monthNames = FhiTimeConstants.monthNames;
+    this.monthItems = [];
+    for (let i = 1; i <= 12; i++) {
+      this.monthItems.push({
+        id: i,
+        name: monthNames[i - 1],
+      });
+    }
   }
 
-  // private populateMonthList() {
-  //   this.monthList = [];
-  //   for (let i = 1; i <= 12; i++) {
-  //     const month: string = `${i}`;
-  //     this.monthList.push({
-  //       id: toNumber(month),
-  //       name: this.monthNames[i - 1],
-  //     });
-  //   }
-  //   if (this.month) {
-  //     this.selectedMonth = this.monthList.find(
-  //       (month: FhiAutosuggestItem) => month.id === this.month,
-  //     );
-  //   }
-  // }
+  // TODO: move into global fhi-time service
+  private getMinYear() {
+    return 1900;
+  }
 
-  // private concatenateYearDate() {
-  //   if (this.year && this.selectedMonth) {
-  //     this.monthSelect.emit(this.year + '-' + this.selectedMonth.id);
-  //   }
-  // }
+  // TODO: move into global fhi-time service
+  private getMaxYear() {
+    return getYear(new Date());
+  }
 }
