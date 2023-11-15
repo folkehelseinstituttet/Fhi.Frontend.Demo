@@ -182,6 +182,6 @@ export class FhiWeekpickerComponent {
   }
 
   private getDate(): NgbDateStruct | null {
-    return this.weekUtilityService.getDateAfterValidatinYearWeekString();
+    return this.weekUtilityService.getDateAfterValidatingYearWeekString();
   }
 }

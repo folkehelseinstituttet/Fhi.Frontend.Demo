@@ -92,10 +92,10 @@ export class WeekUtilityService {
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
-  getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
+  getDateAfterValidatingYearWeekString(): NgbDateStruct | null {
     if (this.validYearWeekString === undefined) {
       throw new Error(
-        `WeekUtilityService.getDateAfterValidatinYearWeekString() is called before yearWeekString is validated.`,
+        `WeekUtilityService.getDateAfterValidatingYearWeekString() is called before yearWeekString is validated.`,
       );
     }
     if (this.validYearWeekString === '') {
