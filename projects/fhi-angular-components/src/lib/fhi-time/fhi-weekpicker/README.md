@@ -1,16 +1,11 @@
 # FHI Weekpicker
 
-<!-- 
-Stuff to syncronize across all fhi-time components:
+## API
 
-1. NgbDatepickerI18n (OK for Weekpicker)
-2. NgbDateAdapter (OK for Weekpicker)
-3. NgbDateParserFormatter (OK for Weekpicker)
-4. NgbdDatepickerConfig?
-5. An optional new model (OK for Weekpicker)
-6. ValidatorService (OK for Weekpicker)
-7. ErrorMsg's and error states
-   1. How to deal with no value (datepicker: "Ingen dato valgt")... only error if required...
-8. Global localizationService?
-9. more...?
--->
+| Input              | Type      | Default    | Required | Description |
+| ------------------ | --------- | ---------- | -------- | ----------- |
+| `id`               | `string`  | -          | no       | Id to associate control with label. |
+| `week`             | `FhiWeek` | -          | no       | String with format. |
+| `minWeek`          | `string`  | -          | no       | Placeholder text (same as in ng-select). |
+| `maxWeek`          | `string`  | -          | no       | Description below the label (custom for FHI Autosuggest). |
+| `label`            | `string`  | `Velg uke` | yes      | Label above the ng-select field (custom for FHI Autosuggest). |

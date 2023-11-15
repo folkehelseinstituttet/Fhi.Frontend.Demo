@@ -6,6 +6,7 @@ import { getYear } from 'date-fns';
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekRange } from './week-range.model';
+import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
 
 @Component({
   selector: 'fhi-week-range',
@@ -14,27 +15,27 @@ import { WeekRange } from './week-range.model';
   imports: [CommonModule, FhiWeekpickerComponent],
 })
 export class FhiWeekRangeComponent {
-  @Input() weekFrom: string;
-  @Input() weekTo: string;
-  @Input() labelWeekFrom: string = 'Fra uke';
-  @Input() labelWeekTo: string = 'Til uke';
-  @Input() maxWeek: string = getYear(new Date()) + 1 + '-52';
-  @Input() minWeek: string = '1900-1';
+  @Input() labelWeekFrom = 'Fra uke';
+  @Input() labelWeekTo = 'Til uke';
+  @Input() maxWeek: FhiWeek = { year: getYear(new Date()) + 1, week: 52 };
+  @Input() minWeek: FhiWeek = { year: 1900, week: 1 };
+  @Input() weekFrom: FhiWeek;
+  @Input() weekTo: FhiWeek;
 
   @Output() weekRangeSelect = new EventEmitter<WeekRange>();
 
   idFrom: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
   idTo: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
 
-  maxWeekFrom: string;
-  maxWeekTo: string;
+  maxWeekFrom: FhiWeek;
+  maxWeekTo: FhiWeek;
 
-  minWeekFrom: string;
-  minWeekTo: string;
+  minWeekFrom: FhiWeek;
+  minWeekTo: FhiWeek;
 
   selectedRange: WeekRange = {
-    weekFrom: undefined,
-    weekTo: undefined,
+    from: undefined,
+    to: undefined,
   };
   isValid = true;
 
@@ -47,11 +48,11 @@ export class FhiWeekRangeComponent {
 
     if (this.weekFrom) {
       this.minWeekTo = this.weekFrom;
-      this.selectedRange.weekFrom = this.weekFrom;
+      this.selectedRange.from = this.weekFrom;
     }
     if (this.weekTo) {
       this.maxWeekFrom = this.weekTo;
-      this.selectedRange.weekTo = this.weekTo;
+      this.selectedRange.to = this.weekTo;
     }
 
     // TODO: validating input should only throw errors
@@ -65,10 +66,10 @@ export class FhiWeekRangeComponent {
   // ngOnChanges(changes: SimpleChanges) {
   // }
 
-  onWeekFromSelect(yearWeek: string) {
+  onWeekFromSelect(yearWeek: FhiWeek) {
     this.weekFrom = yearWeek;
     this.minWeekTo = yearWeek;
-    this.selectedRange.weekFrom = yearWeek;
+    this.selectedRange.from = yearWeek;
 
     if (this.weekTo) {
       this.isValid = this.isValidWeekRange();
@@ -78,10 +79,10 @@ export class FhiWeekRangeComponent {
     }
   }
 
-  onWeekToSelect(yearWeek: string) {
+  onWeekToSelect(yearWeek: FhiWeek) {
     this.weekTo = yearWeek;
     this.maxWeekFrom = yearWeek;
-    this.selectedRange.weekTo = yearWeek;
+    this.selectedRange.to = yearWeek;
 
     if (this.weekFrom) {
       this.isValid = this.isValidWeekRange();
@@ -101,11 +102,10 @@ export class FhiWeekRangeComponent {
     return true;
   }
 
-  private getYearWeekAsNumber(yearWeek: string): number {
-    let yearWeekAsNumber: number;
-    const parts = yearWeek.split(FhiTimeConstants.weekpickerDelimiter);
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
+  private getYearWeekAsNumber(yearWeek: FhiWeek): number {
+    let yearWeekAsNumber = 0;
+    const year = yearWeek.year;
+    const week = yearWeek.week;
     yearWeekAsNumber = year * 100 + week;
     return yearWeekAsNumber;
   }

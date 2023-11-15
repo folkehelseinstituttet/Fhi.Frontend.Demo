@@ -21,40 +21,42 @@ export enum WeekErrorState {
 export class WeekValidationService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private errorMsg: string;
-  private unvalidatedYearWeekString = '';
+  private unvalidatedYearWeek = {};
   private weekIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
 
   constructor(private weekUtilityService: WeekUtilityService) {}
 
-  setUnvalidatedYearWeekString(value: string) {
-    this.unvalidatedYearWeekString = value;
+  setUnvalidatedYearWeek(value: string) {
+    this.unvalidatedYearWeek = value;
   }
 
-  getUnvalidatedYearWeekString() {
-    return this.unvalidatedYearWeekString;
+  getUnvalidatedFhiWeek() {
+    return this.unvalidatedYearWeek;
   }
 
   getInvalidFeedbackText(): string {
     return this.errorMsg;
   }
 
-  isValidYearWeekString(value: string): boolean {
+  isValidFhiWeek(value: FhiWeek): boolean {
     this.errorMsg = undefined;
 
-    if (value.length === 0 && !this.weekIsRequired) {
-      this.weekUtilityService.setValidYearWeekString('');
+    if ((!value.year || !value.week) && !this.weekIsRequired) {
+      this.weekUtilityService.setValidYearWeekString(null);
       return true;
     }
-    if (!this.isValidYearWeekStringLength(value)) {
+    if (
+      !this.isValidFhiWeekLength(value.year + FhiTimeConstants.weekpickerDelimiter + value.week)
+    ) {
       return false;
     }
-    if (!this.isValidYearWeekStringParts(value)) {
+    if (!this.isValidFhiWeekParts(value)) {
       return false;
     }
     if (!this.isValidYearWeekObject(value)) {
       return false;
     }
-    this.weekUtilityService.setValidYearWeekString(value);
+    this.weekUtilityService.setValidYearWeek(value);
     return true;
   }
 
@@ -74,7 +76,7 @@ Error message if user input for week had been the cause of the error:
 "${this.errorMsg}"\n`);
   }
 
-  private isValidYearWeekStringLength(value: string): boolean {
+  private isValidFhiWeekLength(value: string): boolean {
     if (value.length === 0) {
       this.updateErrorMsg(WeekErrorState.weekIsRequired);
       return false;
@@ -90,8 +92,8 @@ Error message if user input for week had been the cause of the error:
     return true;
   }
 
-  private isValidYearWeekStringParts(value: string): boolean {
-    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
+  private isValidFhiWeekParts(value: FhiWeek): boolean {
+    const parts = [value.year, value.week];
 
     if (parts.length < 2 || parts.length > 2) {
       this.updateErrorMsg(WeekErrorState.notOneDelimiter);
@@ -104,11 +106,10 @@ Error message if user input for week had been the cause of the error:
     return true;
   }
 
-  private isValidYearWeekObject(value: string): boolean {
-    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
+  private isValidYearWeekObject(value: FhiWeek): boolean {
     const yearWeek: FhiWeek = {
-      year: parseInt(parts[0], 10),
-      week: parseInt(parts[1], 10),
+      year: value.year,
+      week: value.week,
     };
     if (yearWeek.week < 1 || yearWeek.week > 53) {
       this.updateErrorMsg(WeekErrorState.notValidWeekNumber);

@@ -17,7 +17,7 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
   }
 
   parse(value: string): NgbDateStruct | null {
-    this.weekValidationService.setUnvalidatedYearWeekString(value);
+    this.weekValidationService.setUnvalidatedYearWeek(value);
     return null;
   }
 

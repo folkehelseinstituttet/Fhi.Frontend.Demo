@@ -1,4 +1,6 @@
+import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
+
 export class WeekRange {
-  weekFrom: string;
-  weekTo: string;
+  from: FhiWeek;
+  to: FhiWeek;
 }
