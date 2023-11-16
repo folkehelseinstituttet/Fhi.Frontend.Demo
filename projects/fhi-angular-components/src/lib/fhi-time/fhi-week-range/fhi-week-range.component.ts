@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { getYear } from 'date-fns';
 
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
 import { FhiTimeConstants } from '../fhi-time-constants';
-import { WeekRange } from './week-range.model';
+import { FhiWeekRange } from './fhi-week-range.model';
+import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
 
 @Component({
   selector: 'fhi-week-range',
@@ -13,46 +12,32 @@ import { WeekRange } from './week-range.model';
   templateUrl: './fhi-week-range.component.html',
   imports: [CommonModule, FhiWeekpickerComponent],
 })
-export class FhiWeekRangeComponent {
-  @Input() weekFrom: string;
-  @Input() weekTo: string;
-  @Input() labelWeekFrom: string = 'Fra uke';
-  @Input() labelWeekTo: string = 'Til uke';
-  @Input() maxWeek: string = getYear(new Date()) + 1 + '-52';
-  @Input() minWeek: string = '1900-1';
+export class FhiWeekRangeComponent implements OnInit {
+  @Input() maxWeek: FhiWeek = FhiTimeConstants.maxWeek;
+  @Input() minWeek: FhiWeek = FhiTimeConstants.minWeek;
 
-  @Output() weekRangeSelect = new EventEmitter<WeekRange>();
+  @Output() weekRangeSelect = new EventEmitter<FhiWeekRange>();
 
   idFrom: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
   idTo: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
 
-  maxWeekFrom: string;
-  maxWeekTo: string;
+  labelWeekFrom = FhiTimeConstants.weekRangeLabelFrom;
+  labelWeekTo = FhiTimeConstants.weekRangeLabelTo;
 
-  minWeekFrom: string;
-  minWeekTo: string;
+  maxWeekFrom: FhiWeek;
+  minWeekTo: FhiWeek;
 
-  selectedRange: WeekRange = {
-    weekFrom: undefined,
-    weekTo: undefined,
+  weekFrom: FhiWeek;
+  weekTo: FhiWeek;
+
+  selectedRange: FhiWeekRange = {
+    from: undefined,
+    to: undefined,
   };
   isValid = true;
 
   ngOnInit() {
-    this.maxWeekFrom = this.maxWeek;
-    this.maxWeekTo = this.maxWeek;
-
-    this.minWeekFrom = this.minWeek;
-    this.minWeekTo = this.minWeek;
-
-    if (this.weekFrom) {
-      this.minWeekTo = this.weekFrom;
-      this.selectedRange.weekFrom = this.weekFrom;
-    }
-    if (this.weekTo) {
-      this.maxWeekFrom = this.weekTo;
-      this.selectedRange.weekTo = this.weekTo;
-    }
+    this.initMinMaxWeeks();
 
     // TODO: validating input should only throw errors
     //       - it's something wrong in the system, the user hasn't done anyting wrong
@@ -65,10 +50,10 @@ export class FhiWeekRangeComponent {
   // ngOnChanges(changes: SimpleChanges) {
   // }
 
-  onWeekFromSelect(yearWeek: string) {
+  onWeekSelectFrom(yearWeek: FhiWeek) {
     this.weekFrom = yearWeek;
     this.minWeekTo = yearWeek;
-    this.selectedRange.weekFrom = yearWeek;
+    this.selectedRange.from = yearWeek;
 
     if (this.weekTo) {
       this.isValid = this.isValidWeekRange();
@@ -78,16 +63,30 @@ export class FhiWeekRangeComponent {
     }
   }
 
-  onWeekToSelect(yearWeek: string) {
+  onWeekSelectTo(yearWeek: FhiWeek) {
     this.weekTo = yearWeek;
     this.maxWeekFrom = yearWeek;
-    this.selectedRange.weekTo = yearWeek;
+    this.selectedRange.to = yearWeek;
 
     if (this.weekFrom) {
       this.isValid = this.isValidWeekRange();
     }
     if (this.isValid && this.weekFrom) {
       this.weekRangeSelect.emit(this.selectedRange);
+    }
+  }
+
+  private initMinMaxWeeks() {
+    this.maxWeekFrom = this.maxWeek;
+    this.minWeekTo = this.minWeek;
+
+    if (this.weekFrom) {
+      this.minWeekTo = this.weekFrom;
+      this.selectedRange.from = this.weekFrom;
+    }
+    if (this.weekTo) {
+      this.maxWeekFrom = this.weekTo;
+      this.selectedRange.to = this.weekTo;
     }
   }
 
@@ -101,11 +100,10 @@ export class FhiWeekRangeComponent {
     return true;
   }
 
-  private getYearWeekAsNumber(yearWeek: string): number {
-    let yearWeekAsNumber: number;
-    const parts = yearWeek.split(FhiTimeConstants.weekpickerDelimiter);
-    const year = parseInt(parts[0], 10);
-    const week = parseInt(parts[1], 10);
+  private getYearWeekAsNumber(yearWeek: FhiWeek): number {
+    let yearWeekAsNumber = 0;
+    const year = yearWeek.year;
+    const week = yearWeek.week;
     yearWeekAsNumber = year * 100 + week;
     return yearWeekAsNumber;
   }

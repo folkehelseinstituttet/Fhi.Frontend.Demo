@@ -4,9 +4,9 @@
       [label]="labelWeekFrom"
       [id]="idFrom"
       [week]="weekFrom"
-      [minWeek]="minWeekFrom"
+      [minWeek]="minWeek"
       [maxWeek]="maxWeekFrom"
-      (weekSelect)="onWeekFromSelect($event)"
+      (weekSelect)="onWeekSelectFrom($event)"
     >
     </fhi-weekpicker>
     <span>
@@ -17,12 +17,11 @@
       [id]="idTo"
       [week]="weekTo"
       [minWeek]="minWeekTo"
-      [maxWeek]="maxWeekTo"
-      (weekSelect)="onWeekToSelect($event)"
+      [maxWeek]="maxWeek"
+      (weekSelect)="onWeekSelectTo($event)"
     >
     </fhi-weekpicker>
   </div>
-
   <div role="alert" aria-live="polite">
     <p class="invalid-feedback fhi-week-range__invalid-feedback" [ngClass]="{ 'd-block': !isValid }">
       <strong>{{ labelWeekFrom }}</strong> må være før <strong>{{ labelWeekTo }}</strong
