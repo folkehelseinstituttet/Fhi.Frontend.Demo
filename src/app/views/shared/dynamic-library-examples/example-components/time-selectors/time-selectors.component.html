@@ -49,7 +49,7 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYears.id">
-  <fhi-years [minYear]="2000" [maxYear]="2030" [years]="[2011]" (yearSelect)="onYearSelect($event)"></fhi-years>
+  <fhi-years [minYear]="2000" [maxYear]="2030" [years]="[2011]" (yearsSelect)="onYearSelect($event)"></fhi-years>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYearRange.id">

@@ -29,7 +29,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
   @Input() years: number[];
 
-  @Output() yearSelect = new EventEmitter<number[]>();
+  @Output() yearsSelect = new EventEmitter<number[]>();
 
   year!: number;
   yearItems!: FhiAutosuggestItem[];
@@ -56,7 +56,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
   }
 
   onItemSelectChange(year: number) {
-    this.yearSelect.emit([year]);
+    this.yearsSelect.emit([year]);
   }
 
   private updateYearItems() {
