@@ -176,11 +176,8 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private maxWeekChangeActions() {
-    // console.log('maxWeekChangeActions():', this.maxWeekString);
-    if (typeof this.maxWeekString !== 'string') {
-      this.maxDate = this.weekUtilityService.getMaxDate();
-      return;
-    }
+    this.maxWeekString =
+      this.maxWeek.year + FhiTimeConstants.weekpickerDelimiter + this.maxWeek.week;
     if (this.weekValidationService.isValidYearWeekString(this.maxWeekString)) {
       this.maxDate = this.getDate();
       this.weekUtilityService.setMaxDate(this.maxDate);
@@ -190,11 +187,8 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private minWeekChangeActions() {
-    // console.log('minWeekChangeActions():', this.minWeekString);
-    if (typeof this.minWeekString !== 'string') {
-      this.minDate = this.weekUtilityService.getMinDate();
-      return;
-    }
+    this.minWeekString =
+      this.minWeek.year + FhiTimeConstants.weekpickerDelimiter + this.minWeek.week;
     if (this.weekValidationService.isValidYearWeekString(this.minWeekString)) {
       this.minDate = this.getDate();
       this.weekUtilityService.setMinDate(this.minDate);
