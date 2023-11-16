@@ -23,6 +23,7 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
   providers: [FhiConstantsService],
 })
 export class FhiYearsComponent implements OnInit, OnChanges {
+  @Input() id = this.getRandomId();
   @Input() label = 'Velg år';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
@@ -69,5 +70,9 @@ export class FhiYearsComponent implements OnInit, OnChanges {
         name: i.toString(),
       });
     }
+  }
+
+  private getRandomId() {
+    return `id${Math.floor(Math.random() * Math.pow(10, 8))}`;
   }
 }

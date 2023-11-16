@@ -18,7 +18,6 @@ import { FhiMonthRange } from './fhi-month-range.model';
   templateUrl: './fhi-year-month-range.component.html',
 })
 export class FhiYearMonthRangeComponent implements OnInit {
-  @Input() id = this.getRandomId();
   @Input() minMonth: FhiMonth;
   @Input() maxMonth: FhiMonth;
 
@@ -175,9 +174,5 @@ export class FhiYearMonthRangeComponent implements OnInit {
 
   private getMaxYear() {
     return getYear(new Date());
-  }
-
-  private getRandomId() {
-    return `id${Math.floor(Math.random() * Math.pow(10, 8))}`;
   }
 }

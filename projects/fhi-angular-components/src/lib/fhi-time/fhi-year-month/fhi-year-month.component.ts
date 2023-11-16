@@ -17,10 +17,6 @@ import { FhiTimeConstants } from '../fhi-time-constants';
   templateUrl: './fhi-year-month.component.html',
 })
 export class FhiYearMonthComponent implements OnInit {
-  // TODO
-  // @Input() minMonth: FhiMonth;
-  // @Input() maxMonth: FhiMonth;
-
   @Input() month: FhiMonth = { year: undefined, month: undefined };
 
   @Output() monthSelect = new EventEmitter<FhiMonth>();
