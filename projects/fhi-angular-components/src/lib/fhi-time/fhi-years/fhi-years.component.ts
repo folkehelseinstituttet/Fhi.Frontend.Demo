@@ -25,8 +25,8 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
 export class FhiYearsComponent implements OnInit, OnChanges {
   @Input() id = this.getRandomId();
   @Input() label = 'Velg år';
-  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
+  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() years: number[];
 
   @Output() yearsSelect = new EventEmitter<number[]>();

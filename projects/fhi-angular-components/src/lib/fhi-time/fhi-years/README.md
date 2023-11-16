@@ -8,8 +8,8 @@
 | --------- | --------------- | ----------- | -------- | ----------- |
 | `id`      | `string`        | -           | no       | Id to associate control with label. |
 | `label`   | `string`        | `Velg år`   | no       | Label above the input field. |
-| `maxYear` | `number`        | 1900        | no       | Minimum year in the list to select from. |
 | `minYear` | `number`        | Curren year | no       | Maximum year in the list to select from. |
+| `maxYear` | `number`        | 1900        | no       | Minimum year in the list to select from. |
 | `[years]` | `Array<number>` | `[]`        | no       | Array or years as numbers, but currently only support for one year. |
 
 ### Output

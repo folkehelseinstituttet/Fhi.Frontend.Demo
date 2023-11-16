@@ -14,20 +14,20 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
   providers: [FhiConstantsService],
 })
 export class FhiYearRangeComponent {
-  @Input() labelFromYear = 'Fra år';
-  @Input() labelToYear = 'Til år';
   @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
   @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
 
   @Output() yearRangeSelect = new EventEmitter<FhiYearRange>();
 
+  labelFromYear = 'Fra år';
+  labelToYear = 'Til år';
   fromYear: number;
   toYear: number;
   rangeContext = RangeContext;
 
   constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
-  onYearSelect(years: number[], context: number) {
+  onYearsSelect(years: number[], context: number) {
     if (context === RangeContext.from) {
       this.updateMinYearAndFromYear(years[0]);
     } else {

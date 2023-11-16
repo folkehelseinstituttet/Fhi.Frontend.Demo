@@ -31,7 +31,7 @@ export class FhiYearMonthComponent implements OnInit {
     this.monthItems = this.getMonthItems();
   }
 
-  onYearSelect(years: number[]) {
+  onYearsSelect(years: number[]) {
     this.years = years;
     this.validateAndEmit();
   }
