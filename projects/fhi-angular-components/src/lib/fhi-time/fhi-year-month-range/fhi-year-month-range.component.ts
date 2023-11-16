@@ -21,7 +21,6 @@ export class FhiYearMonthRangeComponent implements OnInit {
   @Input() id = this.getRandomId();
   @Input() minMonth: FhiMonth;
   @Input() maxMonth: FhiMonth;
-  // TODO: @Input() monthRange: FhiMonthRange = { from: undefined, to: undefined };
 
   @Output() monthRangeSelect = new EventEmitter<FhiMonthRange>();
 
@@ -48,8 +47,8 @@ export class FhiYearMonthRangeComponent implements OnInit {
     this.minYearTo = this.minMonth.year;
     this.maxYearFrom = this.maxMonth.year;
 
-    this.toMonthItems = this.getMonthItems();
     this.fromMonthItems = this.getMonthItems();
+    this.toMonthItems = this.getMonthItems();
   }
 
   onYearSelect(years: number[], context: number) {
@@ -60,34 +59,39 @@ export class FhiYearMonthRangeComponent implements OnInit {
       this.toMonth.year = years[0];
       this.maxYearFrom = years[0];
     }
+    this.updateMonthItems();
     this.validateAndEmit();
   }
 
   onItemSelectChange(monthId: number, context: number) {
     if (context === RangeContext.from) {
       this.fromMonth.month = monthId;
-      this.updateMonthItems(monthId, context);
     } else {
       this.toMonth.month = monthId;
-      this.updateMonthItems(monthId, context);
     }
+    this.updateMonthItems();
     this.validateAndEmit();
   }
 
-  private validateAndEmit() {
-    const fromMonth = this.fromMonth.year + this.fromMonth.month;
-    const toMonth = this.toMonth.year + this.toMonth.month;
-
+  private canValidate(): boolean {
     if (
-      !(
-        this.fromMonth.year &&
-        this.toMonth.year &&
-        this.fromMonth.month &&
-        this.toMonth.month
-      )
+      this.fromMonth.year &&
+      this.toMonth.year &&
+      this.fromMonth.month &&
+      this.toMonth.month
     ) {
+      return true;
+    }
+    return false;
+  }
+
+  private validateAndEmit() {
+    if (!this.canValidate()) {
       return;
     }
+    const fromMonth = this.fromMonth.year * 100 + this.fromMonth.month;
+    const toMonth = this.toMonth.year * 100 + this.toMonth.month;
+
     if (fromMonth > toMonth) {
       this.isValid = false;
       return;
@@ -99,15 +103,37 @@ export class FhiYearMonthRangeComponent implements OnInit {
     });
   }
 
-  private updateMonthItems(monthId: number, context: number) {
-    if (this.fromMonth.year < this.toMonth.year) {
+  private updateMonthItems() {
+    if (!this.fromMonth.year && !this.toMonth.year) {
       return;
     }
-    if (context === RangeContext.from) {
-      this.toMonthItems = this.getMonthItems().slice(monthId - 1);
-    } else {
-      this.fromMonthItems = this.getMonthItems().slice(0, monthId);
+    if (this.fromMonth.year === this.toMonth.year) {
+      this.updateFromMonthItems();
+      this.updateToMonthItems();
+      return;
     }
+    if (this.fromMonthItems.length < 12) {
+      this.fromMonthItems = this.getMonthItems();
+    }
+    if (this.toMonthItems.length < 12) {
+      this.toMonthItems = this.getMonthItems();
+    }
+  }
+
+  private updateFromMonthItems() {
+    if (!this.toMonth.month) {
+      return;
+    }
+    const n = 12 - this.toMonth.month; // Number of months after currently selected this.toMonth.month
+    const sliceEnd = n > 0 ? -n : 12;
+    this.fromMonthItems = this.getMonthItems().slice(0, sliceEnd);
+  }
+
+  private updateToMonthItems() {
+    if (!this.fromMonth.month) {
+      return;
+    }
+    this.toMonthItems = this.getMonthItems().slice(this.fromMonth.month - 1);
   }
 
   private getMonthItems() {
