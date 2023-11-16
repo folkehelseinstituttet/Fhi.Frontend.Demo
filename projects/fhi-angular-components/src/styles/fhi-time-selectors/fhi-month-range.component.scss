@@ -13,7 +13,7 @@
   &__divider {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     margin-bottom: $fhi-core-space-5 + $fhi-core-space-2;
   }
 
