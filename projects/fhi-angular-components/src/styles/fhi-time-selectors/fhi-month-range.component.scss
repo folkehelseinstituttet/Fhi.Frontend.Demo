@@ -11,10 +11,10 @@
   }
 
   &__divider {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: end;
-    margin-bottom: $fhi-core-space-5;
+    margin-bottom: $fhi-core-space-5 + $fhi-core-space-2;
   }
 
   &__divider-dash {
