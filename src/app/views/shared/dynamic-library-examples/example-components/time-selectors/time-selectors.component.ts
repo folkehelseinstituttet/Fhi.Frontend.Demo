@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import { FhiWeek } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-weekpicker/fhi-week.model';
+import { FhiWeekRange } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-week-range/fhi-week-range.model';
 
 @Component({
   selector: 'app-time-selectors',
@@ -22,9 +24,6 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedYearRange: any;
   monthRangeSelected: any;
-  weekFrom: string = '2010-27';
-  weekTo: string = '2013-13';
-  weekRange: any;
 
   // weekSelected: string;
 
@@ -79,11 +78,11 @@ export class TimeSelectorsComponent {
     this.selectedYearRange = yearRange;
   }
 
-  onWeekSelect(week: any) {
-    console.info(week);
+  onWeekSelect(week: FhiWeek) {
+    console.info('Weekpicker example:', week);
   }
 
-  onWeekRangeSelect(weekRange: any) {
-    console.info(weekRange);
+  onWeekRangeSelect(weekRange: FhiWeekRange) {
+    console.info('Week range example:', weekRange);
   }
 }
