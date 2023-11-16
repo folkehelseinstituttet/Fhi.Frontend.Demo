@@ -41,9 +41,7 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  FHI Years er bygget på
-  <a href="https://www.npmjs.com/package/@ng-select/ng-select">Angular ng-select</a>,
-  og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
+  For å ta i bruk denne komponenten i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
   være lagt til som en "dependency".
 </p>
@@ -52,17 +50,17 @@ function getDocumentationHtml(): string | null {
 
 <ul>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-autosuggest/README.md#API">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-years/README.md#API">
       API-dokumentasjon
     </a>
   </li>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-autosuggest">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-years">
       Kildekode
     </a>
   </li>
   <li>
-    <a href="${CONST.ExampleComponentsGithubUrl}/form-controls">
+    <a href="${CONST.ExampleComponentsGithubUrl}/time-selectors">
       Demokode
     </a>
   </li>
