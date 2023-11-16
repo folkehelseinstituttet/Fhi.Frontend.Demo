@@ -79,10 +79,10 @@ export class TimeSelectorsComponent {
   }
 
   onWeekSelect(week: FhiWeek) {
-    console.info('Weekpicker example:', week);
+    console.info('Weekpicker example Output:', week);
   }
 
   onWeekRangeSelect(weekRange: FhiWeekRange) {
-    console.info('Week range example:', weekRange);
+    console.info('Week range example Output:', weekRange);
   }
 }
