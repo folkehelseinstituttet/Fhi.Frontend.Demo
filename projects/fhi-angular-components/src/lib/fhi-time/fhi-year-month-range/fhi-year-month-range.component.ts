@@ -37,13 +37,13 @@ export class FhiYearMonthRangeComponent implements OnInit {
 
   ngOnInit() {
     if (this.minMonth === undefined) {
-      this.minMonth = this.getMinMonth();
+      this.minMonth = this.getMinFhiMonth();
     }
     if (this.maxMonth === undefined) {
-      this.maxMonth = this.getMaxMonth();
+      this.maxMonth = this.getMaxFhiMonth();
     }
-    this.fromMonth = this.getMinMonth();
-    this.toMonth = this.getMaxMonth();
+    this.fromMonth = this.getFhiMonth();
+    this.toMonth = this.getFhiMonth();
 
     this.minYearTo = this.minMonth.year;
     this.maxYearFrom = this.maxMonth.year;
@@ -78,6 +78,16 @@ export class FhiYearMonthRangeComponent implements OnInit {
     const fromMonth = this.fromMonth.year + this.fromMonth.month;
     const toMonth = this.toMonth.year + this.toMonth.month;
 
+    if (
+      !(
+        this.fromMonth.year &&
+        this.toMonth.year &&
+        this.fromMonth.month &&
+        this.toMonth.month
+      )
+    ) {
+      return;
+    }
     if (fromMonth > toMonth) {
       this.isValid = false;
       return;
@@ -122,14 +132,17 @@ export class FhiYearMonthRangeComponent implements OnInit {
     };
   }
 
-  private getMinMonth() {
+  private getMinFhiMonth(): FhiMonth {
     return { year: this.getMinYear(), month: 1 };
   }
 
-  private getMaxMonth() {
+  private getMaxFhiMonth(): FhiMonth {
     return { year: this.getMaxYear(), month: 12 };
   }
 
+  private getFhiMonth(): FhiMonth {
+    return { year: undefined, month: undefined };
+  }
   private getMinYear() {
     return 1900;
   }
