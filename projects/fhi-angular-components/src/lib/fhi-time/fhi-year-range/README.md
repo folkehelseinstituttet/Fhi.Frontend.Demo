@@ -13,4 +13,4 @@
 
 | Output              | Type           | Default | Required | Description |
 | ------------------- | -------------- | ------- | -------- | ----------- |
-| `(yearRangeSelect)` | `FhiYearRange` | -       | no       | The $event value returned is an FhiYearRange object. |
+| `(yearRangeSelect)` | `FhiYearRange` | -       | no       | The $event value returned is a FhiYearRange object. |

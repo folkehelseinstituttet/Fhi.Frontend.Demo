@@ -29,6 +29,8 @@ export class FhiYearMonthComponent implements OnInit {
 
   ngOnInit() {
     this.monthItems = this.getMonthItems();
+    this.years = [this.month.year];
+    this.monthId = this.month.month;
   }
 
   onYearsSelect(years: number[]) {
