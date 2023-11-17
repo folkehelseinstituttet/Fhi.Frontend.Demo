@@ -3,7 +3,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { YearWeek } from '../year-week.model';
+import { FhiWeek } from '../fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
 export enum WeekErrorState {
@@ -14,7 +14,7 @@ export enum WeekErrorState {
   notValidWeekNumber = 5,
   onlyNumbersAllowed = 6,
   weekIsRequired = 7,
-  weekOutsideMaxOrMin = 8
+  weekOutsideMaxOrMin = 8,
 }
 
 @Injectable()
@@ -24,9 +24,7 @@ export class WeekValidationService {
   private unvalidatedYearWeekString = '';
   private weekIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
 
-  constructor(
-    private weekUtilityService: WeekUtilityService
-  ) { }
+  constructor(private weekUtilityService: WeekUtilityService) {}
 
   setUnvalidatedYearWeekString(value: string) {
     this.unvalidatedYearWeekString = value;
@@ -108,9 +106,9 @@ Error message if user input for week had been the cause of the error:
 
   private isValidYearWeekObject(value: string): boolean {
     const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
-    const yearWeek: YearWeek =  {
+    const yearWeek: FhiWeek = {
       year: parseInt(parts[0], 10),
-      week: parseInt(parts[1], 10)
+      week: parseInt(parts[1], 10),
     };
     if (yearWeek.week < 1 || yearWeek.week > 53) {
       this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
@@ -158,7 +156,7 @@ Error message if user input for week had been the cause of the error:
         return this.getWeekOutsideMaxOrMinMsg();
     }
   }
-  
+
   private getToManyCharactersMsg(): string {
     return `Du har lagt inn en ukeverdi som har for mange tegn. ${this.correctFormat}`;
   }
@@ -191,4 +189,3 @@ Error message if user input for week had been the cause of the error:
     return `Du har lagt inn en ukeverdi som ligger utenfor tillatt tidsrom.`;
   }
 }
-

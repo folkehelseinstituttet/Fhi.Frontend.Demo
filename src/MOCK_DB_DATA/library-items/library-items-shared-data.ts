@@ -1,4 +1,4 @@
-import { LibraryItemsShared } from "src/app/views/shared/models/library-item.model";
+import { LibraryItemsShared } from 'src/app/views/shared/models/library-item.model';
 
 /**
  * NB! Item order in this file doesn't have any effect.
@@ -19,174 +19,174 @@ import { LibraryItemsShared } from "src/app/views/shared/models/library-item.mod
 export const LibraryItemsSharedData: LibraryItemsShared = {
   Accordion: {
     id: 'accordion',
-    title: 'Accordion'
+    title: 'Accordion',
   },
   AccordionFlush: {
     id: 'accordion-flush',
-    title: 'Accordion - flush'
+    title: 'Accordion - flush',
   },
   AccordionFlushDark: {
     id: 'accordion-flush-dark',
-    title: 'Accordion - flush dark'
+    title: 'Accordion - flush dark',
   },
   AlertBasic: {
     id: 'alert-basic',
-    title: 'Alert'
+    title: 'Alert',
   },
   AlertClosable: {
     id: 'alert-closable',
-    title: 'Alert - closable'
+    title: 'Alert - closable',
   },
   BadgeCircular: {
     id: 'badge-circular',
-    title: 'Badge - circular'
+    title: 'Badge - circular',
   },
   BadgeRounded: {
     id: 'badge-rounded',
-    title: 'Badge - rounded'
+    title: 'Badge - rounded',
   },
   Breadcrumb: {
     id: 'breadcrumb',
-    title: ''
+    title: '',
   },
   ButtonPrimary: {
     id: 'button-primary',
-    title: 'Primary button'
+    title: 'Primary button',
   },
   ButtonSecondary: {
     id: 'button-secondary',
-    title: 'Secondary button'
+    title: 'Secondary button',
   },
   ButtonLink: {
     id: 'button-link',
-    title: 'Link button'
+    title: 'Link button',
   },
   ButtonIcon: {
     id: 'button-icon',
-    title: 'Icon button'
+    title: 'Icon button',
   },
   ButtonGroup: {
     id: 'button-group',
-    title: 'Button group'
+    title: 'Button group',
   },
   ErrorPage404: {
     id: 'error-page-404',
-    title: 'Error page - 404'
+    title: 'Error page - 404',
   },
   ErrorPage500: {
     id: 'error-page-500',
-    title: 'Error page - 500'
+    title: 'Error page - 500',
   },
   FormControlInput: {
     id: 'form-control-input',
-    title: 'Text input'
+    title: 'Text input',
   },
   FormControlTextarea: {
     id: 'form-control-textarea',
-    title: 'Textarea'
+    title: 'Textarea',
   },
   FormControlCheckbox: {
     id: 'form-control-checkbox',
-    title: 'Checkbox'
+    title: 'Checkbox',
   },
   FormControlRadio: {
     id: 'form-control-radio',
-    title: 'Radio'
+    title: 'Radio',
   },
   FormControlCheckboxTile: {
     id: 'form-control-checkbox-tile',
-    title: 'Checkbox tile'
+    title: 'Checkbox tile',
   },
   FormControlRadioTile: {
     id: 'form-control-radio-tile',
-    title: 'Radio tile'
+    title: 'Radio tile',
   },
   FormControlSelect: {
     id: 'form-control-select',
-    title: 'Select'
+    title: 'Select',
   },
   FormControlMultiselect: {
     id: 'form-control-multiselect',
-    title: 'Multiselect'
+    title: 'Multiselect',
   },
   FormControlAutosuggest: {
     id: 'form-control-autosuggest',
-    title: 'Select with autosuggest'
+    title: 'Select with autosuggest',
   },
   FormControlSwitch: {
     id: 'form-control-switch',
-    title: 'Switch'
+    title: 'Switch',
   },
   FormControlValidation: {
     id: 'form-control-validation',
-    title: 'Validation'
+    title: 'Validation',
   },
   HighchartsWithoutMenu: {
     id: 'highcharts-without-menu',
-    title: 'Highcharts without menu'
+    title: 'Highcharts without menu',
   },
   HighchartsWithMenu: {
     id: 'highcharts-with-menu',
-    title: 'Highcharts with menu'
+    title: 'Highcharts with menu',
   },
   HighchartsWithMenuAndFooter: {
     id: 'highcharts-with-menu-and-footer',
-    title: 'Highcharts with menu and footer'
+    title: 'Highcharts with menu and footer',
   },
   NavTiles: {
     id: 'nav-tiles',
-    title: 'Navigation tiles'
+    title: 'Navigation tiles',
   },
   NavButtons: {
     id: 'nav-buttons',
-    title: 'Menu buttons'
+    title: 'Menu buttons',
   },
   NavShortcuts: {
     id: 'nav-shortcuts',
-    title: 'Shortcut link'
+    title: 'Shortcut link',
   },
   NavShortcutButtons: {
     id: 'nav-shortcut-buttons',
-    title: 'Shortcut button'
+    title: 'Shortcut button',
   },
   NavTabs: {
     id: 'nav-tabs',
-    title: 'Tabs'
+    title: 'Tabs',
   },
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
-    title: 'Date and time'
+    title: 'Date and time',
   },
   TimeSelectorDatepicker: {
     id: 'time-selector-datepicker',
-    title: 'Datepicker'
+    title: 'Datepicker',
   },
   TimeSelectorDateRange: {
     id: 'time-selector-date-range',
-    title: 'Date range'
+    title: 'Date range',
   },
   TimeSelectorMonth: {
     id: 'time-selector-month',
-    title: 'Month selector'
+    title: 'Month selector',
   },
   TimeSelectorMonthRange: {
     id: 'time-selector-month-range',
-    title: 'Month range'
+    title: 'Month range',
   },
-  TimeSelectorWeek: {
-    id: 'time-selector-week',
-    title: 'Weekpicker'
+  TimeSelectorWeekpicker: {
+    id: 'time-selector-weekpicker',
+    title: 'Weekpicker',
   },
   TimeSelectorWeekRange: {
     id: 'time-selector-week-range',
-    title: 'Week range'
+    title: 'Week range',
   },
   TimeSelectorYear: {
     id: 'time-selector-year',
-    title: 'Year selector'
+    title: 'Year selector',
   },
   TimeSelectorYearRange: {
     id: 'time-selector-year-range',
-    title: 'Year range'
+    title: 'Year range',
   },
 };

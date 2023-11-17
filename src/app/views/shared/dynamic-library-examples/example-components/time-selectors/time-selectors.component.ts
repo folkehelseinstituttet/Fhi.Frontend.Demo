@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import { FhiWeek } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-weekpicker/fhi-week.model';
+import { FhiWeekRange } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-week-range/fhi-week-range.model';
 
 @Component({
-  selector: 'app-time-selectors', 
+  selector: 'app-time-selectors',
   templateUrl: './time-selectors.component.html',
 })
 export class TimeSelectorsComponent {
@@ -12,7 +14,7 @@ export class TimeSelectorsComponent {
 
   minDate = '2020-09-20';
   maxDate = '2030-09-20';
-  
+
   today = new Date().toISOString();
   selectedDate = this.today;
   selectedDateAndTime: string;
@@ -22,9 +24,6 @@ export class TimeSelectorsComponent {
   selectedYear: number;
   selectedYearRange: any;
   monthRangeSelected: any;
-  weekFrom: string = '2010-27';
-  weekTo: string = '2013-13';
-  weekRange: any;
 
   // weekSelected: string;
 
@@ -59,7 +58,7 @@ export class TimeSelectorsComponent {
   getDateRange(dateRange: any) {
     this.selectedDateRange = dateRange;
   }
-  
+
   getDateAndTime(dateAndTime: any) {
     this.selectedDateAndTime = dateAndTime;
   }
@@ -79,12 +78,11 @@ export class TimeSelectorsComponent {
     this.selectedYearRange = yearRange;
   }
 
-  onWeekSelect(week: any) {
-    console.info(week);
+  onWeekSelect(week: FhiWeek) {
+    console.info('Weekpicker example Output:', week);
   }
 
-  onWeekRangeSelect(weekRange: any) {
-    console.info(weekRange);
+  onWeekRangeSelect(weekRange: FhiWeekRange) {
+    console.info('Week range example Output:', weekRange);
   }
-
 }
