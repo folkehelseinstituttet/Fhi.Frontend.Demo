@@ -14,12 +14,12 @@ const Navs: LibraryItem[] = [
   ...NavTiles,
   ...NavButtons,
   ...NavShortcuts,
-  ...NavShortcutButtons
+  ...NavShortcutButtons,
 ];
 
 export const NavsData: LibraryItemGroup = {
   id: GROUPS.Navs.id,
   title: GROUPS.Navs.title,
   intro: NavsIntro,
-  libraryItems: Navs
+  libraryItems: Navs,
 };

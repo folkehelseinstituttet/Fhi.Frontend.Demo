@@ -5,13 +5,11 @@ import { BreadcrumbsIntro } from './_breadcrumbs.intro';
 
 import { Breadcrumb } from './breadcrumb';
 
-const Breadcrumbs: LibraryItem[] = [
-  ...Breadcrumb,
-];
+const Breadcrumbs: LibraryItem[] = [...Breadcrumb];
 
 export const BreadcrumbsData: LibraryItemGroup = {
   id: GROUPS.Breadcrumbs.id,
   title: GROUPS.Breadcrumbs.title,
   intro: BreadcrumbsIntro,
-  libraryItems: Breadcrumbs
+  libraryItems: Breadcrumbs,
 };

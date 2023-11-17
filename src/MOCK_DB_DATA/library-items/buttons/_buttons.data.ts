@@ -21,5 +21,5 @@ export const ButtonsData: LibraryItemGroup = {
   id: GROUPS.Buttons.id,
   title: GROUPS.Buttons.title,
   intro: ButtonsIntro,
-  libraryItems: Buttons
+  libraryItems: Buttons,
 };

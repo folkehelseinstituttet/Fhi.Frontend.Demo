@@ -10,12 +10,12 @@ import { HighchartsWithMenu } from './highcharts-with-menu';
 const Highcharts: LibraryItem[] = [
   ...HighchartsWithoutMenu,
   ...HighchartsWithMenu,
-  ...HighchartsWithMenuAndFooter
+  ...HighchartsWithMenuAndFooter,
 ];
 
 export const HighchartsData: LibraryItemGroup = {
   id: GROUPS.Highcharts.id,
   title: GROUPS.Highcharts.title,
   intro: HighchartsIntro,
-  libraryItems: Highcharts
+  libraryItems: Highcharts,
 };

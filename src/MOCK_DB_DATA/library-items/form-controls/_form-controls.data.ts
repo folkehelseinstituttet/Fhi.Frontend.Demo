@@ -33,5 +33,5 @@ export const FormControlsData: LibraryItemGroup = {
   id: GROUPS.FormControls.id,
   title: GROUPS.FormControls.title,
   intro: FormControlsIntro,
-  libraryItems: FormControls
+  libraryItems: FormControls,
 };
