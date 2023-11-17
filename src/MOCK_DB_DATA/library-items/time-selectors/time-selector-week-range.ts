@@ -35,25 +35,20 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-  <p>FHI Week range er en utvidelse av <a href="/developer/components/time-selectors#time-selector-weekpicker">FHI Weekpicker</a> , og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
+  <p>Week range er en utvidelse av <a href="/developer/components/time-selectors#time-selector-weekpicker">FHI Weekpicker</a> , og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
   være lagt til som en dependency.</p>
   
   <h2 class="h5">Nyttige lenker</h2>
   <ul>
     <li>
-      <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-week-range/README.md#API">
-        API-dokumentasjon
-      </a>
-    </li>
-    <li>
       <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-week-range">
-        Kildekode
+        Kildekode og API
       </a>
     </li>
     <li>
-      <a href="${CONST.ExampleComponentsGithubUrl}/form-controls/week-range">
-        Demokode
+      <a href="${CONST.ExampleComponentsGithubUrl}/time-selectors">
+        Kode for demo-eksempel
       </a>
     </li>
     <li>
@@ -61,5 +56,6 @@ function getDocumentationHtml(): string | null {
         NPM-pakke @folkehelseinstituttet/angular-components
       </a>
     </li>
-  </ul>`;
+  </ul>
+  `;
 }
