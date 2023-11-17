@@ -5,14 +5,12 @@ import { LibraryItemFilter } from '../../models/library-item-filter.model';
 
 @Component({
   selector: 'app-library-second-level-menu',
-  templateUrl: './library-second-level-menu.component.html'
+  templateUrl: './library-second-level-menu.component.html',
 })
 export class LibrarySecondLevelMenuComponent {
-
   @Input() menuItems: MenuItem[];
 
   activeNavTab = 0;
   leftMenuMobileTriggerOpen = false;
   libraryItemFilter: LibraryItemFilter = { name: '' };
-
 }
