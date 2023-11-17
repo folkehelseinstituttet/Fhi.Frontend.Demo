@@ -68,15 +68,10 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(
-    libraryItemGroups: LibraryItemGroupsShared
-  ): MenuItem[] {
+  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
     let menu: MenuItem[] = [];
     Object.keys(libraryItemGroups).forEach((key) => {
-      if (
-        libraryItemGroups[key].parentUrlSegment ===
-        this.urlService.getSegmentPath(1)
-      ) {
+      if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
         menu.push({
           name: libraryItemGroups[key].title,
           link: libraryItemGroups[key].id,
