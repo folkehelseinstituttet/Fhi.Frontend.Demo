@@ -7,15 +7,14 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 
 const MenuItemName = {
   example: 'Eksempel',
-  documentation: 'Dokumentasjon'
+  documentation: 'Dokumentasjon',
 };
 
 @Component({
   selector: 'app-library-item',
-  templateUrl: './library-item.component.html'
+  templateUrl: './library-item.component.html',
 })
 export class LibraryItemComponent implements OnInit {
-
   @Input() groupId: string;
   @Input() isDebugging: boolean;
   @Input() libraryItem: LibraryItem;
@@ -33,11 +32,10 @@ export class LibraryItemComponent implements OnInit {
   navTabMenuItems: MenuItem[];
   MenuItemName = MenuItemName;
 
-
   constructor(
     private activatedRoute: ActivatedRoute,
-    private viewportScroller: ViewportScroller
-  ) { }
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   ngOnInit() {
     this.setItemData(this.libraryItem);
@@ -76,15 +74,14 @@ export class LibraryItemComponent implements OnInit {
 
     menuItems[n++] = {
       name: MenuItemName.example,
-      link: null
+      link: null,
     };
     if (this.documentationHtml !== null) {
       menuItems[n++] = {
         name: MenuItemName.documentation,
-        link: null
+        link: null,
       };
     }
     return menuItems;
   }
-
 }
