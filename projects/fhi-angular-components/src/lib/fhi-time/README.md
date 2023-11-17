@@ -4,7 +4,7 @@ A set of components for time related user interactions.
 
 ## How to add i18n to your Angular app
 
-In a core module for your app, import and register:
+In app.module.ts or another "core module" for your app, import and register:
 
 ```ts
 import { LOCALE_ID } from '@angular/core';
