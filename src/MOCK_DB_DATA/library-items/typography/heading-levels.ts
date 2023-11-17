@@ -1,15 +1,16 @@
 import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 
-export const HeadingLevels: LibraryItem[] = [{
-  id: LibraryItemIds.HeadingLevels,
-  title: 'Overskriftsnivåer',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const HeadingLevels: LibraryItem[] = [
+  {
+    id: LibraryItemIds.HeadingLevels,
+    title: 'Overskriftsnivåer',
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
@@ -37,4 +38,3 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return null;
 }
-

@@ -1,15 +1,16 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const ErrorPage500: LibraryItem[] = [{
-  id: ITEMS.ErrorPage500.id,
-  title: ITEMS.ErrorPage500.title,
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const ErrorPage500: LibraryItem[] = [
+  {
+    id: ITEMS.ErrorPage500.id,
+    title: ITEMS.ErrorPage500.title,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

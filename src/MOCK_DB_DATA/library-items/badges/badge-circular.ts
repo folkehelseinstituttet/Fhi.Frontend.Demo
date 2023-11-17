@@ -2,15 +2,16 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const BadgeCircular: LibraryItem[] = [{
-  id: ITEMS.BadgeCircular.id,
-  title: ITEMS.BadgeCircular.title,
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const BadgeCircular: LibraryItem[] = [
+  {
+    id: ITEMS.BadgeCircular.id,
+    title: ITEMS.BadgeCircular.title,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
