@@ -12,6 +12,7 @@ export enum LibraryItemType {
 export interface LibraryItemBase {
   id: string; // TODO: method that checks for identical id's
   title: string;
+  titleLang?: string;
 }
 
 export interface LibraryItemsShared {
@@ -31,6 +32,7 @@ export interface LibraryItem extends LibraryItemBase {
 export interface LibraryGroupBase {
   id: string; // TODO: method that checks for identical id's
   title: string;
+  titleLang?: string;
 }
 
 export interface LibraryGroupExtended extends LibraryGroupBase {

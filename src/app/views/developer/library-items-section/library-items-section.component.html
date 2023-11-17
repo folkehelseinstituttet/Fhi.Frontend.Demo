@@ -1,8 +1,6 @@
-<!-- <a class="nav-link" [routerLink]="'.'" [fragment]="menuItem.link">{{ menuItem.name }}</a> -->
-
 <section class="ds-library-items">
   <header class="mb-7" *ngIf="sectionTitle">
-    <h1>{{ sectionTitle }}</h1>
+    <h1 [attr.lang]="sectionTitleLang ? sectionTitleLang : null">{{ sectionTitle }}</h1>
     <div class="ds-library-items__section-intro" *ngIf="sectionIntro" [innerHtml]="sectionIntro | safe: 'html'"></div>
     <hr />
   </header>

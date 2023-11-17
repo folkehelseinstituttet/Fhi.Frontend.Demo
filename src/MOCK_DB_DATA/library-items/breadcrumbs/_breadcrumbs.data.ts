@@ -10,6 +10,7 @@ const Breadcrumbs: LibraryItem[] = [...Breadcrumb];
 export const BreadcrumbsData: LibraryItemGroup = {
   id: GROUPS.Breadcrumbs.id,
   title: GROUPS.Breadcrumbs.title,
+  titleLang: GROUPS.Breadcrumbs.titleLang,
   intro: BreadcrumbsIntro,
   libraryItems: Breadcrumbs,
 };

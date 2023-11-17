@@ -15,6 +15,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   libraryItemsLoaded = false;
   groupId!: string;
   sectionTitle!: string;
+  sectionTitleLang!: string;
   sectionIntro!: string;
 
   private subscription: Subscription = new Subscription();
@@ -44,6 +45,7 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
       next: (libraryItemGroup) => {
         this.groupId = libraryItemGroup.id;
         this.sectionTitle = libraryItemGroup.title;
+        this.sectionTitleLang = libraryItemGroup.titleLang;
         this.sectionIntro = libraryItemGroup.intro;
         this.libraryItems = libraryItemGroup.libraryItems;
         this.libraryItemsLoaded = true;

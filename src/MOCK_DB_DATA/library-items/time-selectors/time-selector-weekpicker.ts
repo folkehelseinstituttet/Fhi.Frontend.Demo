@@ -35,7 +35,7 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-  <p>Weekpicker er bygget på <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>, og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
+  <p><span lang="en">Weekpicker</span> er bygget på <a href="${CONST.NgBootstrapComponentsBaseUrl}/datepicker">NgBootstrap Datepicker</a>, og for å ta den i bruk i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
   være lagt til som en dependency.</p>
 

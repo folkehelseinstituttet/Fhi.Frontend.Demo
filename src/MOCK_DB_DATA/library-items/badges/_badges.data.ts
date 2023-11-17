@@ -11,6 +11,7 @@ const Badges: LibraryItem[] = [...BadgeCircular, ...BadgeRounded];
 export const BadgesData: LibraryItemGroup = {
   id: GROUPS.Badges.id,
   title: GROUPS.Badges.title,
+  titleLang: GROUPS.Badges.titleLang,
   intro: BadgesIntro,
   libraryItems: Badges,
 };

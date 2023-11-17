@@ -16,6 +16,7 @@ const Highcharts: LibraryItem[] = [
 export const HighchartsData: LibraryItemGroup = {
   id: GROUPS.Highcharts.id,
   title: GROUPS.Highcharts.title,
+  titleLang: GROUPS.Highcharts.titleLang,
   intro: HighchartsIntro,
   libraryItems: Highcharts,
 };

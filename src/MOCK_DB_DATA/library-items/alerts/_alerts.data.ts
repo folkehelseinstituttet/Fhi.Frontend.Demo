@@ -11,6 +11,7 @@ const Alerts: LibraryItem[] = [...AlertBasic, ...AlertClosable];
 export const AlertsData: LibraryItemGroup = {
   id: GROUPS.Alerts.id,
   title: GROUPS.Alerts.title,
+  titleLang: GROUPS.Alerts.titleLang,
   intro: AlertsIntro,
   libraryItems: Alerts,
 };

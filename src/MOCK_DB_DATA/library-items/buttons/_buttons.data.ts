@@ -20,6 +20,7 @@ const Buttons: LibraryItem[] = [
 export const ButtonsData: LibraryItemGroup = {
   id: GROUPS.Buttons.id,
   title: GROUPS.Buttons.title,
+  titleLang: GROUPS.Buttons.titleLang,
   intro: ButtonsIntro,
   libraryItems: Buttons,
 };

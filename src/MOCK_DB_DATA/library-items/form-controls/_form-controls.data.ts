@@ -32,6 +32,7 @@ const FormControls: LibraryItem[] = [
 export const FormControlsData: LibraryItemGroup = {
   id: GROUPS.FormControls.id,
   title: GROUPS.FormControls.title,
+  titleLang: GROUPS.FormControls.titleLang,
   intro: FormControlsIntro,
   libraryItems: FormControls,
 };

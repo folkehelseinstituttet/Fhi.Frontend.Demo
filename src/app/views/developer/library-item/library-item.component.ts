@@ -21,6 +21,7 @@ export class LibraryItemComponent implements OnInit {
 
   id: string;
   title: string;
+  titleLang: string;
   type: number;
   exampleHtml: string;
   documentationHtml: string;
@@ -51,6 +52,7 @@ export class LibraryItemComponent implements OnInit {
   private setItemData(item: LibraryItem) {
     this.id = item.id;
     this.title = item.title;
+    this.titleLang = item.titleLang;
     this.type = item.type;
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);

@@ -11,6 +11,7 @@ export const ErrorPages: LibraryItem[] = [...ErrorPage404, ...ErrorPage500];
 export const ErrorPagesData: LibraryItemGroup = {
   id: GROUPS.ErrorPages.id,
   title: GROUPS.ErrorPages.title,
+  titleLang: GROUPS.ErrorPages.titleLang,
   intro: ErrorPagesIntro,
   libraryItems: ErrorPages,
 };

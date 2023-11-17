@@ -11,6 +11,7 @@ const Items: LibraryItem[] = [...ItemOne, ...ItemTwo];
 export const ItemsData: LibraryItemGroup = {
   id: GROUPS.Items.id,
   title: GROUPS.Items.title,
+  titleLang: GROUPS.Items.titleLang,
   intro: ItemsIntro,
   libraryItems: Items,
 };

@@ -12,6 +12,7 @@ const Accordions: LibraryItem[] = [...Accordion, ...AccordionFlush, ...Accordion
 export const AccordionsData: LibraryItemGroup = {
   id: GROUPS.Accordions.id,
   title: GROUPS.Accordions.title,
+  titleLang: GROUPS.Accordions.titleLang,
   intro: AccordionsIntro,
   libraryItems: Accordions,
 };

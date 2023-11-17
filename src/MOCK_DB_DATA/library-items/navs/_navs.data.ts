@@ -20,6 +20,7 @@ const Navs: LibraryItem[] = [
 export const NavsData: LibraryItemGroup = {
   id: GROUPS.Navs.id,
   title: GROUPS.Navs.title,
+  titleLang: GROUPS.Navs.titleLang,
   intro: NavsIntro,
   libraryItems: Navs,
 };
