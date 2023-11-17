@@ -1,11 +1,21 @@
-<button type="button" class="btn fhi-btn-icon d-xl-none mb-3" (click)="leftMenuMobileTriggerOpen = !leftMenuMobileTriggerOpen">
+<button
+  type="button"
+  class="btn fhi-btn-icon d-xl-none mb-3"
+  (click)="leftMenuMobileTriggerOpen = !leftMenuMobileTriggerOpen"
+>
   <i class="icon-list me-0"></i>
 </button>
 
 <div class="ds-left-menu" [ngClass]="{ 'd-none d-xl-block': !leftMenuMobileTriggerOpen }">
   <ul class="nav flex-column d-inline-block pb-2">
     <li class="nav-item" *ngFor="let menuItem of menuItems">
-      <a class="nav-link" routerLinkActive="active" [routerLink]="'./' + menuItem.link" (click)="leftMenuMobileTriggerOpen = false">{{ menuItem.name }}</a>
+      <a
+        class="nav-link"
+        routerLinkActive="active"
+        [routerLink]="'./' + menuItem.link"
+        (click)="leftMenuMobileTriggerOpen = false"
+        >{{ menuItem.name }}</a
+      >
     </li>
   </ul>
 </div>
