@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { MenuItem } from 'src/app/models/menu-item.model';
 import { LibraryItemFilter } from '../../models/library-item-filter.model';
-import { LibraryItemConstants } from 'src/MOCK_DB_DATA/library-items/library-item-constants';
-import { SharedConstants } from '../../shared.constants';
+import { SharedConstants as CONST } from '../../shared.constants';
 
 @Component({
   selector: 'app-library-second-level-menu',
@@ -13,8 +12,8 @@ export class LibrarySecondLevelMenuComponent {
   @Input() menuItems: MenuItem[];
 
   activeNavTab = 0;
-  langNO: string = LibraryItemConstants.languageLocaleId_NO;
-  langEN: string = SharedConstants.languageLocaleId_EN;
+  lang_NO: string = CONST.languageLocaleId_NO;
+  lang_EN: string = CONST.languageLocaleId_EN;
   leftMenuMobileTriggerOpen = false;
   libraryItemFilter: LibraryItemFilter = { name: '' };
 

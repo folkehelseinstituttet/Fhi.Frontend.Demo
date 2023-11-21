@@ -4,8 +4,7 @@ import { Subscription } from 'rxjs';
 import { UrlService } from 'src/app/services/url.service';
 import { LibraryItemGroupsDataService } from '../../shared/services/library-item-groups-data.service';
 import { LibraryItem } from '../../shared/models/library-item.model';
-import { LibraryItemConstants } from 'src/MOCK_DB_DATA/library-items/library-item-constants';
-import { SharedConstants } from '../../shared/shared.constants';
+import { SharedConstants as CONST } from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-library-items-section',
@@ -13,8 +12,8 @@ import { SharedConstants } from '../../shared/shared.constants';
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   isDebugging = false;
-  langNO: string = LibraryItemConstants.languageLocaleId_NO;
-  langEN: string = SharedConstants.languageLocaleId_EN;
+  lang_NO: string = CONST.languageLocaleId_NO;
+  lang_EN: string = CONST.languageLocaleId_EN;
   libraryItems!: LibraryItem[];
   libraryItemsLoaded = false;
   groupId!: string;

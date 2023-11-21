@@ -1,5 +1,5 @@
 <article class="ds-ui-documentation" id="{{ id }}" *ngIf="!isDebugging; else debugView">
-  <h1 class="h3" [attr.lang]="titleLang === langNO ? null : langEN">{{ title }}</h1>
+  <h1 class="h3" [attr.lang]="titleLang === lang_NO ? null : lang_EN">{{ title }}</h1>
 
   <div class="ds-ui-documentation__item-container">
     <ul ngbNav #itemNav="ngbNav" [(activeId)]="activeMenuItemByDefault" class="nav-tabs" [animation]="false">

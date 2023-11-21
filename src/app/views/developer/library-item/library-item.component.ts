@@ -4,8 +4,7 @@ import { ViewportScroller } from '@angular/common';
 
 import { LibraryItem, LibraryItemType } from '../../shared/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
-import { LibraryItemConstants } from 'src/MOCK_DB_DATA/library-items/library-item-constants';
-import { SharedConstants } from '../../shared/shared.constants';
+import { SharedConstants as CONST } from '../../shared/shared.constants';
 
 const MenuItemName = {
   example: 'Eksempel',
@@ -35,8 +34,8 @@ export class LibraryItemComponent implements OnInit {
   navTabMenuItems: MenuItem[];
   MenuItemName = MenuItemName;
 
-  langNO: string = LibraryItemConstants.languageLocaleId_NO;
-  langEN: string = SharedConstants.languageLocaleId_EN;
+  lang_NO: string = CONST.languageLocaleId_NO;
+  lang_EN: string = CONST.languageLocaleId_EN;
 
   constructor(
     private activatedRoute: ActivatedRoute,
