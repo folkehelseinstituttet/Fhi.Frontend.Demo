@@ -114,24 +114,6 @@ export class LibraryMenuService {
       return topLevelMenuItem;
     }
     console.error('Current path is not matching any menu items.');
-  }
-
-  private getVisualIdentityMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Farger',
-        link: LibraryItemSegmentPaths.color,
-      },
-      {
-        name: 'Ikoner',
-        link: LibraryItemSegmentPaths.icons,
-      },
-      {
-        name: 'Typografi',
-        link: LibraryItemSegmentPaths.typography,
-      },
-    ];
-  }
 
   private getComponentsMenu(): MenuItem[] {
     return [

@@ -13,7 +13,7 @@
         class="nav-link"
         routerLinkActive="active"
         [routerLink]="'./' + menuItem.link"
-        [attr.lang]="menuItem.titleLang !== undefined ? menuItem.titleLang : null"
+        [attr.lang]="menuItem.titleLang === langNO ? null : langEN"
         (click)="leftMenuMobileTriggerOpen = false"
         >{{ menuItem.name }}</a
       >
