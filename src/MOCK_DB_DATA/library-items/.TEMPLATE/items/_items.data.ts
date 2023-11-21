@@ -1,5 +1,6 @@
 import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+import { LibraryItemConstants } from '../library-item-constants';
 
 import { ItemsIntro } from './_items.intro';
 
@@ -11,7 +12,7 @@ const Items: LibraryItem[] = [...ItemOne, ...ItemTwo];
 export const ItemsData: LibraryItemGroup = {
   id: GROUPS.Items.id,
   title: GROUPS.Items.title,
-  titleLang: GROUPS.Items.titleLang,
+  titleLang: GROUPS.Items.titleLang, // if norwegian
   intro: ItemsIntro,
   libraryItems: Items,
 };

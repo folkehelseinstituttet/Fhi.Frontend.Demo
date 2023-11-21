@@ -5,7 +5,6 @@ const githubBaseUrl = 'https://github.com/folkehelseinstituttet';
 const githubFrontendDemoUrl = `${githubBaseUrl}/Fhi.Frontend.Demo/tree/dev`;
 
 export class LibraryItemConstants {
-
   static BootstrapBaseUrl = bootstrapDocBaseUrl;
   static BootstrapComponentsBaseUrl = `${bootstrapDocBaseUrl}/components`;
   static BootstrapContentBaseUrl = `${bootstrapDocBaseUrl}/content`;
@@ -24,6 +23,7 @@ export class LibraryItemConstants {
 
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 
-  static voidURL = 'javascript:void(0)'
+  static voidURL = 'javascript:void(0)';
 
+  static languageLocaleId_NO = 'no';
 }

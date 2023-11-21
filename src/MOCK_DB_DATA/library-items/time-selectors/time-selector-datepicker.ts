@@ -6,7 +6,6 @@ export const TimeSelectorDatepicker: LibraryItem[] = [
   {
     id: ITEMS.TimeSelectorDatepicker.id,
     title: ITEMS.TimeSelectorDatepicker.title,
-    titleLang: ITEMS.TimeSelectorDatepicker.titleLang,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

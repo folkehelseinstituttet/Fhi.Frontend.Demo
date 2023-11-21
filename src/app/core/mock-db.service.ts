@@ -10,11 +10,9 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 // Items
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
 import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
-import { ColorData } from 'src/MOCK_DB_DATA/library-items/color/_color.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
-import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
@@ -28,11 +26,10 @@ import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { ToastData } from 'src/MOCK_DB_DATA/library-items/toast/_toast.data';
 import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
-import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 // -----------------------------------------
 //
-// New id and titel implementation!
+// New id and title implementation!
 //
 // -----------------------------------------
 
@@ -43,12 +40,15 @@ import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accor
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
 import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_breadcrumbs.data';
+import { ColorsData } from 'src/MOCK_DB_DATA/library-items/color/_colors.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { FormControlsData } from 'src/MOCK_DB_DATA/library-items/form-controls/_form-controls.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
+import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
+import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
 // const AllLibraryItemsData: LibraryItem[] = [
@@ -73,6 +73,7 @@ export class MockDbService implements InMemoryDbService {
       ErrorPagesData,
       FormControlsData,
       HighchartsData,
+      IconsData,
       NavsData,
       TimeSelectorsData,
 
@@ -83,7 +84,6 @@ export class MockDbService implements InMemoryDbService {
       DrawerData,
       GlobalFooterData,
       GlobalHeaderData,
-      IconsData,
       LayoutTemplatesData,
       ModalData,
       PaginationData,

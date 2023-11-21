@@ -1,10 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const FontColors: LibraryItem[] = [
   {
-    id: LibraryItemIds.ColorFonts,
-    title: 'Tekstfarger',
+    id: ITEMS.VisualIdentityFontColors.id,
+    title: ITEMS.VisualIdentityFontColors.title,
+    titleLang: CONST.languageLocaleId_NO,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
