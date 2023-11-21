@@ -1,3 +1,5 @@
+import { SharedConstants } from 'src/app/views/shared/shared.constants';
+
 const bootstrapVersion = '5.2';
 const bootstrapDocBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}`;
 const npmBaseUrl = 'https://www.npmjs.com/package/@folkehelseinstituttet';
@@ -25,5 +27,5 @@ export class LibraryItemConstants {
 
   static voidURL = 'javascript:void(0)';
 
-  static languageLocaleId_NO = 'no';
+  static languageLocaleId_NO = SharedConstants.languageLocaleId_NO;
 }

@@ -1,7 +1,6 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
 import { CardData } from './cards/_cards.data';
-import { ColorData } from './color/_color.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { ModalData } from './modal/_modal.data';
@@ -16,12 +15,10 @@ import { TableData } from './table/_table.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
 import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
-import { TypographyData } from './typography/_typography.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
 export const AllData: LibraryItem[] = [
   ...CardData,
-  ...ColorData,
   ...DrawerData,
   ...GlobalHeaderData,
   ...ModalData,
@@ -36,6 +33,5 @@ export const AllData: LibraryItem[] = [
   ...TagsData,
   ...ToastData,
   ...TootipPopoverData,
-  ...TypographyData,
   ...TreeViewData,
 ];

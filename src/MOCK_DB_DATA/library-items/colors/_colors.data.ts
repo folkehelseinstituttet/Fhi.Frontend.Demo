@@ -10,7 +10,7 @@ import { FontColors } from './font-colors';
 
 const Colors: LibraryItem[] = [...ColorSystem, ...ColorsBootstrap, ...FontColors];
 
-export const IconsData: LibraryItemGroup = {
+export const ColorsData: LibraryItemGroup = {
   id: GROUPS.Colors.id,
   title: GROUPS.Colors.title,
   titleLang: CONST.languageLocaleId_NO,

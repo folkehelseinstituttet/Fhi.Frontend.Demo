@@ -209,4 +209,12 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'icon-sizes',
     title: 'Ikonstørrelser',
   },
+  VisualIdentityHeadingLevels: {
+    id: 'heading-levels',
+    title: 'Overskriftsnivåer',
+  },
+  VisualIdentityTypographyHierarchy: {
+    id: 'typography-hierarchy',
+    title: 'Typografisk hierarki',
+  },
 };

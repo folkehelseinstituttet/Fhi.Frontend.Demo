@@ -16,7 +16,6 @@ import { TagsIds } from './tags/_tags.ids';
 import { ToastIds } from './toast/_toast.ids';
 import { TootipPopoverIds } from './tooltip-popover/_tooltip-popover.ids';
 import { TreeViewIds } from './tree-view/_tree-view.ids';
-import { TypographyIds } from './typography/_typography.ids';
 
 const libraryItemIds = {
   ...PrototypeAngularTreeIds,
@@ -37,7 +36,6 @@ const libraryItemIds = {
   ...ToastIds,
   ...TootipPopoverIds,
   ...TreeViewIds,
-  ...TypographyIds,
 };
 
 export const LibraryItemIds = (() => {

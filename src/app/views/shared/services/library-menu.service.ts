@@ -89,9 +89,6 @@ export class LibraryMenuService {
       return;
     }
     switch (this.currentTopLevelMenuItem.name) {
-      case TopLevelMenuItemNames.visualIdentity:
-        return this.getVisualIdentityMenu();
-
       case TopLevelMenuItemNames.components:
         return this.getComponentsMenu();
 
@@ -114,6 +111,7 @@ export class LibraryMenuService {
       return topLevelMenuItem;
     }
     console.error('Current path is not matching any menu items.');
+  }
 
   private getComponentsMenu(): MenuItem[] {
     return [
