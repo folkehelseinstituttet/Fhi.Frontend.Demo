@@ -43,7 +43,7 @@ testem.log
 /typings
 *.orig
 *.bac
-/projects/**/.editorconfig
+#/projects/**/.editorconfig
 
 # System Files
 .DS_Store
