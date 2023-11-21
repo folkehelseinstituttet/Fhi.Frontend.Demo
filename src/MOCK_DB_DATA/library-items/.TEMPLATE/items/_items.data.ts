@@ -12,7 +12,7 @@ const Items: LibraryItem[] = [...ItemOne, ...ItemTwo];
 export const ItemsData: LibraryItemGroup = {
   id: GROUPS.Items.id,
   title: GROUPS.Items.title,
-  titleLang: GROUPS.Items.titleLang, // if norwegian
+  titleLang: LibraryItemConstants.languageLocaleId_NO, // <- if norwegian only
   intro: ItemsIntro,
   libraryItems: Items,
 };
