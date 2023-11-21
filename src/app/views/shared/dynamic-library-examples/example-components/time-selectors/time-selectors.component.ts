@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { FhiMonth } from 'dist/fhi-angular-components/lib/fhi-time/fhi-month.model';
+import { FhiMonth } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-time-selectors',

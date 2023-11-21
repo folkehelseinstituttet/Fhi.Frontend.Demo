@@ -32,25 +32,6 @@
   <!-- <p class="pt-4"><code>{{ selectedDateRange | json }}</code></p> -->
 </div>
 
-<div *ngIf="itemId === items.TimeSelectorMonth.id">
-  <fhi-month-selector (monthSelect)="onMonthSelect($event)"></fhi-month-selector>
-
-  <p class="pt-4">
-    <code>{{ monthSelected | json }}</code>
-  </p>
-</div>
-
-<div *ngIf="itemId === items.TimeSelectorMonthRange.id">
-  <fhi-month-range (monthRangeSelect)="onMonthRangeSelect($event)"></fhi-month-range>
-
-  <pre class="pt-3" *ngIf="monthRangeSelected">{{ monthRangeSelected | json }}</pre>
-</div>
-
-<div *ngIf="itemId === items.TimeSelectorYear.id">
-  <fhi-year-selector [label]="'Velg år'" [year]="'2011'" (yearSelect)="onYearSelect($event)"> </fhi-year-selector>
-</div>
-
-
 <div *ngIf="itemId === items.TimeSelectorYearMonth.id">
   <fhi-year-month [month]="{ year: 2021, month: 2 }" (monthSelect)="onMonthSelect($event)"></fhi-year-month>
 </div>
