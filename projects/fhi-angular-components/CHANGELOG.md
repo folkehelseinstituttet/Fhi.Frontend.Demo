@@ -2,7 +2,10 @@
 
 > Nov 7, 2023
 
+<!-- NB! Updates to FhiAutosuggest is not ready for release -->
 * :boom: **Breaking** Updates to `FhiAutosuggest`
+
+* :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
 * :gift: **New** Add Month Range selector
 * :gift: **New** Add Month selector
 * :gift: **New** Add Date Range selector

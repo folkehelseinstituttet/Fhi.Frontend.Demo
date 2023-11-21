@@ -8,7 +8,7 @@ describe('FhiWeekRangeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FhiWeekRangeComponent]
+      imports: [FhiWeekRangeComponent],
     });
     fixture = TestBed.createComponent(FhiWeekRangeComponent);
     component = fixture.componentInstance;

@@ -165,8 +165,8 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-date-range',
     title: 'Date range',
   },
-  TimeSelectorWeek: {
-    id: 'time-selector-week',
+  TimeSelectorWeekpicker: {
+    id: 'time-selector-weekpicker',
     title: 'Weekpicker',
   },
   TimeSelectorWeekRange: {

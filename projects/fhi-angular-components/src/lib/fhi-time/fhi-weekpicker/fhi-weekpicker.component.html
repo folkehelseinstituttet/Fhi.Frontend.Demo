@@ -4,11 +4,7 @@
       {{ label }}
     </label>
 
-    <button
-      class="fhi-datepicker__toggler"
-      aria-haspopup="true"
-      (click)="datepicker.toggle()"
-    >
+    <button class="fhi-datepicker__toggler" aria-haspopup="true" (click)="datepicker.toggle()">
       <i class="icon-calendar"></i>
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
@@ -24,7 +20,7 @@
       [maxDate]="maxDate"
       [minDate]="minDate"
       [startDate]="startDate"
-      [value]="week"
+      [value]="weekString"
       (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"

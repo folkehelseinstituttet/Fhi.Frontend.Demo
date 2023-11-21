@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  NgbDateParserFormatter,
-  NgbDateStruct,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { WeekValidationService } from './week-validator.service';
 import { WeekUtilityService } from './week-utility.service';
@@ -14,7 +11,7 @@ import { WeekUtilityService } from './week-utility.service';
 export class WeekParserFormatterService extends NgbDateParserFormatter {
   constructor(
     private weekValidationService: WeekValidationService,
-    private utilityService: WeekUtilityService
+    private utilityService: WeekUtilityService,
   ) {
     super();
   }
