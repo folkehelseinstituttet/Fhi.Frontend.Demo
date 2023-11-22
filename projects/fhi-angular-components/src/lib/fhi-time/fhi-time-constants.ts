@@ -9,4 +9,19 @@ export class FhiTimeConstants {
 
   static maxWeek = { year: new Date().getFullYear() + 1, week: 52 };
   static minWeek = { year: 1900, week: 1 };
+
+  static monthNames = [
+    'Januar',
+    'Februar',
+    'Mars',
+    'April',
+    'Mai',
+    'Juni',
+    'Juli',
+    'August',
+    'September',
+    'Oktober',
+    'November',
+    'Desember',
+  ];
 }

@@ -1,15 +1,17 @@
 <div class="fhi-ng-select-wrapper fhi-autosuggest">
   <label class="form-label" for="{{ labelForId }}">{{ label }}</label>
   <p *ngIf="description !== undefined">{{ description }}</p>
-  <ng-select [items]="items"
-             [editableSearchTerm]="true"
-             [(ngModel)]="selectedItem"
-             bindLabel="name"
-             bindValue="id"
-             labelForId="{{ labelForId }}"
-             notFoundText="{{ notFoundText }}"
-             placeholder="{{ placeholder }}"
-             (change)="onChange()">
+  <ng-select
+    [items]="items"
+    [editableSearchTerm]="true"
+    [(ngModel)]="selectedItem"
+    bindLabel="name"
+    bindValue="id"
+    labelForId="{{ labelForId }}"
+    notFoundText="{{ notFoundText }}"
+    placeholder="{{ placeholder }}"
+    (change)="onChange()"
+  >
     <ng-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</ng-option>
   </ng-select>
 </div>

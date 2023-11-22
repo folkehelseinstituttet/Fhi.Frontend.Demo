@@ -14,28 +14,27 @@ export class FormControlsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  checked: boolean = false;
-  tiles: any = [
+  checked = false;
+  tiles = [
     {
       label: 'Ledetekst valg 1',
-      description: 'Her er det plass til en liten beskrivelse.'
+      description: 'Her er det plass til en liten beskrivelse.',
     },
     {
-      label: 'Ledetekst for valg nummer 2'
+      label: 'Ledetekst for valg nummer 2',
     },
     {
       label: 'Ledetekst valg 3',
-      description: 'Kort beskrivelse.'
-    }
+      description: 'Kort beskrivelse.',
+    },
   ];
 
   // Autosuggest
-  selectedCar: number;
+  selectedCarId: number;
   cars = [
     { id: 1, name: 'Volvo' },
     { id: 2, name: 'Saab' },
     { id: 3, name: 'Opel' },
-    { id: 4, name: 'Audi' }
+    { id: 4, name: 'Audi' },
   ];
-
 }

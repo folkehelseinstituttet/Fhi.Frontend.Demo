@@ -9,20 +9,20 @@ import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
-import { FhiMonthRangeComponent } from './fhi-time/fhi-month-range/fhi-month-range.component';
-import { FhiMonthSelectorComponent } from './fhi-time/fhi-month-selector/fhi-month-selector.component';
+import { FhiYearMonthRangeComponent } from './fhi-time/fhi-year-month-range/fhi-year-month-range.component';
+import { FhiYearMonthComponent } from './fhi-time/fhi-year-month/fhi-year-month.component';
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
-import { FhiYearSelectorComponent } from './fhi-year-selector/fhi-year-selector.component';
+import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
   FhiDateAndTimeModule,
   FhiDatepickerModule,
   FhiDateRangeComponent,
-  FhiMonthRangeComponent,
-  FhiMonthSelectorComponent,
+  FhiYearMonthRangeComponent,
+  FhiYearMonthComponent,
   FhiMultiselectModule,
   FhiTableModule,
   FhiTreeViewNavigationModule,
@@ -30,11 +30,11 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiWeekpickerComponent,
   FhiWeekRangeComponent,
   FhiYearRangeComponent,
-  FhiYearSelectorComponent
+  FhiYearsComponent,
 ];
 
 @NgModule({
   imports: FHI_ANGULAR_MODULES_AND_COMPONENTS,
-  exports: FHI_ANGULAR_MODULES_AND_COMPONENTS
+  exports: FHI_ANGULAR_MODULES_AND_COMPONENTS,
 })
-export class FhiAngularComponentsModule { }
+export class FhiAngularComponentsModule {}

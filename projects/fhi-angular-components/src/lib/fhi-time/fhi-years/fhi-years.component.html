@@ -1,9 +1,11 @@
 <div class="fhi-year-selector">
   <fhi-autosuggest
-    [items]="yearList"
+    [labelForId]="id"
+    [items]="yearItems"
     [label]="label"
     [notFoundText]="'Ugyldig år'"
-    [selectedItem]="selectedYearId"
-    (selectedItemChange)="onSelectedItemChange($event)">
+    [selectedItem]="year"
+    (selectedItemChange)="onSelectedItemChange($event)"
+  >
   </fhi-autosuggest>
 </div>

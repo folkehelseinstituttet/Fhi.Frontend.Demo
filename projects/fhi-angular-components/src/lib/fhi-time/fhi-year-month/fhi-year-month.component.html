@@ -1,25 +1,26 @@
 <div class="fhi-month-selector">
   <div class="d-flex">
     <div class="fhi-month-selector__year">
-      <fhi-year-selector
-        [label]="labelYear"
+      <fhi-years
+        [label]="'År'"
         [minYear]="minYear"
         [maxYear]="maxYear"
-        [year]="year"
-        (yearSelect)="onYearSelect($event)"
+        [years]="years"
+        (yearsSelect)="onYearsSelect($event)"
       >
-      </fhi-year-selector>
+      </fhi-years>
     </div>
 
     <span class="fhi-month-selector__divider"></span>
 
     <div class="fhi-month-selector__month">
       <fhi-autosuggest
-        [items]="monthList"
-        [label]="labelMonth"
+        [items]="monthItems"
+        [label]="'Måned'"
         [notFoundText]="'Ugyldig måned'"
-        [selectedItem]="month"
-        (selectedItemChange)="onSelectedMonth($event)">
+        [selectedItem]="monthId"
+        (selectedItemChange)="onSelectedItemChange($event)"
+      >
       </fhi-autosuggest>
     </div>
   </div>

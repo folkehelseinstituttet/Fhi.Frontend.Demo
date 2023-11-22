@@ -2,10 +2,10 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TimeSelectorYearRange: LibraryItem[] = [
+export const TimeSelectorYearMonthRange: LibraryItem[] = [
   {
-    id: ITEMS.TimeSelectorYearRange.id,
-    title: ITEMS.TimeSelectorYearRange.title,
+    id: ITEMS.TimeSelectorYearMonthRange.id,
+    title: ITEMS.TimeSelectorYearMonthRange.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -26,7 +26,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-year-range (yearRangeSelect)="yearRangeSelect($event)"></fhi-year-range>`;
+<fhi-year-month-range 
+  (monthRangeSelect)="onMonthRangeSelect($event)"
+></fhi-year-month-range>
+`;
 }
 
 /*
@@ -44,12 +47,12 @@ function getDocumentationHtml(): string | null {
 
 <ul>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-year-range/README.md#API">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-year-month-range/README.md#API">
       API-dokumentasjon
     </a>
   </li>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-year-range">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-year-month-range">
       Kildekode
     </a>
   </li>

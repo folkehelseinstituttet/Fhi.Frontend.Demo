@@ -165,14 +165,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-date-range',
     title: 'Date range',
   },
-  TimeSelectorMonth: {
-    id: 'time-selector-month',
-    title: 'Month selector',
-  },
-  TimeSelectorMonthRange: {
-    id: 'time-selector-month-range',
-    title: 'Month range',
-  },
   TimeSelectorWeekpicker: {
     id: 'time-selector-weekpicker',
     title: 'Weekpicker',
@@ -181,9 +173,17 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-week-range',
     title: 'Week range',
   },
-  TimeSelectorYear: {
-    id: 'time-selector-year',
-    title: 'Year selector',
+  TimeSelectorYearMonth: {
+    id: 'time-selector-year-month',
+    title: 'Year month',
+  },
+  TimeSelectorYearMonthRange: {
+    id: 'time-selector-month-range',
+    title: 'Month range',
+  },
+  TimeSelectorYears: {
+    id: 'time-selector-years',
+    title: 'Years',
   },
   TimeSelectorYearRange: {
     id: 'time-selector-year-range',
