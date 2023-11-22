@@ -1,11 +1,10 @@
 # Unreleased
 
-> Nov 7, 2023
-> Nov 7, 2023
+> Nov 22, 2023
 
+* :gift: **New** Add layout templates
 <!-- NB! Updates to FhiAutosuggest is not ready for release -->
 * :boom: **Breaking** Updates to `FhiAutosuggest`
-
 * :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
 * :gift: **New** Add Month Range selector
 * :gift: **New** Add Month selector
