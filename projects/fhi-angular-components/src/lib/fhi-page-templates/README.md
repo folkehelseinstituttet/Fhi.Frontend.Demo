@@ -4,11 +4,9 @@
 
 ### Header and footer
 
-Should the header and footer be global elements in app.component, and the page templates sets up the content between.
-
-AND/OR
-
-Should the header and footer be part of the template
+Should the header and footer be global elements in app.component, and the page templates set up content in router-outlet?
+**AND/OR**
+Should the header and footer be part of the template in router-outlet?
 
 ## List of templates
 
