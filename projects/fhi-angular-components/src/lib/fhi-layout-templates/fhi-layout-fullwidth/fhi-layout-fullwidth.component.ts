@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'fhi-fullwidth',
+  selector: 'fhi-layout-fullwidth',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './fhi-fullwidth.component.html',
+  templateUrl: './fhi-layout-fullwidth.component.html',
 })
-export class FhiFullwidthComponent {}
+export class FhiLayoutFullwidthComponent {}

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiFullwidthComponent } from './fhi-fullwidth.component';
+import { FhiFullwidthComponent } from './fhi-layout-fullwidth.component';
 
 describe('FhiFullwidthComponent', () => {
   let component: FhiFullwidthComponent;
