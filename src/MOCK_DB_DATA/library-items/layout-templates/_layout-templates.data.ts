@@ -4,8 +4,14 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 import { LayoutTemplatesIntro } from './_layout-templates.intro';
 
 import { LayoutTemplateFullwidth } from '../layout-templates/layout-template-fullwidth';
+import { LayoutTemplateTwoCols } from './layout-template-two-cols';
+import { LayoutTemplateExpandableFirstCol } from './layout-template-expandable-first-col';
 
-export const LayoutTemplates: LibraryItem[] = [...LayoutTemplateFullwidth];
+export const LayoutTemplates: LibraryItem[] = [
+  ...LayoutTemplateFullwidth,
+  ...LayoutTemplateTwoCols,
+  ...LayoutTemplateExpandableFirstCol,
+];
 
 export const LayoutTemplatesData: LibraryItemGroup = {
   id: GROUPS.LayoutTemplates.id,

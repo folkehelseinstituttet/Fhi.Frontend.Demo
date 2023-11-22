@@ -183,12 +183,7 @@ export class LibraryMenuService {
   }
 
   private getLayoutAndPageTemplatesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Layout',
-        link: LibraryItemSegmentPaths.layoutandpagetemplates,
-      },
-    ];
+    return [];
   }
 
   private getPrototypesMenu(): MenuItem[] {
