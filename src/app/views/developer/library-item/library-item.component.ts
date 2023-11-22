@@ -4,24 +4,25 @@ import { ViewportScroller } from '@angular/common';
 
 import { LibraryItem, LibraryItemType } from '../../shared/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
+import { SharedConstants as CONST } from '../../shared/shared.constants';
 
 const MenuItemName = {
   example: 'Eksempel',
-  documentation: 'Dokumentasjon'
+  documentation: 'Dokumentasjon',
 };
 
 @Component({
   selector: 'app-library-item',
-  templateUrl: './library-item.component.html'
+  templateUrl: './library-item.component.html',
 })
 export class LibraryItemComponent implements OnInit {
-
   @Input() groupId: string;
   @Input() isDebugging: boolean;
   @Input() libraryItem: LibraryItem;
 
   id: string;
   title: string;
+  titleLang: string;
   type: number;
   exampleHtml: string;
   documentationHtml: string;
@@ -33,11 +34,13 @@ export class LibraryItemComponent implements OnInit {
   navTabMenuItems: MenuItem[];
   MenuItemName = MenuItemName;
 
+  lang_NO: string = CONST.languageLocaleId_NO;
+  lang_EN: string = CONST.languageLocaleId_EN;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private viewportScroller: ViewportScroller
-  ) { }
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   ngOnInit() {
     this.setItemData(this.libraryItem);
@@ -53,6 +56,7 @@ export class LibraryItemComponent implements OnInit {
   private setItemData(item: LibraryItem) {
     this.id = item.id;
     this.title = item.title;
+    this.titleLang = item.titleLang;
     this.type = item.type;
     this.exampleHtml = item.exampleHtml;
     this.codeHtml = this.getCodeHtml(item);
@@ -76,15 +80,14 @@ export class LibraryItemComponent implements OnInit {
 
     menuItems[n++] = {
       name: MenuItemName.example,
-      link: null
+      link: null,
     };
     if (this.documentationHtml !== null) {
       menuItems[n++] = {
         name: MenuItemName.documentation,
-        link: null
+        link: null,
       };
     }
     return menuItems;
   }
-
 }

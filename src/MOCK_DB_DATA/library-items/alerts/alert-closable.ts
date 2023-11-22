@@ -2,15 +2,16 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const AlertClosable: LibraryItem[] = [{
-  id: ITEMS.AlertClosable.id,
-  title: ITEMS.AlertClosable.title,
-  type: LibraryItemType.angular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const AlertClosable: LibraryItem[] = [
+  {
+    id: ITEMS.AlertClosable.id,
+    title: ITEMS.AlertClosable.title,
+    type: LibraryItemType.angular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

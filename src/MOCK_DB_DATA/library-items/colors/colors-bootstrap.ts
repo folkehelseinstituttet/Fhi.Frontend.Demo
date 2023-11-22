@@ -1,22 +1,25 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const ColorsBootstrap: LibraryItem[] = [{
-  id: LibraryItemIds.ColorBootstrap,
-  title: 'Fargepalett (Bootstrap)',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const ColorsBootstrap: LibraryItem[] = [
+  {
+    id: ITEMS.VisualIdentityColorsBootstrap.id,
+    title: ITEMS.VisualIdentityColorsBootstrap.title,
+    titleLang: CONST.languageLocaleId_NO,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
   const colorHtml = (hex: string, color: string, bootstrapName: string, textColor?: string) => {
-    const textClass = (textColor === 'black') ? '' : ' class="text-white"';
+    const textClass = textColor === 'black' ? '' : ' class="text-white"';
     return `
 <div class="ds-color-palette d-flex flex-row">
   <div class="ps-3 pt-2 ds-color-palette__color ds-color-palette__color--${color}">
@@ -26,7 +29,7 @@ function getExampleHtml(): string {
     ${hex}
   </div>
 </div>`;
-  }
+  };
 
   return `
 ${colorHtml('#0067c4', 'fhi-blue-1', 'Primary')}

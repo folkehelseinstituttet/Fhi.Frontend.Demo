@@ -201,4 +201,32 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-year-range',
     title: 'Year range',
   },
+  VisualIdentityColors: {
+    id: 'colors',
+    title: 'Fargepalett',
+  },
+  VisualIdentityColorsBootstrap: {
+    id: 'colors-bootstrap',
+    title: 'Fargepalett (Bootstrap)',
+  },
+  VisualIdentityFontColors: {
+    id: 'font-colors',
+    title: 'Tekstfarger',
+  },
+  VisualIdentityIcons: {
+    id: 'icon-set',
+    title: 'Ikonsett',
+  },
+  VisualIdentityIconSizes: {
+    id: 'icon-sizes',
+    title: 'Ikonstørrelser',
+  },
+  VisualIdentityHeadingLevels: {
+    id: 'heading-levels',
+    title: 'Overskriftsnivåer',
+  },
+  VisualIdentityTypographyHierarchy: {
+    id: 'typography-hierarchy',
+    title: 'Typografisk hierarki',
+  },
 };

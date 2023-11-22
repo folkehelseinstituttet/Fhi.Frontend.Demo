@@ -68,18 +68,14 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(
-    libraryItemGroups: LibraryItemGroupsShared
-  ): MenuItem[] {
-    let menu: MenuItem[] = [];
+  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
+    const menu: MenuItem[] = [];
     Object.keys(libraryItemGroups).forEach((key) => {
-      if (
-        libraryItemGroups[key].parentUrlSegment ===
-        this.urlService.getSegmentPath(1)
-      ) {
+      if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
         menu.push({
           name: libraryItemGroups[key].title,
           link: libraryItemGroups[key].id,
+          titleLang: libraryItemGroups[key].titleLang,
         });
       }
     });
@@ -121,20 +117,7 @@ export class LibraryMenuService {
   }
 
   private getVisualIdentityMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Farger',
-        link: LibraryItemSegmentPaths.color,
-      },
-      {
-        name: 'Ikoner',
-        link: LibraryItemSegmentPaths.icons,
-      },
-      {
-        name: 'Typografi',
-        link: LibraryItemSegmentPaths.typography,
-      },
-    ];
+    return [];
   }
 
   private getComponentsMenu(): MenuItem[] {

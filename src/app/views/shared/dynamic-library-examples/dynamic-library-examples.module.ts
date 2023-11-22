@@ -12,6 +12,7 @@ import { AlertsComponent } from './example-components/alerts/alerts.component';
 import { AlertClosableComponent } from './example-components/alerts/alert-closable/alert-closable.component';
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
+import { IconListComponent } from './example-components/icon-list/icon-list.component';
 import { LayoutTemplatesComponent } from './example-components/layout-templates/layout-templates.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
@@ -23,7 +24,6 @@ import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toa
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
-import { IconListComponent } from './fhi-angular-examples/icon-list/icon-list.component';
 import { ProgressBarExampleComponent } from './fhi-angular-examples/progress-bar-example/progress-bar-example.component';
 import { SearchExampleComponent } from './fhi-angular-examples/search-example/search-example.component';
 import { TableExamplesComponent } from './fhi-angular-examples/table-examples/table-examples.component';
@@ -41,6 +41,7 @@ const EXAMPLE_COMPONENTS = [
   AlertsComponent,
   AlertClosableComponent,
   HighchartsComponent,
+  IconListComponent,
   LayoutTemplatesComponent,
   NavsComponent,
   TabsExampleComponent,
@@ -52,10 +53,10 @@ const NGB_EXAMPLES = [
   PaginationExampleComponent,
   ToastExampleComponent,
   TooltipExampleComponent,
+  TooltipExampleComponent,
 ];
 
 const FHI_EXAMPLES = [
-  IconListComponent,
   GlobalHeadersExampleComponent,
   ProgressBarExampleComponent,
   SearchExampleComponent,
@@ -63,12 +64,14 @@ const FHI_EXAMPLES = [
   TreeViewNavigationExampleComponent,
   TreeViewSelectionExampleComponent,
   TagExampleComponent,
+  TagExampleComponent,
 ];
 
 const FHI_PROTOTYPES = [
   AngularTreeViewBuilderExampleComponent,
   PrototypeFormsComponent,
   PrototypePageheaderExampleComponent,
+  TableWithExpandableContentComponent,
   TableWithExpandableContentComponent,
 ];
 
@@ -81,7 +84,9 @@ const FHI_PROTOTYPES = [
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES,
+    ...FHI_PROTOTYPES,
   ],
+  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
   imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
   exports: [
     NgSelectModule,
@@ -91,6 +96,8 @@ const FHI_PROTOTYPES = [
     // TODO: remove
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
+    ...FHI_PROTOTYPES,
+  ],
     ...FHI_PROTOTYPES,
   ],
 })

@@ -2,15 +2,16 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Search: LibraryItem[] = [{
-  id: LibraryItemIds.Search,
-  title: 'Search',
-  type: LibraryItemType.ngBootstrap,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const Search: LibraryItem[] = [
+  {
+    id: LibraryItemIds.Search,
+    title: 'Search',
+    type: LibraryItemType.ngBootstrap,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

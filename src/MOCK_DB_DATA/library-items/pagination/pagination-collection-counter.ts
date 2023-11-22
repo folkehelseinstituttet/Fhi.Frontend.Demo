@@ -2,15 +2,16 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const PaginationCollectionCounter: LibraryItem[] = [{
-  id: LibraryItemIds.PaginationCollectionCounter,
-  title: 'Pagination - collection counter',
-  type: LibraryItemType.ngBootstrap,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const PaginationCollectionCounter: LibraryItem[] = [
+  {
+    id: LibraryItemIds.PaginationCollectionCounter,
+    title: 'Pagination - collection counter',
+    type: LibraryItemType.ngBootstrap,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
