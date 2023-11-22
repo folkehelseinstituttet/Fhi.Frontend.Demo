@@ -105,7 +105,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
   LayoutTemplates: {
-    id: 'layouts-templates',
+    id: 'layout-templates',
     title: 'Layout templates',
     apiEndPoint: 'LayoutTemplatesData',
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
