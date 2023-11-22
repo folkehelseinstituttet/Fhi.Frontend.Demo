@@ -1,2 +1,1 @@
-export const TypographyIntro = `
-<p>Typography intro.</p>`;
+export const TypographyIntro = ``;

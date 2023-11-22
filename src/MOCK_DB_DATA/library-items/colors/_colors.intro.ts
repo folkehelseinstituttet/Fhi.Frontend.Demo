@@ -1,2 +1,1 @@
-export const ColorsIntro = `
-<p>Colors intro.</p>`;
+export const ColorsIntro = ``;
