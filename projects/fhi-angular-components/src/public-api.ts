@@ -38,4 +38,3 @@ export * from './lib/fhi-time/fhi-weekpicker/fhi-weekpicker.component';
 export * from './lib/fhi-time/fhi-week-range/fhi-week-range.component';
 
 export * from './lib/fhi-time/fhi-month.model';
-// TODO: add all public models

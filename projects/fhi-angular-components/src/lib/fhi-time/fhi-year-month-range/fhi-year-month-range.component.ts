@@ -73,12 +73,7 @@ export class FhiYearMonthRangeComponent implements OnInit {
   }
 
   private canValidate(): boolean {
-    if (
-      this.fromMonth.year &&
-      this.toMonth.year &&
-      this.fromMonth.month &&
-      this.toMonth.month
-    ) {
+    if (this.fromMonth.year && this.toMonth.year && this.fromMonth.month && this.toMonth.month) {
       return true;
     }
     return false;
