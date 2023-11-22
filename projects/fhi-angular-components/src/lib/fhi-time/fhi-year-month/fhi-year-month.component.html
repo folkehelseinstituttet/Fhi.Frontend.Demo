@@ -18,8 +18,8 @@
         [items]="monthItems"
         [label]="'Måned'"
         [notFoundText]="'Ugyldig måned'"
-        [itemSelect]="monthId"
-        (itemSelectChange)="onItemSelectChange($event)"
+        [selectedItem]="monthId"
+        (selectedItemChange)="selectedItemChange($event)"
       >
       </fhi-autosuggest>
     </div>

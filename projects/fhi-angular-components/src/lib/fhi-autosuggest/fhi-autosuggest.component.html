@@ -4,7 +4,7 @@
   <ng-select
     [items]="items"
     [editableSearchTerm]="true"
-    [(ngModel)]="itemSelect"
+    [(ngModel)]="selectedItem"
     bindLabel="name"
     bindValue="id"
     labelForId="{{ labelForId }}"
@@ -12,8 +12,6 @@
     placeholder="{{ placeholder }}"
     (change)="onChange()"
   >
-    <ng-option *ngFor="let item of items" [value]="item.id">{{
-      item.name
-    }}</ng-option>
+    <ng-option *ngFor="let item of items" [value]="item.id">{{ item.name }}</ng-option>
   </ng-select>
 </div>

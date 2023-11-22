@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
@@ -19,14 +13,14 @@ export class FhiAutosuggestComponent {
   @Input() placeholder = '';
   @Input() description: string = undefined;
   @Input() label = 'Label';
-  @Input() itemSelect: number = null;
+  @Input() selectedItem: number = null;
   @Input() notFoundText = 'Ingen elementer funnet';
 
-  @Output() itemSelectChange = new EventEmitter<number>();
+  @Output() selectedItemChange = new EventEmitter<number>();
 
   onChange() {
-    if (this.itemSelect) {
-      this.itemSelectChange.emit(this.itemSelect);
+    if (this.selectedItem) {
+      this.selectedItemChange.emit(this.selectedItem);
     }
   }
 }

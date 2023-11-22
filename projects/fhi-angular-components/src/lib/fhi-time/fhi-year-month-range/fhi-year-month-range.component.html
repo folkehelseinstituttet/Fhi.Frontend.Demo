@@ -22,8 +22,8 @@
             [items]="fromMonthItems"
             [label]="constants.labelMonth"
             [notFoundText]="constants.notFoundText"
-            [itemSelect]="undefined"
-            (itemSelectChange)="onItemSelectChange($event, rangeContext.from)"
+            [selectedItem]="undefined"
+            (selectedItemChange)="selectedItemChange($event, rangeContext.from)"
           >
           </fhi-autosuggest>
         </div>
@@ -58,8 +58,8 @@
             [items]="toMonthItems"
             [label]="constants.labelMonth"
             [notFoundText]="constants.notFoundText"
-            [itemSelect]="undefined"
-            (itemSelectChange)="onItemSelectChange($event, rangeContext.to)"
+            [selectedItem]="undefined"
+            (selectedItemChange)="selectedItemChange($event, rangeContext.to)"
           >
           </fhi-autosuggest>
         </div>

@@ -2,8 +2,6 @@
 
 > Nov 7, 2023
 
-* :boom: **Breaking** Update `FhiAutosuggest` output from `selectedItemChange` to `itemSelectChange`, and update README
-* :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
 * :gift: **New** Add Month Range selector
 * :gift: **New** Add Month selector
 * :gift: **New** Add Date Range selector
@@ -12,8 +10,10 @@
 * :gift: **New** Add Weekpicker
 * :gift: **New** Add Datepicker
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
-* :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 * :tada: **Enhancement** Update peerDependencies
+* :tada: **Enhancement** Add class `form-label` in `fhi-autosuggest.template.ts`, and a if test before emitting selected item
+* :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
+* :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 
 ## 1.1.1
 

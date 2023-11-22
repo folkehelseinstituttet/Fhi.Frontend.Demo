@@ -62,7 +62,7 @@ export class FhiYearMonthRangeComponent implements OnInit {
     this.validateAndEmit();
   }
 
-  onItemSelectChange(monthId: number, context: number) {
+  selectedItemChange(monthId: number, context: number) {
     if (context === RangeContext.from) {
       this.fromMonth.month = monthId;
     } else {
