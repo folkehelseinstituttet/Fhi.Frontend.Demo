@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { FhiWeek } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-weekpicker/fhi-week.model';
-import { FhiWeekRange } from 'projects/fhi-angular-components/src/lib/fhi-time/fhi-week-range/fhi-week-range.model';
+import { FhiMonth } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-time-selectors',
@@ -23,13 +22,11 @@ export class TimeSelectorsComponent {
   selectedToYear: number;
   selectedYear: number;
   selectedYearRange: any;
-  monthRangeSelected: any;
+  weekFrom = '2010-27';
+  weekTo = '2013-13';
+  weekRange: any;
 
   // weekSelected: string;
-
-  yearSelected: string;
-  monthSelected: string;
-
   // weekList = [];
 
   selectedWeek!: string;
@@ -38,18 +35,6 @@ export class TimeSelectorsComponent {
   // ngOnInit() {
   //   this.generateWeekList();
   // }
-
-  onYearSelect(year: string) {
-    this.yearSelected = year;
-  }
-
-  onMonthSelect(yearMonth: string) {
-    this.monthSelected = yearMonth;
-  }
-
-  onMonthRangeSelect(monthRange: Object) {
-    this.monthRangeSelected = monthRange;
-  }
 
   getDate(date: any) {
     this.selectedDate = date;
@@ -74,15 +59,27 @@ export class TimeSelectorsComponent {
   //   }
   // }
 
-  yearRangeSelect(yearRange: any) {
-    this.selectedYearRange = yearRange;
+  onWeekSelect(week: any) {
+    console.info(week);
   }
 
-  onWeekSelect(week: FhiWeek) {
-    console.info('Weekpicker example Output:', week);
+  onWeekRangeSelect(weekRange: any) {
+    console.info(weekRange);
   }
 
-  onWeekRangeSelect(weekRange: FhiWeekRange) {
-    console.info('Week range example Output:', weekRange);
+  onMonthSelect(month: FhiMonth) {
+    console.info(month);
+  }
+
+  onMonthRangeSelect(monthRange: object) {
+    console.info(monthRange);
+  }
+
+  onYearSelect(year: number[]) {
+    console.info(year);
+  }
+
+  onYearRangeSelect(yearRange: any) {
+    console.info(yearRange);
   }
 }

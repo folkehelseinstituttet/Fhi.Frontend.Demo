@@ -1,0 +1,77 @@
+<div class="fhi-month-range row">
+  <fieldset class="fhi-month-range__fieldset col-12 col-md-auto">
+    <legend class="fhi-month-range__legend">
+      {{ constants.fieldsetLegendFrom }}
+    </legend>
+    <div class="fhi-month-selector">
+      <div class="d-flex">
+        <div class="fhi-month-selector__year">
+          <fhi-years
+            [label]="constants.labelYear"
+            [minYear]="minMonth.year"
+            [maxYear]="maxYearFrom"
+            (yearsSelect)="onYearSelect($event, rangeContext.from)"
+          >
+          </fhi-years>
+        </div>
+
+        <span class="fhi-month-selector__divider"></span>
+
+        <div class="fhi-month-selector__month">
+          <fhi-autosuggest
+            [items]="fromMonthItems"
+            [label]="constants.labelMonth"
+            [notFoundText]="constants.notFoundText"
+            [selectedItem]="undefined"
+            (selectedItemChange)="onSelectedItemChange($event, rangeContext.from)"
+          >
+          </fhi-autosuggest>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <span class="fhi-month-range__divider col-auto px-0">
+    <span class="fhi-month-range__divider-dash">&ndash;</span>
+  </span>
+
+  <fieldset class="fhi-month-range__fieldset col-12 col-md-6">
+    <legend class="fhi-month-range__legend">
+      {{ constants.fieldsetLegendTo }}
+    </legend>
+    <div class="fhi-month-selector">
+      <div class="d-flex">
+        <div class="fhi-month-selector__year">
+          <fhi-years
+            [label]="constants.labelYear"
+            [minYear]="minYearTo"
+            [maxYear]="maxMonth.year"
+            (yearsSelect)="onYearSelect($event, rangeContext.to)"
+          >
+          </fhi-years>
+        </div>
+
+        <span class="fhi-month-selector__divider"></span>
+
+        <div class="fhi-month-selector__month">
+          <fhi-autosuggest
+            [items]="toMonthItems"
+            [label]="constants.labelMonth"
+            [notFoundText]="constants.notFoundText"
+            [selectedItem]="undefined"
+            (selectedItemChange)="onSelectedItemChange($event, rangeContext.to)"
+          >
+          </fhi-autosuggest>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="col-12 mt-n3" *ngIf="!isValid">
+    <p class="invalid-feedback" [ngClass]="{ 'd-block': !isValid }">
+      <strong>{{ constants.fieldsetLegendFrom }}</strong> kan ikke være etter
+      <strong>{{ constants.fieldsetLegendTo.toLowerCase() }}</strong
+      >.
+    </p>
+  </div>
+</div>

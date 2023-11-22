@@ -14,8 +14,10 @@
 * :gift: **New** Add Weekpicker
 * :gift: **New** Add Datepicker
 * :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
-* :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 * :tada: **Enhancement** Update peerDependencies
+* :tada: **Enhancement** Add class `form-label` in `fhi-autosuggest.template.ts`, and a if test before emitting selected item
+* :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
+* :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 
 ## 1.1.1
 

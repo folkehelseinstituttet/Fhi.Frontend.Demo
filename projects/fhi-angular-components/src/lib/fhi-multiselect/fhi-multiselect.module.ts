@@ -6,16 +6,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FhiMultiselectComponent } from './fhi-multiselect.component';
 
 @NgModule({
-  declarations: [
-    FhiMultiselectComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NgSelectModule
-  ],
-  exports: [
-    FhiMultiselectComponent
-  ]
+  declarations: [FhiMultiselectComponent],
+  imports: [CommonModule, FormsModule, NgSelectModule],
+  exports: [FhiMultiselectComponent],
 })
-export class FhiMultiselectModule { }
+export class FhiMultiselectModule {}

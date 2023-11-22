@@ -5,18 +5,16 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 @Component({
   selector: 'fhi-autosuggest',
   templateUrl: './fhi-autosuggest.component.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class FhiAutosuggestComponent {
-
   @Input() items: Array<FhiAutosuggestItem> = [];
-  @Input() labelForId: string = 'id' + Math.random().toString().substring(2);
-  @Input() placeholder: string = '';
-
+  @Input() labelForId: string = undefined;
+  @Input() placeholder = '';
   @Input() description: string = undefined;
-  @Input() label: string = 'Label';
+  @Input() label = 'Label';
   @Input() selectedItem: number = null;
-  @Input() notFoundText: string = 'Ingen elementer funnet';
+  @Input() notFoundText = 'Ingen elementer funnet';
 
   @Output() selectedItemChange = new EventEmitter<number>();
 
@@ -25,5 +23,4 @@ export class FhiAutosuggestComponent {
       this.selectedItemChange.emit(this.selectedItem);
     }
   }
-
 }

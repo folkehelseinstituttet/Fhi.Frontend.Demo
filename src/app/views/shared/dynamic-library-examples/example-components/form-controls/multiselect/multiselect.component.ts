@@ -11,15 +11,15 @@ import { map } from 'rxjs';
   templateUrl: './multiselect.component.html',
 })
 export class MultiselectComponent {
-
   constructor(private multiselectDataService: MultiselectDataService) {}
 
   people: Person[] = [];
   selectedPeople = [];
 
   ngOnInit() {
-    this.multiselectDataService.getPeople()
-      .pipe(map(x => x.filter(y => !y.disabled)))
+    this.multiselectDataService
+      .getPeople()
+      .pipe(map((x) => x.filter((y) => !y.disabled)))
       .subscribe((people) => {
         this.people = people;
         this.selectedPeople = [this.people[0].id, this.people[1].id];
