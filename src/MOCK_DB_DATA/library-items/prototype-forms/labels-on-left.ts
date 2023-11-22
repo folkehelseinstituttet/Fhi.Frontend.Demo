@@ -2,15 +2,16 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const LabelsOnLeft: LibraryItem[] = [{
-  id: LibraryItemIds.LabelsOnLeft,
-  title: 'Skjema med venstrestilt ledetekst',
-  type: LibraryItemType.fhiAngular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const LabelsOnLeft: LibraryItem[] = [
+  {
+    id: LibraryItemIds.LabelsOnLeft,
+    title: 'Skjema med venstrestilt ledetekst',
+    type: LibraryItemType.fhiAngular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

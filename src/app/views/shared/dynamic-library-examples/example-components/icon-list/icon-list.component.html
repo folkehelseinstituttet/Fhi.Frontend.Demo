@@ -1,0 +1,80 @@
+<div class="row mb-3">
+  <div class="col-12 mb-3 col-lg-auto mb-lg-0 ms-lg-auto order-lg-2 d-lg-flex flex-lg-column justify-content-center">
+    <div class="btn-group fhi-btn-group" role="group" aria-label="Velg størrelse på ikoner">
+      <ng-container *ngFor="let iconSize of iconSizes">
+        <ng-container *ngTemplateOutlet="iconSizeInput; context: { size: iconSize.size, px: iconSize.px }">
+        </ng-container>
+      </ng-container>
+
+      <ng-template #iconSizeInput let-size="size" let-px="px">
+        <input
+          class="btn-check fhi-btn-group__check"
+          type="radio"
+          name="icon-size"
+          id="icon-size-{{ size }}"
+          [checked]="iconSizeSelected === size"
+          (change)="changeSize(size)"
+        />
+        <label class="btn fhi-btn-group__btn" for="icon-size-{{ size }}">
+          <span aria-hidden="true">{{ size }}</span>
+          <span class="visually-hidden">Vis ekstra store ikoner ({{ px }} x {{ px }} px)</span>
+        </label>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="col-auto">
+    <div class="d-flex">
+      <label class="input-group-label pt-2 me-2 text-nowrap" for="iconFilter">Finn ikon</label>
+
+      <div class="input-group">
+        <input
+          class="form-control"
+          style="height: auto"
+          type="text"
+          id="iconFilter"
+          #iconFilterInput
+          (keyup)="filterIcons($event)"
+          [(ngModel)]="searchInput"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="d-flex flex-wrap ds-icons-wrapper">
+  <div class="ds-icon mb-4" *ngFor="let icon of filteredIcons">
+    <i
+      [class]="'icon-' + icon + ' icon-' + iconSizeSelected"
+      (mouseenter)="tooltipOpen(t)"
+      (mouseleave)="t.close()"
+      [ngbTooltip]="tipContent"
+      #t="ngbTooltip"
+      [autoClose]="false"
+      triggers="manual"
+      placement="left right"
+      (click)="copyIcon('<i class=&quot;icon-' + icon + ' icon-' + iconSizeSelected + '&quot;></i>')"
+    ></i>
+    <small
+      class="ds-icon__name fhi-text-ancillary"
+      tabindex="0"
+      (mouseenter)="tooltipOpen(t2)"
+      (mouseleave)="t2.close()"
+      [ngbTooltip]="tipContent"
+      #t2="ngbTooltip"
+      [autoClose]="false"
+      triggers="manual"
+      placement="right top"
+      (click)="copyIcon(icon)"
+    >
+      {{ icon }}
+    </small>
+  </div>
+  <p *ngIf="filteredIcons?.length === 0">Ingen ikoner å vise</p>
+</div>
+
+<ng-template #tipContent>
+  {{ tooltipText }}
+</ng-template>

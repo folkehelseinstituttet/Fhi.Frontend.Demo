@@ -1,15 +1,18 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TypographicHierarchy: LibraryItem[] = [{
-  id: LibraryItemIds.TypographicHierarchy,
-  title: 'Typografisk hierarki',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const TypographicHierarchy: LibraryItem[] = [
+  {
+    id: ITEMS.VisualIdentityTypographyHierarchy.id,
+    title: ITEMS.VisualIdentityTypographyHierarchy.title,
+    titleLang: CONST.languageLocaleId_NO,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

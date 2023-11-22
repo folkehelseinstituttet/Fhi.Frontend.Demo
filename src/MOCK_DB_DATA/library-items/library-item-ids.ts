@@ -1,9 +1,7 @@
 import { CardIds } from './cards/_cards.ids';
-import { ColorIds } from './color/_color.ids';
 import { DrawerIds } from './drawer/_drawer.ids';
 import { GlobalFooterIds } from './global-footer/_global-footer.ids';
 import { GlobalHeaderIds } from './global-header/_global-header.ids';
-import { IconsIds } from './icons/_icons.ids';
 import { LayoutTemplatesIds } from './layout-templates/_layout-templates.ids';
 import { ModalIds } from './modal/_modal.ids';
 import { PaginationIds } from './pagination/_pagination.ids';
@@ -18,16 +16,13 @@ import { TagsIds } from './tags/_tags.ids';
 import { ToastIds } from './toast/_toast.ids';
 import { TootipPopoverIds } from './tooltip-popover/_tooltip-popover.ids';
 import { TreeViewIds } from './tree-view/_tree-view.ids';
-import { TypographyIds } from './typography/_typography.ids';
 
 const libraryItemIds = {
   ...PrototypeAngularTreeIds,
   ...CardIds,
-  ...ColorIds,
   ...DrawerIds,
   ...GlobalFooterIds,
   ...GlobalHeaderIds,
-  ...IconsIds,
   ...LayoutTemplatesIds,
   ...ModalIds,
   ...PaginationIds,
@@ -41,7 +36,6 @@ const libraryItemIds = {
   ...ToastIds,
   ...TootipPopoverIds,
   ...TreeViewIds,
-  ...TypographyIds,
 };
 
 export const LibraryItemIds = (() => {

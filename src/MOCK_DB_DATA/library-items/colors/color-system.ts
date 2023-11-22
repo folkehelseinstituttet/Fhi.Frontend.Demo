@@ -1,15 +1,18 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const ColorSystem: LibraryItem[] = [{
-  id: LibraryItemIds.ColorSystem,
-  title: 'Fargepalett',
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const ColorSystem: LibraryItem[] = [
+  {
+    id: ITEMS.VisualIdentityColors.id,
+    title: ITEMS.VisualIdentityColors.title,
+    titleLang: CONST.languageLocaleId_NO,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
@@ -23,7 +26,7 @@ function getExampleHtml(): string {
     ${hex}
   </div>
 </div>`;
-  }
+  };
 
   return `
 <p class="text-muted small mt-2 mb-0">Lysegrå</p>

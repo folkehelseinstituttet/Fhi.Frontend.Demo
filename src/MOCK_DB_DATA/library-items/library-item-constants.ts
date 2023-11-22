@@ -1,3 +1,5 @@
+import { SharedConstants } from 'src/app/views/shared/shared.constants';
+
 const bootstrapVersion = '5.2';
 const bootstrapDocBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}`;
 const npmBaseUrl = 'https://www.npmjs.com/package/@folkehelseinstituttet';
@@ -5,7 +7,6 @@ const githubBaseUrl = 'https://github.com/folkehelseinstituttet';
 const githubFrontendDemoUrl = `${githubBaseUrl}/Fhi.Frontend.Demo/tree/dev`;
 
 export class LibraryItemConstants {
-
   static BootstrapBaseUrl = bootstrapDocBaseUrl;
   static BootstrapComponentsBaseUrl = `${bootstrapDocBaseUrl}/components`;
   static BootstrapContentBaseUrl = `${bootstrapDocBaseUrl}/content`;
@@ -24,6 +25,7 @@ export class LibraryItemConstants {
 
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 
-  static voidURL = 'javascript:void(0)'
+  static voidURL = 'javascript:void(0)';
 
+  static languageLocaleId_NO = SharedConstants.languageLocaleId_NO;
 }

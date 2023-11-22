@@ -1,15 +1,18 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const IconSet: LibraryItem[] = [{
-  id: LibraryItemIds.IconSet,
-  title: 'Ikonsett',
-  type: LibraryItemType.fhiAngular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const IconSet: LibraryItem[] = [
+  {
+    id: ITEMS.VisualIdentityIcons.id,
+    title: ITEMS.VisualIdentityIcons.title,
+    titleLang: CONST.languageLocaleId_NO,
+    type: LibraryItemType.angular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
@@ -31,7 +34,5 @@ function getCodeHtml(): string {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>Se <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/tree/main/src/fhi/icons#readme">detaljer om ikonsystemet</a> på Github, og hvordan du kan lage ditt eget subset.</p>
-<p>Savner du et ikon? Se kontaktinfo nederst på siden.</p>`;
+  return null;
 }
