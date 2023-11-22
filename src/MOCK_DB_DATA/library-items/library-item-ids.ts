@@ -4,7 +4,6 @@ import { DrawerIds } from './drawer/_drawer.ids';
 import { GlobalFooterIds } from './global-footer/_global-footer.ids';
 import { GlobalHeaderIds } from './global-header/_global-header.ids';
 import { IconsIds } from './icons/_icons.ids';
-import { LayoutTemplatesIds } from './layout-templates/_layout-templates.ids';
 import { ModalIds } from './modal/_modal.ids';
 import { PaginationIds } from './pagination/_pagination.ids';
 import { PrototypeAngularTreeIds } from './prototype-angular-tree/_prototype-angular-tree.ids';
@@ -28,7 +27,6 @@ const libraryItemIds = {
   ...GlobalFooterIds,
   ...GlobalHeaderIds,
   ...IconsIds,
-  ...LayoutTemplatesIds,
   ...ModalIds,
   ...PaginationIds,
   ...PrototypeFormsIds,

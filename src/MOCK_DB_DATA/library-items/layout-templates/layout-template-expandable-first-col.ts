@@ -1,17 +1,17 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const LayoutTemplateExpandableFirstCol: LibraryItem[] = [{
-  id: LibraryItemIds.LayoutTemplateExpandableFirstCol,
-  title: 'Layout med ekspanderbart innhold i første kolonne',
-  type: LibraryItemType.fhiAngular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml(),
-  fullScreenEnabled: true
-}];
-
+export const LayoutTemplateExpandableFirstCol: LibraryItem[] = [
+  {
+    id: ITEMS.LayoutTemplateExpandableFirstCol.id,
+    title: ITEMS.LayoutTemplateExpandableFirstCol.title,
+    type: LibraryItemType.fhiAngular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+    fullScreenEnabled: true,
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
