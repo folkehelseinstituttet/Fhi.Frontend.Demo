@@ -16,8 +16,4 @@ export class LibrarySecondLevelMenuComponent {
   lang_EN: string = CONST.languageLocaleId_EN;
   leftMenuMobileTriggerOpen = false;
   libraryItemFilter: LibraryItemFilter = { name: '' };
-
-  ngOnInit() {
-    console.log(this.menuItems);
-  }
 }
