@@ -4,15 +4,16 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 const itemTitle = 'Modal';
 
-export const Modal: LibraryItem[] = [{
-  id: LibraryItemIds.Modal,
-  title: itemTitle,
-  type: LibraryItemType.ngBootstrap,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const Modal: LibraryItem[] = [
+  {
+    id: LibraryItemIds.Modal,
+    title: itemTitle,
+    type: LibraryItemType.ngBootstrap,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
@@ -57,7 +58,9 @@ function getDocumentationHtml(): string | null {
 </p>
 <p>
   ${itemTitle} er implementert som
-  <a href="${CONST.NgBootstrapComponentsBaseUrl}/${itemTitle.toLocaleLowerCase()}">ngBootstrap ${itemTitle}</a>
+  <a href="${
+    CONST.NgBootstrapComponentsBaseUrl
+  }/${itemTitle.toLocaleLowerCase()}">ngBootstrap ${itemTitle}</a>
   i FHI Designsystem.
 </p>
 <p>

@@ -28,6 +28,7 @@ const TimeSelectors: LibraryItem[] = [
 export const TimeSelectorsData: LibraryItemGroup = {
   id: GROUPS.TimeSelectors.id,
   title: GROUPS.TimeSelectors.title,
+  titleLang: GROUPS.TimeSelectors.titleLang,
   intro: TimeSelectorsIntro,
   libraryItems: TimeSelectors,
 };

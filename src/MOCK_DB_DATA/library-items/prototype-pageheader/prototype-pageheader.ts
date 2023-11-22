@@ -2,16 +2,17 @@ import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const PrototypePageheader: LibraryItem[] = [{
-  id: LibraryItemIds.PrototypePageheader,
-  title: 'Pageheader FHI Statistikk',
-  type: LibraryItemType.fhiAngular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml(),
-  fullScreenEnabled: true
-}];
-
+export const PrototypePageheader: LibraryItem[] = [
+  {
+    id: LibraryItemIds.PrototypePageheader,
+    title: 'Pageheader FHI Statistikk',
+    type: LibraryItemType.fhiAngular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+    fullScreenEnabled: true,
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

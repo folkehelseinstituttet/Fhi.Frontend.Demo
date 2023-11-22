@@ -1,15 +1,16 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const ButtonIcon: LibraryItem[] = [{
-  id: ITEMS.ButtonIcon.id,
-  title: ITEMS.ButtonIcon.title,
-  type: LibraryItemType.html,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const ButtonIcon: LibraryItem[] = [
+  {
+    id: ITEMS.ButtonIcon.id,
+    title: ITEMS.ButtonIcon.title,
+    type: LibraryItemType.html,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html

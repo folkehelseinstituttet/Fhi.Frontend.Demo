@@ -6,14 +6,11 @@ import { AlertsIntro } from './_alerts.intro';
 import { AlertBasic } from './alert-basic';
 import { AlertClosable } from './alert-closable';
 
-const Alerts: LibraryItem[] = [
-  ...AlertBasic,
-  ...AlertClosable
-];
+const Alerts: LibraryItem[] = [...AlertBasic, ...AlertClosable];
 
 export const AlertsData: LibraryItemGroup = {
   id: GROUPS.Alerts.id,
   title: GROUPS.Alerts.title,
   intro: AlertsIntro,
-  libraryItems: Alerts
+  libraryItems: Alerts,
 };

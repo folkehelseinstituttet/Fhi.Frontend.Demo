@@ -1,15 +1,16 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const FormControlSwitch: LibraryItem[] = [{
-  id: ITEMS.FormControlSwitch.id,
-  title: ITEMS.FormControlSwitch.title,
-  type: LibraryItemType.angular,
-  exampleHtml: getExampleHtml(),
-  codeHtml: getCodeHtml(),
-  documentationHtml: getDocumentationHtml()
-}];
-
+export const FormControlSwitch: LibraryItem[] = [
+  {
+    id: ITEMS.FormControlSwitch.id,
+    title: ITEMS.FormControlSwitch.title,
+    type: LibraryItemType.angular,
+    exampleHtml: getExampleHtml(),
+    codeHtml: getCodeHtml(),
+    documentationHtml: getDocumentationHtml(),
+  },
+];
 
 /*
  * Return value is ignored if LibraryItemType is not html
