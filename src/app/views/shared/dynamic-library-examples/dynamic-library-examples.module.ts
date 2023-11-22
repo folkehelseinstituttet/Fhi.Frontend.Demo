@@ -79,25 +79,19 @@ const FHI_PROTOTYPES = [
   declarations: [
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
-
     // TODO: remove
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES,
-    ...FHI_PROTOTYPES,
   ],
-  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
   imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
   exports: [
     NgSelectModule,
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
-
     // TODO: remove
     ...NGB_EXAMPLES,
     ...FHI_EXAMPLES,
-    ...FHI_PROTOTYPES,
-  ],
     ...FHI_PROTOTYPES,
   ],
 })

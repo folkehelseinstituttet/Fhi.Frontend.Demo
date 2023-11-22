@@ -1,5 +1,6 @@
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { LibraryItemGroupsShared } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemConstants } from './library-item-constants';
 
 /**
  * NB! Item order in this file does matter.
@@ -45,13 +46,11 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Accordions',
     apiEndPoint: 'AccordionsData',
     parentUrlSegment: UrlSegment.components,
-    parentUrlSegment: UrlSegment.components,
   },
   Alerts: {
     id: 'alerts',
     title: 'Alerts',
     apiEndPoint: 'AlertsData',
-    parentUrlSegment: UrlSegment.components,
     parentUrlSegment: UrlSegment.components,
   },
   Badges: {
@@ -59,13 +58,11 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Badges',
     apiEndPoint: 'BadgesData',
     parentUrlSegment: UrlSegment.components,
-    parentUrlSegment: UrlSegment.components,
   },
   Breadcrumbs: {
     id: 'breadcrumbs',
     title: 'Breadcrumb',
     apiEndPoint: 'BreadcrumbsData',
-    parentUrlSegment: UrlSegment.components,
     parentUrlSegment: UrlSegment.components,
   },
   Buttons: {
@@ -73,13 +70,11 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Buttons',
     apiEndPoint: 'ButtonsData',
     parentUrlSegment: UrlSegment.components,
-    parentUrlSegment: UrlSegment.components,
   },
   FormControls: {
     id: 'form-controls',
     title: 'Form controls',
     apiEndPoint: 'FormControlsData',
-    parentUrlSegment: UrlSegment.components,
     parentUrlSegment: UrlSegment.components,
   },
   Highcharts: {
@@ -87,20 +82,17 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Highcharts',
     apiEndPoint: 'HighchartsData',
     parentUrlSegment: UrlSegment.components,
-    parentUrlSegment: UrlSegment.components,
   },
   Navs: {
     id: 'navs',
     title: 'Navigation',
     apiEndPoint: 'NavsData',
     parentUrlSegment: UrlSegment.components,
-    parentUrlSegment: UrlSegment.components,
   },
   TimeSelectors: {
     id: 'time-selectors',
     title: 'Time selectors',
     apiEndPoint: 'TimeSelectorsData',
-    parentUrlSegment: UrlSegment.components,
     parentUrlSegment: UrlSegment.components,
   },
 

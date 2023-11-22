@@ -16,8 +16,6 @@
 
 <!-- TODO: Remove old switch implementation when alt items use new system -->
 <div [ngSwitch]="itemId">
-  <app-icon-list *ngSwitchCase="itemIds.IconSet"></app-icon-list>
-
   <app-pagination-example *ngSwitchCase="itemIds.Pagination" [itemId]="itemIds.Pagination" [itemIds]="itemIds">
   </app-pagination-example>
   <app-pagination-example
@@ -26,16 +24,13 @@
     [itemIds]="itemIds"
   >
   </app-pagination-example>
-
   <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
 
   <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
 
   <app-table-examples *ngSwitchCase="itemIds.FhiAngularTable" [itemId]="itemIds.FhiAngularTable" [itemIds]="itemIds">
-  <app-table-examples *ngSwitchCase="itemIds.FhiAngularTable" [itemId]="itemIds.FhiAngularTable" [itemIds]="itemIds">
   </app-table-examples>
 
-  <app-table-examples *ngSwitchCase="itemIds.TableSortable" [itemId]="itemIds.TableSortable" [itemIds]="itemIds">
   <app-table-examples *ngSwitchCase="itemIds.TableSortable" [itemId]="itemIds.TableSortable" [itemIds]="itemIds">
   </app-table-examples>
   <app-table-examples
@@ -43,10 +38,7 @@
     [itemId]="itemIds.TableSelectableRow"
     [itemIds]="itemIds"
   >
-    [itemIds]="itemIds"
-  >
   </app-table-examples>
-  <app-table-examples *ngSwitchCase="itemIds.TableEditable" [itemId]="itemIds.TableEditable" [itemIds]="itemIds">
   <app-table-examples *ngSwitchCase="itemIds.TableEditable" [itemId]="itemIds.TableEditable" [itemIds]="itemIds">
   </app-table-examples>
 
@@ -54,20 +46,15 @@
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
 
   <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Tooltip" [itemId]="itemIds.Tooltip" [itemIds]="itemIds">
-  <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Tooltip" [itemId]="itemIds.Tooltip" [itemIds]="itemIds">
   </app-tooltip-and-popover-example>
-  <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Popover" [itemId]="itemIds.Popover" [itemIds]="itemIds">
   <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Popover" [itemId]="itemIds.Popover" [itemIds]="itemIds">
   </app-tooltip-and-popover-example>
 
-  <app-tree-view-navigation-example *ngSwitchCase="itemIds.TreeViewNavigation"> </app-tree-view-navigation-example>
   <app-tree-view-navigation-example *ngSwitchCase="itemIds.TreeViewNavigation"> </app-tree-view-navigation-example>
 
   <app-tree-view-selection-example
     *ngSwitchCase="itemIds.TreeViewCheckbox"
     [itemId]="itemIds.TreeViewCheckbox"
-    [itemIds]="itemIds"
-  >
     [itemIds]="itemIds"
   >
   </app-tree-view-selection-example>
@@ -76,11 +63,8 @@
     [itemId]="itemIds.TreeViewRadio"
     [itemIds]="itemIds"
   >
-    [itemIds]="itemIds"
-  >
   </app-tree-view-selection-example>
 
-  <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
   <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
   </app-angular-tree-view-builder-example>
 
@@ -91,22 +75,15 @@
     [itemId]="itemIds.GlobalHeaderWithMenu"
     [itemIds]="itemIds"
   ></app-global-headers>
-    [itemIds]="itemIds"
-  ></app-global-headers>
   <app-global-headers
     *ngSwitchCase="itemIds.GlobalHeaderWithMenuAndUtils"
     [itemId]="itemIds.GlobalHeaderWithMenuAndUtils"
-    [itemIds]="itemIds"
-  ></app-global-headers>
     [itemIds]="itemIds"
   ></app-global-headers>
 
   <!-- Prototypes -->
   <app-prototype-forms *ngSwitchCase="itemIds.LabelsOnLeft"></app-prototype-forms>
   <app-prototype-pageheader *ngSwitchCase="itemIds.PrototypePageheader"></app-prototype-pageheader>
-  <app-prototype-table-with-expandable-content
-    *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"
-  ></app-prototype-table-with-expandable-content>
   <app-prototype-table-with-expandable-content
     *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"
   ></app-prototype-table-with-expandable-content>
