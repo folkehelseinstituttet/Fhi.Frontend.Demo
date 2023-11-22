@@ -55,7 +55,7 @@ export class FhiYearsComponent implements OnInit, OnChanges {
     }
   }
 
-  selectedItemChange(year: number) {
+  onSelectedItemChange(year: number) {
     this.yearsSelect.emit([year]);
   }
 

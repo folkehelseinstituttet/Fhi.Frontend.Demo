@@ -38,7 +38,7 @@ export class FhiYearMonthComponent implements OnInit {
     this.validateAndEmit();
   }
 
-  selectedItemChange(monthId: number) {
+  onSelectedItemChange(monthId: number) {
     this.monthId = monthId;
     this.validateAndEmit();
   }
