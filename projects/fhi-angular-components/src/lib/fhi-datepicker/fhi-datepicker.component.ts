@@ -2,11 +2,16 @@ import { Component, EventEmitter, Injectable, Input, Output, SimpleChanges } fro
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { NgbAlertModule, NgbDateParserFormatter, NgbDatepickerI18n, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbDateParserFormatter,
+  NgbDatepickerI18n,
+  NgbDatepickerModule,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 import { format, formatISO, isValid, toDate } from 'date-fns';
 
 import { FhiCustomDatepickerI18n } from '../shared-services/fhi-datepicker-i18n.service';
-
 
 @Injectable()
 export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
@@ -25,9 +30,7 @@ export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
   }
 
   format(date: NgbDateStruct | null): string {
-    return date
-      ? format(new Date(date.year, date.month - 1, date.day), 'dd.MM.yyyy')
-      : '';
+    return date ? format(new Date(date.year, date.month - 1, date.day), 'dd.MM.yyyy') : '';
   }
 }
 
@@ -35,27 +38,22 @@ export class FhiCustomDateParserFormatter extends NgbDateParserFormatter {
   selector: 'fhi-datepicker',
   templateUrl: './fhi-datepicker.component.html',
   standalone: true,
-  imports: [
-    FormsModule,
-    CommonModule,
-    NgbDatepickerModule,
-    NgbAlertModule
-  ],
+  imports: [FormsModule, CommonModule, NgbDatepickerModule, NgbAlertModule],
   providers: [
-		{ provide: NgbDateParserFormatter, useClass: FhiCustomDateParserFormatter },
-    { provide: NgbDatepickerI18n, useClass: FhiCustomDatepickerI18n }
-	],
+    { provide: NgbDateParserFormatter, useClass: FhiCustomDateParserFormatter },
+    { provide: NgbDatepickerI18n, useClass: FhiCustomDatepickerI18n },
+  ],
 })
 export class FhiDatepickerComponent {
   @Input() date: string;
   @Input() maximumDate: string;
   @Input() minimumDate: string;
-  @Input() label: string = 'Velg dato';
+  @Input() label = 'Velg dato';
 
   @Output() dateSelect = new EventEmitter<string>();
 
-  dateIsValid: boolean = true;
-  errorMsg: string = '';
+  dateIsValid = true;
+  errorMsg = '';
   maxDate: NgbDateStruct;
   maxDateFormatted: Date;
   minDate: NgbDateStruct;
@@ -83,19 +81,22 @@ export class FhiDatepickerComponent {
   onDirectInputDate() {
     if (this.model) {
       const directInputDate: any = this.convertModelToDate(this.model);
-      
+
       if (isValid(directInputDate)) {
         this.dateIsValid = true;
         const isInsideMinMaxRange = this.checkIfInsideRange(directInputDate);
         if (isInsideMinMaxRange) {
-          this.model = this.convertDateToNgbDateStruct(formatISO(directInputDate, { representation: 'date' }));
+          this.model = this.convertDateToNgbDateStruct(
+            formatISO(directInputDate, { representation: 'date' }),
+          );
           this.onDateSelection(this.model);
         } else {
           this.dateIsValid = false;
           this.errorMsg = 'Du har valgt en dato som er utenfor tillatt datoområde.';
         }
       } else {
-        this.errorMsg = 'Du har lagt inn en dato som ikke finnes eller har feil format. Korrekt format er <strong>dd.mm.åååå</strong>';
+        this.errorMsg =
+          'Du har lagt inn en dato som ikke finnes eller har feil format. Korrekt format er <strong>dd.mm.åååå</strong>';
         this.dateIsValid = false;
         this.dateSelect.emit(undefined);
       }
@@ -135,7 +136,8 @@ export class FhiDatepickerComponent {
     if (model.day < 10) {
       leadingZeroDay = '0';
     }
-    const dateISOString = model.year + '-' + leadingZeroMonth + model.month + '-' + leadingZeroDay + model.day;
+    const dateISOString =
+      model.year + '-' + leadingZeroMonth + model.month + '-' + leadingZeroDay + model.day;
     const date = toDate(new Date(dateISOString));
     return date;
   }
@@ -143,10 +145,10 @@ export class FhiDatepickerComponent {
   private convertDateToNgbDateStruct(date: string) {
     const toDate = new Date(date);
     return {
-      year  : toDate.getFullYear(),
-      month : toDate.getMonth() + 1,
-      day   : toDate.getDate()
-    }
+      year: toDate.getFullYear(),
+      month: toDate.getMonth() + 1,
+      day: toDate.getDate(),
+    };
   }
 
   private updateMinMaxDates(changes: SimpleChanges) {

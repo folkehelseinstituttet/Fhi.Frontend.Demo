@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class PrototypePageheaderDataService {
@@ -8,30 +8,30 @@ export class PrototypePageheaderDataService {
       nameLong: 'Dødsårsaksregisteret statistikkbank',
       subMenu: [
         {
-          name: 'Alle dødsårsaker'
+          name: 'Alle dødsårsaker',
         },
         {
-          name: 'Demens'
+          name: 'Demens',
         },
         {
-          name: 'Hjerte- og karsykdom'
+          name: 'Hjerte- og karsykdom',
         },
         {
-          name: 'Kreft'
+          name: 'Kreft',
         },
         {
-          name: 'Selvmord'
+          name: 'Selvmord',
         },
         {
-          name: 'Ulykker'
+          name: 'Ulykker',
         },
         {
-          name: 'Dødssted'
+          name: 'Dødssted',
         },
         {
-          name: 'Fylker'
-        }
-      ]
-    }
+          name: 'Fylker',
+        },
+      ],
+    };
   }
 }

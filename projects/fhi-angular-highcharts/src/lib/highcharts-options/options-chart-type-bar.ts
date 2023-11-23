@@ -1,12 +1,12 @@
 export const OptionsChartTypeBar = {
   chart: {
-    type: 'bar'
+    type: 'bar',
   },
   plotOptions: {
     bar: {
       dataLabels: {
-        enabled: false
-      }
-    }
-  }
+        enabled: false,
+      },
+    },
+  },
 };

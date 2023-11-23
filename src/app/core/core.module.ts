@@ -14,29 +14,21 @@ import { SharedModule } from '../shared/shared.module';
 import { MainMenuComponent } from '../core/main-menu/main-menu.component';
 
 @NgModule({
-  declarations: [
-    MainMenuComponent
-  ],
+  declarations: [MainMenuComponent],
   imports: [
     SharedModule,
     HttpClientModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      MockDbService, {
-        apiBase: 'api/',
-        delay: 0,
-        passThruUnknownUrl: true
-       }
-    )
+    HttpClientInMemoryWebApiModule.forRoot(MockDbService, {
+      apiBase: 'api/',
+      delay: 0,
+      passThruUnknownUrl: true,
+    }),
   ],
-  exports: [
-    MainMenuComponent
-  ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'nb' }
-  ]
+  exports: [MainMenuComponent],
+  providers: [{ provide: LOCALE_ID, useValue: 'nb' }],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

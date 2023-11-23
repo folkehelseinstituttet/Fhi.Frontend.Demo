@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-layout-expandable-first-col-example',
-  templateUrl: './layout-expandable-first-col-example.component.html'
+  templateUrl: './layout-expandable-first-col-example.component.html',
 })
 export class LayoutExpandableFistColExampleComponent {
   @ViewChild('drawerContent') drawerContent: ElementRef;
@@ -10,8 +10,8 @@ export class LayoutExpandableFistColExampleComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
 
-  drawerHeight:number = 0;
-  drawerIsOpen:boolean = false;
+  drawerHeight = 0;
+  drawerIsOpen = false;
 
   toggleDrawer() {
     this.drawerIsOpen = !this.drawerIsOpen;

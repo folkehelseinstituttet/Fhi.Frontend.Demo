@@ -5,7 +5,7 @@ import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
   selector: '[fhi-table-row-expander]',
-  templateUrl: './fhi-table-row-expander.component.html'
+  templateUrl: './fhi-table-row-expander.component.html',
 })
 export class FhiTableRowExpanderComponent {
   @Input() index!: number;
@@ -14,14 +14,13 @@ export class FhiTableRowExpanderComponent {
   tableRowIsExpanded = false;
   FhiTableConstants = FhiTableConstants;
 
-
   private get hostElement(): HTMLElement {
     return this._elementRef.nativeElement;
   }
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private toggleExpandableRowService: ToggleExpandableRowService
+    private toggleExpandableRowService: ToggleExpandableRowService,
   ) {}
 
   ngOnInit() {
@@ -46,5 +45,4 @@ export class FhiTableRowExpanderComponent {
   private removeClass(classToRemove: string) {
     this.hostElement.classList.remove(classToRemove);
   }
-
 }

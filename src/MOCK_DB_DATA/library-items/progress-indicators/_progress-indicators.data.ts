@@ -13,5 +13,5 @@ export const ProgressIndicatorsData: LibraryItem[] = [
   ...SpinnerSmall,
   ...SpinnerFlex,
   ...SpinnerMargin,
-  ...SpinnerButton
+  ...SpinnerButton,
 ];

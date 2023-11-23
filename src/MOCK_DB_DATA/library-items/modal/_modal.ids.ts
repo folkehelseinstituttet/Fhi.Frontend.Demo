@@ -1,3 +1,3 @@
 export const ModalIds = {
-  Modal: undefined
-}
+  Modal: undefined,
+};

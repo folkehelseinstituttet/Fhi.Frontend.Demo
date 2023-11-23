@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pagination-example',
-  templateUrl: './pagination-example.component.html'
+  templateUrl: './pagination-example.component.html',
 })
 export class PaginationExampleComponent {
   @Input() itemId!: string;

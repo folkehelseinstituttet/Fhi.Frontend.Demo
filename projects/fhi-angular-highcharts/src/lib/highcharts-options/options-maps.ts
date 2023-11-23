@@ -7,17 +7,18 @@ const buttonOptionsVerticalAlignValue: VerticalAlignValue = 'top';
 
 export const OptionsMaps = {
   chart: {
-    marginTop: 50
+    marginTop: 50,
   },
   credits: {
-    mapText: '. <a href="{geojson.copyrightUrl}">Kartdata fra \u00a9 {geojson.copyrightShort}</a>',
+    mapText:
+      '. <a href="{geojson.copyrightUrl}">Kartdata fra \u00a9 {geojson.copyrightShort}</a>',
     mapTextFull: undefined,
   },
   legend: {
     align: legendAlignValue,
     borderWidth: 0,
     layout: legendOptionsLayoutValue,
-    verticalAlign: legendVerticalAlignValue
+    verticalAlign: legendVerticalAlignValue,
   },
   mapNavigation: {
     enabled: true,
@@ -27,6 +28,6 @@ export const OptionsMaps = {
   },
   colorAxis: {
     maxColor: '#32345C',
-    minColor: '#95e8ff'
-  }
+    minColor: '#95e8ff',
+  },
 };

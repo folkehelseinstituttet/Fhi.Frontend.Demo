@@ -4,11 +4,11 @@ const stackingValue: OptionsStackingValue = 'normal';
 
 export const OptionsChartTypeBarStacked = {
   chart: {
-    type: 'bar'
+    type: 'bar',
   },
   plotOptions: {
     series: {
-      stacking: stackingValue
-    }
-  }
+      stacking: stackingValue,
+    },
+  },
 };

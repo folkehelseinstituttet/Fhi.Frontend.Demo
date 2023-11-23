@@ -1,15 +1,21 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
-import { FhiTreeViewSelectionItem as Item} from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 
 @Component({
   selector: 'fhi-tree-view-selection',
   templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent {
-
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
   @Input() items: Item[] = [];
@@ -44,28 +50,33 @@ export class FhiTreeViewSelectionComponent {
   }
 
   checkAll(items: Item[]) {
-    items.forEach(item => {
+    items.forEach((item) => {
       this.toggleChecked(item.id, true, true);
     });
     this.itemsChange.emit(this.items);
   }
 
   uncheckAll(items: Item[]) {
-    items.forEach(item => {
+    items.forEach((item) => {
       this.toggleChecked(item.id, true);
     });
     this.itemsChange.emit(this.items);
   }
 
   allItemsChecked(items: Item[]): boolean {
-    return items.every(item => item.isChecked)
+    return items.every((item) => item.isChecked);
   }
 
-  private updateCheckedState(id: number | string, items: Item[], multiToggle: boolean, checkAll: boolean) {
-    items.forEach(item => {
+  private updateCheckedState(
+    id: number | string,
+    items: Item[],
+    multiToggle: boolean,
+    checkAll: boolean,
+  ) {
+    items.forEach((item) => {
       if (item.id === id) {
         if (multiToggle) {
-          (checkAll) ? item.isChecked = true : item.isChecked = false;
+          checkAll ? (item.isChecked = true) : (item.isChecked = false);
         } else if (!this.singleSelection) {
           item.isChecked = !item.isChecked;
         } else if (this.singleSelection) {
@@ -83,21 +94,20 @@ export class FhiTreeViewSelectionComponent {
   }
 
   private updateDecendantState(items: Item[], initialState: boolean) {
-    items.forEach(item => {
+    items.forEach((item) => {
       if (item.children && item.children.length > 0) {
-        if (item.children.every(item => item.descendantStateConfirmed)) {
-          if (item.children.find(item => item.isChecked) !== undefined) {
+        if (item.children.every((item) => item.descendantStateConfirmed)) {
+          if (item.children.find((item) => item.isChecked) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           } else {
             this.setHasCheckedDescendantAndIsExpanded(false, item, initialState);
           }
-          if (item.children.find(item => item.hasCheckedDescendant) !== undefined) {
+          if (item.children.find((item) => item.hasCheckedDescendant) !== undefined) {
             this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
           }
           item.descendantStateConfirmed = true;
         }
         this.updateDecendantState(item.children, initialState);
-
       } else if (!item.descendantStateConfirmed) {
         item.descendantStateConfirmed = true; // I.e. has no descendants
         this.updateDecendantState(this.items, initialState);
@@ -116,12 +126,12 @@ export class FhiTreeViewSelectionComponent {
   }
 
   private createIds(items: Item[], id: number) {
-    items.forEach(item => {
+    items.forEach((item) => {
       if (item.id === undefined) {
         item.id = id++;
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, ((id - 1) * 10) + 1);
+        this.createIds(item.children, (id - 1) * 10 + 1);
       }
     });
   }
@@ -129,5 +139,4 @@ export class FhiTreeViewSelectionComponent {
   private getSingleSelectionWarningMsg() {
     return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
-
 }

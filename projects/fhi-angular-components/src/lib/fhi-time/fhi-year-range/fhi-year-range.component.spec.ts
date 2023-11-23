@@ -8,7 +8,7 @@ describe('FhiYearRangeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [FhiYearRangeComponent]
+      declarations: [FhiYearRangeComponent],
     });
     fixture = TestBed.createComponent(FhiYearRangeComponent);
     component = fixture.componentInstance;

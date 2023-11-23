@@ -1,4 +1,4 @@
 export const GlobalFooterIds = {
   GlobalFooter: undefined,
-  GlobalFooterArch: undefined
-}
+  GlobalFooterArch: undefined,
+};

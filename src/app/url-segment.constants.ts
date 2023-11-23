@@ -1,11 +1,9 @@
 export class UrlSegment {
-
   /*
    * Main menu
    */
   static developer = 'developer';
   static designer = 'designer';
-
 
   /*
    * Library top level menu
@@ -16,5 +14,4 @@ export class UrlSegment {
   static modules = 'modules';
   static layoutAndPageTemplates = 'layout-and-page-templates';
   static prototypes = 'prototypes';
-
 }

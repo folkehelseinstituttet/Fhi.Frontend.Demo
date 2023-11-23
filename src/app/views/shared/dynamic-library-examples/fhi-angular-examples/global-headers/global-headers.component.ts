@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-global-headers',
-  templateUrl: './global-headers.component.html'
+  templateUrl: './global-headers.component.html',
 })
 export class GlobalHeadersExampleComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
-  
+
   activeLink = 1;
   mainMenuIsOpen = false;
 

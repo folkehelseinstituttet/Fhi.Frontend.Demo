@@ -5,12 +5,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'fhi-angular-tree-view-builder',
-  templateUrl: './fhi-angular-tree-view-builder.component.html'
+  templateUrl: './fhi-angular-tree-view-builder.component.html',
 })
 export class FhiAngularTreeViewBuilderComponent {
+  constructor(private modalService: NgbModal) {}
 
-  constructor(private modalService: NgbModal) { }
-  
   elementName: string;
   saveState: string | null = null;
   currentNode: any;
@@ -21,23 +20,19 @@ export class FhiAngularTreeViewBuilderComponent {
   treeViewNodes: any = [
     {
       name: 'rot 1',
-      children: [
-        { name: 'barn 1.1' },
-        { name: 'barn 1.2' }
-      ]
+      children: [{ name: 'barn 1.1' }, { name: 'barn 1.2' }],
     },
     {
       name: 'rot 2',
       children: [
         { name: 'barn 2.1', children: [] },
         {
-          name: 'barn 2.2', children: [
-            { name: 'barnebarn 2.2.1' }
-          ]
-        }
-      ]
+          name: 'barn 2.2',
+          children: [{ name: 'barnebarn 2.2.1' }],
+        },
+      ],
     },
-    { name: 'rot 3' }
+    { name: 'rot 3' },
   ];
 
   state: ITreeState = {
@@ -46,15 +41,15 @@ export class FhiAngularTreeViewBuilderComponent {
       1: true,
       2: true,
       3: true,
-      4: true
+      4: true,
     },
     hiddenNodeIds: {},
-    activeNodeIds: {}
+    activeNodeIds: {},
   };
 
   options: ITreeOptions = {
     allowDrag: true,
-    allowDrop: true
+    allowDrop: true,
   };
 
   editNode(content: any, nodeElmData: any) {
@@ -79,24 +74,24 @@ export class FhiAngularTreeViewBuilderComponent {
   }
 
   open(content: any) {
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'sm' });
-	}
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'sm' });
+  }
 
   saveElement(modalDismiss: any) {
     if (this.saveState === 'new-root') {
-      let newElm = {
-        name: this.elementName
+      const newElm = {
+        name: this.elementName,
       };
-      
+
       this.treeViewNodes.push(newElm);
     }
     if (this.saveState === 'edit') {
       this.currentNodeData.name = this.elementName;
     }
     if (this.saveState === 'add-child') {
-      let newElm = {
-        name: this.elementName
-      }
+      const newElm = {
+        name: this.elementName,
+      };
 
       if (this.currentNodeData.children) {
         this.currentNodeData.children.push(newElm);
@@ -104,7 +99,7 @@ export class FhiAngularTreeViewBuilderComponent {
         this.currentNodeData.children = [newElm];
       }
 
-      this.currentNode.expand();// doesn't expand when creating first child
+      this.currentNode.expand(); // doesn't expand when creating first child
     }
     this.tree.treeModel.update();
 
@@ -113,11 +108,11 @@ export class FhiAngularTreeViewBuilderComponent {
   }
 
   deleteNode(nodeElm: any) {
-    let nodeChildren: any = nodeElm.children;
-    let nodeId: string | number = nodeElm.id;
-    let nodeName: string = nodeElm.name;
-    let hasChildrenMsg: string = '';
-    let hasChildren: boolean = false;
+    const nodeChildren: any = nodeElm.children;
+    const nodeId: string | number = nodeElm.id;
+    const nodeName: string = nodeElm.name;
+    let hasChildrenMsg = '';
+    let hasChildren = false;
     if (nodeChildren !== undefined && nodeChildren.length > 0) {
       hasChildren = true;
       hasChildrenMsg = ' og dens under-element(er)?';
@@ -128,15 +123,18 @@ export class FhiAngularTreeViewBuilderComponent {
     }
   }
 
-  private removeById = (arr: any, targetId: any) => arr.reduce((acc: any, obj: any) => 
-  (obj.id === targetId) 
-    ? acc 
-    : [ ...acc, 
-        {
-          ...obj, 
-          ...(obj.children && { children: this.removeById(obj.children, targetId) }) 
-        }
-      ],
-  []);
-  
+  private removeById = (arr: any, targetId: any) =>
+    arr.reduce(
+      (acc: any, obj: any) =>
+        obj.id === targetId
+          ? acc
+          : [
+              ...acc,
+              {
+                ...obj,
+                ...(obj.children && { children: this.removeById(obj.children, targetId) }),
+              },
+            ],
+      [],
+    );
 }

@@ -107,11 +107,7 @@ export class FhiMonthRangeCopyComponent {
       this.validRange = false;
     }
 
-    if (
-      this.yearFrom === this.yearTo &&
-      this.yearFrom !== undefined &&
-      this.yearTo !== undefined
-    ) {
+    if (this.yearFrom === this.yearTo && this.yearFrom !== undefined && this.yearTo !== undefined) {
       this.adjustMonthList();
     } else {
       this.monthFromList = [...this.monthListFull];

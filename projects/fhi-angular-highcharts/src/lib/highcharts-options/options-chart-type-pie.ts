@@ -17,7 +17,7 @@ export const OptionsChartTypePie = {
       },
       showInLegend: true,
       size: '80%',
-      innerSize: '0%'
+      innerSize: '0%',
     },
   },
   legend: {
@@ -27,9 +27,9 @@ export const OptionsChartTypePie = {
     itemMarginTop: 3,
     layout: layoutValueVertical,
     title: {
-      text: undefined
+      text: undefined,
     },
-    verticalAlign: verticalAlignValueTop
+    verticalAlign: verticalAlignValueTop,
   },
   responsive: {
     rules: [
@@ -39,12 +39,12 @@ export const OptionsChartTypePie = {
             align: alignValueCenter,
             margin: 0,
             maxHeight: 120,
-          }
+          },
         },
         condition: {
           maxWidth: 400,
-        }
-      }
-    ]
-  }
+        },
+      },
+    ],
+  },
 };

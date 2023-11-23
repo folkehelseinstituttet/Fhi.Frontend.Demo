@@ -8,9 +8,8 @@ describe('FhiAngularTreeViewBuilderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiAngularTreeViewBuilderComponent ]
-    })
-    .compileComponents();
+      declarations: [FhiAngularTreeViewBuilderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiAngularTreeViewBuilderComponent);
     component = fixture.componentInstance;

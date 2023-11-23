@@ -2,92 +2,91 @@
   <ng-container *ngTemplateOutlet="navigationItems; context: { items: items, itemId: null }"></ng-container>
 </div>
 
-
 <ng-template #navigationItems let-items="items" let-itemId="itemId">
-	<ul class="fhi-tree-view-navigation__list"
-			role="tree"
-			[attr.id]="itemId !== null ? 'list-' + itemId : null"
-			[attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null">
-		<li class="fhi-tree-view-navigation__item" *ngFor="let item of items" role="treeitem">
-			<div class="d-flex w-100">
-				<ng-container *ngIf="item.routerLink">
-					<ng-container *ngTemplateOutlet="routerLink; context: { item: item }"></ng-container>
-				</ng-container>
+  <ul
+    class="fhi-tree-view-navigation__list"
+    role="tree"
+    [attr.id]="itemId !== null ? 'list-' + itemId : null"
+    [attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null"
+  >
+    <li class="fhi-tree-view-navigation__item" *ngFor="let item of items" role="treeitem">
+      <div class="d-flex w-100">
+        <ng-container *ngIf="item.routerLink">
+          <ng-container *ngTemplateOutlet="routerLink; context: { item: item }"></ng-container>
+        </ng-container>
 
-				<ng-container *ngIf="item.href">
-					<ng-container *ngTemplateOutlet="href; context: { item: item }"></ng-container>
-				</ng-container>
+        <ng-container *ngIf="item.href">
+          <ng-container *ngTemplateOutlet="href; context: { item: item }"></ng-container>
+        </ng-container>
 
-				<ng-container *ngIf="!item.routerLink && !item.href">
-					<ng-container *ngTemplateOutlet="text; context: { item: item }"></ng-container>
-				</ng-container>
+        <ng-container *ngIf="!item.routerLink && !item.href">
+          <ng-container *ngTemplateOutlet="text; context: { item: item }"></ng-container>
+        </ng-container>
 
-				<ng-container *ngIf="item.children">
-					<ng-container *ngTemplateOutlet="expandButton; context: { item: item }"></ng-container>
-				</ng-container>
-			</div>
+        <ng-container *ngIf="item.children">
+          <ng-container *ngTemplateOutlet="expandButton; context: { item: item }"></ng-container>
+        </ng-container>
+      </div>
 
-			<ng-container *ngIf="item.isExpanded && item.children">
-				<div class="fhi-tree-view-navigation__nested-group">
-					<ng-container *ngTemplateOutlet="navigationItems; context: { items: item.children, itemId: item.id }"></ng-container>
-				</div>
-			</ng-container>
-		</li>
-	</ul>
+      <ng-container *ngIf="item.isExpanded && item.children">
+        <div class="fhi-tree-view-navigation__nested-group">
+          <ng-container
+            *ngTemplateOutlet="navigationItems; context: { items: item.children, itemId: item.id }"
+          ></ng-container>
+        </div>
+      </ng-container>
+    </li>
+  </ul>
 </ng-template>
-
 
 <ng-template #expandButton let-item="item">
-	<button
-		class="fhi-tree-view-navigation__toggler"
-		[attr.aria-label]="'Toggle ' + item.name"
-		[attr.aria-controls]="'list-' + item.id"
-		[attr.aria-haspopup]="'tree'"
-		[attr.aria-expanded]="item.isExpanded"
-		(click)="toggleExpanded(item)"
-	>
-		<i
-			[ngClass]="{
-				'icon-chevron-up' : item.isExpanded,
-				'icon-chevron-down' : !item.isExpanded
-			}"
-		>
-		</i>
-	</button>
+  <button
+    class="fhi-tree-view-navigation__toggler"
+    [attr.aria-label]="'Toggle ' + item.name"
+    [attr.aria-controls]="'list-' + item.id"
+    [attr.aria-haspopup]="'tree'"
+    [attr.aria-expanded]="item.isExpanded"
+    (click)="toggleExpanded(item)"
+  >
+    <i
+      [ngClass]="{
+        'icon-chevron-up': item.isExpanded,
+        'icon-chevron-down': !item.isExpanded
+      }"
+    >
+    </i>
+  </button>
 </ng-template>
-
 
 <ng-template #routerLink let-item="item">
-	<a
-		class="fhi-tree-view-navigation__link"
-		[routerLink]="item.routerLink"
-		routerLinkActive="active"
-		[id]="'label-' + item.id"
-	>
-		{{ item.name }}
-	</a>
+  <a
+    class="fhi-tree-view-navigation__link"
+    [routerLink]="item.routerLink"
+    routerLinkActive="active"
+    [id]="'label-' + item.id"
+  >
+    {{ item.name }}
+  </a>
 </ng-template>
-
 
 <ng-template #href let-item="item">
-	<a
-		class="fhi-tree-view-navigation__link"
-		[ngClass]="{ 'active': item.hasActiveDescendant }"
-		href="{{ item.href }}"
-		[id]="'label-' + item.id"
-	>
-		{{ item.name }}
-	</a>
+  <a
+    class="fhi-tree-view-navigation__link"
+    [ngClass]="{ active: item.hasActiveDescendant }"
+    href="{{ item.href }}"
+    [id]="'label-' + item.id"
+  >
+    {{ item.name }}
+  </a>
 </ng-template>
 
-
 <ng-template #text let-item="item">
-	<span
-		class="fhi-tree-view-navigation__no-link"
-		[ngClass]="{ 'active': item.hasActiveDescendant || item.isActive }"
-		*ngIf="!item.link"
-		[id]="'label-' + item.id"
-	>
-		{{ item.name }}
-	</span>
+  <span
+    class="fhi-tree-view-navigation__no-link"
+    [ngClass]="{ active: item.hasActiveDescendant || item.isActive }"
+    *ngIf="!item.link"
+    [id]="'label-' + item.id"
+  >
+    {{ item.name }}
+  </span>
 </ng-template>

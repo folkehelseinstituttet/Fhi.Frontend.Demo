@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
-@Component ({
+@Component({
   selector: 'app-progress-bar-example',
-  templateUrl: './progress-bar-example.component.html'
+  templateUrl: './progress-bar-example.component.html',
 })
 export class ProgressBarExampleComponent {
-  inProgress: boolean = true;
-  valueNow: number = 0;
+  inProgress = true;
+  valueNow = 0;
 
   ngOnInit() {
     this.setProgress();
@@ -17,7 +17,7 @@ export class ProgressBarExampleComponent {
       console.log('hoi!');
       if (this.valueNow < 100) {
         if (this.inProgress) {
-          this.valueNow ++;
+          this.valueNow++;
           this.setProgress();
         }
       } else {

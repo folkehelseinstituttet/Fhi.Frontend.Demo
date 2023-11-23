@@ -1,6 +1,6 @@
 export const OptionsCharts = {
   chart: {
-    colorCount: 8
+    colorCount: 8,
   },
   legend: {
     align: 'left',
@@ -8,18 +8,17 @@ export const OptionsCharts = {
     margin: 25,
     maxHeight: 150,
     symbolPadding: 10,
-    symbolWidth: 1
+    symbolWidth: 1,
   },
   xAxis: {
     allowDecimals: false,
-    type: 'category'
+    type: 'category',
   },
   yAxis: {
     allowDecimals: false,
     title: {
-      text: null
+      text: null,
     },
-    min: 0
-  }
+    min: 0,
+  },
 };
-

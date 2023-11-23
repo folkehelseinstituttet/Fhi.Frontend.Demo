@@ -6,18 +6,8 @@ import { FhiTableRowExpandableComponent } from './row-components/fhi-table-row-e
 import { FhiTableRowExpanderComponent } from './row-components/fhi-table-row-expander/fhi-table-row-expander.component';
 
 @NgModule({
-  declarations: [
-    FhiTableComponent,
-    FhiTableRowExpanderComponent,
-    FhiTableRowExpandableComponent
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    FhiTableComponent,
-    FhiTableRowExpanderComponent,
-    FhiTableRowExpandableComponent
-  ]
+  declarations: [FhiTableComponent, FhiTableRowExpanderComponent, FhiTableRowExpandableComponent],
+  imports: [CommonModule],
+  exports: [FhiTableComponent, FhiTableRowExpanderComponent, FhiTableRowExpandableComponent],
 })
-export class FhiTableModule { }
+export class FhiTableModule {}

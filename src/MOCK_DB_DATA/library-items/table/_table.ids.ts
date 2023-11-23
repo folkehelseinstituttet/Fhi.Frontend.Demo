@@ -4,5 +4,5 @@ export const TableIds = {
   TableEditable: undefined,
   TableSelectableRow: undefined,
   TableSortable: undefined,
-  TableStriped: undefined
-}
+  TableStriped: undefined,
+};

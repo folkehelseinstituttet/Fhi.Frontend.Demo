@@ -1,4 +1,4 @@
-import { NavigationExtras } from "@angular/router";
+import { NavigationExtras } from '@angular/router';
 
 export interface UrlNavigateOptions {
   absolutePath?: string;

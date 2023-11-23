@@ -5,10 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './forms.component.html',
 })
 export class PrototypeFormsComponent {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

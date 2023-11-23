@@ -4,19 +4,19 @@ import { TableExamplesDataService } from './table-examples-data.service';
 @Component({
   selector: 'app-table-examples',
   templateUrl: './table-examples.component.html',
-  providers: [TableExamplesDataService]
+  providers: [TableExamplesDataService],
 })
 export class TableExamplesComponent {
   @Input() itemId!: string;
   @Input() itemIds!: any;
-  
+
   table1: any = [];
   tableEditable: any = [];
-  sortDirection: string = 'ascending';
-  currentlySortedColumn: string = '';
-  previousSortedColumn: string = '';
+  sortDirection = 'ascending';
+  currentlySortedColumn = '';
+  previousSortedColumn = '';
 
-  constructor(private tableDataService: TableExamplesDataService) { }
+  constructor(private tableDataService: TableExamplesDataService) {}
 
   ngOnInit() {
     this.table1 = this.tableDataService.table1();
@@ -65,8 +65,8 @@ export class TableExamplesComponent {
   }
 
   toggleAll(chkbx: any) {
-    let isChecked = chkbx.srcElement.checked;
-    let tableRows = this.table1.tableContent;
+    const isChecked = chkbx.srcElement.checked;
+    const tableRows = this.table1.tableContent;
 
     for (let i = 0; i < tableRows.length; i++) {
       tableRows[i].selected = isChecked;
@@ -75,17 +75,17 @@ export class TableExamplesComponent {
 
   updataData(elm: any, evnt: any) {
     console.log(evnt.key);
-    if (evnt.key !== "1") {
+    if (evnt.key !== '1') {
       elm.failed = false;
-      setTimeout(function() {
-        elm.updated = true
+      setTimeout(function () {
+        elm.updated = true;
       }, 1000);
-      setTimeout(function() {
+      setTimeout(function () {
         elm.updated = false;
       }, 4000);
     } else {
       elm.failed = true;
-      setTimeout(function() {
+      setTimeout(function () {
         elm.failed = false;
       }, 5000);
     }
@@ -96,5 +96,4 @@ export class TableExamplesComponent {
       this.tableEditable.tableContent.splice(i, 1);
     }
   }
-
 }

@@ -4,7 +4,7 @@ import { FhiTreeViewSelectionItem } from '@folkehelseinstituttet/angular-compone
 
 @Component({
   selector: 'app-tree-view-selection-example',
-  templateUrl: './tree-view-selection-examples.component.html'
+  templateUrl: './tree-view-selection-examples.component.html',
 })
 export class TreeViewSelectionExampleComponent implements OnInit {
   @Input() itemId!: string;
@@ -13,9 +13,7 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   itemsCheck!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
 
-  constructor(
-    private changeDetector: ChangeDetectorRef
-  ) {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.itemsCheck = this.getTreeviewSelectionItems();
@@ -33,46 +31,56 @@ export class TreeViewSelectionExampleComponent implements OnInit {
   }
 
   private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
-    return [{
-      name: 'For utviklere',
-      children: [{
-        name: 'Visuell identitet',
-      }, {
-        name: 'Komponenter',
+    return [
+      {
+        name: 'For utviklere',
         children: [
           {
-            name: 'Accordions'
+            name: 'Visuell identitet',
           },
           {
-            name: 'Advanced select'
+            name: 'Komponenter',
+            children: [
+              {
+                name: 'Accordions',
+              },
+              {
+                name: 'Advanced select',
+              },
+              {
+                name: 'Alerts',
+              },
+            ],
           },
           {
-            name: 'Alerts',
-          }
-        ]
-      }, {
-        name: 'Moduler',
+            name: 'Moduler',
+            children: [
+              { name: 'Global footer' },
+              { name: 'Global header' },
+              { name: 'Drawer' },
+              {
+                isChecked: true,
+                name: 'Tree view',
+              },
+            ],
+          },
+          {
+            name: 'Layout og sidemaler',
+          },
+        ],
+      },
+      {
+        name: 'For designere',
+        id: 'for-designere',
+      },
+      {
+        name: 'Github',
         children: [
-          { name: 'Global footer' },
-          { name: 'Global header' },
-          { name: 'Drawer' },
           {
-            isChecked: true,
-            name: 'Tree view'
-          }
-        ]
-      }, {
-        name: 'Layout og sidemaler',
-      }],
-    }, {
-      name: 'For designere',
-      id: 'for-designere'
-    }, {
-      name: 'Github',
-      children: [{
-        name: 'Fhi.Frontend.Style',
-      }]
-    }];
+            name: 'Fhi.Frontend.Style',
+          },
+        ],
+      },
+    ];
   }
-
 }

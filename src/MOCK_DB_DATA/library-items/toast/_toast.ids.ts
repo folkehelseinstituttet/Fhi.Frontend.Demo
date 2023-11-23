@@ -1,3 +1,3 @@
 export const ToastIds = {
-  Toast: undefined
-}
+  Toast: undefined,
+};

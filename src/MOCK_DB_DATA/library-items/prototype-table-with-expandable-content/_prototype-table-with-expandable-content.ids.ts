@@ -1,3 +1,3 @@
 export const PrototypeTableWithExpandableContentIds = {
-  PrototypeTableWithExpandableContent: undefined
-}
+  PrototypeTableWithExpandableContent: undefined,
+};

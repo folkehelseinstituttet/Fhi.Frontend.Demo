@@ -8,7 +8,7 @@ describe('FhiDateRangeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FhiDateRangeComponent]
+      imports: [FhiDateRangeComponent],
     });
     fixture = TestBed.createComponent(FhiDateRangeComponent);
     component = fixture.componentInstance;

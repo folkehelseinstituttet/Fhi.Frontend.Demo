@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class TableExamplesDataService {
@@ -40,9 +40,9 @@ export class TableExamplesDataService {
           col4: 'Produsent',
           selected: false,
         },
-      ]
-    }
-  };
+      ],
+    };
+  }
 
   tableEditable() {
     return {
@@ -82,7 +82,7 @@ export class TableExamplesDataService {
           col4: 'Produsent',
           selected: false,
         },
-      ]
-    }
-  };
+      ],
+    };
+  }
 }

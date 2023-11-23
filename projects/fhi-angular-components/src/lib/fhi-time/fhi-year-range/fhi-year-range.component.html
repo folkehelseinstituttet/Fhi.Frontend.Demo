@@ -1,19 +1,11 @@
 <div class="fhi-year-range">
   <div class="d-flex">
-    <fhi-years
-      [label]="labelFromYear"
-      [maxYear]="maxYear"
-      (yearsSelect)="onYearsSelect($event, rangeContext.from)"
-    >
+    <fhi-years [label]="labelFromYear" [maxYear]="maxYear" (yearsSelect)="onYearsSelect($event, rangeContext.from)">
     </fhi-years>
 
     <span class="fhi-year-range__divider">&ndash;</span>
 
-    <fhi-years
-      [label]="labelToYear"
-      [minYear]="minYear"
-      (yearsSelect)="onYearsSelect($event, rangeContext.to)"
-    >
+    <fhi-years [label]="labelToYear" [minYear]="minYear" (yearsSelect)="onYearsSelect($event, rangeContext.to)">
     </fhi-years>
   </div>
 </div>

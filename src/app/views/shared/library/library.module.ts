@@ -10,15 +10,13 @@ import { LibrarySecondLevelMenuComponent } from './library-second-level-menu/lib
   declarations: [
     LibraryCopyButtonComponent,
     LibraryTopLevelMenuComponent,
-    LibrarySecondLevelMenuComponent
+    LibrarySecondLevelMenuComponent,
   ],
-  imports: [
-    SharedModule,
-  ],
+  imports: [SharedModule],
   exports: [
     LibraryCopyButtonComponent,
     LibraryTopLevelMenuComponent,
-    LibrarySecondLevelMenuComponent
-  ]
+    LibrarySecondLevelMenuComponent,
+  ],
 })
-export class LibraryModule { }
+export class LibraryModule {}

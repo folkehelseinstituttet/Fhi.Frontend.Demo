@@ -6,25 +6,28 @@ import { UrlSegment } from 'src/app/url-segment.constants';
 import { ArticleComponent } from '../shared/article/article.component';
 import { DesignerComponent } from './designer.component';
 
-const routes: Routes = [{
-  path: ':param',
-  component: DesignerComponent,
-  children: [{
+const routes: Routes = [
+  {
+    path: ':param',
+    component: DesignerComponent,
+    children: [
+      {
+        path: '',
+        component: ArticleComponent,
+      },
+    ],
+  },
+  {
     path: '',
-    component: ArticleComponent
-  }]
-}, {
-  path: '',
-  pathMatch: 'full',
-  redirectTo: UrlSegment.visualIdentity
-}];
+    pathMatch: 'full',
+    redirectTo: UrlSegment.visualIdentity,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class DesignerRoutingModule {
-  static components = [
-    DesignerComponent
-  ];
+  static components = [DesignerComponent];
 }

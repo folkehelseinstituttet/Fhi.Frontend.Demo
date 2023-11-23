@@ -1,12 +1,12 @@
 export const OptionsChartTypeColumn = {
   chart: {
-    type: 'column'
+    type: 'column',
   },
   plotOptions: {
     column: {
       dataLabels: {
-        enabled: false
-      }
-    }
-  }
+        enabled: false,
+      },
+    },
+  },
 };

@@ -1,12 +1,24 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
-import * as Highmaps from "highcharts/highmaps";
+import * as Highmaps from 'highcharts/highmaps';
 import { Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
 import {
-  Data, FhiAllDiagramOptions, FhiDiagramOptions, FhiDiagramSerie, FlagWithDataPointName, FlaggedSerie
+  Data,
+  FhiAllDiagramOptions,
+  FhiDiagramOptions,
+  FhiDiagramSerie,
+  FlagWithDataPointName,
+  FlaggedSerie,
 } from './fhi-diagram.models';
 
 import { OptionsService } from './services/options.service';
@@ -15,14 +27,18 @@ import { DiagramTypeService } from './services/diagram-type.service';
 import { GeoJsonService } from './services/geo-json.service';
 
 import { FhiDiagramType } from './fhi-diagram.models';
-import { FhiDiagramTypes, FhiDiagramTypeId, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
+import {
+  FhiDiagramTypes,
+  FhiDiagramTypeId,
+  FhiDiagramTypeGroups,
+} from './fhi-diagram-type.constants';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
 
 @Component({
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiAngularHighchartsComponent {
   private flaggedSeries: FlaggedSerie[] = [];
@@ -41,8 +57,8 @@ export class FhiAngularHighchartsComponent {
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
   diagramTypeNavId = FhiDiagramTypeNavId;
-  tableHeaderRows = new Array();
-  tableBodyRows = new Array();
+  tableHeaderRows = [];
+  tableBodyRows = [];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -69,10 +85,11 @@ export class FhiAngularHighchartsComponent {
       } else if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
         this.updateMap();
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+        this.highchartsOptions = this.optionsService.updateOptions(
+          this.allDiagramOptions,
+        );
       }
       this.showFooter = this.canShowFooter();
-
     } catch (error) {
       console.error(this.getErrorMsg(error));
     }
@@ -87,7 +104,7 @@ export class FhiAngularHighchartsComponent {
   }
 
   tableCellDataOK(data: number | string): boolean {
-    if (typeof data === "number") {
+    if (typeof data === 'number') {
       return true;
     }
     return false;
@@ -96,8 +113,8 @@ export class FhiAngularHighchartsComponent {
   getFlaggedDataPoints(): Array<string> {
     const flagged: Array<string> = [];
     let n = 0;
-    this.flaggedSeries.forEach(serie => {
-      serie.flaggedDataPoints.forEach(dataPoint => {
+    this.flaggedSeries.forEach((serie) => {
+      serie.flaggedDataPoints.forEach((dataPoint) => {
         flagged[n++] = serie.name.concat(Seperator.output, dataPoint.name);
       });
     });
@@ -108,9 +125,15 @@ export class FhiAngularHighchartsComponent {
     let n = 0;
 
     this.allDiagramOptions.series.forEach((serie) => {
-      const decimalData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0);
-      const flaggedData = serie.data.filter(dataPoint => typeof dataPoint.y === 'string');
-      const negativeData = serie.data.filter(dataPoint => typeof dataPoint.y === 'number' && dataPoint.y < 0);
+      const decimalData = serie.data.filter(
+        (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
+      );
+      const flaggedData = serie.data.filter(
+        (dataPoint) => typeof dataPoint.y === 'string',
+      );
+      const negativeData = serie.data.filter(
+        (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
+      );
 
       if (flaggedData.length !== 0) {
         this.updateFlaggedSeries(serie, flaggedData, n++);
@@ -132,21 +155,27 @@ export class FhiAngularHighchartsComponent {
     return name.join(Seperator.output);
   }
 
-  private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: Data[], index: number) {
+  private updateFlaggedSeries(
+    serie: FhiDiagramSerie,
+    flaggedData: Data[],
+    index: number,
+  ) {
     this.flaggedSeries[index] = {
       name: serie.name as string,
-      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData)
+      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     };
   }
 
-  private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {
+  private getFlaggedDataPointsForCurrentSerie(
+    data: Data[],
+  ): FlagWithDataPointName[] {
     const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
-    data.forEach(category => {
+    data.forEach((category) => {
       flaggedDataPoints[n++] = {
         name: category.name,
         symbol: category.y as string,
-        label: 'N/A'
+        label: 'N/A',
       };
     });
     return flaggedDataPoints;
@@ -168,17 +197,19 @@ export class FhiAngularHighchartsComponent {
 
     this.allDiagramOptions = {
       ...this.allDiagramOptions,
-      diagramTypeId: (diagramTypeId)
+      diagramTypeId: diagramTypeId
         ? this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId)
         : FhiDiagramTypeId.table,
-      flags: (flags) ? flags : undefined,
-      openSource: (openSource === undefined || openSource) ? true : false
-    }
+      flags: flags ? flags : undefined,
+      openSource: openSource === undefined || openSource ? true : false,
+    };
   }
 
   private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType = this.diagramTypeService
-      .getDiagramTypeById(this.allDiagramOptions.diagramTypeId);
+    this.allDiagramOptions.diagramType =
+      this.diagramTypeService.getDiagramTypeById(
+        this.allDiagramOptions.diagramTypeId,
+      );
   }
 
   private updateCurrentDiagramTypeGroup() {
@@ -193,7 +224,7 @@ export class FhiAngularHighchartsComponent {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
       return;
     }
-    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart
+    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart;
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 
@@ -208,7 +239,9 @@ export class FhiAngularHighchartsComponent {
     this.showMap = false;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.highchartsOptions = this.optionsService.updateOptions(
+        this.allDiagramOptions,
+      );
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
@@ -220,18 +253,22 @@ export class FhiAngularHighchartsComponent {
     if (this.highmaps.maps === undefined) {
       this.highmaps.maps = [];
     }
-    this.geoJsonService.getMap(mapTypeId)
-      .pipe(first()).subscribe({
+    this.geoJsonService
+      .getMap(mapTypeId)
+      .pipe(first())
+      .subscribe({
         next: (map) => {
           if (map !== undefined) {
             this.highmaps.maps[mapTypeId] = map;
-            this.geoJsonService.updateMapFeatures(this.highmaps.maps[mapTypeId]);
+            this.geoJsonService.updateMapFeatures(
+              this.highmaps.maps[mapTypeId],
+            );
             this.updateMap();
           }
         },
         error: (error) => {
           console.log('ERROR:', error);
-        }
+        },
       });
   }
 
@@ -245,8 +282,10 @@ export class FhiAngularHighchartsComponent {
     if (this.allDiagramOptions.disclaimer !== undefined) {
       return true;
     }
-    if (this.allDiagramOptions.creditsHref !== undefined
-        && this.allDiagramOptions.creditsText !== undefined) {
+    if (
+      this.allDiagramOptions.creditsHref !== undefined &&
+      this.allDiagramOptions.creditsText !== undefined
+    ) {
       return true;
     }
     return false;
@@ -268,5 +307,4 @@ export class FhiAngularHighchartsComponent {
     Stacktrace:
     ${error}`;
   }
-
 }

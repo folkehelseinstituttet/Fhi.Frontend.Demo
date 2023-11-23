@@ -8,9 +8,8 @@ describe('FhiDateAndTimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ FhiDateAndTimeComponent ]
-    })
-    .compileComponents();
+      imports: [FhiDateAndTimeComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiDateAndTimeComponent);
     component = fixture.componentInstance;

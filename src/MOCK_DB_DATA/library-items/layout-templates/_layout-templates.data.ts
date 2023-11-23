@@ -7,5 +7,5 @@ import { LayoutTemplateTwoCols1 } from './layout-template-two-cols-1';
 export const LayoutTemplatesData: LibraryItem[] = [
   ...LayoutTemplateBasic,
   ...LayoutTemplateTwoCols1,
-  ...LayoutTemplateExpandableFirstCol
+  ...LayoutTemplateExpandableFirstCol,
 ];
