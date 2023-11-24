@@ -9,11 +9,7 @@ import { formatISO, isValid, parseISO, getTime } from 'date-fns';
   standalone: true,
   selector: 'fhi-date-and-time',
   templateUrl: './fhi-date-and-time.component.html',
-  imports: [
-    CommonModule,
-    FhiDatepickerComponent,
-    FormsModule
-  ]
+  imports: [CommonModule, FhiDatepickerComponent, FormsModule],
 })
 export class FhiDateAndTimeComponent {
   @Input() date?: string;
@@ -26,7 +22,7 @@ export class FhiDateAndTimeComponent {
 
   currentDateTimeString: string;
   dateSelected: string;
-  dateAndTimeIsValid: boolean = true;
+  dateAndTimeIsValid = true;
   dateAndTimeSelected: string;
   errorMsg: string;
   timeEntered: string;
@@ -44,17 +40,17 @@ export class FhiDateAndTimeComponent {
 
   onTimeChange(event: any) {
     const key = event.key;
-    const allowedKeys: string = '0,1,2,3,4,5,6,7,8,9,:';
-    
+    const allowedKeys = '0,1,2,3,4,5,6,7,8,9,:';
+
     if (allowedKeys.indexOf(key) >= 0) {
       if (this.timeEntered.length <= 5) {
         this.currentDateTimeString = this.timeEntered;
 
-        if (key !== ":" && this.timeEntered.length === 2) {
+        if (key !== ':' && this.timeEntered.length === 2) {
           this.timeEntered = this.timeEntered + ':';
         }
-        
-        if (key === ":") {
+
+        if (key === ':') {
           if (this.timeEntered.length === 1) {
             this.timeEntered = '';
           }

@@ -6,23 +6,21 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-library-item-full-screen-button',
-  templateUrl: './library-item-full-screen-button.component.html'
+  templateUrl: './library-item-full-screen-button.component.html',
 })
 export class LibraryItemFullScreenButtonComponent implements OnInit {
-
   @Input() itemMarkup: any;
 
-  constructor(private modal: NgbModal) { }
+  constructor(private modal: NgbModal) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   previewItemInContext(modalContent: any, size: string, fullscreen: boolean) {
     this.modal.open(modalContent, {
       windowClass: 'ds-ui-documentation__modal-window',
       scrollable: true,
       size: size,
-      fullscreen: fullscreen
+      fullscreen: fullscreen,
     });
   }
 }

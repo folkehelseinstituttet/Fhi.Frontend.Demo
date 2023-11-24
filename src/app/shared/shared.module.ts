@@ -13,9 +13,7 @@ import { FhiAngularTreeViewBuilderModule } from '@folkehelseinstituttet/angular-
 import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
-  declarations: [
-    SafePipe
-  ],
+  declarations: [SafePipe],
   imports: [
     CommonModule,
     RouterModule,
@@ -25,7 +23,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    FhiAngularTreeViewBuilderModule
+    FhiAngularTreeViewBuilderModule,
   ],
   exports: [
     SafePipe,
@@ -37,7 +35,7 @@ import { SafePipe } from './pipes/safe.pipe';
     MarkdownModule,
     FhiAngularComponentsModule,
     FhiAngularHighchartsModule,
-    FhiAngularTreeViewBuilderModule
-  ]
+    FhiAngularTreeViewBuilderModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

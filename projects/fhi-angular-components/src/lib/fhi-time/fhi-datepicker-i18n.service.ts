@@ -1,25 +1,12 @@
-import { Injectable } from "@angular/core";
-import { LOCALE_ID, Inject } from "@angular/core";
-import { NgbDatepickerI18n, NgbDateStruct } from "@ng-bootstrap/ng-bootstrap";
+import { Injectable } from '@angular/core';
+import { LOCALE_ID, Inject } from '@angular/core';
+import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const I18N_VALUES = {
   nb: {
-    weekdays: ["ma", "ti", "on", "to", "fr", "lø", "sø"],
-    months: [
-      "jan",
-      "feb",
-      "mar",
-      "apr",
-      "mai",
-      "jun",
-      "jul",
-      "aug",
-      "sep",
-      "okt",
-      "nov",
-      "des",
-    ],
-    weekLabel: "uke",
+    weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],
+    months: ['jan', 'feb', 'mar', 'apr', 'mai', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'des'],
+    weekLabel: 'uke',
   },
 };
 
@@ -27,7 +14,7 @@ const I18N_VALUES = {
 export class FhiDatepickerI18nService extends NgbDatepickerI18n {
   constructor(
     @Inject(LOCALE_ID)
-    private locale: string
+    private locale: string,
   ) {
     super();
   }

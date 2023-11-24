@@ -26,8 +26,8 @@ export class FhiDiagramTypeId {
 export class FhiDiagramTypeGroups {
   static chart = 'chart';
   static map = 'map';
-  static table = 'table'
-};
+  static table = 'table';
+}
 
 // const area: FhiDiagramType = {
 //   id: FhiDiagramTypeId.area,
@@ -40,29 +40,29 @@ const bar: FhiDiagramType = {
   id: FhiDiagramTypeId.bar,
   icon: 'bar-chart-line-horizontal',
   name: 'Liggende søylediagram',
-  options: OptionsChartTypeBar
-}
+  options: OptionsChartTypeBar,
+};
 
 const barStacked: FhiDiagramType = {
   id: FhiDiagramTypeId.barStacked,
   icon: 'bar-chart-line-stacked-horizontal',
   name: 'Stablet liggende søylediagram',
-  options: OptionsChartTypeBarStacked
-}
+  options: OptionsChartTypeBarStacked,
+};
 
 const column: FhiDiagramType = {
   id: FhiDiagramTypeId.column,
   icon: 'bar-chart-line',
   name: 'Søylediagram',
-  options: OptionsChartTypeColumn
-}
+  options: OptionsChartTypeColumn,
+};
 
 const columnStacked: FhiDiagramType = {
   id: FhiDiagramTypeId.columnStacked,
   icon: 'bar-chart-line-stacked',
   name: 'Stablet søylediagram',
-  options: OptionsChartTypeColumnStacked
-}
+  options: OptionsChartTypeColumnStacked,
+};
 
 // const donut: FhiDiagramType = {
 //   id: FhiDiagramTypeId.donut,
@@ -75,8 +75,8 @@ const line: FhiDiagramType = {
   id: FhiDiagramTypeId.line,
   icon: 'graph-up',
   name: 'Linjediagram',
-  options: OptionsChartTypeLine
-}
+  options: OptionsChartTypeLine,
+};
 
 const map: FhiDiagramType = {
   id: FhiDiagramTypeId.map,
@@ -84,23 +84,23 @@ const map: FhiDiagramType = {
   name: 'Kart',
   options: {
     chart: {
-      map: undefined
-    }
-  }
-}
+      map: undefined,
+    },
+  },
+};
 
 const pie: FhiDiagramType = {
   id: FhiDiagramTypeId.pie,
   icon: 'pie-chart',
   name: 'Kakediagram',
-  options: OptionsChartTypePie
-}
+  options: OptionsChartTypePie,
+};
 
 const table: FhiDiagramType = {
   id: FhiDiagramTypeId.table,
   icon: 'table',
-  name: 'Tabell'
-}
+  name: 'Tabell',
+};
 
 export class FhiDiagramTypes {
   // static area = area;
@@ -125,7 +125,7 @@ export const FhiAllDiagramTypes = [
   line,
   map,
   pie,
-  table
+  table,
 ];
 
 // This is the order used in diagram-type-navs
@@ -142,13 +142,7 @@ export const FhiChartTypes = [
 // This is kept as an array even though it may not get more than one item,
 // because the implementation in the diagram type nav is the same for
 // both FhiChartTypes and FhiMapTypes
-export const FhiMapTypes = [
-  map
-];
+export const FhiMapTypes = [map];
 
 // FhiMapTypeIds represents the different geo-json maps currently supported
-export const FhiMapTypeIds = [
-  'mapFylker2019',
-  'mapFylker'
-];
-
+export const FhiMapTypeIds = ['mapFylker2019', 'mapFylker'];

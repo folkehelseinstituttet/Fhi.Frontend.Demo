@@ -8,9 +8,8 @@ describe('FhiAutosuggestComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiAutosuggestComponent ]
-    })
-    .compileComponents();
+      declarations: [FhiAutosuggestComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiAutosuggestComponent);
     component = fixture.componentInstance;

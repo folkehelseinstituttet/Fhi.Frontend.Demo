@@ -11,13 +11,8 @@ import { LibraryItemFullSrceenComponent } from './library-item-full-srceen/libra
   declarations: [
     DeveloperRoutingModule.components,
     LibraryItemComponent,
-    LibraryItemFullSrceenComponent
+    LibraryItemFullSrceenComponent,
   ],
-  imports: [
-    SharedModule,
-    LibraryModule,
-    DynamicLibraryExamplesModule,
-    DeveloperRoutingModule
-  ]
+  imports: [SharedModule, LibraryModule, DynamicLibraryExamplesModule, DeveloperRoutingModule],
 })
-export class DeveloperModule { }
+export class DeveloperModule {}

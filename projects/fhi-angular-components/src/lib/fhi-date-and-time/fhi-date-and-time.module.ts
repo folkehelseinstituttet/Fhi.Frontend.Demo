@@ -4,13 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { FhiDateAndTimeComponent } from './fhi-date-and-time.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    FhiDateAndTimeComponent
-  ],
-  exports: [
-    FhiDateAndTimeComponent
-  ]
+  imports: [CommonModule, FormsModule, FhiDateAndTimeComponent],
+  exports: [FhiDateAndTimeComponent],
 })
-export class FhiDateAndTimeModule { }
+export class FhiDateAndTimeModule {}

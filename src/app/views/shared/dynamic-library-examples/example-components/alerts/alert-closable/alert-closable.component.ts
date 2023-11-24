@@ -7,48 +7,56 @@ interface Alert {
   bordered?: boolean;
 }
 
-const ALERTS: Alert[] = [{
+const ALERTS: Alert[] = [
+  {
     type: 'info',
     message: 'Dette er en melding til informasjon.',
     icon: 'icon-info-circle',
-  }, {
+  },
+  {
     type: 'success',
     message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle',
-  }, {
+  },
+  {
     type: 'warning',
     message: 'Dette er en advarsel!',
     icon: 'icon-bell',
-  }, {
+  },
+  {
     type: 'error',
     message: 'Dette er en feilmelding.',
     icon: 'icon-exclamation-circle',
-  }, {
+  },
+  {
     type: 'info',
     message: 'Dette er en melding til informasjon.',
     icon: 'icon-info-circle',
     bordered: true,
-  }, {
+  },
+  {
     type: 'success',
     message: 'Dette er en melding om suksess!',
     icon: 'icon-check-circle',
     bordered: true,
-  }, {
+  },
+  {
     type: 'warning',
     message: 'Dette er en advarsel!',
     icon: 'icon-bell',
     bordered: true,
-  }, {
+  },
+  {
     type: 'error',
     message: 'Dette er en feilmelding.',
     icon: 'icon-exclamation-circle',
     bordered: true,
-  }
+  },
 ];
 
 @Component({
   selector: 'app-alert-closable',
-  templateUrl: './alert-closable.component.html'
+  templateUrl: './alert-closable.component.html',
 })
 export class AlertClosableComponent {
   alerts: Alert[];

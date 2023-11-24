@@ -8,9 +8,8 @@ describe('FhiDiagramTypeNavComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiDiagramTypeNavComponent ]
-    })
-    .compileComponents();
+      declarations: [FhiDiagramTypeNavComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiDiagramTypeNavComponent);
     component = fixture.componentInstance;

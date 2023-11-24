@@ -1,5 +1,5 @@
 export const LayoutTemplatesIds = {
   LayoutTemplateBasic: undefined,
   LayoutTemplateTwoCols1: undefined,
-  LayoutTemplateExpandableFirstCol: undefined
-}
+  LayoutTemplateExpandableFirstCol: undefined,
+};

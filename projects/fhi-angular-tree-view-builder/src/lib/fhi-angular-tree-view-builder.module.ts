@@ -5,17 +5,9 @@ import { TreeModule } from '@ali-hm/angular-tree-component';
 
 import { FhiAngularTreeViewBuilderComponent } from './fhi-angular-tree-view-builder.component';
 
-
 @NgModule({
-  declarations: [
-    FhiAngularTreeViewBuilderComponent
-  ],
-  imports: [
-    TreeModule,
-    FormsModule
-  ],
-  exports: [
-    FhiAngularTreeViewBuilderComponent
-  ]
+  declarations: [FhiAngularTreeViewBuilderComponent],
+  imports: [TreeModule, FormsModule],
+  exports: [FhiAngularTreeViewBuilderComponent],
 })
-export class FhiAngularTreeViewBuilderModule { }
+export class FhiAngularTreeViewBuilderModule {}

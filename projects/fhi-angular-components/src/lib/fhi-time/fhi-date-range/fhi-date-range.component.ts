@@ -6,20 +6,20 @@ import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.comp
 @Component({
   selector: 'fhi-date-range',
   standalone: true,
-  imports: [ CommonModule, FhiDatepickerComponent ],
+  imports: [CommonModule, FhiDatepickerComponent],
   templateUrl: './fhi-date-range.component.html',
 })
 export class FhiDateRangeComponent {
   @Input() dateFrom: string;
   @Input() dateTo: string;
-  @Input() labelDateFrom: string = 'Fra dato';
-  @Input() labelDateTo: string = 'Til dato';
+  @Input() labelDateFrom = 'Fra dato';
+  @Input() labelDateTo = 'Til dato';
   @Input() maximumDate: string;
   @Input() minimumDate: string;
 
   @Output() dateRangeSelect = new EventEmitter<any>();
 
-  validRange: boolean = true;
+  validRange = true;
   errorMsg: string;
   fromDate: any;
   toDate: any;
@@ -61,15 +61,20 @@ export class FhiDateRangeComponent {
 
       if (range < 0) {
         this.validRange = false;
-        this.errorMsg = '<strong>' + this.labelDateFrom + '</strong> må være før eller samtidig som <strong>' + this.labelDateTo + '</strong>';
+        this.errorMsg =
+          '<strong>' +
+          this.labelDateFrom +
+          '</strong> må være før eller samtidig som <strong>' +
+          this.labelDateTo +
+          '</strong>';
         this.latestChangedRangeEnd = rangeEnd;
       } else {
         this.validRange = true;
         this.errorMsg = '';
         this.dateRangeSelect.emit({
           fromDate: this.fromDate,
-          toDate: this.toDate
-        })
+          toDate: this.toDate,
+        });
       }
     }
   }

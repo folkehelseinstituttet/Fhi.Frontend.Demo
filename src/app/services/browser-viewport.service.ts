@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BrowserViewportService {
-
   private innerWidth: number;
   private isMobileSource = new ReplaySubject<boolean>(1);
   private isDesktopSmallSource = new ReplaySubject<boolean>(1);
@@ -72,5 +71,4 @@ export class BrowserViewportService {
       }
     }
   }
-
 }

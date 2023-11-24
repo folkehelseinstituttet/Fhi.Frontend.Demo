@@ -4,5 +4,5 @@ export const TagsIds = {
   TagMultipleSelection: undefined,
   TagSingleSelection: undefined,
   TagState: undefined,
-  TagStateDot: undefined
-}
+  TagStateDot: undefined,
+};

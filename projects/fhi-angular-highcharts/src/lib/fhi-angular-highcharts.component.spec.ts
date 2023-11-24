@@ -8,9 +8,8 @@ describe('FhiAngularHighchartsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiAngularHighchartsComponent ]
-    })
-    .compileComponents();
+      declarations: [FhiAngularHighchartsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiAngularHighchartsComponent);
     component = fixture.componentInstance;

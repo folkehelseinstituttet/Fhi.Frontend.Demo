@@ -4,7 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-example',
-  templateUrl: './modal-example.component.html'
+  templateUrl: './modal-example.component.html',
 })
 export class ModalExampleComponent {
   closeResult = '';
@@ -18,5 +18,4 @@ export class ModalExampleComponent {
   openFullscreen(content: any) {
     this.modalService.open(content, { fullscreen: true });
   }
-
 }
