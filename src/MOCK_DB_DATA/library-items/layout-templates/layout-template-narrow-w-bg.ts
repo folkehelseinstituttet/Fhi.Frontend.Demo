@@ -25,7 +25,16 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<fhi-layout-narrow-w-bg>
+  <ng-container maincontent.title>
+    {{ Sidens tittel }}
+  </ng-container>
+
+  <ng-container maincontent.maincontent>
+    Sidens innhold
+  </ng-container>
+</fhi-layout-narrow-w-bg>`;
 }
 
 /*
