@@ -139,7 +139,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   LayoutTemplateNarrowWBg: {
     id: 'layout-template-simple-half',
-    title: 'Halft width (large screens)',
+    title: 'Narrow (large screens) with background color',
   },
   LayoutTemplateTwoCols: {
     id: 'layout-template-two-cols',
