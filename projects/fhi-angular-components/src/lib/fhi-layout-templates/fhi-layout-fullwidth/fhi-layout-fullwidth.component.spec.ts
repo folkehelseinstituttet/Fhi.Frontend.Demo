@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiFullwidthComponent } from './fhi-layout-fullwidth.component';
+import { FhiLayoutFullwidthComponent } from './fhi-layout-fullwidth.component';
 
-describe('FhiFullwidthComponent', () => {
-  let component: FhiFullwidthComponent;
-  let fixture: ComponentFixture<FhiFullwidthComponent>;
+describe('FhiLayoutFullwidthComponent', () => {
+  let component: FhiLayoutFullwidthComponent;
+  let fixture: ComponentFixture<FhiLayoutFullwidthComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FhiFullwidthComponent],
+      imports: [FhiLayoutFullwidthComponent],
     });
-    fixture = TestBed.createComponent(FhiFullwidthComponent);
+    fixture = TestBed.createComponent(FhiLayoutFullwidthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

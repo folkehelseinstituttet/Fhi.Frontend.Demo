@@ -4,7 +4,9 @@ $ds-modal-top-offset: 47px;
     background-color: $fhi-core-grey-1;
 
     .modal-header {
-        background-color: silver;
+        border-bottom: 1px solid $fhi-core-grey-3;
+        border-left: 1px solid #c0c0c0;
+        border-bottom-left-radius: $border-radius-lg;
         z-index: 1;
     }
 
@@ -40,12 +42,11 @@ $ds-modal-top-offset: 47px;
     }
 
     .modal-fullscreen {
-        padding-left: 0;
-        padding-right: 0;
+        padding: 0;
     }
 
     .btn-close::after {
-        content: "";
+        content: '';
         bottom: 0;
         left: 0;
         position: absolute;
@@ -56,8 +57,8 @@ $ds-modal-top-offset: 47px;
 
     &__modal-body {
         background-color: $fhi-core-white;
-        border-top-left-radius: .25rem;
-        border-top-right-radius: .25rem;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
         padding: 0;
 
         > div {

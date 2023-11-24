@@ -1,0 +1,3 @@
+# FHI Fullwidth template
+
+## Usage

@@ -1,5 +1,7 @@
 <div class="position-relative" style="z-index: 1">
-  <div class="ds-ui-documentation__btn-wrapper ds-ui-documentation__btn-wrapper--full-screen position-absolute d-flex end-0">
+  <div
+    class="ds-ui-documentation__btn-wrapper ds-ui-documentation__btn-wrapper--full-screen position-absolute d-flex end-0"
+  >
     <button class="btn ds-ui-documentation__btn" (click)="openModal(content)">
       <i class="icon-arrows-fullscreen icon-md mt-1 me-0"></i>
       <span class="visually-hidden">Fullskjermmodus</span>
@@ -8,7 +10,7 @@
 </div>
 
 <ng-template #content let-modal>
-  <div class="modal-header position-relative px-3">
+  <div class="modal-header position-absolute end-0 ps-0 pe-3">
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body ds-modal__modal-body">

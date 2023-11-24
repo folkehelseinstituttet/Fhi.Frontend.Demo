@@ -1,5 +1,19 @@
 <ng-container *ngIf="itemId === items.LayoutTemplateFullwidth.id">
-  <fhi-layout-fullwidth></fhi-layout-fullwidth>
+  <div class="fhi-app">
+    <app-header-example></app-header-example>
+
+    <div class="fhi-app__main-body">
+      <fhi-layout-simple-half>
+        <ng-container maincontent.simplehalf>
+          <p>hoi!</p>
+        </ng-container>
+      </fhi-layout-simple-half>
+    </div>
+
+    <footer class="fhi-footer">
+      <app-footer-example></app-footer-example>
+    </footer>
+  </div>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.LayoutTemplateExpandableFirstCol.id">

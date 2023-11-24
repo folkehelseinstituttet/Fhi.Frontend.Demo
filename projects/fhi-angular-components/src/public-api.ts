@@ -14,6 +14,7 @@ export * from './lib/fhi-datepicker/fhi-datepicker.component';
 export * from './lib/fhi-datepicker/fhi-datepicker.module';
 
 export * from './lib/fhi-layout-templates/fhi-layout-fullwidth/fhi-layout-fullwidth.component';
+export * from './lib/fhi-layout-templates/fhi-layout-simple-half/fhi-layout-simple-half.component';
 
 export * from './lib/fhi-multiselect/fhi-multiselect.component';
 export * from './lib/fhi-multiselect/fhi-multiselect.module';

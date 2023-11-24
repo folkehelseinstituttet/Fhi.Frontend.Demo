@@ -1,0 +1,77 @@
+<header class="fhi-header">
+  <div class="fhi-header__brand">
+    <div class="container-fluid fhi-header__brand-container d-flex">
+      <div class="fhi-header__brand-content">
+        <a href="javascript:void(0)" class="fhi-header__logo"
+          ><i class="icon-fhi-logo fhi-header__logo-icon"></i><span class="visually-hidden">FHI Prosjekt</span></a
+        >
+        <div class="fhi-header__project"><span class="fhi-header__project-name">Prosjektnavn</span></div>
+      </div>
+      <div class="fhi-utility-section d-none d-xl-flex ms-auto me-lg-7 pe-lg-4 me-xl-0 pe-xl-0">
+        <p class="fhi-utility-section__group">
+          <a href="/admin/velg-kilde">Velg kilde</a>
+        </p>
+        <span class="fhi-utility-section__divider"></span>
+        <p class="fhi-utility-section__group">
+          <a href="javascript:void(0)" class="d-flex"> Fornavn Etternavn <span class="icon-person ms-2 me-2"></span></a>
+        </p>
+        <span class="fhi-utility-section__divider"></span>
+        <div class="fhi-utility-section__group">
+          <button class="btn fhi-btn-icon" control-id="ControlID-1"><span class="btn__text">Logg ut</span></button>
+        </div>
+        <span class="fhi-utility-section__divider d-xl-none"></span>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid fhi-header__main-menu-container">
+    <nav class="fhi-main-menu" [ngClass]="{ 'fhi-main-menu--open': menuIsOpen }">
+      <div class="container-fluid fhi-main-menu__container">
+        <a href="javascript:void(0)" class="fhi-main-menu__home-link"
+          ><i class="icon-fhi-logo fhi-header__logo-icon fhi-main-menu__logo-icon"></i
+          ><span class="visually-hidden">FHI Statistikk admin</span></a
+        ><button
+          type="button"
+          aria-controls="fhi-main-menu"
+          class="fhi-main-menu__toggler"
+          aria-expanded="false"
+          (click)="toggleMenu()"
+        >
+          <i class="icon-x fhi-main-menu__toggler-close-icon"></i
+          ><i class="icon-list fhi-main-menu__toggler-menu-icon"></i>
+          <span class="fhi-main-menu__toggler-text">
+            <span *ngIf="!menuIsOpen">Meny</span>
+            <span *ngIf="menuIsOpen">Lukk</span>
+          </span>
+        </button>
+        <div class="collapse fhi-main-menu__collapse" [ngClass]="{ show: menuIsOpen }">
+          <div class="d-flex flex-wrap">
+            <ul class="nav nav-tabs fhi-nav-tabs fhi-main-menu__nav">
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link active" href="javascript:void()">Menypunkt 1</a>
+              </li>
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" href="javascript:void()">Menypunkt 2</a>
+              </li>
+              <li class="fhi-main-menu__nav-item">
+                <a class="nav-link fhi-main-menu__nav-link" href="javascript:void()">Menypunkt 3</a>
+              </li>
+            </ul>
+            <div class="fhi-utility-section fhi-utility-section--megamenu d-block d-xl-none">
+              <div class="fhi-utility-section__group">
+                <div class="my-1 py-1">
+                  <a href="javascript:void(0)" class="d-flex text-white"
+                    ><span class="icon-person icon-white ms-2 me-2"></span> Fornavn Etternavn
+                  </a>
+                </div>
+                <div class="my-1 py-1">
+                  <button class="btn fhi-btn-icon"><span class="btn__text">Logg ut</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!---->
+  </div>
+</header>

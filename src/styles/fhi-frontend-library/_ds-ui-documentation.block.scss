@@ -35,6 +35,10 @@
             font-size: $fhi-core-font-size-1;
             padding: ($fhi-core-px * 2) $fhi-core-space-2;
         }
+
+        .fhi-app {
+            min-height: 0;
+        }
     }
     &__item--has-full-screen-button {
         padding-top: $fhi-core-px * 75;
@@ -42,7 +46,7 @@
     &__code {
         padding-left: $fhi-core-space-1;
 
-        code[class*="language-"] {
+        code[class*='language-'] {
             font-size: 11px;
         }
     }
@@ -79,7 +83,6 @@
     &__btn--copy {
         padding: 0 $fhi-core-px * 13.75;
     }
-
 }
 
 @include media-breakpoint-up(xxs) {
@@ -107,7 +110,7 @@
             margin: 0 0 $fhi-core-space-3;
             padding: unset;
         }
-       &__item-container {
+        &__item-container {
             border-radius: $border-radius;
             margin: unset;
             padding: $fhi-core-space-3;

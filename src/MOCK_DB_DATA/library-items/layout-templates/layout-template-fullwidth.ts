@@ -9,6 +9,7 @@ export const LayoutTemplateFullwidth: LibraryItem[] = [
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    fullScreenEnabled: true,
   },
 ];
 

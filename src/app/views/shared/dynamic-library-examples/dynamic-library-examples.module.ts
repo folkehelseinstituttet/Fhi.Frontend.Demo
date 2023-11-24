@@ -18,6 +18,9 @@ import { NavsComponent } from './example-components/navs/navs.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
+import { LayoutHeaderExampleComponent } from './example-components/layout-templates/layout-header-example.component';
+import { LayoutFooterExampleComponent } from './example-components/layout-templates/layout-footer-example.component';
+
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
@@ -84,7 +87,14 @@ const FHI_PROTOTYPES = [
     ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES,
   ],
-  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
+  imports: [
+    NgbTooltipModule,
+    NgSelectModule,
+    SharedModule,
+    FormControlsComponent,
+    LayoutHeaderExampleComponent,
+    LayoutFooterExampleComponent,
+  ],
   exports: [
     NgSelectModule,
     DynamicLibraryExampleComponent,
