@@ -137,9 +137,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'layout-template-exapandable-first-col',
     title: 'Expandable first col',
   },
-  LayoutTemplateFullwidth: {
-    id: 'layout-template-fullwidth',
-    title: 'Fullwidth ',
+  LayoutTemplateNarrowWBg: {
+    id: 'layout-template-simple-half',
+    title: 'Halft width (large screens)',
   },
   LayoutTemplateTwoCols: {
     id: 'layout-template-two-cols',

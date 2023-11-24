@@ -17,7 +17,7 @@ import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.
 import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 
 import { FhiLayoutFullwidthComponent } from './fhi-layout-templates/fhi-layout-fullwidth/fhi-layout-fullwidth.component';
-import { FhiLayoutSimpleHalfComponent } from './fhi-layout-templates/fhi-layout-simple-half/fhi-layout-simple-half.component';
+import { FhiLayoutNarrowWBgComponent } from './fhi-layout-templates/fhi-layout-narrow-w-bg/fhi-layout-narrow-w-bg.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
@@ -25,7 +25,7 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiDatepickerModule,
   FhiDateRangeComponent,
   FhiLayoutFullwidthComponent,
-  FhiLayoutSimpleHalfComponent,
+  FhiLayoutNarrowWBgComponent,
   FhiYearMonthRangeComponent,
   FhiYearMonthComponent,
   FhiMultiselectModule,

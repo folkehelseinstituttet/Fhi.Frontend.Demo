@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'fhi-layout-simple-half',
+  selector: 'fhi-layout-simple-narrow',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './fhi-layout-simple-half.component.html',
+  templateUrl: './fhi-layout-narrow-w-bg.component.html',
 })
-export class FhiLayoutSimpleHalfComponent {}
+export class FhiLayoutNarrowWBgComponent {}

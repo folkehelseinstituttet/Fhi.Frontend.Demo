@@ -3,12 +3,12 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 
 import { LayoutTemplatesIntro } from './_layout-templates.intro';
 
-import { LayoutTemplateFullwidth } from '../layout-templates/layout-template-fullwidth';
+import { LayoutTemplateNarrowWBg } from './layout-template-narrow-w-bg';
 import { LayoutTemplateTwoCols } from './layout-template-two-cols';
 import { LayoutTemplateExpandableFirstCol } from './layout-template-expandable-first-col';
 
 export const LayoutTemplates: LibraryItem[] = [
-  ...LayoutTemplateFullwidth,
+  ...LayoutTemplateNarrowWBg,
   ...LayoutTemplateTwoCols,
   ...LayoutTemplateExpandableFirstCol,
 ];

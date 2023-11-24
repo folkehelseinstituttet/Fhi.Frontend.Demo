@@ -1,10 +1,10 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const LayoutTemplateFullwidth: LibraryItem[] = [
+export const LayoutTemplateNarrowWBg: LibraryItem[] = [
   {
-    id: ITEMS.LayoutTemplateFullwidth.id,
-    title: ITEMS.LayoutTemplateFullwidth.title,
+    id: ITEMS.LayoutTemplateNarrowWBg.id,
+    title: ITEMS.LayoutTemplateNarrowWBg.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

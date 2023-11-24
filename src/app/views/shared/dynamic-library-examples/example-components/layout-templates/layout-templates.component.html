@@ -1,13 +1,54 @@
-<ng-container *ngIf="itemId === items.LayoutTemplateFullwidth.id">
+<ng-container *ngIf="itemId === items.LayoutTemplateNarrowWBg.id">
   <div class="fhi-app">
     <app-header-example></app-header-example>
 
     <div class="fhi-app__main-body">
-      <fhi-layout-simple-half>
+      <fhi-layout-simple-narrow>
+        <ng-container maincontent.title>Sidens tittel</ng-container>
+
         <ng-container maincontent.simplehalf>
-          <p>hoi!</p>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="text-nowrap">Kolonne 1</th>
+                  <th class="text-nowrap">Kolonne 2</th>
+                  <th class="text-nowrap">Kolonne 3</th>
+                  <th class="text-nowrap">Kolonne 4</th>
+                  <th class="text-nowrap">Kolonne 5</th>
+                  <th class="text-nowrap">Kolonne 6</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Rad 1, Celle 1</td>
+                  <td>Rad 1, Celle 2</td>
+                  <td>Rad 1, Celle 3</td>
+                  <td>Rad 1, Celle 4</td>
+                  <td>Rad 1, Celle 5</td>
+                  <td>Rad 1, Celle 6</td>
+                </tr>
+                <tr>
+                  <td>Rad 2, Celle 1</td>
+                  <td>Rad 2, Celle 2</td>
+                  <td>Rad 2, Celle 3</td>
+                  <td>Rad 2, Celle 4</td>
+                  <td>Rad 2, Celle 5</td>
+                  <td>Rad 2, Celle 6</td>
+                </tr>
+                <tr>
+                  <td>Rad 3, Celle 1</td>
+                  <td>Rad 3, Celle 2</td>
+                  <td>Rad 3, Celle 3</td>
+                  <td>Rad 3, Celle 4</td>
+                  <td>Rad 3, Celle 5</td>
+                  <td>Rad 3, Celle 6</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </ng-container>
-      </fhi-layout-simple-half>
+      </fhi-layout-simple-narrow>
     </div>
 
     <footer class="fhi-footer">
