@@ -16,7 +16,6 @@ import {
   NgbDate,
   NgbDateAdapter,
   NgbDateParserFormatter,
-  NgbDateStruct,
   NgbDatepickerI18n,
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
@@ -64,7 +63,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   invalidFeedback!: string;
   isValid = true;
   model!: string;
-  startDate!: NgbDateStruct;
+  startDate!: FhiDate;
   placeholder = 'dd.mm.åååå'; // TODO: constants
 
   constructor(
@@ -74,7 +73,6 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    // console.log('date', this.date);
     this.dateChangeActions();
     this.minDateChangeActions();
     this.maxDateChangeActions();
@@ -95,7 +93,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   onDateSelect(date: NgbDate) {
     this.isValid = true;
     this.startDate = date;
-    this.dateSelect.emit(this.dateUtilityService.convertNgbDateToFhiDate(date));
+    this.dateSelect.emit(this.dateUtilityService.getFhiDateFromNgbDate(date));
   }
 
   onBlur() {
@@ -116,7 +114,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     const dateString = this.dateValidationService.getUnvalidatedDateString();
     const isValid = this.dateValidationService.isValidDateString(dateString);
     if (isValid) {
-      this.dateSelect.emit(this.dateUtilityService.getFhiDate(dateString));
+      this.dateSelect.emit(this.dateUtilityService.getFhiDateFromValidDateString(dateString));
       this.isValid = true;
     }
     this.isValid = false;
@@ -125,19 +123,40 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   private dateChangeActions() {
     // console.log('dateChangeActions', this.date);
-    // TODO: isValidDate() && notOutsideMaxOrMin()
-    this.isValid = true;
-    this.startDate = this.date;
-    this.model = this.dateAdapter.toModel(this.date);
-  }
-
-  private maxDateChangeActions() {
-    // console.log('maxDateChangeActions');
-    // TODO: isValidDate()
+    // TODO: isWithinMinDateAndMaxDate(), or skip that test? It's hard to make sure
+    //       that min/max is set when dateChangeActions() runs... this problem
+    //       is the same in the weekpicker, current implementation can fail...
+    if (this.date === undefined || this.dateValidationService.isValidFhiDate(this.date)) {
+      this.model = this.dateAdapter.toModel(this.date);
+      this.startDate = this.date;
+      return;
+    }
+    this.dateValidationService.throwInputValueError('date');
   }
 
   private minDateChangeActions() {
-    // console.log('minDateChangeActions');
-    // TODO: isValidDate()
+    // console.log('minDateChangeActions', this.minDate);
+    if (this.minDate === undefined) {
+      this.minDate = this.dateUtilityService.getMinDate();
+      return;
+    }
+    if (this.dateValidationService.isValidFhiDate(this.minDate)) {
+      this.dateUtilityService.setMinDate(this.minDate);
+      return;
+    }
+    this.dateValidationService.throwInputValueError('minDate');
+  }
+
+  private maxDateChangeActions() {
+    // console.log('maxDateChangeActions', this.maxDate);
+    if (this.maxDate === undefined) {
+      this.maxDate = this.dateUtilityService.getMaxDate();
+      return;
+    }
+    if (this.dateValidationService.isValidFhiDate(this.maxDate)) {
+      this.dateUtilityService.setMaxDate(this.maxDate);
+      return;
+    }
+    this.dateValidationService.throwInputValueError('maxDate');
   }
 }

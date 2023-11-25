@@ -14,7 +14,7 @@ export class DateAdapterService extends NgbDateAdapter<string> {
   fromModel(value: string | null): NgbDateStruct | null {
     // console.warn('fromModel(value):', value);
     if (value) {
-      return this.dateUtilityService.getNgbDateStruct(value);
+      return this.dateUtilityService.getFhiDateFromValidDateString(value) as NgbDateStruct;
     }
     return null;
   }

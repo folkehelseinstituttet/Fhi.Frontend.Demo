@@ -1,26 +1,46 @@
 import { Injectable } from '@angular/core';
-import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { FhiDate } from '../../fhi-date.model';
+import { format } from 'date-fns';
 
 @Injectable()
 export class DateUtilityService {
-  getNgbDateStruct(value: string): NgbDateStruct {
-    return this.getDateObject(value);
+  // TODO: dynamically, and globally, set min/max date
+  // DateUtilityService extends TimeUtilityService
+  private minDate: FhiDate = this.getFhiDateFromValidDateString('01.01.1900');
+  private maxDate: FhiDate = this.getFhiDateFromValidDateString('25.11.2023');
+
+  getMinDate(): FhiDate {
+    return this.minDate;
   }
 
-  getFhiDate(value: string): FhiDate {
-    return this.getDateObject(value);
+  setMinDate(minDate: FhiDate) {
+    this.minDate = minDate;
   }
 
-  getLocalDateString(date: NgbDateStruct | FhiDate): string {
-    return new Date(date.year, date.month - 1, date.day).toLocaleDateString('no-nb', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
+  getMaxDate(): FhiDate {
+    return this.maxDate;
   }
 
-  convertNgbDateToFhiDate(date: NgbDate): FhiDate {
+  setMaxDate(maxDate: FhiDate) {
+    this.maxDate = maxDate;
+  }
+
+  getLocalDateString(date: FhiDate): string {
+    const localFormat = 'dd.MM.yyyy';
+    return format(new Date(date.year, date.month - 1, date.day), localFormat);
+  }
+
+  getFhiDateFromValidDateString(value: string): FhiDate {
+    const date = value.split('.'); // TODO: constants
+    return {
+      day: parseInt(date[0], 10),
+      month: parseInt(date[1], 10),
+      year: parseInt(date[2], 10),
+    };
+  }
+
+  getFhiDateFromNgbDate(date: NgbDate): FhiDate {
     return {
       year: date.year,
       month: date.month,
@@ -28,12 +48,7 @@ export class DateUtilityService {
     };
   }
 
-  private getDateObject(value: string): FhiDate | NgbDateStruct {
-    const date = value.split('.'); // TODO: constants
-    return {
-      day: parseInt(date[0], 10),
-      month: parseInt(date[1], 10),
-      year: parseInt(date[2], 10),
-    };
+  getNgbDateFromFhiDate(date: FhiDate) {
+    return new NgbDate(date.year, date.month, date.day);
   }
 }
