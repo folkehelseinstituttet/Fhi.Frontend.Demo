@@ -7,11 +7,11 @@ import { formatISO, isValid, parseISO, getTime } from 'date-fns';
 
 @Component({
   standalone: true,
-  selector: 'fhi-date-and-time',
-  templateUrl: './fhi-date-and-time.component.html',
+  selector: 'fhi-date-time',
+  templateUrl: './fhi-date-time.component.html',
   imports: [CommonModule, FhiDatepickerComponent, FormsModule],
 })
-export class FhiDateAndTimeComponent {
+export class FhiDateTimeComponent {
   @Input() date?: string;
   @Input() label?: string = 'Velg dato og tidspunkt';
   @Input() initialTime?: string;
