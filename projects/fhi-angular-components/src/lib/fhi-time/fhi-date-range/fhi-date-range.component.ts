@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FhiDatepickerComponent } from '../../fhi-datepicker/fhi-datepicker.component';
+import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.component';
 
 @Component({
   selector: 'fhi-date-range',
