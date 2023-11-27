@@ -112,9 +112,6 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   private validateAndEmit() {
     const dateString = this.dateValidationService.getUnvalidatedDateString();
-    if (dateString === undefined) {
-      return;
-    }
     const isValid = this.dateValidationService.isValidDateString(dateString);
     if (isValid) {
       this.dateSelect.emit(this.dateUtilityService.getFhiDateFromValidDateString(dateString));
@@ -133,6 +130,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     if (this.date === undefined || this.dateValidationService.isValidFhiDate(this.date)) {
       this.model = this.dateAdapter.toModel(this.date);
       this.startDate = this.date;
+      this.isValid = true;
       return;
     }
     this.dateValidationService.throwInputValueError('date');

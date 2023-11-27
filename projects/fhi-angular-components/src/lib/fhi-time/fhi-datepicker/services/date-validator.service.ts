@@ -6,17 +6,19 @@ import { DateUtilityService } from './date-utility.service';
 
 export enum ErrorState {
   toManyCharacters = 1,
-  toFewCharacters = 2,
-  notTwoDelimiters = 3,
-  notValidDate = 4,
-  onlyNumbersAllowed = 5,
-  isRequired = 6,
-  outsideMaxOrMin = 7,
+  toManyCharactersInPart = 2,
+  toFewCharacters = 3,
+  toFewCharactersInPart = 4,
+  notTwoDelimiters = 5,
+  notValidDate = 6,
+  onlyNumbersAllowed = 7,
+  isRequired = 8,
+  outsideMaxOrMin = 9,
 }
 
 @Injectable()
 export class DateValidationService {
-  private unvalidatedDateString!: string;
+  private unvalidatedDateString = '';
   private date!: FhiDate;
   private dateFormat = 'dd.mm.åååå'; // TODO: constants (naming: 'dd.mm.åååå' VS. 'dd.MM.yyyy'? Both are NO formats...)
   private dateIsRequired = true; // @Inuput() weekIsRequired is not implemented yet
@@ -47,9 +49,11 @@ Error message if user input for week had been the cause of the error:
 "${this.errorMsg}"\n`);
   }
 
-  isValidFhiDate(maxDate: FhiDate): boolean {
+  isValidFhiDate(date: FhiDate): boolean {
     this.errorMsg = undefined;
-    this.date = maxDate;
+    this.date = date;
+    this.setUnvalidatedDateString(this.dateUtilityService.getLocalDateString(date));
+
     if (!this.isValidDate()) {
       return false;
     }
@@ -102,6 +106,14 @@ Error message if user input for week had been the cause of the error:
       this.updateErrorMsg(ErrorState.notTwoDelimiters);
       return false;
     }
+    if (parts[2].length < 4 || parts[1].length < 2 || parts[0].length < 2) {
+      this.updateErrorMsg(ErrorState.toFewCharactersInPart);
+      return false;
+    }
+    if (parts[2].length > 4 || parts[1].length > 2 || parts[0].length > 2) {
+      this.updateErrorMsg(ErrorState.toManyCharactersInPart);
+      return false;
+    }
     return true;
   }
 
@@ -149,17 +161,19 @@ Error message if user input for week had been the cause of the error:
       case ErrorState.isRequired:
         return this.getDateIsRequiredMsg();
 
-      case ErrorState.toFewCharacters ||
-        ErrorState.toManyCharacters ||
-        ErrorState.notTwoDelimiters ||
-        ErrorState.onlyNumbersAllowed:
-        return this.getWrongFormatMsg();
-
       case ErrorState.notValidDate:
         return this.getNonexistentDateMsg();
 
       case ErrorState.outsideMaxOrMin:
         return this.getOutsideMaxOrMinMsg();
+
+      case ErrorState.toFewCharacters:
+      case ErrorState.toFewCharactersInPart:
+      case ErrorState.toManyCharacters:
+      case ErrorState.toManyCharactersInPart:
+      case ErrorState.notTwoDelimiters:
+      case ErrorState.onlyNumbersAllowed:
+        return this.getWrongFormatMsg();
     }
   }
 
