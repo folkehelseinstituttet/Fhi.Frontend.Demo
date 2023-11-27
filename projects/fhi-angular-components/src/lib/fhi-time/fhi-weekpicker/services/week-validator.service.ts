@@ -42,6 +42,8 @@ export class WeekValidationService {
   isValidWeek(week: FhiWeek): boolean {
     console.log('isValidFhiWeek()', week);
     this.week = week;
+
+    // TODO: remove call to method in date-validation as well
     this.unvalidatedYearWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
 
     if (!this.isValidFhiWeek()) {

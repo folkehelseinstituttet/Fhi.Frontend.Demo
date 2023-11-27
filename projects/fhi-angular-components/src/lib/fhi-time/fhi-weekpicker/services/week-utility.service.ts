@@ -86,6 +86,14 @@ export class WeekUtilityService {
     return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
 
+  getWeekFromValidWeekString(value: string): FhiWeek {
+    const week = value.split(FhiTimeConstants.weekpickerDelimiter);
+    return {
+      year: parseInt(week[0], 10),
+      week: parseInt(week[1], 10),
+    };
+  }
+
   getWeekFromNgbDate(date: NgbDate): FhiWeek {
     return this.getFhiWeek(new Date(date.year, date.month - 1, date.day));
   }
@@ -121,6 +129,7 @@ export class WeekUtilityService {
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
+  // TODO: remove? I hope!
   getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
     if (this.validYearWeekString === undefined) {
       throw new Error(

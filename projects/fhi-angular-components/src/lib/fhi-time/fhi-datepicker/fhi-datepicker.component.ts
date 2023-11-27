@@ -63,7 +63,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   invalidFeedback!: string;
   isValid = true;
-  dateString!: string;
+  dateString!: string; // TODO: remove
   model!: string;
   startDate!: FhiDate;
 

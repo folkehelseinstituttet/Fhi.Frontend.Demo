@@ -7,9 +7,6 @@
       <span class="visually-hidden">Åpne ukesvelger</span>
     </button>
 
-    <!-- TODO: can this work after all...?
-    [(ngModel)]="model" (instad of [value]="weekString") -->
-
     <input
       type="text"
       autocomplete="off"
@@ -21,7 +18,7 @@
       [maxDate]="maxDate"
       [minDate]="minDate"
       [startDate]="startDate"
-      [value]="weekString"
+      [(ngModel)]="model"
       (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"

@@ -62,20 +62,16 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   invalidFeedbackText!: string;
   isValid = true;
-
-  weekString!: string;
-  // TODO: model!: string; ?
+  model!: FhiWeek;
   minDate: NgbDateStruct;
   maxDate: NgbDateStruct;
   startDate!: NgbDateStruct;
-
-  minWeekString: string; // TODO: do we need this property?
-  maxWeekString: string; // TODO: do we need this property?
 
   // TODO: same solution for placeholders in all components...
   placeholder = FhiTimeConstants.weekpickerPlaceholder;
 
   constructor(
+    private weekAdapter: NgbDateAdapter<FhiWeek>,
     private weekValidationService: WeekValidationService,
     private weekUtilityService: WeekUtilityService,
   ) {}
@@ -119,62 +115,44 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private validateAndEmit() {
-    const week = this.weekValidationService.getUnvalidatedYearWeekString();
-    const date = this.getValidDate(week);
-
-    if (date !== undefined) {
+    const weekString = this.weekValidationService.getUnvalidatedYearWeekString();
+    const isValid = this.weekValidationService.isValidYearWeekString(weekString);
+    if (isValid) {
+      this.weekSelect.emit(this.weekUtilityService.getWeekFromValidWeekString(weekString));
       this.isValid = true;
-    } else {
-      this.isValid = false;
-    }
-    if (this.isValid && date !== null) {
-      // TODO: move new Date() into util...
-      const jsDate = new Date(date.year, date.month - 1, date.day);
-      this.startDate = date;
-      this.weekSelect.emit(this.weekUtilityService.getFhiWeek(jsDate));
       return;
     }
+    this.isValid = false;
     this.invalidFeedbackText = this.weekValidationService.getInvalidFeedbackText();
   }
 
   private weekChangeActions() {
-    if (typeof this.weekString !== 'string') {
-      this.weekString = '';
+    let date: NgbDateStruct;
+    let isValid = true;
+    if (this.week === undefined) {
+      date = null;
+    } else if (this.weekValidationService.isValidWeek(this.week)) {
+      date = this.weekUtilityService.getDateFromWeek(this.week);
+    } else {
+      isValid = false;
     }
-    const date = this.getValidDate(this.weekString);
-
-    if (date !== undefined) {
+    if (isValid) {
+      this.model = this.weekAdapter.toModel(date);
       this.startDate = date;
+      this.isValid = true;
       return;
     }
     this.weekValidationService.throwInputValueError('week');
   }
 
-  private getValidDate(week: string): NgbDateStruct | null | undefined {
-    let date: NgbDateStruct;
-    let isValid = false;
-
-    if (this.weekValidationService.isValidYearWeekString(week)) {
-      date = this.getDate();
-      isValid = true;
-    }
-    if (isValid && date !== null) {
-      isValid = this.weekValidationService.isWeekWithinMaxWeekAndMinWeek(date);
-    }
-    if (isValid) {
-      return date;
-    }
-    return undefined;
-  }
-
   private minWeekChangeActions() {
-    let isValid: boolean;
+    let isValid = true;
     if (this.minWeek === undefined) {
       this.minWeek = this.weekUtilityService.getMinWeek();
-      isValid = true;
     } else if (this.weekValidationService.isValidWeek(this.minWeek)) {
       this.weekUtilityService.setMinDate(this.minDate);
-      isValid = true;
+    } else {
+      isValid = false;
     }
     if (isValid) {
       this.minDate = this.weekUtilityService.getDateFromWeek(this.minWeek);
@@ -184,22 +162,18 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private maxWeekChangeActions() {
-    let isValid: boolean;
+    let isValid = true;
     if (this.maxWeek === undefined) {
       this.maxWeek = this.weekUtilityService.getMaxWeek();
-      isValid = true;
     } else if (this.weekValidationService.isValidWeek(this.maxWeek)) {
       this.weekUtilityService.setMaxDate(this.maxDate);
-      isValid = true;
+    } else {
+      isValid = false;
     }
     if (isValid) {
       this.maxDate = this.weekUtilityService.getDateFromWeek(this.maxWeek);
       return;
     }
     this.weekValidationService.throwInputValueError('maxWeek');
-  }
-
-  private getDate(): NgbDateStruct | null {
-    return this.weekUtilityService.getDateAfterValidatinYearWeekString();
   }
 }
