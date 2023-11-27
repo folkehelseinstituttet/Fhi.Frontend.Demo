@@ -106,6 +106,8 @@ Error message if user input for week had been the cause of the error:
       this.updateErrorMsg(ErrorState.notTwoDelimiters);
       return false;
     }
+
+    // TODO: not logical to have these tests in isValidNumberOfParts()
     if (parts[2].length < 4 || parts[1].length < 2 || parts[0].length < 2) {
       this.updateErrorMsg(ErrorState.toFewCharactersInPart);
       return false;
@@ -114,6 +116,7 @@ Error message if user input for week had been the cause of the error:
       this.updateErrorMsg(ErrorState.toManyCharactersInPart);
       return false;
     }
+
     return true;
   }
 

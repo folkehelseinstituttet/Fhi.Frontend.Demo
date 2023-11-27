@@ -22,6 +22,7 @@ export class WeekValidationService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private errorMsg: string;
   private unvalidatedYearWeekString = '';
+  private week!: FhiWeek;
   private weekIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
 
   constructor(private weekUtilityService: WeekUtilityService) {}
@@ -38,8 +39,19 @@ export class WeekValidationService {
     return this.errorMsg;
   }
 
+  isValidWeek(week: FhiWeek): boolean {
+    console.log('isValidFhiWeek()', week);
+    this.week = week;
+    this.unvalidatedYearWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
+
+    if (!this.isValidFhiWeek()) {
+      return false;
+    }
+    return true;
+  }
+
   isValidYearWeekString(value: string): boolean {
-    this.errorMsg = undefined;
+    // this.errorMsg = undefined; // TODO: this shouldn't be necessary
 
     if (value.length === 0 && !this.weekIsRequired) {
       this.weekUtilityService.setValidYearWeekString('');
@@ -104,12 +116,29 @@ Error message if user input for week had been the cause of the error:
     return true;
   }
 
+  private isValidFhiWeek() {
+    const year = this.week.year;
+    const week = this.week.week;
+
+    if (week < 1 || week > 53) {
+      this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
+      return false;
+    }
+    if (this.weekUtilityService.getLastWeekCurrentYear(year) !== 53 && week === 53) {
+      this.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
+      return false;
+    }
+    this.weekUtilityService.setValidYearWeek(this.week);
+    return true;
+  }
+  // TODO: remove isValidYearWeekObject()
   private isValidYearWeekObject(value: string): boolean {
     const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
     const yearWeek: FhiWeek = {
       year: parseInt(parts[0], 10),
       week: parseInt(parts[1], 10),
     };
+
     if (yearWeek.week < 1 || yearWeek.week > 53) {
       this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
       return false;

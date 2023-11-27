@@ -19,7 +19,7 @@ export class WeekAdapterService extends NgbDateAdapter<FhiWeek> {
       if (typeof value === 'string') {
         return null;
       }
-      return this.weekUtilityService.getDateFromFhiWeek(value);
+      return this.weekUtilityService.getDateFromWeek(value);
     }
     return null;
   }

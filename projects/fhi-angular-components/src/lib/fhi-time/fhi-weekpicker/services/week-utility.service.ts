@@ -7,31 +7,36 @@ import { FhiWeek } from '../../fhi-week.model';
 
 @Injectable()
 export class WeekUtilityService {
-  private maxDate = this.getInitMaxDate();
+  // TODO: dynamically, and globally, set min/max date
+  // WeekUtilityService extends TimeUtilityService
+  private minWeek = { year: 1900, week: 1 };
+  private maxWeek = { year: 2023, week: 48 };
+
   private minDate = this.getInitMinDate();
+  private maxDate = this.getInitMaxDate();
+
   private lastDayCurrentYear!: Date;
   private lastWeekCurrentYear!: number;
   private validYearWeek!: FhiWeek;
   private validYearWeekString!: string;
 
-  getLastWeekCurrentYear(year: number): number {
-    this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
-    this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
-    return this.lastWeekCurrentYear;
+  getMinWeek(): FhiWeek {
+    return this.minWeek;
   }
+  // setMinWeek():  {
+  //   this.minWeek = ...
+  // }
 
-  setValidYearWeek(yearWeek: FhiWeek) {
-    this.validYearWeek = yearWeek;
+  getMaxWeek(): FhiWeek {
+    return this.maxWeek;
   }
-
-  setValidYearWeekString(value: string) {
-    this.validYearWeekString = value;
-  }
+  // setMaxWeek():  {
+  //   this.maxWeek = ...
+  // }
 
   getMaxDate(): NgbDateStruct {
     return this.maxDate;
   }
-
   getMinDate(): NgbDateStruct {
     return this.minDate;
   }
@@ -39,7 +44,6 @@ export class WeekUtilityService {
   setMaxDate(date: NgbDateStruct) {
     this.maxDate = date ? date : this.getInitMaxDate();
   }
-
   setMinDate(date: NgbDateStruct) {
     this.minDate = date ? date : this.getInitMinDate();
   }
@@ -64,6 +68,20 @@ export class WeekUtilityService {
     };
   }
 
+  // TODO: is these methods necessary?
+  setValidYearWeek(yearWeek: FhiWeek) {
+    this.validYearWeek = yearWeek;
+  }
+  setValidYearWeekString(value: string) {
+    this.validYearWeekString = value;
+  }
+
+  getLastWeekCurrentYear(year: number): number {
+    this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
+    this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
+    return this.lastWeekCurrentYear;
+  }
+
   isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
     return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
@@ -83,20 +101,11 @@ export class WeekUtilityService {
     return { year: year, week: week };
   }
 
-  // TODO: remove
-  getYearWeek(date: Date): FhiWeek {
-    let year = date.getFullYear();
-    const week = getWeek(date, {
-      weekStartsOn: 1,
-      firstWeekContainsDate: 4,
-    });
-    if (week === 1 && date.getMonth() === 11) {
-      year = year + 1;
+  geWeekStringFromWeek(week: FhiWeek): string {
+    if (week && week.year && week.week) {
+      return `${week.year}${FhiTimeConstants.weekpickerDelimiter}${week.week}`;
     }
-    if (week === 53 && date.getMonth() === 0) {
-      year = year - 1;
-    }
-    return { year: year, week: week };
+    return '';
   }
 
   getYearWeekStringFromDate(date: NgbDateStruct): string {
@@ -104,7 +113,7 @@ export class WeekUtilityService {
       return '';
     }
     const jsDate = new Date(date.year, date.month - 1, date.day);
-    const yearWeek = this.getYearWeek(jsDate);
+    const yearWeek = this.getFhiWeek(jsDate);
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
@@ -126,17 +135,10 @@ export class WeekUtilityService {
     return date;
   }
 
-  getDateFromFhiWeek(week: FhiWeek): NgbDateStruct | null {
+  getDateFromWeek(week: FhiWeek): NgbDateStruct | null {
     const lastDayCurrentYear = lastDayOfYear(new Date(week.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
     return this.getDate(week, lastWeekCurrentYear, lastDayCurrentYear);
-  }
-
-  // TODO: remove
-  getDateFromYearWeek(yearWeek: FhiWeek): NgbDateStruct | null {
-    const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
-    const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
-    return this.getDate(yearWeek, lastWeekCurrentYear, lastDayCurrentYear);
   }
 
   private getDate(

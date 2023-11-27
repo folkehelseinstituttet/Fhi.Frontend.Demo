@@ -61,13 +61,18 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   invalidFeedbackText!: string;
   isValid = true;
+
+  weekString!: string;
+  // TODO: model!: string; ?
   minDate: NgbDateStruct;
   maxDate: NgbDateStruct;
-  minWeekString: string;
-  maxWeekString: string;
-  placeholder = FhiTimeConstants.weekpickerPlaceholder;
   startDate!: NgbDateStruct;
-  weekString: string;
+
+  minWeekString: string; // TODO: do we need this property?
+  maxWeekString: string; // TODO: do we need this property?
+
+  // TODO: same solution for placeholders in all components...
+  placeholder = FhiTimeConstants.weekpickerPlaceholder;
 
   constructor(
     private weekValidationService: WeekValidationService,
@@ -75,7 +80,6 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    // this.initMinMaxWeeks();
     this.weekChangeActions();
     this.minWeekChangeActions();
     this.maxWeekChangeActions();
@@ -97,7 +101,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     const jsDate = new Date(date.year, date.month - 1, date.day);
     this.isValid = true;
     this.startDate = date;
-    this.weekSelect.emit(this.weekUtilityService.getYearWeek(jsDate));
+    this.weekSelect.emit(this.weekUtilityService.getFhiWeek(jsDate));
   }
 
   onBlur() {
@@ -126,7 +130,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     if (this.isValid && date !== null) {
       const jsDate = new Date(date.year, date.month - 1, date.day);
       this.startDate = date;
-      this.weekSelect.emit(this.weekUtilityService.getYearWeek(jsDate));
+      this.weekSelect.emit(this.weekUtilityService.getFhiWeek(jsDate));
       return;
     }
     this.invalidFeedbackText = this.weekValidationService.getInvalidFeedbackText();
@@ -162,51 +166,33 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     return undefined;
   }
 
-  private initMinMaxWeeks() {
-    if (this.week) {
-      this.weekString = this.week.year + FhiTimeConstants.weekpickerDelimiter + this.week.week;
-    }
-    if (this.minWeek) {
-      this.minWeekString =
-        this.minWeek.year + FhiTimeConstants.weekpickerDelimiter + this.minWeek.week;
-    }
-    if (this.maxWeek) {
-      this.maxWeekString =
-        this.maxWeek.year + FhiTimeConstants.weekpickerDelimiter + this.maxWeek.week;
-    }
-  }
-
   private minWeekChangeActions() {
-    console.log('minWeekChangeActions', this.minWeek);
-
+    let isValid: boolean;
     if (this.minWeek === undefined) {
-      // this.minWeek = this.weekUtilityService.getMaxWeek(this.maxDate);
-      return;
-    }
-
-    this.minWeekString =
-      this.minWeek.year + FhiTimeConstants.weekpickerDelimiter + this.minWeek.week;
-    if (this.weekValidationService.isValidYearWeekString(this.minWeekString)) {
-      this.minDate = this.getDate();
+      this.minWeek = this.weekUtilityService.getMinWeek();
+      isValid = true;
+    } else if (this.weekValidationService.isValidWeek(this.minWeek)) {
       this.weekUtilityService.setMinDate(this.minDate);
+      isValid = true;
+    }
+    if (isValid) {
+      this.minDate = this.weekUtilityService.getDateFromWeek(this.minWeek);
       return;
     }
     this.weekValidationService.throwInputValueError('minWeek');
   }
 
   private maxWeekChangeActions() {
-    // console.log('maxWeekChangeActions', this.maxWeek);
-
+    let isValid: boolean;
     if (this.maxWeek === undefined) {
-      // this.minWeek = this.weekUtilityService.getMaxWeek(this.maxDate);
-      return;
-    }
-
-    this.maxWeekString =
-      this.maxWeek.year + FhiTimeConstants.weekpickerDelimiter + this.maxWeek.week;
-    if (this.weekValidationService.isValidYearWeekString(this.maxWeekString)) {
-      this.maxDate = this.getDate();
+      this.maxWeek = this.weekUtilityService.getMaxWeek();
+      isValid = true;
+    } else if (this.weekValidationService.isValidWeek(this.maxWeek)) {
       this.weekUtilityService.setMaxDate(this.maxDate);
+      isValid = true;
+    }
+    if (isValid) {
+      this.maxDate = this.weekUtilityService.getDateFromWeek(this.maxWeek);
       return;
     }
     this.weekValidationService.throwInputValueError('maxWeek');

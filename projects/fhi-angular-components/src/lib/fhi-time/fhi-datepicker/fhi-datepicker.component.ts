@@ -61,11 +61,13 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   @Output() dateSelect = new EventEmitter<FhiDate>();
 
-  dateString!: string;
   invalidFeedback!: string;
   isValid = true;
+  dateString!: string;
   model!: string;
   startDate!: FhiDate;
+
+  // TODO: same solution for placeholders in all components...
   placeholder = 'dd.mm.åååå'; // TODO: constants
 
   constructor(
