@@ -119,6 +119,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     if (isValid) {
       this.dateSelect.emit(this.dateUtilityService.getFhiDateFromValidDateString(dateString));
       this.isValid = true;
+      return;
     }
     this.isValid = false;
     this.invalidFeedback = this.dateValidationService.getInvalidFeedbackText();
