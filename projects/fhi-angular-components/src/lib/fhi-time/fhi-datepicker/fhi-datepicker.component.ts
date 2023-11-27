@@ -112,6 +112,9 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   private validateAndEmit() {
     const dateString = this.dateValidationService.getUnvalidatedDateString();
+    if (dateString === undefined) {
+      return;
+    }
     const isValid = this.dateValidationService.isValidDateString(dateString);
     if (isValid) {
       this.dateSelect.emit(this.dateUtilityService.getFhiDateFromValidDateString(dateString));
