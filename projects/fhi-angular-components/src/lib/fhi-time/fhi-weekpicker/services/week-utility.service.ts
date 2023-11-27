@@ -3,7 +3,7 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { FhiWeek } from '../fhi-week.model';
+import { FhiWeek } from '../../fhi-week.model';
 
 @Injectable()
 export class WeekUtilityService {
@@ -68,6 +68,22 @@ export class WeekUtilityService {
     return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
 
+  getFhiWeek(date: Date): FhiWeek {
+    let year = date.getFullYear();
+    const week = getWeek(date, {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4,
+    });
+    if (week === 1 && date.getMonth() === 11) {
+      year = year + 1;
+    }
+    if (week === 53 && date.getMonth() === 0) {
+      year = year - 1;
+    }
+    return { year: year, week: week };
+  }
+
+  // TODO: remove
   getYearWeek(date: Date): FhiWeek {
     let year = date.getFullYear();
     const week = getWeek(date, {
@@ -110,6 +126,13 @@ export class WeekUtilityService {
     return date;
   }
 
+  getDateFromFhiWeek(week: FhiWeek): NgbDateStruct | null {
+    const lastDayCurrentYear = lastDayOfYear(new Date(week.year, 0));
+    const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
+    return this.getDate(week, lastWeekCurrentYear, lastDayCurrentYear);
+  }
+
+  // TODO: remove
   getDateFromYearWeek(yearWeek: FhiWeek): NgbDateStruct | null {
     const lastDayCurrentYear = lastDayOfYear(new Date(yearWeek.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);

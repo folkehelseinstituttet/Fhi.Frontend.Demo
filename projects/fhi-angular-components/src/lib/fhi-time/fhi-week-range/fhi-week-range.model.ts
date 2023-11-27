@@ -1,4 +1,4 @@
-import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
+import { FhiWeek } from '../fhi-week.model';
 
 export class FhiWeekRange {
   from: FhiWeek;

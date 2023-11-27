@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -30,6 +31,7 @@ import { DateValidationService } from './services/date-validator.service';
 @Component({
   selector: 'fhi-datepicker',
   templateUrl: './fhi-datepicker.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [FormsModule, CommonModule, NgbDatepickerModule],
   providers: [

@@ -7,10 +7,10 @@
   ></fhi-datepicker>
 
   <!-- Debugging code (don't delete) -->
-  <br />
+  <!-- <br />
   <button type="button" class="btn fhi-btn-link" (click)="updateDate()">Update date</button>
   <button type="button" class="btn fhi-btn-link" (click)="updateMinDate()">Update minDate</button>
-  <button type="button" class="btn fhi-btn-link" (click)="updateMaxDate()">Update maxDate</button>
+  <button type="button" class="btn fhi-btn-link" (click)="updateMaxDate()">Update maxDate</button> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateRange.id">
@@ -28,11 +28,22 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekpicker.id">
-  <fhi-weekpicker (weekSelect)="onWeekSelect($event)"> </fhi-weekpicker>
+  <fhi-weekpicker
+    [week]="week"
+    [minWeek]="minWeek"
+    [maxWeek]="maxWeek"
+    (weekSelect)="onWeekSelect($event)"
+  ></fhi-weekpicker>
+
+  <!-- Debugging code (don't delete) -->
+  <br />
+  <button type="button" class="btn fhi-btn-link" (click)="updateWeek()">Update week</button>
+  <button type="button" class="btn fhi-btn-link" (click)="updateMinWeek()">Update minWeek</button>
+  <button type="button" class="btn fhi-btn-link" (click)="updateMaxWeek()">Update maxWeek</button>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">
-  <fhi-week-range (weekRangeSelect)="onWeekRangeSelect($event)"> </fhi-week-range>
+  <!-- <fhi-week-range (weekRangeSelect)="onWeekRangeSelect($event)"> </fhi-week-range> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorYearMonth.id">

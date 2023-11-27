@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import { FhiDate } from '@folkehelseinstituttet/angular-components';
 import { FhiMonth } from '@folkehelseinstituttet/angular-components';
+import { FhiWeek } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-time-selectors',
@@ -17,13 +18,18 @@ export class TimeSelectorsComponent {
   minDate: FhiDate;
   maxDate: FhiDate;
 
+  // Weekpicker
+  week: FhiWeek;
+  minWeek: FhiWeek;
+  maxWeek: FhiWeek;
+
   //
   // Datepicker
   //
 
   updateDate() {
-    const date1: FhiDate = { year: 2019, month: 9, day: 11 };
-    const date2: FhiDate = { year: 2020, month: 10, day: 23 };
+    const date1 = { year: 2019, month: 9, day: 11 };
+    const date2 = { year: 2020, month: 10, day: 23 };
     this.date = this.date?.year !== date1.year ? date1 : date2;
   }
 
@@ -63,7 +69,25 @@ export class TimeSelectorsComponent {
   // Weekpicker
   //
 
-  onWeekSelect(week: any) {
+  updateWeek() {
+    const week1 = { year: 2019, week: 11 };
+    const week2 = { year: 2020, week: 23 };
+    this.week = this.week?.year !== week1.year ? week1 : week2;
+  }
+
+  updateMinWeek() {
+    const week1 = { year: 2010, week: 1 };
+    const week2 = { year: 2015, week: 1 };
+    this.minWeek = this.minWeek?.year !== week1.year ? week1 : week2;
+  }
+
+  updateMaxWeek() {
+    const week1 = { year: 2023, week: 52 };
+    const week2 = { year: 2020, week: 1 };
+    this.maxWeek = this.maxWeek?.year !== week1.year ? week1 : week2;
+  }
+
+  onWeekSelect(week: FhiWeek) {
     console.info(week);
   }
 

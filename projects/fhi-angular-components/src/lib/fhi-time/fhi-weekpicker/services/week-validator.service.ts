@@ -3,7 +3,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { FhiWeek } from '../fhi-week.model';
+import { FhiWeek } from '../../fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
 export enum WeekErrorState {

@@ -37,4 +37,5 @@ export * from './lib/fhi-time/fhi-years/fhi-years.component';
 export * from './lib/fhi-time/fhi-year-range/fhi-year-range.component';
 
 export * from './lib/fhi-time/fhi-date.model';
+export * from './lib/fhi-time/fhi-week.model';
 export * from './lib/fhi-time/fhi-month.model';
