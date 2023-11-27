@@ -34,18 +34,18 @@ export class WeekUtilityService {
   //   this.maxWeek = ...
   // }
 
-  getMaxDate(): NgbDateStruct {
-    return this.maxDate;
-  }
   getMinDate(): NgbDateStruct {
     return this.minDate;
   }
-
-  setMaxDate(date: NgbDateStruct) {
-    this.maxDate = date ? date : this.getInitMaxDate();
-  }
   setMinDate(date: NgbDateStruct) {
     this.minDate = date ? date : this.getInitMinDate();
+  }
+
+  getMaxDate(): NgbDateStruct {
+    return this.maxDate;
+  }
+  setMaxDate(date: NgbDateStruct) {
+    this.maxDate = date ? date : this.getInitMaxDate();
   }
 
   getInitMaxDate(): NgbDateStruct {
@@ -84,6 +84,10 @@ export class WeekUtilityService {
 
   isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
     return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
+  }
+
+  getWeekFromNgbDate(date: NgbDate): FhiWeek {
+    return this.getFhiWeek(new Date(date.year, date.month - 1, date.day));
   }
 
   getFhiWeek(date: Date): FhiWeek {

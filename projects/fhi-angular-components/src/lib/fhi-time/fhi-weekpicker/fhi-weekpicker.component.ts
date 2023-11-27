@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 
 import {
+  NgbDate,
   NgbDateAdapter,
   NgbDateParserFormatter,
   NgbDateStruct,
@@ -97,11 +98,10 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     }
   }
 
-  onDateSelect(date: NgbDateStruct) {
-    const jsDate = new Date(date.year, date.month - 1, date.day);
+  onDateSelect(date: NgbDate) {
     this.isValid = true;
     this.startDate = date;
-    this.weekSelect.emit(this.weekUtilityService.getFhiWeek(jsDate));
+    this.weekSelect.emit(this.weekUtilityService.getWeekFromNgbDate(date));
   }
 
   onBlur() {
@@ -128,6 +128,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
       this.isValid = false;
     }
     if (this.isValid && date !== null) {
+      // TODO: move new Date() into util...
       const jsDate = new Date(date.year, date.month - 1, date.day);
       this.startDate = date;
       this.weekSelect.emit(this.weekUtilityService.getFhiWeek(jsDate));
