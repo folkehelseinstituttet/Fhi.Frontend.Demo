@@ -116,7 +116,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   private validateAndEmit() {
     const weekString = this.weekValidationService.getUnvalidatedYearWeekString();
-    const isValid = this.weekValidationService.isValidYearWeekString(weekString);
+    const isValid = this.weekValidationService.isValidWeekString(weekString);
     if (isValid) {
       this.weekSelect.emit(this.weekUtilityService.getWeekFromValidWeekString(weekString));
       this.isValid = true;

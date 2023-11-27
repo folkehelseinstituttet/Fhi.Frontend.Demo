@@ -70,7 +70,7 @@ export class TimeSelectorsComponent {
   //
 
   updateWeek() {
-    const week1 = { year: 2019, week: 54 };
+    const week1 = { year: 2019, week: 52 };
     const week2 = { year: 2020, week: 23 };
     this.week = this.week?.year !== week1.year ? week1 : week2;
   }

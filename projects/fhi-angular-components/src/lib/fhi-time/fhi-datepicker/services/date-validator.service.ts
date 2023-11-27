@@ -61,7 +61,7 @@ Error message if user input for week had been the cause of the error:
   }
 
   isValidDateString(value: string): boolean {
-    this.errorMsg = undefined;
+    this.errorMsg = undefined; // TODO: skip this
     const parts = value.split('.'); // TODO: constants
 
     if (value.length === 0 && !this.dateIsRequired) {

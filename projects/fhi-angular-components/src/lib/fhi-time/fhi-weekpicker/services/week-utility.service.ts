@@ -17,8 +17,6 @@ export class WeekUtilityService {
 
   private lastDayCurrentYear!: Date;
   private lastWeekCurrentYear!: number;
-  private validYearWeek!: FhiWeek;
-  private validYearWeekString!: string;
 
   getMinWeek(): FhiWeek {
     return this.minWeek;
@@ -68,22 +66,10 @@ export class WeekUtilityService {
     };
   }
 
-  // TODO: is these methods necessary?
-  setValidYearWeek(yearWeek: FhiWeek) {
-    this.validYearWeek = yearWeek;
-  }
-  setValidYearWeekString(value: string) {
-    this.validYearWeekString = value;
-  }
-
   getLastWeekCurrentYear(year: number): number {
     this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
     this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
     return this.lastWeekCurrentYear;
-  }
-
-  isOutsideMaxOrMin(date: NgbDateStruct | null): boolean {
-    return NgbDate.from(date).before(this.minDate) || NgbDate.from(date).after(this.maxDate);
   }
 
   getWeekFromValidWeekString(value: string): FhiWeek {
@@ -127,25 +113,6 @@ export class WeekUtilityService {
     const jsDate = new Date(date.year, date.month - 1, date.day);
     const yearWeek = this.getFhiWeek(jsDate);
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
-  }
-
-  // TODO: remove? I hope!
-  getDateAfterValidatinYearWeekString(): NgbDateStruct | null {
-    if (this.validYearWeekString === undefined) {
-      throw new Error(
-        `WeekUtilityService.getDateAfterValidatinYearWeekString() is called before yearWeekString is validated.`,
-      );
-    }
-    if (this.validYearWeekString === '') {
-      return null;
-    }
-    const date = this.getDate(
-      this.validYearWeek,
-      this.lastWeekCurrentYear,
-      this.lastDayCurrentYear,
-    );
-    this.validYearWeekString = undefined;
-    return date;
   }
 
   getDateFromWeek(week: FhiWeek): NgbDateStruct | null {

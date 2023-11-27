@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
 import { FhiWeek } from '../../fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
-export enum WeekErrorState {
+export enum ErrorState {
   toManyCharacters = 1,
   toFewCharacters = 2,
-  not53WeeksInThisYear = 3,
-  notOneDelimiter = 4,
-  notValidWeekNumber = 5,
-  onlyNumbersAllowed = 6,
-  weekIsRequired = 7,
-  weekOutsideMaxOrMin = 8,
+  toManyCharactersInPart = 3,
+  toFewCharactersInPart = 4,
+  not53WeeksInThisYear = 5,
+  notOneDelimiter = 6,
+  notValidWeekNumber = 7,
+  onlyNumbersAllowed = 8,
+  isRequired = 9,
+  outsideMaxOrMin = 10,
 }
 
 @Injectable()
@@ -23,61 +25,20 @@ export class WeekValidationService {
   private errorMsg: string;
   private unvalidatedYearWeekString = '';
   private week!: FhiWeek;
-  private weekIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
+  private isRequired = false; // @Inuput() isRequired is not implemented yet
 
   constructor(private weekUtilityService: WeekUtilityService) {}
-
-  setUnvalidatedYearWeekString(value: string) {
-    this.unvalidatedYearWeekString = value;
-  }
 
   getUnvalidatedYearWeekString() {
     return this.unvalidatedYearWeekString;
   }
 
+  setUnvalidatedYearWeekString(value: string) {
+    this.unvalidatedYearWeekString = value;
+  }
+
   getInvalidFeedbackText(): string {
     return this.errorMsg;
-  }
-
-  isValidWeek(week: FhiWeek): boolean {
-    console.log('isValidFhiWeek()', week);
-    this.week = week;
-
-    // TODO: remove call to method in date-validation as well
-    this.unvalidatedYearWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
-
-    if (!this.isValidFhiWeek()) {
-      return false;
-    }
-    return true;
-  }
-
-  isValidYearWeekString(value: string): boolean {
-    // this.errorMsg = undefined; // TODO: this shouldn't be necessary
-
-    if (value.length === 0 && !this.weekIsRequired) {
-      this.weekUtilityService.setValidYearWeekString('');
-      return true;
-    }
-    if (!this.isValidYearWeekStringLength(value)) {
-      return false;
-    }
-    if (!this.isValidYearWeekStringParts(value)) {
-      return false;
-    }
-    if (!this.isValidYearWeekObject(value)) {
-      return false;
-    }
-    this.weekUtilityService.setValidYearWeekString(value);
-    return true;
-  }
-
-  isWeekWithinMaxWeekAndMinWeek(date: NgbDateStruct | null): boolean {
-    if (this.weekUtilityService.isOutsideMaxOrMin(date)) {
-      this.updateErrorMsg(WeekErrorState.weekOutsideMaxOrMin);
-      return false;
-    }
-    return true;
   }
 
   throwInputValueError(inputName: string) {
@@ -88,33 +49,78 @@ Error message if user input for week had been the cause of the error:
 "${this.errorMsg}"\n`);
   }
 
-  private isValidYearWeekStringLength(value: string): boolean {
-    if (value.length === 0) {
-      this.updateErrorMsg(WeekErrorState.weekIsRequired);
-      return false;
-    }
-    if (value.length > 0 && value.length < 6) {
-      this.updateErrorMsg(WeekErrorState.toFewCharacters);
-      return false;
-    }
-    if (value.length > 7) {
-      this.updateErrorMsg(WeekErrorState.toManyCharacters);
+  isValidWeek(week: FhiWeek): boolean {
+    this.week = week;
+
+    // TODO: remove call to method in date-validation as well
+    this.unvalidatedYearWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
+
+    // TODO: same naming date-validation as well
+    if (!this.isValidFhiWeek()) {
       return false;
     }
     return true;
   }
 
-  private isValidYearWeekStringParts(value: string): boolean {
+  isValidWeekString(value: string): boolean {
+    if (value.length === 0 && !this.isRequired) {
+      return true;
+    }
+    if (!this.isValidWeekStringLength(value)) {
+      return false;
+    }
+    // TODO: add isValidAllPartsOfString to date-validation as well
+    if (!this.isValidAllPartsOfString(value)) {
+      return false;
+    }
+    if (!this.isValidFhiWeek()) {
+      return false;
+    }
+    if (!this.isWithinMinWeekAndMaxWeek()) {
+      return false;
+    }
+    return true;
+  }
+
+  private isValidWeekStringLength(value: string): boolean {
+    if (value.length === 0) {
+      this.updateErrorMsg(ErrorState.isRequired);
+      return false;
+    }
+    if (value.length > 0 && value.length < 6) {
+      this.updateErrorMsg(ErrorState.toFewCharacters);
+      return false;
+    }
+    if (value.length > 7) {
+      this.updateErrorMsg(ErrorState.toManyCharacters);
+      return false;
+    }
+    return true;
+  }
+
+  private isValidAllPartsOfString(value: string): boolean {
     const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
-      this.updateErrorMsg(WeekErrorState.notOneDelimiter);
+      this.updateErrorMsg(ErrorState.notOneDelimiter);
       return false;
     }
-    if (isNaN(toNumber(parts[0])) || isNaN(toNumber(parts[1]))) {
-      this.updateErrorMsg(WeekErrorState.onlyNumbersAllowed);
+    if (parts[0].length < 4 || parts[1].length < 1) {
+      this.updateErrorMsg(ErrorState.toFewCharactersInPart);
       return false;
     }
+    if (parts[0].length > 4 || parts[1].length > 2) {
+      this.updateErrorMsg(ErrorState.toManyCharactersInPart);
+      return false;
+    }
+    const year = toNumber(parts[0]);
+    const week = toNumber(parts[1]);
+
+    if (isNaN(year) || isNaN(week)) {
+      this.updateErrorMsg(ErrorState.onlyNumbersAllowed);
+      return false;
+    }
+    this.week = { year: year, week: week };
     return true;
   }
 
@@ -123,36 +129,27 @@ Error message if user input for week had been the cause of the error:
     const week = this.week.week;
 
     if (week < 1 || week > 53) {
-      this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
+      this.updateErrorMsg(ErrorState.notValidWeekNumber);
       return false;
     }
     if (this.weekUtilityService.getLastWeekCurrentYear(year) !== 53 && week === 53) {
-      this.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
+      this.updateErrorMsg(ErrorState.not53WeeksInThisYear);
       return false;
     }
-    this.weekUtilityService.setValidYearWeek(this.week);
     return true;
   }
-  // TODO: remove isValidYearWeekObject()
-  private isValidYearWeekObject(value: string): boolean {
-    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
-    const yearWeek: FhiWeek = {
-      year: parseInt(parts[0], 10),
-      week: parseInt(parts[1], 10),
-    };
 
-    if (yearWeek.week < 1 || yearWeek.week > 53) {
-      this.updateErrorMsg(WeekErrorState.notValidWeekNumber);
+  private isWithinMinWeekAndMaxWeek(): boolean {
+    const date = this.weekUtilityService.getDateFromWeek(this.week);
+    const minDate = this.weekUtilityService.getMinDate();
+    const maxDate = this.weekUtilityService.getMaxDate();
+    const isOutsideMaxOrMin =
+      NgbDate.from(date).before(minDate) || NgbDate.from(date).after(maxDate);
+
+    if (isOutsideMaxOrMin) {
+      this.updateErrorMsg(ErrorState.outsideMaxOrMin);
       return false;
     }
-    if (
-      this.weekUtilityService.getLastWeekCurrentYear(yearWeek.year) !== 53 &&
-      yearWeek.week === 53
-    ) {
-      this.updateErrorMsg(WeekErrorState.not53WeeksInThisYear);
-      return false;
-    }
-    this.weekUtilityService.setValidYearWeek(yearWeek);
     return true;
   }
 
@@ -162,28 +159,28 @@ Error message if user input for week had been the cause of the error:
 
   private getErrorMsg(errorState: number): string {
     switch (errorState) {
-      case WeekErrorState.toManyCharacters:
+      case ErrorState.toManyCharacters:
         return this.getToManyCharactersMsg();
 
-      case WeekErrorState.toFewCharacters:
+      case ErrorState.toFewCharacters:
         return this.getToFewCharactersMsg();
 
-      case WeekErrorState.not53WeeksInThisYear:
+      case ErrorState.not53WeeksInThisYear:
         return this.getNot53WeeksInThisYearMsg();
 
-      case WeekErrorState.notOneDelimiter:
+      case ErrorState.notOneDelimiter:
         return this.getNotOneDelimiterMsg();
 
-      case WeekErrorState.notValidWeekNumber:
+      case ErrorState.notValidWeekNumber:
         return this.getNotValidWeekNumberMsg();
 
-      case WeekErrorState.onlyNumbersAllowed:
+      case ErrorState.onlyNumbersAllowed:
         return this.getOnlyNumbersAllowedMsg();
 
-      case WeekErrorState.weekIsRequired:
+      case ErrorState.isRequired:
         return this.getWeekIsRequiredMsg();
 
-      case WeekErrorState.weekOutsideMaxOrMin:
+      case ErrorState.outsideMaxOrMin:
         return this.getWeekOutsideMaxOrMinMsg();
     }
   }
