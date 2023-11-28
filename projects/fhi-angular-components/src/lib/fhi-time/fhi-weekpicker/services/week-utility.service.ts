@@ -75,10 +75,6 @@ export class WeekUtilityService {
     };
   }
 
-  getWeekFromNgbDate(date: NgbDate): FhiWeek {
-    return this.getWeekFromDate(new Date(date.year, date.month - 1, date.day));
-  }
-
   getWeekFromDate(date: Date): FhiWeek {
     let year = date.getFullYear();
     const week = getWeek(date, {
