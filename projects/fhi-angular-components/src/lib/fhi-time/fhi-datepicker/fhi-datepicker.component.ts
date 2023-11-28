@@ -26,7 +26,7 @@ import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
 import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
-import { DateValidationService } from './services/date-validator.service';
+import { DateValidationService } from './services/date-validation.service';
 
 @Component({
   selector: 'fhi-datepicker',

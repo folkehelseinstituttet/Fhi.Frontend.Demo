@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { WeekValidationService } from './week-validator.service';
+import { WeekValidationService } from './week-validation.service';
 import { WeekUtilityService } from './week-utility.service';
 
 /**

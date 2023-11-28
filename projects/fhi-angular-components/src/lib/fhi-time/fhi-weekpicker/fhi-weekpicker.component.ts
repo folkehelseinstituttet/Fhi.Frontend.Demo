@@ -25,7 +25,7 @@ import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
 import { WeekAdapterService } from './services/week-adapter.service';
-import { WeekValidationService } from './services/week-validator.service';
+import { WeekValidationService } from './services/week-validation.service';
 import { WeekUtilityService } from './services/week-utility.service';
 
 @Component({
