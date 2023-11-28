@@ -51,11 +51,8 @@ Error message if user input for week had been the cause of the error:
 
   isValidWeek(week: FhiWeek): boolean {
     this.week = week;
-
-    // TODO: remove call to method in date-validation as well
     this.unvalidatedWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
 
-    // TODO: same naming date-validation as well
     if (!this.isValidFhiWeek()) {
       return false;
     }

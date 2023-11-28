@@ -131,7 +131,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     // TODO: isWithinMinDateAndMaxDate(), or skip that test? It's hard to make sure
     //       that min/max is set when dateChangeActions() runs... this problem
     //       is the same in the weekpicker, current implementation can fail...
-    if (this.date === undefined || this.dateValidationService.isValidFhiDate(this.date)) {
+    if (this.date === undefined || this.dateValidationService.isValidDate(this.date)) {
       this.model = this.dateAdapter.toModel(this.date);
       this.startDate = this.date;
       this.isValid = true;
@@ -146,7 +146,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
       this.minDate = this.dateUtilityService.getMinDate();
       return;
     }
-    if (this.dateValidationService.isValidFhiDate(this.minDate)) {
+    if (this.dateValidationService.isValidDate(this.minDate)) {
       this.dateUtilityService.setMinDate(this.minDate);
       return;
     }
@@ -159,7 +159,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
       this.maxDate = this.dateUtilityService.getMaxDate();
       return;
     }
-    if (this.dateValidationService.isValidFhiDate(this.maxDate)) {
+    if (this.dateValidationService.isValidDate(this.maxDate)) {
       this.dateUtilityService.setMaxDate(this.maxDate);
       return;
     }
