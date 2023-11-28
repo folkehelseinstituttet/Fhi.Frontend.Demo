@@ -5,6 +5,7 @@ import { toNumber } from 'lodash-es';
 import { FhiTimeConstants } from '../../fhi-time-constants';
 import { FhiWeek } from '../../fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
+import { getISOWeek, lastDayOfYear } from 'date-fns';
 
 export enum ErrorState {
   toManyCharacters = 1,
@@ -23,18 +24,17 @@ export enum ErrorState {
 export class WeekValidationService {
   private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
   private errorMsg: string;
-  private unvalidatedYearWeekString = '';
+  private unvalidatedWeekString = '';
   private week!: FhiWeek;
   private isRequired = false; // @Inuput() isRequired is not implemented yet
 
   constructor(private weekUtilityService: WeekUtilityService) {}
 
-  getUnvalidatedYearWeekString() {
-    return this.unvalidatedYearWeekString;
+  getUnvalidatedWeekString() {
+    return this.unvalidatedWeekString;
   }
-
-  setUnvalidatedYearWeekString(value: string) {
-    this.unvalidatedYearWeekString = value;
+  setUnvalidatedWeekString(value: string) {
+    this.unvalidatedWeekString = value;
   }
 
   getInvalidFeedbackText(): string {
@@ -53,7 +53,7 @@ Error message if user input for week had been the cause of the error:
     this.week = week;
 
     // TODO: remove call to method in date-validation as well
-    this.unvalidatedYearWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
+    this.unvalidatedWeekString = this.weekUtilityService.geWeekStringFromWeek(week);
 
     // TODO: same naming date-validation as well
     if (!this.isValidFhiWeek()) {
@@ -132,7 +132,7 @@ Error message if user input for week had been the cause of the error:
       this.updateErrorMsg(ErrorState.notValidWeekNumber);
       return false;
     }
-    if (this.weekUtilityService.getLastWeekCurrentYear(year) !== 53 && week === 53) {
+    if (getISOWeek(lastDayOfYear(new Date(year, 0))) !== 53 && week === 53) {
       this.updateErrorMsg(ErrorState.not53WeeksInThisYear);
       return false;
     }

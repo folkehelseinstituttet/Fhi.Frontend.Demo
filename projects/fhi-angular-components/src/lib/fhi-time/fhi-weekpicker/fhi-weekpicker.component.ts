@@ -60,7 +60,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   @Output() weekSelect = new EventEmitter<FhiWeek>();
 
-  invalidFeedbackText!: string;
+  invalidFeedback!: string;
   isValid = true;
   model!: FhiWeek;
   minDate: NgbDateStruct;
@@ -115,7 +115,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private validateAndEmit() {
-    const weekString = this.weekValidationService.getUnvalidatedYearWeekString();
+    const weekString = this.weekValidationService.getUnvalidatedWeekString();
     const isValid = this.weekValidationService.isValidWeekString(weekString);
     if (isValid) {
       this.weekSelect.emit(this.weekUtilityService.getWeekFromValidWeekString(weekString));
@@ -123,7 +123,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
       return;
     }
     this.isValid = false;
-    this.invalidFeedbackText = this.weekValidationService.getInvalidFeedbackText();
+    this.invalidFeedback = this.weekValidationService.getInvalidFeedbackText();
   }
 
   private weekChangeActions() {

@@ -15,22 +15,13 @@ export class WeekUtilityService {
   private minDate = this.getInitMinDate();
   private maxDate = this.getInitMaxDate();
 
-  private lastDayCurrentYear!: Date;
-  private lastWeekCurrentYear!: number;
-
   getMinWeek(): FhiWeek {
     return this.minWeek;
   }
-  // setMinWeek():  {
-  //   this.minWeek = ...
-  // }
 
   getMaxWeek(): FhiWeek {
     return this.maxWeek;
   }
-  // setMaxWeek():  {
-  //   this.maxWeek = ...
-  // }
 
   getMinDate(): NgbDateStruct {
     return this.minDate;
@@ -66,12 +57,6 @@ export class WeekUtilityService {
     };
   }
 
-  getLastWeekCurrentYear(year: number): number {
-    this.lastDayCurrentYear = lastDayOfYear(new Date(year, 0));
-    this.lastWeekCurrentYear = getISOWeek(this.lastDayCurrentYear);
-    return this.lastWeekCurrentYear;
-  }
-
   getWeekFromValidWeekString(value: string): FhiWeek {
     const week = value.split(FhiTimeConstants.weekpickerDelimiter);
     return {
@@ -81,10 +66,10 @@ export class WeekUtilityService {
   }
 
   getWeekFromNgbDate(date: NgbDate): FhiWeek {
-    return this.getFhiWeek(new Date(date.year, date.month - 1, date.day));
+    return this.getWeekFromDate(new Date(date.year, date.month - 1, date.day));
   }
 
-  getFhiWeek(date: Date): FhiWeek {
+  getWeekFromDate(date: Date): FhiWeek {
     let year = date.getFullYear();
     const week = getWeek(date, {
       weekStartsOn: 1,
@@ -106,12 +91,12 @@ export class WeekUtilityService {
     return '';
   }
 
-  getYearWeekStringFromDate(date: NgbDateStruct): string {
+  getWeekStringFromDate(date: NgbDateStruct): string {
     if (date === null) {
       return '';
     }
     const jsDate = new Date(date.year, date.month - 1, date.day);
-    const yearWeek = this.getFhiWeek(jsDate);
+    const yearWeek = this.getWeekFromDate(jsDate);
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
