@@ -12,7 +12,6 @@ import {
 } from '@angular/core';
 
 import {
-  NgbDate,
   NgbDateAdapter,
   NgbDateParserFormatter,
   NgbDateStruct,
