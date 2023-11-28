@@ -181,7 +181,15 @@ Error message if user input for week had been the cause of the error:
 
       case ErrorState.outsideMaxOrMin:
         return this.getWeekOutsideMaxOrMinMsg();
+
+      case ErrorState.toManyCharactersInPart:
+      case ErrorState.toFewCharactersInPart:
+        return this.getWrongFormat();
     }
+  }
+
+  private getWrongFormat(): string {
+    return `Du har lagt inn en ukeverdi som har feil formate. ${this.correctFormat}`;
   }
 
   private getToManyCharactersMsg(): string {
