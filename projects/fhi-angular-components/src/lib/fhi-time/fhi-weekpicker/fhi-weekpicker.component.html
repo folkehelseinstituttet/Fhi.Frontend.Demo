@@ -17,12 +17,11 @@
       [showWeekNumbers]="true"
       [maxDate]="maxDate"
       [minDate]="minDate"
-      [startDate]="startDate"
       [(ngModel)]="model"
       (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"
-      (dateSelect)="onDateSelect($event)"
+      (dateSelect)="onDateSelect()"
       ngbDatepicker
       #datepicker="ngbDatepicker"
     />

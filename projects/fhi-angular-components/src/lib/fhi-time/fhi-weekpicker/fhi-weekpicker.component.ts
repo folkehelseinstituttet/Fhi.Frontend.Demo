@@ -65,7 +65,6 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   model!: FhiWeek;
   minDate: NgbDateStruct;
   maxDate: NgbDateStruct;
-  startDate!: NgbDateStruct;
 
   // TODO: same solution for placeholders in all components...
   placeholder = FhiTimeConstants.weekpickerPlaceholder;
@@ -94,10 +93,9 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     }
   }
 
-  onDateSelect(date: NgbDate) {
+  onDateSelect() {
     this.isValid = true;
-    this.startDate = date;
-    this.weekSelect.emit(this.weekUtilityService.getWeekFromNgbDate(date));
+    this.weekSelect.emit(this.model);
   }
 
   onBlur() {
@@ -118,8 +116,9 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     const weekString = this.weekValidationService.getUnvalidatedWeekString();
     const isValid = this.weekValidationService.isValidWeekString(weekString);
     if (isValid) {
-      this.weekSelect.emit(this.weekUtilityService.getWeekFromValidWeekString(weekString));
       this.isValid = true;
+      this.model = this.weekUtilityService.getWeekFromValidWeekString(weekString);
+      this.weekSelect.emit(this.model);
       return;
     }
     this.isValid = false;
@@ -127,19 +126,9 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private weekChangeActions() {
-    let date: NgbDateStruct;
-    let isValid = true;
-    if (this.week === undefined) {
-      date = null;
-    } else if (this.weekValidationService.isValidWeek(this.week)) {
-      date = this.weekUtilityService.getDateFromWeek(this.week);
-    } else {
-      isValid = false;
-    }
-    if (isValid) {
-      this.model = this.weekAdapter.toModel(date);
-      this.startDate = date;
+    if (this.week === undefined || this.weekValidationService.isValidWeek(this.week)) {
       this.isValid = true;
+      this.model = this.weekAdapter.toModel(this.weekUtilityService.getDateFromWeek(this.week));
       return;
     }
     this.weekValidationService.throwInputValueError('week');

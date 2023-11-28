@@ -32,12 +32,16 @@ export class WeekUtilityService {
       return this.defaultMaxDate;
     }
     const date = TimeConstants.maxDate;
-    const dayOfWeek = date.getDay();
-    const weekDayOffset = dayOfWeek > 0 ? 7 - dayOfWeek : 0;
+
+    // TODO: Is this necessary at all?
+    //       If yes; it's related to the cryptic line in getWeekDiffInMilliseconds()
+    // const dayOfWeek = date.getDay();
+    // const weekDayOffset = dayOfWeek > 0 ? 7 - dayOfWeek : 0;
     return {
       year: date.getFullYear(),
       month: date.getMonth() + 1,
-      day: date.getDate() + weekDayOffset,
+      day: date.getDate(),
+      // day: date.getDate() + weekDayOffset,
     };
   }
 
@@ -106,7 +110,10 @@ export class WeekUtilityService {
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
-  getDateFromWeek(week: FhiWeek): NgbDateStruct {
+  getDateFromWeek(week: FhiWeek | undefined): NgbDateStruct | null {
+    if (week === undefined) {
+      return null;
+    }
     const lastDayCurrentYear = lastDayOfYear(new Date(week.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
     return this.getDate(week, lastWeekCurrentYear, lastDayCurrentYear);
@@ -138,7 +145,10 @@ export class WeekUtilityService {
     const weeksInYear = lastWeekCurrentYear === 52 ? 52 : 53;
     const missingDaysInLastWeekOfYear = lastDayOfYear === 0 ? 0 : 7 - lastDayOfYear;
     const millisecondsPrWeek = 7 * 24 * 60 * 60 * 1000;
+
+    // TODO: Try to make this line less cryptic ;)
     const weekDiff = weeksInYear - missingDaysInLastWeekOfYear / 7 + 3 / 7 - week;
+
     return weekDiff * millisecondsPrWeek;
   }
 }
