@@ -2,43 +2,36 @@ import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
-import { FhiTimeConstants } from '../../fhi-time-constants';
 import { FhiWeek } from '../../shared/models/fhi-week.model';
+import { TimeConstants } from '../../shared/time.constants';
+
+// TODO: FhiTimeConstants is deprecated
+import { FhiTimeConstants } from '../../fhi-time-constants';
 
 @Injectable()
 export class WeekUtilityService {
-  // TODO: dynamically, and globally, set min/max date
-  // WeekUtilityService extends TimeUtilityService
-  private minWeek = { year: 1900, week: 1 };
-  private maxWeek = { year: 2023, week: 48 };
+  private defaultMinDate: NgbDateStruct;
+  private defaultMaxDate: NgbDateStruct;
+  private minDate: NgbDateStruct;
+  private maxDate: NgbDateStruct;
 
-  private minDate = this.getInitMinDate();
-  private maxDate = this.getInitMaxDate();
-
-  getMinWeek(): FhiWeek {
-    return this.minWeek;
+  getDefaultMinDate(): NgbDateStruct {
+    if (this.defaultMinDate) {
+      return this.defaultMinDate;
+    }
+    const date = TimeConstants.minDate;
+    return {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    };
   }
 
-  getMaxWeek(): FhiWeek {
-    return this.maxWeek;
-  }
-
-  getMinDate(): NgbDateStruct {
-    return this.minDate;
-  }
-  setMinDate(date: NgbDateStruct) {
-    this.minDate = date ? date : this.getInitMinDate();
-  }
-
-  getMaxDate(): NgbDateStruct {
-    return this.maxDate;
-  }
-  setMaxDate(date: NgbDateStruct) {
-    this.maxDate = date ? date : this.getInitMaxDate();
-  }
-
-  getInitMaxDate(): NgbDateStruct {
-    const date = new Date();
+  getDefaultMaxDate(): NgbDateStruct {
+    if (this.defaultMaxDate) {
+      return this.defaultMaxDate;
+    }
+    const date = TimeConstants.maxDate;
     const dayOfWeek = date.getDay();
     const weekDayOffset = dayOfWeek > 0 ? 7 - dayOfWeek : 0;
     return {
@@ -48,13 +41,26 @@ export class WeekUtilityService {
     };
   }
 
-  getInitMinDate(): NgbDateStruct {
-    const date = new Date(1900, 0);
-    return {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate(),
-    };
+  getMinDate(): NgbDateStruct {
+    if (this.minDate) {
+      return this.minDate;
+    }
+    return this.defaultMinDate;
+  }
+
+  setMinDate(date: NgbDateStruct) {
+    this.minDate = date;
+  }
+
+  getMaxDate(): NgbDateStruct {
+    if (this.maxDate) {
+      return this.maxDate;
+    }
+    return this.defaultMaxDate;
+  }
+
+  setMaxDate(date: NgbDateStruct) {
+    this.maxDate = date;
   }
 
   getWeekFromValidWeekString(value: string): FhiWeek {
@@ -100,7 +106,7 @@ export class WeekUtilityService {
     return `${yearWeek.year}${FhiTimeConstants.weekpickerDelimiter}${yearWeek.week}`;
   }
 
-  getDateFromWeek(week: FhiWeek): NgbDateStruct | null {
+  getDateFromWeek(week: FhiWeek): NgbDateStruct {
     const lastDayCurrentYear = lastDayOfYear(new Date(week.year, 0));
     const lastWeekCurrentYear = getISOWeek(lastDayCurrentYear);
     return this.getDate(week, lastWeekCurrentYear, lastDayCurrentYear);

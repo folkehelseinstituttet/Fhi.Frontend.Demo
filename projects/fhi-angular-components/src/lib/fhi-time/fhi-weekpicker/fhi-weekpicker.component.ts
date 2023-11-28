@@ -146,32 +146,28 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   private minWeekChangeActions() {
-    let isValid = true;
     if (this.minWeek === undefined) {
-      this.minWeek = this.weekUtilityService.getMinWeek();
-    } else if (this.weekValidationService.isValidWeek(this.minWeek)) {
+      this.minDate = this.weekUtilityService.getDefaultMinDate();
       this.weekUtilityService.setMinDate(this.minDate);
-    } else {
-      isValid = false;
+      return;
     }
-    if (isValid) {
+    if (this.weekValidationService.isValidWeek(this.minWeek)) {
       this.minDate = this.weekUtilityService.getDateFromWeek(this.minWeek);
+      this.weekUtilityService.setMinDate(this.minDate);
       return;
     }
     this.weekValidationService.throwInputValueError('minWeek');
   }
 
   private maxWeekChangeActions() {
-    let isValid = true;
     if (this.maxWeek === undefined) {
-      this.maxWeek = this.weekUtilityService.getMaxWeek();
-    } else if (this.weekValidationService.isValidWeek(this.maxWeek)) {
+      this.maxDate = this.weekUtilityService.getDefaultMaxDate();
       this.weekUtilityService.setMaxDate(this.maxDate);
-    } else {
-      isValid = false;
+      return;
     }
-    if (isValid) {
+    if (this.weekValidationService.isValidWeek(this.maxWeek)) {
       this.maxDate = this.weekUtilityService.getDateFromWeek(this.maxWeek);
+      this.weekUtilityService.setMaxDate(this.maxDate);
       return;
     }
     this.weekValidationService.throwInputValueError('maxWeek');

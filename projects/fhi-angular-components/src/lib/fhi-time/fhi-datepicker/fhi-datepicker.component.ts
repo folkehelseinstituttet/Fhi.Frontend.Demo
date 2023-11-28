@@ -141,9 +141,9 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private minDateChangeActions() {
-    // console.log('minDateChangeActions', this.minDate);
     if (this.minDate === undefined) {
-      this.minDate = this.dateUtilityService.getMinDate();
+      this.minDate = this.dateUtilityService.getDefaultMinDate();
+      this.dateUtilityService.setMinDate(this.minDate);
       return;
     }
     if (this.dateValidationService.isValidDate(this.minDate)) {
@@ -154,9 +154,9 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private maxDateChangeActions() {
-    // console.log('maxDateChangeActions', this.maxDate);
     if (this.maxDate === undefined) {
-      this.maxDate = this.dateUtilityService.getMaxDate();
+      this.maxDate = this.dateUtilityService.getDefaultMaxDate();
+      this.dateUtilityService.setMaxDate(this.maxDate);
       return;
     }
     if (this.dateValidationService.isValidDate(this.maxDate)) {
