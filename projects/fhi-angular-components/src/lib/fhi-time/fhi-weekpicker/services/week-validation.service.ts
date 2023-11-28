@@ -3,7 +3,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { FhiWeek } from '../../fhi-week.model';
+import { FhiWeek } from '../../shared/models/fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 import { getISOWeek, lastDayOfYear } from 'date-fns';
 
@@ -66,7 +66,6 @@ Error message if user input for week had been the cause of the error:
     if (!this.isValidWeekStringLength(value)) {
       return false;
     }
-    // TODO: add isValidAllPartsOfString to date-validation as well
     if (!this.isValidAllPartsOfString(value)) {
       return false;
     }

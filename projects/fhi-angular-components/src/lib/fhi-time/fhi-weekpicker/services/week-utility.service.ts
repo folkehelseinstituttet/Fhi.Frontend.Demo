@@ -3,7 +3,7 @@ import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
 import { FhiTimeConstants } from '../../fhi-time-constants';
-import { FhiWeek } from '../../fhi-week.model';
+import { FhiWeek } from '../../shared/models/fhi-week.model';
 
 @Injectable()
 export class WeekUtilityService {

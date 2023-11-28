@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
-import { FhiDate } from '../../fhi-date.model';
+import { FhiDate } from '../../shared/models/fhi-date.model';
 import { DateUtilityService } from './date-utility.service';
 
 export enum ErrorState {

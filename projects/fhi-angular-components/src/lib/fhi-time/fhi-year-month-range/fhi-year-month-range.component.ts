@@ -7,7 +7,7 @@ import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.modu
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { RangeContext } from '../range-context.enum';
-import { FhiMonth } from '../fhi-month.model';
+import { FhiMonth } from '../shared/models/fhi-month.model';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { FhiMonthRange } from './fhi-month-range.model';
 

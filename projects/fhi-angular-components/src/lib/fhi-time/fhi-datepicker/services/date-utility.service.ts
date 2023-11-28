@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { FhiDate } from '../../fhi-date.model';
+import { FhiDate } from '../../shared/models/fhi-date.model';
 import { format } from 'date-fns';
 
 @Injectable()

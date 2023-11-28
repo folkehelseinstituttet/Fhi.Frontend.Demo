@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiWeek } from '../../fhi-week.model';
+import { FhiWeek } from '../../shared/models/fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
 /**

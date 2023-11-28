@@ -20,7 +20,7 @@ import {
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiWeek } from '../fhi-week.model';
+import { FhiWeek } from '../shared/models/fhi-week.model';
 import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';

@@ -21,7 +21,7 @@ import {
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiDate } from '../fhi-date.model';
+import { FhiDate } from '../shared/models/fhi-date.model';
 import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
 import { DateUtilityService } from './services/date-utility.service';
