@@ -12,7 +12,7 @@ import {
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
-import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
+import { TimeConstants } from '../shared/time.constants';
 
 @Component({
   selector: 'fhi-years',
@@ -20,21 +20,18 @@ import { FhiConstantsService } from '../../shared-services/fhi-constants.service
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [FhiAutosuggestModule],
-  providers: [FhiConstantsService],
 })
 export class FhiYearsComponent implements OnInit, OnChanges {
   @Input() id = this.getRandomId();
   @Input() label = 'Velg år';
-  @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
-  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
+  @Input() minYear = TimeConstants.minYear;
+  @Input() maxYear = TimeConstants.maxYear;
   @Input() years: number[];
 
   @Output() yearsSelect = new EventEmitter<number[]>();
 
   year!: number;
   yearItems!: FhiAutosuggestItem[];
-
-  constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
   ngOnInit() {
     if (this.years?.length > 0) {
