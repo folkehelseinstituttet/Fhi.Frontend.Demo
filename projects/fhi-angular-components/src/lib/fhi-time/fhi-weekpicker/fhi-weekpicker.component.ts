@@ -20,7 +20,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiWeek } from '../shared/models/fhi-week.model';
-import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
+import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
 import { WeekAdapterService } from './services/week-adapter.service';
@@ -38,7 +38,7 @@ import { WeekUtilityService } from './services/week-utility.service';
     WeekUtilityService,
     {
       provide: NgbDatepickerI18n,
-      useClass: FhiDatepickerI18nService,
+      useClass: DatepickerI18nService,
     },
     {
       provide: NgbDateParserFormatter,

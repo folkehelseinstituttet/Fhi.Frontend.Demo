@@ -4,7 +4,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Inject,
   Input,
+  LOCALE_ID,
   OnChanges,
   OnInit,
   Output,
@@ -21,8 +23,9 @@ import {
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
+import { i18nValues } from '../shared/i18n/i18n-values';
+import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
 import { FhiDate } from '../shared/models/fhi-date.model';
-import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
 import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
@@ -39,7 +42,7 @@ import { DateValidationService } from './services/date-validation.service';
     DateValidationService,
     {
       provide: NgbDatepickerI18n,
-      useClass: FhiDatepickerI18nService,
+      useClass: DatepickerI18nService,
     },
     {
       provide: NgbDateAdapter,

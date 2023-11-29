@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { LOCALE_ID, Inject } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { i18nValues } from './shared/i18n/i18n-values';
+import { i18nValues } from './i18n-values';
 
 @Injectable()
-export class FhiDatepickerI18nService extends NgbDatepickerI18n {
+export class DatepickerI18nService extends NgbDatepickerI18n {
   private i18n: { [key: string]: unknown };
 
   constructor(
