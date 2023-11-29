@@ -53,6 +53,8 @@ import { DateValidationService } from './services/date-validation.service';
   ],
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
+  private i18n: { [key: string]: unknown };
+
   @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
   @Input() label = 'Velg dato'; // TODO: constants
   @Input() date: FhiDate;
@@ -70,10 +72,15 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   placeholder = 'dd.mm.åååå'; // TODO: constants
 
   constructor(
+    @Inject(LOCALE_ID)
+    private locale: string,
     private dateAdapter: NgbDateAdapter<string>,
     private dateUtilityService: DateUtilityService,
     private dateValidationService: DateValidationService,
-  ) {}
+  ) {
+    this.i18n = i18nValues[this.locale];
+    console.log('locale in datepicker', this.i18n);
+  }
 
   ngOnInit() {
     this.dateChangeActions();

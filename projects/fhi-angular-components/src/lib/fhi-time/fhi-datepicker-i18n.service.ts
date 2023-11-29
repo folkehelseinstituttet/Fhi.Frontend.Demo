@@ -1,37 +1,36 @@
 import { Injectable } from '@angular/core';
 import { LOCALE_ID, Inject } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-
-const I18N_VALUES = {
-  nb: {
-    weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],
-    months: ['jan', 'feb', 'mar', 'apr', 'mai', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'des'],
-    weekLabel: 'uke',
-  },
-};
+import { i18nValues } from './shared/i18n/i18n-values';
 
 @Injectable()
 export class FhiDatepickerI18nService extends NgbDatepickerI18n {
+  private i18n: { [key: string]: unknown };
+
   constructor(
     @Inject(LOCALE_ID)
     private locale: string,
   ) {
     super();
+    this.i18n = i18nValues[this.locale];
   }
 
   getWeekdayLabel(weekday: number): string {
-    return I18N_VALUES[this.locale].weekdays[weekday - 1];
+    return this.i18n.weekdays[weekday - 1];
   }
   getWeekLabel(): string {
-    return I18N_VALUES[this.locale].weekLabel;
+    return this.i18n.weekLabel as string;
   }
   getMonthShortName(month: number): string {
-    return I18N_VALUES[this.locale].months[month - 1];
+    return this.i18n.monthShortNames[month - 1] as string;
   }
   getMonthFullName(month: number): string {
     return this.getMonthShortName(month);
   }
   getDayAriaLabel(date: NgbDateStruct): string {
-    return `${date.day}.${date.month}.${date.year}`;
+    const delimiter = this.i18n.dateDelimiter;
+    if (this.locale === this.i18n.currentLocal) {
+      return `${date.day}${delimiter}${date.month}${delimiter}${date.year}${delimiter}`;
+    }
   }
 }
