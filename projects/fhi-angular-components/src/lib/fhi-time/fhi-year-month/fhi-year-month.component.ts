@@ -6,7 +6,7 @@ import { getYear } from 'date-fns';
 import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
-import { FhiMonth } from '../shared/models/fhi-month.model';
+import { FhiMonth } from '../shared/models/public/fhi-month.model';
 
 import { FhiTimeConstants } from '../fhi-time-constants';
 

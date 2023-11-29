@@ -1,4 +1,4 @@
-import { FhiMonth } from '../shared/models/fhi-month.model';
+import { FhiMonth } from '../shared/models/public/fhi-month.model';
 
 export class FhiMonthRange {
   from: FhiMonth;

@@ -25,7 +25,8 @@ import {
 
 import { i18nValues } from '../shared/i18n/i18n-values';
 import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
-import { FhiDate } from '../shared/models/fhi-date.model';
+import { FhiI18n } from '../shared/models/fhi-i18n.model';
+import { FhiDate } from '../shared/models/public/fhi-date.model';
 import { DateAdapterService } from './services/date-adapter.service';
 import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
@@ -56,10 +57,10 @@ import { DateValidationService } from './services/date-validation.service';
   ],
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
-  private i18n: { [key: string]: unknown };
+  private i18n: FhiI18n;
 
   @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
-  @Input() label = 'Velg dato'; // TODO: constants
+  @Input() label: string;
   @Input() date: FhiDate;
   @Input() minDate: FhiDate;
   @Input() maxDate: FhiDate;
@@ -72,7 +73,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   startDate!: FhiDate;
 
   // TODO: same solution for placeholders in all components...
-  placeholder = 'dd.mm.åååå'; // TODO: constants
+  placeholder: string;
 
   constructor(
     @Inject(LOCALE_ID)
@@ -82,13 +83,14 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     private dateValidationService: DateValidationService,
   ) {
     this.i18n = i18nValues[this.locale];
-    console.log('locale in datepicker', this.i18n);
   }
 
   ngOnInit() {
     this.dateChangeActions();
     this.minDateChangeActions();
     this.maxDateChangeActions();
+    this.labelChangeActions();
+    this.placeholderChangeActions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -171,5 +173,13 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
       return;
     }
     this.dateValidationService.throwInputValueError('maxDate');
+  }
+
+  private labelChangeActions() {
+    this.label = this.label ? this.label : (this.i18n.dateFormLabel as string);
+  }
+
+  private placeholderChangeActions() {
+    this.placeholder = this.placeholder ? this.placeholder : (this.i18n.datePlaceholder as string);
   }
 }

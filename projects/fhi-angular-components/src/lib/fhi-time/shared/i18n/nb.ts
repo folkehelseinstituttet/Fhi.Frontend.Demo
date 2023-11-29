@@ -3,6 +3,9 @@ export const nb = {
 
   // Date
   dateDelimiter: '.',
+  dateFormLabel: 'Velg dato',
+  dateFormat: 'dd.MM.yyyy',
+  datePlaceholder: 'dd.mm.åååå',
 
   // Week
   weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],

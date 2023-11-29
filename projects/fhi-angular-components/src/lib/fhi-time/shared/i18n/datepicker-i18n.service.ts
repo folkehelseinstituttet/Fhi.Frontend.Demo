@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { LOCALE_ID, Inject } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 import { i18nValues } from './i18n-values';
+import { FhiI18n } from '../models/fhi-i18n.model';
 
 @Injectable()
 export class DatepickerI18nService extends NgbDatepickerI18n {
-  private i18n: { [key: string]: unknown };
+  private i18n: FhiI18n;
 
   constructor(
     @Inject(LOCALE_ID)
@@ -29,7 +31,9 @@ export class DatepickerI18nService extends NgbDatepickerI18n {
   }
   getDayAriaLabel(date: NgbDateStruct): string {
     const delimiter = this.i18n.dateDelimiter;
+    // console.log('this.i18n.currentLocal', this.i18n.currentLocal);
     if (this.locale === this.i18n.currentLocal) {
+      // TODO: service?
       return `${date.day}${delimiter}${date.month}${delimiter}${date.year}${delimiter}`;
     }
   }

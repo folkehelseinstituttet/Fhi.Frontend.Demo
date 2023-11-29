@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, getWeek, lastDayOfYear } from 'date-fns';
 
-import { FhiWeek } from '../../shared/models/fhi-week.model';
+import { FhiWeek } from '../../shared/models/public/fhi-week.model';
 import { TimeConstants } from '../../shared/time.constants';
 
 // TODO: FhiTimeConstants is deprecated
