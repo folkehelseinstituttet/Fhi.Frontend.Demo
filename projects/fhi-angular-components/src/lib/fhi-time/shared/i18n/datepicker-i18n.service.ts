@@ -24,7 +24,7 @@ export class DatepickerI18nService extends NgbDatepickerI18n {
     return this.i18n.weekLabel as string;
   }
   getMonthShortName(month: number): string {
-    return this.i18n.monthShortNames[month - 1] as string;
+    return this.i18n.monthShortNames[month - 1];
   }
   getMonthFullName(month: number): string {
     return this.getMonthShortName(month);

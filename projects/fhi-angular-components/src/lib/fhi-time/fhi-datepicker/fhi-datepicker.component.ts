@@ -83,6 +83,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     private dateValidationService: DateValidationService,
   ) {
     this.i18n = i18nValues[this.locale];
+    // TODO: this.i18n = this.i18nService.getI18nValues();
   }
 
   ngOnInit() {
@@ -180,6 +181,6 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private placeholderChangeActions() {
-    this.placeholder = this.placeholder ? this.placeholder : (this.i18n.datePlaceholder as string);
+    this.placeholder = this.placeholder ? this.placeholder : (this.i18n.dateFormatHuman as string);
   }
 }

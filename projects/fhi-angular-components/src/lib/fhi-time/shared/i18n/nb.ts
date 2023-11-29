@@ -5,7 +5,7 @@ export const nb = {
   dateDelimiter: '.',
   dateFormLabel: 'Velg dato',
   dateFormat: 'dd.MM.yyyy',
-  datePlaceholder: 'dd.mm.åååå',
+  dateFormatHuman: 'dd.mm.åååå',
 
   // Week
   weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],
