@@ -5,14 +5,16 @@ export const LocalValuesNb: LocalValues = {
   dateDelimiter: '.',
   dateFormLabel: 'Velg dato',
   dateFormat: 'dd.MM.yyyy',
-  dateFormatHuman: 'dd.mm.åååå',
+  dateFormatPlaceholder: 'dd.mm.åååå',
+  datepickerOpen: 'Åpne datovelger',
 
   // Week
   weekdays: ['ma', 'ti', 'on', 'to', 'fr', 'lø', 'sø'],
   weekDelimiter: '-',
   weekLabel: 'uke',
   weekFormLabel: 'Velg uke',
-  weekPlaceholder: 'åååå-uu',
+  weekFormatPlaceholder: 'åååå-uu',
+  weekpickerOpen: 'Åpne ukesvelger',
 
   // Month
   monthShortNames: [

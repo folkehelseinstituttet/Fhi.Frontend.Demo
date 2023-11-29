@@ -2,13 +2,15 @@ export interface LocalValues {
   dateDelimiter: string;
   dateFormLabel: string;
   dateFormat: string;
-  dateFormatHuman: string;
+  dateFormatPlaceholder: string;
+  datepickerOpen: string;
 
   weekdays: string[];
   weekDelimiter: string;
   weekLabel: string;
   weekFormLabel: string;
-  weekPlaceholder: string;
+  weekFormatPlaceholder: string;
+  weekpickerOpen: string;
 
   monthShortNames: string[];
   monthFullNames: string[];

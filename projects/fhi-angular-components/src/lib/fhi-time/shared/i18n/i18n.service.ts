@@ -24,7 +24,6 @@ export class I18nService {
   }
 
   getLocalDateString(date: Date): string {
-    const localFormat = this.i18n.dateFormat;
-    return format(date, localFormat);
+    return format(date, this.i18n.dateFormat);
   }
 }

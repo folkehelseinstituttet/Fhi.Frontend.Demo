@@ -20,8 +20,9 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiWeek } from '../shared/models/fhi-week.model';
+import { LocalValues } from '../shared/i18n/local-values.model';
+import { I18nService } from '../shared/i18n/i18n.service';
 import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
-import { FhiTimeConstants } from '../fhi-time-constants';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
 import { WeekAdapterService } from './services/week-adapter.service';
 import { WeekValidationService } from './services/week-validation.service';
@@ -34,6 +35,7 @@ import { WeekUtilityService } from './services/week-utility.service';
   standalone: true,
   imports: [CommonModule, FormsModule, NgbDatepickerModule],
   providers: [
+    I18nService,
     WeekValidationService,
     WeekUtilityService,
     {
@@ -51,8 +53,10 @@ import { WeekUtilityService } from './services/week-utility.service';
   ],
 })
 export class FhiWeekpickerComponent implements OnInit, OnChanges {
+  private i18n: LocalValues;
+
   @Input() id: string; // TODO: Add randomId (globally)
-  @Input() label: string = FhiTimeConstants.weekpickerLabel; // TODO: constants...
+  @Input() label: string;
   @Input() minWeek: FhiWeek;
   @Input() maxWeek: FhiWeek;
   @Input() week: FhiWeek;
@@ -64,17 +68,21 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   model!: FhiWeek;
   minDate: NgbDateStruct;
   maxDate: NgbDateStruct;
-
-  // TODO: same solution for placeholders in all components...
-  placeholder = FhiTimeConstants.weekpickerPlaceholder;
+  placeholder: string;
+  weekpickerOpen: string;
 
   constructor(
+    private i18nService: I18nService,
     private weekAdapter: NgbDateAdapter<FhiWeek>,
     private weekValidationService: WeekValidationService,
     private weekUtilityService: WeekUtilityService,
-  ) {}
+  ) {
+    this.i18n = this.i18nService.getI18nValues();
+    this.weekpickerOpen = this.i18n.weekpickerOpen;
+  }
 
   ngOnInit() {
+    this.placeholder = this.i18n.weekFormatPlaceholder;
     this.weekChangeActions();
     this.minWeekChangeActions();
     this.maxWeekChangeActions();

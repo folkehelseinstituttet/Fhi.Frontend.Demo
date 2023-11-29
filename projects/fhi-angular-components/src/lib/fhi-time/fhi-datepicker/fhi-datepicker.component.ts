@@ -70,9 +70,8 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   isValid = true;
   model!: string;
   startDate!: FhiDate;
-
-  // TODO: same solution for placeholders in all components...
   placeholder: string;
+  datepickerOpen: string;
 
   constructor(
     private i18nService: I18nService,
@@ -81,14 +80,15 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     private dateValidationService: DateValidationService,
   ) {
     this.i18n = this.i18nService.getI18nValues();
+    this.datepickerOpen = this.i18n.datepickerOpen;
   }
 
   ngOnInit() {
+    this.placeholder = this.i18n.dateFormatPlaceholder;
+    this.labelChangeActions();
     this.dateChangeActions();
     this.minDateChangeActions();
     this.maxDateChangeActions();
-    this.labelChangeActions();
-    this.placeholderChangeActions();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -175,9 +175,5 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   private labelChangeActions() {
     this.label = this.label ? this.label : this.i18n.dateFormLabel;
-  }
-
-  private placeholderChangeActions() {
-    this.placeholder = this.placeholder ? this.placeholder : this.i18n.dateFormatHuman;
   }
 }

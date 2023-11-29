@@ -34,7 +34,7 @@ export class DateValidationService {
     private dateUtilityService: DateUtilityService,
   ) {
     this.i18n = this.i18nService.getI18nValues();
-    this.dateFormat = this.i18n.dateFormatHuman;
+    this.dateFormat = this.i18n.dateFormatPlaceholder;
   }
 
   setUnvalidatedDateString(value: string) {
