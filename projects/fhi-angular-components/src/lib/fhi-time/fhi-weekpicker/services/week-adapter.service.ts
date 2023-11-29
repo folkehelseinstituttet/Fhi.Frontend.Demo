@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiWeek } from '../fhi-week.model';
+import { FhiWeek } from '../../shared/models/fhi-week.model';
 import { WeekUtilityService } from './week-utility.service';
 
 /**
@@ -19,7 +19,7 @@ export class WeekAdapterService extends NgbDateAdapter<FhiWeek> {
       if (typeof value === 'string') {
         return null;
       }
-      return this.weekUtilityService.getDateFromYearWeek(value);
+      return this.weekUtilityService.getDateFromWeek(value);
     }
     return null;
   }
@@ -27,7 +27,7 @@ export class WeekAdapterService extends NgbDateAdapter<FhiWeek> {
   toModel(date: NgbDateStruct | null): FhiWeek | null {
     // console.warn('toModel(date):', date);
     if (date) {
-      return this.weekUtilityService.getYearWeek(new Date(date.year, date.month - 1, date.day));
+      return this.weekUtilityService.getWeekFromDate(new Date(date.year, date.month - 1, date.day));
     }
     return null;
   }

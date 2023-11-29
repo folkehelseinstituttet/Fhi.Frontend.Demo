@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 import { DateUtilityService } from './date-utility.service';
-import { DateValidationService } from './date-validator.service';
+import { DateValidationService } from './date-validation.service';
 
 /**
  * This Service handles how the date is rendered and parsed from keyboard i.e. in the bound input field.

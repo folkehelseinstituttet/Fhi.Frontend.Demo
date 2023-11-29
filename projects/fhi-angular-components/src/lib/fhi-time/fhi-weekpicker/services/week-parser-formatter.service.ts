@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { WeekValidationService } from './week-validator.service';
+import { WeekValidationService } from './week-validation.service';
 import { WeekUtilityService } from './week-utility.service';
 
 /**
@@ -18,12 +18,12 @@ export class WeekParserFormatterService extends NgbDateParserFormatter {
 
   parse(value: string): NgbDateStruct | null {
     // console.warn('parse(value):', value);
-    this.weekValidationService.setUnvalidatedYearWeekString(value);
+    this.weekValidationService.setUnvalidatedWeekString(value);
     return null;
   }
 
   format(date: NgbDateStruct | null): string {
     // console.warn('format(date):', date);
-    return this.utilityService.getYearWeekStringFromDate(date);
+    return this.utilityService.getWeekStringFromDate(date);
   }
 }

@@ -1,33 +1,65 @@
 import { Injectable } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
-import { FhiDate } from '../../fhi-date.model';
+import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { format } from 'date-fns';
+
+import { FhiDate } from '../../shared/models/fhi-date.model';
+import { TimeConstants } from '../../shared/time.constants';
 
 @Injectable()
 export class DateUtilityService {
-  // TODO: dynamically, and globally, set min/max date
-  // DateUtilityService extends TimeUtilityService
-  private minDate: FhiDate = this.getFhiDateFromValidDateString('01.01.1900');
-  private maxDate: FhiDate = this.getFhiDateFromValidDateString('25.11.2023');
+  private defaultMinDate: NgbDateStruct;
+  private defaultMaxDate: NgbDateStruct;
+  private minDate: NgbDateStruct;
+  private maxDate: NgbDateStruct;
 
-  getMinDate(): FhiDate {
-    return this.minDate;
+  getDefaultMinDate(): NgbDateStruct {
+    if (this.defaultMinDate) {
+      return this.defaultMinDate;
+    }
+    const date = TimeConstants.minDate;
+    return {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    };
   }
 
-  setMinDate(minDate: FhiDate) {
-    this.minDate = minDate;
+  getDefaultMaxDate(): NgbDateStruct {
+    if (this.defaultMaxDate) {
+      return this.defaultMaxDate;
+    }
+    const date = TimeConstants.maxDate;
+    return {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate(),
+    };
   }
 
-  getMaxDate(): FhiDate {
-    return this.maxDate;
+  getMinDate(): NgbDateStruct {
+    if (this.minDate) {
+      return this.minDate;
+    }
+    return this.defaultMinDate;
   }
 
-  setMaxDate(maxDate: FhiDate) {
-    this.maxDate = maxDate;
+  setMinDate(date: NgbDateStruct) {
+    this.minDate = date;
+  }
+
+  getMaxDate(): NgbDateStruct {
+    if (this.maxDate) {
+      return this.maxDate;
+    }
+    return this.defaultMaxDate;
+  }
+
+  setMaxDate(date: NgbDateStruct) {
+    this.maxDate = date;
   }
 
   getLocalDateString(date: FhiDate): string {
-    const localFormat = 'dd.MM.yyyy';
+    const localFormat = 'dd.MM.yyyy'; // TODO: constants
     return format(new Date(date.year, date.month - 1, date.day), localFormat);
   }
 

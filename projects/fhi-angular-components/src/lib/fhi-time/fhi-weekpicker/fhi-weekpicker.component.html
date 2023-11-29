@@ -1,8 +1,6 @@
 <div class="fhi-weekpicker">
   <div class="fhi-datepicker">
-    <label class="form-label fhi-datepicker__label" [for]="id">
-      {{ label }}
-    </label>
+    <label class="form-label fhi-datepicker__label" [for]="id">{{ label }}</label>
 
     <button class="fhi-datepicker__toggler" aria-haspopup="true" (click)="datepicker.toggle()">
       <i class="icon-calendar"></i>
@@ -19,15 +17,14 @@
       [showWeekNumbers]="true"
       [maxDate]="maxDate"
       [minDate]="minDate"
-      [startDate]="startDate"
-      [value]="weekString"
+      [(ngModel)]="model"
       (focus)="onFocus()"
       (blur)="onBlur()"
       (keydown.enter)="onEnter()"
-      (dateSelect)="onDateSelect($event)"
+      (dateSelect)="onDateSelect()"
       ngbDatepicker
       #datepicker="ngbDatepicker"
     />
-    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="invalidFeedbackText"></p>
+    <p class="invalid-feedback" *ngIf="!isValid" [innerHTML]="invalidFeedback"></p>
   </div>
 </div>

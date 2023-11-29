@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -20,16 +21,17 @@ import {
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiDate } from '../fhi-date.model';
+import { FhiDate } from '../shared/models/fhi-date.model';
 import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
 import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
-import { DateValidationService } from './services/date-validator.service';
+import { DateValidationService } from './services/date-validation.service';
 
 @Component({
   selector: 'fhi-datepicker',
   templateUrl: './fhi-datepicker.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [FormsModule, CommonModule, NgbDatepickerModule],
   providers: [
@@ -59,11 +61,12 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   @Output() dateSelect = new EventEmitter<FhiDate>();
 
-  dateString!: string;
   invalidFeedback!: string;
   isValid = true;
   model!: string;
   startDate!: FhiDate;
+
+  // TODO: same solution for placeholders in all components...
   placeholder = 'dd.mm.åååå'; // TODO: constants
 
   constructor(
@@ -114,8 +117,10 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     const dateString = this.dateValidationService.getUnvalidatedDateString();
     const isValid = this.dateValidationService.isValidDateString(dateString);
     if (isValid) {
-      this.dateSelect.emit(this.dateUtilityService.getFhiDateFromValidDateString(dateString));
+      const date = this.dateUtilityService.getFhiDateFromValidDateString(dateString);
       this.isValid = true;
+      this.startDate = date;
+      this.dateSelect.emit(date);
       return;
     }
     this.isValid = false;
@@ -123,11 +128,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private dateChangeActions() {
-    // console.log('dateChangeActions', this.date);
-    // TODO: isWithinMinDateAndMaxDate(), or skip that test? It's hard to make sure
-    //       that min/max is set when dateChangeActions() runs... this problem
-    //       is the same in the weekpicker, current implementation can fail...
-    if (this.date === undefined || this.dateValidationService.isValidFhiDate(this.date)) {
+    if (this.date === undefined || this.dateValidationService.isValidDate(this.date)) {
       this.model = this.dateAdapter.toModel(this.date);
       this.startDate = this.date;
       this.isValid = true;
@@ -137,12 +138,12 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private minDateChangeActions() {
-    // console.log('minDateChangeActions', this.minDate);
     if (this.minDate === undefined) {
-      this.minDate = this.dateUtilityService.getMinDate();
+      this.minDate = this.dateUtilityService.getDefaultMinDate();
+      this.dateUtilityService.setMinDate(this.minDate);
       return;
     }
-    if (this.dateValidationService.isValidFhiDate(this.minDate)) {
+    if (this.dateValidationService.isValidDate(this.minDate)) {
       this.dateUtilityService.setMinDate(this.minDate);
       return;
     }
@@ -150,12 +151,12 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private maxDateChangeActions() {
-    // console.log('maxDateChangeActions', this.maxDate);
     if (this.maxDate === undefined) {
-      this.maxDate = this.dateUtilityService.getMaxDate();
+      this.maxDate = this.dateUtilityService.getDefaultMaxDate();
+      this.dateUtilityService.setMaxDate(this.maxDate);
       return;
     }
-    if (this.dateValidationService.isValidFhiDate(this.maxDate)) {
+    if (this.dateValidationService.isValidDate(this.maxDate)) {
       this.dateUtilityService.setMaxDate(this.maxDate);
       return;
     }

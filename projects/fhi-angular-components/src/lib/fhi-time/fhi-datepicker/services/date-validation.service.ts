@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
-import { FhiDate } from '../../fhi-date.model';
+import { FhiDate } from '../../shared/models/fhi-date.model';
 import { DateUtilityService } from './date-utility.service';
 
 export enum ErrorState {
@@ -49,34 +49,27 @@ Error message if user input for week had been the cause of the error:
 "${this.errorMsg}"\n`);
   }
 
-  isValidFhiDate(date: FhiDate): boolean {
-    this.errorMsg = undefined;
+  isValidDate(date: FhiDate): boolean {
     this.date = date;
-    this.setUnvalidatedDateString(this.dateUtilityService.getLocalDateString(date));
+    this.unvalidatedDateString = this.dateUtilityService.getLocalDateString(date);
 
-    if (!this.isValidDate()) {
+    if (!this.isValidFhiDate()) {
       return false;
     }
     return true;
   }
 
   isValidDateString(value: string): boolean {
-    this.errorMsg = undefined;
-    const parts = value.split('.'); // TODO: constants
-
     if (value.length === 0 && !this.dateIsRequired) {
       return true;
     }
     if (!this.isValidDateStringLength(value)) {
       return false;
     }
-    if (!this.isValidNumberOfParts(parts)) {
+    if (!this.isValidAllPartsOfString(value)) {
       return false;
     }
-    if (!this.isValidPartsFormat(parts)) {
-      return false;
-    }
-    if (!this.isValidDate()) {
+    if (!this.isValidFhiDate()) {
       return false;
     }
     if (!this.isWithinMinDateAndMaxDate()) {
@@ -101,7 +94,9 @@ Error message if user input for week had been the cause of the error:
     return true;
   }
 
-  private isValidNumberOfParts(parts: string[]): boolean {
+  private isValidAllPartsOfString(value: string): boolean {
+    const parts = value.split('.'); // TODO: constants
+
     if (parts.length < 3 || parts.length > 3) {
       this.updateErrorMsg(ErrorState.notTwoDelimiters);
       return false;
@@ -114,10 +109,6 @@ Error message if user input for week had been the cause of the error:
       this.updateErrorMsg(ErrorState.toManyCharactersInPart);
       return false;
     }
-    return true;
-  }
-
-  private isValidPartsFormat(parts: string[]): boolean {
     const year = toNumber(parts[2]);
     const month = toNumber(parts[1]);
     const day = toNumber(parts[0]);
@@ -130,7 +121,7 @@ Error message if user input for week had been the cause of the error:
     return true;
   }
 
-  private isValidDate(): boolean {
+  private isValidFhiDate(): boolean {
     const date = this.dateUtilityService.getNgbDateFromFhiDate(this.date);
     if (!this.ngbCalendar.isValid(date)) {
       this.updateErrorMsg(ErrorState.notValidDate);
