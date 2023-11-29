@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { LOCALE_ID, Inject } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { i18nValues } from './i18n-values';
-import { FhiI18n } from '../models/fhi-i18n.model';
+import { LocalValues } from './local-values.model';
+import { I18nService } from './i18n.service';
 
 @Injectable()
 export class DatepickerI18nService extends NgbDatepickerI18n {
-  private i18n: FhiI18n;
+  private i18n: LocalValues;
 
-  constructor(
-    @Inject(LOCALE_ID)
-    private locale: string,
-  ) {
+  constructor(private i18nService: I18nService) {
     super();
-    this.i18n = i18nValues[this.locale];
+    this.i18n = this.i18nService.getI18nValues();
   }
 
   getWeekdayLabel(weekday: number): string {
@@ -30,11 +26,6 @@ export class DatepickerI18nService extends NgbDatepickerI18n {
     return this.getMonthShortName(month);
   }
   getDayAriaLabel(date: NgbDateStruct): string {
-    const delimiter = this.i18n.dateDelimiter;
-    // console.log('this.i18n.currentLocal', this.i18n.currentLocal);
-    if (this.locale === this.i18n.currentLocal) {
-      // TODO: service?
-      return `${date.day}${delimiter}${date.month}${delimiter}${date.year}${delimiter}`;
-    }
+    return this.i18nService.getLocalDateString(new Date(date.year, date.month - 1, date.day));
   }
 }

@@ -4,9 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  Inject,
   Input,
-  LOCALE_ID,
   OnChanges,
   OnInit,
   Output,
@@ -23,13 +21,13 @@ import {
   NgbDatepickerModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
-import { i18nValues } from '../shared/i18n/i18n-values';
+import { FhiDate } from '../shared/models/fhi-date.model';
+import { LocalValues } from '../shared/i18n/local-values.model';
+import { I18nService } from '../shared/i18n/i18n.service';
 import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
-import { FhiI18n } from '../shared/models/fhi-i18n.model';
-import { FhiDate } from '../shared/models/public/fhi-date.model';
 import { DateAdapterService } from './services/date-adapter.service';
-import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
+import { DateUtilityService } from './services/date-utility.service';
 import { DateValidationService } from './services/date-validation.service';
 
 @Component({
@@ -39,6 +37,7 @@ import { DateValidationService } from './services/date-validation.service';
   standalone: true,
   imports: [FormsModule, CommonModule, NgbDatepickerModule],
   providers: [
+    I18nService,
     DateUtilityService,
     DateValidationService,
     {
@@ -57,7 +56,7 @@ import { DateValidationService } from './services/date-validation.service';
   ],
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
-  private i18n: FhiI18n;
+  private i18n: LocalValues;
 
   @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
   @Input() label: string;
@@ -76,14 +75,12 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   placeholder: string;
 
   constructor(
-    @Inject(LOCALE_ID)
-    private locale: string,
+    private i18nService: I18nService,
     private dateAdapter: NgbDateAdapter<string>,
     private dateUtilityService: DateUtilityService,
     private dateValidationService: DateValidationService,
   ) {
-    this.i18n = i18nValues[this.locale];
-    // TODO: this.i18n = this.i18nService.getI18nValues();
+    this.i18n = this.i18nService.getI18nValues();
   }
 
   ngOnInit() {
@@ -177,10 +174,10 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   }
 
   private labelChangeActions() {
-    this.label = this.label ? this.label : (this.i18n.dateFormLabel as string);
+    this.label = this.label ? this.label : this.i18n.dateFormLabel;
   }
 
   private placeholderChangeActions() {
-    this.placeholder = this.placeholder ? this.placeholder : (this.i18n.dateFormatHuman as string);
+    this.placeholder = this.placeholder ? this.placeholder : this.i18n.dateFormatHuman;
   }
 }

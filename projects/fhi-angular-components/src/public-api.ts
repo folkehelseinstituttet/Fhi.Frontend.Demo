@@ -36,6 +36,6 @@ export * from './lib/fhi-time/fhi-year-month-range/fhi-year-month-range.componen
 export * from './lib/fhi-time/fhi-years/fhi-years.component';
 export * from './lib/fhi-time/fhi-year-range/fhi-year-range.component';
 
-export * from './lib/fhi-time/shared/models/public/fhi-date.model';
-export * from './lib/fhi-time/shared/models/public/fhi-week.model';
-export * from './lib/fhi-time/shared/models/public/fhi-month.model';
+export * from './lib/fhi-time/shared/models/fhi-date.model';
+export * from './lib/fhi-time/shared/models/fhi-week.model';
+export * from './lib/fhi-time/shared/models/fhi-month.model';

@@ -3,7 +3,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { getISOWeek, lastDayOfYear } from 'date-fns';
 import { toNumber } from 'lodash-es';
 
-import { FhiWeek } from '../../shared/models/public/fhi-week.model';
+import { FhiWeek } from '../../shared/models/fhi-week.model';
 
 // TODO: FhiTimeConstants is deprecated
 import { FhiTimeConstants } from '../../fhi-time-constants';

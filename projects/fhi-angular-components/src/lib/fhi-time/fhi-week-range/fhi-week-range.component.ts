@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
 import { FhiTimeConstants } from '../fhi-time-constants';
 import { FhiWeekRange } from './fhi-week-range.model';
-import { FhiWeek } from '../shared/models/public/fhi-week.model';
+import { FhiWeek } from '../shared/models/fhi-week.model';
 
 @Component({
   selector: 'fhi-week-range',
