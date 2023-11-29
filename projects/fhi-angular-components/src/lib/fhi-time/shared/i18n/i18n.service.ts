@@ -16,11 +16,11 @@ export class I18nService {
     @Inject(LOCALE_ID)
     private locale: string,
   ) {
-    this.i18n = this.getI18nValues();
+    this.i18n = this.allLocals[this.locale];
   }
 
   getI18nValues(): LocalValues {
-    return this.allLocals[this.locale];
+    return this.i18n;
   }
 
   getLocalDateString(date: Date): string {

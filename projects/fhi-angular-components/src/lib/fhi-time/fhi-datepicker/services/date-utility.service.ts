@@ -66,8 +66,7 @@ export class DateUtilityService {
   }
 
   getLocalDateString(date: FhiDate): string {
-    const localFormat = this.i18n.dateFormat;
-    return format(new Date(date.year, date.month - 1, date.day), localFormat);
+    return this.i18nService.getLocalDateString(new Date(date.year, date.month - 1, date.day));
   }
 
   getFhiDateFromValidDateString(value: string): FhiDate {
