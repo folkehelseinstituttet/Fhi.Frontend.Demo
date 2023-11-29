@@ -11,6 +11,8 @@ export interface LocalValues {
   weekFormLabel: string;
   weekFormatPlaceholder: string;
   weekpickerOpen: string;
+  weekRangeLabelFrom: string;
+  weekRangeLabelTo: string;
 
   monthShortNames: string[];
   monthFullNames: string[];

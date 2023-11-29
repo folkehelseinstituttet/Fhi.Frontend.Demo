@@ -15,6 +15,8 @@ export const LocalValuesNb: LocalValues = {
   weekFormLabel: 'Velg uke',
   weekFormatPlaceholder: 'åååå-uu',
   weekpickerOpen: 'Åpne ukesvelger',
+  weekRangeLabelFrom: 'Fra uke',
+  weekRangeLabelTo: 'Til uke',
 
   // Month
   monthShortNames: [
