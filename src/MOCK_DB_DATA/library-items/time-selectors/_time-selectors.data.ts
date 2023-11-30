@@ -15,10 +15,10 @@ import { TimeSelectorYearRange } from './time-selector-year-range';
 
 const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,
-  ...TimeSelectorDateRange,
+  // ...TimeSelectorDateRange,
   ...TimeSelectorDateAndTime,
   ...TimeSelectorWeekpicker,
-  ...TimeSelectorWeekRange,
+  // ...TimeSelectorWeekRange,
   ...TimeSelectorYearMonth,
   ...TimeSelectorYearMonthRange,
   ...TimeSelectorYears,
