@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { format } from 'date-fns';
 
-import { FhiDate } from '../../shared/models/fhi-date.model';
 import { TimeConstants } from '../../shared/time.constants';
+import { FhiDate } from '../../shared/models/fhi-date.model';
+import { I18nService } from '../../shared/i18n/i18n.service';
+import { LocaleValues } from '../../shared/i18n/locale-values.model';
 
 @Injectable()
 export class DateUtilityService {
+  private i18n: LocaleValues;
   private defaultMinDate: NgbDateStruct;
   private defaultMaxDate: NgbDateStruct;
   private minDate: NgbDateStruct;
   private maxDate: NgbDateStruct;
+
+  constructor(private i18nService: I18nService) {
+    this.i18n = this.i18nService.getI18nValues();
+  }
 
   getDefaultMinDate(): NgbDateStruct {
     if (this.defaultMinDate) {
@@ -59,12 +65,11 @@ export class DateUtilityService {
   }
 
   getLocalDateString(date: FhiDate): string {
-    const localFormat = 'dd.MM.yyyy'; // TODO: constants
-    return format(new Date(date.year, date.month - 1, date.day), localFormat);
+    return this.i18nService.getLocalDateString(new Date(date.year, date.month - 1, date.day));
   }
 
   getFhiDateFromValidDateString(value: string): FhiDate {
-    const date = value.split('.'); // TODO: constants
+    const date = value.split(this.i18n.dateDelimiter);
     return {
       day: parseInt(date[0], 10),
       month: parseInt(date[1], 10),

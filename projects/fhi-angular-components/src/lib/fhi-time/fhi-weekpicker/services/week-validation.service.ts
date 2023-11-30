@@ -4,10 +4,8 @@ import { getISOWeek, lastDayOfYear } from 'date-fns';
 import { toNumber } from 'lodash-es';
 
 import { FhiWeek } from '../../shared/models/fhi-week.model';
-
-// TODO: FhiTimeConstants is deprecated
-import { FhiTimeConstants } from '../../fhi-time-constants';
-
+import { LocaleValues } from '../../shared/i18n/locale-values.model';
+import { I18nService } from '../../shared/i18n/i18n.service';
 import { WeekUtilityService } from './week-utility.service';
 
 export enum ErrorState {
@@ -25,13 +23,20 @@ export enum ErrorState {
 
 @Injectable()
 export class WeekValidationService {
-  private correctFormat = `Korrekt format er <strong>${FhiTimeConstants.weekpickerPlaceholder}</strong>.`;
+  private i18n: LocaleValues;
+  private correctFormat: string;
   private errorMsg: string;
   private unvalidatedWeekString = '';
   private week!: FhiWeek;
   private isRequired = false; // @Inuput() isRequired is not implemented yet
 
-  constructor(private weekUtilityService: WeekUtilityService) {}
+  constructor(
+    private i18nService: I18nService,
+    private weekUtilityService: WeekUtilityService,
+  ) {
+    this.i18n = this.i18nService.getI18nValues();
+    this.correctFormat = `Korrekt format er <strong>${this.i18n.weekFormatPlaceholder}</strong>.`;
+  }
 
   getUnvalidatedWeekString() {
     return this.unvalidatedWeekString;
@@ -98,7 +103,7 @@ Error message if user input for week had been the cause of the error:
   }
 
   private isValidAllPartsOfString(value: string): boolean {
-    const parts = value.split(FhiTimeConstants.weekpickerDelimiter);
+    const parts = value.split(this.i18n.weekDelimiter);
 
     if (parts.length < 2 || parts.length > 2) {
       this.updateErrorMsg(ErrorState.notOneDelimiter);

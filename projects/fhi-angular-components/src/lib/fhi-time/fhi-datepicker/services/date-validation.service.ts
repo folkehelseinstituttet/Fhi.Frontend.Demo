@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { toNumber } from 'lodash-es';
+
 import { FhiDate } from '../../shared/models/fhi-date.model';
+import { LocaleValues } from '../../shared/i18n/locale-values.model';
+import { I18nService } from '../../shared/i18n/i18n.service';
 import { DateUtilityService } from './date-utility.service';
 
 export enum ErrorState {
@@ -18,16 +21,21 @@ export enum ErrorState {
 
 @Injectable()
 export class DateValidationService {
+  private i18n: LocaleValues;
   private unvalidatedDateString = '';
   private date!: FhiDate;
-  private dateFormat = 'dd.mm.åååå'; // TODO: constants (naming: 'dd.mm.åååå' VS. 'dd.MM.yyyy'? Both are NO formats...)
+  private dateFormat: string;
   private dateIsRequired = true; // @Inuput() weekIsRequired is not implemented yet
   private errorMsg!: string;
 
   constructor(
+    private i18nService: I18nService,
     private ngbCalendar: NgbCalendar,
     private dateUtilityService: DateUtilityService,
-  ) {}
+  ) {
+    this.i18n = this.i18nService.getI18nValues();
+    this.dateFormat = this.i18n.dateFormatPlaceholder;
+  }
 
   setUnvalidatedDateString(value: string) {
     this.unvalidatedDateString = value;
@@ -95,7 +103,7 @@ Error message if user input for week had been the cause of the error:
   }
 
   private isValidAllPartsOfString(value: string): boolean {
-    const parts = value.split('.'); // TODO: constants
+    const parts = value.split(this.i18n.dateDelimiter);
 
     if (parts.length < 3 || parts.length > 3) {
       this.updateErrorMsg(ErrorState.notTwoDelimiters);

@@ -7,16 +7,19 @@ import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.modu
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiMonth } from '../shared/models/fhi-month.model';
-
-import { FhiTimeConstants } from '../fhi-time-constants';
+import { I18nService } from '../shared/i18n/i18n.service';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 
 @Component({
   selector: 'fhi-year-month',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
   templateUrl: './fhi-year-month.component.html',
+  providers: [I18nService],
 })
 export class FhiYearMonthComponent implements OnInit {
+  private i18n: LocaleValues;
+
   @Input() month: FhiMonth = { year: undefined, month: undefined };
 
   @Output() monthSelect = new EventEmitter<FhiMonth>();
@@ -26,6 +29,10 @@ export class FhiYearMonthComponent implements OnInit {
   years: number[];
   monthId: number;
   monthItems!: FhiAutosuggestItem[];
+
+  constructor(private i18nService: I18nService) {
+    this.i18n = this.i18nService.getI18nValues();
+  }
 
   ngOnInit() {
     this.monthItems = this.getMonthItems();
@@ -53,7 +60,7 @@ export class FhiYearMonthComponent implements OnInit {
   }
 
   private getMonthItems() {
-    const monthNames = FhiTimeConstants.monthNames;
+    const monthNames = this.i18n.monthFullNames;
     const monthItems = [];
     for (let i = 1; i <= 12; i++) {
       monthItems.push({

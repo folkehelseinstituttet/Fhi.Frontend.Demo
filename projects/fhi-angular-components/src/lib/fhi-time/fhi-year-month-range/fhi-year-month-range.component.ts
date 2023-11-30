@@ -8,16 +8,20 @@ import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model'
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { RangeContext } from '../shared/range-context.enum';
 import { FhiMonth } from '../shared/models/fhi-month.model';
-import { FhiTimeConstants } from '../fhi-time-constants';
 import { FhiMonthRange } from './fhi-month-range.model';
+import { I18nService } from '../shared/i18n/i18n.service';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 
 @Component({
   selector: 'fhi-year-month-range',
   standalone: true,
   imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
   templateUrl: './fhi-year-month-range.component.html',
+  providers: [I18nService],
 })
 export class FhiYearMonthRangeComponent implements OnInit {
+  private i18n: LocaleValues;
+
   @Input() minMonth: FhiMonth;
   @Input() maxMonth: FhiMonth;
 
@@ -32,6 +36,10 @@ export class FhiYearMonthRangeComponent implements OnInit {
   toMonthItems!: FhiAutosuggestItem[];
   minYearTo: number;
   maxYearFrom: number;
+
+  constructor(private i18nService: I18nService) {
+    this.i18n = this.i18nService.getI18nValues();
+  }
 
   ngOnInit() {
     if (this.minMonth === undefined) {
@@ -131,7 +139,7 @@ export class FhiYearMonthRangeComponent implements OnInit {
   }
 
   private getMonthItems() {
-    const monthNames = FhiTimeConstants.monthNames;
+    const monthNames = this.i18n.monthFullNames;
     const monthItems = [];
     for (let i = 1; i <= 12; i++) {
       monthItems.push({

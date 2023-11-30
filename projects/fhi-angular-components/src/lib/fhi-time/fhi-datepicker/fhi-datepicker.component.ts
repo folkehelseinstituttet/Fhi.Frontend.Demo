@@ -22,10 +22,12 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiDate } from '../shared/models/fhi-date.model';
-import { FhiDatepickerI18nService } from '../fhi-datepicker-i18n.service';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
+import { I18nService } from '../shared/i18n/i18n.service';
+import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
-import { DateUtilityService } from './services/date-utility.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
+import { DateUtilityService } from './services/date-utility.service';
 import { DateValidationService } from './services/date-validation.service';
 
 @Component({
@@ -35,11 +37,12 @@ import { DateValidationService } from './services/date-validation.service';
   standalone: true,
   imports: [FormsModule, CommonModule, NgbDatepickerModule],
   providers: [
+    I18nService,
     DateUtilityService,
     DateValidationService,
     {
       provide: NgbDatepickerI18n,
-      useClass: FhiDatepickerI18nService,
+      useClass: DatepickerI18nService,
     },
     {
       provide: NgbDateAdapter,
@@ -53,8 +56,10 @@ import { DateValidationService } from './services/date-validation.service';
   ],
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
+  private i18n: LocaleValues;
+
   @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
-  @Input() label = 'Velg dato'; // TODO: constants
+  @Input() label: string;
   @Input() date: FhiDate;
   @Input() minDate: FhiDate;
   @Input() maxDate: FhiDate;
@@ -65,17 +70,22 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
   isValid = true;
   model!: string;
   startDate!: FhiDate;
-
-  // TODO: same solution for placeholders in all components...
-  placeholder = 'dd.mm.åååå'; // TODO: constants
+  placeholder: string;
+  datepickerOpen: string;
 
   constructor(
+    private i18nService: I18nService,
     private dateAdapter: NgbDateAdapter<string>,
     private dateUtilityService: DateUtilityService,
     private dateValidationService: DateValidationService,
-  ) {}
+  ) {
+    this.i18n = this.i18nService.getI18nValues();
+    this.datepickerOpen = this.i18n.datepickerOpen;
+  }
 
   ngOnInit() {
+    this.placeholder = this.i18n.dateFormatPlaceholder;
+    this.labelChangeActions();
     this.dateChangeActions();
     this.minDateChangeActions();
     this.maxDateChangeActions();
@@ -161,5 +171,9 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
       return;
     }
     this.dateValidationService.throwInputValueError('maxDate');
+  }
+
+  private labelChangeActions() {
+    this.label = this.label ? this.label : this.i18n.dateFormLabel;
   }
 }
