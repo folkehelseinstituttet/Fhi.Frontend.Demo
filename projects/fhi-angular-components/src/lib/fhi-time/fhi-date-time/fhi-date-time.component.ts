@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.component';
-import { formatISO, isValid, parseISO } from 'date-fns';
 import { FhiDateTime } from '../shared/models/fhi-date-time.model';
 import { FhiDate } from '../shared/models/fhi-date.model';
+import { toNumber } from 'lodash-es';
+import { FhiTime } from './time.model';
 
 @Component({
   standalone: true,
@@ -16,109 +17,124 @@ import { FhiDate } from '../shared/models/fhi-date.model';
 export class FhiDateTimeComponent implements OnInit {
   @Input() label?: string = 'Velg dato og tidspunkt';
   @Input() dateTime: FhiDateTime;
-  @Input() minDateTime: FhiDateTime;
-  @Input() maxDateTime: FhiDateTime;
+  // @Input() minDateTime: FhiDateTime; // TODO
+  // @Input() maxDateTime: FhiDateTime; // TODO
 
   @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
-  // -------------------------------------
-  // TODO: remove deprecated inputs/output
-  @Input() date?: string;
-  @Input() initialTime?: string;
-  @Output() dateAndTimeSelect = new EventEmitter<string>();
-  // -------------------------------------
+  date: FhiDate;
+  isValid = true;
+  unvalidatedDate: FhiDate;
 
+  timeEntered: string; // TODO: timeModel
+  errorMsg: string;
   thisTimeId: string = 'time_' + Math.random().toString(36).substring(2, 20);
 
-  currentDateTimeString: string;
-  dateSelected: string;
-  dateAndTimeIsValid = true;
-  dateAndTimeSelected: string;
-  errorMsg: string;
-  timeEntered: string;
-
   ngOnInit() {
-    if (this.initialTime) {
-      this.timeEntered = this.initialTime;
+    if (this.dateTime) {
+      this.setInitDate();
+      this.setInitTime();
     }
   }
 
   onDateSelect(date: FhiDate) {
-    console.log('date', date);
-  }
-  // TODO: remove deprecated method
-  onGetDate(date: string) {
-    this.dateSelected = date;
-    this.concatenateDateAndTime();
+    this.unvalidatedDate = date;
+    this.validateAndEmit();
   }
 
-  onTimeChange(event: any) {
-    const key = event.key;
-    const allowedKeys = '0,1,2,3,4,5,6,7,8,9,:';
-
-    if (allowedKeys.indexOf(key) >= 0) {
-      if (this.timeEntered.length <= 5) {
-        this.currentDateTimeString = this.timeEntered;
-
-        if (key !== ':' && this.timeEntered.length === 2) {
-          this.timeEntered = this.timeEntered + ':';
-        }
-
-        if (key === ':') {
-          if (this.timeEntered.length === 1) {
-            this.timeEntered = '';
-          }
-          if (this.timeEntered.length === 2) {
-            this.timeEntered = '0' + this.timeEntered;
-          }
-          if (this.timeEntered.length > 3) {
-            this.timeEntered = this.timeEntered.substring(0, 3);
-          }
-        }
-      } else {
-        this.timeEntered = this.currentDateTimeString;
-      }
-
-      if (this.timeEntered.length === 5) {
-        this.checkIfTimeIsValid();
-        this.errorMsg = 'Ugyldig tid';
-      }
-    } else {
-      if (key.length === 1) {
-        this.timeEntered = this.timeEntered.replace(key, '');
-      }
-      if (key === 'Meta') {
-        const timePattern = new RegExp('^[0-9][0-9][:][0-9][0-9]$');
-        if (!timePattern.test(this.timeEntered)) {
-          this.timeEntered = undefined;
-        }
-      }
-    }
-    if (this.timeEntered === '') {
-      this.timeEntered = undefined;
-      this.dateAndTimeIsValid = true;
-    }
-    this.concatenateDateAndTime();
+  onBlur() {
+    this.validateAndEmit();
   }
 
-  private checkIfTimeIsValid() {
-    function isValidDate(dateString: string) {
-      return !isNaN(Date.parse(dateString));
-    }
-    const timeToCheck = this.dateSelected + 'T' + this.timeEntered;
-
-    this.dateAndTimeIsValid = isValidDate(timeToCheck);
+  onEnter() {
+    this.validateAndEmit();
   }
 
-  private concatenateDateAndTime() {
-    this.dateAndTimeSelected = this.dateSelected + 'T' + this.timeEntered;
-    const parsedISO = parseISO(this.dateAndTimeSelected);
-
-    if (isValid(parsedISO)) {
-      const formattedISO = formatISO(parsedISO).split('+')[0] + 'Z';
-      this.dateAndTimeSelect.emit(formattedISO);
-    } else {
-      this.dateAndTimeSelect.emit(undefined);
+  onFocus() {
+    if (!this.isValid) {
+      this.isValid = true;
     }
+  }
+
+  onKeyup(event: KeyboardEvent) {
+    this.addColon(event.key);
+  }
+
+  private validateAndEmit() {
+    const validDateTime = this.getValidDateTime();
+    if (validDateTime !== undefined) {
+      this.isValid = true;
+      this.dateTimeSelect.emit(validDateTime);
+      return;
+    }
+    this.isValid = false;
+    this.errorMsg = this.getInvalidFeedbackText();
+  }
+
+  private getValidDateTime(): FhiDateTime | undefined {
+    if (this.unvalidatedDate === undefined) {
+      return;
+    }
+    if (!this.isValidDateString()) {
+      return;
+    }
+    const time = this.getValidTime();
+    if (!time) {
+      return;
+    }
+    return {
+      date: this.unvalidatedDate,
+      time: time,
+    };
+  }
+
+  private getValidTime(): FhiTime | undefined {
+    const parts = this.timeEntered.split(':');
+    const hour = toNumber(parts[0]);
+    const minute = toNumber(parts[1]);
+    if (isNaN(hour) || isNaN(minute)) {
+      return;
+    }
+    if (hour > 23 || minute > 59) {
+      return;
+    }
+    return { hour: hour, minute: minute };
+  }
+
+  private isValidDateString() {
+    const timePattern = new RegExp('^[0-9][0-9][:][0-9][0-9]$');
+    if (!timePattern.test(this.timeEntered)) {
+      return false;
+    }
+    return true;
+  }
+
+  private setInitDate() {
+    this.date = this.dateTime.date;
+    this.unvalidatedDate = this.dateTime.date;
+  }
+
+  private setInitTime() {
+    let hour = this.dateTime.time.hour.toString();
+    let minute = this.dateTime.time.minute.toString();
+    hour = hour.length > 1 ? hour : hour.padStart(2, '0');
+    minute = minute.length > 1 ? minute : minute.padStart(2, '0');
+    this.timeEntered = `${hour}:${minute}`;
+  }
+
+  private addColon(eventKey: string) {
+    const keys = ['Backspace', 'Delete', ':'];
+    if (
+      !keys.find((key) => key === eventKey) &&
+      !this.timeEntered.includes(':') &&
+      this.timeEntered.length === 2
+    ) {
+      this.timeEntered = this.timeEntered + ':';
+    }
+  }
+
+  private getInvalidFeedbackText(): string {
+    return `Du har lagt inn et klokkeslett som er ugylidg, eller har feil format.
+Korrekt format er <strong>tt:mm</strong>`;
   }
 }

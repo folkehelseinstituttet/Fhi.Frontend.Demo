@@ -21,10 +21,7 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <!-- <fhi-date-time (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-time> -->
-  <!-- <div class="mt-4">
-    <code>{{ selectedDateAndTime }}</code>
-  </div> -->
+  <fhi-date-time [dateTime]="dateTime" (dateTimeSelect)="onDateTimeSelect($event)"></fhi-date-time>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekpicker.id">
@@ -36,10 +33,10 @@
   ></fhi-weekpicker>
 
   <!-- Debugging code (don't delete) -->
-  <br />
+  <!-- <br />
   <button type="button" class="btn fhi-btn-link" (click)="updateWeek()">Update week</button>
   <button type="button" class="btn fhi-btn-link" (click)="updateMinWeek()">Update minWeek</button>
-  <button type="button" class="btn fhi-btn-link" (click)="updateMaxWeek()">Update maxWeek</button>
+  <button type="button" class="btn fhi-btn-link" (click)="updateMaxWeek()">Update maxWeek</button> -->
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekRange.id">

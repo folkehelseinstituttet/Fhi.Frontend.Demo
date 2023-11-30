@@ -1,10 +1,5 @@
 import { FhiDate } from './fhi-date.model';
-
-interface FhiTime {
-  hour: number;
-  minute: number;
-  second: number;
-}
+import { FhiTime } from '../../fhi-date-time/time.model';
 
 export interface FhiDateTime {
   date: FhiDate;

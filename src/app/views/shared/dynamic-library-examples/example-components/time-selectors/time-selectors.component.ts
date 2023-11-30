@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { FhiDate } from '@folkehelseinstituttet/angular-components';
-import { FhiMonth } from '@folkehelseinstituttet/angular-components';
-import { FhiWeek } from '@folkehelseinstituttet/angular-components';
+import { FhiDate, FhiDateTime, FhiWeek, FhiMonth } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-time-selectors',
@@ -17,6 +15,9 @@ export class TimeSelectorsComponent {
   date: FhiDate;
   minDate: FhiDate;
   maxDate: FhiDate;
+
+  // Date time
+  dateTime = { date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } };
 
   // Weekpicker
   week: FhiWeek;
@@ -53,16 +54,12 @@ export class TimeSelectorsComponent {
   // Date range
   //
 
-  getDateRange(dateRange: any) {
-    console.info(dateRange);
-  }
-
   //
   // Date time
   //
 
-  getDateAndTime(dateAndTime: any) {
-    console.info(dateAndTime);
+  onDateTimeSelect(dateTime: FhiDateTime) {
+    console.info(dateTime);
   }
 
   //
@@ -94,10 +91,6 @@ export class TimeSelectorsComponent {
   //
   // Week range
   //
-
-  onWeekRangeSelect(weekRange: any) {
-    console.info(weekRange);
-  }
 
   // Month
 

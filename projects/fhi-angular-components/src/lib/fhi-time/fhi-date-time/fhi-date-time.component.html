@@ -1,6 +1,6 @@
 <div class="fhi-date-time">
   <div class="d-flex">
-    <fhi-datepicker class="me-2" (dateSelect)="onDateSelect($event)"></fhi-datepicker>
+    <fhi-datepicker class="me-2" [date]="date" (dateSelect)="onDateSelect($event)"></fhi-datepicker>
 
     <div class="fhi-date-time__time-container d-flex flex-column justify-content-start">
       <div class="position-relative mt-5">
@@ -9,16 +9,18 @@
         >
         <input
           class="form-control fhi-datepicker__form-control fhi-date-time__hours-and-minutes"
-          [ngClass]="{ 'is-invalid': !dateAndTimeIsValid }"
+          [ngClass]="{ 'is-invalid': !isValid }"
           [id]="thisTimeId"
-          inputmode="decimal"
           placeholder="tt:mm"
           [(ngModel)]="timeEntered"
-          (keyup)="onTimeChange($event)"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+          (keydown.enter)="onEnter()"
+          (keyup)="onKeyup($event)"
           type="text"
         />
-        <p class="invalid-feedback d-inline-block" *ngIf="!dateAndTimeIsValid" [innerHTML]="errorMsg"></p>
       </div>
     </div>
   </div>
+  <p class="invalid-feedback d-inline-block" *ngIf="!isValid" [innerHTML]="errorMsg"></p>
 </div>
