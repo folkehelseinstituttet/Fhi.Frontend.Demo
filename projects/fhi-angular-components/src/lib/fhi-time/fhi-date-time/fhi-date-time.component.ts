@@ -18,6 +18,15 @@ export class FhiDateTimeComponent {
 
   @Output() dateAndTimeSelect = new EventEmitter<string>();
 
+  // @Input() dateTime: FhiDateTime
+  // @Input() minDateTime: FhiDateTime
+  // @Input() maxDateTime: FhiDateTime
+  // @Output() dateTimeSelect: FhiDateTime
+  //     - Output example: {
+  //         date: { year: 2023, month: 11, day: 9 },
+  //         time: { hour: 8, minute: 10, second: 0 }
+  //       }
+
   thisTimeId: string = 'time_' + Math.random().toString(36).substring(2, 20);
 
   currentDateTimeString: string;
