@@ -6,7 +6,7 @@ import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.compone
 import { FhiDateTime } from '../shared/models/fhi-date-time.model';
 import { FhiDate } from '../shared/models/fhi-date.model';
 import { toNumber } from 'lodash-es';
-import { FhiTime } from './time.model';
+import { FhiTime } from '../shared/models/fhi-time.model';
 
 @Component({
   standalone: true,
@@ -57,8 +57,6 @@ export class FhiDateTimeComponent implements OnInit {
   }
 
   onKeyup(event: KeyboardEvent) {
-    // TODO: an addPeriod() method should be implemented for Datepicker
-    // TODO: an addHyphen() method should be implemented for Weekpicker
     this.addColon(event.key);
   }
 

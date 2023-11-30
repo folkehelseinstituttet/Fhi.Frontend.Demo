@@ -25,7 +25,7 @@ export class DateValidationService {
   private unvalidatedDateString = '';
   private date!: FhiDate;
   private dateFormat: string;
-  private dateIsRequired = true; // @Inuput() weekIsRequired is not implemented yet
+  private dateIsRequired = false; // @Inuput() weekIsRequired is not implemented yet
   private errorMsg!: string;
 
   constructor(

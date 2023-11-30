@@ -82,6 +82,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.label = this.i18n.weekFormLabel;
     this.placeholder = this.i18n.weekFormatPlaceholder;
     this.weekChangeActions();
     this.minWeekChangeActions();
