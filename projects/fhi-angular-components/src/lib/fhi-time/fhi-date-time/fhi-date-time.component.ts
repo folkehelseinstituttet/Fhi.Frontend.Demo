@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.component';
-import { formatISO, isValid, parseISO, getTime } from 'date-fns';
+import { formatISO, isValid, parseISO } from 'date-fns';
+import { FhiDateTime } from '../shared/models/fhi-date-time.model';
 
 @Component({
   standalone: true,
@@ -11,21 +12,20 @@ import { formatISO, isValid, parseISO, getTime } from 'date-fns';
   templateUrl: './fhi-date-time.component.html',
   imports: [CommonModule, FhiDatepickerComponent, FormsModule],
 })
-export class FhiDateTimeComponent {
-  @Input() date?: string;
+export class FhiDateTimeComponent implements OnInit {
   @Input() label?: string = 'Velg dato og tidspunkt';
+  @Input() dateTime: FhiDateTime;
+  @Input() minDateTime: FhiDateTime;
+  @Input() maxDateTime: FhiDateTime;
+
+  @Output() dateTimeSelect: FhiDateTime;
+
+  // -------------------------------------
+  // TODO: remove deprecated inputs/output
+  @Input() date?: string;
   @Input() initialTime?: string;
-
   @Output() dateAndTimeSelect = new EventEmitter<string>();
-
-  // @Input() dateTime: FhiDateTime
-  // @Input() minDateTime: FhiDateTime
-  // @Input() maxDateTime: FhiDateTime
-  // @Output() dateTimeSelect: FhiDateTime
-  //     - Output example: {
-  //         date: { year: 2023, month: 11, day: 9 },
-  //         time: { hour: 8, minute: 10, second: 0 }
-  //       }
+  // -------------------------------------
 
   thisTimeId: string = 'time_' + Math.random().toString(36).substring(2, 20);
 
