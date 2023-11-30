@@ -61,7 +61,7 @@ export class FhiDateTimeComponent implements OnInit {
   }
 
   private validateAndEmit() {
-    const validDateTime = this.getValidDateTime();
+    const validDateTime = this.getValidDateTime(this.unvalidatedDate);
     if (validDateTime !== undefined) {
       this.isValid = true;
       this.dateTimeSelect.emit(validDateTime);
@@ -71,8 +71,8 @@ export class FhiDateTimeComponent implements OnInit {
     this.errorMsg = this.getInvalidFeedbackText();
   }
 
-  private getValidDateTime(): FhiDateTime | undefined {
-    if (this.unvalidatedDate === undefined) {
+  private getValidDateTime(date: FhiDate | undefined): FhiDateTime | undefined {
+    if (date === undefined) {
       return;
     }
     if (!this.isValidDateString()) {
@@ -83,7 +83,7 @@ export class FhiDateTimeComponent implements OnInit {
       return;
     }
     return {
-      date: this.unvalidatedDate,
+      date: date,
       time: time,
     };
   }
