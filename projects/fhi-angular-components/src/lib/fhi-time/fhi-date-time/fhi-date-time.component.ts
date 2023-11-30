@@ -15,18 +15,18 @@ import { FhiTime } from './time.model';
   imports: [CommonModule, FhiDatepickerComponent, FormsModule],
 })
 export class FhiDateTimeComponent implements OnInit {
-  @Input() label?: string = 'Velg dato og tidspunkt';
+  @Input() label = 'Velg dato og tidspunkt';
   @Input() dateTime: FhiDateTime;
   // @Input() minDateTime: FhiDateTime; // TODO
   // @Input() maxDateTime: FhiDateTime; // TODO
 
   @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
-  date: FhiDate;
+  date!: FhiDate;
   isValid = true;
-  unvalidatedDate: FhiDate;
+  timeModel!: string;
+  unvalidatedDate!: FhiDate;
 
-  timeEntered: string; // TODO: timeModel
   errorMsg: string;
   thisTimeId: string = 'time_' + Math.random().toString(36).substring(2, 20);
 
@@ -57,6 +57,8 @@ export class FhiDateTimeComponent implements OnInit {
   }
 
   onKeyup(event: KeyboardEvent) {
+    // TODO: an addPeriod() method should be implemented for Datepicker
+    // TODO: an addHyphen() method should be implemented for Weekpicker
     this.addColon(event.key);
   }
 
@@ -89,7 +91,7 @@ export class FhiDateTimeComponent implements OnInit {
   }
 
   private getValidTime(): FhiTime | undefined {
-    const parts = this.timeEntered.split(':');
+    const parts = this.timeModel.split(':');
     const hour = toNumber(parts[0]);
     const minute = toNumber(parts[1]);
     if (isNaN(hour) || isNaN(minute)) {
@@ -103,7 +105,7 @@ export class FhiDateTimeComponent implements OnInit {
 
   private isValidDateString() {
     const timePattern = new RegExp('^[0-9][0-9][:][0-9][0-9]$');
-    if (!timePattern.test(this.timeEntered)) {
+    if (!timePattern.test(this.timeModel)) {
       return false;
     }
     return true;
@@ -119,17 +121,17 @@ export class FhiDateTimeComponent implements OnInit {
     let minute = this.dateTime.time.minute.toString();
     hour = hour.length > 1 ? hour : hour.padStart(2, '0');
     minute = minute.length > 1 ? minute : minute.padStart(2, '0');
-    this.timeEntered = `${hour}:${minute}`;
+    this.timeModel = `${hour}:${minute}`;
   }
 
   private addColon(eventKey: string) {
     const keys = ['Backspace', 'Delete', ':'];
     if (
       !keys.find((key) => key === eventKey) &&
-      !this.timeEntered.includes(':') &&
-      this.timeEntered.length === 2
+      !this.timeModel.includes(':') &&
+      this.timeModel.length === 2
     ) {
-      this.timeEntered = this.timeEntered + ':';
+      this.timeModel = this.timeModel + ':';
     }
   }
 

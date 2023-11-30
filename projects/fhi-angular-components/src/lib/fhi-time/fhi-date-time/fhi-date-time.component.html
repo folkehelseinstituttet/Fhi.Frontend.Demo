@@ -12,7 +12,7 @@
           [ngClass]="{ 'is-invalid': !isValid }"
           [id]="thisTimeId"
           placeholder="tt:mm"
-          [(ngModel)]="timeEntered"
+          [(ngModel)]="timeModel"
           (focus)="onFocus()"
           (blur)="onBlur()"
           (keydown.enter)="onEnter()"
