@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { FhiDatepickerComponent } from '../fhi-datepicker/fhi-datepicker.component';
 import { formatISO, isValid, parseISO } from 'date-fns';
 import { FhiDateTime } from '../shared/models/fhi-date-time.model';
+import { FhiDate } from '../shared/models/fhi-date.model';
 
 @Component({
   standalone: true,
@@ -18,7 +19,7 @@ export class FhiDateTimeComponent implements OnInit {
   @Input() minDateTime: FhiDateTime;
   @Input() maxDateTime: FhiDateTime;
 
-  @Output() dateTimeSelect: FhiDateTime;
+  @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
   // -------------------------------------
   // TODO: remove deprecated inputs/output
@@ -42,6 +43,10 @@ export class FhiDateTimeComponent implements OnInit {
     }
   }
 
+  onDateSelect(date: FhiDate) {
+    console.log('date', date);
+  }
+  // TODO: remove deprecated method
   onGetDate(date: string) {
     this.dateSelected = date;
     this.concatenateDateAndTime();
