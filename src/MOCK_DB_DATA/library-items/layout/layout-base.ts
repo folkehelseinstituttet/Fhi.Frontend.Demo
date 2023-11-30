@@ -1,10 +1,10 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const LayoutTemplateNarrowWBg: LibraryItem[] = [
+export const LayoutBase: LibraryItem[] = [
   {
-    id: ITEMS.LayoutTemplateNarrowWBg.id,
-    title: ITEMS.LayoutTemplateNarrowWBg.title,
+    id: ITEMS.LayoutBase.id,
+    title: ITEMS.LayoutBase.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-layout-narrow-w-bg>
+<fhi-layout>
   <ng-container maincontent.title>
     {{ Sidens tittel }}
   </ng-container>
@@ -34,7 +34,7 @@ function getCodeHtml(): string | null {
   <ng-container maincontent.maincontent>
     Sidens innhold
   </ng-container>
-</fhi-layout-narrow-w-bg>`;
+</fhi-layout>`;
 }
 
 /*

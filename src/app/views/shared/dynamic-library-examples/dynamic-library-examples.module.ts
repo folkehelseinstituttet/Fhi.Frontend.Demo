@@ -13,13 +13,13 @@ import { AlertClosableComponent } from './example-components/alerts/alert-closab
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { IconListComponent } from './example-components/icon-list/icon-list.component';
-import { LayoutTemplatesComponent } from './example-components/layout-templates/layout-templates.component';
+import { LayoutsComponent } from './example-components/layout/layouts.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
-import { LayoutHeaderExampleComponent } from './example-components/layout-templates/layout-header-example.component';
-import { LayoutFooterExampleComponent } from './example-components/layout-templates/layout-footer-example.component';
+import { LayoutHeaderExampleComponent } from './example-components/layout/layout-header-example.component';
+import { LayoutFooterExampleComponent } from './example-components/layout/layout-footer-example.component';
 
 import { ModalExampleComponent } from './ng-bootstrap-examples/modal-example/modal-example.component';
 import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
@@ -45,7 +45,7 @@ const EXAMPLE_COMPONENTS = [
   AlertClosableComponent,
   HighchartsComponent,
   IconListComponent,
-  LayoutTemplatesComponent,
+  LayoutsComponent,
   NavsComponent,
   TabsExampleComponent,
   TimeSelectorsComponent,

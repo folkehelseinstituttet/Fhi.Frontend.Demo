@@ -1,0 +1,85 @@
+<div class="fhi-layout">
+  <div [ngClass]="{ 'row fhi-bg': backgroundColor }">
+    <div
+      class="container-fluid fhi-layout__container py-3 py-md-5"
+      [ngClass]="{ 'px-lg-4 px-xl-6': backgroundColor, 'px-sm-0': !backgroundColor }"
+    >
+      <div class="row fhi-layout__row">
+        <ng-container *ngIf="type">
+          <ng-container *ngIf="type === 'a'">
+            <div class="col-12" [ngClass]="{ 'px-0': !backgroundColor }">
+              <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
+              <ng-container *ngTemplateOutlet="contentMain"></ng-container>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="type === 'b'">
+            <div class="col-xxl-8" [ngClass]="{ 'px-0': !backgroundColor }">
+              <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
+              <ng-container *ngTemplateOutlet="contentMain"></ng-container>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="type === 'c'">
+            <div class="col-xxl-8" [ngClass]="{ 'px-0': !backgroundColor }">
+              <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
+              <ng-container *ngTemplateOutlet="contentBetweenHeaderAndMain"></ng-container>
+              <ng-container *ngTemplateOutlet="contentMain"></ng-container>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="type === 'd'">
+            <div class="col-lg-9 col-xxl" [ngClass]="{ 'px-0': !backgroundColor }">
+              <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
+              <ng-container *ngTemplateOutlet="contentMain"></ng-container>
+            </div>
+            <ng-container *ngTemplateOutlet="contentAside2"></ng-container>
+          </ng-container>
+        </ng-container>
+
+        <div *ngIf="!type">
+          <h1 class="h2 mb-5 mb-xl-6">Du må sette en layout-type på <code class="fs-5">&lt;fhi-layout&gt;</code></h1>
+
+          <ul>
+            <li><code>type="a"</code></li>
+            <li><code>type="b"</code></li>
+            <li><code>type="c"</code></li>
+            <li><code>type="d"</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #contentHeader>
+  <div class="fhi-layout__title-container mb-5 mb-xl-6">
+    <h1 class="h2">
+      <ng-container *ngTemplateOutlet="contentTitle"></ng-container>
+    </h1>
+  </div>
+</ng-template>
+
+<ng-template #contentBetweenHeaderAndMain>
+  <div class="d-flex mb-4 justify-content-end">
+    <ng-content select="[layout.beforemain]"></ng-content>
+  </div>
+</ng-template>
+
+<ng-template #contentTitle>
+  <ng-content select="[layout.title]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain>
+  <ng-content select="[layout.main]"></ng-content>
+</ng-template>
+
+<ng-template #contentAside>
+  <ng-content select="[layout.aside]"></ng-content>
+</ng-template>
+
+<ng-template #contentAside2>
+  <div class="col-lg bg-white" [ngClass]="{ 'my-lg-n5 me-lg-n4 py-lg-5': backgroundColor }">
+    <ng-content select="[layout.aside2]"></ng-content>
+  </div>
+</ng-template>

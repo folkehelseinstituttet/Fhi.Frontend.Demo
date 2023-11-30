@@ -133,17 +133,13 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu-and-footer',
     title: 'Highcharts with menu and footer',
   },
-  LayoutTemplateExpandableFirstCol: {
-    id: 'layout-template-exapandable-first-col',
-    title: 'Expandable first col',
+  LayoutBase: {
+    id: 'layout',
+    title: 'Fullscreen base',
   },
-  LayoutTemplateNarrowWBg: {
-    id: 'layout-template-simple-half',
-    title: 'Narrow (large screens) with background color',
-  },
-  LayoutTemplateTwoCols: {
-    id: 'layout-template-two-cols',
-    title: 'Two columns',
+  LayoutExpandableFirstCol: {
+    id: 'layout-w-expandable-first-col',
+    title: 'Layout with drawer',
   },
   NavTiles: {
     id: 'nav-tiles',

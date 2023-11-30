@@ -13,7 +13,7 @@ import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
-import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
+import { LayoutsData } from 'src/MOCK_DB_DATA/library-items/layout/_layout.data';
 import { ModalData } from 'src/MOCK_DB_DATA/library-items/modal/_modal.data';
 import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
@@ -85,7 +85,7 @@ export class MockDbService implements InMemoryDbService {
       DrawerData,
       GlobalFooterData,
       GlobalHeaderData,
-      LayoutTemplatesData,
+      LayoutsData,
       ModalData,
       PaginationData,
       PrototypeFormsData,

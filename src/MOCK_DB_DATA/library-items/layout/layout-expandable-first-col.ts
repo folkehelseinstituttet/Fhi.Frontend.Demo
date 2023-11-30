@@ -1,11 +1,11 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const LayoutTemplateExpandableFirstCol: LibraryItem[] = [
+export const LayoutExpandableFirstCol: LibraryItem[] = [
   {
-    id: ITEMS.LayoutTemplateExpandableFirstCol.id,
-    title: ITEMS.LayoutTemplateExpandableFirstCol.title,
-    type: LibraryItemType.fhiAngular,
+    id: ITEMS.LayoutExpandableFirstCol.id,
+    title: ITEMS.LayoutExpandableFirstCol.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

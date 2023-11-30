@@ -104,10 +104,10 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ErrorPagesData',
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
-  LayoutTemplates: {
-    id: 'layout-templates',
+  Layouts: {
+    id: 'layouts',
     title: 'Layout templates',
-    apiEndPoint: 'LayoutTemplatesData',
+    apiEndPoint: 'LayoutsData',
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
 };

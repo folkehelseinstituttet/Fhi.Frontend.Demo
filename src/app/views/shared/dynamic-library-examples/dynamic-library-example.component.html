@@ -4,11 +4,7 @@
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
-  <app-layout-templates
-    *ngSwitchCase="groups.LayoutTemplates.id"
-    [itemId]="itemId"
-    [items]="items"
-  ></app-layout-templates>
+  <app-layouts *ngSwitchCase="groups.Layouts.id" [itemId]="itemId" [items]="items"></app-layouts>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--

@@ -1,12 +1,12 @@
-<ng-container *ngIf="itemId === items.LayoutTemplateNarrowWBg.id">
+<ng-container *ngIf="itemId === items.LayoutBase.id">
   <div class="fhi-app">
     <app-header-example></app-header-example>
 
-    <div class="fhi-app__main-body">
-      <fhi-layout-narrow-w-bg>
-        <ng-container maincontent.title>Sidens tittel</ng-container>
+    <div class="container-fluid fhi-app__main-body">
+      <fhi-layout [backgroundColor]="true" [type]="layoutType">
+        <ng-container layout.title>{{ layoutTitle }}</ng-container>
 
-        <ng-container maincontent.maincontent>
+        <ng-container layout.main>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -48,7 +48,7 @@
             </table>
           </div>
         </ng-container>
-      </fhi-layout-narrow-w-bg>
+      </fhi-layout>
     </div>
 
     <footer class="fhi-footer">
@@ -57,12 +57,12 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="itemId === items.LayoutTemplateExpandableFirstCol.id">
+<ng-container *ngIf="itemId === items.LayoutExpandableFirstCol.id">
   <div class="container">
     <div class="fhi-expandable-first-col">
       <div class="row">
         <div class="col-12 col-md-auto">
-          <div class="fhi-drawer" [attr.class]="{ open: drawerIsOpen }">
+          <div class="fhi-drawer" [ngClass]="{ open: drawerIsOpen }">
             <button type="button" class="btn fhi-drawer__trigger" (click)="toggleDrawer()">
               <i class="icon-red icon-chevron-double-right" *ngIf="!drawerIsOpen"></i>
               <i class="icon-red icon-chevron-double-left" *ngIf="drawerIsOpen"></i>

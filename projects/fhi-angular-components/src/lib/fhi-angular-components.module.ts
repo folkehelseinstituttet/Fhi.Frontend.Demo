@@ -16,16 +16,14 @@ import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
 import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 
-import { FhiLayoutFullwidthComponent } from './fhi-layout-templates/fhi-layout-fullwidth/fhi-layout-fullwidth.component';
-import { FhiLayoutNarrowWBgComponent } from './fhi-layout-templates/fhi-layout-narrow-w-bg/fhi-layout-narrow-w-bg.component';
+import { FhiLayoutComponent } from './fhi-layout/fhi-layout.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
   FhiDateAndTimeModule,
   FhiDatepickerModule,
   FhiDateRangeComponent,
-  FhiLayoutFullwidthComponent,
-  FhiLayoutNarrowWBgComponent,
+  FhiLayoutComponent,
   FhiYearMonthRangeComponent,
   FhiYearMonthComponent,
   FhiMultiselectModule,
