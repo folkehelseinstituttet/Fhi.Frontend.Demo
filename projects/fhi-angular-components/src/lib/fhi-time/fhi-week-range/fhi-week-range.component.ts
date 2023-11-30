@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
 import { FhiWeekRange } from './fhi-week-range.model';
 import { FhiWeek } from '../shared/models/fhi-week.model';
-import { LocalValues } from '../shared/i18n/local-values.model';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 import { I18nService } from '../shared/i18n/i18n.service';
 
 import { TimeConstants } from '../shared/time.constants';
@@ -16,7 +16,7 @@ import { TimeConstants } from '../shared/time.constants';
   imports: [CommonModule, FhiWeekpickerComponent],
 })
 export class FhiWeekRangeComponent implements OnInit {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
 
   @Input() maxWeek: FhiWeek = TimeConstants.maxWeek;
   @Input() minWeek: FhiWeek = TimeConstants.minWeek;

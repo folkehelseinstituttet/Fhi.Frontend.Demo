@@ -20,7 +20,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiWeek } from '../shared/models/fhi-week.model';
-import { LocalValues } from '../shared/i18n/local-values.model';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 import { I18nService } from '../shared/i18n/i18n.service';
 import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
 import { WeekParserFormatterService } from './services/week-parser-formatter.service';
@@ -53,7 +53,7 @@ import { WeekUtilityService } from './services/week-utility.service';
   ],
 })
 export class FhiWeekpickerComponent implements OnInit, OnChanges {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
 
   @Input() id: string; // TODO: Add randomId (globally)
   @Input() label: string;

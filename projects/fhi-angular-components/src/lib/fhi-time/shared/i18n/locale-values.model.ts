@@ -1,4 +1,4 @@
-export interface LocalValues {
+export interface LocaleValues {
   dateDelimiter: string;
   dateFormLabel: string;
   dateFormat: string;

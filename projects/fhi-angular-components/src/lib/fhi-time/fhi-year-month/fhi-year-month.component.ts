@@ -8,7 +8,7 @@ import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model'
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiMonth } from '../shared/models/fhi-month.model';
 import { I18nService } from '../shared/i18n/i18n.service';
-import { LocalValues } from '../shared/i18n/local-values.model';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 
 @Component({
   selector: 'fhi-year-month',
@@ -18,7 +18,7 @@ import { LocalValues } from '../shared/i18n/local-values.model';
   providers: [I18nService],
 })
 export class FhiYearMonthComponent implements OnInit {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
 
   @Input() month: FhiMonth = { year: undefined, month: undefined };
 

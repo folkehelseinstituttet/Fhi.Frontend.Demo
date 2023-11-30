@@ -1,6 +1,6 @@
-import { LocalValues } from './local-values.model';
+import { LocaleValues } from './locale-values.model';
 
-export const LocalValuesNb: LocalValues = {
+export const LocaleValuesNb: LocaleValues = {
   // Date
   dateDelimiter: '.',
   dateFormLabel: 'Velg dato',

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-import { LocalValues } from './local-values.model';
+import { LocaleValues } from './locale-values.model';
 import { I18nService } from './i18n.service';
 
 @Injectable()
 export class DatepickerI18nService extends NgbDatepickerI18n {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
 
   constructor(private i18nService: I18nService) {
     super();

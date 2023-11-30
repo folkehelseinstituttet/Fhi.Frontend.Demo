@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { LOCALE_ID, Inject } from '@angular/core';
 
-import { LocalValues } from './local-values.model';
-import { LocalValuesNb } from './local-values-nb';
+import { LocaleValues } from './locale-values.model';
+import { LocaleValuesNb } from './locale-values-nb';
 import { format } from 'date-fns';
 
 @Injectable()
 export class I18nService {
-  private i18n: LocalValues;
-  private allLocals = {
-    nb: LocalValuesNb,
+  private i18n: LocaleValues;
+  private allLocales = {
+    nb: LocaleValuesNb,
   };
 
   constructor(
@@ -17,10 +17,10 @@ export class I18nService {
     private locale: string,
   ) {
     this.validateLocale(this.locale);
-    this.i18n = this.allLocals[this.locale];
+    this.i18n = this.allLocales[this.locale];
   }
 
-  getI18nValues(): LocalValues {
+  getI18nValues(): LocaleValues {
     return this.i18n;
   }
 
@@ -29,9 +29,11 @@ export class I18nService {
   }
 
   private validateLocale(currentLocale: string) {
-    const validLocale = Object.keys(this.allLocals).find((locale) => locale === currentLocale);
+    const validLocale = Object.keys(this.allLocales).find((locale) => locale === currentLocale);
     if (validLocale === undefined) {
-      throw new Error('The locale for this app is not supported by FHI Time components.');
+      throw new Error(
+        `The locale for this app (${currentLocale}) is not supported by the FHI Time components.`,
+      );
     }
   }
 }

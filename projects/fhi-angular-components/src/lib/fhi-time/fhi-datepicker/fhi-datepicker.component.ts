@@ -22,7 +22,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiDate } from '../shared/models/fhi-date.model';
-import { LocalValues } from '../shared/i18n/local-values.model';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
 import { I18nService } from '../shared/i18n/i18n.service';
 import { DatepickerI18nService } from '../shared/i18n/datepicker-i18n.service';
 import { DateAdapterService } from './services/date-adapter.service';
@@ -56,7 +56,7 @@ import { DateValidationService } from './services/date-validation.service';
   ],
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
 
   @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
   @Input() label: string;

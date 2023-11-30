@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { format } from 'date-fns';
 
 import { TimeConstants } from '../../shared/time.constants';
 import { FhiDate } from '../../shared/models/fhi-date.model';
 import { I18nService } from '../../shared/i18n/i18n.service';
-import { LocalValues } from '../../shared/i18n/local-values.model';
+import { LocaleValues } from '../../shared/i18n/locale-values.model';
 
 @Injectable()
 export class DateUtilityService {
-  private i18n: LocalValues;
+  private i18n: LocaleValues;
   private defaultMinDate: NgbDateStruct;
   private defaultMaxDate: NgbDateStruct;
   private minDate: NgbDateStruct;
