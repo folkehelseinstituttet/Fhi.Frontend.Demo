@@ -16,6 +16,7 @@ export class I18nService {
     @Inject(LOCALE_ID)
     private locale: string,
   ) {
+    this.validateLocale(this.locale);
     this.i18n = this.allLocals[this.locale];
   }
 
@@ -25,5 +26,12 @@ export class I18nService {
 
   getLocalDateString(date: Date): string {
     return format(date, this.i18n.dateFormat);
+  }
+
+  private validateLocale(currentLocale: string) {
+    const validLocale = Object.keys(this.allLocals).find((locale) => locale === currentLocale);
+    if (validLocale === undefined) {
+      throw new Error('The locale for this app is not supported by FHI Time components.');
+    }
   }
 }
