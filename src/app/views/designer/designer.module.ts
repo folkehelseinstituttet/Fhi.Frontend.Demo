@@ -8,11 +8,6 @@ import { DesignerRoutingModule } from './designer-routing.module';
 
 @NgModule({
   declarations: DesignerRoutingModule.components,
-  imports: [
-    SharedModule,
-    LibraryModule,
-    DynamicLibraryExamplesModule,
-    DesignerRoutingModule
-  ]
+  imports: [SharedModule, LibraryModule, DynamicLibraryExamplesModule, DesignerRoutingModule],
 })
-export class DesignerModule { }
+export class DesignerModule {}

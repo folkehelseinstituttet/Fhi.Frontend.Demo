@@ -5,10 +5,9 @@ import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-library-copy-button',
-  templateUrl: './library-copy-button.component.html'
+  templateUrl: './library-copy-button.component.html',
 })
 export class LibraryCopyButtonComponent {
-
   @Input() contentToCopy: string;
 
   tooltipText!: string;

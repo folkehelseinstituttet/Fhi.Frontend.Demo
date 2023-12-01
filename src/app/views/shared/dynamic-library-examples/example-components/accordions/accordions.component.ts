@@ -4,7 +4,7 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
   selector: 'app-accordions',
-  templateUrl: './accordions.component.html'
+  templateUrl: './accordions.component.html',
 })
 export class AccordionsComponent {
   @Input() itemId!: string;

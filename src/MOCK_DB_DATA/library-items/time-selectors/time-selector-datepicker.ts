@@ -26,8 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-datepicker [date]="today"
-                (dateSelect)="getDate($event)"></fhi-datepicker>
+<fhi-datepicker (dateSelect)="onDateSelect($event)"></fhi-datepicker>
 `;
 }
 
@@ -37,76 +36,28 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-datepicker">FHI Datepicker</a> er en komponent i <a href="${CONST.FhiAngularComponentsGithubLibUrl}">FHI Angular Components</a>.
+  For å ta i bruk denne komponenten i en Angular-applikasjon må NPM-pakken
+  <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
+  være lagt til som en "dependency".
 </p>
-<p>
-  Dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
-</p>
 
-<h3 class="mb-5">API</h3>
+<h2 class="h5">Nyttige lenker</h2>
 
-<h4>Inputs</h4>
-<div class="table-responsive mb-5">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Input</th>
-        <th>Type</th>
-        <th>Default</th>
-        <th>Required</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>date</th>
-        <td><span class="text-nowrap"><code>string</code></span></td>
-        <td>-</td>
-        <td>no</td>
-        <td>Forhåndsvalgt dato for Datepicker.</td>
-      </tr>
-      <tr>
-        <th>label</th>
-        <td><span class="text-nowrap"><code>string</code></span></td>
-        <td><code>"Velg dato"</code></td>
-        <td>no</td>
-        <td>Label som kobler input-felt.</td>
-      </tr>
-      <tr>
-        <th>maxDate</th>
-        <td><span class="text-nowrap"><code>string</code></span></td>
-        <td>-</td>
-        <td>no</td>
-        <td>Siste dato som kan velges i Datepicker.</td>
-      </tr>
-      <tr>
-        <th>minDate</th>
-        <td><span class="text-nowrap"><code>string</code></span></td>
-        <td>-</td>
-        <td>no</td>
-        <td>Første dato som kan velges i Datepicker.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<h4>Outputs</h4>
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Output</th>
-        <th class="text-nowrap">Event type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>dateSelect</th>
-        <td><code>string</code></td>
-        <td>Valgte dato enten fra Datepicker eller direkte input. Dato returneres som ISO 8601 string.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>`;
+<ul>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-datepicker/README.md#API">
+      API-dokumentasjon
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-datepicker">
+      Kildekode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.ExampleComponentsGithubUrl}/time-selectors">
+      Demokode
+    </a>
+  </li>
+</ul>`;
 }

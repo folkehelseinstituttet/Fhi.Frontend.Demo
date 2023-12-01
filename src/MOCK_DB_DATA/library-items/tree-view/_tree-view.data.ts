@@ -7,5 +7,5 @@ import { TreeViewRadio } from './tree-view-radio';
 export const TreeViewData: LibraryItem[] = [
   ...TreeViewNavigation,
   ...TreeViewCheckbox,
-  ...TreeViewRadio
+  ...TreeViewRadio,
 ];

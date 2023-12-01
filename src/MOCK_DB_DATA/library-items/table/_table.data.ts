@@ -13,5 +13,5 @@ export const TableData: LibraryItem[] = [
   ...TableStriped,
   ...TableSortable,
   ...TableSelectableRow,
-  ...TableEditable
+  ...TableEditable,
 ];

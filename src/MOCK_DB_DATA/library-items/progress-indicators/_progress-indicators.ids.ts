@@ -4,5 +4,5 @@ export const ProgressIndicatorsIds = {
   SpinnerButton: undefined,
   SpinnerFlex: undefined,
   SpinnerMargin: undefined,
-  SpinnerSmall: undefined
-}
+  SpinnerSmall: undefined,
+};

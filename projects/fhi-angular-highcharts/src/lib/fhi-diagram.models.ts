@@ -24,10 +24,9 @@ export interface FlagWithDataPointName extends FhiDiagramFlag {
 }
 
 export interface FlaggedSerie {
-  name:	string;
+  name: string;
   flaggedDataPoints: Array<FlagWithDataPointName>;
 }
-
 
 // Public interfaces
 
@@ -37,8 +36,8 @@ export interface FhiDiagramFlag {
 }
 
 export interface FhiDiagramSerie {
-  data:	Array<Data>;
-  name:	string | Array<string>;
+  data: Array<Data>;
+  name: string | Array<string>;
   stack?: string;
 }
 
@@ -63,4 +62,3 @@ export interface FhiAllDiagramOptions extends FhiDiagramOptions {
   seriesHasDecimalDataPoints?: boolean;
   seriesHasNegativeDataPoints?: boolean;
 }
-

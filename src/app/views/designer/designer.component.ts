@@ -7,10 +7,9 @@ import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
   selector: 'app-designer',
-  templateUrl: './designer.component.html'
+  templateUrl: './designer.component.html',
 })
 export class DesignerComponent implements OnInit, OnDestroy {
-
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
 
@@ -18,22 +17,22 @@ export class DesignerComponent implements OnInit, OnDestroy {
 
   constructor(
     private urlService: UrlService,
-    private libraryMenuService: LibraryMenuService
-  ) { }
+    private libraryMenuService: LibraryMenuService,
+  ) {}
 
   ngOnInit() {
     this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
-    this.subscription.add(this.urlService.URL$
-      .subscribe(() => {
+    this.subscription.add(
+      this.urlService.URL$.subscribe(() => {
         if (this.libraryMenuService.updateSecondLevelMenu()) {
           // console.log(this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems());
           // this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems();
         }
-      }));
+      }),
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

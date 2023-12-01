@@ -1,25 +1,34 @@
-<div class="fhi-date-range"
-     [ngClass]="!validRange
-        ? latestChangedRangeEnd === 'to' ? 'fhi-date-range--is-invalid-to' : 'fhi-date-range--is-invalid-from'
-        : ''">
-  <fhi-datepicker
+<div
+  class="fhi-date-range"
+  [ngClass]="
+    !validRange
+      ? latestChangedRangeEnd === 'to'
+        ? 'fhi-date-range--is-invalid-to'
+        : 'fhi-date-range--is-invalid-from'
+      : ''
+  "
+>
+  <!-- <fhi-datepicker
     class="fhi-date-range__datepicker-from"
     [label]="labelDateFrom"
     [minimumDate]="minimumDate"
     [maximumDate]="maxDate"
-    (dateSelect)="dateFromSelect($event)">
-  </fhi-datepicker>
+    (dateSelect)="dateFromSelect($event)"
+  >
+  </fhi-datepicker> -->
 
-  <span><!-- sic -->
+  <span
+    ><!-- sic -->
     <span class="fhi-date-range__divider">&ndash;</span>
   </span>
 
-  <fhi-datepicker
+  <!-- <fhi-datepicker
     class="fhi-date-range__datepicker-to"
     [label]="labelDateTo"
     [minimumDate]="minDate"
     [maximumDate]="maximumDate"
-    (dateSelect)="dateToSelect($event)">
-  </fhi-datepicker>
+    (dateSelect)="dateToSelect($event)"
+  >
+  </fhi-datepicker> -->
 </div>
 <p class="invalid-feedback" *ngIf="!validRange" [ngClass]="{ 'd-block': !validRange }" [innerHTML]="errorMsg"></p>

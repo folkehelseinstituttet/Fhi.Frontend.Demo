@@ -4,51 +4,51 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
 @Component({
   selector: 'app-prototype-table-with-expandable-content',
   templateUrl: './table-with-expandable-content.component.html',
-  styles: [`
+  styles: [
+    `
+      .fhi-tablerow-expanded th,
+      .fhi-tablerow-expanded td {
+        border-bottom: 0;
+      }
 
-    .fhi-tablerow-expanded th,
-    .fhi-tablerow-expanded td {
-      border-bottom: 0;
-    }
+      .fhi-tablerow-expanded__additional-content {
+        padding-left: 60px;
+      }
 
-    .fhi-tablerow-expanded__additional-content {
-      padding-left: 60px;
-    }
+      .fhi-btn-expand-table-container {
+        min-width: 44px;
+        padding: 0;
+        position: relative;
+        width: 44px;
+      }
 
-    .fhi-btn-expand-table-container {
-      min-width: 44px;
-      padding: 0;
-      position: relative;
-      width: 44px;
-    }
+      .fhi-btn-expand-table {
+        border: 0;
+        border-radius: 0;
+        padding: 0;
+        position: absolute;
+        height: 100%;
+        width: 44px;
+      }
 
-    .fhi-btn-expand-table {
-      border: 0;
-      border-radius: 0;
-      padding: 0;
-      position: absolute;
-      height: 100%;
-      width: 44px;
-    }
+      .fhi-btn-expand-table:focus-visible {
+        box-shadow: 0 0 0 2px #0067c4 inset !important;
+      }
 
-    .fhi-btn-expand-table:focus-visible {
-      box-shadow: 0 0 0 2px #0067c4 inset !important;
-    }
-
-    .fhi-btn-expand-table [class*="icon-"] {
-      background-position: center center;
-    }
-  `],
+      .fhi-btn-expand-table [class*='icon-'] {
+        background-position: center center;
+      }
+    `,
+  ],
   providers: [TableWithExpandableContentDataService],
 })
 export class TableWithExpandableContentComponent {
-
   tableData: any = [];
 
   demoTableConfig!: any;
   demoTableContent!: any[];
 
-  constructor(private tableDataService: TableWithExpandableContentDataService) { }
+  constructor(private tableDataService: TableWithExpandableContentDataService) {}
 
   ngOnInit() {
     this.tableData = this.tableDataService.tableData();
@@ -60,7 +60,7 @@ export class TableWithExpandableContentComponent {
         {
           name: 'ID',
           sortable: true,
-          width: 20
+          width: 20,
         },
         {
           name: 'Country',
@@ -71,7 +71,7 @@ export class TableWithExpandableContentComponent {
         {
           name: 'Population',
         },
-      ]
+      ],
     };
 
     this.demoTableContent = [
@@ -80,9 +80,10 @@ export class TableWithExpandableContentComponent {
         name: 'Russia',
         area: 17075200,
         population: 146989754,
-        expandableContent: [{
-          name: 'One',
-          content: `What are Observables and what is the subscribe() method?
+        expandableContent: [
+          {
+            name: 'One',
+            content: `What are Observables and what is the subscribe() method?
 
 Observables are a type of data structure that emit values over time. Unlike Promises, which only emit a single value, Observables can emit multiple values. They are the ideal choice for handling real-time data.
 
@@ -96,33 +97,36 @@ Developers often use the subscribe() method as a way of accessing the data emitt
 The subscribe() method is called on an Observable and takes in one or more functions as arguments. These functions are then executed whenever the Observable emits a value.
 
 Here’s what I read every time I open a component:`,
-        },
-        {
-          name: 'Two',
-          content: 'Content for two',
-        },
-        {
-          name: 'Three',
-          content: 'Content for three',
-        }]
+          },
+          {
+            name: 'Two',
+            content: 'Content for two',
+          },
+          {
+            name: 'Three',
+            content: 'Content for three',
+          },
+        ],
       },
       {
         id: 2,
         name: 'France',
         area: 640679,
         population: 64979548,
-        expandableContent: [{
-          name: 'One',
-          content: 'Content for one',
-        },
-        {
-          name: 'Two',
-          content: 'Content for two',
-        },
-        {
-          name: 'Three',
-          content: 'Content for three',
-        }]
+        expandableContent: [
+          {
+            name: 'One',
+            content: 'Content for one',
+          },
+          {
+            name: 'Two',
+            content: 'Content for two',
+          },
+          {
+            name: 'Three',
+            content: 'Content for three',
+          },
+        ],
       },
       {
         id: 3,
@@ -191,6 +195,5 @@ Here’s what I read every time I open a component:`,
         population: 1409517397,
       },
     ];
-
   }
 }

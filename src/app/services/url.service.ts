@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
-import { NavigationExtras, UrlTree, Router, NavigationEnd, UrlSegment, Params } from '@angular/router';
+import {
+  NavigationExtras,
+  UrlTree,
+  Router,
+  NavigationEnd,
+  UrlSegment,
+  Params,
+} from '@angular/router';
 import { ReplaySubject } from 'rxjs';
 
 import { UrlNavigateOptions } from '../models/url-navigate-options.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UrlService {
-
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   private updateTimestamp: number;
   private urlSubject = new ReplaySubject<void>(1);
@@ -96,7 +102,7 @@ export class UrlService {
     const root = this.urlTree.root;
     let allSegments = '';
     if (root.numberOfChildren !== 0) {
-      root.children.primary.segments.forEach(segment => {
+      root.children.primary.segments.forEach((segment) => {
         allSegments = allSegments.concat('/', segment.path);
       });
       return allSegments;
@@ -135,16 +141,17 @@ export class UrlService {
 
   private checkForMultipleUpdates(timestamp: number) {
     const interval = timestamp - this.updateTimestamp;
-    const errorMessage = 'UrlService.checkForMultipleUpdates(): '
-      + 'Elapsed time between two url updates is < 75 ms\n'
-      + 'This is an indication that an url update has been called '
-      + 'without an user event, which is the intended usecase.\n'
-      + 'Diff [ms]: ' + interval;
+    const errorMessage =
+      'UrlService.checkForMultipleUpdates(): ' +
+      'Elapsed time between two url updates is < 75 ms\n' +
+      'This is an indication that an url update has been called ' +
+      'without an user event, which is the intended usecase.\n' +
+      'Diff [ms]: ' +
+      interval;
 
     if (interval < 75) {
       console.error(errorMessage);
     }
     this.updateTimestamp = timestamp;
   }
-
 }

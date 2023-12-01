@@ -1,8 +1,5 @@
 <div class="col-md-8 col-lg-6" *ngIf="itemId === itemIds.TreeViewCheckbox">
-  <fhi-tree-view-selection
-    [enableCheckAll]="true"
-    [items]="itemsCheck"
-    (itemsChange)="onItemsChangeCheck($event)">
+  <fhi-tree-view-selection [enableCheckAll]="true" [items]="itemsCheck" (itemsChange)="onItemsChangeCheck($event)">
   </fhi-tree-view-selection>
 </div>
 <!-- <pre>
@@ -14,7 +11,8 @@
     [singleSelection]="true"
     [name]="'radio'"
     [items]="itemsRadio"
-    (itemsChange)="onItemsChangeRadio($event)">
+    (itemsChange)="onItemsChangeRadio($event)"
+  >
   </fhi-tree-view-selection>
 </div>
 <!-- <pre>

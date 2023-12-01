@@ -4,13 +4,16 @@ import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TableService {
-
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
-    const seriesMappedToNameOnly = series.map(serie => serie.name) as string[];
-    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
+    const seriesMappedToNameOnly = series.map(
+      (serie) => serie.name,
+    ) as string[];
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(
+      Seperator.output,
+    ).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
@@ -26,7 +29,7 @@ export class TableService {
         if (!isLastRow && currentCellName !== previousCellName) {
           tableHeaderRows[j][i] = {
             name: currentCellName,
-            colspan: seriesMappedToNameOnly.length / 3
+            colspan: seriesMappedToNameOnly.length / 3,
           };
           colspanDivider = colspanDivider + 1;
         }
@@ -35,8 +38,8 @@ export class TableService {
         }
         previousCellName = currentCellName;
       }
-      tableHeaderRows[j].forEach(i => {
-        i.colspan = seriesMappedToNameOnly.length / colspanDivider
+      tableHeaderRows[j].forEach((i) => {
+        i.colspan = seriesMappedToNameOnly.length / colspanDivider;
       });
       tableHeaderRows[j].unshift({}); // Label column
     }
@@ -68,5 +71,4 @@ export class TableService {
     const data = serie.data;
     return data;
   }
-
 }

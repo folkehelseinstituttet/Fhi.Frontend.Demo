@@ -3,11 +3,11 @@ const stackingValue: OptionsStackingValue = 'normal';
 
 export const OptionsChartTypeColumnStacked = {
   chart: {
-    type: 'column'
+    type: 'column',
   },
   plotOptions: {
     series: {
-      stacking: stackingValue
-    }
-  }
+      stacking: stackingValue,
+    },
+  },
 };

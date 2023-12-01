@@ -1,18 +1,31 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
-import { FhiChartTypes, FhiDiagramTypeGroups, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import {
+  FhiChartTypes,
+  FhiDiagramTypeGroups,
+  FhiDiagramTypes,
+  FhiMapTypes,
+} from '../fhi-diagram-type.constants';
 import { FhiDiagramType } from '../fhi-diagram.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
-import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
+import {
+  DiagramTypeGroupIndex,
+  NavDiagramTableGroup,
+} from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
 
 @Component({
   selector: 'fhi-diagram-type-nav',
   templateUrl: './fhi-diagram-type-nav.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiDiagramTypeNavComponent {
-
   @Input() currentDiagramTypeGroup!: string;
   @Input() currentDiagramTypeId!: string;
   @Input() currentMapTypeId!: string | undefined;
@@ -65,13 +78,15 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private updateNavDiagramTypeGroups() {
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] =
+      this.getNavDiagramChartGroup();
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] =
+      this.getNavDiagramMapGroup();
 
     if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
-      this.previousChartTypeId = this.currentDiagramTypeId
+      this.previousChartTypeId = this.currentDiagramTypeId;
     }
-    this.previousDiagramTypeId = this.currentDiagramTypeId
+    this.previousDiagramTypeId = this.currentDiagramTypeId;
     this.previousSeriesLength = this.currentSeriesLength;
   }
 
@@ -85,8 +100,8 @@ export class FhiDiagramTypeNavComponent {
       id: FhiDiagramTypeGroups.chart,
       isDisabled: isDisabled,
       name: 'Graf',
-      excludeFromMenu: excludeFromMenu
-    }
+      excludeFromMenu: excludeFromMenu,
+    };
   }
 
   private excludeChartsFromMenu() {
@@ -109,16 +124,18 @@ export class FhiDiagramTypeNavComponent {
       id: FhiDiagramTypeGroups.map,
       isDisabled: isDisabled,
       name: 'Kart',
-      excludeFromMenu: excludeFromMenu
-    }
+      excludeFromMenu: excludeFromMenu,
+    };
   }
 
   // Get user selected chart type, or fallback chart type
   //   if user selected chart isn't legal for current data.
   private getChartType(): FhiDiagramType {
-    const chartType = this.chartTypes.find(diagramType => {
-      if (this.currentDiagramTypeId === this.previousDiagramTypeId
-          && this.currentSeriesLength !== this.previousSeriesLength) {
+    const chartType = this.chartTypes.find((diagramType) => {
+      if (
+        this.currentDiagramTypeId === this.previousDiagramTypeId &&
+        this.currentSeriesLength !== this.previousSeriesLength
+      ) {
         return diagramType.id === this.previousChartTypeId;
       }
       if (this.currentDiagramTypeId === FhiDiagramTypes.table.id) {
@@ -147,5 +164,4 @@ export class FhiDiagramTypeNavComponent {
     }
     return mapType;
   }
-
 }

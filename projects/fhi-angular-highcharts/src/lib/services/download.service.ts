@@ -7,14 +7,13 @@ import { CsvService } from './csv.service';
 import { FhiDiagramOptions } from '../fhi-diagram.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DownloadService {
-
   constructor(
     private chartInstanceService: ChartInstanceService,
-    private csvService: CsvService
-  ) { }
+    private csvService: CsvService,
+  ) {}
 
   private diagramOptions!: FhiDiagramOptions;
 
@@ -27,14 +26,17 @@ export class DownloadService {
       type: MIMEtype,
       sourceWidth: 1200,
       sourceHeight: 800,
-      filename: this.getFilename()
+      filename: this.getFilename(),
     };
     const chartOptions: Options = {
       chart: {
-        spacingBottom: (this.diagramOptions.disclaimer) ? 100 : 50
-      }
+        spacingBottom: this.diagramOptions.disclaimer ? 100 : 50,
+      },
     };
-    this.chartInstanceService.chart.exportChartLocal(exportingOptions, chartOptions);
+    this.chartInstanceService.chart.exportChartLocal(
+      exportingOptions,
+      chartOptions,
+    );
   }
 
   downloadCSV() {
@@ -45,7 +47,10 @@ export class DownloadService {
 
   private getFilename() {
     const today = formatDate(new Date(), 'yyyy-MM-dd', 'nb-NO');
-    const title = this.diagramOptions.title.replace(/ /gi, '-').replace(/,/gi, '').replace(/---/gi, '-');
+    const title = this.diagramOptions.title
+      .replace(/ /gi, '-')
+      .replace(/,/gi, '')
+      .replace(/---/gi, '-');
     const filename = today.concat('.', title.toLowerCase());
     return filename;
   }
@@ -60,5 +65,4 @@ export class DownloadService {
     link.click();
     body.removeChild(link);
   }
-
 }

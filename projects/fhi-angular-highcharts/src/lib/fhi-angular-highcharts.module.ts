@@ -8,18 +8,8 @@ import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.componen
 import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
 
 @NgModule({
-  declarations: [
-    FhiAngularHighchartsComponent,
-    FhiDiagramTypeNavComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    HighchartsChartModule,
-    NgbPopoverModule
-  ],
-  exports: [
-    FhiAngularHighchartsComponent
-  ]
+  declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
+  imports: [CommonModule, FormsModule, HighchartsChartModule, NgbPopoverModule],
+  exports: [FhiAngularHighchartsComponent],
 })
-export class FhiAngularHighchartsModule { }
+export class FhiAngularHighchartsModule {}

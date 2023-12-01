@@ -5,7 +5,7 @@ import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
   selector: '[fhi-table-row-expandable]',
-  templateUrl: './fhi-table-row-expandable.component.html'
+  templateUrl: './fhi-table-row-expandable.component.html',
 })
 export class FhiTableRowExpandableComponent {
   @Input() colspan!: number;
@@ -17,32 +17,30 @@ export class FhiTableRowExpandableComponent {
 
   constructor(
     private _elementRef: ElementRef<HTMLElement>,
-    private toggleExpandableRowService: ToggleExpandableRowService
+    private toggleExpandableRowService: ToggleExpandableRowService,
   ) {}
 
   ngOnInit() {
     this.hostElement.setAttribute(
-      'aria-labelledby', FhiTableConstants.rowExpandButton + this.index
+      'aria-labelledby',
+      FhiTableConstants.rowExpandButton + this.index,
     );
-    this.hostElement.setAttribute(
-      'id', FhiTableConstants.rowExpandable + this.index
-    );
+    this.hostElement.setAttribute('id', FhiTableConstants.rowExpandable + this.index);
     this.addClass('fhi-table__row-expandable');
     this.addClass('d-none');
 
-    this.toggleExpandableRowService.tableRowIsExpanded$
-      .subscribe(expanded => {
-        if (this.index !== this.toggleExpandableRowService.index) {
-          return;
-        }
-        if (expanded) {
-          this.removeClass('d-none');
-          this.addClass('d-table-row');
-        } else {
-          this.removeClass('d-table-row');
-          this.addClass('d-none');
-        }
-      });
+    this.toggleExpandableRowService.tableRowIsExpanded$.subscribe((expanded) => {
+      if (this.index !== this.toggleExpandableRowService.index) {
+        return;
+      }
+      if (expanded) {
+        this.removeClass('d-none');
+        this.addClass('d-table-row');
+      } else {
+        this.removeClass('d-table-row');
+        this.addClass('d-none');
+      }
+    });
 
     // console.log('this.hostElement', this.hostElement);
   }
@@ -54,5 +52,4 @@ export class FhiTableRowExpandableComponent {
   private removeClass(classToRemove: string) {
     this.hostElement.classList.remove(classToRemove);
   }
-
 }

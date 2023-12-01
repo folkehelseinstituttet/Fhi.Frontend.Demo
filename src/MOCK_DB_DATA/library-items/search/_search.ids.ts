@@ -1,3 +1,3 @@
 export const SearchIds = {
-  Search: undefined
-}
+  Search: undefined,
+};

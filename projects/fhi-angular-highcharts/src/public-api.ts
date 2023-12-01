@@ -8,5 +8,5 @@ export * from './lib/fhi-angular-highcharts.module';
 export {
   FhiDiagramOptions,
   FhiDiagramFlag,
-  FhiDiagramSerie
+  FhiDiagramSerie,
 } from './lib/fhi-diagram.models';

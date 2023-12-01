@@ -6,10 +6,9 @@ import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-it
   selector: 'fhi-tree-view-navigation',
   templateUrl: './fhi-tree-view-navigation.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewNavigationComponent {
-
   @Input() items: Item[] = [];
 
   ngOnChanges() {
@@ -21,14 +20,13 @@ export class FhiTreeViewNavigationComponent {
   }
 
   private createIds(items: Item[], id: number) {
-    items.forEach(item => {
+    items.forEach((item) => {
       if (item.id === undefined) {
         item.id = id++;
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, ((id - 1) * 10) + 1);
+        this.createIds(item.children, (id - 1) * 10 + 1);
       }
     });
   }
-
 }

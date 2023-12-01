@@ -6,27 +6,26 @@ import { MenuItem } from 'src/app/models/menu-item.model';
 
 @Component({
   selector: 'app-library-top-level-menu',
-  templateUrl: './library-top-level-menu.component.html'
+  templateUrl: './library-top-level-menu.component.html',
 })
 export class LibraryTopLevelMenuComponent implements OnInit, OnDestroy {
-
   @Input() menuItems: MenuItem[];
 
   isMobile: boolean;
 
   private subscription = new Subscription();
 
-  constructor(private browserViewportService: BrowserViewportService) { }
+  constructor(private browserViewportService: BrowserViewportService) {}
 
   ngOnInit() {
-    this.subscription.add(this.browserViewportService.isMobile$
-      .subscribe(isMobile => {
+    this.subscription.add(
+      this.browserViewportService.isMobile$.subscribe((isMobile) => {
         this.isMobile = isMobile;
-      }));
+      }),
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { FhiMonth } from '@folkehelseinstituttet/angular-components';
+import { FhiDate, FhiDateTime, FhiWeek, FhiMonth } from '@folkehelseinstituttet/angular-components';
 
 @Component({
   selector: 'app-time-selectors',
@@ -11,73 +11,112 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  minDate = '2020-09-20';
-  maxDate = '2030-09-20';
+  // Datepicker
+  date: FhiDate;
+  minDate: FhiDate;
+  maxDate: FhiDate;
 
-  today = new Date().toISOString();
-  selectedDate = this.today;
-  selectedDateAndTime: string;
-  selectedDateRange: any;
-  selectedFromYear: number;
-  selectedToYear: number;
-  selectedYear: number;
-  selectedYearRange: any;
-  weekFrom = '2010-27';
-  weekTo = '2013-13';
-  weekRange: any;
+  // Date time
+  dateTime = { date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } };
 
-  // weekSelected: string;
-  // weekList = [];
+  // Weekpicker
+  week: FhiWeek;
+  minWeek: FhiWeek;
+  maxWeek: FhiWeek;
 
-  selectedWeek!: string;
-  week = '2019-25';
+  //
+  // Datepicker
+  //
 
-  // ngOnInit() {
-  //   this.generateWeekList();
-  // }
-
-  getDate(date: any) {
-    this.selectedDate = date;
+  updateDate() {
+    const date1 = { year: 2019, month: 9, day: 11 };
+    const date2 = { year: 2020, month: 10, day: 23 };
+    this.date = this.date?.year !== date1.year ? date1 : date2;
   }
 
-  getDateRange(dateRange: any) {
-    this.selectedDateRange = dateRange;
+  updateMinDate() {
+    const date1 = { year: 2010, month: 1, day: 1 };
+    const date2 = { year: 2015, month: 1, day: 1 };
+    this.minDate = this.minDate?.year !== date1.year ? date1 : date2;
   }
 
-  getDateAndTime(dateAndTime: any) {
-    this.selectedDateAndTime = dateAndTime;
+  updateMaxDate() {
+    const date1 = { year: 2023, month: 1, day: 1 };
+    const date2 = { year: 2020, month: 1, day: 1 };
+    this.maxDate = this.maxDate?.year !== date1.year ? date1 : date2;
   }
 
-  // getTheWeek(week: any) {
-  //   console.log(week);
-  //   this.weekSelected = week;
-  // }
+  onDateSelect(date: FhiDate) {
+    console.info(date);
+  }
 
-  // generateWeekList = () => {
-  //   for (let i = 1; i <= 53; i++) {
-  //     this.weekList.push({ id: i, name: 'Uke ' + i });
-  //   }
-  // }
+  //
+  // Date range
+  //
 
-  onWeekSelect(week: any) {
+  //
+  // Date time
+  //
+
+  onDateTimeSelect(dateTime: FhiDateTime) {
+    console.info(dateTime);
+  }
+
+  //
+  // Weekpicker
+  //
+
+  updateWeek() {
+    const week1 = { year: 2019, week: 52 };
+    const week2 = { year: 2020, week: 23 };
+    this.week = this.week?.year !== week1.year ? week1 : week2;
+  }
+
+  updateMinWeek() {
+    const week1 = { year: 2010, week: 1 };
+    const week2 = { year: 2015, week: 1 };
+    this.minWeek = this.minWeek?.year !== week1.year ? week1 : week2;
+  }
+
+  updateMaxWeek() {
+    const week1 = { year: 2023, week: 52 };
+    const week2 = { year: 2020, week: 1 };
+    this.maxWeek = this.maxWeek?.year !== week1.year ? week1 : week2;
+  }
+
+  onWeekSelect(week: FhiWeek) {
     console.info(week);
   }
 
-  onWeekRangeSelect(weekRange: any) {
-    console.info(weekRange);
-  }
+  //
+  // Week range
+  //
+
+  // Month
 
   onMonthSelect(month: FhiMonth) {
     console.info(month);
   }
 
+  //
+  // Month range
+  //
+
   onMonthRangeSelect(monthRange: object) {
     console.info(monthRange);
   }
 
+  //
+  // Years
+  //
+
   onYearSelect(year: number[]) {
     console.info(year);
   }
+
+  //
+  // Year range
+  //
 
   onYearRangeSelect(yearRange: any) {
     console.info(yearRange);

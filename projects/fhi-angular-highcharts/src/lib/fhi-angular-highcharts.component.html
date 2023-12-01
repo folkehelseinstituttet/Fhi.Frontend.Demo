@@ -18,7 +18,8 @@
       <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-container>
-      <ng-template #chartAnimationHack><!-- to get correct chart animation when switching from one chart type to another -->
+      <ng-template #chartAnimationHack
+        ><!-- to get correct chart animation when switching from one chart type to another -->
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-template>
     </ng-container>
@@ -29,16 +30,18 @@
   </ng-container>
 </article>
 
-
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="allDiagramOptions.diagramTypeNavId === diagramTypeNavId.default
-           && allDiagramOptions.diagramTypeId !== undefined"
+    *ngIf="
+      allDiagramOptions.diagramTypeNavId === diagramTypeNavId.default &&
+      allDiagramOptions.diagramTypeId !== undefined
+    "
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
     [currentMapTypeId]="allDiagramOptions.mapTypeId"
     [currentSeriesLength]="allDiagramOptions.series.length"
-    (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+    (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+  >
   </fhi-diagram-type-nav>
 </ng-template>
 
@@ -47,7 +50,8 @@
     <highcharts-chart
       class="fhi-highcharts-chart"
       [Highcharts]="highcharts"
-      [options]="highchartsOptions">
+      [options]="highchartsOptions"
+    >
     </highcharts-chart>
   </div>
 </ng-template>
@@ -58,7 +62,8 @@
       class="fhi-highcharts-map"
       [Highcharts]="highmaps"
       [constructorType]="'mapChart'"
-      [options]="highchartsOptions">
+      [options]="highchartsOptions"
+    >
     </highcharts-chart>
   </div>
 </ng-template>
@@ -67,17 +72,31 @@
   <div class="table-responsive fhi-highcharts-table">
     <table class="table table-striped table-sm">
       <thead>
-        <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
+        <tr
+          class="fhi-highcharts-table__row"
+          *ngFor="let headerRow of tableHeaderRows"
+        >
           <ng-container *ngFor="let tableCellData of headerRow; let i = index">
             <ng-container *ngIf="tableCellData">
-              <td class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
-                  [attr.rowspan]="(tableCellData.rowspan) ? tableCellData.rowspan : null"
-                  *ngIf="i === 0 && tableCellData.rowspan; else tableHeaderCell"></td>
+              <td
+                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                [attr.rowspan]="
+                  tableCellData.rowspan ? tableCellData.rowspan : null
+                "
+                *ngIf="i === 0 && tableCellData.rowspan; else tableHeaderCell"
+              ></td>
               <ng-template #tableHeaderCell>
-                <th class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
-                    [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
-                    [attr.colspan]="(tableCellData.colspan) ? tableCellData.colspan : null"
-                    scope="col" *ngIf="tableCellData.name">
+                <th
+                  class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                  [attr.style]="
+                    'width: calc(100% /' + (headerRow.length - 1) + ');'
+                  "
+                  [attr.colspan]="
+                    tableCellData.colspan ? tableCellData.colspan : null
+                  "
+                  scope="col"
+                  *ngIf="tableCellData.name"
+                >
                   {{ tableCellData.name }}
                 </th>
               </ng-template>
@@ -86,14 +105,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
+        <tr
+          *ngFor="let tableRow of tableBodyRows"
+          class="fhi-highcharts-table__row"
+        >
           <ng-container *ngFor="let tableCellData of tableRow; let i = index">
-            <th *ngIf="i === 0" scope="row"
-                  class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header">
+            <th
+              *ngIf="i === 0"
+              scope="row"
+              class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header"
+            >
               {{ tableCellData }}
             </th>
             <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
-              <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
+              <ng-container
+                *ngIf="
+                  tableCellDataOK(tableCellData);
+                  else tableCellDataIsString
+                "
+              >
                 {{ tableCellData | number }}
               </ng-container>
               <ng-template #tableCellDataIsString>
@@ -114,10 +144,18 @@
     </p>
     <p *ngIf="allDiagramOptions.creditsText && allDiagramOptions.creditsHref">
       <strong>Kilde </strong>
-      <a href="{{ allDiagramOptions.creditsHref }}">{{ allDiagramOptions.creditsText }}</a>
+      <a href="{{ allDiagramOptions.creditsHref }}">{{
+        allDiagramOptions.creditsText
+      }}</a>
     </p>
-    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
-      <strong>Tegnforklaringer</strong><br>
+    <div
+      class="mb-3"
+      *ngIf="
+        allDiagramOptions.flags &&
+        currentDiagramTypeGroup === diagramTypeGroups.table
+      "
+    >
+      <strong>Tegnforklaringer</strong><br />
       <table>
         <tbody>
           <tr *ngFor="let flag of allDiagramOptions.flags">
@@ -127,9 +165,16 @@
         </tbody>
       </table>
     </div>
-    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
+    <div
+      class="mb-3"
+      *ngIf="
+        allDiagramOptions.flags &&
+        currentDiagramTypeGroup !== diagramTypeGroups.table
+      "
+    >
       <p>
-        <a role="button"
+        <a
+          role="button"
           class="fhi-popover-trigger"
           tabindex="0"
           triggers="manual"
@@ -138,17 +183,26 @@
           (click)="p.toggle()"
           (keydown.enter)="p.toggle()"
           [autoClose]="'outside'"
-          [ngbPopover]="popContent">Diagrammet inneholder data som ikke kan vises</a>
+          [ngbPopover]="popContent"
+          >Diagrammet inneholder data som ikke kan vises</a
+        >
       </p>
       <ng-template #popContent>
         <p>Følgende data vises ikke i diagrammet</p>
         <ul>
           <li *ngFor="let dataPoint of getFlaggedDataPoints()">
-            {{ dataPoint }} <br>
+            {{ dataPoint }} <br />
           </li>
         </ul>
       </ng-template>
-      <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a> for å se flere detaljer.
+      <a
+        role="button"
+        class="fhi-link"
+        tabindex="0"
+        (click)="setDiagramTypeGroupToTable()"
+        >Vis som tabell</a
+      >
+      for å se flere detaljer.
     </div>
     <p class="fst-italic small" *ngIf="allDiagramOptions.disclaimer">
       {{ allDiagramOptions.disclaimer }}

@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 import { FhiMultiselectItem } from './fhi-multiselect.model';
 
@@ -16,11 +10,11 @@ import { FhiMultiselectItem } from './fhi-multiselect.model';
 export class FhiMultiselectComponent {
   @Input() items: Array<FhiMultiselectItem> = [];
   @Input() labelForId: string = undefined;
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
   @Input() disableTags: boolean;
   @Input() description: string = undefined;
-  @Input() label: string = 'Label';
-  @Input() notFoundText: string = 'Ingen elementer funnet';
+  @Input() label = 'Label';
+  @Input() notFoundText = 'Ingen elementer funnet';
   @Input() selectedItems: Array<any> = [];
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();

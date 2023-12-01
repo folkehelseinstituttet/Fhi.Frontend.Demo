@@ -9,11 +9,9 @@ import { UrlService } from './services/url.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
 })
-
 export class AppComponent implements OnInit {
-
   projectName = 'Designsystem';
   projectDescription = null;
 
@@ -21,8 +19,8 @@ export class AppComponent implements OnInit {
     private router: Router,
     private viewportScroller: ViewportScroller,
     private browserViewportService: BrowserViewportService,
-    private urlService: UrlService
-  ) { }
+    private urlService: UrlService,
+  ) {}
 
   ngOnInit() {
     this.router.events
@@ -32,7 +30,7 @@ export class AppComponent implements OnInit {
       });
 
     this.router.events
-      .pipe(filter(event => event instanceof Scroll))
+      .pipe(filter((event) => event instanceof Scroll))
       .subscribe((event: Scroll) => {
         if (event.anchor) {
           this.viewportScroller.scrollToAnchor(event.anchor);
@@ -46,5 +44,4 @@ export class AppComponent implements OnInit {
         this.browserViewportService.updateResponsiveProperties();
       });
   }
-
 }

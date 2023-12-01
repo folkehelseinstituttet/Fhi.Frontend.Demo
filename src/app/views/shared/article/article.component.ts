@@ -6,22 +6,22 @@ import { UrlSegment } from 'src/app/url-segment.constants';
 
 @Component({
   selector: 'app-article',
-  templateUrl: './article.component.html'
+  templateUrl: './article.component.html',
 })
 export class ArticleComponent implements OnInit {
-
   title: string;
   articleHtml: any;
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private urlService: UrlService) { }
+  constructor(private urlService: UrlService) {}
 
   ngOnInit() {
-    this.subscription.add(this.urlService.URL$
-      .subscribe(() => {
+    this.subscription.add(
+      this.urlService.URL$.subscribe(() => {
         this.findTopLevel();
-      }));
+      }),
+    );
   }
 
   ngOnDestroy() {
@@ -100,5 +100,4 @@ export class ArticleComponent implements OnInit {
     return `
 <p>Her finner du eksempler på større enheter og klikkbare prototyper ofte produsert for spesifikke prosjekter.</p>`;
   }
-
 }

@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!isDebugging else debugView">
+<div class="container" *ngIf="!isDebugging; else debugView">
   <app-library-top-level-menu [menuItems]="topLevelMenuItems"></app-library-top-level-menu>
   <div class="row">
     <div class="col-xl-3 col-xxl-3">
@@ -9,7 +9,6 @@
     </div>
   </div>
 </div>
-
 
 <ng-template #debugView>
   <div class="container">

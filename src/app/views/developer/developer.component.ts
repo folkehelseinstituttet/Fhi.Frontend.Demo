@@ -10,10 +10,9 @@ import { LibraryItemGroupsShared } from '../shared/models/library-item.model';
 
 @Component({
   selector: 'app-developer',
-  templateUrl: './developer.component.html'
+  templateUrl: './developer.component.html',
 })
 export class DeveloperComponent implements OnInit, OnDestroy {
-
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
   isDebugging = false;
@@ -24,29 +23,31 @@ export class DeveloperComponent implements OnInit, OnDestroy {
   constructor(
     private urlService: UrlService,
     private libraryMenuService: LibraryMenuService,
-    private libraryItemGroupsSharedDataService: LibraryItemGroupsSharedDataService
-  ) { }
+    private libraryItemGroupsSharedDataService: LibraryItemGroupsSharedDataService,
+  ) {}
 
   ngOnInit() {
-    this.subscription.add(this.urlService.URL$.pipe(mergeMap(
-      () => this.libraryItemGroupsSharedDataService.getLibraryItemGroupsShared()
-    )).subscribe({
-        next: libraryItemGroupsShared => {
+    this.subscription.add(
+      this.urlService.URL$.pipe(
+        mergeMap(() => this.libraryItemGroupsSharedDataService.getLibraryItemGroupsShared()),
+      ).subscribe({
+        next: (libraryItemGroupsShared) => {
           this.topLevelMenuItems = this.libraryMenuService.getTopLevelMenuItems();
-          this.isDebugging = (this.urlService.getSegmentPath(1) === 'debug') ? true : false;
+          this.isDebugging = this.urlService.getSegmentPath(1) === 'debug' ? true : false;
           if (!this.isDebugging && this.libraryMenuService.updateSecondLevelMenu()) {
-            this.secondLevelMenuItems = this.libraryMenuService.getSecondLevelMenuItems(libraryItemGroupsShared)
+            this.secondLevelMenuItems = this.libraryMenuService
+              .getSecondLevelMenuItems(libraryItemGroupsShared)
 
               // TODO: remove this when all items are using new system
-              .concat(this.libraryMenuService.getSecondLevelMenuItems_OLD())
+              .concat(this.libraryMenuService.getSecondLevelMenuItems_OLD());
           }
         },
-        error: error => console.log(error)
-      }));
+        error: (error) => console.log(error),
+      }),
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

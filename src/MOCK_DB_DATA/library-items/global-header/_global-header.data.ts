@@ -7,5 +7,5 @@ import { GlobalHeaderWithMenuAndUtils } from './global-header-with-menu-and-util
 export const GlobalHeaderData: LibraryItem[] = [
   ...GlobalHeader,
   ...GlobalHeaderWithMenu,
-  ...GlobalHeaderWithMenuAndUtils
+  ...GlobalHeaderWithMenuAndUtils,
 ];

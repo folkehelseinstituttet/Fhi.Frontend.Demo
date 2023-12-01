@@ -3,11 +3,11 @@ import { Axis, SeriesOptionsType } from 'highcharts';
 export const OptionsChartsAndMaps = {
   chart: {
     styledMode: true,
-    spacingBottom: 35
+    spacingBottom: 35,
   },
   caption: {
     useHTML: true,
-    y: 25
+    y: 25,
   },
   credits: {
     enabled: true,
@@ -19,14 +19,14 @@ export const OptionsChartsAndMaps = {
   },
   series: [],
   title: {
-    text: undefined
+    text: undefined,
   },
   exporting: {
     allowHTML: true,
     buttons: {
       contextButton: {
-        enabled: false
-      }
+        enabled: false,
+      },
     },
     csv: {
       itemDelimiter: ';',
@@ -36,9 +36,8 @@ export const OptionsChartsAndMaps = {
         } else {
           return item.name;
         }
-      }
+      },
     },
-    fallbackToExportServer: false
-  }
+    fallbackToExportServer: false,
+  },
 };
-

@@ -8,9 +8,8 @@ describe('FhiMultiselectComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FhiMultiselectComponent ]
-    })
-    .compileComponents();
+      declarations: [FhiMultiselectComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(FhiMultiselectComponent);
     component = fixture.componentInstance;

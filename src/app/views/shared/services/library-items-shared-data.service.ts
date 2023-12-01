@@ -7,14 +7,14 @@ import { LibraryItemsShared } from 'src/app/views/shared/models/library-item.mod
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LibraryItemsSharedDataService {
   url = `${environment.apiBaseUrl}/LibraryItemsSharedData`;
 
   private _libraryItemsShared!: LibraryItemsShared;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   get libraryItemsShared(): LibraryItemsShared {
     return this._libraryItemsShared;
@@ -25,11 +25,10 @@ export class LibraryItemsSharedDataService {
       return of(this._libraryItemsShared);
     }
     return this.http.get<LibraryItemsShared>(this.url).pipe(
-      tap(libraryItemsShared => this._libraryItemsShared = libraryItemsShared),
-      catchError(error => {
+      tap((libraryItemsShared) => (this._libraryItemsShared = libraryItemsShared)),
+      catchError((error) => {
         throw 'Error details: ' + error;
-      })
+      }),
     );
   }
-
 }

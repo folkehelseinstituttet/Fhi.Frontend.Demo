@@ -2,7 +2,7 @@ import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/librar
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TimeSelectorDateAndTime: LibraryItem[] = [
+export const TimeSelectorDateTime: LibraryItem[] = [
   {
     id: ITEMS.TimeSelectorDateAndTime.id,
     title: ITEMS.TimeSelectorDateAndTime.title,
@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-date-and-time (dateAndTimeSelect)="getDateAndTime($event)"></fhi-date-and-time>
+<fhi-date-time (dateTimeSelect)="onDateTimeSelect($event)"></fhi-date-time>
 `;
 }
 
@@ -36,9 +36,28 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return `
 <p>
-  <a href="${CONST.FhiAngularComponentsNpmUrl}/fhi-date-and-time">FHI Date And Time</a> er en komponent i <a href="${CONST.FhiAngularComponentsNpmUrl}">FHI Angular Components</a>.
+  For å ta i bruk denne komponenten i en Angular-applikasjon må NPM-pakken
+  <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
+  være lagt til som en "dependency".
 </p>
-<p>
-  Den er basert på <a href="/developer/components/time-selectors#time-selector-datepicker">FHI Datepicker</a>, og dersom du benytter annet javascript-rammeverk enn Angular må du finne passende tredjepartskomponent.
-</p>`;
+
+<h2 class="h5">Nyttige lenker</h2>
+
+<ul>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-date-time/README.md#API">
+      API-dokumentasjon
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-time/fhi-date-time">
+      Kildekode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.ExampleComponentsGithubUrl}/time-selectors">
+      Demokode
+    </a>
+  </li>
+</ul>`;
 }
