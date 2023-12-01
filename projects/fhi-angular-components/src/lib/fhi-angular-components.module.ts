@@ -15,6 +15,7 @@ import { FhiYearMonthComponent } from './fhi-time/fhi-year-month/fhi-year-month.
 import { FhiYearMonthRangeComponent } from './fhi-time/fhi-year-month-range/fhi-year-month-range.component';
 import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
+import { FhiLayoutComponent } from './fhi-layout/fhi-layout.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
@@ -32,6 +33,8 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiYearMonthRangeComponent,
   FhiYearsComponent,
   FhiYearRangeComponent,
+
+  FhiLayoutComponent,
 ];
 
 @NgModule({
