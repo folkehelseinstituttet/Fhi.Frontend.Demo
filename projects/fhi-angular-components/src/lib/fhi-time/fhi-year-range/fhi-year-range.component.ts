@@ -2,20 +2,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiYearRange } from './fhi-year-range.model';
-import { RangeContext } from '../range-context.enum';
+import { RangeContext } from '../shared/range-context.enum';
 
-import { FhiConstantsService } from '../../shared-services/fhi-constants.service';
+import { TimeConstants } from '../shared/time.constants';
 
 @Component({
   selector: 'fhi-year-range',
   standalone: true,
   templateUrl: './fhi-year-range.component.html',
   imports: [FhiYearsComponent],
-  providers: [FhiConstantsService],
 })
 export class FhiYearRangeComponent {
-  @Input() maxYear: number = this.FHI_CONSTANTS.MAX_YEAR;
-  @Input() minYear: number = this.FHI_CONSTANTS.MIN_YEAR;
+  @Input() minYear: number = TimeConstants.minYear;
+  @Input() maxYear: number = TimeConstants.maxYear;
 
   @Output() yearRangeSelect = new EventEmitter<FhiYearRange>();
 
@@ -24,8 +23,6 @@ export class FhiYearRangeComponent {
   fromYear: number;
   toYear: number;
   rangeContext = RangeContext;
-
-  constructor(private FHI_CONSTANTS: FhiConstantsService) {}
 
   onYearsSelect(years: number[], context: number) {
     if (context === RangeContext.from) {

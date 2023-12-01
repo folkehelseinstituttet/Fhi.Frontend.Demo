@@ -2,9 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FhiWeekpickerComponent } from '../fhi-weekpicker/fhi-weekpicker.component';
-import { FhiTimeConstants } from '../fhi-time-constants';
 import { FhiWeekRange } from './fhi-week-range.model';
-import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
+import { FhiWeek } from '../shared/models/fhi-week.model';
+import { LocaleValues } from '../shared/i18n/locale-values.model';
+import { I18nService } from '../shared/i18n/i18n.service';
+
+import { TimeConstants } from '../shared/time.constants';
 
 @Component({
   selector: 'fhi-week-range',
@@ -13,16 +16,18 @@ import { FhiWeek } from '../fhi-weekpicker/fhi-week.model';
   imports: [CommonModule, FhiWeekpickerComponent],
 })
 export class FhiWeekRangeComponent implements OnInit {
-  @Input() maxWeek: FhiWeek = FhiTimeConstants.maxWeek;
-  @Input() minWeek: FhiWeek = FhiTimeConstants.minWeek;
+  private i18n: LocaleValues;
+
+  @Input() maxWeek: FhiWeek = TimeConstants.maxWeek;
+  @Input() minWeek: FhiWeek = TimeConstants.minWeek;
 
   @Output() weekRangeSelect = new EventEmitter<FhiWeekRange>();
 
   idFrom: string = 'from-week_' + Math.random().toString(36).substring(2, 20);
   idTo: string = 'to-week_' + Math.random().toString(36).substring(2, 20);
 
-  labelWeekFrom = FhiTimeConstants.weekRangeLabelFrom;
-  labelWeekTo = FhiTimeConstants.weekRangeLabelTo;
+  labelWeekFrom: string;
+  labelWeekTo: string;
 
   maxWeekFrom: FhiWeek;
   minWeekTo: FhiWeek;
@@ -35,6 +40,12 @@ export class FhiWeekRangeComponent implements OnInit {
     to: undefined,
   };
   isValid = true;
+
+  constructor(private i18nService: I18nService) {
+    this.i18n = this.i18nService.getI18nValues();
+    this.labelWeekFrom = this.i18n.weekRangeLabelFrom;
+    this.labelWeekTo = this.i18n.weekRangeLabelTo;
+  }
 
   ngOnInit() {
     this.initMinMaxWeeks();

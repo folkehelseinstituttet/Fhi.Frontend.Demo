@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FhiDateAndTimeComponent } from './fhi-date-and-time.component';
+import { FhiDateTimeComponent } from './fhi-date-time.component';
 
-describe('FhiDateAndTimeComponent', () => {
-  let component: FhiDateAndTimeComponent;
-  let fixture: ComponentFixture<FhiDateAndTimeComponent>;
+describe('FhiDateTimeComponent', () => {
+  let component: FhiDateTimeComponent;
+  let fixture: ComponentFixture<FhiDateTimeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FhiDateAndTimeComponent],
+      imports: [FhiDateTimeComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FhiDateAndTimeComponent);
+    fixture = TestBed.createComponent(FhiDateTimeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
