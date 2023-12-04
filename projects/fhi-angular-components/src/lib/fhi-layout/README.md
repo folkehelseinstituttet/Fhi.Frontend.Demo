@@ -2,79 +2,52 @@
 
 ## Concept
 
-### Header and footer
+There is one component for page layouts, having inputs for layoutType and backgroundColor (on/off)
 
-Should the header and footer be global elements in app.component, and the page templates set up content in router-outlet?
-**AND/OR**
-Should the header and footer be part of the template in router-outlet?
+### Header, footer and main content area
 
-## List of templates
+The header and footer are global elements in app.component, and the page templates are defined as the main content area in the router-outlet.
 
-- **Fullwidth**
-  - with global header, global main menu and global footer
-  - with global header brand and global footer
-- **Aside**:start and **Main**
-- **Main** and **Aside**:end
-- **Aside**:start, **Main** and **Aside**:end
+## API
 
----
+| Input           | Type    | Default | Required | Description |
+| --------------- | ------- | ------- | -------- | ----------- |
+| backgroundColor | boolean | false   | no       | setting (a defined) background color on the main content area |
+| layoutType      | string  | -       | yes      |  |
 
-<table>
-  <tr>
-    <td style="width: 250px">Global header</td>
-  </tr>
-  <tr style="background-color: lightyellow">
-    <td>Main <br/><br/></td>
-  </tr>
-  <tr>
-    <td>Global footer</td>
-  </tr>
-</table>
+### Usage of page layout types:
+
+#### `layoutType='a'`
+`<ng-container layout.title>`
+`<ng-container layout.main>`
+
+Main content is stretching over the full width of the page on all screen sizes.
 
 ---
 
-<table>
-  <tr>
-    <td colspan="2">Global header</td>
-  </tr>
-  <tr style="background-color: lightyellow">
-    <td>Aside<br/><br/></td>
-    <td style="width: 182px">Main <br/><br/></td>
-  </tr>
-  <tr>
-    <td colspan="2">Global footer</td>
-  </tr>
-</table>
+#### `layoutType='b'`
+`<ng-container layout.title>`
+`<ng-container layout.main>`
+
+Main content is stretching over two thirds width, leaving the last third blank on xxl screens sizes.
 
 ---
 
-<table>
-  <tr>
-    <td colspan="2">Global header</td>
-  </tr>
-  <tr style="background-color: lightyellow">
-    <td style="width: 182px">Main <br/><br/></td>
-    <td>Aside<br/><br/></td>
-  </tr>
-  <tr>
-    <td colspan="2">Global footer</td>
-  </tr>
-</table>
+#### `layoutType='c'`
+`<ng-container layout.title>`
+`<ng-container layout.beforemain>`
+`<ng-container layout.main>`
+
+Some content is placed between **title** and **main** aligned to the right
+Main content is stretching over two thirds width, leaving the last third blank on xxl screens sizes.
 
 ---
 
-<table>
-  <tr>
-    <td colspan="3">Global header</td>
-  </tr>
-  <tr style="background-color: lightyellow">
-    <td>Aside<br/><br/></td>
-    <td style="width: 115px">Main <br/><br/></td>
-    <td>Aside<br/><br/></td>
-  </tr>
-  <tr>
-    <td colspan="3">Global footer</td>
-  </tr>
-</table>
+#### `layoutType='d'`
+`<ng-container layout.title>`
+`<ng-container layout.main>`
+`<ng-container layout.aside2>`
+
+Title and main content is 
 
 ---
