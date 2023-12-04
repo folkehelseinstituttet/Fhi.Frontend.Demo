@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
-import { FhiYearRange } from './fhi-year-range.model';
+import { FhiYearRange } from '../shared/models/fhi-year-range.model';
 import { RangeContext } from '../shared/range-context.enum';
 
 import { TimeConstants } from '../shared/time.constants';
