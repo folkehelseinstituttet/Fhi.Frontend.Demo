@@ -13,6 +13,7 @@ import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.modu
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
 import { TimeConstants } from '../shared/time.constants';
+import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
   selector: 'fhi-years',
@@ -20,9 +21,9 @@ import { TimeConstants } from '../shared/time.constants';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [FhiAutosuggestModule],
+  providers: [FhiTimeUtilityService],
 })
 export class FhiYearsComponent implements OnInit, OnChanges {
-  @Input() id = this.getRandomId();
   @Input() label = 'Velg år';
   @Input() minYear = TimeConstants.minYear;
   @Input() maxYear = TimeConstants.maxYear;
@@ -30,8 +31,13 @@ export class FhiYearsComponent implements OnInit, OnChanges {
 
   @Output() yearsSelect = new EventEmitter<number[]>();
 
+  id!: string;
   year!: number;
   yearItems!: FhiAutosuggestItem[];
+
+  constructor(private timeUtilityService: FhiTimeUtilityService) {
+    this.id = this.timeUtilityService.getRandomID();
+  }
 
   ngOnInit() {
     if (this.years?.length > 0) {
