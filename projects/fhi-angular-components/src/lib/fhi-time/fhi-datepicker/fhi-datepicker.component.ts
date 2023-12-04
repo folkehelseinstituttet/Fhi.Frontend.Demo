@@ -60,7 +60,6 @@ import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 export class FhiDatepickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;
 
-  @Input() id: string;
   @Input() label: string;
   @Input() date: FhiDate;
   @Input() minDate: FhiDate;
@@ -68,6 +67,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   @Output() dateSelect = new EventEmitter<FhiDate>();
 
+  id: string;
   invalidFeedback!: string;
   isValid = true;
   model!: string;

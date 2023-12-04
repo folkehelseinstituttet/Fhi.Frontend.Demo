@@ -17,7 +17,6 @@ import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
   providers: [FhiTimeUtilityService],
 })
 export class FhiDateTimeComponent implements OnInit {
-  @Input() id: string;
   @Input() label = 'Velg dato og tidspunkt';
   @Input() dateTime: FhiDateTime;
   // @Input() minDateTime: FhiDateTime; // TODO
@@ -26,6 +25,7 @@ export class FhiDateTimeComponent implements OnInit {
   @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
   date!: FhiDate;
+  id: string;
   isValid = true;
   timeModel!: string;
   unvalidatedDate!: FhiDate;

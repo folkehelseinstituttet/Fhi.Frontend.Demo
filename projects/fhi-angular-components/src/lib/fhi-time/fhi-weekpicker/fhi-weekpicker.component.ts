@@ -57,7 +57,6 @@ import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 export class FhiWeekpickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;
 
-  @Input() id: string; // TODO: Add randomId (globally)
   @Input() label: string;
   @Input() minWeek: FhiWeek;
   @Input() maxWeek: FhiWeek;
@@ -65,6 +64,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   @Output() weekSelect = new EventEmitter<FhiWeek>();
 
+  id: string;
   invalidFeedback!: string;
   isValid = true;
   model!: FhiWeek;
