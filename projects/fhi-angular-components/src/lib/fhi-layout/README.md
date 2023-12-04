@@ -48,6 +48,4 @@ Main content is stretching over two thirds width, leaving the last third blank o
 `<ng-container layout.main>`
 `<ng-container layout.aside2>`
 
-Title and main content is 
-
 ---
