@@ -6,7 +6,6 @@
 
 | Input              | Type      | Default    | Required | Description |
 | ------------------ | --------- | ---------- | -------- | ----------- |
-| `id`               | `string`  | random     | no       | Id to associate control with label. |
 | `label`            | `string`  | `Velg uke` | no       | Label above the ng-datepicker input. |
 | `date`             | `FhiDate` | -          | no       | Object containing year, month and day as numbers. |
 | `minDate`          | `FhiDate` | -          | no       | Object containing year, month and day as numbers for the first possible date to select. |

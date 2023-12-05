@@ -27,6 +27,7 @@ import { WeekParserFormatterService } from './services/week-parser-formatter.ser
 import { WeekAdapterService } from './services/week-adapter.service';
 import { WeekValidationService } from './services/week-validation.service';
 import { WeekUtilityService } from './services/week-utility.service';
+import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
   selector: 'fhi-weekpicker',
@@ -37,6 +38,7 @@ import { WeekUtilityService } from './services/week-utility.service';
   providers: [
     I18nService,
     WeekValidationService,
+    FhiTimeUtilityService,
     WeekUtilityService,
     {
       provide: NgbDatepickerI18n,
@@ -55,7 +57,6 @@ import { WeekUtilityService } from './services/week-utility.service';
 export class FhiWeekpickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;
 
-  @Input() id: string; // TODO: Add randomId (globally)
   @Input() label: string;
   @Input() minWeek: FhiWeek;
   @Input() maxWeek: FhiWeek;
@@ -63,6 +64,7 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
 
   @Output() weekSelect = new EventEmitter<FhiWeek>();
 
+  id: string;
   invalidFeedback!: string;
   isValid = true;
   model!: FhiWeek;
@@ -75,15 +77,17 @@ export class FhiWeekpickerComponent implements OnInit, OnChanges {
     private i18nService: I18nService,
     private weekAdapter: NgbDateAdapter<FhiWeek>,
     private weekValidationService: WeekValidationService,
+    private timeUtilityService: FhiTimeUtilityService,
     private weekUtilityService: WeekUtilityService,
   ) {
     this.i18n = this.i18nService.getI18nValues();
+    this.id = this.timeUtilityService.getRandomID();
+    this.label = this.i18n.weekFormLabel;
+    this.placeholder = this.i18n.weekFormatPlaceholder;
     this.weekpickerOpen = this.i18n.weekpickerOpen;
   }
 
   ngOnInit() {
-    this.label = this.i18n.weekFormLabel;
-    this.placeholder = this.i18n.weekFormatPlaceholder;
     this.weekChangeActions();
     this.minWeekChangeActions();
     this.maxWeekChangeActions();

@@ -4,13 +4,13 @@
 
     <div class="fhi-date-time__time-container d-flex flex-column justify-content-start">
       <div class="position-relative mt-5">
-        <label class="fhi-date-time__time-icon icon-clock position-absolute" [for]="thisTimeId"
-          ><span class="visually-hidden">Klokkeslett</span></label
-        >
+        <label class="fhi-date-time__time-icon icon-clock position-absolute" [for]="id">
+          <span class="visually-hidden">Klokkeslett</span>
+        </label>
         <input
           class="form-control fhi-datepicker__form-control fhi-date-time__hours-and-minutes"
           [ngClass]="{ 'is-invalid': !isValid }"
-          [id]="thisTimeId"
+          [id]="id"
           placeholder="tt:mm"
           [(ngModel)]="timeModel"
           (focus)="onFocus()"
