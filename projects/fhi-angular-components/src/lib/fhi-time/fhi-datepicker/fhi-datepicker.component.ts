@@ -29,6 +29,7 @@ import { DateAdapterService } from './services/date-adapter.service';
 import { DateParserFormatterService } from './services/date-parser-formatter.service';
 import { DateUtilityService } from './services/date-utility.service';
 import { DateValidationService } from './services/date-validation.service';
+import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
   selector: 'fhi-datepicker',
@@ -39,6 +40,7 @@ import { DateValidationService } from './services/date-validation.service';
   providers: [
     I18nService,
     DateUtilityService,
+    FhiTimeUtilityService,
     DateValidationService,
     {
       provide: NgbDatepickerI18n,
@@ -58,7 +60,6 @@ import { DateValidationService } from './services/date-validation.service';
 export class FhiDatepickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;
 
-  @Input() id: string; // TODO: Add randomId = `id${Math.floor(Math.random() * Math.pow(10, 8))}`; to constants
   @Input() label: string;
   @Input() date: FhiDate;
   @Input() minDate: FhiDate;
@@ -66,6 +67,7 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
 
   @Output() dateSelect = new EventEmitter<FhiDate>();
 
+  id: string;
   invalidFeedback!: string;
   isValid = true;
   model!: string;
@@ -77,15 +79,17 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
     private i18nService: I18nService,
     private dateAdapter: NgbDateAdapter<string>,
     private dateUtilityService: DateUtilityService,
+    private timeUtilityService: FhiTimeUtilityService,
     private dateValidationService: DateValidationService,
   ) {
     this.i18n = this.i18nService.getI18nValues();
+    this.id = this.timeUtilityService.getRandomID();
+    this.label = this.i18n.dateFormLabel;
+    this.placeholder = this.i18n.dateFormatPlaceholder;
     this.datepickerOpen = this.i18n.datepickerOpen;
   }
 
   ngOnInit() {
-    this.placeholder = this.i18n.dateFormatPlaceholder;
-    this.labelChangeActions();
     this.dateChangeActions();
     this.minDateChangeActions();
     this.maxDateChangeActions();
@@ -171,9 +175,5 @@ export class FhiDatepickerComponent implements OnInit, OnChanges {
       return;
     }
     this.dateValidationService.throwInputValueError('maxDate');
-  }
-
-  private labelChangeActions() {
-    this.label = this.label ? this.label : this.i18n.dateFormLabel;
   }
 }

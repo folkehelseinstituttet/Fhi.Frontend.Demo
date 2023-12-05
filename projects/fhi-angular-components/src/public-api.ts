@@ -40,3 +40,5 @@ export * from './lib/fhi-time/shared/models/fhi-date.model';
 export * from './lib/fhi-time/shared/models/fhi-date-time.model';
 export * from './lib/fhi-time/shared/models/fhi-week.model';
 export * from './lib/fhi-time/shared/models/fhi-month.model';
+export * from './lib/fhi-time/shared/models/fhi-month-range.model';
+export * from './lib/fhi-time/shared/models/fhi-year-range.model';

@@ -8,7 +8,7 @@ import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model'
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { RangeContext } from '../shared/range-context.enum';
 import { FhiMonth } from '../shared/models/fhi-month.model';
-import { FhiMonthRange } from './fhi-month-range.model';
+import { FhiMonthRange } from '../shared/models/fhi-month-range.model';
 import { I18nService } from '../shared/i18n/i18n.service';
 import { LocaleValues } from '../shared/i18n/locale-values.model';
 

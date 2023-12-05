@@ -7,12 +7,14 @@ import { FhiDateTime } from '../shared/models/fhi-date-time.model';
 import { FhiDate } from '../shared/models/fhi-date.model';
 import { toNumber } from 'lodash-es';
 import { FhiTime } from '../shared/models/fhi-time.model';
+import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
   standalone: true,
   selector: 'fhi-date-time',
   templateUrl: './fhi-date-time.component.html',
   imports: [CommonModule, FhiDatepickerComponent, FormsModule],
+  providers: [FhiTimeUtilityService],
 })
 export class FhiDateTimeComponent implements OnInit {
   @Input() label = 'Velg dato og tidspunkt';
@@ -23,12 +25,15 @@ export class FhiDateTimeComponent implements OnInit {
   @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
   date!: FhiDate;
+  id: string;
   isValid = true;
   timeModel!: string;
   unvalidatedDate!: FhiDate;
-
   errorMsg: string;
-  thisTimeId: string = 'time_' + Math.random().toString(36).substring(2, 20);
+
+  constructor(private timeUtilityService: FhiTimeUtilityService) {
+    this.id = this.timeUtilityService.getRandomID();
+  }
 
   ngOnInit() {
     if (this.dateTime) {
