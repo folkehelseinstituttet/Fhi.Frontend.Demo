@@ -7,10 +7,10 @@ import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
 import { FhiDatepickerComponent } from './fhi-time/fhi-datepicker/fhi-datepicker.component';
-import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
+// import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
 import { FhiDateTimeComponent } from './fhi-time/fhi-date-time/fhi-date-time.component';
 import { FhiWeekpickerComponent } from './fhi-time/fhi-weekpicker/fhi-weekpicker.component';
-import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
+// import { FhiWeekRangeComponent } from './fhi-time/fhi-week-range/fhi-week-range.component';
 import { FhiYearMonthComponent } from './fhi-time/fhi-year-month/fhi-year-month.component';
 import { FhiYearMonthRangeComponent } from './fhi-time/fhi-year-month-range/fhi-year-month-range.component';
 import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
@@ -24,10 +24,10 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiTreeViewSelectionModule,
 
   FhiDatepickerComponent,
-  FhiDateRangeComponent,
+  // FhiDateRangeComponent,
   FhiDateTimeComponent,
   FhiWeekpickerComponent,
-  FhiWeekRangeComponent,
+  // FhiWeekRangeComponent,
   FhiYearMonthComponent,
   FhiYearMonthRangeComponent,
   FhiYearsComponent,
