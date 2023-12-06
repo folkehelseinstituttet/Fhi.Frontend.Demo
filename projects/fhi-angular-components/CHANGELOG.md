@@ -1,17 +1,18 @@
 # Unreleased
 
-> Nov 7, 2023
+> Des 6, 2023
 
-* :gift: **New** Add Month Range selector
-* :gift: **New** Add Month selector
-* :gift: **New** Add Date Range selector
-* :gift: **New** Add Year Range selector
-* :gift: **New** Add Week Range selector
-* :gift: **New** Add Weekpicker
+* :boom: **Breaking** Update to Angular 16
 * :gift: **New** Add Datepicker
-* :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in @folkehelseinstituttet/style
+* :gift: **New** Add Date time selector
+* :gift: **New** Add Weekpicker
+* :gift: **New** Add Month selector
+* :gift: **New** Add Month Range selector
+* :gift: **New** Add Year selector
+* :gift: **New** Add Year Range selector
+* :tada: **Enhancement** Change `fhi-btn-flat` -> `fhi-btn-link` to reflect changes in `@folkehelseinstituttet/style`
 * :tada: **Enhancement** Update peerDependencies
-* :tada: **Enhancement** Add class `form-label` in `fhi-autosuggest.template.ts`, and a if test before emitting selected item
+* :tada: **Enhancement** Add class `form-label` in `fhi-autosuggest.template.ts`, and a new test before emitting selected item
 * :tada: **Enhancement** Now possible to disable tags on `FhiMultiselect`
 * :bug: **Bugfix** Update deprecated icon class in `fhi-multiselect.component.html`: `icon-xmark` -> `icon-x`
 

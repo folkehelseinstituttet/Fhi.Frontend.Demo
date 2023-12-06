@@ -24,11 +24,11 @@ export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.module';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection-item.model';
 
 export * from './lib/fhi-time/fhi-datepicker/fhi-datepicker.component';
-export * from './lib/fhi-time/fhi-date-range/fhi-date-range.component';
+// export * from './lib/fhi-time/fhi-date-range/fhi-date-range.component';
 export * from './lib/fhi-time/fhi-date-time/fhi-date-time.component';
 
 export * from './lib/fhi-time/fhi-weekpicker/fhi-weekpicker.component';
-export * from './lib/fhi-time/fhi-week-range/fhi-week-range.component';
+// export * from './lib/fhi-time/fhi-week-range/fhi-week-range.component';
 
 export * from './lib/fhi-time/fhi-year-month/fhi-year-month.component';
 export * from './lib/fhi-time/fhi-year-month-range/fhi-year-month-range.component';
