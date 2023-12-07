@@ -4,8 +4,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
 } from '@angular/core';
+
 import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import * as Highmaps from 'highcharts/highmaps';
@@ -17,21 +19,21 @@ import {
   FhiAllDiagramOptions,
   FhiDiagramOptions,
   FhiDiagramSerie,
+  FhiDiagramType,
   FlagWithDataPointName,
   FlaggedSerie,
 } from './fhi-diagram.models';
 
-import { OptionsService } from './services/options.service';
-import { TableService } from './services/table.service';
-import { DiagramTypeService } from './services/diagram-type.service';
-import { GeoJsonService } from './services/geo-json.service';
-
-import { FhiDiagramType } from './fhi-diagram.models';
 import {
   FhiDiagramTypes,
   FhiDiagramTypeId,
   FhiDiagramTypeGroups,
 } from './fhi-diagram-type.constants';
+
+import { OptionsService } from './services/options.service';
+import { TableService } from './services/table.service';
+import { DiagramTypeService } from './services/diagram-type.service';
+import { GeoJsonService } from './services/geo-json.service';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
 
@@ -40,7 +42,7 @@ import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-n
   templateUrl: './fhi-angular-highcharts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiAngularHighchartsComponent {
+export class FhiAngularHighchartsComponent implements OnChanges {
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
@@ -85,9 +87,7 @@ export class FhiAngularHighchartsComponent {
       } else if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
         this.updateMap();
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(
-          this.allDiagramOptions,
-        );
+        this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       }
       this.showFooter = this.canShowFooter();
     } catch (error) {
@@ -128,9 +128,7 @@ export class FhiAngularHighchartsComponent {
       const decimalData = serie.data.filter(
         (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
       );
-      const flaggedData = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y === 'string',
-      );
+      const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
       const negativeData = serie.data.filter(
         (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
       );
@@ -155,20 +153,14 @@ export class FhiAngularHighchartsComponent {
     return name.join(Seperator.output);
   }
 
-  private updateFlaggedSeries(
-    serie: FhiDiagramSerie,
-    flaggedData: Data[],
-    index: number,
-  ) {
+  private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: Data[], index: number) {
     this.flaggedSeries[index] = {
       name: serie.name as string,
       flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     };
   }
 
-  private getFlaggedDataPointsForCurrentSerie(
-    data: Data[],
-  ): FlagWithDataPointName[] {
+  private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {
     const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
     data.forEach((category) => {
@@ -206,10 +198,9 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType =
-      this.diagramTypeService.getDiagramTypeById(
-        this.allDiagramOptions.diagramTypeId,
-      );
+    this.allDiagramOptions.diagramType = this.diagramTypeService.getDiagramTypeById(
+      this.allDiagramOptions.diagramTypeId,
+    );
   }
 
   private updateCurrentDiagramTypeGroup() {
@@ -239,9 +230,7 @@ export class FhiAngularHighchartsComponent {
     this.showMap = false;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
-      this.highchartsOptions = this.optionsService.updateOptions(
-        this.allDiagramOptions,
-      );
+      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
@@ -260,9 +249,7 @@ export class FhiAngularHighchartsComponent {
         next: (map) => {
           if (map !== undefined) {
             this.highmaps.maps[mapTypeId] = map;
-            this.geoJsonService.updateMapFeatures(
-              this.highmaps.maps[mapTypeId],
-            );
+            this.geoJsonService.updateMapFeatures(this.highmaps.maps[mapTypeId]);
             this.updateMap();
           }
         },
