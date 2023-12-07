@@ -34,6 +34,7 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { GeoJsonService } from './services/geo-json.service';
+import { TopoJsonService } from './services/topo-json.service';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
 
@@ -67,6 +68,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
+    private topoJsonService: TopoJsonService,
     private geoJsonService: GeoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
@@ -230,6 +232,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showMap = false;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
+      console.log('this.highmaps', this.highmaps.maps);
+
       this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
       this.changeDetector.detectChanges();
@@ -242,14 +246,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.highmaps.maps === undefined) {
       this.highmaps.maps = [];
     }
-    this.geoJsonService
+    this.topoJsonService
       .getMap(mapTypeId)
       .pipe(first())
       .subscribe({
         next: (map) => {
           if (map !== undefined) {
             this.highmaps.maps[mapTypeId] = map;
-            this.geoJsonService.updateMapFeatures(this.highmaps.maps[mapTypeId]);
+            this.topoJsonService.updateMapGeometries(map, mapTypeId);
             this.updateMap();
           }
         },

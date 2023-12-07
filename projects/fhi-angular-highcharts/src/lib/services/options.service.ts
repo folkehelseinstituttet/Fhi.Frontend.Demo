@@ -12,7 +12,7 @@ import {
 import { isValid, parseISO } from 'date-fns';
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
-import { GeoJsonService } from './geo-json.service';
+import { TopoJsonService } from './topo-json.service';
 import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
@@ -24,14 +24,14 @@ import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
 export class OptionsService {
   private allStaticOptions = new Map();
 
-  constructor(private geoJsonService: GeoJsonService) {
+  constructor(private topoJsonService: TopoJsonService) {
     this.setAllStaticOptions();
   }
 
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie;
-    const isMap = options?.chart && 'map' in options?.chart;
+    const isMap = options?.chart && 'map' in options.chart;
     const series = allDiagramOptions.series;
 
     options.series = this.getSeries(series, isMap);
@@ -48,13 +48,16 @@ export class OptionsService {
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.mapTypeId;
     }
+
+    console.log('options', options);
+
     return options;
   }
 
   private setAllStaticOptions() {
     FhiAllDiagramTypes.forEach((FhiDiagramType) => {
       const options = FhiDiagramType.options;
-      const isMap = options?.chart && 'map' in options?.chart;
+      const isMap = options?.chart && 'map' in options.chart;
       const staticOptions = this.setStaticOptions(options, isMap);
       this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
     });
@@ -66,16 +69,16 @@ export class OptionsService {
     return merge(chartsAndMaps, current, options);
   }
 
-  // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
   private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
     const highchartsSeries = cloneDeep(series);
+
+    // Remove flagged data from Highcharts options series
     highchartsSeries.forEach((serie) => {
-      // Remove flagged data from Highcharts options series
       serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
     });
 
     if (isMap) {
-      return [this.geoJsonService.getHighmapsSerie(highchartsSeries[0])];
+      return [this.topoJsonService.getHighmapsSerie(highchartsSeries[0])];
     } else {
       return highchartsSeries as SeriesOptionsType[];
     }

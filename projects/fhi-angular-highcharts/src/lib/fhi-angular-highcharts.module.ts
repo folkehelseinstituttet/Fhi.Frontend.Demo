@@ -7,7 +7,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
 import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
 
-import { TopsJsonService } from './services/topo-json.service';
+import { TopoJsonService } from './services/topo-json.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
@@ -16,6 +16,6 @@ import { TableService } from './services/table.service';
   declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
   imports: [CommonModule, FormsModule, HighchartsChartModule, NgbPopoverModule],
   exports: [FhiAngularHighchartsComponent],
-  providers: [TopsJsonService, DiagramTypeService, OptionsService, TableService],
+  providers: [TopoJsonService, DiagramTypeService, OptionsService, TableService],
 })
 export class FhiAngularHighchartsModule {}

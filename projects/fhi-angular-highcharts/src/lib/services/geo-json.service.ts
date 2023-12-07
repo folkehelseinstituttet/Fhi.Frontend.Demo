@@ -29,12 +29,11 @@ export class GeoJsonService {
       url1 =
         'https://code.highcharts.com/mapdata/historical/countries/no-2019/no-all-all-2019.geo.json';
     }
-    return this.http
-      .get<any>(url1)
-      .pipe(catchError(() => this.http.get<any>(url2)));
+    return this.http.get<any>(url1).pipe(catchError(() => this.http.get<any>(url2)));
   }
 
   updateMapFeatures(map: any) {
+    console.log('map-geo', map.features);
     this.mapFeatures = map.features;
   }
 
@@ -48,10 +47,7 @@ export class GeoJsonService {
           type: 'map',
         };
       } else if (mapSerie.data !== undefined) {
-        mapSerie.data.push([
-          this.findHcKey(dataPoint.name),
-          dataPoint.y as number,
-        ]);
+        mapSerie.data.push([this.findHcKey(dataPoint.name), dataPoint.y as number]);
       }
     });
     return mapSerie;
