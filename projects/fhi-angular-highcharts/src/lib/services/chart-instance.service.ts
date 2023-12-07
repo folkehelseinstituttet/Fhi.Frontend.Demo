@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Chart } from 'highcharts';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ChartInstanceService {
   private _chart!: Chart;
 

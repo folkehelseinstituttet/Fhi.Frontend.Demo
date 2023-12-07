@@ -3,17 +3,11 @@ import { Injectable } from '@angular/core';
 import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TableService {
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
-    const seriesMappedToNameOnly = series.map(
-      (serie) => serie.name,
-    ) as string[];
-    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(
-      Seperator.output,
-    ).length;
+    const seriesMappedToNameOnly = series.map((serie) => serie.name) as string[];
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {

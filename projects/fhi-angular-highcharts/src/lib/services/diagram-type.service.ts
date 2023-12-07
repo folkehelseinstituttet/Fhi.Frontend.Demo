@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {
-  FhiDiagramSerie,
-  FhiDiagramType,
-  FlaggedSerie,
-} from '../fhi-diagram.models';
+import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
 import {
   FhiAllDiagramTypes,
   FhiChartTypes,
@@ -15,9 +11,7 @@ import {
 } from '../fhi-diagram-type.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class DiagramTypeService {
   private _chartTypes!: FhiDiagramType[];
   private _mapTypes!: FhiDiagramType[];
@@ -52,9 +46,7 @@ export class DiagramTypeService {
   }
 
   getDiagramTypeById(diagramTypeId: string | undefined): FhiDiagramType {
-    const diagramType = FhiAllDiagramTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+    const diagramType = FhiAllDiagramTypes.find((diagramType) => diagramType.id === diagramTypeId);
     if (diagramType !== undefined) {
       return diagramType;
     } else {
@@ -76,16 +68,12 @@ export class DiagramTypeService {
   }
 
   private getChartType(diagramTypeId: string): FhiDiagramType | undefined {
-    const diagramType = this.chartTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+    const diagramType = this.chartTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
 
   private getMapType(diagramTypeId: string): FhiDiagramType | undefined {
-    const diagramType = this.mapTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+    const diagramType = this.mapTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
 
@@ -106,44 +94,30 @@ export class DiagramTypeService {
       (numOfDimensions > 1 && series.length > 5) ||
       (series.length > 1 && this.flaggedSeries.length !== 0)
     ) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.line,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.pie,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.pie);
       // chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
     }
 
     // Remove stacked
     if (series.length === 1) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.barStacked,
-      );
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.columnStacked,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.barStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.columnStacked);
     }
 
     // Remove bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.bar,
-      );
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.column,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.bar);
+      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.column);
     }
 
     // Remove types not in user defined subset
     if (this.diagramTypeSubset !== undefined) {
-      chartTypes = chartTypes.filter(
-        (type) => this.diagramTypeSubset?.includes(type.id),
-      );
+      chartTypes = chartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
     }
 
     return chartTypes;
@@ -151,8 +125,7 @@ export class DiagramTypeService {
 
   private updateAvailableMapTypes(): FhiDiagramType[] {
     const series = this._series;
-    const mapTypeId = (() =>
-      FhiMapTypeIds.find((id) => id === this.mapTypeId))();
+    const mapTypeId = (() => FhiMapTypeIds.find((id) => id === this.mapTypeId))();
     let mapTypes = FhiMapTypes;
 
     // Remove all maps

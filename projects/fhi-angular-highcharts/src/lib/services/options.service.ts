@@ -19,22 +19,17 @@ import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
 import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
-import { is } from 'date-fns/locale';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class OptionsService {
+  private allStaticOptions = new Map();
+
   constructor(private geoJsonService: GeoJsonService) {
     this.setAllStaticOptions();
   }
 
-  private allStaticOptions = new Map();
-
   updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
-    const options: Options = cloneDeep(
-      this.allStaticOptions.get(allDiagramOptions.diagramTypeId),
-    );
+    const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie;
     const isMap = options?.chart && 'map' in options?.chart;
     const series = allDiagramOptions.series;
@@ -49,10 +44,7 @@ export class OptionsService {
     }
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
-      options.yAxis = this.getYAxis(
-        options.yAxis as YAxisOptions,
-        allDiagramOptions,
-      );
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.mapTypeId;
     }
@@ -68,26 +60,18 @@ export class OptionsService {
     });
   }
 
-  private setStaticOptions(
-    options: Options | undefined,
-    isMap: boolean | undefined,
-  ): Options {
+  private setStaticOptions(options: Options | undefined, isMap: boolean | undefined): Options {
     const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
     const current = isMap ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
     return merge(chartsAndMaps, current, options);
   }
 
   // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
-  private getSeries(
-    series: FhiDiagramSerie[],
-    isMap: boolean | undefined,
-  ): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
     const highchartsSeries = cloneDeep(series);
     highchartsSeries.forEach((serie) => {
       // Remove flagged data from Highcharts options series
-      serie.data = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y !== 'string',
-      );
+      serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
     });
 
     if (isMap) {
@@ -97,10 +81,7 @@ export class OptionsService {
     }
   }
 
-  private getXAxis(
-    xAxis: XAxisOptions,
-    series: FhiDiagramSerie[],
-  ): XAxisOptions | XAxisOptions[] {
+  private getXAxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
     xAxis = xAxis ? xAxis : {};
     xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
@@ -141,11 +122,7 @@ export class OptionsService {
       formatter: (that: Highcharts.AxisLabelsFormatterContextObject) => {
         const value: string = that.value.toString();
         if (value.substring(0, 2) === '01') {
-          return formatDate(
-            this.getISO8601DataFromNorwegianDate(value),
-            'LLL',
-            'nb-NO',
-          );
+          return formatDate(this.getISO8601DataFromNorwegianDate(value), 'LLL', 'nb-NO');
         } else {
           return value;
         }
@@ -157,16 +134,12 @@ export class OptionsService {
     return {
       formatter: (that: Highcharts.AxisLabelsFormatterContextObject) => {
         const value: string = that.value.toString();
-        return formatDate(
-          this.getISO8601DataFromNorwegianDate(value),
-          'd/M',
-          'nb-NO',
-        );
+        return formatDate(this.getISO8601DataFromNorwegianDate(value), 'd/M', 'nb-NO');
       },
     };
   }
 
-  public getISO8601DataFromNorwegianDate(nbNODate: string) {
+  private getISO8601DataFromNorwegianDate(nbNODate: string) {
     const dateList = nbNODate.split('.');
     return `${dateList[2]}-${dateList[1]}-${dateList[0]}`;
   }

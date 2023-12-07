@@ -6,9 +6,7 @@ import { ChartInstanceService } from './chart-instance.service';
 import { CsvService } from './csv.service';
 import { FhiDiagramOptions } from '../fhi-diagram.models';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class DownloadService {
   constructor(
     private chartInstanceService: ChartInstanceService,
@@ -33,10 +31,7 @@ export class DownloadService {
         spacingBottom: this.diagramOptions.disclaimer ? 100 : 50,
       },
     };
-    this.chartInstanceService.chart.exportChartLocal(
-      exportingOptions,
-      chartOptions,
-    );
+    this.chartInstanceService.chart.exportChartLocal(exportingOptions, chartOptions);
   }
 
   downloadCSV() {
