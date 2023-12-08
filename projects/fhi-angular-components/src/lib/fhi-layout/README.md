@@ -12,12 +12,18 @@ The header and footer are global elements in app.component, and the page templat
 
 | Input           | Type    | Default | Required | Description |
 | --------------- | ------- | ------- | -------- | ----------- |
-| backgroundColor | boolean | false   | no       | setting (a defined) background color on the main content area. |
+| backgroundColor | boolean | false   | no       | Setting (a defined) background color on the main content area. |
+| hasActionBar    | boolean | false   | no       | Content area for main actions on a page. |
 | layoutType      | string  | -       | yes      | The different types of page layouts. |
 
 ### Usage of page layout types:
 
-#### `layoutType='a'`
+```
+<fhi-layout layoutType="layoutType">
+</fhi-layout>
+```
+
+#### a
 ```
 <ng-container layout.title>
     Page title
@@ -30,7 +36,7 @@ The header and footer are global elements in app.component, and the page templat
 
 ---
 
-#### `layoutType='b'`
+#### b
 
 ```
 <ng-container layout.title>
@@ -44,7 +50,7 @@ The header and footer are global elements in app.component, and the page templat
 
 ---
 
-#### `layoutType='c'`
+#### c
 ```
 <ng-container layout.title>
     Page title
@@ -61,7 +67,7 @@ The header and footer are global elements in app.component, and the page templat
 
 ---
 
-#### `layoutType='d'`
+#### d
 ```
 <ng-container layout.title>
     Page title
