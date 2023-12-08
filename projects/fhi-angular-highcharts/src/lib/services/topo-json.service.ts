@@ -5,7 +5,10 @@ import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieData } from '../models/diagram-serie-data.model';
-import { FhiMapTypeId, FhiMapTypeIds } from '../fhi-diagram-type.constants';
+import {
+  MapTypeIdValues,
+  MapTypeIdValuesArray as MapIds,
+} from '../constants-and-enums/map-type-ids';
 
 @Injectable()
 export class TopoJsonService {
@@ -23,13 +26,11 @@ export class TopoJsonService {
   }
 
   getMap(mapTypeId: string | undefined): Observable<object> {
-    if (FhiMapTypeIds.find((id) => id === mapTypeId) === undefined) {
+    if (MapIds.find((id) => id === mapTypeId) === undefined) {
       throw new Error("No supported mapTypeId given, can't get map!");
     }
-
-    const mapFylker = FhiMapTypeId[FhiMapTypeId.mapFylker];
     const fallbackUrl = `${location.origin}/${this.appMapFolder}/${mapTypeId}.topo.json`;
-    const url = mapTypeId === mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
+    const url = mapTypeId === MapTypeIdValues.mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
     return this.http.get<object>(url).pipe(catchError(() => this.http.get<object>(fallbackUrl)));
   }
 

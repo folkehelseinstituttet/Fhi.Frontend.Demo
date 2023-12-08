@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
-import { DiagramTypeIdValues as TypeIds } from '../constants-and-enums/diagram-type-ids';
+import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
+import { MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
+
 import {
   FhiAllDiagramTypes,
   FhiChartTypes,
-  FhiMapTypeIds,
   FhiDiagramTypes,
   FhiMapTypes,
 } from '../fhi-diagram-type.constants';
@@ -96,24 +97,24 @@ export class DiagramTypeService {
       (numOfDimensions > 1 && series.length > 5) ||
       (series.length > 1 && this.flaggedSeries.length !== 0)
     ) {
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.line);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.pie);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
     }
 
     // Remove stacked
     if (series.length === 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.barStacked);
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.columnStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.barStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.columnStacked);
     }
 
     // Remove bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.bar);
-      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.column);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
     }
 
     // Remove types not in user defined subset
@@ -126,7 +127,7 @@ export class DiagramTypeService {
 
   private updateAvailableMapTypes(): DiagramType[] {
     const series = this._series;
-    const mapTypeId = FhiMapTypeIds.find((id) => id === this.mapTypeId);
+    const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
     let mapTypes = FhiMapTypes;
 
     // Remove all maps

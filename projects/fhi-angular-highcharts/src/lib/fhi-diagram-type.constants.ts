@@ -6,7 +6,6 @@ import { OptionsChartTypeLine } from './highcharts-options/options-chart-type-li
 import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie';
 
 import { DiagramType } from './models/diagram-type.model';
-
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 
 const bar: DiagramType = {
@@ -88,13 +87,3 @@ export const FhiChartTypes = [line, column, bar, columnStacked, barStacked, pie]
 // because the implementation in the diagram type nav is the same for
 // both FhiChartTypes and FhiMapTypes
 export const FhiMapTypes = [map];
-
-// FhiMapTypeIds represents the different topo.json maps currently supported
-export enum FhiMapTypeId {
-  mapFylker,
-  mapFylker2019,
-}
-export const FhiMapTypeIds = [
-  FhiMapTypeId[FhiMapTypeId.mapFylker],
-  FhiMapTypeId[FhiMapTypeId.mapFylker2019],
-];
