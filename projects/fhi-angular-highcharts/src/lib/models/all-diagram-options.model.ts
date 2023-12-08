@@ -1,5 +1,5 @@
-import { DiagramType } from './diagram-type.models';
-import { FhiDiagramOptions } from './fhi-diagram-options.models';
+import { DiagramType } from './diagram-type.model';
+import { FhiDiagramOptions } from './fhi-diagram-options.model';
 
 export interface AllDiagramOptions extends FhiDiagramOptions {
   allMapsLoaded?: boolean;

@@ -1,4 +1,4 @@
-import { DiagramSerieData } from './diagram-serie-data.models';
+import { DiagramSerieData } from './diagram-serie-data.model';
 
 export interface FhiDiagramSerie {
   data: Array<DiagramSerieData>;

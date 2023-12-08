@@ -11,11 +11,11 @@ import {
   YAxisOptions,
 } from 'highcharts';
 
-import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
 import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
-import { AllDiagramOptions } from '../models/all-diagram-options.models';
+import { AllDiagramOptions } from '../models/all-diagram-options.model';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';

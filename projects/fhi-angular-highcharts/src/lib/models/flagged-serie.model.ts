@@ -1,4 +1,4 @@
-import { FlagWithDataPointName } from './flag-With-data-point-name.models';
+import { FlagWithDataPointName } from './flag-with-data-point-name.model';
 
 export interface FlaggedSerie {
   name: string;

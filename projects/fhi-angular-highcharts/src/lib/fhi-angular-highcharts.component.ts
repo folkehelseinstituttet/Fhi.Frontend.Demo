@@ -14,13 +14,13 @@ import * as Highmaps from 'highcharts/highmaps';
 import { Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { FhiDiagramOptions } from './models/fhi-diagram-options.models';
-import { FhiDiagramSerie } from './models/fhi-diagram-serie.models';
-import { AllDiagramOptions } from './models/all-diagram-options.models';
-import { DiagramSerieData } from './models/diagram-serie-data.models';
-import { FlaggedSerie } from './models/flagged-serie.models';
-import { FlagWithDataPointName } from './models/flag-With-data-point-name.models';
-import { DiagramType } from './models/diagram-type.models';
+import { FhiDiagramOptions } from './models/fhi-diagram-options.model';
+import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
+import { AllDiagramOptions } from './models/all-diagram-options.model';
+import { DiagramSerieData } from './models/diagram-serie-data.model';
+import { FlaggedSerie } from './models/flagged-serie.model';
+import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
+import { DiagramType } from './models/diagram-type.model';
 
 import {
   FhiDiagramTypes,
@@ -32,8 +32,8 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
-import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
+import { FhiDiagramTypeNavId } from './constants-and-enums/fhi-diagram-type-nav-id';
 
 @Component({
   selector: 'fhi-angular-highcharts',

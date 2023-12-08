@@ -1,4 +1,4 @@
-import { DiagramType } from '../models/diagram-type.models';
+import { DiagramType } from '../models/diagram-type.model';
 
 export interface NavDiagramTypeGroup {
   diagramType: DiagramType;

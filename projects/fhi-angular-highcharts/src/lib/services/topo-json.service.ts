@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { SeriesMapOptions } from 'highcharts';
 
-import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
-import { DiagramSerieData } from '../models/diagram-serie-data.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { DiagramSerieData } from '../models/diagram-serie-data.model';
 import { FhiMapTypeId, FhiMapTypeIds } from '../fhi-diagram-type.constants';
 
 @Injectable()

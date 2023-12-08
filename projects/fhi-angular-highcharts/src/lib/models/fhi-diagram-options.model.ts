@@ -1,12 +1,13 @@
+import { FhiDiagramTypeNavId } from '../constants-and-enums/fhi-diagram-type-nav-id';
 import { FhiMapTypeId } from '../fhi-diagram-type.constants';
-import { FhiDiagramFlag } from './fhi-diagram-flag.models';
-import { FhiDiagramSerie } from './fhi-diagram-serie.models';
+import { FhiDiagramFlag } from './fhi-diagram-flag.model';
+import { FhiDiagramSerie } from './fhi-diagram-serie.model';
 
 export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
   diagramTypeId?: string;
-  diagramTypeNavId?: string;
+  diagramTypeNavId?: keyof typeof FhiDiagramTypeNavId;
   diagramTypeSubset?: Array<string>;
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;

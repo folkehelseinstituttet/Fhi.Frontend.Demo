@@ -1,11 +1,4 @@
-import {
-  FhiDiagramTypeGroups,
-  FhiDiagramTypes,
-} from '../fhi-diagram-type.constants';
-
-export class FhiDiagramTypeNavId {
-  static default = 'default';
-}
+import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram-type.constants';
 
 export enum DiagramTypeGroupIndex {
   table = 0,
