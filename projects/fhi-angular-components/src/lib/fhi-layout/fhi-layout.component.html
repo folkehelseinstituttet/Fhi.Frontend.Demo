@@ -1,24 +1,24 @@
-<div class="app-layout">
-  <div class="app-layout__container d-flex flex-column w-100" [ngClass]="{ 'app-bg': backgroundColor }">
+<div class="fhi-layout">
+  <div class="fhi-bg fhi-layout__container d-flex flex-column w-100">
     <div class="container-fluid d-flex flex-column h-100 py-4">
-      <div class="row app-layout__row">
+      <div class="row fhi-layout__row">
         <ng-container *ngIf="layoutType">
           <ng-container *ngIf="layoutType === 'a'">
-            <div class="col-12" [ngClass]="{ 'px-0': !backgroundColor }">
+            <div class="col-12">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
               <ng-container *ngTemplateOutlet="contentMain"></ng-container>
             </div>
           </ng-container>
 
           <ng-container *ngIf="layoutType === 'b'">
-            <div class="col-xxl-8" [ngClass]="{ 'px-0': !backgroundColor }">
+            <div class="col-xxl-8">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
               <ng-container *ngTemplateOutlet="contentMain"></ng-container>
             </div>
           </ng-container>
 
           <ng-container *ngIf="layoutType === 'c'">
-            <div class="col-xxl-8" [ngClass]="{ 'px-0': !backgroundColor }">
+            <div class="col-xxl-8">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
               <ng-container *ngTemplateOutlet="contentBetweenHeaderAndMain"></ng-container>
               <ng-container *ngTemplateOutlet="contentMain"></ng-container>
@@ -26,7 +26,7 @@
           </ng-container>
 
           <ng-container *ngIf="layoutType === 'd'">
-            <div class="col-lg-9 col-xxl-8" [ngClass]="{ 'px-0': !backgroundColor }">
+            <div class="col-lg-9 col-xxl-8">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
               <ng-container *ngTemplateOutlet="contentMain"></ng-container>
             </div>
@@ -42,7 +42,7 @@
         </ng-container>
 
         <div *ngIf="!layoutType">
-          <h1 class="h2 mb-5 mb-xl-6">Du må sette layoutType på <code class="fs-5">&lt;app-layout&gt;</code></h1>
+          <h1 class="h2 mb-5 mb-xl-6">Du må sette layoutType på <code class="fs-5">&lt;fhi-layout&gt;</code></h1>
 
           <ul>
             <li><code>layoutType="a"</code></li>
@@ -55,14 +55,14 @@
       </div>
     </div>
 
-    <div class="app-layout__sticky-action-bar" *ngIf="hasActionBar">
+    <div class="fhi-layout__action-bar" *ngIf="layoutType === 'e'">
       <ng-container *ngTemplateOutlet="contentActionBar"></ng-container>
     </div>
   </div>
 </div>
 
 <ng-template #contentHeader>
-  <div class="app-layout__title-container mb-5 mb-xl-6">
+  <div class="fhi-layout__title-container mb-5 mb-xl-6">
     <h1 class="h2">
       <ng-container *ngTemplateOutlet="contentTitle"></ng-container>
     </h1>
@@ -76,7 +76,7 @@
 </ng-template>
 
 <ng-template #contentTitle>
-  <ng-content select="[layout.title]"></ng-content>
+  <ng-content select="[layout.header]"></ng-content>
 </ng-template>
 
 <ng-template #contentMain>
@@ -88,7 +88,7 @@
 </ng-template>
 
 <ng-template #contentAside2>
-  <div class="col-lg bg-white" [ngClass]="{ 'mt-lg-n4 mb-n4 py-4': backgroundColor }">
+  <div class="col-lg bg-white mt-lg-n4 mb-n4 py-4">
     <ng-content select="[layout.aside2]"></ng-content>
   </div>
 </ng-template>

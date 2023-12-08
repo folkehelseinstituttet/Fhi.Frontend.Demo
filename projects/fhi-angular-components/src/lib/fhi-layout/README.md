@@ -12,8 +12,6 @@ The header and footer are global elements in app.component, and the page templat
 
 | Input           | Type    | Default | Required | Description |
 | --------------- | ------- | ------- | -------- | ----------- |
-| backgroundColor | boolean | false   | no       | Setting (a defined) background color on the main content area. |
-| hasActionBar    | boolean | false   | no       | Content area for main actions on a page. |
 | layoutType      | string  | -       | yes      | The different types of page layouts. |
 
 ### Usage of page layout types:
@@ -25,7 +23,7 @@ The header and footer are global elements in app.component, and the page templat
 
 #### a
 ```
-<ng-container layout.title>
+<ng-container layout.header>
     Page title
 </ng-container>
 
@@ -39,12 +37,12 @@ The header and footer are global elements in app.component, and the page templat
 #### b
 
 ```
-<ng-container layout.title>
+<ng-container layout.header>
     Page title
 </ng-container>
 
 <ng-container layout.main>
-    Main content area that leaves some space to the right on xxl-screens
+    Main content area that leaves some space to the right on large screens
 </ng-container>
 ```
 
@@ -52,24 +50,7 @@ The header and footer are global elements in app.component, and the page templat
 
 #### c
 ```
-<ng-container layout.title>
-    Page title
-</ng-container>
-
-<ng-container layout.beforemain>
-    Add some content above main content, aligned to the right
-</ng-container>
-
-<ng-container layout.main>
-    Main content area that leaves some space to the right on xxl-screens
-</ng-container>
-```
-
----
-
-#### d
-```
-<ng-container layout.title>
+<ng-container layout.header>
     Page title
 </ng-container>
 
