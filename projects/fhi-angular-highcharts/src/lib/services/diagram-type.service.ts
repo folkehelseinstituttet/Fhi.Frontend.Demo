@@ -7,11 +7,11 @@ import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
 
 import {
-  FhiAllDiagramTypes,
-  FhiChartTypes,
-  FhiDiagramTypes,
-  FhiMapTypes,
-} from '../fhi-diagram-type.constants';
+  AllDiagramTypes,
+  ChartTypes,
+  DiagramTypes,
+  MapTypes,
+} from '../constants-and-enums/fhi-diagram-types';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
 @Injectable()
@@ -49,7 +49,7 @@ export class DiagramTypeService {
   }
 
   getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
-    const diagramType = FhiAllDiagramTypes.find((diagramType) => diagramType.id === diagramTypeId);
+    const diagramType = AllDiagramTypes.find((diagramType) => diagramType.id === diagramTypeId);
     if (diagramType !== undefined) {
       return diagramType;
     } else {
@@ -67,7 +67,7 @@ export class DiagramTypeService {
     if (map !== undefined) {
       return map.id;
     }
-    return FhiDiagramTypes.table.id;
+    return DiagramTypes.table.id;
   }
 
   private getChartType(diagramTypeId: string): DiagramType | undefined {
@@ -89,7 +89,7 @@ export class DiagramTypeService {
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
-    let chartTypes = FhiChartTypes;
+    let chartTypes = ChartTypes;
 
     // Remove line
     if (
@@ -128,7 +128,7 @@ export class DiagramTypeService {
   private updateAvailableMapTypes(): DiagramType[] {
     const series = this._series;
     const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
-    let mapTypes = FhiMapTypes;
+    let mapTypes = MapTypes;
 
     // Remove all maps
     if (mapTypeId === undefined || series.length > 1) {

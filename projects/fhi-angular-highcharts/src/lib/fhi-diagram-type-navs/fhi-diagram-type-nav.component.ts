@@ -9,7 +9,7 @@ import {
 
 import { DiagramType } from '../models/diagram-type.model';
 import { NavDiagramTypeGroup } from './nav-diagram-type-group.model';
-import { FhiChartTypes, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
@@ -130,13 +130,13 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
       ) {
         return diagramType.id === this.previousChartTypeId;
       }
-      if (this.currentDiagramTypeId === FhiDiagramTypes.table.id) {
+      if (this.currentDiagramTypeId === DiagramTypes.table.id) {
         return diagramType.id === this.previousDiagramTypeId;
       }
       return diagramType.id === this.currentDiagramTypeId;
     });
     if (this.chartTypes.length === 0) {
-      return FhiChartTypes[0]; // Need a type even if the group is disabled or excluded from menu
+      return ChartTypes[0]; // Need a type even if the group is disabled or excluded from menu
     }
     if (chartType === undefined) {
       return this.chartTypes[0];
@@ -149,7 +149,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   private getMapType(): DiagramType {
     const mapType = this.mapTypes[0]; // Currently just one map type
     if (this.mapTypes.length === 0) {
-      return FhiMapTypes[0]; // Need a type even if the group is disabled or excluded from menu
+      return MapTypes[0]; // Need a type even if the group is disabled or excluded from menu
     }
     if (mapType === undefined) {
       return this.mapTypes[0];

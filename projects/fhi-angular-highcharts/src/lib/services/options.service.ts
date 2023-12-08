@@ -13,7 +13,7 @@ import {
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 
-import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
+import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
 import { AllDiagramOptions } from '../models/all-diagram-options.model';
 
@@ -54,7 +54,7 @@ export class OptionsService {
   }
 
   private setAllStaticOptions() {
-    FhiAllDiagramTypes.forEach((FhiDiagramType) => {
+    AllDiagramTypes.forEach((FhiDiagramType) => {
       const options = FhiDiagramType.options;
       const isMap = options?.chart && 'map' in options.chart;
       const staticOptions = this.setStaticOptions(options, isMap);

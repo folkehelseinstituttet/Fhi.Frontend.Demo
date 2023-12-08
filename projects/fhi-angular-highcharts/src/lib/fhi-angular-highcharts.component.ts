@@ -22,7 +22,7 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import { FhiDiagramTypes } from './fhi-diagram-type.constants';
+import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
@@ -204,7 +204,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateCurrentDiagramTypeGroup() {
-    if (this.allDiagramOptions.diagramTypeId === FhiDiagramTypes.table.id) {
+    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
       this.currentDiagramTypeGroup = DiagramTypeGroups.table;
       return;
     }
