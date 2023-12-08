@@ -4,6 +4,7 @@
 
     <div class="container-fluid fhi-app__main-content">
       <fhi-layout [backgroundColor]="true" [layoutType]="layoutType">
+        <!-- <fhi-layout [backgroundColor]="true" [layoutType]="layoutType" [hasActionBar]="true"> -->
         <ng-container layout.title>{{ layoutTitle }}</ng-container>
 
         <ng-container layout.main>
@@ -48,6 +49,12 @@
             </table>
           </div>
         </ng-container>
+
+        <!-- <ng-container layout.actionbar>
+          <a href="javascript:void(0)" class="btn fhi-btn-flat">Avbryt</a>
+          <button class="btn fhi-btn-secondary">Lagre</button>
+          <button class="btn fhi-btn-primary">Lagre og lukk</button>
+        </ng-container> -->
       </fhi-layout>
     </div>
 
