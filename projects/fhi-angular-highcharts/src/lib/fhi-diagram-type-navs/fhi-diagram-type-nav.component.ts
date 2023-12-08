@@ -15,7 +15,7 @@ import {
 } from '../fhi-diagram-type.constants';
 
 import { DiagramType } from '../models/diagram-type.models';
-import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
+import { NavDiagramTypeGroup } from './nav-diagram-type-group.model';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
 
