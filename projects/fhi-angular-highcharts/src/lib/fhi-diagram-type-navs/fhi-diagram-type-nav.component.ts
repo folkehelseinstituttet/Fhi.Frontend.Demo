@@ -7,15 +7,10 @@ import {
   Output,
 } from '@angular/core';
 
-import {
-  FhiChartTypes,
-  FhiDiagramTypeGroups,
-  FhiDiagramTypes,
-  FhiMapTypes,
-} from '../fhi-diagram-type.constants';
-
 import { DiagramType } from '../models/diagram-type.model';
 import { NavDiagramTypeGroup } from './nav-diagram-type-group.model';
+import { FhiChartTypes, FhiDiagramTypes, FhiMapTypes } from '../fhi-diagram-type.constants';
+import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
 import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
 
@@ -58,14 +53,14 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   }
 
   diagramTypeGroupIsChart(id: string) {
-    if (id === FhiDiagramTypeGroups.chart) {
+    if (id === DiagramTypeGroups.chart) {
       return true;
     }
     return false;
   }
 
   private updateChartSubmenuState() {
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+    if (this.currentDiagramTypeGroup === DiagramTypeGroups.chart) {
       this.chartSubmenuIsOpen = true;
     } else {
       this.chartSubmenuIsOpen = false;
@@ -80,7 +75,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
     this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
     this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
 
-    if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
+    if (this.currentDiagramTypeGroup === DiagramTypeGroups.chart) {
       this.previousChartTypeId = this.currentDiagramTypeId;
     }
     this.previousDiagramTypeId = this.currentDiagramTypeId;
@@ -94,7 +89,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
     return {
       diagramType: chartType,
       icon: chartType.icon,
-      id: FhiDiagramTypeGroups.chart,
+      id: DiagramTypeGroups.chart,
       isDisabled: isDisabled,
       name: 'Graf',
       excludeFromMenu: excludeFromMenu,
@@ -118,7 +113,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
     return {
       diagramType: mapType,
       icon: mapType.icon,
-      id: FhiDiagramTypeGroups.map,
+      id: DiagramTypeGroups.map,
       isDisabled: isDisabled,
       name: 'Kart',
       excludeFromMenu: excludeFromMenu,

@@ -1,4 +1,5 @@
-import { FhiDiagramTypeGroups, FhiDiagramTypes } from '../fhi-diagram-type.constants';
+import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
+import { FhiDiagramTypes } from '../fhi-diagram-type.constants';
 
 export enum DiagramTypeGroupIndex {
   table = 0,
@@ -9,7 +10,7 @@ export enum DiagramTypeGroupIndex {
 export const NavDiagramTableGroup = {
   diagramType: FhiDiagramTypes.table,
   icon: FhiDiagramTypes.table.icon,
-  id: FhiDiagramTypeGroups.table,
+  id: DiagramTypeGroups.table,
   isDisabled: false,
   name: FhiDiagramTypes.table.name,
 };

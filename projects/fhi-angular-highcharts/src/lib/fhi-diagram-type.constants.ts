@@ -9,12 +9,6 @@ import { DiagramType } from './models/diagram-type.model';
 
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 
-export class FhiDiagramTypeGroups {
-  static chart = 'chart';
-  static map = 'map';
-  static table = 'table';
-}
-
 const bar: DiagramType = {
   id: DiagramTypeIds.bar,
   icon: 'bar-chart-line-horizontal',

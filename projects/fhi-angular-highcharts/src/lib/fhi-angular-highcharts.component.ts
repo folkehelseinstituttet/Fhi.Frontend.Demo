@@ -22,15 +22,16 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
+import { FhiDiagramTypes } from './fhi-diagram-type.constants';
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
+import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
+import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
+import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
-import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -52,7 +53,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showFooter = false;
   showMap = false;
   currentDiagramTypeGroup!: string;
-  diagramTypeGroups = FhiDiagramTypeGroups;
+  diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
   tableHeaderRows = [];
   tableBodyRows = [];
@@ -77,9 +78,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
 
-      if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
+      if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
         this.updateTable();
-      } else if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
+      } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
         this.updateMap();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
@@ -204,17 +205,17 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateCurrentDiagramTypeGroup() {
     if (this.allDiagramOptions.diagramTypeId === FhiDiagramTypes.table.id) {
-      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
+      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
       return;
     }
     if (
       this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
       this.diagramTypeService.mapTypes.length !== 0
     ) {
-      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
+      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
       return;
     }
-    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart;
+    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 
