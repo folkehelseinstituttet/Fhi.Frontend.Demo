@@ -9,5 +9,6 @@ import { CommonModule } from '@angular/common';
 })
 export class FhiLayoutComponent {
   @Input() backgroundColor: boolean;
-  @Input() type: string;
+  @Input() hasActionBar = false;
+  @Input() layoutType: string;
 }
