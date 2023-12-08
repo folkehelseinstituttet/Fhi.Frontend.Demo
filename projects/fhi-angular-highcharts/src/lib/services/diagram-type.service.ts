@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { FhiDiagramSerie, FhiDiagramType, FlaggedSerie } from '../fhi-diagram.models';
+import { FlaggedSerie } from '../models/flagged-serie.models';
+import { FhiDiagramType } from '../fhi-diagram.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
 import {
   FhiAllDiagramTypes,
   FhiChartTypes,

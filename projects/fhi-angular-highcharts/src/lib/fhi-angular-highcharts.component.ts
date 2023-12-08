@@ -14,15 +14,13 @@ import * as Highmaps from 'highcharts/highmaps';
 import { Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import {
-  Data,
-  FhiAllDiagramOptions,
-  FhiDiagramOptions,
-  FhiDiagramSerie,
-  FhiDiagramType,
-  FlagWithDataPointName,
-  FlaggedSerie,
-} from './fhi-diagram.models';
+import { FhiDiagramOptions } from './models/fhi-diagram-options.models';
+import { FhiDiagramSerie } from './models/fhi-diagram-serie.models';
+import { AllDiagramOptions } from './models/all-diagram-options.models';
+import { DiagramSerieData } from './models/diagram-serie-data.models';
+import { FlaggedSerie } from './models/flagged-serie.models';
+import { FlagWithDataPointName } from './models/flag-With-data-point-name.models';
+import { FhiDiagramType } from './fhi-diagram.models';
 
 import {
   FhiDiagramTypes,
@@ -52,7 +50,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   highmaps: typeof Highmaps = Highmaps;
 
   highchartsOptions!: Options;
-  allDiagramOptions!: FhiAllDiagramOptions;
+  allDiagramOptions!: AllDiagramOptions;
   showDefaultChartTemplate = true;
   showFooter = false;
   showMap = false;
@@ -153,14 +151,18 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return name.join(Seperator.output);
   }
 
-  private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: Data[], index: number) {
+  private updateFlaggedSeries(
+    serie: FhiDiagramSerie,
+    flaggedData: DiagramSerieData[],
+    index: number,
+  ) {
     this.flaggedSeries[index] = {
       name: serie.name as string,
       flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     };
   }
 
-  private getFlaggedDataPointsForCurrentSerie(data: Data[]): FlagWithDataPointName[] {
+  private getFlaggedDataPointsForCurrentSerie(data: DiagramSerieData[]): FlagWithDataPointName[] {
     const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
     data.forEach((category) => {

@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
+import { DiagramSerieData } from '../models/diagram-serie-data.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
 import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
+
+interface TableHeaderCell {
+  name?: string;
+  colspan?: number;
+  rowspan?: number;
+}
 
 @Injectable()
 export class TableService {
@@ -61,7 +68,7 @@ export class TableService {
     return tableBodyRows;
   }
 
-  private getDataArray(serie: FhiDiagramSerie): Data[] {
+  private getDataArray(serie: FhiDiagramSerie): DiagramSerieData[] {
     const data = serie.data;
     return data;
   }

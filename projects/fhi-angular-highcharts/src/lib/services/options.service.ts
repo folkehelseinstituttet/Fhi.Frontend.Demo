@@ -11,13 +11,16 @@ import {
   YAxisOptions,
 } from 'highcharts';
 
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
+
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
+import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
+import { AllDiagramOptions } from '../models/all-diagram-options.models';
+
 import { TopoJsonService } from './topo-json.service';
-import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
-import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
 
 @Injectable()
 export class OptionsService {
@@ -27,7 +30,7 @@ export class OptionsService {
     this.setAllStaticOptions();
   }
 
-  updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
+  updateOptions(allDiagramOptions: AllDiagramOptions): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
     const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie;
     const isMap = options?.chart && 'map' in options.chart;
@@ -88,7 +91,7 @@ export class OptionsService {
 
   private getYAxis(
     yAxis: YAxisOptions,
-    allDiagramOptions: FhiAllDiagramOptions,
+    allDiagramOptions: AllDiagramOptions,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
     if (allDiagramOptions.seriesHasDecimalDataPoints) {

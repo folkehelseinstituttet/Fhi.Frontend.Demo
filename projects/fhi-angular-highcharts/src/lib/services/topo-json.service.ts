@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError } from 'rxjs';
 import { SeriesMapOptions } from 'highcharts';
 
-import { Data, FhiDiagramSerie } from '../fhi-diagram.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
+import { DiagramSerieData } from '../models/diagram-serie-data.models';
 import { FhiMapTypeId, FhiMapTypeIds } from '../fhi-diagram-type.constants';
 
 @Injectable()
@@ -52,7 +53,7 @@ export class TopoJsonService {
     return mapSerie;
   }
 
-  private getMapSerieData(dataPoint: Data): [string, number] {
+  private getMapSerieData(dataPoint: DiagramSerieData): [string, number] {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
     const geometry = geometries.find(
