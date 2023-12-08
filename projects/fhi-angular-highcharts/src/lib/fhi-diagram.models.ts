@@ -1,4 +1,5 @@
 import { Options } from 'highcharts';
+import { FhiMapTypeId } from './fhi-diagram-type.constants';
 
 export interface TableHeaderCell {
   name?: string;
@@ -50,7 +51,7 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
-  mapTypeId?: string; // TODO: export type MapTypeIdValue = (FhiMapTypeId.mapFylker | FhiMapTypeId.mapFylker2019);
+  mapTypeId?: keyof typeof FhiMapTypeId;
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   title: string;

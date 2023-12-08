@@ -104,9 +104,12 @@ export const FhiChartTypes = [line, column, bar, columnStacked, barStacked, pie]
 // both FhiChartTypes and FhiMapTypes
 export const FhiMapTypes = [map];
 
-// FhiMapTypeIds represents the different geo-json maps currently supported
-export class FhiMapTypeId {
-  static mapFylker = 'mapFylker';
-  static mapFylker2019 = 'mapFylker2019';
+// FhiMapTypeIds represents the different topo.json maps currently supported
+export enum FhiMapTypeId {
+  mapFylker,
+  mapFylker2019,
 }
-export const FhiMapTypeIds = [FhiMapTypeId.mapFylker, FhiMapTypeId.mapFylker2019];
+export const FhiMapTypeIds = [
+  FhiMapTypeId[FhiMapTypeId.mapFylker],
+  FhiMapTypeId[FhiMapTypeId.mapFylker2019],
+];

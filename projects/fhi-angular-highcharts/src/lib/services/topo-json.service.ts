@@ -25,8 +25,10 @@ export class TopoJsonService {
     if (FhiMapTypeIds.find((id) => id === mapTypeId) === undefined) {
       throw new Error("No supported mapTypeId given, can't get map!");
     }
+
+    const mapFylker = FhiMapTypeId[FhiMapTypeId.mapFylker];
     const fallbackUrl = `${location.origin}/${this.appMapFolder}/${mapTypeId}.topo.json`;
-    const url = mapTypeId === FhiMapTypeId.mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
+    const url = mapTypeId === mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
     return this.http.get<object>(url).pipe(catchError(() => this.http.get<object>(fallbackUrl)));
   }
 
