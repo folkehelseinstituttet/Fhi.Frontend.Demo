@@ -1,3 +1,3 @@
-export enum FhiDiagramTypeNavId {
+export enum DiagramTypeNavId {
   default,
 }

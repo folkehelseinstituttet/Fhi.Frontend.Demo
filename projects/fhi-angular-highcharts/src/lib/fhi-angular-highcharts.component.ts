@@ -33,7 +33,7 @@ import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
-import { FhiDiagramTypeNavId } from './constants-and-enums/fhi-diagram-type-nav-id';
+import { DiagramTypeNavId } from './constants-and-enums/fhi-diagram-type-nav-id';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -56,7 +56,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showMap = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavId = FhiDiagramTypeNavId;
+  diagramTypeNavId = DiagramTypeNavId;
   tableHeaderRows = [];
   tableBodyRows = [];
 
