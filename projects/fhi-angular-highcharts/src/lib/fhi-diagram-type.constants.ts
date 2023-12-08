@@ -1,22 +1,17 @@
-import { OptionsMaps } from './highcharts-options/options-maps';
-import { OptionsChartTypeArea } from './highcharts-options/options-chart-type-area';
 import { OptionsChartTypeBar } from './highcharts-options/options-chart-type-bar';
 import { OptionsChartTypeBarStacked } from './highcharts-options/options-chart-type-bar-stacked';
 import { OptionsChartTypeColumn } from './highcharts-options/options-chart-type-column';
 import { OptionsChartTypeColumnStacked } from './highcharts-options/options-chart-type-column-stacked';
-import { OptionsChartTypeDonut } from './highcharts-options/options-chart-type-donut';
 import { OptionsChartTypeLine } from './highcharts-options/options-chart-type-line';
 import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie';
 
 import { FhiDiagramType } from './fhi-diagram.models';
 
 export class FhiDiagramTypeId {
-  // static area = 'area';
   static bar = 'bar';
   static barStacked = 'barStacked';
   static column = 'column';
   static columnStacked = 'columnStacked';
-  // static donut = 'donut';
   static line = 'line';
   static map = 'map';
   static pie = 'pie';
@@ -28,13 +23,6 @@ export class FhiDiagramTypeGroups {
   static map = 'map';
   static table = 'table';
 }
-
-// const area: FhiDiagramType = {
-//   id: FhiDiagramTypeId.area,
-//   icon: 'table',
-//   name: '',
-//   options: OptionsChartTypeArea
-// }
 
 const bar: FhiDiagramType = {
   id: FhiDiagramTypeId.bar,
@@ -63,13 +51,6 @@ const columnStacked: FhiDiagramType = {
   name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked,
 };
-
-// const donut: FhiDiagramType = {
-//   id: FhiDiagramTypeId.donut,
-//   icon: 'donut-chart',
-//   name: 'Smultringdiagram',
-//   options: OptionsChartTypeDonut
-// }
 
 const line: FhiDiagramType = {
   id: FhiDiagramTypeId.line,
@@ -103,41 +84,20 @@ const table: FhiDiagramType = {
 };
 
 export class FhiDiagramTypes {
-  // static area = area;
   static bar = bar;
   static barStacked = barStacked;
   static column = column;
   static columnStacked = columnStacked;
-  // static donut = donut;
   static line = line;
   static map = map;
   static pie = pie;
   static table = table;
 }
 
-export const FhiAllDiagramTypes = [
-  // area,
-  bar,
-  barStacked,
-  column,
-  columnStacked,
-  // donut,
-  line,
-  map,
-  pie,
-  table,
-];
+export const FhiAllDiagramTypes = [bar, barStacked, column, columnStacked, line, map, pie, table];
 
 // This is the order used in diagram-type-navs
-export const FhiChartTypes = [
-  line,
-  column,
-  bar,
-  columnStacked,
-  barStacked,
-  pie,
-  // donut
-];
+export const FhiChartTypes = [line, column, bar, columnStacked, barStacked, pie];
 
 // FhiMapTypes is kept as an array even though it may not get more than one item,
 // because the implementation in the diagram type nav is the same for
