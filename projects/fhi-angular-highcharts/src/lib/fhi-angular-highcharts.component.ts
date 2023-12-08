@@ -14,7 +14,7 @@ import * as Highmaps from 'highcharts/highmaps';
 import { Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import { FhiDiagramOptions } from './models/fhi-diagram-options.model';
+import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
 import { AllDiagramOptions } from './models/all-diagram-options.model';
 import { DiagramSerieData } from './models/diagram-serie-data.model';
@@ -22,18 +22,15 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import {
-  FhiDiagramTypes,
-  FhiDiagramTypeId,
-  FhiDiagramTypeGroups,
-} from './fhi-diagram-type.constants';
+import { FhiDiagramTypes, FhiDiagramTypeGroups } from './fhi-diagram-type.constants';
+import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeNavId } from './constants-and-enums/fhi-diagram-type-nav-id';
+import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -44,7 +41,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNavigation = new EventEmitter<string>();
+  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
@@ -56,7 +53,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showMap = false;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavId = DiagramTypeNavId;
+  diagramTypeNavId = DiagramTypeNavIds;
   tableHeaderRows = [];
   tableBodyRows = [];
 
@@ -94,11 +91,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
-    this.diagramTypeNavigation.emit(diagramType.id);
+    this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
   setDiagramTypeGroupToTable() {
-    this.diagramTypeNavigation.emit(FhiDiagramTypeId.table);
+    this.diagramTypeNavigation.emit(DiagramTypeIds.table as FhiDiagramTypeIds);
   }
 
   tableCellDataOK(data: number | string): boolean {
@@ -192,8 +189,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.allDiagramOptions = {
       ...this.allDiagramOptions,
       diagramTypeId: diagramTypeId
-        ? this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId)
-        : FhiDiagramTypeId.table,
+        ? (this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId) as FhiDiagramTypeIds)
+        : (DiagramTypeIds.table as FhiDiagramTypeIds),
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
@@ -211,7 +208,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       return;
     }
     if (
-      this.allDiagramOptions.diagramTypeId === FhiDiagramTypeId.map &&
+      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
       this.diagramTypeService.mapTypes.length !== 0
     ) {
       this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;

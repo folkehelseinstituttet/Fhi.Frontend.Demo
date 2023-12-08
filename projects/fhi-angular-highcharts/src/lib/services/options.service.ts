@@ -14,7 +14,7 @@ import {
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
-import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
+import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
 import { AllDiagramOptions } from '../models/all-diagram-options.model';
 
 import { TopoJsonService } from './topo-json.service';
@@ -32,7 +32,7 @@ export class OptionsService {
 
   updateOptions(allDiagramOptions: AllDiagramOptions): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
-    const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie;
+    const isPie = allDiagramOptions.diagramTypeId === DiagramTypeIds.pie;
     const isMap = options?.chart && 'map' in options.chart;
     const series = allDiagramOptions.series;
 

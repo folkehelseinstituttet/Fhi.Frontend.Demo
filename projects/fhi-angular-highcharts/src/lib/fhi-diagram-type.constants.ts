@@ -7,16 +7,7 @@ import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie
 
 import { DiagramType } from './models/diagram-type.model';
 
-export class FhiDiagramTypeId {
-  static bar = 'bar';
-  static barStacked = 'barStacked';
-  static column = 'column';
-  static columnStacked = 'columnStacked';
-  static line = 'line';
-  static map = 'map';
-  static pie = 'pie';
-  static table = 'table';
-}
+import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 
 export class FhiDiagramTypeGroups {
   static chart = 'chart';
@@ -25,42 +16,42 @@ export class FhiDiagramTypeGroups {
 }
 
 const bar: DiagramType = {
-  id: FhiDiagramTypeId.bar,
+  id: DiagramTypeIds.bar,
   icon: 'bar-chart-line-horizontal',
   name: 'Liggende søylediagram',
   options: OptionsChartTypeBar,
 };
 
 const barStacked: DiagramType = {
-  id: FhiDiagramTypeId.barStacked,
+  id: DiagramTypeIds.barStacked,
   icon: 'bar-chart-line-stacked-horizontal',
   name: 'Stablet liggende søylediagram',
   options: OptionsChartTypeBarStacked,
 };
 
 const column: DiagramType = {
-  id: FhiDiagramTypeId.column,
+  id: DiagramTypeIds.column,
   icon: 'bar-chart-line',
   name: 'Søylediagram',
   options: OptionsChartTypeColumn,
 };
 
 const columnStacked: DiagramType = {
-  id: FhiDiagramTypeId.columnStacked,
+  id: DiagramTypeIds.columnStacked,
   icon: 'bar-chart-line-stacked',
   name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked,
 };
 
 const line: DiagramType = {
-  id: FhiDiagramTypeId.line,
+  id: DiagramTypeIds.line,
   icon: 'graph-up',
   name: 'Linjediagram',
   options: OptionsChartTypeLine,
 };
 
 const map: DiagramType = {
-  id: FhiDiagramTypeId.map,
+  id: DiagramTypeIds.map,
   icon: 'geo-alt',
   name: 'Kart',
   options: {
@@ -71,14 +62,14 @@ const map: DiagramType = {
 };
 
 const pie: DiagramType = {
-  id: FhiDiagramTypeId.pie,
+  id: DiagramTypeIds.pie,
   icon: 'pie-chart',
   name: 'Kakediagram',
   options: OptionsChartTypePie,
 };
 
 const table: DiagramType = {
-  id: FhiDiagramTypeId.table,
+  id: DiagramTypeIds.table,
   icon: 'table',
   name: 'Tabell',
 };

@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { DiagramTypeIdValues as TypeIds } from '../constants-and-enums/diagram-type-ids';
 import {
   FhiAllDiagramTypes,
   FhiChartTypes,
-  FhiDiagramTypeId,
   FhiMapTypeIds,
   FhiDiagramTypes,
   FhiMapTypes,
@@ -96,25 +96,24 @@ export class DiagramTypeService {
       (numOfDimensions > 1 && series.length > 5) ||
       (series.length > 1 && this.flaggedSeries.length !== 0)
     ) {
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.line);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.pie);
-      // chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.pie);
     }
 
     // Remove stacked
     if (series.length === 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.barStacked);
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.columnStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.barStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.columnStacked);
     }
 
     // Remove bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.bar);
-      chartTypes = chartTypes.filter((type) => type.id !== FhiDiagramTypeId.column);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.bar);
+      chartTypes = chartTypes.filter((type) => type.id !== TypeIds.column);
     }
 
     // Remove types not in user defined subset
