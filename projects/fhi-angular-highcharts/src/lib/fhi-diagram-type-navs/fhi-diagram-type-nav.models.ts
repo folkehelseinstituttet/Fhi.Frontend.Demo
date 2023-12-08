@@ -1,7 +1,7 @@
-import { FhiDiagramType } from '../fhi-diagram.models';
+import { DiagramType } from '../models/diagram-type.models';
 
 export interface NavDiagramTypeGroup {
-  diagramType: FhiDiagramType;
+  diagramType: DiagramType;
   icon: string;
   id: string;
   isDisabled: boolean;

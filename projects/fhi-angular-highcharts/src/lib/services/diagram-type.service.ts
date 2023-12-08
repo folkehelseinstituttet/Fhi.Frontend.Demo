@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { FlaggedSerie } from '../models/flagged-serie.models';
-import { FhiDiagramType } from '../fhi-diagram.models';
+import { DiagramType } from '../models/diagram-type.models';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.models';
 import {
   FhiAllDiagramTypes,
@@ -15,8 +15,8 @@ import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-
 
 @Injectable()
 export class DiagramTypeService {
-  private _chartTypes!: FhiDiagramType[];
-  private _mapTypes!: FhiDiagramType[];
+  private _chartTypes!: DiagramType[];
+  private _mapTypes!: DiagramType[];
   private _series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
@@ -26,11 +26,11 @@ export class DiagramTypeService {
     return this._series;
   }
 
-  get chartTypes(): FhiDiagramType[] {
+  get chartTypes(): DiagramType[] {
     return this._chartTypes;
   }
 
-  get mapTypes(): FhiDiagramType[] {
+  get mapTypes(): DiagramType[] {
     return this._mapTypes;
   }
 
@@ -47,7 +47,7 @@ export class DiagramTypeService {
     this.updateAvailableTypes();
   }
 
-  getDiagramTypeById(diagramTypeId: string | undefined): FhiDiagramType {
+  getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
     const diagramType = FhiAllDiagramTypes.find((diagramType) => diagramType.id === diagramTypeId);
     if (diagramType !== undefined) {
       return diagramType;
@@ -69,12 +69,12 @@ export class DiagramTypeService {
     return FhiDiagramTypes.table.id;
   }
 
-  private getChartType(diagramTypeId: string): FhiDiagramType | undefined {
+  private getChartType(diagramTypeId: string): DiagramType | undefined {
     const diagramType = this.chartTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
 
-  private getMapType(diagramTypeId: string): FhiDiagramType | undefined {
+  private getMapType(diagramTypeId: string): DiagramType | undefined {
     const diagramType = this.mapTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
@@ -84,7 +84,7 @@ export class DiagramTypeService {
     this._mapTypes = this.updateAvailableMapTypes();
   }
 
-  private updateAvailableChartTypes(): FhiDiagramType[] {
+  private updateAvailableChartTypes(): DiagramType[] {
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
@@ -125,7 +125,7 @@ export class DiagramTypeService {
     return chartTypes;
   }
 
-  private updateAvailableMapTypes(): FhiDiagramType[] {
+  private updateAvailableMapTypes(): DiagramType[] {
     const series = this._series;
     const mapTypeId = FhiMapTypeIds.find((id) => id === this.mapTypeId);
     let mapTypes = FhiMapTypes;

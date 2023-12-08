@@ -3,6 +3,7 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
 } from '@angular/core';
 
@@ -12,12 +13,10 @@ import {
   FhiDiagramTypes,
   FhiMapTypes,
 } from '../fhi-diagram-type.constants';
-import { FhiDiagramType } from '../fhi-diagram.models';
+
+import { DiagramType } from '../models/diagram-type.models';
 import { NavDiagramTypeGroup } from './fhi-diagram-type-nav.models';
-import {
-  DiagramTypeGroupIndex,
-  NavDiagramTableGroup,
-} from './fhi-diagram-type-nav.constants';
+import { DiagramTypeGroupIndex, NavDiagramTableGroup } from './fhi-diagram-type-nav.constants';
 import { DiagramTypeService } from '../services/diagram-type.service';
 
 @Component({
@@ -25,17 +24,17 @@ import { DiagramTypeService } from '../services/diagram-type.service';
   templateUrl: './fhi-diagram-type-nav.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiDiagramTypeNavComponent {
+export class FhiDiagramTypeNavComponent implements OnChanges {
   @Input() currentDiagramTypeGroup!: string;
   @Input() currentDiagramTypeId!: string;
   @Input() currentMapTypeId!: string | undefined;
   @Input() currentSeriesLength!: number;
 
-  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramType>();
+  @Output() diagramTypeNavigation = new EventEmitter<DiagramType>();
 
   chartSubmenuIsOpen = false;
-  chartTypes!: FhiDiagramType[];
-  mapTypes!: FhiDiagramType[];
+  chartTypes!: DiagramType[];
+  mapTypes!: DiagramType[];
   navDiagramTypeGroups!: NavDiagramTypeGroup[];
   navId: number;
   previousSeriesLength!: number;
@@ -54,7 +53,7 @@ export class FhiDiagramTypeNavComponent {
     this.updateChartSubmenuState();
   }
 
-  navigate(diagramType: FhiDiagramType) {
+  navigate(diagramType: DiagramType) {
     this.diagramTypeNavigation.emit(diagramType);
   }
 
@@ -78,10 +77,8 @@ export class FhiDiagramTypeNavComponent {
   }
 
   private updateNavDiagramTypeGroups() {
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] =
-      this.getNavDiagramChartGroup();
-    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] =
-      this.getNavDiagramMapGroup();
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
+    this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
 
     if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.chart) {
       this.previousChartTypeId = this.currentDiagramTypeId;
@@ -130,7 +127,7 @@ export class FhiDiagramTypeNavComponent {
 
   // Get user selected chart type, or fallback chart type
   //   if user selected chart isn't legal for current data.
-  private getChartType(): FhiDiagramType {
+  private getChartType(): DiagramType {
     const chartType = this.chartTypes.find((diagramType) => {
       if (
         this.currentDiagramTypeId === this.previousDiagramTypeId &&
@@ -154,7 +151,7 @@ export class FhiDiagramTypeNavComponent {
 
   // Get user selected chart type, or fallback chart type
   //   if user selected chart isn't legal for current data.
-  private getMapType(): FhiDiagramType {
+  private getMapType(): DiagramType {
     const mapType = this.mapTypes[0]; // Currently just one map type
     if (this.mapTypes.length === 0) {
       return FhiMapTypes[0]; // Need a type even if the group is disabled or excluded from menu

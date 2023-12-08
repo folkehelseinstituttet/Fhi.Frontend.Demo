@@ -20,7 +20,7 @@ import { AllDiagramOptions } from './models/all-diagram-options.models';
 import { DiagramSerieData } from './models/diagram-serie-data.models';
 import { FlaggedSerie } from './models/flagged-serie.models';
 import { FlagWithDataPointName } from './models/flag-With-data-point-name.models';
-import { FhiDiagramType } from './fhi-diagram.models';
+import { DiagramType } from './models/diagram-type.models';
 
 import {
   FhiDiagramTypes,
@@ -93,7 +93,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
   }
 
-  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
+  onDiagramTypeNavigation(diagramType: DiagramType) {
     this.diagramTypeNavigation.emit(diagramType.id);
   }
 

@@ -5,7 +5,7 @@ import { OptionsChartTypeColumnStacked } from './highcharts-options/options-char
 import { OptionsChartTypeLine } from './highcharts-options/options-chart-type-line';
 import { OptionsChartTypePie } from './highcharts-options/options-chart-type-pie';
 
-import { FhiDiagramType } from './fhi-diagram.models';
+import { DiagramType } from './models/diagram-type.models';
 
 export class FhiDiagramTypeId {
   static bar = 'bar';
@@ -24,42 +24,42 @@ export class FhiDiagramTypeGroups {
   static table = 'table';
 }
 
-const bar: FhiDiagramType = {
+const bar: DiagramType = {
   id: FhiDiagramTypeId.bar,
   icon: 'bar-chart-line-horizontal',
   name: 'Liggende søylediagram',
   options: OptionsChartTypeBar,
 };
 
-const barStacked: FhiDiagramType = {
+const barStacked: DiagramType = {
   id: FhiDiagramTypeId.barStacked,
   icon: 'bar-chart-line-stacked-horizontal',
   name: 'Stablet liggende søylediagram',
   options: OptionsChartTypeBarStacked,
 };
 
-const column: FhiDiagramType = {
+const column: DiagramType = {
   id: FhiDiagramTypeId.column,
   icon: 'bar-chart-line',
   name: 'Søylediagram',
   options: OptionsChartTypeColumn,
 };
 
-const columnStacked: FhiDiagramType = {
+const columnStacked: DiagramType = {
   id: FhiDiagramTypeId.columnStacked,
   icon: 'bar-chart-line-stacked',
   name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked,
 };
 
-const line: FhiDiagramType = {
+const line: DiagramType = {
   id: FhiDiagramTypeId.line,
   icon: 'graph-up',
   name: 'Linjediagram',
   options: OptionsChartTypeLine,
 };
 
-const map: FhiDiagramType = {
+const map: DiagramType = {
   id: FhiDiagramTypeId.map,
   icon: 'geo-alt',
   name: 'Kart',
@@ -70,14 +70,14 @@ const map: FhiDiagramType = {
   },
 };
 
-const pie: FhiDiagramType = {
+const pie: DiagramType = {
   id: FhiDiagramTypeId.pie,
   icon: 'pie-chart',
   name: 'Kakediagram',
   options: OptionsChartTypePie,
 };
 
-const table: FhiDiagramType = {
+const table: DiagramType = {
   id: FhiDiagramTypeId.table,
   icon: 'table',
   name: 'Tabell',

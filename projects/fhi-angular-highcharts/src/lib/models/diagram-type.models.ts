@@ -1,6 +1,6 @@
 import { Options } from 'highcharts';
 
-export interface FhiDiagramType {
+export interface DiagramType {
   id: string;
   icon: string;
   name: string;
