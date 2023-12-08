@@ -33,7 +33,6 @@ import {
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
-import { GeoJsonService } from './services/geo-json.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
 import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
@@ -69,7 +68,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
-    private geoJsonService: GeoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
@@ -228,12 +226,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateMap() {
-    const mapTypeId = this.allDiagramOptions.mapTypeId as string;
+    const mapTypeId = this.allDiagramOptions.mapTypeId;
     this.showMap = false;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
-      console.log('this.highmaps', this.highmaps.maps);
-
+      this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
       this.changeDetector.detectChanges();
@@ -253,12 +250,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         next: (map) => {
           if (map !== undefined) {
             this.highmaps.maps[mapTypeId] = map;
-            this.topoJsonService.updateMapGeometries(map, mapTypeId);
+            this.topoJsonService.addMap(map, mapTypeId);
             this.updateMap();
           }
         },
         error: (error) => {
-          console.log('ERROR:', error);
+          console.error('ERROR:', error);
         },
       });
   }

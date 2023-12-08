@@ -125,14 +125,13 @@ export class DiagramTypeService {
 
   private updateAvailableMapTypes(): FhiDiagramType[] {
     const series = this._series;
-    const mapTypeId = (() => FhiMapTypeIds.find((id) => id === this.mapTypeId))();
+    const mapTypeId = FhiMapTypeIds.find((id) => id === this.mapTypeId);
     let mapTypes = FhiMapTypes;
 
     // Remove all maps
     if (mapTypeId === undefined || series.length > 1) {
       mapTypes = [];
     }
-
     return mapTypes;
   }
 

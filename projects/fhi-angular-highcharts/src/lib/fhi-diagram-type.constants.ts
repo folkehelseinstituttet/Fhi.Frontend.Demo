@@ -139,10 +139,14 @@ export const FhiChartTypes = [
   // donut
 ];
 
-// This is kept as an array even though it may not get more than one item,
+// FhiMapTypes is kept as an array even though it may not get more than one item,
 // because the implementation in the diagram type nav is the same for
 // both FhiChartTypes and FhiMapTypes
 export const FhiMapTypes = [map];
 
 // FhiMapTypeIds represents the different geo-json maps currently supported
-export const FhiMapTypeIds = ['mapFylker2019', 'mapFylker'];
+export class FhiMapTypeId {
+  static mapFylker = 'mapFylker';
+  static mapFylker2019 = 'mapFylker2019';
+}
+export const FhiMapTypeIds = [FhiMapTypeId.mapFylker, FhiMapTypeId.mapFylker2019];

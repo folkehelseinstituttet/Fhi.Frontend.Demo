@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import cloneDeep from 'lodash-es/cloneDeep';
 import merge from 'lodash-es/merge';
+import { isValid, parseISO } from 'date-fns';
 import {
   Options,
   SeriesOptionsType,
@@ -9,7 +10,6 @@ import {
   XAxisOptions,
   YAxisOptions,
 } from 'highcharts';
-import { isValid, parseISO } from 'date-fns';
 
 import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
 import { TopoJsonService } from './topo-json.service';
@@ -17,7 +17,6 @@ import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
-
 import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
 
 @Injectable()
@@ -48,9 +47,6 @@ export class OptionsService {
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.mapTypeId;
     }
-
-    console.log('options', options);
-
     return options;
   }
 

@@ -50,7 +50,7 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
-  mapTypeId?: string;
+  mapTypeId?: string; // TODO: export type MapTypeIdValue = (FhiMapTypeId.mapFylker | FhiMapTypeId.mapFylker2019);
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   title: string;
