@@ -32,7 +32,7 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
-import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
+import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeNavId } from './constants-and-enums/fhi-diagram-type-nav-id';
 
 @Component({

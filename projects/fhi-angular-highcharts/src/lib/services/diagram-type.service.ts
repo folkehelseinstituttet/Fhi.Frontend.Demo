@@ -11,7 +11,7 @@ import {
   FhiDiagramTypes,
   FhiMapTypes,
 } from '../fhi-diagram-type.constants';
-import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
+import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
 @Injectable()
 export class DiagramTypeService {

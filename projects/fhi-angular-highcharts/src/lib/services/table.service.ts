@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { DiagramSerieData } from '../models/diagram-serie-data.model';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
-import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
+import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
 interface TableHeaderCell {
   name?: string;
