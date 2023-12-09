@@ -72,6 +72,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   ngOnChanges() {
     try {
+      this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
       this.updateAvailableDiagramTypes();
@@ -234,7 +235,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateMap() {
     const mapTypeId = this.allDiagramOptions.mapTypeId;
-    this.showMap = false;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
@@ -268,6 +268,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private canShowFooter(): boolean {
+    if (this.showMap && !this.allDiagramOptions.openSource) {
+      return true;
+    }
     if (this.flaggedSeries.length !== 0) {
       return true;
     }
