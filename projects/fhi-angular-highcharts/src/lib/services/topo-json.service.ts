@@ -4,7 +4,7 @@ import { Observable, catchError } from 'rxjs';
 import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
-import { DiagramSerieData } from '../models/diagram-serie-data.model';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 import { MapTypeIdValues, MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
 
 @Injectable()
@@ -58,7 +58,7 @@ export class TopoJsonService {
     return mapSerie;
   }
 
-  private getMapSerieData(dataPoint: DiagramSerieData): [string, number] {
+  private getMapSerieData(dataPoint: FhiDiagramSerieData): [string, number] {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
     const geometry = geometries.find(

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DiagramSerieData } from '../models/diagram-serie-data.model';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
@@ -68,7 +68,7 @@ export class TableService {
     return tableBodyRows;
   }
 
-  private getDataArray(serie: FhiDiagramSerie): DiagramSerieData[] {
+  private getDataArray(serie: FhiDiagramSerie): FhiDiagramSerieData[] {
     const data = serie.data;
     return data;
   }

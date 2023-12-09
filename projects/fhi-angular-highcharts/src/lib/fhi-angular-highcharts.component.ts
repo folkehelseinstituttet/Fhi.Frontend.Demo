@@ -17,7 +17,7 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
 import { AllDiagramOptions } from './models/all-diagram-options.model';
-import { DiagramSerieData } from './models/diagram-serie-data.model';
+import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
@@ -156,7 +156,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateFlaggedSeries(
     serie: FhiDiagramSerie,
-    flaggedData: DiagramSerieData[],
+    flaggedData: FhiDiagramSerieData[],
     index: number,
   ) {
     this.flaggedSeries[index] = {
@@ -165,7 +165,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     };
   }
 
-  private getFlaggedDataPointsForCurrentSerie(data: DiagramSerieData[]): FlagWithDataPointName[] {
+  private getFlaggedDataPointsForCurrentSerie(
+    data: FhiDiagramSerieData[],
+  ): FlagWithDataPointName[] {
     const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
     data.forEach((category) => {
