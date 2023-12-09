@@ -22,6 +22,13 @@ export class TopoJsonService {
     this.currentMapTypeId = mapTypeId;
   }
 
+  getMapCopyright(): object {
+    return {
+      text: this.topoJsonMaps[this.currentMapTypeId]['copyrightShort'],
+      url: this.topoJsonMaps[this.currentMapTypeId]['copyrightUrl'],
+    };
+  }
+
   getMap(mapTypeId: string | undefined): Observable<object> {
     if (MapTypeIdValuesArray.find((id) => id === mapTypeId) === undefined) {
       throw new Error("No supported mapTypeId given, can't get map!");

@@ -162,5 +162,12 @@
     <p class="fst-italic small" *ngIf="allDiagramOptions.disclaimer">
       {{ allDiagramOptions.disclaimer }}
     </p>
+    <p
+      class="fst-italic small"
+      *ngIf="!allDiagramOptions.openSource && currentDiagramTypeGroup === diagramTypeGroups.map && showMap"
+    >
+      Kartdata fra
+      <a class="small" href="{{ getMapCopyright()['url'] }}">&#169; {{ getMapCopyright()['text'] }}</a>
+    </p>
   </footer>
 </ng-template>

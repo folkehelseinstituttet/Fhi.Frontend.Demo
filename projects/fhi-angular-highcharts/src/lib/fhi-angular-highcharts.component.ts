@@ -52,6 +52,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showDefaultChartTemplate = true;
   showFooter = false;
   showMap = false;
+  mapCopyrightInfo!: object;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
@@ -115,6 +116,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       });
     });
     return flagged;
+  }
+
+  getMapCopyright(): object {
+    return this.topoJsonService.getMapCopyright();
   }
 
   private loopSeriesToUpdateAndExtractInfo() {
