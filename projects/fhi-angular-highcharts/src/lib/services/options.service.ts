@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
 import cloneDeep from 'lodash-es/cloneDeep';
 import merge from 'lodash-es/merge';
+import { isValid, parseISO } from 'date-fns';
 import {
   Options,
   SeriesOptionsType,
@@ -9,34 +10,30 @@ import {
   XAxisOptions,
   YAxisOptions,
 } from 'highcharts';
-import { isValid, parseISO } from 'date-fns';
 
-import { FhiAllDiagramTypes } from '../fhi-diagram-type.constants';
-import { GeoJsonService } from './geo-json.service';
-import { FhiAllDiagramOptions, FhiDiagramSerie } from '../fhi-diagram.models';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+
+import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
+import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
+import { AllDiagramOptions } from '../models/all-diagram-options.model';
+
+import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 
-import { FhiDiagramTypeId } from '../fhi-diagram-type.constants';
-import { is } from 'date-fns/locale';
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class OptionsService {
-  constructor(private geoJsonService: GeoJsonService) {
+  private allStaticOptions = new Map();
+
+  constructor(private topoJsonService: TopoJsonService) {
     this.setAllStaticOptions();
   }
 
-  private allStaticOptions = new Map();
-
-  updateOptions(allDiagramOptions: FhiAllDiagramOptions): Options {
-    const options: Options = cloneDeep(
-      this.allStaticOptions.get(allDiagramOptions.diagramTypeId),
-    );
-    const isPie = allDiagramOptions.diagramTypeId === FhiDiagramTypeId.pie;
-    const isMap = options?.chart && 'map' in options?.chart;
+  updateOptions(allDiagramOptions: AllDiagramOptions): Options {
+    const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
+    const isPie = allDiagramOptions.diagramTypeId === DiagramTypeIds.pie;
+    const isMap = options?.chart && 'map' in options.chart;
     const series = allDiagramOptions.series;
 
     options.series = this.getSeries(series, isMap);
@@ -49,10 +46,7 @@ export class OptionsService {
     }
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
-      options.yAxis = this.getYAxis(
-        options.yAxis as YAxisOptions,
-        allDiagramOptions,
-      );
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.mapTypeId;
     }
@@ -60,47 +54,36 @@ export class OptionsService {
   }
 
   private setAllStaticOptions() {
-    FhiAllDiagramTypes.forEach((FhiDiagramType) => {
+    AllDiagramTypes.forEach((FhiDiagramType) => {
       const options = FhiDiagramType.options;
-      const isMap = options?.chart && 'map' in options?.chart;
+      const isMap = options?.chart && 'map' in options.chart;
       const staticOptions = this.setStaticOptions(options, isMap);
       this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
     });
   }
 
-  private setStaticOptions(
-    options: Options | undefined,
-    isMap: boolean | undefined,
-  ): Options {
+  private setStaticOptions(options: Options | undefined, isMap: boolean | undefined): Options {
     const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
     const current = isMap ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
     return merge(chartsAndMaps, current, options);
   }
 
-  // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined, allMapsLoaded: boolean | undefined): SeriesOptionsType[] {
-  private getSeries(
-    series: FhiDiagramSerie[],
-    isMap: boolean | undefined,
-  ): SeriesOptionsType[] {
+  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
     const highchartsSeries = cloneDeep(series);
+
+    // Remove flagged data from Highcharts options series
     highchartsSeries.forEach((serie) => {
-      // Remove flagged data from Highcharts options series
-      serie.data = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y !== 'string',
-      );
+      serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
     });
 
     if (isMap) {
-      return [this.geoJsonService.getHighmapsSerie(highchartsSeries[0])];
+      return [this.topoJsonService.getHighmapsSerie(highchartsSeries[0])];
     } else {
       return highchartsSeries as SeriesOptionsType[];
     }
   }
 
-  private getXAxis(
-    xAxis: XAxisOptions,
-    series: FhiDiagramSerie[],
-  ): XAxisOptions | XAxisOptions[] {
+  private getXAxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
     xAxis = xAxis ? xAxis : {};
     xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
@@ -108,7 +91,7 @@ export class OptionsService {
 
   private getYAxis(
     yAxis: YAxisOptions,
-    allDiagramOptions: FhiAllDiagramOptions,
+    allDiagramOptions: AllDiagramOptions,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
     if (allDiagramOptions.seriesHasDecimalDataPoints) {
@@ -141,11 +124,7 @@ export class OptionsService {
       formatter: (that: Highcharts.AxisLabelsFormatterContextObject) => {
         const value: string = that.value.toString();
         if (value.substring(0, 2) === '01') {
-          return formatDate(
-            this.getISO8601DataFromNorwegianDate(value),
-            'LLL',
-            'nb-NO',
-          );
+          return formatDate(this.getISO8601DataFromNorwegianDate(value), 'LLL', 'nb-NO');
         } else {
           return value;
         }
@@ -157,16 +136,12 @@ export class OptionsService {
     return {
       formatter: (that: Highcharts.AxisLabelsFormatterContextObject) => {
         const value: string = that.value.toString();
-        return formatDate(
-          this.getISO8601DataFromNorwegianDate(value),
-          'd/M',
-          'nb-NO',
-        );
+        return formatDate(this.getISO8601DataFromNorwegianDate(value), 'd/M', 'nb-NO');
       },
     };
   }
 
-  public getISO8601DataFromNorwegianDate(nbNODate: string) {
+  private getISO8601DataFromNorwegianDate(nbNODate: string) {
     const dateList = nbNODate.split('.');
     return `${dateList[2]}-${dateList[1]}-${dateList[0]}`;
   }

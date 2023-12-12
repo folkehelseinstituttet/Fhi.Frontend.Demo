@@ -4,59 +4,58 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
 } from '@angular/core';
+
 import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import * as Highmaps from 'highcharts/highmaps';
 import { Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
-import {
-  Data,
-  FhiAllDiagramOptions,
-  FhiDiagramOptions,
-  FhiDiagramSerie,
-  FlagWithDataPointName,
-  FlaggedSerie,
-} from './fhi-diagram.models';
+import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
+import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
+import { AllDiagramOptions } from './models/all-diagram-options.model';
+import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
+import { FlaggedSerie } from './models/flagged-serie.model';
+import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
+import { DiagramType } from './models/diagram-type.model';
+
+import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
+import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
+import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
+import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
+import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
-import { GeoJsonService } from './services/geo-json.service';
-
-import { FhiDiagramType } from './fhi-diagram.models';
-import {
-  FhiDiagramTypes,
-  FhiDiagramTypeId,
-  FhiDiagramTypeGroups,
-} from './fhi-diagram-type.constants';
-import { FhiDiagramTypeNavId } from './fhi-diagram-type-navs/fhi-diagram-type-nav.constants';
-import { FhiDiagramSerieNameSeperator as Seperator } from './fhi-diagram-serie-name-seperator.constant';
+import { TopoJsonService } from './services/topo-json.service';
 
 @Component({
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiAngularHighchartsComponent {
+export class FhiAngularHighchartsComponent implements OnChanges {
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
-  @Output() diagramTypeNavigation = new EventEmitter<string>();
+  @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
 
   highchartsOptions!: Options;
-  allDiagramOptions!: FhiAllDiagramOptions;
+  allDiagramOptions!: AllDiagramOptions;
   showDefaultChartTemplate = true;
   showFooter = false;
   showMap = false;
+  mapCopyrightInfo!: object;
   currentDiagramTypeGroup!: string;
-  diagramTypeGroups = FhiDiagramTypeGroups;
-  diagramTypeNavId = FhiDiagramTypeNavId;
+  diagramTypeGroups = DiagramTypeGroups;
+  diagramTypeNavId = DiagramTypeNavIds;
   tableHeaderRows = [];
   tableBodyRows = [];
 
@@ -65,7 +64,7 @@ export class FhiAngularHighchartsComponent {
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
     private tableService: TableService,
-    private geoJsonService: GeoJsonService,
+    private topoJsonService: TopoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
@@ -73,6 +72,7 @@ export class FhiAngularHighchartsComponent {
 
   ngOnChanges() {
     try {
+      this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
       this.updateAvailableDiagramTypes();
@@ -80,14 +80,12 @@ export class FhiAngularHighchartsComponent {
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
 
-      if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.table) {
+      if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
         this.updateTable();
-      } else if (this.currentDiagramTypeGroup === FhiDiagramTypeGroups.map) {
+      } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
         this.updateMap();
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(
-          this.allDiagramOptions,
-        );
+        this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       }
       this.showFooter = this.canShowFooter();
     } catch (error) {
@@ -95,12 +93,12 @@ export class FhiAngularHighchartsComponent {
     }
   }
 
-  onDiagramTypeNavigation(diagramType: FhiDiagramType) {
-    this.diagramTypeNavigation.emit(diagramType.id);
+  onDiagramTypeNavigation(diagramType: DiagramType) {
+    this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
   setDiagramTypeGroupToTable() {
-    this.diagramTypeNavigation.emit(FhiDiagramTypeId.table);
+    this.diagramTypeNavigation.emit(DiagramTypeIds.table as FhiDiagramTypeIds);
   }
 
   tableCellDataOK(data: number | string): boolean {
@@ -121,6 +119,10 @@ export class FhiAngularHighchartsComponent {
     return flagged;
   }
 
+  getMapCopyright(): object {
+    return this.topoJsonService.getMapCopyright();
+  }
+
   private loopSeriesToUpdateAndExtractInfo() {
     let n = 0;
 
@@ -128,9 +130,7 @@ export class FhiAngularHighchartsComponent {
       const decimalData = serie.data.filter(
         (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
       );
-      const flaggedData = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y === 'string',
-      );
+      const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
       const negativeData = serie.data.filter(
         (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
       );
@@ -157,7 +157,7 @@ export class FhiAngularHighchartsComponent {
 
   private updateFlaggedSeries(
     serie: FhiDiagramSerie,
-    flaggedData: Data[],
+    flaggedData: FhiDiagramSerieData[],
     index: number,
   ) {
     this.flaggedSeries[index] = {
@@ -167,7 +167,7 @@ export class FhiAngularHighchartsComponent {
   }
 
   private getFlaggedDataPointsForCurrentSerie(
-    data: Data[],
+    data: FhiDiagramSerieData[],
   ): FlagWithDataPointName[] {
     const flaggedDataPoints: FlagWithDataPointName[] = [];
     let n = 0;
@@ -198,33 +198,32 @@ export class FhiAngularHighchartsComponent {
     this.allDiagramOptions = {
       ...this.allDiagramOptions,
       diagramTypeId: diagramTypeId
-        ? this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId)
-        : FhiDiagramTypeId.table,
+        ? (this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId) as FhiDiagramTypeIds)
+        : (DiagramTypeIds.table as FhiDiagramTypeIds),
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
   }
 
   private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType =
-      this.diagramTypeService.getDiagramTypeById(
-        this.allDiagramOptions.diagramTypeId,
-      );
+    this.allDiagramOptions.diagramType = this.diagramTypeService.getDiagramTypeById(
+      this.allDiagramOptions.diagramTypeId,
+    );
   }
 
   private updateCurrentDiagramTypeGroup() {
-    if (this.allDiagramOptions.diagramTypeId === FhiDiagramTypes.table.id) {
-      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.table;
+    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
+      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
       return;
     }
     if (
-      this.allDiagramOptions.diagramTypeId === FhiDiagramTypeId.map &&
+      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
       this.diagramTypeService.mapTypes.length !== 0
     ) {
-      this.currentDiagramTypeGroup = FhiDiagramTypeGroups.map;
+      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
       return;
     }
-    this.currentDiagramTypeGroup = FhiDiagramTypeGroups.chart;
+    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 
@@ -235,13 +234,11 @@ export class FhiAngularHighchartsComponent {
   }
 
   private updateMap() {
-    const mapTypeId = this.allDiagramOptions.mapTypeId as string;
-    this.showMap = false;
+    const mapTypeId = this.allDiagramOptions.mapTypeId;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
-      this.highchartsOptions = this.optionsService.updateOptions(
-        this.allDiagramOptions,
-      );
+      this.topoJsonService.setCurrentMapTypeId(mapTypeId);
+      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
@@ -253,26 +250,27 @@ export class FhiAngularHighchartsComponent {
     if (this.highmaps.maps === undefined) {
       this.highmaps.maps = [];
     }
-    this.geoJsonService
+    this.topoJsonService
       .getMap(mapTypeId)
       .pipe(first())
       .subscribe({
         next: (map) => {
           if (map !== undefined) {
             this.highmaps.maps[mapTypeId] = map;
-            this.geoJsonService.updateMapFeatures(
-              this.highmaps.maps[mapTypeId],
-            );
+            this.topoJsonService.addMap(map, mapTypeId);
             this.updateMap();
           }
         },
         error: (error) => {
-          console.log('ERROR:', error);
+          console.error('ERROR:', error);
         },
       });
   }
 
   private canShowFooter(): boolean {
+    if (this.showMap && !this.allDiagramOptions.openSource) {
+      return true;
+    }
     if (this.flaggedSeries.length !== 0) {
       return true;
     }

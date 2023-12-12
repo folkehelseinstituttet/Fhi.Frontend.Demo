@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
 
-import {
-  FhiDiagramSerie,
-  FhiDiagramType,
-  FlaggedSerie,
-} from '../fhi-diagram.models';
-import {
-  FhiAllDiagramTypes,
-  FhiChartTypes,
-  FhiDiagramTypeId,
-  FhiMapTypeIds,
-  FhiDiagramTypes,
-  FhiMapTypes,
-} from '../fhi-diagram-type.constants';
-import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
+import { FlaggedSerie } from '../models/flagged-serie.model';
+import { DiagramType } from '../models/diagram-type.model';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
+import { MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
 
-@Injectable({
-  providedIn: 'root',
-})
+import {
+  AllDiagramTypes,
+  ChartTypes,
+  DiagramTypes,
+  MapTypes,
+} from '../constants-and-enums/fhi-diagram-types';
+import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
+
+@Injectable()
 export class DiagramTypeService {
-  private _chartTypes!: FhiDiagramType[];
-  private _mapTypes!: FhiDiagramType[];
+  private _chartTypes!: DiagramType[];
+  private _mapTypes!: DiagramType[];
   private _series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
@@ -30,11 +27,11 @@ export class DiagramTypeService {
     return this._series;
   }
 
-  get chartTypes(): FhiDiagramType[] {
+  get chartTypes(): DiagramType[] {
     return this._chartTypes;
   }
 
-  get mapTypes(): FhiDiagramType[] {
+  get mapTypes(): DiagramType[] {
     return this._mapTypes;
   }
 
@@ -51,10 +48,8 @@ export class DiagramTypeService {
     this.updateAvailableTypes();
   }
 
-  getDiagramTypeById(diagramTypeId: string | undefined): FhiDiagramType {
-    const diagramType = FhiAllDiagramTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+  getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
+    const diagramType = AllDiagramTypes.find((diagramType) => diagramType.id === diagramTypeId);
     if (diagramType !== undefined) {
       return diagramType;
     } else {
@@ -72,20 +67,16 @@ export class DiagramTypeService {
     if (map !== undefined) {
       return map.id;
     }
-    return FhiDiagramTypes.table.id;
+    return DiagramTypes.table.id;
   }
 
-  private getChartType(diagramTypeId: string): FhiDiagramType | undefined {
-    const diagramType = this.chartTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+  private getChartType(diagramTypeId: string): DiagramType | undefined {
+    const diagramType = this.chartTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
 
-  private getMapType(diagramTypeId: string): FhiDiagramType | undefined {
-    const diagramType = this.mapTypes.find(
-      (diagramType) => diagramType.id === diagramTypeId,
-    );
+  private getMapType(diagramTypeId: string): DiagramType | undefined {
+    const diagramType = this.mapTypes.find((diagramType) => diagramType.id === diagramTypeId);
     return diagramType;
   }
 
@@ -94,11 +85,11 @@ export class DiagramTypeService {
     this._mapTypes = this.updateAvailableMapTypes();
   }
 
-  private updateAvailableChartTypes(): FhiDiagramType[] {
+  private updateAvailableChartTypes(): DiagramType[] {
     const numOfDimensions = this.getNumberOfDimensions();
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
-    let chartTypes = FhiChartTypes;
+    let chartTypes = ChartTypes;
 
     // Remove line
     if (
@@ -106,60 +97,43 @@ export class DiagramTypeService {
       (numOfDimensions > 1 && series.length > 5) ||
       (series.length > 1 && this.flaggedSeries.length !== 0)
     ) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.line,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.pie,
-      );
-      // chartTypes = chartTypes.filter(type => type.id !== FhiDiagramTypeId.donut);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
     }
 
     // Remove stacked
     if (series.length === 1) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.barStacked,
-      );
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.columnStacked,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.barStacked);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.columnStacked);
     }
 
     // Remove bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.bar,
-      );
-      chartTypes = chartTypes.filter(
-        (type) => type.id !== FhiDiagramTypeId.column,
-      );
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
+      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
     }
 
     // Remove types not in user defined subset
     if (this.diagramTypeSubset !== undefined) {
-      chartTypes = chartTypes.filter(
-        (type) => this.diagramTypeSubset?.includes(type.id),
-      );
+      chartTypes = chartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
     }
 
     return chartTypes;
   }
 
-  private updateAvailableMapTypes(): FhiDiagramType[] {
+  private updateAvailableMapTypes(): DiagramType[] {
     const series = this._series;
-    const mapTypeId = (() =>
-      FhiMapTypeIds.find((id) => id === this.mapTypeId))();
-    let mapTypes = FhiMapTypes;
+    const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
+    let mapTypes = MapTypes;
 
     // Remove all maps
     if (mapTypeId === undefined || series.length > 1) {
       mapTypes = [];
     }
-
     return mapTypes;
   }
 
