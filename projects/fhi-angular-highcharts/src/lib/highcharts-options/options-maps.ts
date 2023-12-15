@@ -10,8 +10,7 @@ export const OptionsMaps = {
     marginTop: 50,
   },
   credits: {
-    mapText:
-      '. <a href="{geojson.copyrightUrl}">Kartdata fra \u00a9 {geojson.copyrightShort}</a>',
+    mapText: '. <a href="{geojson.copyrightUrl}">Kartdata fra \u00a9 {geojson.copyrightShort}</a>',
     mapTextFull: undefined,
   },
   legend: {

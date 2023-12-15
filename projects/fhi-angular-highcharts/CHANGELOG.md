@@ -1,9 +1,11 @@
-# Unreleased
+# 1.0.0
 
-> Oct 13, 2023
+> Des 11, 2023
 
-* :bug: **Bugfix** Allow dependency `date-fns` to be installed with latest version
-* :tada: **Enhancement** Update peerDependencies
+* :boom: **Breaking** Add suport for TopoJson maps, and remove support for GeoJson maps since Highcharts >= v10 gives a consol warning if GeoJson map is used.
+* :boom: **Breaking** Update peerDependencies.
+* :tada: **Enhancement** Add copyright for map in diagram footer.
+* :bug: **Bugfix** Allow dependency `date-fns` to be installed with latest version.
 
 ## 0.7.0
 

@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 
-import { Data, FhiDiagramSerie, TableHeaderCell } from '../fhi-diagram.models';
-import { FhiDiagramSerieNameSeperator as Seperator } from '../fhi-diagram-serie-name-seperator.constant';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
-@Injectable({
-  providedIn: 'root',
-})
+interface TableHeaderCell {
+  name?: string;
+  colspan?: number;
+  rowspan?: number;
+}
+
+@Injectable()
 export class TableService {
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
-    const seriesMappedToNameOnly = series.map(
-      (serie) => serie.name,
-    ) as string[];
-    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(
-      Seperator.output,
-    ).length;
+    const seriesMappedToNameOnly = series.map((serie) => serie.name) as string[];
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
     const tableHeaderRows: TableHeaderCell[][] = new Array(tableHeaderRowCount);
 
     for (let j = 0; j < tableHeaderRows.length; j++) {
@@ -67,7 +68,7 @@ export class TableService {
     return tableBodyRows;
   }
 
-  private getDataArray(serie: FhiDiagramSerie): Data[] {
+  private getDataArray(serie: FhiDiagramSerie): FhiDiagramSerieData[] {
     const data = serie.data;
     return data;
   }

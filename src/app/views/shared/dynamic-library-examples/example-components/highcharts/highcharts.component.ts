@@ -3,7 +3,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data';
 
-import { FhiDiagramOptions } from '@folkehelseinstituttet/angular-highcharts';
+import {
+  FhiDiagramOptions,
+  FhiDiagramSerie,
+  FhiDiagramTypeIds,
+} from '@folkehelseinstituttet/angular-highcharts';
+
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
@@ -36,7 +41,7 @@ export class HighchartsComponent implements OnInit {
 
     if (dataSetIndex === MockData.TwoSeriesAar) {
       this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
-        next: (data) => {
+        next: (data: FhiDiagramSerie[]) => {
           this.diagramOptions = {
             diagramTypeId: 'line',
             title: 'Dødsfall etter årsak, 2008 - 2018',
@@ -49,11 +54,12 @@ export class HighchartsComponent implements OnInit {
       });
     } else if (dataSetIndex === MockData.OneSerieFylke) {
       this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
-        next: (data) => {
+        next: (data: FhiDiagramSerie[]) => {
           this.diagramOptions = {
             title: 'Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020',
             series: data,
-            diagramTypeId: 'pie',
+            // diagramTypeId: 'pie',
+            diagramTypeId: 'map',
             diagramTypeNavId: 'default',
             flags: [
               {
@@ -83,7 +89,7 @@ export class HighchartsComponent implements OnInit {
       });
     } else if (dataSetIndex === MockData.MultipleSeriesAar) {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
-        next: (data) => {
+        next: (data: FhiDiagramSerie[]) => {
           this.diagramOptions = {
             title: 'Dødsfall etter årsak, 2017 - 2021',
             series: data,
@@ -97,7 +103,7 @@ export class HighchartsComponent implements OnInit {
     }
   }
 
-  onDiagramTypeNavigation(diagramTypeId: string) {
+  onDiagramTypeNavigation(diagramTypeId: FhiDiagramTypeIds) {
     this.diagramOptions = {
       ...this.diagramOptions,
       diagramTypeId: diagramTypeId,
