@@ -1,7 +1,7 @@
-<div class="fhi-layout">
-  <div class="fhi-bg fhi-layout__container d-flex flex-column w-100">
+<div class="app-layout">
+  <div class="app-layout__container app-bg d-flex flex-column w-100" [ngClass]="{ 'h-100': layoutType === 'd' }">
     <div class="container-fluid d-flex flex-column h-100 py-4">
-      <div class="row fhi-layout__row">
+      <div class="row app-layout__row" [ngClass]="{ 'h-100': layoutType === 'd' }">
         <ng-container *ngIf="layoutType">
           <ng-container *ngIf="layoutType === 'a'">
             <div class="col-12">
@@ -26,23 +26,51 @@
           </ng-container>
 
           <ng-container *ngIf="layoutType === 'd'">
-            <div class="col-lg-9 col-xxl-8">
+            <div class="col-lg-9">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
               <ng-container *ngTemplateOutlet="contentMain"></ng-container>
             </div>
-            <ng-container *ngTemplateOutlet="contentAside2"></ng-container>
+
+            <div class="col-lg">
+              <ng-container *ngTemplateOutlet="contentAside2"></ng-container>
+            </div>
           </ng-container>
 
           <ng-container *ngIf="layoutType === 'e'">
-            <div class="col-12">
+            <div class="col-xl-9">
               <ng-container *ngTemplateOutlet="contentHeader"></ng-container>
-              <ng-container *ngTemplateOutlet="contentMain"></ng-container>
+
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="mb-5">
+                    <ng-container *ngTemplateOutlet="contentMain1"></ng-container>
+                  </div>
+                  <div class="mb-5">
+                    <ng-container *ngTemplateOutlet="contentMain2"></ng-container>
+                  </div>
+                </div>
+
+                <div class="col-md-4 app-layout__border-xl-start">
+                  <div class="mb-5">
+                    <ng-container *ngTemplateOutlet="contentMain3"></ng-container>
+                  </div>
+                  <div class="mb-5">
+                    <ng-container *ngTemplateOutlet="contentMain4"></ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl">
+              <ng-container *ngTemplateOutlet="contentAside2"></ng-container>
+            </div>
+            <div class="col-lg-12">
+              <ng-container *ngTemplateOutlet="contentMain5"></ng-container>
             </div>
           </ng-container>
         </ng-container>
 
         <div *ngIf="!layoutType">
-          <h1 class="h2 mb-5 mb-xl-6">Du må sette layoutType på <code class="fs-5">&lt;fhi-layout&gt;</code></h1>
+          <h1 class="h2 mb-5 mb-xl-6">Du må sette layoutType på <code class="fs-5">&lt;app-layout&gt;</code></h1>
 
           <ul>
             <li><code>layoutType="a"</code></li>
@@ -54,15 +82,14 @@
         </div>
       </div>
     </div>
-
-    <div class="fhi-layout__action-bar" *ngIf="layoutType === 'e'">
+    <div class="app-layout__action-bar" *ngIf="layoutType === 'd' || layoutType === 'e'">
       <ng-container *ngTemplateOutlet="contentActionBar"></ng-container>
     </div>
   </div>
 </div>
 
 <ng-template #contentHeader>
-  <div class="fhi-layout__title-container mb-5 mb-xl-6">
+  <div class="app-layout__title-container mb-5 mb-xl-6">
     <h1 class="h2">
       <ng-container *ngTemplateOutlet="contentTitle"></ng-container>
     </h1>
@@ -76,11 +103,31 @@
 </ng-template>
 
 <ng-template #contentTitle>
-  <ng-content select="[layout.header]"></ng-content>
+  <ng-content select="[layout.title]"></ng-content>
 </ng-template>
 
 <ng-template #contentMain>
   <ng-content select="[layout.main]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain1>
+  <ng-content select="[layout.main1]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain2>
+  <ng-content select="[layout.main2]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain3>
+  <ng-content select="[layout.main3]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain4>
+  <ng-content select="[layout.main4]"></ng-content>
+</ng-template>
+
+<ng-template #contentMain5>
+  <ng-content select="[layout.main5]"></ng-content>
 </ng-template>
 
 <ng-template #contentAside>
@@ -88,9 +135,7 @@
 </ng-template>
 
 <ng-template #contentAside2>
-  <div class="col-lg bg-white mt-lg-n4 mb-n4 py-4">
-    <ng-content select="[layout.aside2]"></ng-content>
-  </div>
+  <ng-content select="[layout.aside2]"></ng-content>
 </ng-template>
 
 <ng-template #contentActionBar>
