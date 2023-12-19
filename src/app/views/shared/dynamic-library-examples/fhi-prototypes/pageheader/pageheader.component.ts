@@ -6,7 +6,6 @@ import { PrototypePageheaderDataService } from './pageheader-data.service';
 @Component({
   selector: 'app-prototype-pageheader',
   templateUrl: './pageheader.component.html',
-  styleUrls: ['./pageheader.component.scss'],
   providers: [PrototypePageheaderDataService],
 })
 export class PrototypePageheaderExampleComponent {
