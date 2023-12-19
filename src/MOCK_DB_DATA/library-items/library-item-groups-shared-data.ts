@@ -89,6 +89,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'HighchartsData',
     parentUrlSegment: UrlSegment.components,
   },
+  Modals: {
+    id: 'modals',
+    title: 'Modals',
+    apiEndPoint: 'ModalsData',
+    parentUrlSegment: UrlSegment.components,
+  },
   Navs: {
     id: 'navs',
     title: 'Navigation',

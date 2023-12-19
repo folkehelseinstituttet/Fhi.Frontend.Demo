@@ -154,6 +154,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Highcharts with menu and footer',
   },
 
+  Modal: {
+    id: 'modal',
+    title: 'Modal',
+  },
+
   NavTiles: {
     id: 'nav-tiles',
     title: 'Navigation tiles',

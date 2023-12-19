@@ -4,6 +4,7 @@
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
+  <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--
@@ -28,7 +29,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-  <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
 
   <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
 

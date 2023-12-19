@@ -1,13 +1,13 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 const itemTitle = 'Modal';
 
 export const Modal: LibraryItem[] = [
   {
-    id: LibraryItemIds.Modal,
-    title: itemTitle,
+    id: ITEMS.Modal.id,
+    title: ITEMS.Modal.title,
     type: LibraryItemType.ngBootstrap,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

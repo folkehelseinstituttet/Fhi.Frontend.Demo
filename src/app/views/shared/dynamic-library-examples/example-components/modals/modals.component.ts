@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
+import { LibraryItemsShared } from '../../../models/library-item.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal-example',
-  templateUrl: './modal-example.component.html',
+  selector: 'app-modals',
+  templateUrl: './modals.component.html',
 })
-export class ModalExampleComponent {
+export class ModalsComponent {
+  @Input() itemId!: string;
+  @Input() items!: LibraryItemsShared;
+
   closeResult = '';
 
   constructor(private modalService: NgbModal) {}
