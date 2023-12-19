@@ -18,9 +18,11 @@
           <p class="fhi-utility-section__group">
             <button type="button" class="btn fhi-btn-icon" (click)="toggleAdminView()">
               <span class="icon-eye ms-2 me-2"></span>
-              Viser:
-              <ng-container *ngIf="adminView">Admingrensesnitt</ng-container>
-              <ng-container *ngIf="!adminView">Publikumsgrensesnitt</ng-container>
+              <span class="btn__text"
+                >Viser:
+                <ng-container *ngIf="adminView">Admingrensesnitt</ng-container>
+                <ng-container *ngIf="!adminView">Publikumsgrensesnitt</ng-container>
+              </span>
             </button>
           </p>
         </div>
