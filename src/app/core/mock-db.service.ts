@@ -9,7 +9,6 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
-import { CardData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
@@ -40,8 +39,9 @@ import { AccordionsData } from 'src/MOCK_DB_DATA/library-items/accordions/_accor
 import { AlertsData } from 'src/MOCK_DB_DATA/library-items/alerts/_alerts.data';
 import { BadgesData } from 'src/MOCK_DB_DATA/library-items/badges/_badges.data';
 import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_breadcrumbs.data';
-import { ColorsData } from 'src/MOCK_DB_DATA/library-items/colors/_colors.data';
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
+import { CardsData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
+import { ColorsData } from 'src/MOCK_DB_DATA/library-items/colors/_colors.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { FormControlsData } from 'src/MOCK_DB_DATA/library-items/form-controls/_form-controls.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
@@ -70,6 +70,7 @@ export class MockDbService implements InMemoryDbService {
       BadgesData,
       BreadcrumbsData,
       ButtonsData,
+      CardsData,
       ColorsData,
       ErrorPagesData,
       FormControlsData,
@@ -81,7 +82,6 @@ export class MockDbService implements InMemoryDbService {
 
       // Items OLD: deprecate when all items use new system
       PrototypeAngularTreeData,
-      CardData,
       DrawerData,
       GlobalFooterData,
       GlobalHeaderData,

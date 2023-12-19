@@ -1,6 +1,5 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { CardData } from './cards/_cards.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { ModalData } from './modal/_modal.data';
@@ -18,7 +17,6 @@ import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
 export const AllData: LibraryItem[] = [
-  ...CardData,
   ...DrawerData,
   ...GlobalHeaderData,
   ...ModalData,

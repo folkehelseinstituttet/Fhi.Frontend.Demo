@@ -1,4 +1,3 @@
-import { CardIds } from './cards/_cards.ids';
 import { DrawerIds } from './drawer/_drawer.ids';
 import { GlobalFooterIds } from './global-footer/_global-footer.ids';
 import { GlobalHeaderIds } from './global-header/_global-header.ids';
@@ -19,7 +18,6 @@ import { TreeViewIds } from './tree-view/_tree-view.ids';
 
 const libraryItemIds = {
   ...PrototypeAngularTreeIds,
-  ...CardIds,
   ...DrawerIds,
   ...GlobalFooterIds,
   ...GlobalHeaderIds,

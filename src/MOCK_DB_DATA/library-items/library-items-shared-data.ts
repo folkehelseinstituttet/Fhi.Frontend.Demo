@@ -29,6 +29,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'accordion-flush-dark',
     title: 'Accordion - flush dark',
   },
+
   AlertBasic: {
     id: 'alert-basic',
     title: 'Alert',
@@ -37,6 +38,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'alert-closable',
     title: 'Alert - closable',
   },
+
   BadgeCircular: {
     id: 'badge-circular',
     title: 'Badge - circular',
@@ -45,10 +47,12 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'badge-rounded',
     title: 'Badge - rounded',
   },
+
   Breadcrumb: {
     id: 'breadcrumb',
     title: '',
   },
+
   ButtonPrimary: {
     id: 'button-primary',
     title: 'Primary button',
@@ -69,6 +73,20 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'button-group',
     title: 'Button group',
   },
+
+  Card: {
+    id: 'card',
+    title: 'Card',
+  },
+  CardShadow: {
+    id: 'card-shadow',
+    title: 'Card shadow',
+  },
+  CardDeactive: {
+    id: 'card-deactive',
+    title: 'Card deactive',
+  },
+
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404',
@@ -77,6 +95,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'error-page-500',
     title: 'Error page - 500',
   },
+
   FormControlInput: {
     id: 'form-control-input',
     title: 'Text input',
@@ -121,6 +140,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'form-control-validation',
     title: 'Validation',
   },
+
   HighchartsWithoutMenu: {
     id: 'highcharts-without-menu',
     title: 'Highcharts without menu',
@@ -133,6 +153,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu-and-footer',
     title: 'Highcharts with menu and footer',
   },
+
   NavTiles: {
     id: 'nav-tiles',
     title: 'Navigation tiles',
@@ -153,6 +174,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'nav-tabs',
     title: 'Tabs',
   },
+
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
     title: 'Date and time',
@@ -189,6 +211,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-year-range',
     title: 'Year range',
   },
+
   VisualIdentityColors: {
     id: 'colors',
     title: 'Fargepalett',

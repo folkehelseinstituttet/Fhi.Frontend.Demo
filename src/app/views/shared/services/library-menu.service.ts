@@ -123,10 +123,6 @@ export class LibraryMenuService {
   private getComponentsMenu(): MenuItem[] {
     return [
       {
-        name: 'Cards',
-        link: LibraryItemSegmentPaths.card,
-      },
-      {
         name: 'Modal',
         link: LibraryItemSegmentPaths.modal,
       },

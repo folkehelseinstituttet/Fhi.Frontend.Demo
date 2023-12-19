@@ -1,5 +1,4 @@
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
-import { CardData } from './cards/_cards.data';
 import { DrawerData } from './drawer/_drawer.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
@@ -27,7 +26,6 @@ function stringTransform(objectNameAsString: string) {
  */
 export class LibraryItemSegmentPaths {
   // Components
-  static card = stringTransform(Object.keys({ CardData })[0]);
   static modal = stringTransform(Object.keys({ ModalData })[0]);
   static pagination = stringTransform(Object.keys({ PaginationData })[0]);
   static search = stringTransform(Object.keys({ SearchData })[0]);
