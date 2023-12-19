@@ -1,1 +1,1 @@
-export const CardsIntro = `<p>cards</p>`;
+export const CardsIntro = ``;
