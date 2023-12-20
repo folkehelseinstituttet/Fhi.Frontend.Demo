@@ -6,7 +6,6 @@ import { PrototypeAngularTreeIds } from './prototype-angular-tree/_prototype-ang
 import { PrototypeFormsIds } from './prototype-forms/_prototype-forms.ids';
 import { PrototypePageheaderIds } from './prototype-pageheader/_prototype-pageheader.ids';
 import { PrototypeTableWithExpandableContentIds } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids';
-import { TagsIds } from './tags/_tags.ids';
 import { ToastIds } from './toast/_toast.ids';
 import { TootipPopoverIds } from './tooltip-popover/_tooltip-popover.ids';
 import { TreeViewIds } from './tree-view/_tree-view.ids';
@@ -20,7 +19,6 @@ const libraryItemIds = {
   ...PrototypeFormsIds,
   ...PrototypePageheaderIds,
   ...PrototypeTableWithExpandableContentIds,
-  ...TagsIds,
   ...ToastIds,
   ...TootipPopoverIds,
   ...TreeViewIds,

@@ -244,6 +244,31 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Table - striped',
   },
 
+  Tag: {
+    id: 'tag',
+    title: 'Tag',
+  },
+  TagFilterOption: {
+    id: 'tag-filter-option',
+    title: 'Tag - filter option',
+  },
+  TagMultipleSelection: {
+    id: 'tag-multiple-select',
+    title: 'Tag - multiple selection',
+  },
+  TagSingleSelection: {
+    id: 'tag-single-select',
+    title: 'Tag - single select',
+  },
+  TagState: {
+    id: 'tag-state',
+    title: 'Tag - state',
+  },
+  TagStateDot: {
+    id: 'tag-state-dot',
+    title: 'Tag - state, dot',
+  },
+
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
     title: 'Date and time',

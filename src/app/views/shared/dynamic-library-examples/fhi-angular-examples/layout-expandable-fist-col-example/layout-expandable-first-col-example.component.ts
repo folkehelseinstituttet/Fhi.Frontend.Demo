@@ -4,7 +4,7 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
   selector: 'app-layout-expandable-first-col-example',
   templateUrl: './layout-expandable-first-col-example.component.html',
 })
-export class LayoutExpandableFistColExampleComponent {
+export class LayoutExpandableFirstColExampleComponent {
   @ViewChild('drawerContent') drawerContent: ElementRef;
 
   @Input() itemId!: string;

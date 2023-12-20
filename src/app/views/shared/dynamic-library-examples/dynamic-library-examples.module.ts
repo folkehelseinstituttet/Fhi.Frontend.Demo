@@ -19,15 +19,15 @@ import { PaginationsComponent } from './example-components/paginations/paginatio
 import { SearchComponent } from './example-components/search/search.component';
 import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
+import { TagsComponent } from './example-components/tags/tags.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
-import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
+import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
-import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
 import { TreeViewSelectionExampleComponent } from './fhi-angular-examples/tree-view-selection-examples/tree-view-selection-examples.component';
 
@@ -48,11 +48,12 @@ const EXAMPLE_COMPONENTS = [
   SearchComponent,
   TablesComponent,
   TabsExampleComponent,
+  TagsComponent,
   TimeSelectorsComponent,
 ];
 
 const NGB_EXAMPLES = [
-  LayoutExpandableFistColExampleComponent,
+  LayoutExpandableFirstColExampleComponent,
   ToastExampleComponent,
   TooltipExampleComponent,
 ];
@@ -62,7 +63,6 @@ const FHI_EXAMPLES = [
   ProgressBarExampleComponent,
   TreeViewNavigationExampleComponent,
   TreeViewSelectionExampleComponent,
-  TagExampleComponent,
 ];
 
 const FHI_PROTOTYPES = [

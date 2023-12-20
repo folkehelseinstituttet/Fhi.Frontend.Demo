@@ -1,10 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TagCategory: LibraryItem[] = [
+export const Tag: LibraryItem[] = [
   {
-    id: LibraryItemIds.TagCategory,
-    title: 'Tag - category',
+    id: ITEMS.Tag.id,
+    title: ITEMS.Tag.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
