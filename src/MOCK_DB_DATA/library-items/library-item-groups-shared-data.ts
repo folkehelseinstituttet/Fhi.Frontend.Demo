@@ -137,6 +137,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'TimeSelectorsData',
     parentUrlSegment: UrlSegment.components,
   },
+  Toasts: {
+    id: 'toasts',
+    title: 'Toasts',
+    apiEndPoint: 'ToastsData',
+    parentUrlSegment: UrlSegment.components,
+  },
 
   // Layout og sidemaler
 

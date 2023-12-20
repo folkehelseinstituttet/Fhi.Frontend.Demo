@@ -306,6 +306,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Year range',
   },
 
+  Toast: {
+    id: 'toast',
+    title: 'Toast',
+  },
+
   VisualIdentityColors: {
     id: 'colors',
     title: 'Fargepalett',

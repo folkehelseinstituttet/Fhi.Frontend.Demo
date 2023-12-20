@@ -16,6 +16,7 @@
   <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
   <app-tags *ngSwitchCase="groups.Tags.id" [itemId]="itemId" [items]="items"></app-tags>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
+  <app-toasts *ngSwitchCase="groups.Toasts.id" [itemId]="itemId" [items]="items"></app-toasts>
   <!--
     TODO:
       Falling through to *ngSwitchDefault for all items using new system...
@@ -29,8 +30,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-
-  <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
 
   <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Tooltip" [itemId]="itemIds.Tooltip" [itemIds]="itemIds">
   </app-tooltip-and-popover-example>

@@ -123,10 +123,6 @@ export class LibraryMenuService {
   private getComponentsMenu(): MenuItem[] {
     return [
       {
-        name: 'Toast',
-        link: LibraryItemSegmentPaths.toast,
-      },
-      {
         name: 'Tooltip & Popover',
         link: LibraryItemSegmentPaths.tooltip,
       },

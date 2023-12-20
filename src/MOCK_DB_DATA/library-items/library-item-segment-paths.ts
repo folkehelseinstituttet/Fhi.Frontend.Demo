@@ -6,7 +6,6 @@ import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
-import { ToastData } from './toast/_toast.data';
 import { TootipPopoverData } from './tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from './tree-view/_tree-view.data';
 
@@ -20,7 +19,6 @@ function stringTransform(objectNameAsString: string) {
  */
 export class LibraryItemSegmentPaths {
   // Components
-  static toast = stringTransform(Object.keys({ ToastData })[0]);
   static tooltip = stringTransform(Object.keys({ TootipPopoverData })[0]);
 
   // Modules

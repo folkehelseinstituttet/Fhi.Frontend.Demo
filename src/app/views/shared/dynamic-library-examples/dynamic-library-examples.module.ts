@@ -21,8 +21,8 @@ import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TagsComponent } from './example-components/tags/tags.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
+import { ToastsComponent } from './example-components/toasts/toasts.component';
 
-import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
@@ -50,13 +50,10 @@ const EXAMPLE_COMPONENTS = [
   TabsExampleComponent,
   TagsComponent,
   TimeSelectorsComponent,
+  ToastsComponent,
 ];
 
-const NGB_EXAMPLES = [
-  LayoutExpandableFirstColExampleComponent,
-  ToastExampleComponent,
-  TooltipExampleComponent,
-];
+const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipExampleComponent];
 
 const FHI_EXAMPLES = [
   GlobalHeadersExampleComponent,

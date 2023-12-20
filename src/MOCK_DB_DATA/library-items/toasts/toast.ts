@@ -1,12 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const Toast: LibraryItem[] = [
   {
-    id: LibraryItemIds.Toast,
-    title: 'Toast',
-    type: LibraryItemType.ngBootstrap,
+    id: ITEMS.Toast.id,
+    title: ITEMS.Toast.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
