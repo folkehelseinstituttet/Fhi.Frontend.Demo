@@ -1,12 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const PaginationCollectionCounter: LibraryItem[] = [
   {
-    id: LibraryItemIds.PaginationCollectionCounter,
-    title: 'Pagination - collection counter',
-    type: LibraryItemType.ngBootstrap,
+    id: ITEMS.PaginationCollectionCounter.id,
+    title: ITEMS.PaginationCollectionCounter.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

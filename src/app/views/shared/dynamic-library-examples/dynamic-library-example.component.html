@@ -6,6 +6,7 @@
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
   <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
+  <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--
     TODO:
@@ -17,15 +18,6 @@
 
 <!-- TODO: Remove old switch implementation when alt items use new system -->
 <div [ngSwitch]="itemId">
-  <app-pagination-example *ngSwitchCase="itemIds.Pagination" [itemId]="itemIds.Pagination" [itemIds]="itemIds">
-  </app-pagination-example>
-  <app-pagination-example
-    *ngSwitchCase="itemIds.PaginationCollectionCounter"
-    [itemId]="itemIds.PaginationCollectionCounter"
-    [itemIds]="itemIds"
-  >
-  </app-pagination-example>
-
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>

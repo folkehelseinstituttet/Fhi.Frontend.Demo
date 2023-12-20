@@ -3,7 +3,6 @@ import { DrawerData } from './drawer/_drawer.data';
 import { GlobalFooterData } from './global-footer/_global-footer.data';
 import { GlobalHeaderData } from './global-header/_global-header.data';
 import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
-import { PaginationData } from './pagination/_pagination.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
@@ -25,7 +24,6 @@ function stringTransform(objectNameAsString: string) {
  */
 export class LibraryItemSegmentPaths {
   // Components
-  static pagination = stringTransform(Object.keys({ PaginationData })[0]);
   static search = stringTransform(Object.keys({ SearchData })[0]);
   static progressindicators = stringTransform(Object.keys({ ProgressIndicatorsData })[0]);
   static table = stringTransform(Object.keys({ TableData })[0]);

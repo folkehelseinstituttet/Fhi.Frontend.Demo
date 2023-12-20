@@ -8,7 +8,7 @@ export const Modal: LibraryItem[] = [
   {
     id: ITEMS.Modal.id,
     title: ITEMS.Modal.title,
-    type: LibraryItemType.ngBootstrap,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

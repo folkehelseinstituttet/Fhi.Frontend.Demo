@@ -13,12 +13,12 @@ import { AlertClosableComponent } from './example-components/alerts/alert-closab
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { IconListComponent } from './example-components/icon-list/icon-list.component';
+import { ModalsComponent } from './example-components/modals/modals.component';
 import { NavsComponent } from './example-components/navs/navs.component';
+import { PaginationsComponent } from './example-components/paginations/paginations.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
-import { ModalsComponent } from './example-components/modals/modals.component';
-import { PaginationExampleComponent } from './ng-bootstrap-examples/pagination-example/pagination-example.component';
 import { ToastExampleComponent } from './ng-bootstrap-examples/toast-example/toast-example.component';
 import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
 
@@ -44,13 +44,13 @@ const EXAMPLE_COMPONENTS = [
   IconListComponent,
   ModalsComponent,
   NavsComponent,
+  PaginationsComponent,
   TabsExampleComponent,
   TimeSelectorsComponent,
 ];
 
 const NGB_EXAMPLES = [
   LayoutExpandableFistColExampleComponent,
-  PaginationExampleComponent,
   ToastExampleComponent,
   TooltipExampleComponent,
 ];

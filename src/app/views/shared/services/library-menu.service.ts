@@ -123,10 +123,6 @@ export class LibraryMenuService {
   private getComponentsMenu(): MenuItem[] {
     return [
       {
-        name: 'Pagination',
-        link: LibraryItemSegmentPaths.pagination,
-      },
-      {
         name: 'Search',
         link: LibraryItemSegmentPaths.search,
       },

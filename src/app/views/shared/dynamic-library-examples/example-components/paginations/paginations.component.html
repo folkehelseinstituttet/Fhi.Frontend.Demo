@@ -1,4 +1,4 @@
-<ng-container *ngIf="itemId === itemIds.Pagination">
+<ng-container *ngIf="itemId === items.Pagination.id">
   <ngb-pagination [collectionSize]="120" [maxSize]="1" class="d-flex justify-content-end">
     <ng-template ngbPaginationPrevious>
       <i class="icon-arrow-left"></i>
@@ -11,7 +11,7 @@
   </ngb-pagination>
 </ng-container>
 
-<ng-container *ngIf="itemId === itemIds.PaginationCollectionCounter">
+<ng-container *ngIf="itemId === items.PaginationCollectionCounter.id">
   <ngb-pagination
     [collectionSize]="currentCollectionSize"
     [pageSize]="currentPageSize"

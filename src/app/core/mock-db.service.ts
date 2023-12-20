@@ -13,7 +13,6 @@ import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
-import { PaginationData } from 'src/MOCK_DB_DATA/library-items/pagination/_pagination.data';
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
@@ -47,6 +46,7 @@ import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highc
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
+import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
@@ -78,6 +78,7 @@ export class MockDbService implements InMemoryDbService {
       IconsData,
       ModalsData,
       NavsData,
+      PaginationsData,
       TimeSelectorsData,
       TypographyData,
 
@@ -87,7 +88,6 @@ export class MockDbService implements InMemoryDbService {
       GlobalFooterData,
       GlobalHeaderData,
       LayoutTemplatesData,
-      PaginationData,
       PrototypeFormsData,
       PrototypePageheaderData,
       PrototypeTableWithExpandableContentData,

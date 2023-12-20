@@ -101,6 +101,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'NavsData',
     parentUrlSegment: UrlSegment.components,
   },
+  Paginations: {
+    id: 'pagination',
+    title: 'Pagination',
+    apiEndPoint: 'PaginationsData',
+    parentUrlSegment: UrlSegment.components,
+  },
   TimeSelectors: {
     id: 'time-selectors',
     title: 'Time selectors',

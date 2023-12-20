@@ -180,6 +180,15 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Tabs',
   },
 
+  Pagination: {
+    id: 'pagination',
+    title: 'Pagination',
+  },
+  PaginationCollectionCounter: {
+    id: 'pagination-collection-counter',
+    title: 'Pagination collection counter',
+  },
+
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
     title: 'Date and time',
