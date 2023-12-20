@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class TableExamplesDataService {
+export class TablesDataService {
   table1() {
     return {
       tableContent: [

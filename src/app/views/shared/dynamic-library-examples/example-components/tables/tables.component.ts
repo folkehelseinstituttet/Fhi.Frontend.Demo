@@ -1,14 +1,15 @@
 import { Component, Input } from '@angular/core';
-import { TableExamplesDataService } from './table-examples-data.service';
+import { TablesDataService } from './tables-data.service';
+import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-table-examples',
-  templateUrl: './table-examples.component.html',
-  providers: [TableExamplesDataService],
+  selector: 'app-tables',
+  templateUrl: './tables.component.html',
+  providers: [TablesDataService],
 })
-export class TableExamplesComponent {
+export class TablesComponent {
   @Input() itemId!: string;
-  @Input() itemIds!: any;
+  @Input() items!: LibraryItemsShared;
 
   table1: any = [];
   tableEditable: any = [];
@@ -16,7 +17,7 @@ export class TableExamplesComponent {
   currentlySortedColumn = '';
   previousSortedColumn = '';
 
-  constructor(private tableDataService: TableExamplesDataService) {}
+  constructor(private tableDataService: TablesDataService) {}
 
   ngOnInit() {
     this.table1 = this.tableDataService.table1();
@@ -51,7 +52,7 @@ export class TableExamplesComponent {
   }
 
   getIconClass(column: string) {
-    let iconClass = 'icon-arrows-up-down';
+    let iconClass = 'icon-arrow-down-up';
 
     if (this.currentlySortedColumn === column) {
       if (this.sortDirection === 'descending') {

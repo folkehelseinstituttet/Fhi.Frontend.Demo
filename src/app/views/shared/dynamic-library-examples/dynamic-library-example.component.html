@@ -13,6 +13,7 @@
     [items]="items"
   ></app-progress-indicators>
   <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
+  <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--
     TODO:
@@ -27,20 +28,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-
-  <app-table-examples *ngSwitchCase="itemIds.FhiAngularTable" [itemId]="itemIds.FhiAngularTable" [itemIds]="itemIds">
-  </app-table-examples>
-
-  <app-table-examples *ngSwitchCase="itemIds.TableSortable" [itemId]="itemIds.TableSortable" [itemIds]="itemIds">
-  </app-table-examples>
-  <app-table-examples
-    *ngSwitchCase="itemIds.TableSelectableRow"
-    [itemId]="itemIds.TableSelectableRow"
-    [itemIds]="itemIds"
-  >
-  </app-table-examples>
-  <app-table-examples *ngSwitchCase="itemIds.TableEditable" [itemId]="itemIds.TableEditable" [itemIds]="itemIds">
-  </app-table-examples>
 
   <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
   <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>

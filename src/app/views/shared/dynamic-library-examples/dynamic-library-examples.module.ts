@@ -17,6 +17,7 @@ import { ModalsComponent } from './example-components/modals/modals.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { PaginationsComponent } from './example-components/paginations/paginations.component';
 import { SearchComponent } from './example-components/search/search.component';
+import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 
@@ -26,7 +27,6 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-pop
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
-import { TableExamplesComponent } from './fhi-angular-examples/table-examples/table-examples.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
 import { TreeViewSelectionExampleComponent } from './fhi-angular-examples/tree-view-selection-examples/tree-view-selection-examples.component';
@@ -46,6 +46,7 @@ const EXAMPLE_COMPONENTS = [
   NavsComponent,
   PaginationsComponent,
   SearchComponent,
+  TablesComponent,
   TabsExampleComponent,
   TimeSelectorsComponent,
 ];
@@ -59,7 +60,6 @@ const NGB_EXAMPLES = [
 const FHI_EXAMPLES = [
   GlobalHeadersExampleComponent,
   ProgressBarExampleComponent,
-  TableExamplesComponent,
   TreeViewNavigationExampleComponent,
   TreeViewSelectionExampleComponent,
   TagExampleComponent,

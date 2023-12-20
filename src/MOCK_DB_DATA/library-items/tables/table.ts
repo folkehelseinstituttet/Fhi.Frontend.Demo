@@ -1,10 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const TableCompact: LibraryItem[] = [
+export const Table: LibraryItem[] = [
   {
-    id: LibraryItemIds.TableCompact,
-    title: 'Table - compact (sm)',
+    id: ITEMS.Table.id,
+    title: ITEMS.Table.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
@@ -18,7 +19,7 @@ export const TableCompact: LibraryItem[] = [
 function getExampleHtml(): string {
   return `
 <div class="table-responsive">
-  <table class="table table-sm">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -70,7 +71,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="table-responsive">
-  <table class="table table-sm">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">ID</th>
@@ -95,5 +96,8 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>Tabell benyttes når du har behov for å presentere tabulære data.</p>
+
+<p>I FHI Designsystem er grunn-tabellene bygget som <a href="${CONST.BootstrapBaseUrl}/content/tables/">Bootstrap-tabell</a>.</p>`;
 }

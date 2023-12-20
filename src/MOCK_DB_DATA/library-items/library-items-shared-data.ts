@@ -193,6 +193,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'progress-bar',
     title: 'Progress bar',
   },
+  ProgressSpinner: {
+    id: 'spinner',
+    title: 'Spinner',
+  },
   ProgressSpinnerButton: {
     id: 'spinner-button',
     title: 'Spinner - button',
@@ -209,14 +213,35 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'spinner-small',
     title: 'Spinner - small',
   },
-  ProgressSpinner: {
-    id: 'spinner',
-    title: 'Spinner',
-  },
 
   Search: {
     id: 'search',
     title: 'Search',
+  },
+
+  Table: {
+    id: 'table',
+    title: 'Table',
+  },
+  TableCompact: {
+    id: 'table-compact',
+    title: 'Table - compact',
+  },
+  TableEditable: {
+    id: 'table-editable',
+    title: 'Table - inline editable',
+  },
+  TableSelectableRow: {
+    id: 'table-selectable-row',
+    title: 'Table - selectable row',
+  },
+  TableSortable: {
+    id: 'table-sortable',
+    title: 'Table - sortable',
+  },
+  TableStriped: {
+    id: 'table-striped',
+    title: 'Table - striped',
   },
 
   TimeSelectorDateAndTime: {
