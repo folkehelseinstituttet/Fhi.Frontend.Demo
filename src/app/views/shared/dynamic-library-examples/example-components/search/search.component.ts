@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { LibraryItemsShared } from '../../../models/library-item.model';
 
 const countries = [
   'Afghanistan',
@@ -246,10 +247,13 @@ const countries = [
 ];
 
 @Component({
-  selector: 'app-search-example',
-  templateUrl: './search-example.component.html',
+  selector: 'app-search',
+  templateUrl: './search.component.html',
 })
-export class SearchExampleComponent {
+export class SearchComponent {
+  @Input() itemId!: string;
+  @Input() items!: LibraryItemsShared;
+
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),

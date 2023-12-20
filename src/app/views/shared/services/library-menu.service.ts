@@ -123,10 +123,6 @@ export class LibraryMenuService {
   private getComponentsMenu(): MenuItem[] {
     return [
       {
-        name: 'Search',
-        link: LibraryItemSegmentPaths.search,
-      },
-      {
         name: 'Progress indicators',
         link: LibraryItemSegmentPaths.progressindicators,
       },

@@ -16,7 +16,6 @@ import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templ
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
-import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
 import { TableData } from 'src/MOCK_DB_DATA/library-items/table/_table.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
@@ -47,6 +46,7 @@ import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
 import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
+import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
@@ -79,6 +79,7 @@ export class MockDbService implements InMemoryDbService {
       ModalsData,
       NavsData,
       PaginationsData,
+      SearchData,
       TimeSelectorsData,
       TypographyData,
 
@@ -91,7 +92,6 @@ export class MockDbService implements InMemoryDbService {
       PrototypeFormsData,
       PrototypePageheaderData,
       PrototypeTableWithExpandableContentData,
-      SearchData,
       ProgressIndicatorsData,
       TableData,
       TagsData,

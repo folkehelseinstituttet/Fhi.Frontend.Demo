@@ -189,6 +189,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Pagination collection counter',
   },
 
+  Search: {
+    id: 'search',
+    title: 'Search',
+  },
+
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
     title: 'Date and time',

@@ -7,6 +7,7 @@
   <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
+  <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--
     TODO:
@@ -63,8 +64,6 @@
 
   <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
   </app-angular-tree-view-builder-example>
-
-  <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
 
   <app-global-headers
     *ngSwitchCase="itemIds.GlobalHeaderWithMenu"
