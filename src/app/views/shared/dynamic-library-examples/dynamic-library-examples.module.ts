@@ -25,7 +25,7 @@ import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-pop
 
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { LayoutExpandableFistColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
-import { ProgressBarExampleComponent } from './fhi-angular-examples/progress-bar-example/progress-bar-example.component';
+import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
 import { TableExamplesComponent } from './fhi-angular-examples/table-examples/table-examples.component';
 import { TagExampleComponent } from './fhi-angular-examples/tag-example/tag-example.component';
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';

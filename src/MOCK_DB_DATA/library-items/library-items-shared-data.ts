@@ -189,6 +189,31 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Pagination collection counter',
   },
 
+  ProgressBar: {
+    id: 'progress-bar',
+    title: 'Progress bar',
+  },
+  ProgressSpinnerButton: {
+    id: 'spinner-button',
+    title: 'Spinner - button',
+  },
+  ProgressSpinnerFlex: {
+    id: 'spinner-flex',
+    title: 'Spinner - flex',
+  },
+  ProgressSpinnerMargin: {
+    id: 'spinner-margin',
+    title: 'Spinner - margin',
+  },
+  ProgressSpinnerSmall: {
+    id: 'spinner-small',
+    title: 'Spinner - small',
+  },
+  ProgressSpinner: {
+    id: 'spinner',
+    title: 'Spinner',
+  },
+
   Search: {
     id: 'search',
     title: 'Search',

@@ -107,6 +107,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'PaginationsData',
     parentUrlSegment: UrlSegment.components,
   },
+  ProgressIndicators: {
+    id: 'progress-indicators',
+    title: 'Progress indicators',
+    apiEndPoint: 'ProgressIndicatorsData',
+    parentUrlSegment: UrlSegment.components,
+  },
   Search: {
     id: 'search',
     title: 'Search',

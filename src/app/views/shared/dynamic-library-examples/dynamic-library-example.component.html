@@ -7,6 +7,11 @@
   <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
+  <app-progress-indicators
+    *ngSwitchCase="groups.ProgressIndicators.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-progress-indicators>
   <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
   <!--
@@ -22,8 +27,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-
-  <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
 
   <app-table-examples *ngSwitchCase="itemIds.FhiAngularTable" [itemId]="itemIds.FhiAngularTable" [itemIds]="itemIds">
   </app-table-examples>

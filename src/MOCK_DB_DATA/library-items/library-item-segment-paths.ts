@@ -6,7 +6,6 @@ import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
-import { ProgressIndicatorsData } from './progress-indicators/_progress-indicators.data';
 import { TableData } from './table/_table.data';
 import { TagsData } from './tags/_tags.data';
 import { ToastData } from './toast/_toast.data';
@@ -23,7 +22,6 @@ function stringTransform(objectNameAsString: string) {
  */
 export class LibraryItemSegmentPaths {
   // Components
-  static progressindicators = stringTransform(Object.keys({ ProgressIndicatorsData })[0]);
   static table = stringTransform(Object.keys({ TableData })[0]);
   static tags = stringTransform(Object.keys({ TagsData })[0]);
   static toast = stringTransform(Object.keys({ ToastData })[0]);
