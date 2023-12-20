@@ -1,11 +1,9 @@
-@import "./node_modules/bootstrap/scss/functions";
-@import "./node_modules/bootstrap/scss/mixins";
-@import "@folkehelseinstituttet/style/import/_all-variables.scss";
-@import "./node_modules/bootstrap/scss/offcanvas";
+@import './node_modules/bootstrap/scss/functions';
+@import './node_modules/bootstrap/scss/mixins';
+@import '@folkehelseinstituttet/style/import/_all-variables.scss';
+@import './node_modules/bootstrap/scss/offcanvas';
 
-
-$fhi-special-menu-animation-speed: .3s;
-
+$fhi-special-menu-animation-speed: 0.3s;
 
 .fhi-pageheader {
     background-color: $fhi-core-white;
@@ -15,7 +13,6 @@ $fhi-special-menu-animation-speed: .3s;
         border-bottom: $fhi-core-px * 2 solid transparent;
         display: inline-block;
         font-family: $fhi-core-font-family-sans-serif-regular;
-        font-size: $fhi-core-font-size-3;
         letter-spacing: 0;
         line-height: 1.25;
         margin: 0;
@@ -25,7 +22,7 @@ $fhi-special-menu-animation-speed: .3s;
         &::before {
             background-color: $fhi-core-red-1;
             bottom: $fhi-core-px * 3 * -1;
-            content: "";
+            content: '';
             display: block;
             height: $fhi-core-px * 3;
             left: 50%;
@@ -33,10 +30,15 @@ $fhi-special-menu-animation-speed: .3s;
             transform: translateX(-50%);
             width: $fhi-core-px * 54;
         }
+
+        &,
+        .fhi-admin-view .fhi-pageheader & {
+            font-size: $fhi-core-font-size-3;
+        }
     }
 
     &__submenu-container {
-        max-height: $fhi-core-px * 202;//sic
+        max-height: $fhi-core-px * 202; //sic
         overflow: auto;
     }
 
@@ -46,7 +48,7 @@ $fhi-special-menu-animation-speed: .3s;
         list-style: none;
         margin: $fhi-core-space-5 0 0 ($fhi-core-space-1 * -1);
         padding: 0;
-        transition: margin-top .2s;
+        transition: margin-top 0.2s;
     }
 
     &__submenu-item {
@@ -77,17 +79,16 @@ $fhi-special-menu-animation-speed: .3s;
         padding-top: $fhi-core-px * 11;
         width: $fhi-core-px * 44;
 
-        [class*="icon-"] {
+        [class*='icon-'] {
             margin: 0;
         }
     }
 }
 
-
 .fhi-pageheader--sticky {
     position: sticky;
     top: 0;
-    transition: top .2s;
+    transition: top 0.2s;
 
     &__no-logo {
         top: ($fhi-core-px * -88);
@@ -103,7 +104,6 @@ $fhi-special-menu-animation-speed: .3s;
     }
 }
 
-
 .fhi-special-menu {
     display: none;
     left: 0;
@@ -118,10 +118,10 @@ $fhi-special-menu-animation-speed: .3s;
     &::before,
     &::after {
         background-color: $fhi-core-red-1;
-        content: "";
+        content: '';
         position: absolute;
     }
-    
+
     &::before {
         bottom: $fhi-core-px * 375;
         left: 0;
@@ -163,24 +163,26 @@ $fhi-special-menu-animation-speed: .3s;
 
     &.open {
         display: block;
-        animation: $fhi-special-menu-animation-speed ease-in-out forwards openingSpecialMenu;
+        animation: $fhi-special-menu-animation-speed ease-in-out forwards
+            openingSpecialMenu;
 
         > .fhi-special-menu__backdrop {
             display: block;
-            opacity: .75;
+            opacity: 0.75;
         }
     }
-    
+
     &.closing {
         display: block;
-        animation: $fhi-special-menu-animation-speed ease-in-out forwards closingSpecialMenu;
+        animation: $fhi-special-menu-animation-speed ease-in-out forwards
+            closingSpecialMenu;
 
         > .fhi-special-menu__backdrop {
             display: block;
-            opacity: .75;
+            opacity: 0.75;
         }
     }
-    
+
     .fhi-header {
         &__logo {
             margin-right: $fhi-core-space-3;
@@ -206,7 +208,6 @@ $fhi-special-menu-animation-speed: .3s;
     }
 }
 
-
 @include media-breakpoint-down(sm) {
     .fhi-pageheader {
         &__submenu-container {
@@ -228,7 +229,6 @@ $fhi-special-menu-animation-speed: .3s;
     }
 }
 
-
 @include media-breakpoint-up(sm) {
     .fhi-special-menu {
         &::after {
@@ -243,7 +243,6 @@ $fhi-special-menu-animation-speed: .3s;
         }
     }
 }
-
 
 @include media-breakpoint-up(xl) {
     .fhi-pageheader--sticky {
@@ -260,7 +259,6 @@ $fhi-special-menu-animation-speed: .3s;
     }
 }
 
-
 @keyframes openingSpecialMenu {
     0% {
         opacity: 0;
@@ -276,7 +274,6 @@ $fhi-special-menu-animation-speed: .3s;
         transform: translateY(0);
     }
 }
-
 
 @keyframes closingSpecialMenu {
     0% {
