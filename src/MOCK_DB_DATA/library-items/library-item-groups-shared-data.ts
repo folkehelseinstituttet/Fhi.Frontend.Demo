@@ -143,6 +143,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ToastsData',
     parentUrlSegment: UrlSegment.components,
   },
+  TooltipPopovers: {
+    id: 'tooltip-popover',
+    title: 'Tooltip & Popover',
+    apiEndPoint: 'TooltipPopoverData',
+    parentUrlSegment: UrlSegment.components,
+  },
 
   // Layout og sidemaler
 

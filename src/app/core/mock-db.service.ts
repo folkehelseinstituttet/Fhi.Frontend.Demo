@@ -16,7 +16,6 @@ import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templ
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
-import { TootipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TreeViewData } from 'src/MOCK_DB_DATA/library-items/tree-view/_tree-view.data';
 
 // -----------------------------------------
@@ -48,6 +47,7 @@ import { TablesData } from 'src/MOCK_DB_DATA/library-items/tables/_tables.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 import { ToastsData } from 'src/MOCK_DB_DATA/library-items/toasts/_toasts.data';
+import { TooltipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
 // TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
@@ -96,7 +96,7 @@ export class MockDbService implements InMemoryDbService {
       PrototypeFormsData,
       PrototypePageheaderData,
       PrototypeTableWithExpandableContentData,
-      TootipPopoverData,
+      TooltipPopoverData,
       TreeViewData,
 
       LibraryItemIds, // TODO: deprecate when all items use new system

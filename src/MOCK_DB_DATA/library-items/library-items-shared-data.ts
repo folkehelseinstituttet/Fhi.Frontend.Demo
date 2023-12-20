@@ -311,6 +311,15 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Toast',
   },
 
+  Tooltip: {
+    id: 'tooltip',
+    title: 'Tooltip',
+  },
+  TooltipPopover: {
+    id: 'popover',
+    title: 'Popover',
+  },
+
   VisualIdentityColors: {
     id: 'colors',
     title: 'Fargepalett',

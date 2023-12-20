@@ -2,18 +2,18 @@
   type="button"
   class="btn fhi-btn-secondary"
   ngbTooltip="Dette er tooltip-teksten."
-  *ngIf="itemId === itemIds.Tooltip"
+  *ngIf="itemId === items.Tooltip.id"
 >
   Før musepekeren over
 </button>
 
-<ng-container *ngIf="itemId === itemIds.Popover">
+<ng-container *ngIf="itemId === items.TooltipPopover.id">
   <ng-template #popContent>
     <p>For å publisere til publikumsgrensesnittet</p>
     <ul>
       <li>Opprett en visning</li>
       <li>Gå til menyredigering</li>
-      <li><a href="javascript:void()">Koble visningen til et menypunkt</a></li>
+      <li><a href="javascript:void(0)">Koble visningen til et menypunkt</a></li>
       <li>Sjekk at menypunktet er publisert</li>
     </ul>
   </ng-template>

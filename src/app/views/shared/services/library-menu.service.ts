@@ -121,12 +121,7 @@ export class LibraryMenuService {
   }
 
   private getComponentsMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Tooltip & Popover',
-        link: LibraryItemSegmentPaths.tooltip,
-      },
-    ];
+    return [];
   }
 
   private getModulesMenu(): MenuItem[] {

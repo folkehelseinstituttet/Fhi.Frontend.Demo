@@ -23,7 +23,7 @@ import { TagsComponent } from './example-components/tags/tags.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 import { ToastsComponent } from './example-components/toasts/toasts.component';
 
-import { TooltipExampleComponent } from './ng-bootstrap-examples/tooltip-and-popover-example/tooltip-and-popover-example.component';
+import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 
 import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
@@ -53,7 +53,7 @@ const EXAMPLE_COMPONENTS = [
   ToastsComponent,
 ];
 
-const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipExampleComponent];
+const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipAndPopoverComponent];
 
 const FHI_EXAMPLES = [
   GlobalHeadersExampleComponent,
