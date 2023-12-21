@@ -3,7 +3,6 @@ import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
-import { TreeViewData } from './tree-view/_tree-view.data';
 
 function stringTransform(objectNameAsString: string) {
   return objectNameAsString.slice(0, -4);
@@ -14,9 +13,6 @@ function stringTransform(objectNameAsString: string) {
  *  - corresponds to library second level menus
  */
 export class LibraryItemSegmentPaths {
-  // Modules
-  static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
-
   // Layout and page templates
   static layoutandpagetemplates = stringTransform(Object.keys({ LayoutTemplatesData })[0]);
 

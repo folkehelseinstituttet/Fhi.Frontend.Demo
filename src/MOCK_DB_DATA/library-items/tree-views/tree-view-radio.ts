@@ -1,12 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TreeViewRadio: LibraryItem[] = [
   {
-    id: LibraryItemIds.TreeViewRadio,
-    title: 'Tree view selection - radio',
-    type: LibraryItemType.fhiAngular,
+    id: ITEMS.TreeViewRadio.id,
+    title: ITEMS.TreeViewRadio.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

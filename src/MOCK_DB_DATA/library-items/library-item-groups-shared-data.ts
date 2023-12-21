@@ -167,6 +167,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'TooltipPopoverData',
     parentUrlSegment: UrlSegment.components,
   },
+  TreeViews: {
+    id: 'tree-views',
+    title: 'Tree views',
+    apiEndPoint: 'TreeViewsData',
+    parentUrlSegment: UrlSegment.components,
+  },
 
   // Layout og sidemaler
 

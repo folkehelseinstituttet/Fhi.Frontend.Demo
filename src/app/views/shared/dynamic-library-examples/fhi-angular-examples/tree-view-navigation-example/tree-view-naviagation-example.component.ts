@@ -35,21 +35,6 @@ export class TreeViewNavigationExampleComponent implements OnInit {
             ],
           },
           {
-            name: 'Moduler',
-
-            // Commented out routerLink to get "active no-link"-node
-            // routerLink: '/developer/modules',
-
-            isExpanded: true,
-            hasActiveDescendant: true,
-            children: [
-              { name: 'Global footer', routerLink: '/developer/modules/GlobalFooter' },
-              { name: 'Global header', routerLink: '/developer/modules/GlobalHeader' },
-              { name: 'Drawer', routerLink: '/developer/modules/Drawer' },
-              { name: 'Tree view', routerLink: '/developer/modules/TreeView' },
-            ],
-          },
-          {
             name: 'Layout og sidemaler',
             routerLink: '/developer/layout-and-page-templates',
           },

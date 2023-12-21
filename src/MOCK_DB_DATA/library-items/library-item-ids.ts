@@ -3,7 +3,6 @@ import { PrototypeAngularTreeIds } from './prototype-angular-tree/_prototype-ang
 import { PrototypeFormsIds } from './prototype-forms/_prototype-forms.ids';
 import { PrototypePageheaderIds } from './prototype-pageheader/_prototype-pageheader.ids';
 import { PrototypeTableWithExpandableContentIds } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids';
-import { TreeViewIds } from './tree-view/_tree-view.ids';
 
 const libraryItemIds = {
   ...PrototypeAngularTreeIds,
@@ -11,7 +10,6 @@ const libraryItemIds = {
   ...PrototypeFormsIds,
   ...PrototypePageheaderIds,
   ...PrototypeTableWithExpandableContentIds,
-  ...TreeViewIds,
 };
 
 export const LibraryItemIds = (() => {

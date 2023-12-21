@@ -53,18 +53,6 @@ export class TreeViewSelectionExampleComponent implements OnInit {
             ],
           },
           {
-            name: 'Moduler',
-            children: [
-              { name: 'Global footer' },
-              { name: 'Global header' },
-              { name: 'Drawer' },
-              {
-                isChecked: true,
-                name: 'Tree view',
-              },
-            ],
-          },
-          {
             name: 'Layout og sidemaler',
           },
         ],

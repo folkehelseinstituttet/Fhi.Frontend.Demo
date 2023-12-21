@@ -10,7 +10,6 @@ import { LibraryItemGroupsShared } from '../models/library-item.model';
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
   components: 'Komponenter',
-  modules: 'Moduler',
   layoutAndPageTemplates: 'Layout og sidemaler',
   prototypes: 'Eksempler på bruk',
 };
@@ -35,10 +34,6 @@ export class LibraryMenuService {
       {
         name: TopLevelMenuItemNames.components,
         link: `/${currentSegmentPath0}/${UrlSegment.components}`,
-      },
-      {
-        name: TopLevelMenuItemNames.modules,
-        link: `/${currentSegmentPath0}/${UrlSegment.modules}`,
       },
       {
         name: TopLevelMenuItemNames.layoutAndPageTemplates,
@@ -95,9 +90,6 @@ export class LibraryMenuService {
       case TopLevelMenuItemNames.components:
         return this.getComponentsMenu();
 
-      case TopLevelMenuItemNames.modules:
-        return this.getModulesMenu();
-
       case TopLevelMenuItemNames.layoutAndPageTemplates:
         return this.getLayoutAndPageTemplatesMenu();
 
@@ -122,15 +114,6 @@ export class LibraryMenuService {
 
   private getComponentsMenu(): MenuItem[] {
     return [];
-  }
-
-  private getModulesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Tree views',
-        link: LibraryItemSegmentPaths.treeview,
-      },
-    ];
   }
 
   private getLayoutAndPageTemplatesMenu(): MenuItem[] {

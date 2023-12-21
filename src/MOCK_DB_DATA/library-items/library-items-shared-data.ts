@@ -347,6 +347,19 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Popover',
   },
 
+  TreeViewCheckbox: {
+    id: 'tree-view-checkbox',
+    title: 'Tree view checkbox',
+  },
+  TreeViewNavigation: {
+    id: 'tree-view-navigation',
+    title: 'Tree view navigation',
+  },
+  TreeViewRadio: {
+    id: 'tree-view-radio',
+    title: 'Tree view radio',
+  },
+
   VisualIdentityColors: {
     id: 'colors',
     title: 'Fargepalett',

@@ -1,12 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TreeViewNavigation: LibraryItem[] = [
   {
-    id: LibraryItemIds.TreeViewNavigation,
-    title: 'Tree view navigation',
-    type: LibraryItemType.fhiAngular,
+    id: ITEMS.TreeViewNavigation.id,
+    title: ITEMS.TreeViewNavigation.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
