@@ -87,6 +87,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Card deactive',
   },
 
+  Drawer: {
+    id: 'drawer',
+    title: 'Drawer',
+  },
+
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404',

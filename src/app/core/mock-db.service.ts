@@ -9,7 +9,6 @@ import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
 import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
-import { DrawerData } from 'src/MOCK_DB_DATA/library-items/drawer/_drawer.data';
 import { GlobalFooterData } from 'src/MOCK_DB_DATA/library-items/global-footer/_global-footer.data';
 import { GlobalHeaderData } from 'src/MOCK_DB_DATA/library-items/global-header/_global-header.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
@@ -34,6 +33,7 @@ import { BreadcrumbsData } from 'src/MOCK_DB_DATA/library-items/breadcrumbs/_bre
 import { ButtonsData } from 'src/MOCK_DB_DATA/library-items/buttons/_buttons.data';
 import { CardsData } from 'src/MOCK_DB_DATA/library-items/cards/_cards.data';
 import { ColorsData } from 'src/MOCK_DB_DATA/library-items/colors/_colors.data';
+import { DrawersData } from 'src/MOCK_DB_DATA/library-items/drawers/_drawers.data';
 import { ErrorPagesData } from 'src/MOCK_DB_DATA/library-items/error-pages/_error-pages.data';
 import { FormControlsData } from 'src/MOCK_DB_DATA/library-items/form-controls/_form-controls.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
@@ -72,6 +72,7 @@ export class MockDbService implements InMemoryDbService {
       ButtonsData,
       CardsData,
       ColorsData,
+      DrawersData,
       ErrorPagesData,
       FormControlsData,
       HighchartsData,
@@ -89,7 +90,6 @@ export class MockDbService implements InMemoryDbService {
 
       // Items OLD: deprecate when all items use new system
       PrototypeAngularTreeData,
-      DrawerData,
       GlobalFooterData,
       GlobalHeaderData,
       LayoutTemplatesData,
