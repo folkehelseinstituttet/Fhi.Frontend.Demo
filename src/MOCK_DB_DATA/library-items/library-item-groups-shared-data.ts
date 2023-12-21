@@ -79,7 +79,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
   },
   Drawers: {
     id: 'drawers',
-    title: 'Drawer',
+    title: 'Drawers',
     apiEndPoint: 'DrawersData',
     parentUrlSegment: null,
   },
