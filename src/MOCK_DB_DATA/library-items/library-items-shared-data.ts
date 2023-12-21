@@ -146,6 +146,15 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Validation',
   },
 
+  GlobalFooter: {
+    id: 'global-footer',
+    title: 'Global footer',
+  },
+  GlobalFooterArch: {
+    id: 'global-footer-arch',
+    title: 'Global footer - arch',
+  },
+
   HighchartsWithoutMenu: {
     id: 'highcharts-without-menu',
     title: 'Highcharts without menu',

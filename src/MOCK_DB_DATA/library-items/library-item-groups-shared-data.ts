@@ -89,6 +89,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'FormControlsData',
     parentUrlSegment: UrlSegment.components,
   },
+  GlobalFooters: {
+    id: 'global-footers',
+    title: 'Global footers',
+    apiEndPoint: 'GlobalFootersData',
+    parentUrlSegment: UrlSegment.components,
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'Highcharts',

@@ -127,10 +127,6 @@ export class LibraryMenuService {
   private getModulesMenu(): MenuItem[] {
     return [
       {
-        name: 'Global footer',
-        link: LibraryItemSegmentPaths.globalfooter,
-      },
-      {
         name: 'Global header',
         link: LibraryItemSegmentPaths.globalheader,
       },

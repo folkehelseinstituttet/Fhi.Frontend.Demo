@@ -1,6 +1,5 @@
 import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 import { DrawersIntro } from './_drawers.intro';
 

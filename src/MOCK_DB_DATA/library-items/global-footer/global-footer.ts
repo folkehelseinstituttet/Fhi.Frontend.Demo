@@ -1,11 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const GlobalFooter: LibraryItem[] = [
   {
-    id: LibraryItemIds.GlobalFooter,
-    title: 'Global footer',
+    id: ITEMS.GlobalFooter.id,
+    title: ITEMS.GlobalFooter.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
