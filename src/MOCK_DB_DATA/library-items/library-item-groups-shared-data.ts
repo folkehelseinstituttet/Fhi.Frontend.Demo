@@ -95,6 +95,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'GlobalFootersData',
     parentUrlSegment: UrlSegment.components,
   },
+  GlobalHeaders: {
+    id: 'global-headers',
+    title: 'Global headers',
+    apiEndPoint: 'GlobalHeadersData',
+    parentUrlSegment: UrlSegment.components,
+  },
   Highcharts: {
     id: 'highcharts',
     title: 'Highcharts',

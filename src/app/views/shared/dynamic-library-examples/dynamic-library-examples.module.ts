@@ -11,6 +11,7 @@ import { AccordionsComponent } from './example-components/accordions/accordions.
 import { AlertsComponent } from './example-components/alerts/alerts.component';
 import { AlertClosableComponent } from './example-components/alerts/alert-closable/alert-closable.component';
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
+import { GlobalHeadersComponent } from './example-components/global-headers/global-headers.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { IconListComponent } from './example-components/icon-list/icon-list.component';
 import { ModalsComponent } from './example-components/modals/modals.component';
@@ -25,7 +26,6 @@ import { ToastsComponent } from './example-components/toasts/toasts.component';
 
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 
-import { GlobalHeadersExampleComponent } from './fhi-angular-examples/global-headers/global-headers.component';
 import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
 import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
@@ -40,6 +40,7 @@ const EXAMPLE_COMPONENTS = [
   AccordionsComponent,
   AlertsComponent,
   AlertClosableComponent,
+  GlobalHeadersComponent,
   HighchartsComponent,
   IconListComponent,
   ModalsComponent,
@@ -56,7 +57,6 @@ const EXAMPLE_COMPONENTS = [
 const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipAndPopoverComponent];
 
 const FHI_EXAMPLES = [
-  GlobalHeadersExampleComponent,
   ProgressBarExampleComponent,
   TreeViewNavigationExampleComponent,
   TreeViewSelectionExampleComponent,

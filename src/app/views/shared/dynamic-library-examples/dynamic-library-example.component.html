@@ -3,6 +3,7 @@
   <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
+  <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
   <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
@@ -53,17 +54,6 @@
 
   <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
   </app-angular-tree-view-builder-example>
-
-  <app-global-headers
-    *ngSwitchCase="itemIds.GlobalHeaderWithMenu"
-    [itemId]="itemIds.GlobalHeaderWithMenu"
-    [itemIds]="itemIds"
-  ></app-global-headers>
-  <app-global-headers
-    *ngSwitchCase="itemIds.GlobalHeaderWithMenuAndUtils"
-    [itemId]="itemIds.GlobalHeaderWithMenuAndUtils"
-    [itemIds]="itemIds"
-  ></app-global-headers>
 
   <!-- Prototypes -->
   <app-prototype-forms *ngSwitchCase="itemIds.LabelsOnLeft"></app-prototype-forms>

@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core';
+import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
   selector: 'app-global-headers',
   templateUrl: './global-headers.component.html',
 })
-export class GlobalHeadersExampleComponent {
+export class GlobalHeadersComponent {
   @Input() itemId!: string;
-  @Input() itemIds!: any;
+  @Input() items!: LibraryItemsShared;
 
   activeLink = 1;
   mainMenuIsOpen = false;

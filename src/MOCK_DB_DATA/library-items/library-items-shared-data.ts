@@ -155,6 +155,19 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Global footer - arch',
   },
 
+  GlobalHeader: {
+    id: 'global-header',
+    title: 'Global header',
+  },
+  GlobalHeaderWithMenu: {
+    id: 'global-header-with-menu',
+    title: 'Global header with menu',
+  },
+  GlobalHeaderWithMenuAndUtils: {
+    id: 'global-header-with-menu-and-utils',
+    title: 'Global header with menu and utilities section',
+  },
+
   HighchartsWithoutMenu: {
     id: 'highcharts-without-menu',
     title: 'Highcharts without menu',

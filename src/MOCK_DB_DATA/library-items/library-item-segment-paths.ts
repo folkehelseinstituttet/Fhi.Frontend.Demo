@@ -1,5 +1,4 @@
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
-import { GlobalHeaderData } from './global-header/_global-header.data';
 import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
@@ -16,7 +15,6 @@ function stringTransform(objectNameAsString: string) {
  */
 export class LibraryItemSegmentPaths {
   // Modules
-  static globalheader = stringTransform(Object.keys({ GlobalHeaderData })[0]);
   static treeview = stringTransform(Object.keys({ TreeViewData })[0]);
 
   // Layout and page templates

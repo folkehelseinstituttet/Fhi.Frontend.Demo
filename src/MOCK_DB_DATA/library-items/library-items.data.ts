@@ -1,6 +1,5 @@
 import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 
-import { GlobalHeaderData } from './global-header/_global-header.data';
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
 import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
 import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
@@ -8,7 +7,6 @@ import { PrototypeTableWithExpandableContentData } from './prototype-table-with-
 import { TreeViewData } from './tree-view/_tree-view.data';
 
 export const AllData: LibraryItem[] = [
-  ...GlobalHeaderData,
   ...PrototypeAngularTreeData,
   ...PrototypeFormsData,
   ...PrototypePageheaderData,

@@ -127,10 +127,6 @@ export class LibraryMenuService {
   private getModulesMenu(): MenuItem[] {
     return [
       {
-        name: 'Global header',
-        link: LibraryItemSegmentPaths.globalheader,
-      },
-      {
         name: 'Tree views',
         link: LibraryItemSegmentPaths.treeview,
       },

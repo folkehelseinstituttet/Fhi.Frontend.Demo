@@ -1,4 +1,3 @@
-import { GlobalHeaderIds } from './global-header/_global-header.ids';
 import { LayoutTemplatesIds } from './layout-templates/_layout-templates.ids';
 import { PrototypeAngularTreeIds } from './prototype-angular-tree/_prototype-angular-tree.ids';
 import { PrototypeFormsIds } from './prototype-forms/_prototype-forms.ids';
@@ -8,7 +7,6 @@ import { TreeViewIds } from './tree-view/_tree-view.ids';
 
 const libraryItemIds = {
   ...PrototypeAngularTreeIds,
-  ...GlobalHeaderIds,
   ...LayoutTemplatesIds,
   ...PrototypeFormsIds,
   ...PrototypePageheaderIds,
