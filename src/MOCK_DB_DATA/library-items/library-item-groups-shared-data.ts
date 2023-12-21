@@ -81,7 +81,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     id: 'drawers',
     title: 'Drawer',
     apiEndPoint: 'DrawersData',
-    parentUrlSegment: UrlSegment.components,
+    parentUrlSegment: null,
   },
   FormControls: {
     id: 'form-controls',
