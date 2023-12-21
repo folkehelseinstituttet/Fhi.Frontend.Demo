@@ -23,7 +23,7 @@ function getExampleHtml(): string {
   <div class="container fhi-footer__container">
     <div class="row">
       <div class="col-12 mb-2">
-        <h2 class="h3">Overskrift om nødvendig</h2>
+        <h2 class="h3">Overskrift</h2>
       </div>
 
       <div class="col-sm-6 col-md-4 col-lg-3">
@@ -36,18 +36,6 @@ function getExampleHtml(): string {
         <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
           <i class="icon-arrow-right"></i>
           <span class="btn__text">Snarvei 2</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
-          <span class="btn__text">Snarvei 3</span>
-        </a>
-      </div>
-      <div class="col-sm-6 col-md-4 col-lg-3">
-        <a href="javascript:void(0)" class="btn fhi-btn-shortcut-link">
-          <i class="icon-arrow-right"></i>
-          <span class="btn__text">Snarvei 4</span>
         </a>
       </div>
     </div>
