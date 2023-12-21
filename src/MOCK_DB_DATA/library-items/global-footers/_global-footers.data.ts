@@ -1,7 +1,7 @@
 import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 
-import { GlobalFootersIntro } from './_global-footer.intro';
+import { GlobalFootersIntro } from './_global-footers.intro';
 
 import { GlobalFooter } from './global-footer';
 import { GlobalFooterArch } from './global-footer-arch';
