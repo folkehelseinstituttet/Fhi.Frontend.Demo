@@ -23,6 +23,7 @@
     [itemId]="itemId"
     [items]="items"
   ></app-tooltip-and-popover>
+  <app-tree-views *ngSwitchCase="groups.TreeViews.id" [itemId]="itemId" [items]="items"></app-tree-views>
   <!--
     TODO:
       Falling through to *ngSwitchDefault for all items using new system...
@@ -36,21 +37,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-
-  <app-tree-view-navigation-example *ngSwitchCase="itemIds.TreeViewNavigation"> </app-tree-view-navigation-example>
-
-  <app-tree-view-selection-example
-    *ngSwitchCase="itemIds.TreeViewCheckbox"
-    [itemId]="itemIds.TreeViewCheckbox"
-    [itemIds]="itemIds"
-  >
-  </app-tree-view-selection-example>
-  <app-tree-view-selection-example
-    *ngSwitchCase="itemIds.TreeViewRadio"
-    [itemId]="itemIds.TreeViewRadio"
-    [itemIds]="itemIds"
-  >
-  </app-tree-view-selection-example>
 
   <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
   </app-angular-tree-view-builder-example>

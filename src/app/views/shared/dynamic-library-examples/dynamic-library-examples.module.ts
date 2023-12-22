@@ -23,13 +23,12 @@ import { TabsExampleComponent } from './example-components/navs/tabs-example/tab
 import { TagsComponent } from './example-components/tags/tags.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 import { ToastsComponent } from './example-components/toasts/toasts.component';
+import { TreeViewsComponent } from './example-components/tree-views/tree-views.component';
 
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 
 import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
 import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
-import { TreeViewNavigationExampleComponent } from './fhi-angular-examples/tree-view-navigation-example/tree-view-naviagation-example.component';
-import { TreeViewSelectionExampleComponent } from './fhi-angular-examples/tree-view-selection-examples/tree-view-selection-examples.component';
 
 import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
 import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
@@ -52,15 +51,12 @@ const EXAMPLE_COMPONENTS = [
   TagsComponent,
   TimeSelectorsComponent,
   ToastsComponent,
+  TreeViewsComponent,
 ];
 
 const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipAndPopoverComponent];
 
-const FHI_EXAMPLES = [
-  ProgressBarExampleComponent,
-  TreeViewNavigationExampleComponent,
-  TreeViewSelectionExampleComponent,
-];
+const FHI_EXAMPLES = [ProgressBarExampleComponent];
 
 const FHI_PROTOTYPES = [
   AngularTreeViewBuilderExampleComponent,
