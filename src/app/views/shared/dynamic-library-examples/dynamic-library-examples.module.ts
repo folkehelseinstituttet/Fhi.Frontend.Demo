@@ -17,6 +17,8 @@ import { IconListComponent } from './example-components/icon-list/icon-list.comp
 import { ModalsComponent } from './example-components/modals/modals.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { PaginationsComponent } from './example-components/paginations/paginations.component';
+import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
+import { PrototypePageheaderComponent } from './fhi-prototypes/pageheader/pageheader.component';
 import { SearchComponent } from './example-components/search/search.component';
 import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
@@ -28,10 +30,8 @@ import { TreeViewsComponent } from './example-components/tree-views/tree-views.c
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 
 import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
-import { ProgressBarExampleComponent } from './example-components/progress-indicators/progress-indicators.component';
+import { ProgressIndicatorsComponent } from './example-components/progress-indicators/progress-indicators.component';
 
-import { PrototypeFormsComponent } from './fhi-prototypes/forms/forms.component';
-import { PrototypePageheaderExampleComponent } from './fhi-prototypes/pageheader/pageheader.component';
 import { TableWithExpandableContentComponent } from './fhi-prototypes/table-with-expandable-content/table-with-expandable-content.component';
 import { AngularTreeViewBuilderExampleComponent } from './fhi-prototypes/angular-tree-view-builder-example/angular-tree-view-builder-example.component';
 
@@ -45,6 +45,9 @@ const EXAMPLE_COMPONENTS = [
   ModalsComponent,
   NavsComponent,
   PaginationsComponent,
+  ProgressIndicatorsComponent,
+  PrototypeFormsComponent,
+  PrototypePageheaderComponent,
   SearchComponent,
   TablesComponent,
   TabsExampleComponent,
@@ -56,12 +59,8 @@ const EXAMPLE_COMPONENTS = [
 
 const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent, TooltipAndPopoverComponent];
 
-const FHI_EXAMPLES = [ProgressBarExampleComponent];
-
 const FHI_PROTOTYPES = [
   AngularTreeViewBuilderExampleComponent,
-  PrototypeFormsComponent,
-  PrototypePageheaderExampleComponent,
   TableWithExpandableContentComponent,
 ];
 
@@ -72,7 +71,6 @@ const FHI_PROTOTYPES = [
 
     // TODO: remove
     ...NGB_EXAMPLES,
-    ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES,
   ],
   imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
@@ -83,7 +81,6 @@ const FHI_PROTOTYPES = [
 
     // TODO: remove
     ...NGB_EXAMPLES,
-    ...FHI_EXAMPLES,
     ...FHI_PROTOTYPES,
   ],
 })

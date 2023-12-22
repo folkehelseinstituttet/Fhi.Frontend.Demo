@@ -13,6 +13,12 @@
     [itemId]="itemId"
     [items]="items"
   ></app-progress-indicators>
+  <app-prototype-forms *ngSwitchCase="groups.PrototypeForms.id" [itemId]="itemId" [items]="items"></app-prototype-forms>
+  <app-prototype-pageheader
+    *ngSwitchCase="groups.PrototypePageheaders.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-prototype-pageheader>
   <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
   <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
   <app-tags *ngSwitchCase="groups.Tags.id" [itemId]="itemId" [items]="items"></app-tags>
@@ -42,8 +48,6 @@
   </app-angular-tree-view-builder-example>
 
   <!-- Prototypes -->
-  <app-prototype-forms *ngSwitchCase="itemIds.LabelsOnLeft"></app-prototype-forms>
-  <app-prototype-pageheader *ngSwitchCase="itemIds.PrototypePageheader"></app-prototype-pageheader>
   <app-prototype-table-with-expandable-content
     *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"
   ></app-prototype-table-with-expandable-content>

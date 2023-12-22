@@ -19,8 +19,8 @@ const TopLevelMenuItemNames = {
 })
 export class LibraryMenuService {
   // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
-  topLevelMenuItems!: MenuItem[];
   private currentTopLevelMenuItem!: MenuItem;
+  topLevelMenuItems!: MenuItem[];
 
   constructor(private urlService: UrlService) {}
 
@@ -127,14 +127,6 @@ export class LibraryMenuService {
 
   private getPrototypesMenu(): MenuItem[] {
     return [
-      {
-        name: 'Global Header',
-        link: LibraryItemSegmentPaths.prototypepageheader,
-      },
-      {
-        name: 'Forms',
-        link: LibraryItemSegmentPaths.prototypeforms,
-      },
       {
         name: 'Tables',
         link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent,

@@ -1,5 +1,15 @@
-import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem, LibraryItemGroup } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+
+import { PrototypePageheaderIntro } from './_prototype-pageheader.intro';
 
 import { PrototypePageheader } from './prototype-pageheader';
 
-export const PrototypePageheaderData: LibraryItem[] = [...PrototypePageheader];
+export const PrototypePageheaders: LibraryItem[] = [...PrototypePageheader];
+
+export const PrototypePageheaderData: LibraryItemGroup = {
+  id: GROUPS.PrototypePageheaders.id,
+  title: GROUPS.PrototypePageheaders.title,
+  intro: PrototypePageheaderIntro,
+  libraryItems: PrototypePageheaders,
+};

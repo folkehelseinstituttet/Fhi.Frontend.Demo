@@ -241,6 +241,16 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Spinner - small',
   },
 
+  PrototypeForm: {
+    id: 'prototype-form',
+    title: 'Form - left aligned labels',
+  },
+
+  PrototypePageheader: {
+    id: 'prototype-pageheader',
+    title: 'Global header',
+  },
+
   Search: {
     id: 'search',
     title: 'Search',

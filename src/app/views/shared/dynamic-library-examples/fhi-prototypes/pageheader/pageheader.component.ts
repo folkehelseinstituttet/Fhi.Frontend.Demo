@@ -1,6 +1,17 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime } from 'rxjs/operators';
+
+import { LibraryItemsShared } from '../../../models/library-item.model';
 import { PrototypePageheaderDataService } from './pageheader-data.service';
 
 @Component({
@@ -8,7 +19,10 @@ import { PrototypePageheaderDataService } from './pageheader-data.service';
   templateUrl: './pageheader.component.html',
   providers: [PrototypePageheaderDataService],
 })
-export class PrototypePageheaderExampleComponent {
+export class PrototypePageheaderComponent implements OnInit, AfterViewChecked, OnDestroy {
+  @Input() itemId!: string;
+  @Input() items!: LibraryItemsShared;
+
   activeLink = -1;
   mainMenuIsOpen = false;
   hideMostContent = true;
@@ -45,14 +59,16 @@ export class PrototypePageheaderExampleComponent {
       .subscribe(() => {
         this.onScroll(this.pageheadercomponent.nativeElement);
       });
-  }
 
-  ngOnDestroy() {
-    this.windowScroll$.unsubscribe();
+    this.submenuWidth = 100;
   }
 
   ngAfterViewChecked() {
     this.submenuSetup();
+  }
+
+  ngOnDestroy() {
+    this.windowScroll$.unsubscribe();
   }
 
   onScroll(element: any) {

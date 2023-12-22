@@ -1,7 +1,5 @@
 import { PrototypeAngularTreeData } from './prototype-angular-tree/_prototype-angular-tree.data';
 import { LayoutTemplatesData } from './layout-templates/_layout-templates.data';
-import { PrototypeFormsData } from './prototype-forms/_prototype-forms.data';
-import { PrototypePageheaderData } from './prototype-pageheader/_prototype-pageheader.data';
 import { PrototypeTableWithExpandableContentData } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 
 function stringTransform(objectNameAsString: string) {
@@ -20,8 +18,6 @@ export class LibraryItemSegmentPaths {
   static prototypeangulartreecomponent = stringTransform(
     Object.keys({ PrototypeAngularTreeData })[0],
   );
-  static prototypeforms = stringTransform(Object.keys({ PrototypeFormsData })[0]);
-  static prototypepageheader = stringTransform(Object.keys({ PrototypePageheaderData })[0]);
   static prototypetablewithexpandablecontent = stringTransform(
     Object.keys({ PrototypeTableWithExpandableContentData })[0],
   );

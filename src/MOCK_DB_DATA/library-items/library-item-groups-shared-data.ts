@@ -182,4 +182,19 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ErrorPagesData',
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
+
+  // Prototypes
+
+  PrototypeForms: {
+    id: 'prototype-forms',
+    title: 'Forms',
+    apiEndPoint: 'PrototypeFormsData',
+    parentUrlSegment: UrlSegment.prototypes,
+  },
+  PrototypePageheaders: {
+    id: 'prototype-pageheader',
+    title: 'Global header',
+    apiEndPoint: 'PrototypePageheaderData',
+    parentUrlSegment: UrlSegment.prototypes,
+  },
 };

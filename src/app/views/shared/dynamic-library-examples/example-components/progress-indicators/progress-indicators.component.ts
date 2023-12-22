@@ -5,7 +5,7 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
   selector: 'app-progress-indicators',
   templateUrl: './progress-indicators.component.html',
 })
-export class ProgressBarExampleComponent {
+export class ProgressIndicatorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
