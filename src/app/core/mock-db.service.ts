@@ -8,9 +8,7 @@ import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids'
 import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
-import { PrototypeAngularTreeData } from 'src/MOCK_DB_DATA/library-items/prototype-angular-tree/_prototype-angular-tree.data';
 import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
-import { PrototypeTableWithExpandableContentData } from 'src/MOCK_DB_DATA/library-items/prototype-table-with-expandable-content/_prototype-table-with-expandable-content.data';
 
 // -----------------------------------------
 //
@@ -39,8 +37,9 @@ import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
 import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
+import { TreeViewBuilderData } from 'src/MOCK_DB_DATA/library-items/tree-view-builder/_tree-view-builder.data';
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
-import { PrototypePageheaderData } from 'src/MOCK_DB_DATA/library-items/prototype-pageheader/_prototype-pageheader.data';
+import { PrototypeTablesData } from 'src/MOCK_DB_DATA/library-items/prototype-tables/_prototype-tables.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
 import { TablesData } from 'src/MOCK_DB_DATA/library-items/tables/_tables.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
@@ -76,28 +75,27 @@ export class MockDbService implements InMemoryDbService {
       ErrorPagesData,
       FormControlsData,
       GlobalFootersData,
+      GlobalHeadersData,
       HighchartsData,
       IconsData,
       ModalsData,
       NavsData,
       PaginationsData,
       ProgressIndicatorsData,
+      TreeViewBuilderData,
       PrototypeFormsData,
-      PrototypePageheaderData,
+      PrototypeTablesData,
       SearchData,
       TablesData,
       TagsData,
       TimeSelectorsData,
       ToastsData,
+      TooltipPopoverData,
       TreeViewsData,
       TypographyData,
 
       // Items OLD: deprecate when all items use new system
-      PrototypeAngularTreeData,
-      GlobalHeadersData,
       LayoutTemplatesData,
-      PrototypeTableWithExpandableContentData,
-      TooltipPopoverData,
 
       LibraryItemIds, // TODO: deprecate when all items use new system
       AllData, // TODO: deprecate when all items use new system

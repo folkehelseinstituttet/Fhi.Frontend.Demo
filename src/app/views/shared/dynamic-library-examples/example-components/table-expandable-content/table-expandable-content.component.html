@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="itemId === items.PrototypeTableWithExpandableContent.id">
   <fhi-table [tableConfig]="demoTableConfig">
     <ng-container *ngFor="let row of demoTableContent; index as i">
       <tr fhi-table-row-expander [index]="i">
@@ -35,7 +35,7 @@
     </div>
   </ng-template>
 
-  <div class="alert alert-warning mb-7">
+  <div class="alert alert-warning my-7">
     <i class="icon-bell"></i>
     <div>
       <h2 class="h5">Disclaimer!</h2>

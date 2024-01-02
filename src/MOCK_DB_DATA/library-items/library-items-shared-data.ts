@@ -246,9 +246,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Form - left aligned labels',
   },
 
-  PrototypePageheader: {
-    id: 'prototype-pageheader',
-    title: 'Global header',
+  PrototypeTableWithExpandableContent: {
+    id: 'prototype-table-with-expandable-content',
+    title: 'Table with expandable content',
   },
 
   Search: {
@@ -355,6 +355,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   TooltipPopover: {
     id: 'popover',
     title: 'Popover',
+  },
+
+  TreeViewBuilder: {
+    id: 'prototype-angular-tree',
+    title: 'Tree view builder',
   },
 
   TreeViewCheckbox: {

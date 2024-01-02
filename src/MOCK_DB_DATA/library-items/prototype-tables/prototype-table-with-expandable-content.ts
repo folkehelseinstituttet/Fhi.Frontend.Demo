@@ -1,11 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const PrototypeTableWithExpandableContent: LibraryItem[] = [
   {
-    id: LibraryItemIds.PrototypeTableWithExpandableContent,
-    title: 'Table with expandable content',
+    id: ITEMS.PrototypeTableWithExpandableContent.id,
+    title: ITEMS.PrototypeTableWithExpandableContent.title,
     type: LibraryItemType.fhiAngular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

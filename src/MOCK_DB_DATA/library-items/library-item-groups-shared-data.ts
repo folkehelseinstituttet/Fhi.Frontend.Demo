@@ -183,7 +183,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
 
-  // Prototypes
+  // Prototypes (Eksempler på bruk)
 
   PrototypeForms: {
     id: 'prototype-forms',
@@ -191,10 +191,16 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'PrototypeFormsData',
     parentUrlSegment: UrlSegment.prototypes,
   },
-  PrototypePageheaders: {
-    id: 'prototype-pageheader',
-    title: 'Global header',
-    apiEndPoint: 'PrototypePageheaderData',
+  PrototypeTables: {
+    id: 'prototype-tables',
+    title: 'Tables',
+    apiEndPoint: 'PrototypeTablesData',
+    parentUrlSegment: UrlSegment.prototypes,
+  },
+  TreeViewBuilder: {
+    id: 'tree-view-builder',
+    title: 'Tree view builder',
+    apiEndPoint: 'TreeViewBuilderData',
     parentUrlSegment: UrlSegment.prototypes,
   },
 };

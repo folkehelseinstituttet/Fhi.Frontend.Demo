@@ -126,15 +126,6 @@ export class LibraryMenuService {
   }
 
   private getPrototypesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Tables',
-        link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent,
-      },
-      {
-        name: 'Tree View Builder',
-        link: LibraryItemSegmentPaths.prototypeangulartreecomponent,
-      },
-    ];
+    return [];
   }
 }

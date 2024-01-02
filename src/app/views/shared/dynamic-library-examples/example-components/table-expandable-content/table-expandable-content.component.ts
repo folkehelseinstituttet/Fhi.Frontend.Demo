@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { TableWithExpandableContentDataService } from './table-with-expandable-content-data.service';
+import { Component, Input } from '@angular/core';
+import { LibraryItemsShared } from '../../../models/library-item.model';
+import { TableExpandableContentDataService } from './table-expandable-content-data.service';
 
 @Component({
-  selector: 'app-prototype-table-with-expandable-content',
-  templateUrl: './table-with-expandable-content.component.html',
+  selector: 'app-table-expandable-content',
+  templateUrl: './table-expandable-content.component.html',
   styles: [
     `
       .fhi-tablerow-expanded th,
@@ -40,15 +41,18 @@ import { TableWithExpandableContentDataService } from './table-with-expandable-c
       }
     `,
   ],
-  providers: [TableWithExpandableContentDataService],
+  providers: [TableExpandableContentDataService],
 })
-export class TableWithExpandableContentComponent {
+export class TableExpandableContentComponent {
+  @Input() itemId!: string;
+  @Input() items!: LibraryItemsShared;
+
   tableData: any = [];
 
   demoTableConfig!: any;
   demoTableContent!: any[];
 
-  constructor(private tableDataService: TableWithExpandableContentDataService) {}
+  constructor(private tableDataService: TableExpandableContentDataService) {}
 
   ngOnInit() {
     this.tableData = this.tableDataService.tableData();

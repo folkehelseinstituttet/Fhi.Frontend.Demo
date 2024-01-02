@@ -1,6 +1,11 @@
 <div [ngSwitch]="groupId">
   <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
   <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
+  <app-angular-tree-view-builder
+    *ngSwitchCase="groups.TreeViewBuilder.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-angular-tree-view-builder>
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
   <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
@@ -13,13 +18,13 @@
     [itemId]="itemId"
     [items]="items"
   ></app-progress-indicators>
-  <app-prototype-forms *ngSwitchCase="groups.PrototypeForms.id" [itemId]="itemId" [items]="items"></app-prototype-forms>
-  <app-prototype-pageheader
-    *ngSwitchCase="groups.PrototypePageheaders.id"
+  <app-forms *ngSwitchCase="groups.PrototypeForms.id" [itemId]="itemId" [items]="items"></app-forms>
+  <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
+  <app-table-expandable-content
+    *ngSwitchCase="groups.PrototypeTables.id"
     [itemId]="itemId"
     [items]="items"
-  ></app-prototype-pageheader>
-  <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
+  ></app-table-expandable-content>
   <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
   <app-tags *ngSwitchCase="groups.Tags.id" [itemId]="itemId" [items]="items"></app-tags>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
@@ -43,14 +48,6 @@
   <app-layout-expandable-first-col-example
     *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
   ></app-layout-expandable-first-col-example>
-
-  <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
-  </app-angular-tree-view-builder-example>
-
-  <!-- Prototypes -->
-  <app-prototype-table-with-expandable-content
-    *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"
-  ></app-prototype-table-with-expandable-content>
 
   <!-- Falling through to *ngSwitchDefault for all items using new system... -->
   <!-- <div *ngSwitchDefault>No component matches given id...</div> -->
