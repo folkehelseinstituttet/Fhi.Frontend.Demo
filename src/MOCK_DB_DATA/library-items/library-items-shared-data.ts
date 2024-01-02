@@ -181,6 +181,19 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Highcharts with menu and footer',
   },
 
+  LayoutTemplateBasic: {
+    id: 'layout-template-basic',
+    title: 'Basic layout',
+  },
+  LayoutTemplateExpandableFirstCol: {
+    id: 'layout-template-expandable-first-col',
+    title: 'Layout med ekspanderbart innhold i første kolonne',
+  },
+  LayoutTemplateTwoCols1: {
+    id: 'layout-template-two-cols-1',
+    title: 'Layout med venstrekolonne',
+  },
+
   Modal: {
     id: 'modal',
     title: 'Modal',

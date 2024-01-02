@@ -182,6 +182,12 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ErrorPagesData',
     parentUrlSegment: UrlSegment.layoutAndPageTemplates,
   },
+  LayoutTemplates: {
+    id: 'layout-templates',
+    title: 'Layout og sidemaler',
+    apiEndPoint: 'LayoutTemplatesData',
+    parentUrlSegment: UrlSegment.layoutAndPageTemplates,
+  },
 
   // Prototypes (Eksempler på bruk)
 

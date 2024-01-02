@@ -1,14 +1,15 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-layout-expandable-first-col-example',
-  templateUrl: './layout-expandable-first-col-example.component.html',
+  selector: 'app-layout-templates',
+  templateUrl: './layout-templates.component.html',
 })
-export class LayoutExpandableFirstColExampleComponent {
+export class LayoutTemplatesComponent {
   @ViewChild('drawerContent') drawerContent: ElementRef;
 
   @Input() itemId!: string;
-  @Input() itemIds!: any;
+  @Input() items!: LibraryItemsShared;
 
   drawerHeight = 0;
   drawerIsOpen = false;

@@ -15,9 +15,11 @@ import { FormControlsComponent } from './example-components/form-controls/form-c
 import { GlobalHeadersComponent } from './example-components/global-headers/global-headers.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
 import { IconListComponent } from './example-components/icon-list/icon-list.component';
+import { LayoutTemplatesComponent } from './example-components/layout-templates/layout-templates.component';
 import { ModalsComponent } from './example-components/modals/modals.component';
 import { NavsComponent } from './example-components/navs/navs.component';
 import { PaginationsComponent } from './example-components/paginations/paginations.component';
+import { ProgressIndicatorsComponent } from './example-components/progress-indicators/progress-indicators.component';
 import { PrototypeFormsComponent } from './example-components/forms/forms.component';
 import { SearchComponent } from './example-components/search/search.component';
 import { TableExpandableContentComponent } from './example-components/table-expandable-content/table-expandable-content.component';
@@ -26,12 +28,8 @@ import { TabsExampleComponent } from './example-components/navs/tabs-example/tab
 import { TagsComponent } from './example-components/tags/tags.component';
 import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 import { ToastsComponent } from './example-components/toasts/toasts.component';
-import { TreeViewsComponent } from './example-components/tree-views/tree-views.component';
-
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
-
-import { LayoutExpandableFirstColExampleComponent } from './fhi-angular-examples/layout-expandable-fist-col-example/layout-expandable-first-col-example.component';
-import { ProgressIndicatorsComponent } from './example-components/progress-indicators/progress-indicators.component';
+import { TreeViewsComponent } from './example-components/tree-views/tree-views.component';
 
 const EXAMPLE_COMPONENTS = [
   AccordionsComponent,
@@ -41,6 +39,7 @@ const EXAMPLE_COMPONENTS = [
   GlobalHeadersComponent,
   HighchartsComponent,
   IconListComponent,
+  LayoutTemplatesComponent,
   ModalsComponent,
   NavsComponent,
   PaginationsComponent,
@@ -57,7 +56,7 @@ const EXAMPLE_COMPONENTS = [
   TreeViewsComponent,
 ];
 
-const NGB_EXAMPLES = [LayoutExpandableFirstColExampleComponent];
+const NGB_EXAMPLES = [];
 
 @NgModule({
   declarations: [

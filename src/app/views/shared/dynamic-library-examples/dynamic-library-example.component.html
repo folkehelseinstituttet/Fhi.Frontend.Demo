@@ -10,6 +10,11 @@
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
   <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
+  <app-layout-templates
+    *ngSwitchCase="groups.LayoutTemplates.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-layout-templates>
   <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
   <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
@@ -41,14 +46,4 @@
       Uncomment this following line when all items use new system
   -->
   <!-- <div *ngSwitchDefault>No item group matches given id...</div> -->
-</div>
-
-<!-- TODO: Remove old switch implementation when alt items use new system -->
-<div [ngSwitch]="itemId">
-  <app-layout-expandable-first-col-example
-    *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
-  ></app-layout-expandable-first-col-example>
-
-  <!-- Falling through to *ngSwitchDefault for all items using new system... -->
-  <!-- <div *ngSwitchDefault>No component matches given id...</div> -->
 </div>

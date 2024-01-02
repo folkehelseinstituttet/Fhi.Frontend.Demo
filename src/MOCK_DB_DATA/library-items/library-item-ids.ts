@@ -1,8 +1,4 @@
-import { LayoutTemplatesIds } from './layout-templates/_layout-templates.ids';
-
-const libraryItemIds = {
-  ...LayoutTemplatesIds,
-};
+const libraryItemIds = {};
 
 export const LibraryItemIds = (() => {
   let n = 0;

@@ -8,7 +8,6 @@ import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids'
 import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
 
 // Items
-import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
 
 // -----------------------------------------
 //
@@ -33,6 +32,7 @@ import { GlobalFootersData } from 'src/MOCK_DB_DATA/library-items/global-footers
 import { GlobalHeadersData } from 'src/MOCK_DB_DATA/library-items/global-headers/_global-headers.data';
 import { HighchartsData } from 'src/MOCK_DB_DATA/library-items/highcharts/_highcharts.data';
 import { IconsData } from 'src/MOCK_DB_DATA/library-items/icons/_icons.data';
+import { LayoutTemplatesData } from 'src/MOCK_DB_DATA/library-items/layout-templates/_layout-templates.data';
 import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
@@ -78,6 +78,7 @@ export class MockDbService implements InMemoryDbService {
       GlobalHeadersData,
       HighchartsData,
       IconsData,
+      LayoutTemplatesData,
       ModalsData,
       NavsData,
       PaginationsData,
@@ -93,9 +94,6 @@ export class MockDbService implements InMemoryDbService {
       TooltipPopoverData,
       TreeViewsData,
       TypographyData,
-
-      // Items OLD: deprecate when all items use new system
-      LayoutTemplatesData,
 
       LibraryItemIds, // TODO: deprecate when all items use new system
       AllData, // TODO: deprecate when all items use new system
