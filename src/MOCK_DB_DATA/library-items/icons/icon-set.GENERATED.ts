@@ -62,6 +62,7 @@ export const IncludedIcons = [
   'fhi-logo',
   'file-medical',
   'file-text',
+  'folder',
   'gear',
   'geo-alt',
   'graph-up',
