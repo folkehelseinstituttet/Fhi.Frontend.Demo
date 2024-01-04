@@ -1,97 +1,49 @@
 <div [ngSwitch]="groupId">
   <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
   <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
+  <app-angular-tree-view-builder
+    *ngSwitchCase="groups.TreeViewBuilder.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-angular-tree-view-builder>
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
+  <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
   <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
+  <app-layout-templates
+    *ngSwitchCase="groups.LayoutTemplates.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-layout-templates>
+  <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
   <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
+  <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
+  <app-progress-indicators
+    *ngSwitchCase="groups.ProgressIndicators.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-progress-indicators>
+  <app-forms *ngSwitchCase="groups.PrototypeForms.id" [itemId]="itemId" [items]="items"></app-forms>
+  <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
+  <app-table-expandable-content
+    *ngSwitchCase="groups.PrototypeTables.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-table-expandable-content>
+  <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
+  <app-tags *ngSwitchCase="groups.Tags.id" [itemId]="itemId" [items]="items"></app-tags>
   <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
+  <app-toasts *ngSwitchCase="groups.Toasts.id" [itemId]="itemId" [items]="items"></app-toasts>
+  <app-tooltip-and-popover
+    *ngSwitchCase="groups.TooltipPopovers.id"
+    [itemId]="itemId"
+    [items]="items"
+  ></app-tooltip-and-popover>
+  <app-tree-views *ngSwitchCase="groups.TreeViews.id" [itemId]="itemId" [items]="items"></app-tree-views>
   <!--
     TODO:
       Falling through to *ngSwitchDefault for all items using new system...
       Uncomment this following line when all items use new system
   -->
   <!-- <div *ngSwitchDefault>No item group matches given id...</div> -->
-</div>
-
-<!-- TODO: Remove old switch implementation when alt items use new system -->
-<div [ngSwitch]="itemId">
-  <app-pagination-example *ngSwitchCase="itemIds.Pagination" [itemId]="itemIds.Pagination" [itemIds]="itemIds">
-  </app-pagination-example>
-  <app-pagination-example
-    *ngSwitchCase="itemIds.PaginationCollectionCounter"
-    [itemId]="itemIds.PaginationCollectionCounter"
-    [itemIds]="itemIds"
-  >
-  </app-pagination-example>
-
-  <app-layout-expandable-first-col-example
-    *ngSwitchCase="itemIds.LayoutTemplateExpandableFirstCol"
-  ></app-layout-expandable-first-col-example>
-  <app-modal-example *ngSwitchCase="itemIds.Modal"></app-modal-example>
-
-  <app-progress-bar-example *ngSwitchCase="itemIds.ProgressBar"></app-progress-bar-example>
-
-  <app-table-examples *ngSwitchCase="itemIds.FhiAngularTable" [itemId]="itemIds.FhiAngularTable" [itemIds]="itemIds">
-  </app-table-examples>
-
-  <app-table-examples *ngSwitchCase="itemIds.TableSortable" [itemId]="itemIds.TableSortable" [itemIds]="itemIds">
-  </app-table-examples>
-  <app-table-examples
-    *ngSwitchCase="itemIds.TableSelectableRow"
-    [itemId]="itemIds.TableSelectableRow"
-    [itemIds]="itemIds"
-  >
-  </app-table-examples>
-  <app-table-examples *ngSwitchCase="itemIds.TableEditable" [itemId]="itemIds.TableEditable" [itemIds]="itemIds">
-  </app-table-examples>
-
-  <app-tag-example *ngSwitchCase="itemIds.TagFilterOption"></app-tag-example>
-  <app-toast-example *ngSwitchCase="itemIds.Toast"></app-toast-example>
-
-  <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Tooltip" [itemId]="itemIds.Tooltip" [itemIds]="itemIds">
-  </app-tooltip-and-popover-example>
-  <app-tooltip-and-popover-example *ngSwitchCase="itemIds.Popover" [itemId]="itemIds.Popover" [itemIds]="itemIds">
-  </app-tooltip-and-popover-example>
-
-  <app-tree-view-navigation-example *ngSwitchCase="itemIds.TreeViewNavigation"> </app-tree-view-navigation-example>
-
-  <app-tree-view-selection-example
-    *ngSwitchCase="itemIds.TreeViewCheckbox"
-    [itemId]="itemIds.TreeViewCheckbox"
-    [itemIds]="itemIds"
-  >
-  </app-tree-view-selection-example>
-  <app-tree-view-selection-example
-    *ngSwitchCase="itemIds.TreeViewRadio"
-    [itemId]="itemIds.TreeViewRadio"
-    [itemIds]="itemIds"
-  >
-  </app-tree-view-selection-example>
-
-  <app-angular-tree-view-builder-example *ngSwitchCase="itemIds.TreeViewBuilder">
-  </app-angular-tree-view-builder-example>
-
-  <app-search-example *ngSwitchCase="itemIds.Search"></app-search-example>
-
-  <app-global-headers
-    *ngSwitchCase="itemIds.GlobalHeaderWithMenu"
-    [itemId]="itemIds.GlobalHeaderWithMenu"
-    [itemIds]="itemIds"
-  ></app-global-headers>
-  <app-global-headers
-    *ngSwitchCase="itemIds.GlobalHeaderWithMenuAndUtils"
-    [itemId]="itemIds.GlobalHeaderWithMenuAndUtils"
-    [itemIds]="itemIds"
-  ></app-global-headers>
-
-  <!-- Prototypes -->
-  <app-prototype-forms *ngSwitchCase="itemIds.LabelsOnLeft"></app-prototype-forms>
-  <app-prototype-pageheader *ngSwitchCase="itemIds.PrototypePageheader"></app-prototype-pageheader>
-  <app-prototype-table-with-expandable-content
-    *ngSwitchCase="itemIds.PrototypeTableWithExpandableContent"
-  ></app-prototype-table-with-expandable-content>
-
-  <!-- Falling through to *ngSwitchDefault for all items using new system... -->
-  <!-- <div *ngSwitchDefault>No component matches given id...</div> -->
 </div>

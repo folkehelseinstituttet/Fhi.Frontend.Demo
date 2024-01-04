@@ -50,11 +50,6 @@ export class ArticleComponent implements OnInit {
         this.articleHtml = this.getArticleHtmlForDeveloperComponents();
         break;
 
-      case UrlSegment.modules:
-        this.title = 'Moduler';
-        this.articleHtml = this.getArticleHtmlForDeveloperModules();
-        break;
-
       case UrlSegment.layoutAndPageTemplates:
         this.title = 'Layout og sidemaler';
         this.articleHtml = this.getArticleHtmlForDeveloperLayoutAndPageTemplates();
@@ -84,11 +79,6 @@ export class ArticleComponent implements OnInit {
 <p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
 
 <p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
-  }
-
-  private getArticleHtmlForDeveloperModules(): any {
-    return `
-<p>Moduler er større komponenter som er avhengig av en eller flere andre komponenter.</p>`;
   }
 
   private getArticleHtmlForDeveloperLayoutAndPageTemplates(): any {

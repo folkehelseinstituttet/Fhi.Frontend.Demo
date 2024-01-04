@@ -1,42 +1,4 @@
-import { CardIds } from './cards/_cards.ids';
-import { DrawerIds } from './drawer/_drawer.ids';
-import { GlobalFooterIds } from './global-footer/_global-footer.ids';
-import { GlobalHeaderIds } from './global-header/_global-header.ids';
-import { LayoutTemplatesIds } from './layout-templates/_layout-templates.ids';
-import { ModalIds } from './modal/_modal.ids';
-import { PaginationIds } from './pagination/_pagination.ids';
-import { PrototypeAngularTreeIds } from './prototype-angular-tree/_prototype-angular-tree.ids';
-import { PrototypeFormsIds } from './prototype-forms/_prototype-forms.ids';
-import { PrototypePageheaderIds } from './prototype-pageheader/_prototype-pageheader.ids';
-import { PrototypeTableWithExpandableContentIds } from './prototype-table-with-expandable-content/_prototype-table-with-expandable-content.ids';
-import { SearchIds } from './search/_search.ids';
-import { ProgressIndicatorsIds } from './progress-indicators/_progress-indicators.ids';
-import { TableIds } from './table/_table.ids';
-import { TagsIds } from './tags/_tags.ids';
-import { ToastIds } from './toast/_toast.ids';
-import { TootipPopoverIds } from './tooltip-popover/_tooltip-popover.ids';
-import { TreeViewIds } from './tree-view/_tree-view.ids';
-
-const libraryItemIds = {
-  ...PrototypeAngularTreeIds,
-  ...CardIds,
-  ...DrawerIds,
-  ...GlobalFooterIds,
-  ...GlobalHeaderIds,
-  ...LayoutTemplatesIds,
-  ...ModalIds,
-  ...PaginationIds,
-  ...PrototypeFormsIds,
-  ...PrototypePageheaderIds,
-  ...PrototypeTableWithExpandableContentIds,
-  ...SearchIds,
-  ...ProgressIndicatorsIds,
-  ...TableIds,
-  ...TagsIds,
-  ...ToastIds,
-  ...TootipPopoverIds,
-  ...TreeViewIds,
-};
+const libraryItemIds = {};
 
 export const LibraryItemIds = (() => {
   let n = 0;

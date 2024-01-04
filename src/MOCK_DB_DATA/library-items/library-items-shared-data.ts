@@ -29,6 +29,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'accordion-flush-dark',
     title: 'Accordion - flush dark',
   },
+
   AlertBasic: {
     id: 'alert-basic',
     title: 'Alert',
@@ -37,6 +38,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'alert-closable',
     title: 'Alert - closable',
   },
+
   BadgeCircular: {
     id: 'badge-circular',
     title: 'Badge - circular',
@@ -45,10 +47,12 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'badge-rounded',
     title: 'Badge - rounded',
   },
+
   Breadcrumb: {
     id: 'breadcrumb',
     title: '',
   },
+
   ButtonPrimary: {
     id: 'button-primary',
     title: 'Primary button',
@@ -69,6 +73,25 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'button-group',
     title: 'Button group',
   },
+
+  Card: {
+    id: 'card',
+    title: 'Card',
+  },
+  CardShadow: {
+    id: 'card-shadow',
+    title: 'Card shadow',
+  },
+  CardDeactive: {
+    id: 'card-deactive',
+    title: 'Card deactive',
+  },
+
+  Drawer: {
+    id: 'drawer',
+    title: 'Drawer',
+  },
+
   ErrorPage404: {
     id: 'error-page-404',
     title: 'Error page - 404',
@@ -77,6 +100,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'error-page-500',
     title: 'Error page - 500',
   },
+
   FormControlInput: {
     id: 'form-control-input',
     title: 'Text input',
@@ -121,6 +145,29 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'form-control-validation',
     title: 'Validation',
   },
+
+  GlobalFooter: {
+    id: 'global-footer',
+    title: 'Global footer',
+  },
+  GlobalFooterArch: {
+    id: 'global-footer-arch',
+    title: 'Global footer - arch',
+  },
+
+  GlobalHeader: {
+    id: 'global-header',
+    title: 'Global header',
+  },
+  GlobalHeaderWithMenu: {
+    id: 'global-header-with-menu',
+    title: 'Global header with menu',
+  },
+  GlobalHeaderWithMenuAndUtils: {
+    id: 'global-header-with-menu-and-utils',
+    title: 'Global header with menu and utilities section',
+  },
+
   HighchartsWithoutMenu: {
     id: 'highcharts-without-menu',
     title: 'Highcharts without menu',
@@ -133,6 +180,25 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu-and-footer',
     title: 'Highcharts with menu and footer',
   },
+
+  LayoutTemplateBasic: {
+    id: 'layout-template-basic',
+    title: 'Basic layout',
+  },
+  LayoutTemplateExpandableFirstCol: {
+    id: 'layout-template-expandable-first-col',
+    title: 'Layout med ekspanderbart innhold i første kolonne',
+  },
+  LayoutTemplateTwoCols1: {
+    id: 'layout-template-two-cols-1',
+    title: 'Layout med venstrekolonne',
+  },
+
+  Modal: {
+    id: 'modal',
+    title: 'Modal',
+  },
+
   NavTiles: {
     id: 'nav-tiles',
     title: 'Navigation tiles',
@@ -153,6 +219,106 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'nav-tabs',
     title: 'Tabs',
   },
+
+  Pagination: {
+    id: 'pagination',
+    title: 'Pagination',
+  },
+  PaginationCollectionCounter: {
+    id: 'pagination-collection-counter',
+    title: 'Pagination collection counter',
+  },
+
+  ProgressBar: {
+    id: 'progress-bar',
+    title: 'Progress bar',
+  },
+  ProgressSpinner: {
+    id: 'spinner',
+    title: 'Spinner',
+  },
+  ProgressSpinnerButton: {
+    id: 'spinner-button',
+    title: 'Spinner - button',
+  },
+  ProgressSpinnerFlex: {
+    id: 'spinner-flex',
+    title: 'Spinner - flex',
+  },
+  ProgressSpinnerMargin: {
+    id: 'spinner-margin',
+    title: 'Spinner - margin',
+  },
+  ProgressSpinnerSmall: {
+    id: 'spinner-small',
+    title: 'Spinner - small',
+  },
+
+  PrototypeForm: {
+    id: 'prototype-form',
+    title: 'Form - left aligned labels',
+  },
+
+  PrototypeTableWithExpandableContent: {
+    id: 'prototype-table-with-expandable-content',
+    title: 'Table with expandable content',
+  },
+
+  Search: {
+    id: 'search',
+    title: 'Search',
+  },
+
+  Table: {
+    id: 'table',
+    title: 'Table',
+  },
+  TableCompact: {
+    id: 'table-compact',
+    title: 'Table - compact',
+  },
+  TableEditable: {
+    id: 'table-editable',
+    title: 'Table - inline editable',
+  },
+  TableSelectableRow: {
+    id: 'table-selectable-row',
+    title: 'Table - selectable row',
+  },
+  TableSortable: {
+    id: 'table-sortable',
+    title: 'Table - sortable',
+  },
+  TableStriped: {
+    id: 'table-striped',
+    title: 'Table - striped',
+  },
+
+  Tag: {
+    id: 'tag',
+    title: 'Tag',
+  },
+  TagFilterOption: {
+    id: 'tag-filter-option',
+    title: 'Tag - filter option',
+  },
+  TagMultipleSelection: {
+    id: 'tag-multiple-select',
+    title: 'Tag - multiple selection',
+  },
+  TagSingleSelection: {
+    id: 'tag-single-select',
+    title: 'Tag - single select',
+  },
+  TagState: {
+    id: 'tag-state',
+    title: 'Tag - state',
+  },
+  TagStateDot: {
+    id: 'tag-state-dot',
+    title: 'Tag - state, dot',
+  },
+
   TimeSelectorDateAndTime: {
     id: 'time-selector-date-and-time',
     title: 'Date and time',
@@ -189,6 +355,39 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'time-selector-year-range',
     title: 'Year range',
   },
+
+  Toast: {
+    id: 'toast',
+    title: 'Toast',
+  },
+
+  Tooltip: {
+    id: 'tooltip',
+    title: 'Tooltip',
+  },
+  TooltipPopover: {
+    id: 'popover',
+    title: 'Popover',
+  },
+
+  TreeViewBuilder: {
+    id: 'prototype-angular-tree',
+    title: 'Tree view builder',
+  },
+
+  TreeViewCheckbox: {
+    id: 'tree-view-checkbox',
+    title: 'Tree view checkbox',
+  },
+  TreeViewNavigation: {
+    id: 'tree-view-navigation',
+    title: 'Tree view navigation',
+  },
+  TreeViewRadio: {
+    id: 'tree-view-radio',
+    title: 'Tree view radio',
+  },
+
   VisualIdentityColors: {
     id: 'colors',
     title: 'Fargepalett',

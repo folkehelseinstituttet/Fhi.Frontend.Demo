@@ -1,12 +1,12 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const ProgressBar: LibraryItem[] = [
   {
-    id: LibraryItemIds.ProgressBar,
-    title: 'Progress bar',
-    type: LibraryItemType.fhiAngular,
+    id: ITEMS.ProgressBar.id,
+    title: ITEMS.ProgressBar.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

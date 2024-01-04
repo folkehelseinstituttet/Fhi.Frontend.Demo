@@ -2,7 +2,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const HighchartsIntro = `
 <p class="lead">
-  Folkehelseintitutte har valgt å bruker Highcharts for å vise diagrammer med FHI-design.
+  Folkehelseintituttet har valgt å bruker Highcharts for å vise diagrammer med FHI-design.
 </p>
 <p>
   For å gjøre det så enkelt som mulig å ta i bruk Highcharts, er det utviklet en komponent
