@@ -10,7 +10,6 @@ import { LibraryItemGroupsShared } from '../models/library-item.model';
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
   components: 'Komponenter',
-  modules: 'Moduler',
   layoutAndPageTemplates: 'Layout og sidemaler',
   prototypes: 'Eksempler på bruk',
 };
@@ -20,8 +19,8 @@ const TopLevelMenuItemNames = {
 })
 export class LibraryMenuService {
   // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
-  topLevelMenuItems!: MenuItem[];
   private currentTopLevelMenuItem!: MenuItem;
+  topLevelMenuItems!: MenuItem[];
 
   constructor(private urlService: UrlService) {}
 
@@ -35,10 +34,6 @@ export class LibraryMenuService {
       {
         name: TopLevelMenuItemNames.components,
         link: `/${currentSegmentPath0}/${UrlSegment.components}`,
-      },
-      {
-        name: TopLevelMenuItemNames.modules,
-        link: `/${currentSegmentPath0}/${UrlSegment.modules}`,
       },
       {
         name: TopLevelMenuItemNames.layoutAndPageTemplates,
@@ -95,9 +90,6 @@ export class LibraryMenuService {
       case TopLevelMenuItemNames.components:
         return this.getComponentsMenu();
 
-      case TopLevelMenuItemNames.modules:
-        return this.getModulesMenu();
-
       case TopLevelMenuItemNames.layoutAndPageTemplates:
         return this.getLayoutAndPageTemplatesMenu();
 
@@ -121,94 +113,14 @@ export class LibraryMenuService {
   }
 
   private getComponentsMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Cards',
-        link: LibraryItemSegmentPaths.card,
-      },
-      {
-        name: 'Modal',
-        link: LibraryItemSegmentPaths.modal,
-      },
-      {
-        name: 'Pagination',
-        link: LibraryItemSegmentPaths.pagination,
-      },
-      {
-        name: 'Search',
-        link: LibraryItemSegmentPaths.search,
-      },
-      {
-        name: 'Progress indicators',
-        link: LibraryItemSegmentPaths.progressindicators,
-      },
-      {
-        name: 'Tables',
-        link: LibraryItemSegmentPaths.table,
-      },
-      {
-        name: 'Tags',
-        link: LibraryItemSegmentPaths.tags,
-      },
-      {
-        name: 'Toast',
-        link: LibraryItemSegmentPaths.toast,
-      },
-      {
-        name: 'Tooltip & Popover',
-        link: LibraryItemSegmentPaths.tooltip,
-      },
-    ];
-  }
-
-  private getModulesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Drawer',
-        link: LibraryItemSegmentPaths.drawer,
-      },
-      {
-        name: 'Global footer',
-        link: LibraryItemSegmentPaths.globalfooter,
-      },
-      {
-        name: 'Global header',
-        link: LibraryItemSegmentPaths.globalheader,
-      },
-      {
-        name: 'Tree views',
-        link: LibraryItemSegmentPaths.treeview,
-      },
-    ];
+    return [];
   }
 
   private getLayoutAndPageTemplatesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Layout',
-        link: LibraryItemSegmentPaths.layoutandpagetemplates,
-      },
-    ];
+    return [];
   }
 
   private getPrototypesMenu(): MenuItem[] {
-    return [
-      {
-        name: 'Global Header',
-        link: LibraryItemSegmentPaths.prototypepageheader,
-      },
-      {
-        name: 'Forms',
-        link: LibraryItemSegmentPaths.prototypeforms,
-      },
-      {
-        name: 'Tables',
-        link: LibraryItemSegmentPaths.prototypetablewithexpandablecontent,
-      },
-      {
-        name: 'Tree View Builder',
-        link: LibraryItemSegmentPaths.prototypeangulartreecomponent,
-      },
-    ];
+    return [];
   }
 }

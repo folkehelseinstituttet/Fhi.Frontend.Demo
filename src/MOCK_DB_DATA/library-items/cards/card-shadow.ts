@@ -1,11 +1,10 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
 export const CardShadow: LibraryItem[] = [
   {
-    id: LibraryItemIds.CardShadow,
-    title: 'Card w/shadow',
+    id: ITEMS.CardShadow.id,
+    title: ITEMS.CardShadow.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

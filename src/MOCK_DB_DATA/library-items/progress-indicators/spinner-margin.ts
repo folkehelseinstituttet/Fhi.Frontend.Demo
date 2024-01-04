@@ -1,11 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const SpinnerMargin: LibraryItem[] = [
+export const ProgressSpinnerMargin: LibraryItem[] = [
   {
-    id: LibraryItemIds.SpinnerMargin,
-    title: 'Spinner - margin',
+    id: ITEMS.ProgressSpinnerMargin.id,
+    title: ITEMS.ProgressSpinnerMargin.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

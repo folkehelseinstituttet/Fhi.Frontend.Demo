@@ -1,10 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const TagSingleSelection: LibraryItem[] = [
   {
-    id: LibraryItemIds.TagSingleSelection,
-    title: 'Tag - single selection',
+    id: ITEMS.TagSingleSelection.id,
+    title: ITEMS.TagSingleSelection.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
