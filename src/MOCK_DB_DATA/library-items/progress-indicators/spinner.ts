@@ -1,11 +1,11 @@
-import { LibraryItemIds } from '../library-item-ids';
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
-export const Spinner: LibraryItem[] = [
+export const ProgressSpinner: LibraryItem[] = [
   {
-    id: LibraryItemIds.Spinner,
-    title: 'Spinner',
+    id: ITEMS.ProgressSpinner.id,
+    title: ITEMS.ProgressSpinner.title,
     type: LibraryItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
