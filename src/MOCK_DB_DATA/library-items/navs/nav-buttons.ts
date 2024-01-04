@@ -33,7 +33,6 @@ function getExampleHtml(): string {
 </div>
 <p>
   <a href="${CONST.voidURL}" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
-    <i class="icon-muscle"></i>
     <span class="btn__text">Aktivt menyelement</span>
   </a>
 </p>`;
@@ -55,7 +54,6 @@ function getCodeHtml(): string | null {
 </a>
 
 <a href="#" class="btn fhi-btn-menu-item fhi-btn-menu-item--active">
-  <i class="icon-[name]"></i>
   <span class="btn__text">Aktivt menyelement</span>
 </a>`;
 }

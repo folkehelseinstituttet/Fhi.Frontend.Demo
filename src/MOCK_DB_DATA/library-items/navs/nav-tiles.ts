@@ -19,20 +19,21 @@ function getExampleHtml(): string {
   return `
 <div class="row gx-3 gx-sm-5">
   <div class="col-auto col-md-6 mb-3 mb-md-5">
-    <a href="javascript:void(0)" class="fhi-navigation-tile">
-      <span class="fhi-navigation-tile__icon">
-        <i class="icon-check"></i>
-      </span>
-      <p class="fhi-navigation-tile__heading">Overskrift</p>
-      <p class="fhi-navigation-tile__description">Kort, beskrivende tekst.</p>
-    </a>
-  </div>
+    <article class="fhi-navigation-tile">
+      <header class="fhi-navigation-tile__header">
+        <p class="fhi-navigation-tile__heading">
+          <a href="javascript:void(0)" class="fhi-navigation-tile__link">Overskrift som ikke bør være for lang</a>
+        </p>
+        
+        <span class="fhi-navigation-tile__icon">
+          <i class="icon-hospital"></i>
+        </span>
+      </header>
 
-  <div class="col-auto col-md-6 mb-3 mb-md-5">
-    <a href="javascript:void(0)" class="fhi-navigation-tile">
-      <p class="fhi-navigation-tile__heading">Overskrift</p>
-      <p class="fhi-navigation-tile__description">Kort, beskrivende tekst som ikke går over mer enn tre linjer.</p>
-    </a>
+      <p class="fhi-navigation-tile__description">Kort, men beskrivende tekst. Man bør etterstrebe at denne teksten ikke blir mer enn 5 linjer.</p>
+
+      <p class="fhi-navigation-tile__footer">Kilde: Kildens navn (AKRONYM)</p>
+    </article>
   </div>
 </div>`;
 }
@@ -43,15 +44,21 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<a href="#" class="fhi-navigation-tile">
-  <!-- Overskrift er påkrevd -->
-  <p class="fhi-navigation-tile__heading">Overskrift</p>
+<article class="fhi-navigation-tile">
+  <header class="fhi-navigation-tile__header">
+    <p class="fhi-navigation-tile__heading">
+      <a href="#" class="fhi-navigation-tile__link">Overskrift som ikke bør være for lang</a>
+    </p>
 
-  <p class="fhi-navigation-tile__description">Kort, beskrivende tekst.</p>
-  <span class="fhi-navigation-tile__icon">
-    <i class="icon-[name]"></i>
-  </span>
-</a>`;
+    <span class="fhi-navigation-tile__icon">
+      <i class="icon-hospital"></i>
+    </span>
+  </header>
+
+  <p class="fhi-navigation-tile__description">Kort, men beskrivende tekst. Den skal ikke være for lang, og man bør etterstrebe at den ikke blir mer enn 5 linjer.</p>
+
+  <p class="fhi-navigation-tile__footer">Kilde: Kildens navn (AKRONYM)</p>
+</article>`;
 }
 
 /*
