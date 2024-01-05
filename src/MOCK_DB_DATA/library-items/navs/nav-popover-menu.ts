@@ -24,7 +24,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `<fhi-popover-menu></fhi-popover-menu>`;
+  return `<fhi-popover-menu [items]="popoverMenuItems"></fhi-popover-menu>`;
 }
 
 /*

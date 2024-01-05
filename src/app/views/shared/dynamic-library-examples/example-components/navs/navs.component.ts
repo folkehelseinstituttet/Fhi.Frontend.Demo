@@ -9,4 +9,16 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 export class NavsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
+
+  popoverMenuItems = [
+    {
+      name: 'Last ned',
+    },
+    {
+      name: 'Rediger',
+    },
+    {
+      name: 'Slett',
+    },
+  ];
 }
