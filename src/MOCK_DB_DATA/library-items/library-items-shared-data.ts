@@ -207,6 +207,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'nav-buttons',
     title: 'Menu buttons',
   },
+  NavPopoverMenu: {
+    id: 'popover-menu',
+    title: 'Popover menu',
+  },
   NavShortcuts: {
     id: 'nav-shortcuts',
     title: 'Shortcut link',

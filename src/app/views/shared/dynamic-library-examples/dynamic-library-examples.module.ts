@@ -62,18 +62,16 @@ const NGB_EXAMPLES = [];
   declarations: [
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
-
     // TODO: remove
     ...NGB_EXAMPLES,
   ],
-  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
   exports: [
     NgSelectModule,
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
-
     // TODO: remove
     ...NGB_EXAMPLES,
   ],
+  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
 })
 export class DynamicLibraryExamplesModule {}
