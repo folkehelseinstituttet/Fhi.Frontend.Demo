@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { FhiPopoverItem } from './fhi-popover-menu.model';
 
 @Component({
   selector: 'fhi-popover-menu',
@@ -9,4 +11,6 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [CommonModule, NgbPopoverModule],
   templateUrl: './fhi-popover-menu.component.html',
 })
-export class FhiPopoverMenuComponent {}
+export class FhiPopoverMenuComponent {
+  @Input() items: FhiPopoverItem;
+}
