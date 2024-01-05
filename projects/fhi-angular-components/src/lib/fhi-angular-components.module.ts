@@ -6,6 +6,8 @@ import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
+import { FhiPopoverMenuComponent } from './fhi-nav/fhi-popover-menu/fhi-popover-menu.component';
+
 import { FhiDatepickerComponent } from './fhi-time/fhi-datepicker/fhi-datepicker.component';
 // import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
 import { FhiDateTimeComponent } from './fhi-time/fhi-date-time/fhi-date-time.component';
@@ -15,8 +17,6 @@ import { FhiYearMonthComponent } from './fhi-time/fhi-year-month/fhi-year-month.
 import { FhiYearMonthRangeComponent } from './fhi-time/fhi-year-month-range/fhi-year-month-range.component';
 import { FhiYearsComponent } from './fhi-time/fhi-years/fhi-years.component';
 import { FhiYearRangeComponent } from './fhi-time/fhi-year-range/fhi-year-range.component';
-
-import { FhiPopoverMenuComponent } from './fhi-popover-menu/fhi-popover-menu.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,

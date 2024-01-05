@@ -10,7 +10,7 @@ export * from './lib/fhi-autosuggest/fhi-autosuggest.module';
 export * from './lib/fhi-multiselect/fhi-multiselect.component';
 export * from './lib/fhi-multiselect/fhi-multiselect.module';
 
-export * from './lib/fhi-popover-menu/fhi-popover-menu.component';
+export * from './lib/fhi-nav/fhi-popover-menu/fhi-popover-menu.component';
 
 export * from './lib/fhi-table/fhi-table.component';
 export * from './lib/fhi-table/row-components/fhi-table-row-expander/fhi-table-row-expander.component';
