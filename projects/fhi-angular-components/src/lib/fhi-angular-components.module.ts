@@ -6,7 +6,7 @@ import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
-import { FhiPopoverMenuComponent } from './fhi-nav/fhi-popover-menu/fhi-popover-menu.component';
+import { FhiPopoverMenuComponent } from './fhi-popover-menu/fhi-popover-menu.component';
 
 import { FhiDatepickerComponent } from './fhi-time/fhi-datepicker/fhi-datepicker.component';
 // import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
