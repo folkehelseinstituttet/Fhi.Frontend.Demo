@@ -13,8 +13,20 @@
 <ng-template #popContent>
   <ul class="fhi-popover-menu__list">
     <li class="fhi-popover-menu__item" *ngFor="let item of items">
-      <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
-      {{ item.name }}
+      <a class="fhi-popover-menu__action" [href]="item.href" download *ngIf="item.href && item.type === 'download'">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </a>
+
+      <a class="fhi-popover-menu__action" [href]="item.href" *ngIf="item.href && item.type !== 'download'">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </a>
+
+      <button class="fhi-popover-menu__action" *ngIf="item.type === 'button'">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </button>
     </li>
   </ul>
 </ng-template>

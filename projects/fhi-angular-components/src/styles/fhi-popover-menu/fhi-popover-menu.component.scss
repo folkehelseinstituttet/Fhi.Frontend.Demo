@@ -1,12 +1,38 @@
 .fhi-popover-menu {
+    overflow: hidden;
+
     &__list {
         list-style: none;
         margin: 0;
+        min-width: $fhi-core-px * 200;
         padding: 0;
     }
 
     &__item {
-        padding: $fhi-core-space-1 $fhi-core-space-3;
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        padding: 0;
+    }
+
+    &__action {
+        background: transparent;
+        border: 0;
+        color: inherit;
+        display: block;
+        font-family: inherit;
+        padding: $fhi-core-space-2 $fhi-core-space-3;
+        text-align: left;
+        text-decoration: none;
+        width: 100%;
+
+        [class*="icon-"] {
+            margin-top: $fhi-core-px * 2;
+            vertical-align: top;
+        }
+
+        &:hover {
+            background-color: pink;
+            color: inherit;
+        }
     }
 
     .popover-body {
@@ -32,5 +58,9 @@
         margin: 0;
         top: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    &:active {
+        border: 0;
     }
 }

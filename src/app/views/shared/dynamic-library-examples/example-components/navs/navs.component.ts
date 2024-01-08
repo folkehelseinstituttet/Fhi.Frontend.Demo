@@ -12,16 +12,21 @@ export class NavsComponent {
 
   popoverMenuItems = [
     {
+      href: '/this-item.doc',
       icon: 'download',
       name: 'Last ned',
+      type: 'download',
     },
     {
+      href: '/developer/components/navs#popover-menu',
       icon: 'pencil',
       name: 'Rediger',
+      routerLink: '/developer/components/navs#popover-menu',
     },
     {
       icon: 'trash3',
       name: 'Slett',
+      type: 'button',
     },
   ];
 }
