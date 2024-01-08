@@ -1,15 +1,20 @@
 <button
-  type="button"
+  arrow="false"
+  autoClose="outside"
   class="btn fhi-popover-menu-trigger"
   [ngbPopover]="popContent"
+  [placement]="['bottom-right', 'auto']"
   popoverClass="fhi-popover-menu"
-  arrow="false"
+  type="button"
 >
   <i [class]="'icon-' + triggerIcon + ' icon-md'"></i>
 </button>
 
 <ng-template #popContent>
-  <ul>
-    <li *ngFor="let item of items">{{ item.name }}</li>
+  <ul class="fhi-popover-menu__list">
+    <li class="fhi-popover-menu__item" *ngFor="let item of items">
+      <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+      {{ item.name }}
+    </li>
   </ul>
 </ng-template>

@@ -1,3 +1,23 @@
+.fhi-popover-menu {
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        padding: $fhi-core-space-1 $fhi-core-space-3;
+    }
+
+    .popover-body {
+        padding: 0;
+    }
+
+    .popover-arrow {
+        display: none;
+    }
+}
+
 .fhi-popover-menu-trigger {
     background-color: $fhi-core-white;
     border-radius: 50%;

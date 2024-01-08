@@ -12,12 +12,15 @@ export class NavsComponent {
 
   popoverMenuItems = [
     {
+      icon: 'download',
       name: 'Last ned',
     },
     {
+      icon: 'pencil',
       name: 'Rediger',
     },
     {
+      icon: 'trash3',
       name: 'Slett',
     },
   ];
