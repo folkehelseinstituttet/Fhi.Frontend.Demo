@@ -12,6 +12,36 @@ interface TableHeaderCell {
 
 @Injectable()
 export class TableService {
+  getHeaderRowByDataName(series: FhiDiagramSerie[]): TableHeaderCell[][] {
+    const tableHeaderRow: any[] = [];
+    series[0].data.forEach((data, index) => {
+      if (index === 0) {
+        tableHeaderRow.push({ rowspan: this.getRowspanCount(series[0].name) });
+      }
+      tableHeaderRow.push({ name: data.name });
+    });
+    console.log(tableHeaderRow);
+    return [tableHeaderRow];
+  }
+
+  getDataRowsBySerieName(series: FhiDiagramSerie[]) {
+    const rowDimentionsCount = this.getRowspanCount(series[0].name);
+    const tableBodyRows = new Array(series.length);
+
+    for (let i = 0; i < tableBodyRows.length; i++) {
+      tableBodyRows[i] = new Array(series[0].data.length + rowDimentionsCount); // + Label columns
+
+      for (let j = 0; j < tableBodyRows[i].length; j++) {
+        if (j < rowDimentionsCount) {
+          tableBodyRows[i][j] = 'heading';
+        } else {
+          tableBodyRows[i][j] = 0;
+        }
+      }
+    }
+    console.log(tableBodyRows);
+  }
+
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const seriesMappedToNameOnly = series.map((serie) => serie.name) as string[];
     const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
@@ -71,5 +101,14 @@ export class TableService {
   private getDataArray(serie: FhiDiagramSerie): FhiDiagramSerieData[] {
     const data = serie.data;
     return data;
+  }
+
+  // TODO: better naming (get <thead> first cells rowspan count)
+  //       OR rowDimentionsCount ?
+  private getRowspanCount(name: string | string[]): number {
+    if (typeof name === 'string') {
+      return name.split(Seperator.input).length;
+    }
+    return name.length;
   }
 }

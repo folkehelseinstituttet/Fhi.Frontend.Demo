@@ -231,6 +231,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
+
+    console.log('tableHeaderRows', this.tableHeaderRows);
+    console.log('tableBodyRows', this.tableBodyRows);
+
+    this.tableService.getHeaderRowByDataName(series);
+    this.tableService.getDataRowsBySerieName(series);
   }
 
   private updateMap() {
