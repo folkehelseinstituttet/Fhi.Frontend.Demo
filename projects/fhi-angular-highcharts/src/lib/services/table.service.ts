@@ -16,7 +16,7 @@ export class TableService {
     const tableHeaderRow: any[] = [];
     series[0].data.forEach((data, index) => {
       if (index === 0) {
-        tableHeaderRow.push({ rowspan: this.getRowspanCount(series[0].name) });
+        tableHeaderRow.push({ colspan: this.getNumberOfRowDimentions(series[0].name) });
       }
       tableHeaderRow.push({ name: data.name });
     });
@@ -25,22 +25,82 @@ export class TableService {
   }
 
   getDataRowsBySerieName(series: FhiDiagramSerie[]) {
-    const rowDimentionsCount = this.getRowspanCount(series[0].name);
-    const tableBodyRows = new Array(series.length);
+    const rowDimentionsCount = this.getNumberOfRowDimentions(series[0].name);
+    const dataColumnsCount = series.length;
+    const tableBodyRows = new Array(dataColumnsCount);
+
+    // TODO: dette tror jeg er en farbar vei for å finne rowspan!
+    for (let i = 0; i < rowDimentionsCount; i++) {
+      const seriesMappedToNameOnly = series.map(
+        (serie) => this.getNameArray(serie.name)[i],
+      ) as string[];
+      console.log('seriesMappedToNameOnly', seriesMappedToNameOnly);
+      seriesMappedToNameOnly.forEach((serie) => {
+        // add a counter for "global" rowspan count
+        console.log('seriesMappedToNameOnly forEach serie', serie);
+      });
+    }
 
     for (let i = 0; i < tableBodyRows.length; i++) {
-      tableBodyRows[i] = new Array(series[0].data.length + rowDimentionsCount); // + Label columns
+      tableBodyRows[i] = new Array(series[0].data.length + rowDimentionsCount); // + rowDimentionsCount -> label columns
 
       for (let j = 0; j < tableBodyRows[i].length; j++) {
         if (j < rowDimentionsCount) {
-          tableBodyRows[i][j] = 'heading';
+          // Table row headings
+          tableBodyRows[i][j] = {
+            rowspan: this.getRowspan(rowDimentionsCount, dataColumnsCount, j),
+            name: this.getRowHeaderName(series[i], j),
+          };
         } else {
+          // Table row data
           tableBodyRows[i][j] = 0;
         }
       }
     }
     console.log(tableBodyRows);
   }
+
+  // ---------------------------------------
+  // TODO: the following methods are private
+
+  getRowspan(rowDimentionsCount: number, dataColumnsCount: number, columnNr: number) {
+    if (columnNr === 0) {
+      return dataColumnsCount / 4;
+    }
+    if (rowDimentionsCount - columnNr === 1) {
+      return undefined;
+    }
+    return rowDimentionsCount - columnNr;
+  }
+
+  getRowHeaderName(serie: FhiDiagramSerie, j: number) {
+    const nameArrayCurrent_i = this.getNameArray(serie.name);
+    return nameArrayCurrent_i[j];
+  }
+
+  getNameArray(name: string | string[]): string[] {
+    if (typeof name === 'string') {
+      const trimmedNames: string[] = [];
+      name.split(Seperator.input).forEach((name) => {
+        trimmedNames.push(name.trim());
+      });
+      return trimmedNames;
+    }
+    return name;
+  }
+
+  getNumberOfRowDimentions(name: string | string[]): number {
+    if (typeof name === 'string') {
+      return name.split(Seperator.input).length;
+    }
+    return name.length;
+  }
+  // end of tmp public methods which should be private
+  // ---------------------------------------
+
+  // ----------------------------
+  //    OLD TABLE ORIENTATION
+  // ----------------------------
 
   getHeaderRows(series: FhiDiagramSerie[]): TableHeaderCell[][] {
     const seriesMappedToNameOnly = series.map((serie) => serie.name) as string[];
@@ -101,14 +161,5 @@ export class TableService {
   private getDataArray(serie: FhiDiagramSerie): FhiDiagramSerieData[] {
     const data = serie.data;
     return data;
-  }
-
-  // TODO: better naming (get <thead> first cells rowspan count)
-  //       OR rowDimentionsCount ?
-  private getRowspanCount(name: string | string[]): number {
-    if (typeof name === 'string') {
-      return name.split(Seperator.input).length;
-    }
-    return name.length;
   }
 }
