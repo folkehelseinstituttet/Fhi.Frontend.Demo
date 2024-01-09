@@ -29,8 +29,13 @@
             vertical-align: top;
         }
 
+        &:focus-visible {
+            box-shadow: $input-focus-box-shadow inset !important;
+        }
+
+        &:focus,
         &:hover {
-            background-color: pink;
+            background-color: $fhi-core-grey-light-2;
             color: inherit;
         }
     }
@@ -45,7 +50,11 @@
 }
 
 .fhi-popover-menu-trigger {
+    --bs-btn-active-bg: #{$fhi-core-grey-light-2};
+    --bs-btn-hover-bg: #{$fhi-core-grey-light-2};
+
     background-color: $fhi-core-white;
+    border: 0;
     border-radius: 50%;
     height: $fhi-core-px * 44;
     padding: 0;
@@ -58,9 +67,5 @@
         margin: 0;
         top: 50%;
         transform: translate(-50%, -50%);
-    }
-
-    &:active {
-        border: 0;
     }
 }
