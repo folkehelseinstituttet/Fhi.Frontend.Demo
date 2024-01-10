@@ -1,6 +1,12 @@
 .fhi-popover-menu {
     overflow: hidden;
 
+    &:not(.bs-popover-bottom-end) {
+        // ref. modifier.options.offset = () => [-24, -20]; in component.ts
+        margin-left: 20px !important;
+        margin-top: 24px !important;
+    }
+
     &__list {
         list-style: none;
         margin: 0;
@@ -42,10 +48,6 @@
 
     .popover-body {
         padding: 0;
-    }
-
-    .popover-arrow {
-        display: none;
     }
 }
 

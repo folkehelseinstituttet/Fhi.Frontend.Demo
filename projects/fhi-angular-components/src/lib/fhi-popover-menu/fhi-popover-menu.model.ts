@@ -1,7 +1,7 @@
 export interface FhiPopoverItem {
-  href?: string;
+  action?: string;
+  link?: { href: string; download?: boolean };
   icon?: string;
   name: string;
   routerLink?: string;
-  type?: string;
 }
