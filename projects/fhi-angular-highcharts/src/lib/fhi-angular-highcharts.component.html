@@ -67,6 +67,54 @@
 <ng-template #table>
   <div class="table-responsive fhi-highcharts-table">
     <table class="table table-striped table-sm">
+      <!-- NEW -->
+      <thead>
+        <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
+          <ng-container *ngFor="let tableCellData of headerRow; let i = index">
+            <ng-container *ngIf="tableCellData">
+              <td
+                class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                [attr.rowspan]="tableCellData.rowspan ? tableCellData.rowspan : null"
+                *ngIf="i === 0 && tableCellData.rowspan; else tableHeaderCell"
+              ></td>
+              <ng-template #tableHeaderCell>
+                <th
+                  class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
+                  [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
+                  [attr.colspan]="tableCellData.colspan ? tableCellData.colspan : null"
+                  scope="col"
+                  *ngIf="tableCellData.name"
+                >
+                  {{ tableCellData.name }}
+                </th>
+              </ng-template>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
+          <ng-container *ngFor="let tableCellData of tableRow; let i = index">
+            <th
+              *ngIf="i === 0"
+              scope="row"
+              class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header"
+            >
+              {{ tableCellData }}
+            </th>
+            <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
+              <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
+                {{ tableCellData | number }}
+              </ng-container>
+              <ng-template #tableCellDataIsString>
+                {{ tableCellData }}
+              </ng-template>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+
+      <!-- OLD -->
       <thead>
         <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
           <ng-container *ngFor="let tableCellData of headerRow; let i = index">

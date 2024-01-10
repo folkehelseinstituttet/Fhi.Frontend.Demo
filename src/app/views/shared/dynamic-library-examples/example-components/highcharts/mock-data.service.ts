@@ -587,23 +587,23 @@ export class MockDataService {
         ],
       },
       {
-        name: 'Total | Mann | d',
+        name: ['Total', 'Mann', 'd'],
         data: [
           {
             name: '2018',
-            y: 880,
+            y: 379,
           },
           {
             name: '2019',
-            y: 818,
+            y: 1086,
           },
           {
             name: '2020',
-            y: 718,
+            y: 523,
           },
           {
             name: '2021',
-            y: 660,
+            y: 908,
           },
         ],
       },
@@ -616,7 +616,7 @@ export class MockDataService {
           },
           {
             name: '2019',
-            y: 818,
+            y: ':',
           },
           {
             name: '2020',
