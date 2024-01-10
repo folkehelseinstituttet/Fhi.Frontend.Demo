@@ -62,6 +62,7 @@ const NGB_EXAMPLES = [];
   declarations: [
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
+
     // TODO: remove
     ...NGB_EXAMPLES,
   ],
@@ -70,6 +71,7 @@ const NGB_EXAMPLES = [];
     NgSelectModule,
     DynamicLibraryExampleComponent,
     ...EXAMPLE_COMPONENTS,
+
     // TODO: remove
     ...NGB_EXAMPLES,
   ],
