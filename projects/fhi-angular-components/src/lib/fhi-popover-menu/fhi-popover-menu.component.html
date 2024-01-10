@@ -25,7 +25,7 @@
         <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
         {{ item.name }}
       </a>
-      <button class="fhi-popover-menu__action" type="button" (click)="(item.action)" *ngIf="item.action">
+      <button class="fhi-popover-menu__action" type="button" (click)="buttonAction(item.action)" *ngIf="item.action">
         <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
         {{ item.name }}
       </button>

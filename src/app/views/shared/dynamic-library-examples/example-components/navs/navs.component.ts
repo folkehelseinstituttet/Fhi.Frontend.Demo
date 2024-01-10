@@ -14,6 +14,7 @@ export class NavsComponent {
     {
       icon: 'download',
       link: {
+        download: true,
         href: '/this-item.doc',
       },
       name: 'Last ned',
@@ -30,7 +31,13 @@ export class NavsComponent {
     },
   ];
 
-  delete() {
-    console.log('hoi');
+  action(action: string) {
+    if (action === 'delete') {
+      this.delete(action);
+    }
+  }
+
+  delete(action: string) {
+    console.info(action);
   }
 }

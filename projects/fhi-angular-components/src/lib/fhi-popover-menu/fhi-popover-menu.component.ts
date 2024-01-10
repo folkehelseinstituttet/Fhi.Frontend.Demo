@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -16,16 +16,10 @@ import { FhiPopoverItem } from './fhi-popover-menu.model';
 export class FhiPopoverMenuComponent {
   @Input() items: Array<FhiPopoverItem>;
   @Input() triggerIcon = 'three-dots-vertical';
+  @Output() actionEvent = new EventEmitter<string>();
 
   popperOptions = (options: Partial<Options>) => {
     (options.placement = 'bottom-end'), 'auto';
-
-    for (const modifier of options.modifiers || []) {
-      if (modifier.name === 'offset' && modifier.options) {
-        // ref. &:not(.bs-popover-bottom-end) { in fhi-popover-menu.component.scss
-        modifier.options.offset = () => [-24, -20];
-      }
-    }
 
     options.onFirstUpdate = (state) => {
       if (state.elements?.arrow) {
@@ -34,4 +28,8 @@ export class FhiPopoverMenuComponent {
     };
     return options;
   };
+
+  buttonAction(action: string) {
+    this.actionEvent.emit(action);
+  }
 }
