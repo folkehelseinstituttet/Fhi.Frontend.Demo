@@ -8,6 +8,13 @@ interface TableHeaderCell {
   colspan?: number;
   rowspan?: number;
 }
+interface TableCell {
+  isHeading: boolean;
+  data?: string | number;
+  name?: string | undefined;
+  colspan?: number;
+  rowspan?: number;
+}
 interface TableData {
   theadRows: TableHeaderCell[][];
   tbodyRows: (string | number | TableHeaderCell)[][];
@@ -75,37 +82,39 @@ export class TableService {
     return tableBodyRows;
   }
 
-  // ----------------------------
-  //    NEW TABLE ORIENTATION
-  // ----------------------------
   getTableData(series: FhiDiagramSerie[], xAxisHeadings = 'rows'): TableData {
     if (xAxisHeadings === 'rows') {
       return {
-        theadRows: this.getTableHeaderRow(series),
+        theadRows: [this.getTableHeaderRow(series)],
         tbodyRows: this.getTableBodyRows(series),
       };
     }
   }
 
-  private getTableHeaderRow(series: FhiDiagramSerie[]): TableHeaderCell[][] {
-    const tableHeaderRow: TableHeaderCell[] = [];
+  // ----------------------------
+  //    NEW TABLE ORIENTATION
+  // ----------------------------
+
+  private getTableHeaderRow(series: FhiDiagramSerie[]): TableCell[] {
+    const tableHeaderRow: TableCell[] = [];
     series[0].data.forEach((data, index) => {
       if (index === 0) {
         tableHeaderRow.push({
+          isHeading: false,
+          colspan: this.getNumberOfRowDimentions(series[0].name),
           name: undefined,
-          rowspan: this.getNumberOfRowDimentions(series[0].name),
         });
       }
-      tableHeaderRow.push({ name: data.name, rowspan: undefined });
+      tableHeaderRow.push({ isHeading: true, colspan: undefined, name: data.name });
     });
     console.log(tableHeaderRow);
-    return [tableHeaderRow];
+    return tableHeaderRow;
   }
 
-  private getTableBodyRows(series: FhiDiagramSerie[]): (string | number | TableHeaderCell)[][] {
+  private getTableBodyRows(series: FhiDiagramSerie[]): TableCell[][] {
     const rowDimentionsCount = this.getNumberOfRowDimentions(series[0].name);
     const colspanValues = this.getColspanValues(rowDimentionsCount, series);
-    const tbodyRows = new Array<Array<string | number | TableHeaderCell>>(series.length);
+    const tbodyRows = new Array<Array<TableCell>>(series.length);
 
     for (let i = 0; i < tbodyRows.length; i++) {
       // Create extra table columns for column headers by adding rowDimentionsCount
@@ -116,12 +125,13 @@ export class TableService {
           // Table row headings
           const hasColspan = this.hasColspan(i, colspanValues[j]);
           tbodyRows[i][j] = {
-            colspan: hasColspan && colspanValues[j] > 1 ? colspanValues[j] : undefined,
+            rowspan: hasColspan && colspanValues[j] > 1 ? colspanValues[j] : undefined,
             name: hasColspan ? this.getRowHeaderName(series[i], j) : undefined,
+            isHeading: true,
           };
         } else {
           // Table row data
-          tbodyRows[i][j] = series[i].data[j - rowDimentionsCount].y;
+          tbodyRows[i][j] = { isHeading: false, data: series[i].data[j - rowDimentionsCount].y };
         }
       }
     }
