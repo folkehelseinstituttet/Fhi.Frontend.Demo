@@ -28,16 +28,23 @@ export class TableService {
     const rowDimentionsCount = this.getNumberOfRowDimentions(series[0].name);
     const dataColumnsCount = series.length;
     const tableBodyRows = new Array(dataColumnsCount);
+    const colspanValues: number[] = [];
 
-    // TODO: dette tror jeg er en farbar vei for å finne rowspan!
+    // TODO: extract to method and clean up code
     for (let i = 0; i < rowDimentionsCount; i++) {
       const seriesMappedToNameOnly = series.map(
         (serie) => this.getNameArray(serie.name)[i],
       ) as string[];
-      console.log('seriesMappedToNameOnly', seriesMappedToNameOnly);
-      seriesMappedToNameOnly.forEach((serie) => {
-        // add a counter for "global" rowspan count
-        console.log('seriesMappedToNameOnly forEach serie', serie);
+      // console.log('\n #### Current row dimention index', i);
+      // console.log('seriesMappedToNameOnly', seriesMappedToNameOnly);
+      let previousName = '';
+      seriesMappedToNameOnly.forEach((name, index) => {
+        if (name !== previousName) {
+          if (!colspanValues[i]) {
+            colspanValues[i] = index;
+          }
+        }
+        previousName = name;
       });
     }
 
@@ -48,7 +55,7 @@ export class TableService {
         if (j < rowDimentionsCount) {
           // Table row headings
           tableBodyRows[i][j] = {
-            rowspan: this.getRowspan(rowDimentionsCount, dataColumnsCount, j),
+            colspan: colspanValues[j],
             name: this.getRowHeaderName(series[i], j),
           };
         } else {
