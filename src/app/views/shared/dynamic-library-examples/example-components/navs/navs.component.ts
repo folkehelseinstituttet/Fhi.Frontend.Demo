@@ -15,7 +15,7 @@ export class NavsComponent {
       icon: 'download',
       link: {
         download: true,
-        href: '/this-item.doc',
+        href: '/tomt-dokument.doc',
       },
       name: 'Last ned',
     },
@@ -38,6 +38,6 @@ export class NavsComponent {
   }
 
   delete(action: string) {
-    console.info(action);
+    console.info('Action: ' + '"' + action + '"' + ' is called');
   }
 }
