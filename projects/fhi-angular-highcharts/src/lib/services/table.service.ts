@@ -101,17 +101,17 @@ export class TableService {
 
   private getTableHeaderRows_OrientationColumns(series: FhiDiagramSerie[]): TableCell[][] {
     const tableHeaderRows: TableCell[][] = [];
-    const serieDimentionsCount = this.getSerieDimentionsCount(series[0].name);
-    const colspanValues = this.getColspanOrRowspanValues(serieDimentionsCount, series);
+    const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
+    const colspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
     console.log('colspanValues', colspanValues);
 
-    for (let i = 0; i < serieDimentionsCount; i++) {
+    for (let i = 0; i < dimentionsCount; i++) {
       // Create extra table column for column headers by adding rowDimentionsCount
       tableHeaderRows[i] = new Array(series.length + 1);
 
       for (let j = 0; j < tableHeaderRows[i].length; j++) {
         if (i === 0 && j === 0) {
-          tableHeaderRows[i][j] = { isHeading: false, rowspan: serieDimentionsCount };
+          tableHeaderRows[i][j] = { isHeading: false, rowspan: dimentionsCount };
         } else if (j > 0) {
           const hasColspan = this.hasColspan(i, colspanValues[j]);
           console.log('hasColspan', hasColspan);
@@ -131,27 +131,6 @@ export class TableService {
   private getTableBodyRows_OrientationColumns(series: FhiDiagramSerie[]): TableCell[][] {
     const tbodyRows = new Array<Array<TableCell>>(series.length);
     return tbodyRows;
-  }
-
-  private getColspanOrRowspanValues(
-    serieDimentionsCount: number,
-    series: FhiDiagramSerie[],
-  ): number[] {
-    const colspanValues: number[] = [];
-    for (let i = 0; i < serieDimentionsCount; i++) {
-      const seriesMappedToNameOnly = series.map(
-        (serie) => this.getSerieNameArray(serie.name)[i],
-      ) as string[];
-
-      let previousName = '';
-      seriesMappedToNameOnly.forEach((name, index) => {
-        if (name !== previousName && !colspanValues[i]) {
-          colspanValues[i] = index;
-        }
-        previousName = name;
-      });
-    }
-    return colspanValues;
   }
 
   private getColumnHeaderName(serie: FhiDiagramSerie, j: number) {
@@ -178,7 +157,7 @@ export class TableService {
       if (i === 0) {
         tableHeaderRow[i] = {
           isHeading: false,
-          colspan: this.getSerieDimentionsCount(series[0].name),
+          colspan: this.getSerieNameDimentionsCount(series[0].name),
         };
       }
       tableHeaderRow[i + 1] = { isHeading: true, name: data.name };
@@ -188,16 +167,16 @@ export class TableService {
   }
 
   private getTableBodyRows_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
-    const rowDimentionsCount = this.getSerieDimentionsCount(series[0].name);
-    const rowspanValues = this.getRowspanValues(rowDimentionsCount, series);
+    const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
+    const rowspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
     const tbodyRows = new Array<Array<TableCell>>(series.length);
 
     for (let i = 0; i < series.length; i++) {
       // Create extra table columns for column headers by adding rowDimentionsCount
-      tbodyRows[i] = new Array(series[0].data.length + rowDimentionsCount);
+      tbodyRows[i] = new Array(series[0].data.length + dimentionsCount);
 
       for (let j = 0; j < tbodyRows[i].length; j++) {
-        if (j < rowDimentionsCount) {
+        if (j < dimentionsCount) {
           // Table row headings
           const hasRowspan = this.hasRowspan(i, rowspanValues[j]);
           tbodyRows[i][j] = {
@@ -207,30 +186,12 @@ export class TableService {
           };
         } else {
           // Table row data
-          tbodyRows[i][j] = { isHeading: false, data: series[i].data[j - rowDimentionsCount].y };
+          tbodyRows[i][j] = { isHeading: false, data: series[i].data[j - dimentionsCount].y };
         }
       }
     }
     console.log(tbodyRows);
     return tbodyRows;
-  }
-
-  private getRowspanValues(rowDimentionsCount: number, series: FhiDiagramSerie[]): number[] {
-    const values: number[] = [];
-    for (let i = 0; i < rowDimentionsCount; i++) {
-      const seriesMappedToNameOnly = series.map(
-        (serie) => this.getSerieNameArray(serie.name)[i],
-      ) as string[];
-
-      let previousName = '';
-      seriesMappedToNameOnly.forEach((name, index) => {
-        if (name !== previousName && !values[i]) {
-          values[i] = index;
-        }
-        previousName = name;
-      });
-    }
-    return values;
   }
 
   private hasRowspan(rowIndex: number, colspanValue: number) {
@@ -248,7 +209,7 @@ export class TableService {
   // ------------------------------
   //  Shared for both orientations
   // ------------------------------
-  j;
+
   private getSerieNameArray(name: string | string[]): string[] {
     if (typeof name === 'string') {
       const trimmedNames: string[] = [];
@@ -260,10 +221,28 @@ export class TableService {
     return name;
   }
 
-  private getSerieDimentionsCount(name: string | string[]): number {
+  private getSerieNameDimentionsCount(name: string | string[]): number {
     if (typeof name === 'string') {
       return name.split(Seperator.input).length;
     }
     return name.length;
+  }
+
+  private getColspanOrRowspanValues(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
+    const values: number[] = [];
+    for (let i = 0; i < dimentionsCount; i++) {
+      const seriesMappedToNameOnly = series.map(
+        (serie) => this.getSerieNameArray(serie.name)[i],
+      ) as string[];
+
+      let previousName = '';
+      seriesMappedToNameOnly.forEach((name, index) => {
+        if (name !== previousName && !values[i]) {
+          values[i] = index;
+        }
+        previousName = name;
+      });
+    }
+    return values;
   }
 }
