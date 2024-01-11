@@ -101,7 +101,7 @@ export class TableService {
 
   private getTableHeaderRows_OrientationColumns(series: FhiDiagramSerie[]): TableCell[][] {
     const tableHeaderRows: TableCell[][] = [];
-    const serieDimentionsCount = this.getNumberOfSerieDimentions(series[0].name);
+    const serieDimentionsCount = this.getSerieDimentionsCount(series[0].name);
     const colspanValues = this.getColspanOrRowspanValues(serieDimentionsCount, series);
     console.log('colspanValues', colspanValues);
 
@@ -133,9 +133,44 @@ export class TableService {
     return tbodyRows;
   }
 
-  // -----------------------------------
-  // Plot the rows of data on the x-axis
-  // -----------------------------------
+  private getColspanOrRowspanValues(
+    serieDimentionsCount: number,
+    series: FhiDiagramSerie[],
+  ): number[] {
+    const colspanValues: number[] = [];
+    for (let i = 0; i < serieDimentionsCount; i++) {
+      const seriesMappedToNameOnly = series.map(
+        (serie) => this.getSerieNameArray(serie.name)[i],
+      ) as string[];
+
+      let previousName = '';
+      seriesMappedToNameOnly.forEach((name, index) => {
+        if (name !== previousName && !colspanValues[i]) {
+          colspanValues[i] = index;
+        }
+        previousName = name;
+      });
+    }
+    return colspanValues;
+  }
+
+  private getColumnHeaderName(serie: FhiDiagramSerie, j: number) {
+    const nameArrayCurrent_i = this.getSerieNameArray(serie.name);
+    return nameArrayCurrent_i[j];
+  }
+
+  // TODO: current implementation is for rowspan
+  private hasColspan(rowIndex: number, colspanValue: number) {
+    let isColspan = false;
+    if (rowIndex === 0 || rowIndex % colspanValue === 0) {
+      isColspan = true;
+    }
+    return isColspan;
+  }
+
+  // --------------------------
+  //  Use series as table rows
+  // --------------------------
 
   private getTableHeaderRow_OrientationRows(series: FhiDiagramSerie[]): TableCell[] {
     const tableHeaderRow: TableCell[] = [];
@@ -143,7 +178,7 @@ export class TableService {
       if (i === 0) {
         tableHeaderRow[i] = {
           isHeading: false,
-          colspan: this.getNumberOfRowDimentions(series[0].name),
+          colspan: this.getSerieDimentionsCount(series[0].name),
         };
       }
       tableHeaderRow[i + 1] = { isHeading: true, name: data.name };
@@ -153,11 +188,8 @@ export class TableService {
   }
 
   private getTableBodyRows_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
-    const rowDimentionsCount = this.getNumberOfRowDimentions(series[0].name);
-
-    // TODO: rowspanValues!
-    const colspanValues = this.getColspanValues(rowDimentionsCount, series);
-
+    const rowDimentionsCount = this.getSerieDimentionsCount(series[0].name);
+    const rowspanValues = this.getRowspanValues(rowDimentionsCount, series);
     const tbodyRows = new Array<Array<TableCell>>(series.length);
 
     for (let i = 0; i < series.length; i++) {
@@ -167,12 +199,10 @@ export class TableService {
       for (let j = 0; j < tbodyRows[i].length; j++) {
         if (j < rowDimentionsCount) {
           // Table row headings
-
-          // TODO: hasRowspan!
-          const hasColspan = this.hasColspan(i, colspanValues[j]);
+          const hasRowspan = this.hasRowspan(i, rowspanValues[j]);
           tbodyRows[i][j] = {
-            rowspan: hasColspan && colspanValues[j] > 1 ? colspanValues[j] : undefined,
-            name: hasColspan ? this.getRowHeaderName(series[i], j) : undefined,
+            rowspan: hasRowspan && rowspanValues[j] > 1 ? rowspanValues[j] : undefined,
+            name: hasRowspan ? this.getRowHeaderName(series[i], j) : undefined,
             isHeading: true,
           };
         } else {
@@ -185,63 +215,41 @@ export class TableService {
     return tbodyRows;
   }
 
-  private getColspanOrRowspanValues(
-    serieDimentionsCount: number,
-    series: FhiDiagramSerie[],
-  ): number[] {
-    const colspanValues: number[] = [];
-    for (let i = 0; i < serieDimentionsCount; i++) {
-      const seriesMappedToNameOnly = series.map(
-        (serie) => this.getNameArray(serie.name)[i],
-      ) as string[];
-
-      let previousName = '';
-      seriesMappedToNameOnly.forEach((name, index) => {
-        if (name !== previousName && !colspanValues[i]) {
-          colspanValues[i] = index;
-        }
-        previousName = name;
-      });
-    }
-    return colspanValues;
-  }
-  // TODO: getColspanValues() is deprecated
-  private getColspanValues(rowDimentionsCount: number, series: FhiDiagramSerie[]): number[] {
-    const colspanValues: number[] = [];
+  private getRowspanValues(rowDimentionsCount: number, series: FhiDiagramSerie[]): number[] {
+    const values: number[] = [];
     for (let i = 0; i < rowDimentionsCount; i++) {
       const seriesMappedToNameOnly = series.map(
-        (serie) => this.getNameArray(serie.name)[i],
+        (serie) => this.getSerieNameArray(serie.name)[i],
       ) as string[];
 
       let previousName = '';
       seriesMappedToNameOnly.forEach((name, index) => {
-        if (name !== previousName && !colspanValues[i]) {
-          colspanValues[i] = index;
+        if (name !== previousName && !values[i]) {
+          values[i] = index;
         }
         previousName = name;
       });
     }
-    return colspanValues;
+    return values;
   }
 
-  private hasColspan(rowIndex: number, colspanValue: number) {
-    let isColspan = false;
+  private hasRowspan(rowIndex: number, colspanValue: number) {
+    let isRowspan = false;
     if (rowIndex === 0 || rowIndex % colspanValue === 0) {
-      isColspan = true;
+      isRowspan = true;
     }
-    return isColspan;
+    return isRowspan;
   }
 
-  private getColumnHeaderName(serie: FhiDiagramSerie, j: number) {
-    const nameArrayCurrent_i = this.getNameArray(serie.name);
-    return nameArrayCurrent_i[j];
-  }
-  private getRowHeaderName(serie: FhiDiagramSerie, j: number) {
-    const nameArrayCurrent_i = this.getNameArray(serie.name);
-    return nameArrayCurrent_i[j];
+  private getRowHeaderName(serie: FhiDiagramSerie, coloumIndex: number) {
+    return this.getSerieNameArray(serie.name)[coloumIndex];
   }
 
-  private getNameArray(name: string | string[]): string[] {
+  // ------------------------------
+  //  Shared for both orientations
+  // ------------------------------
+  j;
+  private getSerieNameArray(name: string | string[]): string[] {
     if (typeof name === 'string') {
       const trimmedNames: string[] = [];
       name.split(Seperator.input).forEach((name) => {
@@ -252,14 +260,7 @@ export class TableService {
     return name;
   }
 
-  private getNumberOfSerieDimentions(name: string | string[]): number {
-    if (typeof name === 'string') {
-      return name.split(Seperator.input).length;
-    }
-    return name.length;
-  }
-  // TODO: getNumberOfRowDimentions() is deprecated
-  private getNumberOfRowDimentions(name: string | string[]): number {
+  private getSerieDimentionsCount(name: string | string[]): number {
     if (typeof name === 'string') {
       return name.split(Seperator.input).length;
     }
