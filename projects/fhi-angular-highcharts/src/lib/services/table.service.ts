@@ -16,12 +16,25 @@ interface TableCell {
   rowspan?: number;
 }
 interface TableData {
-  theadRows: TableHeaderCell[][];
-  tbodyRows: (string | number | TableHeaderCell)[][];
+  theadRows: TableCell[][];
+  tbodyRows: TableCell[][];
 }
 
 @Injectable()
 export class TableService {
+  getTable(series: FhiDiagramSerie[], orientation: string): TableData {
+    if (orientation === 'plot the rows of data on the x-axis') {
+      return {
+        theadRows: [this.getTableHeaderRow_OrientationIsRows(series)],
+        tbodyRows: this.getTableBodyRows_OrientationIsRows(series),
+      };
+    }
+    return {
+      theadRows: this.getTableHeaderRows_OrientationIsColumns(series),
+      tbodyRows: this.getTableBodyRows_OrientationIsColumns(series),
+    };
+  }
+
   // ----------------------------
   //    OLD TABLE ORIENTATION
   // ----------------------------
@@ -82,20 +95,71 @@ export class TableService {
     return tableBodyRows;
   }
 
-  getTableData(series: FhiDiagramSerie[], xAxisHeadings = 'rows'): TableData {
-    if (xAxisHeadings === 'rows') {
-      return {
-        theadRows: [this.getTableHeaderRow(series)],
-        tbodyRows: this.getTableBodyRows(series),
-      };
+  // ----------------------------
+  //    OLD TABLE ORIENTATION
+  // ----------------------------
+
+  private getTableHeaderRows_OrientationIsColumns(series: FhiDiagramSerie[]): TableCell[][] {
+    const seriesMappedToNameOnly = series.map((serie) => serie.name) as string[];
+    const tableHeaderRowCount = seriesMappedToNameOnly[0].split(Seperator.output).length;
+    const tableHeaderRows: TableCell[][] = new Array(tableHeaderRowCount);
+
+    for (let j = 0; j < tableHeaderRows.length; j++) {
+      const isLastRow = j + 1 === tableHeaderRowCount;
+      let previousCellName: string | undefined = undefined;
+      let colspanDivider = 0;
+      tableHeaderRows[j] = new Array(seriesMappedToNameOnly.length);
+
+      for (let i = 0; i < seriesMappedToNameOnly.length; i++) {
+        const splitHeader = seriesMappedToNameOnly[i].split(Seperator.output);
+        const currentCellName = splitHeader[j].trim();
+
+        if (!isLastRow && currentCellName !== previousCellName) {
+          tableHeaderRows[j][i] = {
+            name: currentCellName,
+            colspan: seriesMappedToNameOnly.length / 3,
+          };
+          colspanDivider = colspanDivider + 1;
+        }
+        if (isLastRow) {
+          tableHeaderRows[j][i] = { name: currentCellName };
+        }
+        previousCellName = currentCellName;
+      }
+      tableHeaderRows[j].forEach((i) => {
+        i.colspan = seriesMappedToNameOnly.length / colspanDivider;
+      });
+      tableHeaderRows[j].unshift({}); // Label column
     }
+    tableHeaderRows[0][0] = { rowspan: tableHeaderRowCount }; // Label column
+    return tableHeaderRows;
+  }
+
+  private getTableBodyRows_OrientationIsColumns(series: FhiDiagramSerie[]): string[][] {
+    let dataArray = series[0].data;
+    const tableBodyRows = new Array(dataArray.length);
+
+    // Generate first column in rows
+    for (let j = 0; j < dataArray.length; j++) {
+      tableBodyRows[j] = new Array(series.length + 1); // + 1 = Label column
+      tableBodyRows[j][0] = dataArray[j].name;
+    }
+
+    // Populate value-columns in all rows
+    for (let i = 0; i < series.length; i++) {
+      dataArray = series[i].data;
+      for (let j = 0; j < dataArray.length; j++) {
+        tableBodyRows[j][i + 1] = dataArray[j].y;
+      }
+    }
+    return tableBodyRows;
   }
 
   // ----------------------------
   //    NEW TABLE ORIENTATION
   // ----------------------------
 
-  private getTableHeaderRow(series: FhiDiagramSerie[]): TableCell[] {
+  private getTableHeaderRow_OrientationIsRows(series: FhiDiagramSerie[]): TableCell[] {
     const tableHeaderRow: TableCell[] = [];
     series[0].data.forEach((data, index) => {
       if (index === 0) {
@@ -111,7 +175,7 @@ export class TableService {
     return tableHeaderRow;
   }
 
-  private getTableBodyRows(series: FhiDiagramSerie[]): TableCell[][] {
+  private getTableBodyRows_OrientationIsRows(series: FhiDiagramSerie[]): TableCell[][] {
     const rowDimentionsCount = this.getNumberOfRowDimentions(series[0].name);
     const colspanValues = this.getColspanValues(rowDimentionsCount, series);
     const tbodyRows = new Array<Array<TableCell>>(series.length);

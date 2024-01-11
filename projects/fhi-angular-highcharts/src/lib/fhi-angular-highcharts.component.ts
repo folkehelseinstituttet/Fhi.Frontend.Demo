@@ -236,7 +236,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.tableHeaderRows = this.tableService.getHeaderRows(series);
     this.tableBodyRows = this.tableService.getDataRows(series);
 
-    this.tableData = this.tableService.getTableData(series);
+    this.tableData = this.tableService.getTable(series, 'plot the rows of data on the x-axis');
   }
 
   private updateMap() {
