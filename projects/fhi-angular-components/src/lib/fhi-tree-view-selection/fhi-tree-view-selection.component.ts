@@ -24,6 +24,9 @@ export class FhiTreeViewSelectionComponent {
   @Output() itemsChange = new EventEmitter<Item[]>();
 
   ngOnInit() {
+    if (this.items === undefined) {
+      this.items = [];
+    }
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
@@ -33,8 +36,10 @@ export class FhiTreeViewSelectionComponent {
   }
 
   ngOnChanges() {
-    this.createIds(this.items, 1);
-    this.updateDecendantState(this.items, true);
+    if (this.items !== undefined) {
+      this.createIds(this.items, 1);
+      this.updateDecendantState(this.items, true);
+    }
   }
 
   toggleExpanded(item: Item) {
