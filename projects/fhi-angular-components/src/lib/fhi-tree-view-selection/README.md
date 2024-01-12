@@ -6,7 +6,7 @@
 
 | Input             | Type                               | Default | Required | Description |
 | ----------------- | ---------------------------------- | ------- | -------- | ----------- |
-| `enableCheckAll`  | `boolean`                          | false   | no       | Trigger to select/deseselect all siblings, only if `singleSelection === false`. |
+| `enableCheckAll`  | `boolean`                          | false   | no       | Trigger to select/deselect all siblings, only if `singleSelection === false`. |
 | `items`           | `Array<FhiTreeViewSelectionItem>`  | -       | yes      | Array of items. |
 | `name`            | `string`                           | -       | no/yes   | Naming the radio button group. Required if `singleSelection === true`. |
 | `singleSelection` | `boolean`                          | false   | no       | Radio buttons or checkboxes. |
