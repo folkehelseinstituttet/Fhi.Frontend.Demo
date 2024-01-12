@@ -13,6 +13,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
   - [Type FhiDiagramOptions](#type-fhidiagramoptions)
   - [Type FhiDiagramSerie](#type-fhidiagramserie)
   - [Type FhiDiagramSerieData](#type-fhidiagramseriedata)
+  - [Type FhiDiagramFlag](#type-fhidiagramflag)
 - [Changelog](#changelog)
 - [Contribute](#contribute)
 - [Demo](#demo)
@@ -124,6 +125,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `mapTypeId`           | `MapTypeIds`               | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. |
 | `[openSource]`        | `boolean`                  | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
 | `[series]`            | `Array<FhiDiagramSerie>`   | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
+| `tableOrientation`    | `string`                   | -         | no       | The title above the diagram. |
 | `title`               | `string`                   | -         | yes      | The title above the diagram. |
 
 ### Type FhiDiagramSerie
@@ -142,6 +144,13 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | -------- | -------------------- | ------- | -------- | ----------- |
 | `name`   | `string`             | -       | yes      | The name of the data point as shown in the tooltip.
 | `y`      | `number \| string`   | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value. |
+
+### Type FhiDiagramFlag
+
+| Property | Type     | Default | Required | Description |
+| -------- | -------- | ------- | -------- | ----------- |
+| `label`  | `string` | -       | yes      | Description of the flag, ie. _Anonymized_ |
+| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`.
 
 ## Changelog
 

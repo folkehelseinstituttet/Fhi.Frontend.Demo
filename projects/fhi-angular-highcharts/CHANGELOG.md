@@ -1,4 +1,10 @@
-# 1.0.0
+# Unreleased
+
+> Jan 12, 2024
+
+* :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
+
+## 1.0.0
 
 > Des 11, 2023
 
