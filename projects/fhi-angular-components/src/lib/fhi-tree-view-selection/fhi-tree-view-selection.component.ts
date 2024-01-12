@@ -3,6 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -15,7 +17,7 @@ import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiTreeViewSelectionComponent {
+export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
   @Input() items: Item[] = [];
