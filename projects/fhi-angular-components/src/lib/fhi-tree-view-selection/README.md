@@ -1,0 +1,18 @@
+# FHI Tree view selection
+
+## API
+
+### Input
+
+| Input             | Type                               | Default | Required | Description |
+| ----------------- | ---------------------------------- | ------- | -------- | ----------- |
+| `enableCheckAll`  | `boolean`                          | false   | no       | Trigger to select/deseselect all siblings, only if `singleSelection === false`. |
+| `items`           | `Array<FhiTreeViewSelectionItem>`  | -       | yes      | Array of items. |
+| `name`            | `string`                           | -       | no/yes   | Naming the radio button group. Required if `singleSelection === true`. |
+| `singleSelection` | `boolean`                          | false   | no       | Radio buttons or checkboxes. |
+
+### Output
+
+| Output        | Type                              | Description |
+| ------------- | --------------------------------- | ----------- |
+| `itemsChange` | `Array<FhiTreeViewSelectionItem>` | An output event for accessing the state of all items in your checkbox tree. |
