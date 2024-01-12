@@ -19,8 +19,8 @@ export class MockDataService {
           break;
 
         case MockData.MultipleSeriesAar:
-          // dataSet.next(this.getDodsfall_r_Ar_c_Aarsak_LG());
-          dataSet.next(this.getDummyData());
+          dataSet.next(this.getDodsfall_r_Ar_c_Aarsak_LG());
+          // dataSet.next(this.getDummyData());
           break;
 
         default:
