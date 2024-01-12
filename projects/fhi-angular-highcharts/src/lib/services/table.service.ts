@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
-import { ro } from 'date-fns/locale';
 
-interface TableHeaderCell {
-  name?: string | undefined;
-  colspan?: number;
-  rowspan?: number;
-}
 interface TableCell {
   isHeading: boolean;
   data?: string | number;
@@ -16,6 +10,7 @@ interface TableCell {
   colspan?: number;
   rowspan?: number;
 }
+
 interface TableData {
   theadRows: TableCell[][];
   tbodyRows: TableCell[][];
