@@ -172,8 +172,10 @@ export class TableService {
 
       let previousName = '';
       seriesMappedToNameOnly.forEach((name, index) => {
-        if (name !== previousName && !values[i]) {
+        if (previousName !== '' && name !== previousName && !values[i]) {
           values[i] = index;
+        } else if (name === previousName && !values[i]) {
+          values[i] = index + 1; // Edge case: more than one dimention, but only one category in the first dimention
         }
         previousName = name;
       });
