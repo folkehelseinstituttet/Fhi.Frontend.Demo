@@ -20,15 +20,12 @@ import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
-  @Input() items: Item[] = [];
+  @Input() items: Item[];
   @Input() name: string;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
   ngOnInit() {
-    if (this.items === undefined) {
-      this.items = [];
-    }
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
@@ -38,10 +35,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.items !== undefined) {
-      this.createIds(this.items, 1);
-      this.updateDecendantState(this.items, true);
-    }
+    this.createIds(this.items, 1);
+    this.updateDecendantState(this.items, true);
   }
 
   toggleExpanded(item: Item) {
