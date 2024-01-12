@@ -3,19 +3,7 @@ import { Injectable } from '@angular/core';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
-
-interface TableCell {
-  isHeading: boolean;
-  data?: string | number;
-  name?: string | undefined;
-  colspan?: number;
-  rowspan?: number;
-}
-
-interface TableData {
-  theadRows: TableCell[][];
-  tbodyRows: TableCell[][];
-}
+import { TableCell, TableData } from '../models/table-data.model';
 
 @Injectable()
 export class TableService {

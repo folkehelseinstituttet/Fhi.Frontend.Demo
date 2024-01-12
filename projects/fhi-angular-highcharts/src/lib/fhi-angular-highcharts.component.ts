@@ -33,6 +33,7 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
+import { TableData } from './models/table-data.model';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -57,11 +58,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
-
-  tableData: any;
-
-  tableHeaderRows = [];
-  tableBodyRows = [];
+  tableData: TableData;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
