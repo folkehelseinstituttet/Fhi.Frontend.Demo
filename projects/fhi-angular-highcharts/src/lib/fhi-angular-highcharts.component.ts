@@ -27,6 +27,7 @@ import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/dia
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
+import { TableOrientations } from './constants-and-enums/table-orientations';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
@@ -232,8 +233,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateTable() {
     const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
-    this.tableData = this.tableService.getTable(series, 'Use series as table rows');
-    //this.tableData = this.tableService.getTable(series, 'Use series as table columns');
+    this.tableData = this.tableService.getTable(series, this.allDiagramOptions.tableOrientation);
   }
 
   private updateMap() {

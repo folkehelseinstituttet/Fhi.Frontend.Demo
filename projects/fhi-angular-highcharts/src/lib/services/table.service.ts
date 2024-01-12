@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
+import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 
 interface TableCell {
   isHeading: boolean;
@@ -19,15 +20,15 @@ interface TableData {
 @Injectable()
 export class TableService {
   getTable(series: FhiDiagramSerie[], orientation: string): TableData {
-    if (orientation === 'Use series as table rows') {
+    if (orientation === TableOrientationValues.seriesAsColumns) {
       return {
-        theadRows: [this.getTableHeaderRow_OrientationRows(series)],
-        tbodyRows: this.getTableBodyRows_OrientationRows(series),
+        theadRows: this.getTableHeaderRows_OrientationColumns(series),
+        tbodyRows: this.getTableBodyRows_OrientationColumns(series),
       };
     }
     return {
-      theadRows: this.getTableHeaderRows_OrientationColumns(series),
-      tbodyRows: this.getTableBodyRows_OrientationColumns(series),
+      theadRows: [this.getTableHeaderRow_OrientationRows(series)],
+      tbodyRows: this.getTableBodyRows_OrientationRows(series),
     };
   }
 
