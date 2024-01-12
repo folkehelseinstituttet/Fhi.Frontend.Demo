@@ -35,8 +35,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.createIds(this.items, 1);
-    this.updateDecendantState(this.items, true);
+    if (this.items !== undefined) {
+      this.createIds(this.items, 1);
+      this.updateDecendantState(this.items, true);
+    }
   }
 
   toggleExpanded(item: Item) {
