@@ -3,6 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnInit,
   Output,
   ViewEncapsulation,
 } from '@angular/core';
@@ -15,10 +17,10 @@ import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiTreeViewSelectionComponent {
+export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() singleSelection = false;
-  @Input() items: Item[] = [];
+  @Input() items: Item[];
   @Input() name: string;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
@@ -33,8 +35,10 @@ export class FhiTreeViewSelectionComponent {
   }
 
   ngOnChanges() {
-    this.createIds(this.items, 1);
-    this.updateDecendantState(this.items, true);
+    if (this.items !== undefined) {
+      this.createIds(this.items, 1);
+      this.updateDecendantState(this.items, true);
+    }
   }
 
   toggleExpanded(item: Item) {
