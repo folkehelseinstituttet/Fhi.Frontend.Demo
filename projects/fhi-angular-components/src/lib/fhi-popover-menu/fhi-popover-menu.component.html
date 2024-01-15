@@ -1,0 +1,34 @@
+<button
+  arrow="false"
+  autoClose="outside"
+  class="btn fhi-popover-menu-trigger"
+  [ngbPopover]="popContent"
+  popoverClass="fhi-popover-menu"
+  [popperOptions]="popperOptions"
+  type="button"
+>
+  <i [class]="'icon-' + triggerIcon + ' icon-md'"></i>
+</button>
+
+<ng-template #popContent>
+  <ul class="fhi-popover-menu__list">
+    <li class="fhi-popover-menu__item" *ngFor="let item of items">
+      <a class="fhi-popover-menu__action" [routerLink]="item.routerLink" *ngIf="item.routerLink">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </a>
+      <a class="fhi-popover-menu__action" [href]="item.link.href" *ngIf="item.link && !item.link.download">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </a>
+      <a class="fhi-popover-menu__action" [href]="item.link.href" download *ngIf="item.link && item.link.download">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </a>
+      <button class="fhi-popover-menu__action" type="button" (click)="buttonAction(item.action)" *ngIf="item.action">
+        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
+        {{ item.name }}
+      </button>
+    </li>
+  </ul>
+</ng-template>

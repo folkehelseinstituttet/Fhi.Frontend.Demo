@@ -1,4 +1,10 @@
-# 2.0.0
+# Unreleased
+
+> Jan 10, 2024
+
+* :gift: **New** Add Popover menu
+
+## 2.0.0
 
 > Des 6, 2023
 

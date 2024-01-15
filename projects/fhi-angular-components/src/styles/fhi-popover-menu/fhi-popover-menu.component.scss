@@ -1,0 +1,67 @@
+.fhi-popover-menu {
+    overflow: hidden;
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        min-width: $fhi-core-px * 200;
+        padding: 0;
+    }
+
+    &__item {
+        font-family: $fhi-core-font-family-sans-serif-regular;
+        padding: 0;
+    }
+
+    &__action {
+        background: transparent;
+        border: 0;
+        color: inherit;
+        display: block;
+        font-family: inherit;
+        padding: $fhi-core-space-2 $fhi-core-space-3;
+        text-align: left;
+        text-decoration: none;
+        width: 100%;
+
+        [class*="icon-"] {
+            margin-top: $fhi-core-px * 2;
+            vertical-align: top;
+        }
+
+        &:focus-visible {
+            box-shadow: $input-focus-box-shadow inset !important;
+        }
+
+        &:focus,
+        &:hover {
+            background-color: $fhi-core-grey-light-2;
+            color: inherit;
+        }
+    }
+
+    .popover-body {
+        padding: 0;
+    }
+}
+
+.fhi-popover-menu-trigger {
+    --bs-btn-active-bg: #{$fhi-core-grey-light-2};
+    --bs-btn-hover-bg: #{$fhi-core-grey-light-2};
+
+    background-color: $fhi-core-white;
+    border: 0;
+    border-radius: 50%;
+    height: $fhi-core-px * 44;
+    padding: 0;
+    position: relative;
+    width: $fhi-core-px * 44;
+
+    [class*="icon-"] {
+        position: absolute;
+        left: 50%;
+        margin: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}

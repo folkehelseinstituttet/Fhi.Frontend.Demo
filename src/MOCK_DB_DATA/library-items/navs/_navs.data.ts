@@ -6,6 +6,7 @@ import { NavsIntro } from './_navs.intro';
 import { NavTabs } from './nav-tabs';
 import { NavTiles } from './nav-tiles';
 import { NavButtons } from './nav-buttons';
+import { NavPopoverMenu } from './nav-popover-menu';
 import { NavShortcuts } from './nav-shortcuts';
 import { NavShortcutButtons } from './nav-shortcut-buttons';
 
@@ -13,6 +14,7 @@ const Navs: LibraryItem[] = [
   ...NavTabs,
   ...NavTiles,
   ...NavButtons,
+  ...NavPopoverMenu,
   ...NavShortcuts,
   ...NavShortcutButtons,
 ];

@@ -1,4 +1,4 @@
-<div class="fhi-tree-view-checkbox">
+<div class="fhi-tree-view-checkbox" *ngIf="items">
   <ng-container *ngTemplateOutlet="checkboxItems; context: { items: items, itemId: null }"></ng-container>
 </div>
 

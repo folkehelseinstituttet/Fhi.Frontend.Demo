@@ -1,3 +1,7 @@
 <ng-container *ngIf="itemId === items.NavTabs.id">
   <app-tabs-example></app-tabs-example>
 </ng-container>
+
+<ng-container *ngIf="itemId === items.NavPopoverMenu.id">
+  <fhi-popover-menu [items]="popoverMenuItems" (actionEvent)="action($event)"></fhi-popover-menu>
+</ng-container>
