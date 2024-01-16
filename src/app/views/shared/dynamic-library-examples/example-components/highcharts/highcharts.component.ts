@@ -94,6 +94,7 @@ export class HighchartsComponent implements OnInit {
             title: 'Dødsfall etter årsak, 2017 - 2021',
             series: data,
             diagramTypeNavId: 'default',
+            tableOrientation: 'seriesAsColumns',
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

@@ -13,6 +13,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
   - [Type FhiDiagramOptions](#type-fhidiagramoptions)
   - [Type FhiDiagramSerie](#type-fhidiagramserie)
   - [Type FhiDiagramSerieData](#type-fhidiagramseriedata)
+  - [Type FhiDiagramFlag](#type-fhidiagramflag)
 - [Changelog](#changelog)
 - [Contribute](#contribute)
 - [Demo](#demo)
@@ -115,15 +116,16 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | --------------------- | -------------------------- | --------- | -------- | ----------- |
 | `creditsHref`         | `string`                   | -         | no       | Link to source ref. in footer. |
 | `creditsText`         | `string`                   | -         | no       | Text to source ref. in footer. |
-| `diagramTypeId`       | `FhiDiagramTypeIds`        | `table`   | no       | ID to specify default diagram type. |
-| `diagramTypeNavId`    | `DiagramTypeNavIds`        | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. |
-| `[diagramTypeSubset]` | `Array<FhiDiagramTypeIds>` | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. |
+| `diagramTypeId`       | `string`                   | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
+| `diagramTypeNavId`    | `string`                   | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Values defined by enum `DiagramTypeNavIds` |
+| `[diagramTypeSubset]` | `Array<string>` | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
 | `disclaimer`          | `string`                   | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
 | `[flags]`             | `Array<FhiDiagramFlag>`    | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
 | `lastUpdated`         | `string`                   | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
 | `mapTypeId`           | `MapTypeIds`               | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. |
 | `[openSource]`        | `boolean`                  | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
 | `[series]`            | `Array<FhiDiagramSerie>`   | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
+| `tableOrientation`    | `string`                   | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`               | `string`                   | -         | yes      | The title above the diagram. |
 
 ### Type FhiDiagramSerie
@@ -142,6 +144,13 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | -------- | -------------------- | ------- | -------- | ----------- |
 | `name`   | `string`             | -       | yes      | The name of the data point as shown in the tooltip.
 | `y`      | `number \| string`   | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value. |
+
+### Type FhiDiagramFlag
+
+| Property | Type     | Default | Required | Description |
+| -------- | -------- | ------- | -------- | ----------- |
+| `label`  | `string` | -       | yes      | Description of the flag, ie. _Anonymized_ |
+| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`.
 
 ## Changelog
 

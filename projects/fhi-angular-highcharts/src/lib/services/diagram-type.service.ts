@@ -12,7 +12,6 @@ import {
   DiagramTypes,
   MapTypes,
 } from '../constants-and-enums/fhi-diagram-types';
-import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 
 @Injectable()
 export class DiagramTypeService {
@@ -86,29 +85,18 @@ export class DiagramTypeService {
   }
 
   private updateAvailableChartTypes(): DiagramType[] {
-    const numOfDimensions = this.getNumberOfDimensions();
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
     let chartTypes = ChartTypes;
 
     // Remove line
-    if (
-      numOfDataPointsPrSerie === 1 ||
-      (numOfDimensions > 1 && series.length > 5) ||
-      (series.length > 1 && this.flaggedSeries.length !== 0)
-    ) {
+    if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
       chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
       chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
-    }
-
-    // Remove stacked
-    if (series.length === 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.barStacked);
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.columnStacked);
     }
 
     // Remove bar & column
@@ -140,10 +128,5 @@ export class DiagramTypeService {
   private getNumberOfDataPointsPrSerie(): number {
     // Using series[0] since all series have the same length.
     return this._series[0].data.length;
-  }
-
-  private getNumberOfDimensions(): number {
-    const nameFirstSerie = this._series[0].name as string;
-    return nameFirstSerie.split(Seperator.input).length + 1; // (n column dimentions) + (1 row dimention)
   }
 }
