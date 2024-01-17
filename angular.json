@@ -98,18 +98,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "fhi-frontend-library-web-client:build"
+            "buildTarget": "fhi-frontend-library-web-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "fhi-frontend-library-web-client:build:production"
+              "buildTarget": "fhi-frontend-library-web-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fhi-frontend-library-web-client:build"
+            "buildTarget": "fhi-frontend-library-web-client:build"
           }
         },
         "test": {
