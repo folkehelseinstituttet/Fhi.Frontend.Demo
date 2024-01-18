@@ -27,7 +27,6 @@ import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/dia
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
-import { TableOrientations } from './constants-and-enums/table-orientations';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
