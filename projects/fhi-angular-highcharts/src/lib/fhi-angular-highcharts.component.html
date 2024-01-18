@@ -1,10 +1,21 @@
 <article *ngIf="allDiagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ allDiagramOptions.title }}</h1>
 
-  <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
-    <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
-  </ng-container>
+  <div class="d-md-flex">
+    <div class="me-auto">
+      <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
+        <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      </ng-container>
+    </div>
+    <div style="margin-right: -15px">
+      <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+    </div>
+  </div>
 
+  <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+</article>
+
+<ng-template #diagramAndFooter>
   <ng-container [ngSwitch]="currentDiagramTypeGroup">
     <ng-container *ngSwitchCase="diagramTypeGroups.table">
       <ng-container *ngTemplateOutlet="table"></ng-container>
@@ -18,17 +29,16 @@
       <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-container>
-      <ng-template #chartAnimationHack
-        ><!-- to get correct chart animation when switching from one chart type to another -->
+      <!-- chartAnimationHack: to get correct chart animation when switching from one chart type to another -->
+      <ng-template #chartAnimationHack>
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-template>
     </ng-container>
   </ng-container>
-
   <ng-container *ngIf="showFooter">
     <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
   </ng-container>
-</article>
+</ng-template>
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
@@ -43,6 +53,18 @@
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
   >
   </fhi-diagram-type-nav>
+</ng-template>
+
+<ng-template #diagramModal>
+  <fhi-modal [openModalButtonClass]="'fhi-btn-icon'" [modalTitle]="allDiagramOptions.title" [size]="'fullscreen'">
+    <ng-container fhi-modal.button-text>
+      <i class="icon-arrows-fullscreen"></i>
+      <span class="btn__text">Fullskjerm</span>
+    </ng-container>
+    <ng-container fhi-modal.body>
+      <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+    </ng-container>
+  </fhi-modal>
 </ng-template>
 
 <ng-template #chart>
