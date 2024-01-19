@@ -1,10 +1,10 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const HighchartsWithMenuAndFooter: LibraryItem[] = [
+export const HighchartsAllInclusive: LibraryItem[] = [
   {
-    id: ITEMS.HighchartsWithMenuAndFooter.id,
-    title: ITEMS.HighchartsWithMenuAndFooter.title,
+    id: ITEMS.HighchartsAllInclusive.id,
+    title: ITEMS.HighchartsAllInclusive.title,
     type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),

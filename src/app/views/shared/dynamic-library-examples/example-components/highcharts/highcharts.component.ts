@@ -29,7 +29,7 @@ export class HighchartsComponent implements OnInit {
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
       this.loadData(MockData.TwoSeriesAar);
-    } else if (this.itemId === this.items.HighchartsWithMenuAndFooter.id) {
+    } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.loadData(MockData.OneSerieFylke);
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.loadData(MockData.MultipleSeriesAar);
