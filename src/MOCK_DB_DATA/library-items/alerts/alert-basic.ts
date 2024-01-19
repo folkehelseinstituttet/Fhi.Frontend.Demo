@@ -59,12 +59,12 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <div class="alert alert-info" role="alert">
-  <i class="icon-..."></i> <!-- icon-info-circle | icon-check-circle | icon-bell | icon-exclamation-circle -->
+  <i class="icon-[name]"></i>
   Alert!
 </div>
 
 <div class="alert alert-info fhi-alert-bordered" role="alert">
-  <i class="icon-..."></i>
+  <i class="icon-[name]"></i>
   Alert!
 </div>`;
 }
