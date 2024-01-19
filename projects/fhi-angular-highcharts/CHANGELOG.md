@@ -4,6 +4,8 @@
 
 * :boom: **Breaking** Update to Angular 17
 * :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
+* :tada: **Enhancement** Add a full screen button.
+* :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
 
 ## 1.0.0
 

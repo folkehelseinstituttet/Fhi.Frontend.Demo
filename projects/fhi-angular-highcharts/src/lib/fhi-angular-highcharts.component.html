@@ -1,10 +1,21 @@
 <article *ngIf="allDiagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ allDiagramOptions.title }}</h1>
 
-  <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
-    <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
-  </ng-container>
+  <div class="d-md-flex">
+    <div class="me-auto">
+      <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
+        <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      </ng-container>
+    </div>
+    <div style="margin-right: -15px" *ngIf="allDiagramOptions.showFullScreenButton">
+      <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+    </div>
+  </div>
 
+  <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+</article>
+
+<ng-template #diagramAndFooter>
   <ng-container [ngSwitch]="currentDiagramTypeGroup">
     <ng-container *ngSwitchCase="diagramTypeGroups.table">
       <ng-container *ngTemplateOutlet="table"></ng-container>
@@ -18,17 +29,16 @@
       <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-container>
-      <ng-template #chartAnimationHack
-        ><!-- to get correct chart animation when switching from one chart type to another -->
+      <!-- chartAnimationHack: to get correct chart animation when switching from one chart type to another -->
+      <ng-template #chartAnimationHack>
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-template>
     </ng-container>
   </ng-container>
-
   <ng-container *ngIf="showFooter">
     <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
   </ng-container>
-</article>
+</ng-template>
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
@@ -43,6 +53,19 @@
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
   >
   </fhi-diagram-type-nav>
+</ng-template>
+
+<ng-template #diagramModal>
+  <fhi-modal [openModalButtonClass]="'fhi-btn-icon'" [modalTitle]="allDiagramOptions.title" [size]="'fullscreen'">
+    <ng-container fhi-modal.button-text>
+      <i class="icon-arrows-fullscreen"></i>
+      <span class="btn__text">Fullskjerm</span>
+    </ng-container>
+    <ng-container fhi-modal.body>
+      <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+    </ng-container>
+  </fhi-modal>
 </ng-template>
 
 <ng-template #chart>
@@ -68,23 +91,24 @@
   <div class="table-responsive fhi-highcharts-table">
     <table class="table table-striped table-sm">
       <thead>
-        <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableHeaderRows">
-          <ng-container *ngFor="let tableCellData of headerRow; let i = index">
-            <ng-container *ngIf="tableCellData">
+        <tr class="fhi-highcharts-table__row" *ngFor="let headerRow of tableData.theadRows">
+          <ng-container *ngFor="let tableCell of headerRow; let i = index">
+            <ng-container *ngIf="tableCell">
               <td
                 class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
-                [attr.rowspan]="tableCellData.rowspan ? tableCellData.rowspan : null"
-                *ngIf="i === 0 && tableCellData.rowspan; else tableHeaderCell"
+                [attr.colspan]="tableCell.colspan ? tableCell.colspan : null"
+                [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
+                *ngIf="!tableCell.isHeading; else tableHeaderCell"
               ></td>
               <ng-template #tableHeaderCell>
                 <th
                   class="fhi-highcharts-table__cell fhi-highcharts-table__cell--col-header"
                   [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
-                  [attr.colspan]="tableCellData.colspan ? tableCellData.colspan : null"
+                  [attr.colspan]="tableCell.colspan ? tableCell.colspan : null"
                   scope="col"
-                  *ngIf="tableCellData.name"
+                  *ngIf="tableCell.isHeading && tableCell.name !== undefined"
                 >
-                  {{ tableCellData.name }}
+                  {{ tableCell.name }}
                 </th>
               </ng-template>
             </ng-container>
@@ -92,21 +116,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tableRow of tableBodyRows" class="fhi-highcharts-table__row">
-          <ng-container *ngFor="let tableCellData of tableRow; let i = index">
+        <tr *ngFor="let tableRow of tableData.tbodyRows" class="fhi-highcharts-table__row">
+          <ng-container *ngFor="let tableCell of tableRow; let i = index">
             <th
-              *ngIf="i === 0"
-              scope="row"
               class="text-nowrap fhi-highcharts-table__cell fhi-highcharts-table__cell--row-header"
+              [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
+              scope="row"
+              *ngIf="tableCell.isHeading && tableCell.name !== undefined"
             >
-              {{ tableCellData }}
+              {{ tableCell.name }}
             </th>
-            <td class="fhi-highcharts-table__cell" *ngIf="i !== 0">
-              <ng-container *ngIf="tableCellDataOK(tableCellData); else tableCellDataIsString">
-                {{ tableCellData | number }}
+            <td class="fhi-highcharts-table__cell" *ngIf="!tableCell.isHeading">
+              <ng-container *ngIf="tableCellDataOK(tableCell.data); else tableCellDataIsString">
+                {{ tableCell.data | number }}
               </ng-container>
               <ng-template #tableCellDataIsString>
-                {{ tableCellData }}
+                {{ tableCell.data }}
               </ng-template>
             </td>
           </ng-container>

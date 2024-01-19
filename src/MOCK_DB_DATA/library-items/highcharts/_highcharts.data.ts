@@ -4,13 +4,13 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 import { HighchartsIntro } from './_highcharts.intro';
 
 import { HighchartsWithoutMenu } from './highcharts-without-menu';
-import { HighchartsWithMenuAndFooter } from './highcharts-with-menu-and-footer';
+import { HighchartsAllInclusive } from './highcharts-all-inclusive';
 import { HighchartsWithMenu } from './highcharts-with-menu';
 
 const Highcharts: LibraryItem[] = [
   ...HighchartsWithoutMenu,
   ...HighchartsWithMenu,
-  ...HighchartsWithMenuAndFooter,
+  ...HighchartsAllInclusive,
 ];
 
 export const HighchartsData: LibraryItemGroup = {

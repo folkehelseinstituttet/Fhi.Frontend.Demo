@@ -10,6 +10,7 @@ import {
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import { tr } from 'date-fns/locale';
 
 @Component({
   selector: 'app-highcharts',
@@ -28,7 +29,7 @@ export class HighchartsComponent implements OnInit {
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
       this.loadData(MockData.TwoSeriesAar);
-    } else if (this.itemId === this.items.HighchartsWithMenuAndFooter.id) {
+    } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.loadData(MockData.OneSerieFylke);
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.loadData(MockData.MultipleSeriesAar);
@@ -46,6 +47,20 @@ export class HighchartsComponent implements OnInit {
             diagramTypeId: 'line',
             title: 'Dødsfall etter årsak, 2008 - 2018',
             series: data,
+          };
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        },
+        error: (e) => console.error(e),
+      });
+    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
+      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
+        next: (data: FhiDiagramSerie[]) => {
+          this.diagramOptions = {
+            title: 'Dødsfall etter årsak, 2017 - 2021',
+            series: data,
+            diagramTypeNavId: 'default',
+            tableOrientation: 'seriesAsColumns',
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -81,19 +96,7 @@ export class HighchartsComponent implements OnInit {
             lastUpdated: '06.06.2023',
             mapTypeId: 'mapFylker',
             openSource: false,
-          };
-          this.dataIsLoading = false;
-          this.dataIsLoaded = true;
-        },
-        error: (e) => console.error(e),
-      });
-    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
-      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
-        next: (data: FhiDiagramSerie[]) => {
-          this.diagramOptions = {
-            title: 'Dødsfall etter årsak, 2017 - 2021',
-            series: data,
-            diagramTypeNavId: 'default',
+            showFullScreenButton: true,
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
