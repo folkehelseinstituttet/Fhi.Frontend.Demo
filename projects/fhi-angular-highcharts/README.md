@@ -2,25 +2,27 @@
 
 _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular](https://github.com/highcharts/highcharts-angular)_
 
-- [Dependencies](#dependencies)
-- [Get started](#get-started)
-  - [Install](#install)
-  - [Add to app](#add-to-app)
-  - [Remove warnings](#remove-warnings)
-- [API](#api)
-  - [Inputs](#inputs)
-  - [Outputs](#outputs)
-  - [Type FhiDiagramOptions](#type-fhidiagramoptions)
-  - [Type FhiDiagramSerie](#type-fhidiagramserie)
-  - [Type FhiDiagramSerieData](#type-fhidiagramseriedata)
-- [Changelog](#changelog)
-- [Contribute](#contribute)
-- [Demo](#demo)
+- [FHI Angular Highcharts](#fhi-angular-highcharts)
+  - [Dependencies](#dependencies)
+  - [Get started](#get-started)
+    - [Install](#install)
+    - [Add to app](#add-to-app)
+    - [Remove warnings](#remove-warnings)
+  - [API](#api)
+    - [Inputs](#inputs)
+    - [Outputs](#outputs)
+    - [Type FhiDiagramOptions](#type-fhidiagramoptions)
+    - [Type FhiDiagramSerie](#type-fhidiagramserie)
+    - [Type FhiDiagramSerieData](#type-fhidiagramseriedata)
+  - [Changelog](#changelog)
+  - [Contribute](#contribute)
+  - [Demo](#demo)
 
 ## Dependencies
 
 | FHI Angular Highcharts | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
+| Unreleased             | 5         | 5         | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
 | 1.x.x                  | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
 | 0.7.0                  | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
 | 0.6.x                  | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |

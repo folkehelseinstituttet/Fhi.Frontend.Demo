@@ -3,7 +3,7 @@
 > Jan 17, 2024
 
 * :boom: **Breaking** Update to Angular 17
-* :boom: **Breaking** Update to NgBootstrap 16 See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
+* :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
 * :gift: **New** Add Popover menu
 
 ## 2.0.0
