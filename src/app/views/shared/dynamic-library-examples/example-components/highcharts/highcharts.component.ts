@@ -10,6 +10,7 @@ import {
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import { tr } from 'date-fns/locale';
 
 @Component({
   selector: 'app-highcharts',
@@ -52,6 +53,20 @@ export class HighchartsComponent implements OnInit {
         },
         error: (e) => console.error(e),
       });
+    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
+      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
+        next: (data: FhiDiagramSerie[]) => {
+          this.diagramOptions = {
+            title: 'Dødsfall etter årsak, 2017 - 2021',
+            series: data,
+            diagramTypeNavId: 'default',
+            tableOrientation: 'seriesAsColumns',
+          };
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        },
+        error: (e) => console.error(e),
+      });
     } else if (dataSetIndex === MockData.OneSerieFylke) {
       this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
         next: (data: FhiDiagramSerie[]) => {
@@ -81,20 +96,7 @@ export class HighchartsComponent implements OnInit {
             lastUpdated: '06.06.2023',
             mapTypeId: 'mapFylker',
             openSource: false,
-          };
-          this.dataIsLoading = false;
-          this.dataIsLoaded = true;
-        },
-        error: (e) => console.error(e),
-      });
-    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
-      this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
-        next: (data: FhiDiagramSerie[]) => {
-          this.diagramOptions = {
-            title: 'Dødsfall etter årsak, 2017 - 2021',
-            series: data,
-            diagramTypeNavId: 'default',
-            tableOrientation: 'seriesAsColumns',
+            showFullScreenButton: true,
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

@@ -7,7 +7,7 @@
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
     </div>
-    <div style="margin-right: -15px">
+    <div style="margin-right: -15px" *ngIf="allDiagramOptions.showFullScreenButton">
       <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
     </div>
   </div>

@@ -20,6 +20,7 @@ export interface FhiDiagramOptions {
   mapTypeId?: keyof typeof MapTypeIds;
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
+  showFullScreenButton?: boolean;
   tableOrientation?: FhiTableOrientations;
   title: string;
 }
