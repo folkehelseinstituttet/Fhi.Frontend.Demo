@@ -9,4 +9,6 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 export class AccordionsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
+
+  accordionItems = ['1', '2', '3'];
 }

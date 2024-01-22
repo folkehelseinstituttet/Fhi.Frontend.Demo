@@ -176,9 +176,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu',
     title: 'Highcharts with menu',
   },
-  HighchartsWithMenuAndFooter: {
-    id: 'highcharts-with-menu-and-footer',
-    title: 'Highcharts with menu and footer',
+  HighchartsAllInclusive: {
+    id: 'highcharts-all-inclusive',
+    title: 'Highcharts all inclusive',
   },
 
   LayoutTemplateBasic: {

@@ -1,0 +1,30 @@
+<button class="btn {{ openModalButtonClass }}" (click)="onClickOpenModal(modalContent)">
+  <ng-content select="[fhi-modal.button-text]"></ng-content>
+</button>
+
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h2 class="modal-title overflow-hidden" style="text-overflow: ellipsis">{{ modalTitle }}</h2>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <ng-content select="[fhi-modal.body]"></ng-content>
+  </div>
+  <div class="modal-footer">
+    <button
+      class="btn fhi-btn-link"
+      *ngIf="actionButtons.length > 1 || actionButtons[0].name !== 'Lukk'"
+      (click)="modal.dismiss()"
+    >
+      Avbryt
+    </button>
+
+    <button
+      class="btn fhi-btn-{{ button.primary ? 'primary' : 'secondary' }}"
+      (click)="onModalAction(button)"
+      *ngFor="let button of buttons"
+    >
+      {{ button.name }}
+    </button>
+  </div>
+</ng-template>
