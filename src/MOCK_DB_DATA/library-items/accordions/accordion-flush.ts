@@ -26,24 +26,20 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ngb-accordion [closeOthers]="true" activeIds="custom-id-0"
-                 class="accordion-flush">
-  <ngb-panel id="custom-id-0" title="Item #1">
-    <ng-template ngbPanelContent>
-      <p>Item #1 content</p>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel id="custom-id-1" title="Item #2">
-    <ng-template ngbPanelContent>
-      <p>Item #2 content</p>
-    </ng-template>
-  </ngb-panel>
-  <ngb-panel id="custom-id-2" title="Item #3">
-    <ng-template ngbPanelContent>
-      <p>Item #3 content</p>
-    </ng-template>
-  </ngb-panel>
-</ngb-accordion>`;
+<div class="accordion-flush" ngbAccordion [closeOthers]="true">
+  @for (item of accordionItems; track item) {
+    <div ngbAccordionItem [collapsed]="item !== 'First'">
+      <h2 ngbAccordionHeader>
+        <button ngbAccordionButton>Element #{{ item }}</button>
+      </h2>
+      <div ngbAccordionCollapse>
+        <div ngbAccordionBody>
+          <ng-template>Innhold element #{{ item }}</ng-template>
+        </div>
+      </div>
+    </div>
+  }
+</div>`;
 }
 
 /*

@@ -1,6 +1,6 @@
 import { SharedConstants } from 'src/app/views/shared/shared.constants';
 
-const bootstrapVersion = '5.2';
+const bootstrapVersion = '5.3';
 const bootstrapDocBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}`;
 const npmBaseUrl = 'https://www.npmjs.com/package/@folkehelseinstituttet';
 const githubBaseUrl = 'https://github.com/folkehelseinstituttet';

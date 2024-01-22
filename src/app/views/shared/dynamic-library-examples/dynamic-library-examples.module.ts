@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -66,7 +66,13 @@ const NGB_EXAMPLES = [];
     // TODO: remove
     ...NGB_EXAMPLES,
   ],
-  imports: [NgbTooltipModule, NgSelectModule, SharedModule, FormControlsComponent],
+  imports: [
+    NgbAccordionModule,
+    NgbTooltipModule,
+    NgSelectModule,
+    SharedModule,
+    FormControlsComponent,
+  ],
   exports: [
     NgSelectModule,
     DynamicLibraryExampleComponent,
