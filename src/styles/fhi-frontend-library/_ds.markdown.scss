@@ -45,7 +45,7 @@ pre[class*="language-"] {
 }
 
 pre[class*="language-html"] {
-    color: darken($fhi-core-grey-2, 18%);
+    color: darken($fhi-core-grey-1, 18%);
     margin-right: $fhi-core-space-7;
 }
 
@@ -124,14 +124,12 @@ pre[class*="language-js"] {
     .token.comment,
     .token.prolog,
     .token.doctype,
-    .token.cdata {
+    .token.cdata,
+    .token.string {
         color: $fhi-core-grey-1;
     }
     .token.punctuation {
         color: $fhi-core-grey-3;
-    }
-    .token.string {
-        color: $fhi-core-grey-2;
     }
     .token.function {
         color: $fhi-core-blue-grey-5;
