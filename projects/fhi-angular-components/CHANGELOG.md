@@ -1,6 +1,6 @@
-# 3.0.0
+# Unreleased
 
-> Jan 22, 2024
+> Jan 17, 2024
 
 * :boom: **Breaking** Update to Angular 17
 * :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
