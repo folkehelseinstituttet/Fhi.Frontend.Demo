@@ -1,4 +1,4 @@
-# Unreleased
+# 3.0.0
 
 > Jan 23, 2024
 
