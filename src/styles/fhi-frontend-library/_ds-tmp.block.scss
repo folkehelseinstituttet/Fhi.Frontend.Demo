@@ -3,8 +3,7 @@
         font-size: $fhi-core-font-size-2;
     }
     .nav-link.active,
-    .nav-item.show .nav-link
-    .nav-link:hover {
+    .nav-item.show .nav-link .nav-link:hover {
         color: $fhi-core-grey-4;
         background-color: $fhi-core-grey-light-3;
         text-decoration: none;
@@ -98,15 +97,7 @@
         background-color: $fhi-core-grey-4;
     }
 
-    // Koksgrå
-    &__color--fhi-core-charcoal-1 {
-        background-color: $fhi-core-charcoal-1;
-    }
-
     // Blue/Grey
-    &__color--fhi-core-blue-grey-1 {
-        background-color: $fhi-core-blue-grey-1;
-    }
     &__color--fhi-core-blue-grey-2 {
         background-color: $fhi-core-blue-grey-2;
     }
@@ -115,12 +106,6 @@
     }
     &__color--fhi-core-blue-grey-4 {
         background-color: $fhi-core-blue-grey-4;
-    }
-    &__color--fhi-core-blue-grey-5 {
-        background-color: $fhi-core-blue-grey-5;
-    }
-    &__color--fhi-core-blue-grey-6 {
-        background-color: $fhi-core-blue-grey-6;
     }
     &__color--fhi-core-blue-grey-7 {
         background-color: $fhi-core-blue-grey-7;
@@ -143,11 +128,6 @@
     }
     &__color--fhi-core-green-2 {
         background-color: $fhi-core-green-2;
-    }
-
-    // Yellow
-    &__color--fhi-core-yellow-1 {
-        background-color: $fhi-core-yellow-1;
     }
 
     // Orange
@@ -175,12 +155,6 @@
     &__color--fhi-core-pink-light-1 {
         background-color: $fhi-core-pink-light-1;
     }
-    &__color--fhi-core-pink-light-2 {
-        background-color: $fhi-core-pink-light-2;
-    }
-    &__color--fhi-core-pink-light-4 {
-        background-color: $fhi-core-pink-light-2;
-    }
 }
 
 .ds-icons-wrapper {
@@ -190,8 +164,11 @@
 
         [class*="icon-"] {
             cursor: pointer;
-            margin-right: .5rem;
-            transition: height .15s, width .15s, margin-top .15s;
+            margin-right: 0.5rem;
+            transition:
+                height 0.15s,
+                width 0.15s,
+                margin-top 0.15s;
         }
 
         .icon-sm {
