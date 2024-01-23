@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'dev'
+      - 'releases'
     paths:
       - 'projects/fhi-angular-components/package.json'
 
@@ -14,22 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Build fhi-angular-components
         run: |
-         npm install
-         npm run build-angular-components
+          npm install
+          npm run build-angular-components
 
       - name: Check new npm version and publish
         id: publish
-        uses: JS-DevTools/npm-publish@v1.4.3
+        uses: JS-DevTools/npm-publish@v3.0.1
         with:
-          access: "public"
+          access: 'public'
           check-version: true
           package: dist/fhi-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
