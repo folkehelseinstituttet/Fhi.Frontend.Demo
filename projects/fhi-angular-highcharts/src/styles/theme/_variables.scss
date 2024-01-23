@@ -2,7 +2,6 @@
  * Fhi Highcharts Theme
  */
 
-
 // Colors
 
 // Neutral colors, grayscale by default. The default colors are defined by mixing the background-color with neutral, with a weight corresponding to the number in the name.
@@ -23,15 +22,8 @@ $highlight-color-20: #ccd6eb !default; // Ticks and axis line.
 $highlight-color-10: #e6ebf5 !default; // Pressed button, color axis min color.
 
 // Data series and points (extends default FHI color palette)
-$colors:
-    #0975B5,
-    #709900,
-    #393c61,
-    #FC5F56,
-    #2EA1C0,
-    #B11643,
-    #F7B500,
-    #A9B7BF;
+$colors: #0067c4, #c360b2, #64a409, #f86559, #7f85fa, #94949e, #5a9ca0, #f7b501,
+    #e665b7;
 
 $inline-link-hover-color: #b10640;
 $text-color: #222222;
@@ -41,7 +33,6 @@ $white: #ffffff;
 
 // Chart background, point stroke for markers and columns etc
 $background-color: #ffffff !default;
-
 
 // Fonts
 
@@ -54,9 +45,9 @@ $subtitle-font-size: 1em !default;
 $legend-font-size: 1em !default;
 $axis-labels-font-size: 0.9em !default;
 
-$font-family-highcharts-regular: 'SourceSansPro Regular', sans-serif;
-$font-family-highcharts-italic: 'SourceSansPro Italic', sans-serif;
-$font-family-highcharts-semi-bold: 'SourceSansPro SemiBold', sans-serif;
+$font-family-highcharts-regular: "SourceSansPro Regular", sans-serif;
+$font-family-highcharts-italic: "SourceSansPro Italic", sans-serif;
+$font-family-highcharts-semi-bold: "SourceSansPro SemiBold", sans-serif;
 
 // Tooltip
 $tooltip-border: 0 !default;
@@ -78,15 +69,15 @@ $context-button-background: $background-color !default;
 
 $highcharts-button-background: $neutral-color-3 !default;
 $highcharts-button-border: $neutral-color-20 !default;
-$highcharts-button-text:  $neutral-color-80 !default;
+$highcharts-button-text: $neutral-color-80 !default;
 
 $highcharts-button-pressed-background: $highlight-color-10 !default;
 $highcharts-button-pressed-border: $neutral-color-20 !default;
-$highcharts-button-pressed-text:  $neutral-color-80 !default;
+$highcharts-button-pressed-text: $neutral-color-80 !default;
 
 $highcharts-button-hover-background: $neutral-color-10 !default;
 $highcharts-button-hover-border: $neutral-color-20 !default;
-$highcharts-button-hover-text:  $neutral-color-80 !default;
+$highcharts-button-hover-text: $neutral-color-80 !default;
 
 // Navigator
 $navigator-series-fill: $highlight-color-80 !default;
