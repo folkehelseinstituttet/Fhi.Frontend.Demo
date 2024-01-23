@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
+import { LibraryItemConstants as CONST } from 'src/MOCK_DB_DATA/library-items/library-item-constants';
 
 @Component({
   selector: 'app-article',
@@ -72,7 +73,7 @@ export class ArticleComponent implements OnInit {
 
   private getArticleHtmlForDeveloperComponents(): any {
     return `
-<p>Komponentbiblioteket i FHI Designsystem baserer seg på <a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">Bootstrap 5</a>. Interaktive komponenter benytter <a href="https://ng-bootstrap.github.io/" class="text-nowrap">ng-bootstrap</a> og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av FHI.</p>
+<p>Komponentbiblioteket i FHI Designsystem baserer seg på <a href="${CONST.BootstrapBaseUrl}">Bootstrap 5</a>. Interaktive komponenter benytter <a href="${CONST.NgBootstrapBaseUrl}" class="text-nowrap">ng-bootstrap</a> og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av FHI.</p>
 
 <p>Alle løsninger kan konsumere stilsettet uavhengig av hvilket rammeverk som er benyttet. Legg til CSS fra FHI Designsystem: <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">@folkehelseinstituttet/style</a>.</p>
 
