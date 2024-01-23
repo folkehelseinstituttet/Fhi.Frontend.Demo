@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'dev'
+      - 'release'
     paths:
       - 'projects/fhi-angular-components/package.json'
 
