@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -9,11 +9,11 @@ import { LibraryItemConstants as CONST } from 'src/MOCK_DB_DATA/library-items/li
   selector: 'app-article',
   templateUrl: './article.component.html',
 })
-export class ArticleComponent implements OnInit {
-  title: string;
-  articleHtml: any;
-
+export class ArticleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
+
+  title: string;
+  articleHtml: string;
 
   constructor(private urlService: UrlService) {}
 
@@ -66,12 +66,12 @@ export class ArticleComponent implements OnInit {
     console.log('findSecondLevelDesigner() not implemented...');
   }
 
-  private getArticleHtmlForDeveloperVisualIdentity(): any {
+  private getArticleHtmlForDeveloperVisualIdentity(): string {
     return `
 <p>For at alle våre produkter skal ha en tydelig og gjenkjennbar profil må farger, ikonbruk, typografi, logo og illustrasjoner henge sammen og brukes konsistent.</p>`;
   }
 
-  private getArticleHtmlForDeveloperComponents(): any {
+  private getArticleHtmlForDeveloperComponents(): string {
     return `
 <p>Komponentbiblioteket i FHI Designsystem baserer seg på <a href="${CONST.BootstrapBaseUrl}">Bootstrap 5</a>. Interaktive komponenter benytter <a href="${CONST.NgBootstrapBaseUrl}" class="text-nowrap">ng-bootstrap</a> og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av FHI.</p>
 
@@ -82,12 +82,12 @@ export class ArticleComponent implements OnInit {
 <p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
   }
 
-  private getArticleHtmlForDeveloperLayoutAndPageTemplates(): any {
+  private getArticleHtmlForDeveloperLayoutAndPageTemplates(): string {
     return `
 <p>Her finner du eksempler på hvordan man plasserer innholdet på en side.</p>`;
   }
 
-  private getArticleHtmlForDeveloperPrototypes(): any {
+  private getArticleHtmlForDeveloperPrototypes(): string {
     return `
 <p>Her finner du eksempler på større enheter og klikkbare prototyper ofte produsert for spesifikke prosjekter.</p>`;
   }
