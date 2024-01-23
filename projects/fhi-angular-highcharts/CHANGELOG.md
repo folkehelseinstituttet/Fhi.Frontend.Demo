@@ -1,11 +1,13 @@
 # 2.0.0
 
-> Jan 22, 2024
+> Jan 23, 2024
 
 * :boom: **Breaking** Update to Angular 17
 * :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
 
 ## 1.1.0
+
+> Jan 23, 2024
 
 * :tada: **Enhancement** Add a full screen button.
 * :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
