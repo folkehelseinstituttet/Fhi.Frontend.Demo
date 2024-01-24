@@ -6,12 +6,15 @@
 <fhi-modal [modalTitle]="'Overskrift'" [actionButtons]="actionButtons" (modalAction)="onModalAction($event)">
   <ng-container fhi-modal.button>Åpne standard modalvindu</ng-container>
   <ng-container fhi-modal.body>
-    <pre><code>&#64;Input() actionButtons: ActionButton[] = {{ actionButtons | json }};</code></pre>
+    <pre><code>&#64;Input() actionButtons: FhiModalActionButton[] = {{ actionButtons | json }};</code></pre>
   </ng-container>
 </fhi-modal>
 <br />
-<fhi-modal [modalTitle]="'Overskrift'" [size]="'fullscreen'">
-  <ng-container fhi-modal.button>Åpne fullskjerm modalvindu</ng-container>
+<fhi-modal [modalTitle]="'Overskrift'" [size]="'fullscreen'" [openModalButtonClass]="'fhi-btn-icon'">
+  <ng-container fhi-modal.button>
+    <i class="icon-arrows-fullscreen"></i>
+    <span class="btn__text">Åpne fullskjerm modalvindu</span>
+  </ng-container>
   <ng-container fhi-modal.body>
     <p>Modalvindu innhold.</p>
   </ng-container>
