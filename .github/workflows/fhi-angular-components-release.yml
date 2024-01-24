@@ -31,11 +31,11 @@ jobs:
         uses: JS-DevTools/npm-publish@v3.0.1
         with:
           access: 'public'
-          check-version: true
+          strategy: all
           package: dist/fhi-angular-components/package.json
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Post publish status
-        if: steps.publish.outputs.type != 'none'
+        if: steps.publish.outputs.type
         run: |
           echo "New Version: ${{ steps.publish.outputs.version }} has replaced old version: ${{ steps.publish.outputs.old-version }}"
