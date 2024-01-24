@@ -14,7 +14,7 @@
     <button class="btn fhi-btn-secondary" *ngIf="!buttons || buttons.length === 0" (click)="modal.dismiss()">
       Lukk
     </button>
-    <button class="btn fhi-btn-link" *ngIf="buttons && buttons.length > 1" (click)="modal.dismiss()">Avbryt</button>
+    <button class="btn fhi-btn-link" *ngIf="buttons && buttons.length > 0" (click)="modal.dismiss()">Avbryt</button>
     <button
       class="btn fhi-btn-{{ button.primary ? 'primary' : 'secondary' }}"
       [disabled]="!button.enabled"

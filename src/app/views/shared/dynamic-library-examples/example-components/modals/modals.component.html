@@ -10,7 +10,12 @@
   </ng-container>
 </fhi-modal>
 <br />
-<fhi-modal [modalTitle]="'Overskrift'" [size]="'fullscreen'" [openModalButtonClass]="'fhi-btn-icon'">
+<fhi-modal
+  [modalTitle]="'Overskrift'"
+  [actionButtons]="[{ name: 'Handling 1', enabled: true }]"
+  [size]="'fullscreen'"
+  [openModalButtonClass]="'fhi-btn-icon'"
+>
   <ng-container fhi-modal.button>
     <i class="icon-arrows-fullscreen"></i>
     <span class="btn__text">Åpne fullskjerm modalvindu</span>
