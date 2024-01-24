@@ -288,6 +288,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return false;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private getErrorMsg(error: any) {
     return `ERROR: @Input() diagramOptions === undefined,
     diagramOptions.title === undefined or diagramOptions.series === undefined
