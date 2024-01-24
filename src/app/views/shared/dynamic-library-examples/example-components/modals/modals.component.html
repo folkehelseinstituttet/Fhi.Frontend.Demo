@@ -1,23 +1,18 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h2 class="modal-title" id="modal-basic-title">Overskrift</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-  </div>
-  <div class="modal-body">
+<fhi-modal [modalTitle]="'Overskrift'" [size]="'sm'">
+  <ng-container fhi-modal.button>Åpne lite modalvindu</ng-container>
+  <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
+</fhi-modal>
+<br />
+<fhi-modal [modalTitle]="'Overskrift'" [actionButtons]="actionButtons" (modalAction)="onModalAction($event)">
+  <ng-container fhi-modal.button>Åpne standard modalvindu</ng-container>
+  <ng-container fhi-modal.body>
+    <pre><code>&#64;Input() actionButtons: ActionButton[] = {{ actionButtons | json }};</code></pre>
+  </ng-container>
+</fhi-modal>
+<br />
+<fhi-modal [modalTitle]="'Overskrift'" [size]="'fullscreen'">
+  <ng-container fhi-modal.button>Åpne fullskjerm modalvindu</ng-container>
+  <ng-container fhi-modal.body>
     <p>Modalvindu innhold.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Avbryt</button>
-    <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Lagre</button>
-  </div>
-</ng-template>
-
-<p>
-  <button type="button" class="btn fhi-btn-link" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
-</p>
-<p>
-  <button type="button" class="btn fhi-btn-link" (click)="open(content, 'sm')">Åpne lite modalvindu</button>
-</p>
-<p>
-  <button type="button" class="btn fhi-btn-link" (click)="openFullscreen(content)">Åpne fullskjerm-modal</button>
-</p>
+  </ng-container>
+</fhi-modal>

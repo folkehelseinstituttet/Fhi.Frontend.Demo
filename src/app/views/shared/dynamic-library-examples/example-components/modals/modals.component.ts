@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modals',
@@ -11,15 +10,13 @@ export class ModalsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  closeResult = '';
+  actionButtons = [
+    { name: 'Handling 2', enabled: false },
+    { name: 'Handling 2', enabled: true },
+    { name: 'Handling 1', enabled: true },
+  ];
 
-  constructor(private modalService: NgbModal) {}
-
-  open(content: any, openSize = 'md') {
-    this.modalService.open(content, { size: openSize, scrollable: true });
-  }
-
-  openFullscreen(content: any) {
-    this.modalService.open(content, { fullscreen: true });
+  onModalAction(action: string) {
+    console.info('onModalAction:', action);
   }
 }

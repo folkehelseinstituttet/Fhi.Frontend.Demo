@@ -10,6 +10,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { cloneDeep } from 'lodash-es';
 
 interface ActionButton {
   name: string;
@@ -27,26 +28,24 @@ interface ActionButton {
   providers: [NgbModal],
 })
 export class FhiModalComponent implements OnChanges {
-  @Input() actionButtons = [{ name: 'Lukk', enabled: true }];
+  @Input() actionButtons: ActionButton[];
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
   @Input() scrollable = false;
-  @Input() size = 'sm';
+  @Input() size = 'md';
 
   @Output() dismissModal = new EventEmitter();
   @Output() modalAction = new EventEmitter<string | undefined>();
   @Output() openModal = new EventEmitter();
 
-  buttonType = 'primary';
   buttons!: ActionButton[];
 
   constructor(private modal: NgbModal) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['actionButtons']) {
-      const buttons = this.actionButtons as ActionButton[];
-      buttons[buttons.length - 1].primary = true;
-      this.buttons = buttons;
+      this.buttons = cloneDeep(this.actionButtons);
+      this.buttons[this.buttons.length - 1].primary = true;
     }
   }
 

@@ -21,9 +21,9 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 ## Dependencies
 
-| FHI Angular Highcharts | FHI Angular Highcharts | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
+| FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | ---------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 2.1.x                  | 3.?.?                  | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
+| Unreleased            | Unreleased                  | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
 | 2.0.x                  | -                      | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
 | 1.x.x                  | -                      | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
 | 0.7.0                  | -                      | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |

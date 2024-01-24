@@ -1,5 +1,5 @@
 <button class="btn {{ openModalButtonClass }}" (click)="onClickOpenModal(modalContent)">
-  <ng-content select="[fhi-modal.button-text]"></ng-content>
+  <ng-content select="[fhi-modal.button]"></ng-content>
 </button>
 
 <ng-template #modalContent let-modal>
@@ -11,16 +11,15 @@
     <ng-content select="[fhi-modal.body]"></ng-content>
   </div>
   <div class="modal-footer">
-    <button
-      class="btn fhi-btn-link"
-      *ngIf="actionButtons.length > 1 || actionButtons[0].name !== 'Lukk'"
-      (click)="modal.dismiss()"
-    >
-      Avbryt
+    <button class="btn fhi-btn-secondary" *ngIf="!buttons || buttons.length === 0" (click)="modal.dismiss()">
+      Lukk
     </button>
+
+    <button class="btn fhi-btn-link" *ngIf="buttons && buttons.length > 1" (click)="modal.dismiss()">Avbryt</button>
 
     <button
       class="btn fhi-btn-{{ button.primary ? 'primary' : 'secondary' }}"
+      [disabled]="!button.enabled"
       (click)="onModalAction(button)"
       *ngFor="let button of buttons"
     >
