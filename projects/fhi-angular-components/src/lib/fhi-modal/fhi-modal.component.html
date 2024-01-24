@@ -4,7 +4,7 @@
 
 <ng-template #modalContent let-modal>
   <div class="modal-header">
-    <h2 class="modal-title overflow-hidden" style="text-overflow: ellipsis">{{ modalTitle }}</h2>
+    <h2 class="modal-title">{{ modalTitle }}</h2>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body">
@@ -14,9 +14,7 @@
     <button class="btn fhi-btn-secondary" *ngIf="!buttons || buttons.length === 0" (click)="modal.dismiss()">
       Lukk
     </button>
-
     <button class="btn fhi-btn-link" *ngIf="buttons && buttons.length > 1" (click)="modal.dismiss()">Avbryt</button>
-
     <button
       class="btn fhi-btn-{{ button.primary ? 'primary' : 'secondary' }}"
       [disabled]="!button.enabled"

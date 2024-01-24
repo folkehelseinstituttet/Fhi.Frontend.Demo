@@ -11,12 +11,7 @@ import {
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { cloneDeep } from 'lodash-es';
-
-interface ActionButton {
-  name: string;
-  enabled: boolean;
-  primary?: boolean;
-}
+import { FhiModalActionButton } from './fhi-modal-action-button.model';
 
 @Component({
   selector: 'fhi-modal',
@@ -28,7 +23,7 @@ interface ActionButton {
   providers: [NgbModal],
 })
 export class FhiModalComponent implements OnChanges {
-  @Input() actionButtons: ActionButton[];
+  @Input() actionButtons: FhiModalActionButton[];
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
   @Input() scrollable = false;
@@ -38,7 +33,7 @@ export class FhiModalComponent implements OnChanges {
   @Output() modalAction = new EventEmitter<string | undefined>();
   @Output() openModal = new EventEmitter();
 
-  buttons!: ActionButton[];
+  buttons!: FhiModalActionButton[];
 
   constructor(private modal: NgbModal) {}
 
@@ -64,12 +59,15 @@ export class FhiModalComponent implements OnChanges {
     });
   }
 
-  onModalAction(actionButton: ActionButton) {
-    if (!actionButton.enabled) {
-      this.modalAction.emit();
-      return;
-    }
-    this.modalAction.emit(actionButton.name);
+  onModalAction(button: FhiModalActionButton) {
+    // TODO: should we use [disabled]="!button.enabled" in the
+    //       template as currently implemented
+    //       OR should we emit undefined (code blow)?
+    // if (!button.enabled) {
+    //   this.modalAction.emit();
+    //   return;
+    // }
+    this.modalAction.emit(button.name);
     this.modal.dismissAll();
   }
 }
