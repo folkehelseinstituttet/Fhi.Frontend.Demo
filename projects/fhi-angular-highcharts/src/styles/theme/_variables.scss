@@ -2,6 +2,7 @@
  * Fhi Highcharts Theme
  */
 
+// TODO: Color variables are deprecated since Highcharts 11; the system below must be updated!
 // Colors
 
 // Neutral colors, grayscale by default. The default colors are defined by mixing the background-color with neutral, with a weight corresponding to the number in the name.
@@ -21,18 +22,14 @@ $highlight-color-60: #6685c2 !default; // Navigator mask fill.
 $highlight-color-20: #ccd6eb !default; // Ticks and axis line.
 $highlight-color-10: #e6ebf5 !default; // Pressed button, color axis min color.
 
-// Data series and points (extends default FHI color palette)
-$colors: #0067c4, #c360b2, #64a409, #f86559, #7f85fa, #94949e, #5a9ca0, #f7b501,
-    #e665b7;
+// Chart background, point stroke for markers and columns etc
+$background-color: #ffffff !default;
+
+$line-color-1: #dddddd;
+$line-color-2: #dddddd;
 
 $inline-link-hover-color: #b10640;
 $text-color: #222222;
-$line-color-1: #dddddd;
-$line-color-2: #dddddd;
-$white: #ffffff;
-
-// Chart background, point stroke for markers and columns etc
-$background-color: #ffffff !default;
 
 // Fonts
 
