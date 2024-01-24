@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'dev'
-      - 'release'
+      - 'releases'
     paths:
       - 'projects/fhi-angular-highcharts/package.json'
 
