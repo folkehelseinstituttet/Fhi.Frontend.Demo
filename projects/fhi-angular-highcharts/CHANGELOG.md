@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jan 23, 2024
+> Jan 24, 2024
 
+* :tada: **Enhancement** Update chart colors
 * :boom: **Breaking** Update to Angular 17
 * :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
 
