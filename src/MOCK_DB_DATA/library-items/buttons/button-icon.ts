@@ -17,8 +17,13 @@ export const ButtonIcon: LibraryItem[] = [
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-icon">
-  <i class="icon-bell"></i><span class="btn__text">Ikon-knapp</span>
+<button type="button" class="btn fhi-btn-icon mb-5">
+  <i class="icon-bell"></i>
+  <span class="btn__text">Ikon-knapp</span>
+</button>
+<br>
+<button type="button" class="btn fhi-btn-icon fhi-btn-icon--circular">
+  <i class="icon-bell"></i>
 </button>`;
 }
 
@@ -27,7 +32,15 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<button type="button" class="btn fhi-btn-icon">
+  <i class="icon-bell"></i>
+  <span class="btn__text">Ikon-knapp</span>
+</button>
+
+<button type="button" class="btn fhi-btn-icon fhi-btn-icon--circular">
+  <i class="icon-bell"></i>
+</button>`;
 }
 
 /*

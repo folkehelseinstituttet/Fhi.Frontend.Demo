@@ -23,6 +23,7 @@ export class LibraryItemConstants {
 
   static ExampleComponentsGithubUrl = `${githubFrontendDemoUrl}/src/app/views/shared/dynamic-library-examples/example-components`;
 
+  static NgBootstrapBaseUrl = 'https://ng-bootstrap.github.io';
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 
   static voidURL = 'javascript:void(0)';

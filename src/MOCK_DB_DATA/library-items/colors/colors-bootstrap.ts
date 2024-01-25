@@ -32,15 +32,15 @@ function getExampleHtml(): string {
   };
 
   return `
-${colorHtml('#0067c4', 'fhi-blue-1', 'Primary')}
-${colorHtml('#edf4f7', 'fhi-blue-grey-2', 'Secondary', 'black')}
-${colorHtml('#cceee4', 'fhi-green-1', 'Success', 'black')}
-${colorHtml('#dbe6ec', 'fhi-blue-grey-3', 'Info', 'black')}
-${colorHtml('#feeed9', 'fhi-orange-1', 'Warning', 'black')}
-${colorHtml('#ffe3e2', 'fhi-pink-light-1', 'Danger', 'black')}
-${colorHtml('#fbfbfb', 'fhi-grey-light-1', 'Light', 'black')}
-${colorHtml('#393c61', 'fhi-blue-3', 'Dark')}
-${colorHtml('#ffffff', 'fhi-white', 'White', 'black')}`;
+${colorHtml('#0067c4', 'fhi-core-blue-1', 'Primary')}
+${colorHtml('#edf4f7', 'fhi-core-blue-grey-2', 'Secondary', 'black')}
+${colorHtml('#cceee4', 'fhi-core-green-1', 'Success', 'black')}
+${colorHtml('#dbe6ec', 'fhi-core-blue-grey-3', 'Info', 'black')}
+${colorHtml('#feeed9', 'fhi-core-orange-1', 'Warning', 'black')}
+${colorHtml('#ffe3e2', 'fhi-core-pink-light-1', 'Danger', 'black')}
+${colorHtml('#fbfbfb', 'fhi-core-grey-light-1', 'Light', 'black')}
+${colorHtml('#393c61', 'fhi-core-blue-3', 'Dark')}
+${colorHtml('#ffffff', 'fhi-core-white', 'White', 'black')}`;
 }
 
 /*
