@@ -285,6 +285,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'table-editable',
     title: 'Table - inline editable',
   },
+  TableRowspan: {
+    id: 'table-rowspan',
+    title: 'Table - rowspan headings',
+  },
   TableSelectableRow: {
     id: 'table-selectable-row',
     title: 'Table - selectable row',
