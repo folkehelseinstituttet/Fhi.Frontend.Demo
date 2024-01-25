@@ -28,23 +28,10 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h2 class="modal-title" id="modal-basic-title">Overskrift</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-  </div>
-  <div class="modal-body">
-    <p>Modalvindu innhold.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Avbryt</button>
-    <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Lagre</button>
-  </div>
-</ng-template>
-
-<p>
-  <button class="btn fhi-btn-link" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
-</p>`;
+<fhi-modal [modalTitle]="'Overskrift'">
+  <ng-container fhi-modal.button>Åpne modal</ng-container>
+  <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
+</fhi-modal>`;
 }
 
 /*
