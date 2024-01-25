@@ -1,9 +1,15 @@
 markdown {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: $fhi-core-font-family-sans-serif-bold;
         margin: 0 0 $fhi-core-space-1;
     }
-    h1, h2 {
+    h1,
+    h2 {
         border-bottom: 1px solid $fhi-core-grey-light-3;
         padding-bottom: $fhi-core-space-1;
         margin-bottom: $fhi-core-space-3;
@@ -21,7 +27,9 @@ markdown {
         font-size: $fhi-core-font-size-3;
         margin-top: $fhi-core-space-3;
     }
-    h4, h5, h6 {
+    h4,
+    h5,
+    h6 {
         font-size: $fhi-core-font-size-2;
         margin-top: $fhi-core-space-2;
     }
@@ -39,7 +47,7 @@ code[class*="language-"],
 pre[class*="language-"] {
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 12px;
-    min-height: $fhi-core-px * 44;// sic
+    min-height: $fhi-core-px * 44; // sic
     padding: 0;
     margin: 0;
 }
@@ -132,7 +140,7 @@ pre[class*="language-js"] {
         color: $fhi-core-grey-3;
     }
     .token.function {
-        color: $fhi-core-blue-grey-5;
+        color: $fhi-core-blue-grey-4;
     }
     .token.boolean {
         color: lighten($fhi-core-green-2, 6%);

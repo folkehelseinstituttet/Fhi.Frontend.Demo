@@ -84,14 +84,3 @@ function getCodeHtml(): string | null {
 function getDocumentationHtml(): string | null {
   return null;
 }
-
-// ${colorHtml('#9f9f9f', 'fhi-core-grey-2')}
-
-// <p class="text-muted small mt-2 mb-0">Charcoal/Antrasitt</p>
-// ${colorHtml('#333841', 'fhi-core-charcoal-1')}
-
-// <p class="text-muted small mt-2 mb-0">Gul</p>
-// ${colorHtml('#fffdce', 'fhi-core-yellow-1')}
-
-// <p class="text-muted small mt-2 mb-0">Lyserosa</p>
-// ${colorHtml('#fad1cd', 'fhi-core-pink-light-2')}
