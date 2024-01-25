@@ -12,9 +12,9 @@ export class ModalsComponent {
   @Input() items!: LibraryItemsShared;
 
   actionButtons: FhiModalActionButton[] = [
-    { name: 'Handling 2', enabled: false },
-    { name: 'Handling 2', enabled: true },
-    { name: 'Handling 1', enabled: true },
+    { name: 'Handling x', disabled: true },
+    { name: 'Handling 2' },
+    { name: 'Handling 1' },
   ];
 
   onModalAction(action: string) {

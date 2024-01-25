@@ -17,7 +17,7 @@
     <button class="btn fhi-btn-link" *ngIf="buttons && buttons.length > 0" (click)="modal.dismiss()">Avbryt</button>
     <button
       class="btn fhi-btn-{{ button.primary ? 'primary' : 'secondary' }}"
-      [disabled]="!button.enabled"
+      [disabled]="button.disabled"
       (click)="onModalAction(button)"
       *ngFor="let button of buttons"
     >

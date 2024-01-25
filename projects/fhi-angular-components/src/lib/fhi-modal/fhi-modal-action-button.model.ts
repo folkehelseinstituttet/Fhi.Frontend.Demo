@@ -1,5 +1,5 @@
 export interface FhiModalActionButton {
   name: string;
-  enabled: boolean;
+  disabled?: boolean;
   primary?: boolean;
 }

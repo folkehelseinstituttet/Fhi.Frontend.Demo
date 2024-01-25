@@ -1,26 +1,32 @@
-<fhi-modal [modalTitle]="'Overskrift som er veldig lang er alltid et problem'" [size]="'sm'">
-  <ng-container fhi-modal.button>Åpne lite modalvindu</ng-container>
+<fhi-modal [modalTitle]="'Overskrift'">
+  <ng-container fhi-modal.button>Åpne modal</ng-container>
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
 </fhi-modal>
 <br />
-<fhi-modal [modalTitle]="'Overskrift'" [actionButtons]="actionButtons" (modalAction)="onModalAction($event)">
-  <ng-container fhi-modal.button>Åpne standard modalvindu</ng-container>
-  <ng-container fhi-modal.body>
-    <pre><code>&#64;Input() actionButtons: FhiModalActionButton[] = {{ actionButtons | json }};</code></pre>
-  </ng-container>
+
+<fhi-modal
+  [modalTitle]="'Overskrift som er veldig lang er alltid et problem'"
+  [size]="'sm'"
+  [actionButtons]="[{ name: 'Handling 1' }]"
+  (modalAction)="onModalAction($event)"
+>
+  <ng-container fhi-modal.button>Åpne lite modalvindu</ng-container>
+  <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
 </fhi-modal>
 <br /><br />
+
 <fhi-modal
   [modalTitle]="'Overskrift'"
-  [actionButtons]="[{ name: 'Handling 1', enabled: true }]"
+  [actionButtons]="actionButtons"
   [size]="'fullscreen'"
   [openModalButtonClass]="'fhi-btn-icon'"
+  (modalAction)="onModalAction($event)"
 >
   <ng-container fhi-modal.button>
     <i class="icon-arrows-fullscreen"></i>
     <span class="btn__text">Åpne fullskjerm modalvindu</span>
   </ng-container>
   <ng-container fhi-modal.body>
-    <p>Modalvindu innhold.</p>
+    <pre><code>&#64;Input() actionButtons: FhiModalActionButton[] = {{ actionButtons | json }};</code></pre>
   </ng-container>
 </fhi-modal>
