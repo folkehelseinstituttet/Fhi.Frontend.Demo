@@ -5,7 +5,7 @@
         margin-bottom: $fhi-core-space-3;
     }
     &__info {
-        border: 1px solid $fhi-core-blue-grey-5;
+        border: 1px solid $fhi-core-blue-grey-4;
         border-radius: 4px;
         padding: $fhi-core-space-3;
         margin-bottom: $fhi-core-space-3;
@@ -79,7 +79,6 @@
     &__btn--copy {
         padding: 0 $fhi-core-px * 13.75;
     }
-
 }
 
 @include media-breakpoint-up(xxs) {
@@ -107,7 +106,7 @@
             margin: 0 0 $fhi-core-space-3;
             padding: unset;
         }
-       &__item-container {
+        &__item-container {
             border-radius: $border-radius;
             margin: unset;
             padding: $fhi-core-space-3;
