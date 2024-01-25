@@ -44,6 +44,7 @@ ${colorHtml('#222222', 'fhi-core-grey-4')}
 ${colorHtml('#edf4f7', 'fhi-core-blue-grey-2')}
 ${colorHtml('#dbe6ec', 'fhi-core-blue-grey-3')}
 ${colorHtml('#cbd9df', 'fhi-core-blue-grey-4')}
+${colorHtml('#879ba5', 'fhi-core-blue-grey-6')}
 ${colorHtml('#435c68', 'fhi-core-blue-grey-7')}
 
 <p class="text-muted small mt-2 mb-0">Blå</p>
@@ -58,11 +59,9 @@ ${colorHtml('#04ab79', 'fhi-core-green-2')}
 ${colorHtml('#f86559', 'fhi-core-red-1')}
 ${colorHtml('#d14641', 'fhi-core-red-2')}
 
-<p class="text-muted small mt-2 mb-0">Mørk rosa</p>
-${colorHtml('#de2968', 'fhi-core-pink-dark-1')}
-
-<p class="text-muted small mt-2 mb-0">Lys rosa</p>
+<p class="text-muted small mt-2 mb-0">Rosa</p>
 ${colorHtml('#ffe3e2', 'fhi-core-pink-light-1')}
+${colorHtml('#de2968', 'fhi-core-pink-dark-1')}
 
 <p class="text-muted small mt-2 mb-0">Oransje</p>
 ${colorHtml('#feeed9', 'fhi-core-orange-1')}
