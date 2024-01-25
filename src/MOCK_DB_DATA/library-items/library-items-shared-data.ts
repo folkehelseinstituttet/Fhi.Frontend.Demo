@@ -287,7 +287,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   TableRowspan: {
     id: 'table-rowspan',
-    title: 'Table - rowspan headings',
+    title: 'Table - rowspan',
   },
   TableSelectableRow: {
     id: 'table-selectable-row',

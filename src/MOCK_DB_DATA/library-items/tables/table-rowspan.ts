@@ -63,27 +63,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<div class="table-responsive">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Fornavn</th>
-        <th scope="col">Etternavn</th>
-        <th scope="col">Rolle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th>1202</th>
-        <td>Birger Henrik</td>
-        <td>Tybring-Gjedde Olssen</td>
-        <td>Assistant</td>
-      </tr>
-    </tbody>
-  </table>
-</div>`;
+  return null;
 }
 
 /*
