@@ -19,41 +19,487 @@ export const TableRowspan: LibraryItem[] = [
 function getExampleHtml(): string {
   return `
 <div class="table-responsive">
-  <table class="table">
+  <table class="table table-sm table-striped">
     <thead>
       <tr>
-        <th scope="col">Adresse</th>
-        <th scope="col">Etternavn</th>
-        <th scope="col">Fornavn</th>
-        <th scope="col">Hobby</th>
+        <td colspan="3"></td>
+        <th scope="col">2018</th>
+        <th scope="col">2019</th>
+        <th scope="col">2020</th>
+        <th scope="col">2021</th>
       </tr>
     </thead>
+    
     <tbody>
       <tr>
-        <th rowspan="3">Gate 1</th>
-        <td rowspan="2">Hansen</td>
-        <td>Birger Henrik</td>
-        <td>Sykle</td>
+        <th rowspan="12">Total</th>
+        <td rowspan="4">Total</td>
+        <td>a</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
       </tr>
       <tr>
-        <td>Sigurd</td>
-        <td>Rake</td>
+        <td>b</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
       </tr>
       <tr>
-        <td>Olsen</td>
-        <td>Elida</td>
-        <td>Fotball</td>
+        <td>c</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
       </tr>
       <tr>
-        <th rowspan="2">Gate 2</th>
-        <td rowspan="2">Jensen</td>
-        <td>Marie</td>
-        <td rowspan="2">Hest</td>
+        <td>d</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
       </tr>
       <tr>
-        <td>Elisabeth</td>
+        <td rowspan="4">Kvinne</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="4">Mann</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <th rowspan="12">Dødsfall av sykdommer</th>
+        <td rowspan="4">Total</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="4">Kvinne</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td rowspan="4">Mann</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <th rowspan="12">Ytre årsaker</th>
+        <td rowspan="4">Total</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="4">Kvinne</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td rowspan="4">Mann</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>d</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
       </tr>
     </tbody>
+
+    <!-- <tbody>
+      <tr>
+        <th rowspan="9">Total</th>
+        <td rowspan="3">Total</td>
+        <td>a</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>880</td>
+        <td>818</td>
+        <td>718</td>
+        <td>660</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Kvinne</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Mann</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <th rowspan="9">Dødsfall av sykdommer</th>
+        <td rowspan="3">Total</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Kvinne</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Mann</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <th rowspan="9">Ytre årsaker</th>
+        <td rowspan="3">Total</td>
+        <td>a</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>440</td>
+        <td>409</td>
+        <td>359</td>
+        <td>330</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Kvinne</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td rowspan="3">Mann</td>
+        <td>a</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>b</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+      <tr>
+        <td>c</td>
+        <td>220</td>
+        <td>105</td>
+        <td>179</td>
+        <td>165</td>
+      </tr>
+    </tbody> -->
   </table>
 </div>`;
 }
