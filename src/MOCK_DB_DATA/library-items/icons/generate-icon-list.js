@@ -3,17 +3,7 @@ const path = require('path');
 
 const pathToListOfGeneratedIcons = path.join(
   __dirname,
-  '..',
-  '..',
-  '..',
-  '..',
-  '..',
-  'Fhi.Frontend.Demo',
-  'Fhi.Frontend.Style',
-  'src',
-  'fhi',
-  'icons',
-  'icon-list.GENERATED.md',
+  '../../../../../Fhi.Frontend.Demo/Fhi.Frontend.Style/src/fhi/icons/icon-list.GENERATED.md',
 );
 const generatedOutputFile = path.join(__dirname, 'icon-set.GENERATED.ts');
 
@@ -46,4 +36,4 @@ const generateIconList = function () {
   );
 };
 
-setTimeout(generateIconList, 250); //give time to find and read file
+setTimeout(generateIconList, 500); //give time to find and read file
