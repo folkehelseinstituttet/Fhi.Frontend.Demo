@@ -26,7 +26,8 @@
         justify-content: center;
         line-height: 1.125;
         min-height: $fhi-core-px * 44;
-        padding: $fhi-core-space-1 $fhi-core-space-2 $fhi-core-space-1 $fhi-core-space-3;
+        padding: $fhi-core-space-1 $fhi-core-space-2 $fhi-core-space-1
+            $fhi-core-space-3;
         text-decoration: none;
 
         &.active {
@@ -36,7 +37,7 @@
 
     &__link {
         &:hover {
-            background-color: $fhi-core-pink-light-2;
+            background-color: $fhi-core-grey-light-2;
             color: currentColor;
         }
 
@@ -55,7 +56,7 @@
         justify-content: center;
 
         &:hover {
-            background-color: $fhi-core-pink-light-2;
+            background-color: $fhi-core-grey-light-2;
         }
 
         &:focus-visible {
@@ -67,12 +68,12 @@
         flex-basis: $fhi-core-px * 45;
         width: $fhi-core-px * 44;
 
-        [class*='icon-'] {
+        [class*="icon-"] {
             margin: auto;
         }
 
         &:hover {
-            background-color: $fhi-core-pink-light-2;
+            background-color: $fhi-core-grey-light-2;
         }
     }
 
@@ -89,21 +90,28 @@
                 .fhi-tree-view-navigation {
                     &__link,
                     &__no-link {
-                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 2));
+                        padding-left: (
+                            $fhi-core-space-3 + ($fhi-core-space-4 * 2)
+                        );
                     }
 
                     &__nested-group {
                         .fhi-tree-view-navigation {
                             &__link,
                             &__no-link {
-                                padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 3));
+                                padding-left: (
+                                    $fhi-core-space-3 + ($fhi-core-space-4 * 3)
+                                );
                             }
 
                             &__nested-group {
                                 .fhi-tree-view-navigation {
                                     &__link,
                                     &__no-link {
-                                        padding-left: ($fhi-core-space-3 + ($fhi-core-space-4 * 4));
+                                        padding-left: (
+                                            $fhi-core-space-3 +
+                                                ($fhi-core-space-4 * 4)
+                                        );
                                     }
                                 }
                             }
