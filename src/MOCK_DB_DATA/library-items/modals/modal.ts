@@ -38,23 +38,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Bootstrap-dokumentasjon for
-  <a href="${CONST.BootstrapComponentsBaseUrl}/${itemTitle.toLocaleLowerCase()}">${itemTitle}</a>
-</p>
-<p>
-  ${itemTitle} er implementert som
-  <a href="${
-    CONST.NgBootstrapComponentsBaseUrl
-  }/${itemTitle.toLocaleLowerCase()}">ngBootstrap ${itemTitle}</a>
-  i FHI Designsystem.
-</p>
-<p>
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/src/app/views/shared/dynamic-library-examples/ng-bootstrap-examples/modal-example">
-    Detaljer i dette kodeeksempelet på Github</a>.
-</p>
-<p>
-  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
-</p>`;
+  return null;
 }
