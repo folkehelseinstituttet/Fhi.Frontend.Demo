@@ -3,7 +3,7 @@ import { LibraryItemConstants as CONST } from '../library-item-constants';
 export const ModalsIntro = `
 <p>
   FHI Modal er bygget på
-  <a href="https://ng-bootstrap.github.io/#/components/modal/examples">ng-bootstrap modal</a>
+  <a href="https://ng-bootstrap.github.io/#/components/modal/examples">NgbModal</a>
   og skal kunne brukes de fleste steder der en trenger en modal.
   For å ta den i bruk i en Angular-applikasjon må NPM-pakken
   <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
