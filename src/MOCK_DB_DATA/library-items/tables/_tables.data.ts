@@ -6,7 +6,6 @@ import { TablesIntro } from './_tables.intro';
 import { Table } from './table';
 import { TableCompact } from './table-compact';
 import { TableEditable } from './table-editable';
-import { TableRowspan } from './table-rowspan';
 import { TableSelectableRow } from './table-selectable-row';
 import { TableSortable } from './table-sortable';
 import { TableStriped } from './table-striped';
@@ -18,7 +17,6 @@ export const Tables: LibraryItem[] = [
   ...TableSortable,
   ...TableSelectableRow,
   ...TableEditable,
-  ...TableRowspan,
 ];
 
 export const TablesData: LibraryItemGroup = {
