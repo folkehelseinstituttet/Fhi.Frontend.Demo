@@ -1,4 +1,10 @@
-# 2.0.0
+# Unreleased
+
+> Jan 24, 2024
+
+* :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
+
+## 2.0.0
 
 > Jan 24, 2024
 

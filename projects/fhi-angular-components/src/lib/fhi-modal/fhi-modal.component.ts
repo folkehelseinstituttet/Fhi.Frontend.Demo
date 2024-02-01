@@ -1,41 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+  OnChanges,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-interface ActionButton {
-  name: string;
-  enabled: boolean;
-  primary?: boolean;
-}
+import { cloneDeep } from 'lodash-es';
+import { FhiModalActionButton } from './fhi-modal-action-button.model';
 
 @Component({
   selector: 'fhi-modal',
   templateUrl: './fhi-modal.component.html',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   imports: [CommonModule],
   providers: [NgbModal],
 })
 export class FhiModalComponent implements OnChanges {
-  @Input() actionButtons = [{ name: 'Lukk', enabled: true }];
+  @Input() actionButtons: FhiModalActionButton[];
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
   @Input() scrollable = false;
-  @Input() size = 'sm';
+  @Input() size = 'md';
 
   @Output() dismissModal = new EventEmitter();
   @Output() modalAction = new EventEmitter<string | undefined>();
   @Output() openModal = new EventEmitter();
 
-  buttonType = 'primary';
-  buttons!: ActionButton[];
+  buttons!: FhiModalActionButton[];
 
   constructor(private modal: NgbModal) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['actionButtons']) {
-      const buttons = this.actionButtons as ActionButton[];
-      buttons[buttons.length - 1].primary = true;
-      this.buttons = buttons;
+      this.buttons = cloneDeep(this.actionButtons);
+      this.buttons[this.buttons.length - 1].primary = true;
     }
   }
 
@@ -54,12 +59,15 @@ export class FhiModalComponent implements OnChanges {
     });
   }
 
-  onModalAction(actionButton: ActionButton) {
-    if (!actionButton.enabled) {
-      this.modalAction.emit();
-      return;
-    }
-    this.modalAction.emit(actionButton.name);
+  onModalAction(button: FhiModalActionButton) {
+    // TODO: should we use [disabled]="button.disabled" in the
+    //       template as currently implemented
+    //       OR should we emit undefined (code blow)?
+    // if (button.disabled) {
+    //   this.modalAction.emit();
+    //   return;
+    // }
+    this.modalAction.emit(button.name);
     this.modal.dismissAll();
   }
 }

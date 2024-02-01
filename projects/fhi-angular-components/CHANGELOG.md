@@ -1,4 +1,10 @@
-# 3.0.0
+# Unreleased
+
+> Jan 24, 2024
+
+* :gift: **New** Add modal
+
+## 3.0.0
 
 > Jan 23, 2024
 
