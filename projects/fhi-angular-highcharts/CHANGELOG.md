@@ -1,3 +1,9 @@
+# Unreleased
+
+> Feb 1, 2024
+
+* :tada: **Enhancement** CSS classes cleanup
+
 # 2.0.0
 
 > Jan 24, 2024
