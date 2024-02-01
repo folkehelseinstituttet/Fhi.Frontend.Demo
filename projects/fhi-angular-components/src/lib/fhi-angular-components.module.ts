@@ -4,8 +4,10 @@ import { FhiAutosuggestModule } from './fhi-autosuggest/fhi-autosuggest.module';
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
-import { FhiTreeViewSelectionModule } from './fhi-tree-view-selection/fhi-tree-view-selection.module';
 
+import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection/fhi-tree-view-selection.component';
+import { FhiTreeViewSelectionCheckComponent } from './fhi-tree-view-selection/fhi-tree-view-selection-check.component';
+import { FhiTreeViewSelectionRadioComponent } from './fhi-tree-view-selection/fhi-tree-view-selection-radio.component';
 import { FhiDatepickerComponent } from './fhi-time/fhi-datepicker/fhi-datepicker.component';
 // import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
 import { FhiDateTimeComponent } from './fhi-time/fhi-date-time/fhi-date-time.component';
@@ -24,7 +26,10 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiMultiselectModule,
   FhiTableModule,
   FhiTreeViewNavigationModule,
-  FhiTreeViewSelectionModule,
+
+  FhiTreeViewSelectionComponent,
+  FhiTreeViewSelectionCheckComponent,
+  FhiTreeViewSelectionRadioComponent,
 
   FhiDatepickerComponent,
   // FhiDateRangeComponent,

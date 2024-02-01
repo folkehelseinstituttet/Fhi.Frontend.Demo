@@ -5,16 +5,18 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewCheckbox.id">
-  <fhi-tree-view-selection [enableCheckAll]="true" [items]="itemsCheck" (itemsChange)="onItemsChangeCheck($event)">
-  </fhi-tree-view-selection>
+  <!-- <fhi-tree-view-selection [enableCheckAll]="true" [items]="itemsCheck" (itemsChange)="onItemsChangeCheck($event)">
+  </fhi-tree-view-selection> -->
+  <fhi-tree-view-selection-check></fhi-tree-view-selection-check>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewRadio.id">
-  <fhi-tree-view-selection
+  <!-- <fhi-tree-view-selection
     [singleSelection]="true"
     [name]="'radio'"
     [items]="itemsRadio"
     (itemsChange)="onItemsChangeRadio($event)"
   >
-  </fhi-tree-view-selection>
+  </fhi-tree-view-selection> -->
+  <fhi-tree-view-selection-radio></fhi-tree-view-selection-radio>
 </ng-container>

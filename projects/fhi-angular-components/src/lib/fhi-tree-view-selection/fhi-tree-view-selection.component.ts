@@ -8,13 +8,16 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 
 @Component({
   selector: 'fhi-tree-view-selection',
+  standalone: true,
   templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
