@@ -21,17 +21,18 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 ## Dependencies
 
-| FHI Angular Highcharts | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
-| ---------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 2.x.x                  | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
-| 1.x.x                  | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
-| 0.7.0                  | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
-| 0.6.x                  | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.5.x                  | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.4.x                  | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.3.x                  | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.2.0                  | 4         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.1.0                  | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
+| FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
+| ---------------------- | ---------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
+| Unreleased            | Unreleased                  | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
+| 2.0.x                  | -                      | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
+| 1.x.x                  | -                      | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
+| 0.7.0                  | -                      | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
+| 0.6.x                  | -                      | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.5.x                  | -                      | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.4.x                  | -                      | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.3.x                  | -                      | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.2.0                  | -                      | 4         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.1.0                  | -                      | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
 _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:

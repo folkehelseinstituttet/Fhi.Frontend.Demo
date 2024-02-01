@@ -5,6 +5,7 @@
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
     "@folkehelseinstituttet/style": "^5.9.0",
+    "@folkehelseinstituttet/angular-components": "^3.0.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "bootstrap": "^5.3.2",
     "date-fns": "^3.2.0",
