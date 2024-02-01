@@ -33,7 +33,10 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-  <p>FHI Designsystem vil på sikt tilby en FHI Angular komponent for tabell med innebygget funksjonalitet for valg av rad.</p>
-  
-  <p>Om du ønsker å lage en tabell med valg av rader før denne komponenten blir tilgjengelig, inspect og finn markup her for å lage din egen funksjonalitet (husk <code>aria-selected</code> på <code>&lt;tr&gt;</code> for uu og korrekt stilsetting).</p>`;
+<div class="alert alert-info" role="alert">
+  <i class="icon-info-circle"></i>
+  <p class="mb-0">FHI Angular Components vil på sikt inkludere en tabellkomponent.</p>
+</div>
+
+<p>Se <a href="${CONST.ExampleComponentsGithubUrl}/tables">kode på Github for disse eksemplene</a>.</p>`;
 }
