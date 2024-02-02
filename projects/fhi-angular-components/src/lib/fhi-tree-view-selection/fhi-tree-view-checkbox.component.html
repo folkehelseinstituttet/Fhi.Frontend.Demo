@@ -1,1 +1,5 @@
-<fhi-tree-view-selection [items]="items" [enableCheckAll]="enableCheckAll"></fhi-tree-view-selection>
+<fhi-tree-view-selection
+  [items]="items"
+  [enableCheckAll]="enableCheckAll"
+  (itemsChange)="onItemsChange($event)"
+></fhi-tree-view-selection>

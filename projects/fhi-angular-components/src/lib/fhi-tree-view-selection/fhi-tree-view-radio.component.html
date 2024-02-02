@@ -1,1 +1,6 @@
-<fhi-tree-view-selection [items]="items" [singleSelection]="true" [name]="name"></fhi-tree-view-selection>
+<fhi-tree-view-selection
+  [items]="items"
+  [singleSelection]="true"
+  [name]="name"
+  (itemsChange)="onItemsChange($event)"
+></fhi-tree-view-selection>

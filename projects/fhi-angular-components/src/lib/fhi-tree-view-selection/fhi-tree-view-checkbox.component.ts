@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection.component';
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
@@ -12,4 +12,10 @@ import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item
 export class FhiTreeViewCheckboxComponent {
   @Input() enableCheckAll = false;
   @Input() items: Item[];
+
+  @Output() itemsChange = new EventEmitter<Item[]>();
+
+  onItemsChange(items: Item[]) {
+    this.items = items;
+  }
 }
