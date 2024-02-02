@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { MockDataService } from './mock-data.service';
-import { MockData } from './mock-data';
+import { MockData } from './mock-data.enum';
 
 import {
   FhiDiagramOptions,
@@ -10,7 +10,6 @@ import {
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { tr } from 'date-fns/locale';
 
 @Component({
   selector: 'app-highcharts',
@@ -57,7 +56,8 @@ export class HighchartsComponent implements OnInit {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
         next: (data: FhiDiagramSerie[]) => {
           this.diagramOptions = {
-            title: 'Dødsfall etter årsak, 2017 - 2021',
+            // title: 'Dødsfall etter årsak, 2017 - 2021',
+            title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
             series: data,
             diagramTypeNavId: 'default',
             tableOrientation: 'seriesAsColumns',
