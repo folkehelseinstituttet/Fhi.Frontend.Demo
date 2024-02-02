@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MockData } from './mock-data.enum';
+import { DodsfallEtterAarsak_2008_2010 } from './mock-data/1.dodsfall-etter-aarsak-2008-2018';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,10 @@ export class MockDataService {
   getData(dataSetIndex: number): Observable<any> {
     return new Observable<any>((dataSet) => {
       switch (dataSetIndex) {
+        case MockData.DodsfallEtterAarsak_2008_2010:
+          dataSet.next(DodsfallEtterAarsak_2008_2010);
+          break;
+
         case MockData.OneSerieFylke:
           dataSet.next(this.getDodsfall_r_Fylke_c_Aarsak());
           break;

@@ -27,11 +27,11 @@ export class HighchartsComponent implements OnInit {
 
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
-      this.loadData(MockData.TwoSeriesAar);
-    } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.loadData(MockData.OneSerieFylke);
+      this.loadDodsfallEtterAarsak_2008_2010();
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.loadData(MockData.MultipleSeriesAar);
+    } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
+      this.loadData(MockData.OneSerieFylke);
     }
   }
 
@@ -39,20 +39,7 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    if (dataSetIndex === MockData.TwoSeriesAar) {
-      this.highchartsDataService.getData(MockData.TwoSeriesAar).subscribe({
-        next: (data: FhiDiagramSerie[]) => {
-          this.diagramOptions = {
-            diagramTypeId: 'line',
-            title: 'Dødsfall etter årsak, 2008 - 2018',
-            series: data,
-          };
-          this.dataIsLoading = false;
-          this.dataIsLoaded = true;
-        },
-        error: (e) => console.error(e),
-      });
-    } else if (dataSetIndex === MockData.MultipleSeriesAar) {
+    if (dataSetIndex === MockData.MultipleSeriesAar) {
       this.highchartsDataService.getData(MockData.MultipleSeriesAar).subscribe({
         next: (data: FhiDiagramSerie[]) => {
           this.diagramOptions = {
@@ -111,5 +98,23 @@ export class HighchartsComponent implements OnInit {
       ...this.diagramOptions,
       diagramTypeId: diagramTypeId,
     };
+  }
+
+  private loadDodsfallEtterAarsak_2008_2010() {
+    this.dataIsLoading = true;
+    this.dataIsLoaded = false;
+
+    this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2008_2010).subscribe({
+      next: (data: FhiDiagramSerie[]) => {
+        this.diagramOptions = {
+          diagramTypeId: 'line',
+          title: 'Dødsfall etter årsak, 2008 - 2018',
+          series: data,
+        };
+        this.dataIsLoading = false;
+        this.dataIsLoaded = true;
+      },
+      error: (e) => console.error(e),
+    });
   }
 }

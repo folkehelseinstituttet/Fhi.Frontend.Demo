@@ -1,6 +1,7 @@
 export enum MockData {
-  OneSerieFylke = 1,
-  OneSerieFylkeB = 2,
-  TwoSeriesAar = 3,
-  MultipleSeriesAar = 4,
+  DodsfallEtterAarsak_2008_2010,
+  OneSerieFylke,
+  OneSerieFylkeB,
+  TwoSeriesAar,
+  MultipleSeriesAar,
 }
