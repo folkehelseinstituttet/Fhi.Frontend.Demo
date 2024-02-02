@@ -98,7 +98,7 @@
       class="form-check-input"
       type="radio"
       [name]="name"
-      [id]="'radio-input-' + name + item.id"
+      [id]="name + '-' + item.id"
       [checked]="item.isChecked"
       (change)="toggleChecked(item.id, false, false)"
     />

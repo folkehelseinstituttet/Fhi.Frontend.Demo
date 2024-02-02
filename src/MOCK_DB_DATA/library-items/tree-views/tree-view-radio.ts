@@ -26,17 +26,37 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-selection
-  [name]="'radio'"
-  [(items)]="items"
-  [singleSelection]="true"
->
-</fhi-tree-view-selection>`;
+<fhi-tree-view-selection-radio [items]="items" name="radio-group"></fhi-tree-view-selection>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return null;
+  return `
+<p>
+  For å ta i bruk denne komponenten i en Angular-applikasjon må NPM-pakken
+  <a href="${CONST.FhiAngularComponentsNpmUrl}">@folkehelseinstituttet/angular-components</a>
+  være lagt til som en "dependency".
+</p>
+
+<h2 class="h5">Nyttige lenker</h2>
+
+<ul>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/README.md#API">
+      API-dokumentasjon
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection">
+      Kildekode
+    </a>
+  </li>
+  <li>
+    <a href="${CONST.ExampleComponentsGithubUrl}/tree-views">
+      Demokode
+    </a>
+  </li>
+</ul>`;
 }

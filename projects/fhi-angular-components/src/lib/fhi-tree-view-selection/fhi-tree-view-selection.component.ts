@@ -32,9 +32,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
-    if (this.singleSelection && this.name === undefined) {
-      console.warn(this.getSingleSelectionWarningMsg());
-    }
   }
 
   ngOnChanges() {
@@ -141,9 +138,5 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         this.createIds(item.children, (id - 1) * 10 + 1);
       }
     });
-  }
-
-  private getSingleSelectionWarningMsg() {
-    return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
 }

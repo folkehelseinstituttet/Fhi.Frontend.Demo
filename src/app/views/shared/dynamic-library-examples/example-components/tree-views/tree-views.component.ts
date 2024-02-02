@@ -14,7 +14,7 @@ export class TreeViewsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  treeNavItems: any[];
+  treeNavItems: FhiTreeViewNavigationItem[];
 
   itemsCheck!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];

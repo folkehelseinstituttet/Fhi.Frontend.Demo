@@ -7,7 +7,7 @@
 <ng-container *ngIf="itemId === items.TreeViewCheckbox.id">
   <!-- <fhi-tree-view-selection [enableCheckAll]="true" [items]="itemsCheck" (itemsChange)="onItemsChangeCheck($event)">
   </fhi-tree-view-selection> -->
-  <fhi-tree-view-selection-check></fhi-tree-view-selection-check>
+  <fhi-tree-view-selection-check [items]="itemsCheck" [enableCheckAll]="true"></fhi-tree-view-selection-check>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewRadio.id">
@@ -18,5 +18,5 @@
     (itemsChange)="onItemsChangeRadio($event)"
   >
   </fhi-tree-view-selection> -->
-  <fhi-tree-view-selection-radio></fhi-tree-view-selection-radio>
+  <fhi-tree-view-selection-radio [items]="itemsRadio" name="hoi"></fhi-tree-view-selection-radio>
 </ng-container>
