@@ -27,11 +27,11 @@ export class HighchartsComponent implements OnInit {
 
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
-      this.loadDodsfallEtterAarsak_2008_2010();
+      this.loadDodsfallEtterAarsak_2008_2018();
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.loadData(MockData.MultipleSeriesAar);
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.loadData(MockData.OneSerieFylke);
+      this.loadDodsfallHjerteOgKarEtterFylke();
     }
   }
 
@@ -54,42 +54,6 @@ export class HighchartsComponent implements OnInit {
         },
         error: (e) => console.error(e),
       });
-    } else if (dataSetIndex === MockData.OneSerieFylke) {
-      this.highchartsDataService.getData(MockData.OneSerieFylke).subscribe({
-        next: (data: FhiDiagramSerie[]) => {
-          this.diagramOptions = {
-            title: 'Dødsfall hjerte og kar, fordelt på fylke, 2016 - 2020',
-            series: data,
-            // diagramTypeId: 'pie',
-            diagramTypeId: 'map',
-            diagramTypeNavId: 'default',
-            flags: [
-              {
-                symbol: '..',
-                label: 'Manglende data',
-              },
-              {
-                symbol: '.',
-                label: 'Lar seg ikke beregne',
-              },
-              {
-                symbol: ':',
-                label: 'Anonymisert',
-              },
-            ],
-            creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
-            creditsText: 'Nøkkeltall for folkehelse',
-            disclaimer: 'Disse dataene kan inneholde feil.',
-            lastUpdated: '06.06.2023',
-            mapTypeId: 'mapFylker',
-            openSource: false,
-            showFullScreenButton: true,
-          };
-          this.dataIsLoading = false;
-          this.dataIsLoaded = true;
-        },
-        error: (e) => console.error(e),
-      });
     }
   }
 
@@ -100,16 +64,54 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  private loadDodsfallEtterAarsak_2008_2010() {
+  private loadDodsfallEtterAarsak_2008_2018() {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2008_2010).subscribe({
+    this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2008_2018).subscribe({
       next: (data: FhiDiagramSerie[]) => {
         this.diagramOptions = {
           diagramTypeId: 'line',
           title: 'Dødsfall etter årsak, 2008 - 2018',
           series: data,
+        };
+        this.dataIsLoading = false;
+        this.dataIsLoaded = true;
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  private loadDodsfallHjerteOgKarEtterFylke() {
+    this.highchartsDataService.getData(MockData.DodsfallHjerteOgKarEtterFylke).subscribe({
+      next: (data: FhiDiagramSerie[]) => {
+        this.diagramOptions = {
+          title: 'Dødsfall hjerte og kar, fordelt på fylke',
+          series: data,
+          // diagramTypeId: 'pie',
+          diagramTypeId: 'map',
+          diagramTypeNavId: 'default',
+          flags: [
+            {
+              symbol: '..',
+              label: 'Manglende data',
+            },
+            {
+              symbol: '.',
+              label: 'Lar seg ikke beregne',
+            },
+            {
+              symbol: ':',
+              label: 'Anonymisert',
+            },
+          ],
+          creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
+          creditsText: 'Nøkkeltall for folkehelse',
+          disclaimer: 'Disse dataene kan inneholde feil.',
+          lastUpdated: '06.06.2023',
+          mapTypeId: 'mapFylker',
+          openSource: false,
+          showFullScreenButton: true,
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MockData } from './mock-data.enum';
-import { DodsfallEtterAarsak_2008_2010 } from './mock-data/1.dodsfall-etter-aarsak-2008-2018';
+import { DodsfallEtterAarsak_2008_2018 } from './mock-data/1.dodsfall-etter-aarsak-2008-2018';
+import { DodsfallHjerteOgKarEtterFylke } from './mock-data/3.dodsfall-hjerte-og-kar-etter-fylke';
 
 @Injectable({
   providedIn: 'root',
@@ -11,16 +13,12 @@ export class MockDataService {
   getData(dataSetIndex: number): Observable<any> {
     return new Observable<any>((dataSet) => {
       switch (dataSetIndex) {
-        case MockData.DodsfallEtterAarsak_2008_2010:
-          dataSet.next(DodsfallEtterAarsak_2008_2010);
+        case MockData.DodsfallEtterAarsak_2008_2018:
+          dataSet.next(DodsfallEtterAarsak_2008_2018);
           break;
 
-        case MockData.OneSerieFylke:
-          dataSet.next(this.getDodsfall_r_Fylke_c_Aarsak());
-          break;
-
-        case MockData.TwoSeriesAar:
-          dataSet.next(this.getDodsfall_r_Ar_c_Aarsak());
+        case MockData.DodsfallHjerteOgKarEtterFylke:
+          dataSet.next(DodsfallHjerteOgKarEtterFylke);
           break;
 
         case MockData.MultipleSeriesAar:
@@ -28,175 +26,8 @@ export class MockDataService {
           dataSet.next(this.getDummyData());
           // dataSet.next(this.getDataForPowerPoint());
           break;
-
-        default:
-          dataSet.next(this.getDodsfall_r_Fylke_c_Aarsak());
-          break;
       }
     });
-  }
-
-  // ---------
-  // Mock data
-  // ---------
-
-  private getDodsfall_r_Fylke_c_Aarsak() {
-    return [
-      {
-        name: 'Hjerte- og karsystemet',
-        data: [
-          {
-            name: 'Agder',
-            y: ':',
-            // "y": 1698
-          },
-          {
-            name: 'Innlandet',
-            y: 3360,
-          },
-          {
-            name: 'Møre og Romsdal',
-            y: 1909,
-          },
-          {
-            name: 'Nordland',
-            y: 1687,
-          },
-          {
-            name: 'Oslo',
-            y: '.',
-            // "y": 2814
-          },
-          {
-            name: 'Rogaland',
-            y: 2143,
-          },
-          {
-            name: 'Troms og Finnmark',
-            y: 1566,
-          },
-          {
-            name: 'Trøndelag',
-            y: 2839,
-          },
-          {
-            name: 'Vestfold og Telemark',
-            y: 3060,
-          },
-          {
-            name: 'Vestland',
-            y: 3625,
-          },
-          {
-            name: 'Viken',
-            y: 6738,
-          },
-        ],
-      },
-    ];
-  }
-
-  private getDodsfall_r_Ar_c_Aarsak() {
-    return [
-      {
-        name: ['Hjerte- og karsystemet', 'Kvinne'],
-        data: [
-          {
-            name: '2008',
-            y: 7535,
-          },
-          {
-            name: '2009',
-            y: 7303,
-          },
-          {
-            name: '2010',
-            y: 7038,
-          },
-          {
-            name: '2011',
-            y: 6967,
-          },
-          {
-            name: '2012',
-            y: 7057,
-          },
-          {
-            name: '2013',
-            y: 6581,
-          },
-          {
-            name: '2014',
-            y: 6261,
-          },
-          {
-            name: '2015',
-            y: 6195,
-          },
-          {
-            name: '2016',
-            y: 5817,
-          },
-          {
-            name: '2017',
-            y: 5436,
-          },
-          {
-            name: '2018',
-            y: 5229,
-          },
-        ],
-      },
-      {
-        name: 'Hjerte- og karsystemet | Mann',
-        data: [
-          {
-            name: '2008',
-            y: 6601,
-          },
-          {
-            name: '2009',
-            y: 6224,
-          },
-          {
-            name: '2010',
-            y: 6122,
-          },
-          {
-            name: '2011',
-            y: 6009,
-          },
-          {
-            name: '2012',
-            y: 5978,
-          },
-          {
-            name: '2013',
-            y: 5760,
-          },
-          {
-            name: '2014',
-            y: 5500,
-          },
-          {
-            name: '2015',
-            y: 5457,
-          },
-          {
-            name: '2016',
-            y: 5161,
-          },
-          {
-            name: '2017',
-            y: 4941,
-          },
-          {
-            name: '2018',
-            y: 4857,
-          },
-        ],
-      },
-    ];
   }
 
   private getDodsfall_r_Ar_c_Aarsak_LG() {

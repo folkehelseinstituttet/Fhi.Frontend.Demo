@@ -1,4 +1,4 @@
-export const DodsfallEtterAarsak_2008_2010 = [
+export const DodsfallEtterAarsak_2008_2018 = [
   {
     name: ['Hjerte- og karsystemet', 'Kvinne'],
     data: [
