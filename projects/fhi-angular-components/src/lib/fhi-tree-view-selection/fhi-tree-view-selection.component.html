@@ -102,7 +102,7 @@
       [checked]="item.isChecked"
       (change)="toggleChecked(item.id, false, false)"
     />
-    <label class="form-check-label" [for]="'radio-input-' + name + item.id" [id]="'label' + item.id">
+    <label class="form-check-label" [for]="name + '-' + item.id" [id]="'label' + item.id">
       {{ item.name }}
     </label>
   </div>

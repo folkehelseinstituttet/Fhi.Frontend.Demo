@@ -4,12 +4,12 @@ import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection.compone
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 
 @Component({
-  selector: 'fhi-tree-view-selection-check',
+  selector: 'fhi-tree-view-checkbox',
   standalone: true,
   imports: [FhiTreeViewSelectionComponent],
-  templateUrl: './fhi-tree-view-selection-check.component.html',
+  templateUrl: './fhi-tree-view-checkbox.component.html',
 })
-export class FhiTreeViewSelectionCheckComponent {
+export class FhiTreeViewCheckboxComponent {
   @Input() enableCheckAll = false;
   @Input() items: Item[];
 }
