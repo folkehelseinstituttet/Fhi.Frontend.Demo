@@ -6,13 +6,13 @@ import { TreeViewsIntro } from './_tree-views.intro';
 import { TreeViewNavigation } from './tree-view-navigation';
 import { TreeViewCheckbox } from './tree-view-checkbox';
 import { TreeViewRadio } from './tree-view-radio';
-import { TreeViewSelectionSwitch } from './tree-view-selection-switch';
+// import { TreeViewSelectionSwitch } from './tree-view-selection-switch';
 
 export const TreeViews: LibraryItem[] = [
   ...TreeViewNavigation,
   ...TreeViewCheckbox,
   ...TreeViewRadio,
-  ...TreeViewSelectionSwitch,
+  // ...TreeViewSelectionSwitch,
 ];
 
 export const TreeViewsData: LibraryItemGroup = {
