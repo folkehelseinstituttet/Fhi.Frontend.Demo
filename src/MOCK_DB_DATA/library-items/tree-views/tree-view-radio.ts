@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-selection-radio [items]="items" name="radio-group"></fhi-tree-view-selection>`;
+<fhi-tree-view-selection-radio [items]="items" name="group-name"></fhi-tree-view-selection>`;
 }
 
 /*
