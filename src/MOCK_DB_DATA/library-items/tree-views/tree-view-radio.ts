@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-selection-radio [items]="items" name="group-name"></fhi-tree-view-selection>`;
+<fhi-tree-view-radio [items]="items" name="group-name"></fhi-tree-view-radio>`;
 }
 
 /*
@@ -44,12 +44,12 @@ function getDocumentationHtml(): string | null {
 
 <ul>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/README.md#API">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/fhi-tree-view-radio/README.md#API">
       API-dokumentasjon
     </a>
   </li>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/fhi-tree-view-radio">
       Kildekode
     </a>
   </li>
