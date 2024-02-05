@@ -17,5 +17,6 @@ export class FhiTreeViewRadioComponent {
 
   onItemsChange(items: Item[]) {
     this.items = items;
+    this.itemsChange.emit(this.items);
   }
 }
