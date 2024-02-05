@@ -2,6 +2,7 @@
 
 > Feb 1, 2024
 
+* :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
 * :tada: **Enhancement** CSS classes cleanup
 
 # 2.0.0

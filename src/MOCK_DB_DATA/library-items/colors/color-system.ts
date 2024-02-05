@@ -46,9 +46,11 @@ ${colorHtml('#dbe6ec', 'fhi-core-blue-grey-3')}
 ${colorHtml('#cbd9df', 'fhi-core-blue-grey-4')}
 ${colorHtml('#879ba5', 'fhi-core-blue-grey-6')}
 ${colorHtml('#435c68', 'fhi-core-blue-grey-7')}
+${colorHtml('#333841', 'fhi-core-charcoal-1')}
 
 <p class="text-muted small mt-2 mb-0">Blå</p>
 ${colorHtml('#0067c4', 'fhi-core-blue-1')}
+${colorHtml('#0e4485', 'fhi-core-blue-2')}
 ${colorHtml('#393c61', 'fhi-core-blue-3')}
 
 <p class="text-muted small mt-2 mb-0">Grønn</p>

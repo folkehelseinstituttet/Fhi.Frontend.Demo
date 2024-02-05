@@ -28,46 +28,15 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h2 class="modal-title" id="modal-basic-title">Overskrift</h2>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
-  </div>
-  <div class="modal-body">
-    <p>Modalvindu innhold.</p>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn fhi-btn-secondary" (click)="modal.close()">Avbryt</button>
-    <button type="button" class="btn fhi-btn-primary" (click)="modal.close('Save click')">Lagre</button>
-  </div>
-</ng-template>
-
-<p>
-  <button class="btn fhi-btn-link" (click)="open(content)">Åpne modalvindu (standard størrelse)</button>
-</p>`;
+<fhi-modal [modalTitle]="'Overskrift'">
+  <ng-container fhi-modal.button>Åpne modal</ng-container>
+  <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
+</fhi-modal>`;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Bootstrap-dokumentasjon for
-  <a href="${CONST.BootstrapComponentsBaseUrl}/${itemTitle.toLocaleLowerCase()}">${itemTitle}</a>
-</p>
-<p>
-  ${itemTitle} er implementert som
-  <a href="${
-    CONST.NgBootstrapComponentsBaseUrl
-  }/${itemTitle.toLocaleLowerCase()}">ngBootstrap ${itemTitle}</a>
-  i FHI Designsystem.
-</p>
-<p>
-  <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/tree/dev/src/app/views/shared/dynamic-library-examples/ng-bootstrap-examples/modal-example">
-    Detaljer i dette kodeeksempelet på Github</a>.
-</p>
-<p>
-  Hvis du benytter et annet Javascript-rammeverk må du selv finne passende tredjepartskomponent.
-</p>`;
+  return null;
 }

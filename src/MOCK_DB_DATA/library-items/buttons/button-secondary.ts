@@ -17,8 +17,14 @@ export const ButtonSecondary: LibraryItem[] = [
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-secondary">
+<button type="button" class="btn fhi-btn-secondary mb-3">
   Sekundær handling
+</button>
+
+<br>
+
+<button type="button" class="btn fhi-btn-secondary" disabled>
+  Deaktivert
 </button>`;
 }
 
@@ -27,7 +33,10 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<button type="button" class="btn fhi-btn-secondary">
+  Sekundær handling
+</button>`;
 }
 
 /*
