@@ -7,7 +7,7 @@
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
     </div>
-    <div style="margin-right: -15px" *ngIf="allDiagramOptions.showFullScreenButton">
+    <div *ngIf="allDiagramOptions.showFullScreenButton">
       <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
     </div>
   </div>
@@ -56,10 +56,14 @@
 </ng-template>
 
 <ng-template #diagramModal>
-  <fhi-modal [openModalButtonClass]="'fhi-btn-icon'" [modalTitle]="allDiagramOptions.title" [size]="'fullscreen'">
-    <ng-container fhi-modal.button-text>
+  <fhi-modal
+    [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
+    [modalTitle]="allDiagramOptions.title"
+    [size]="'fullscreen'"
+  >
+    <ng-container fhi-modal.button>
       <i class="icon-arrows-fullscreen"></i>
-      <span class="btn__text">Fullskjerm</span>
+      <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
       <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
