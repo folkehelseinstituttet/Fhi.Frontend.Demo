@@ -31,12 +31,14 @@ export class TreeViewsComponent {
     this.changeDetector.detectChanges();
   }
 
-  onItemsChangeCheck(items: FhiTreeViewSelectionItem[]) {
+  onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsCheck = items;
+    console.info('checkbox items: ', this.itemsCheck);
   }
 
-  onItemsChangeRadio(items: FhiTreeViewSelectionItem[]) {
+  onRadioChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsRadio = items;
+    console.info('radio items: ', this.itemsRadio);
   }
 
   private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {

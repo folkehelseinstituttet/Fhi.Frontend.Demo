@@ -5,14 +5,23 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewCheckbox.id">
-  <fhi-tree-view-checkbox [items]="itemsCheck" [enableCheckAll]="true"></fhi-tree-view-checkbox>
+  <fhi-tree-view-checkbox
+    [items]="itemsCheck"
+    [enableCheckAll]="true"
+    (itemsChange)="onCheckboxChange($event)"
+  ></fhi-tree-view-checkbox>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewRadio.id">
-  <fhi-tree-view-radio [items]="itemsRadio" name="group-name"></fhi-tree-view-radio>
+  <fhi-tree-view-radio
+    [items]="itemsRadio"
+    name="group-name"
+    (itemsChange)="onRadioChange($event)"
+  ></fhi-tree-view-radio>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewSelectionSwitch.id">
+  <!-- activate in _tree-views.data.ts -->
   <div class="d-flex">
     <fhi-tree-view-checkbox
       [items]="itemsCheck"
