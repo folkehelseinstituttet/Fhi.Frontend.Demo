@@ -31,7 +31,7 @@
         <input
           class="form-control"
           style="height: auto"
-          type="text"
+          type="search"
           id="iconFilter"
           #iconFilterInput
           (keyup)="filterIcons($event)"
@@ -45,33 +45,35 @@
 <hr />
 
 <div class="d-flex flex-wrap ds-icons-wrapper">
-  <div class="ds-icon mb-4" *ngFor="let icon of filteredIcons">
-    <i
-      [class]="'icon-' + icon + ' icon-' + iconSizeSelected"
-      (mouseenter)="tooltipOpen(t)"
-      (mouseleave)="t.close()"
-      [ngbTooltip]="tipContent"
-      #t="ngbTooltip"
-      [autoClose]="false"
-      triggers="manual"
-      placement="left right"
-      (click)="copyIcon('<i class=&quot;icon-' + icon + ' icon-' + iconSizeSelected + '&quot;></i>')"
-    ></i>
-    <small
-      class="ds-icon__name fhi-text-ancillary"
-      tabindex="0"
-      (mouseenter)="tooltipOpen(t2)"
-      (mouseleave)="t2.close()"
-      [ngbTooltip]="tipContent"
-      #t2="ngbTooltip"
-      [autoClose]="false"
-      triggers="manual"
-      placement="right top"
-      (click)="copyIcon(icon)"
-    >
-      {{ icon }}
-    </small>
-  </div>
+  <ng-container *ngFor="let icon of filteredIcons">
+    <div class="ds-icon mb-4" *ngIf="icon !== 'fhi-logo'">
+      <i
+        [class]="'icon-' + icon + ' icon-' + iconSizeSelected"
+        (mouseenter)="tooltipOpen(t)"
+        (mouseleave)="t.close()"
+        [ngbTooltip]="tipContent"
+        #t="ngbTooltip"
+        [autoClose]="false"
+        triggers="manual"
+        placement="left right"
+        (click)="copyIcon('<i class=&quot;icon-' + icon + ' icon-' + iconSizeSelected + '&quot;></i>')"
+      ></i>
+      <small
+        class="ds-icon__name fhi-text-ancillary"
+        tabindex="0"
+        (mouseenter)="tooltipOpen(t2)"
+        (mouseleave)="t2.close()"
+        [ngbTooltip]="tipContent"
+        #t2="ngbTooltip"
+        [autoClose]="false"
+        triggers="manual"
+        placement="right top"
+        (click)="copyIcon(icon)"
+      >
+        {{ icon }}
+      </small>
+    </div>
+  </ng-container>
   <p *ngIf="filteredIcons?.length === 0">Ingen ikoner å vise</p>
 </div>
 
