@@ -10,7 +10,6 @@ import {
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
-import { tr } from 'date-fns/locale';
 
 @Component({
   selector: 'app-highcharts',
@@ -97,10 +96,12 @@ export class HighchartsComponent implements OnInit {
             mapTypeId: 'mapFylker',
             openSource: false,
             showFullScreenButton: true,
-            // additionalLink: {
-            //   linkType: 'href',
-            //   link: '/hoi',
-            // },
+            additionalLink: {
+              icon: 'info-circle',
+              link: 'highcharts-without-menu',
+              linkText: 'Om dataene',
+              linkType: 'fragment',
+            },
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

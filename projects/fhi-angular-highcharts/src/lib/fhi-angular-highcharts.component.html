@@ -9,9 +9,21 @@
     </div>
 
     <ng-container *ngIf="allDiagramOptions.additionalLink">
-      <a href="#" class="btn fhi-btn-icon" [ngClass]="{ 'me-3': allDiagramOptions.showFullScreenButton }">
-        <i class="icon-question-circle"></i>
-        <span class="btn__text">Fragment?</span>
+      <a
+        href="#"
+        class="btn fhi-btn-icon"
+        [ngClass]="{
+          'me-3': allDiagramOptions.showFullScreenButton,
+          'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
+        }"
+      >
+        <i
+          [attr.class]="'icon-' + allDiagramOptions.additionalLink.icon"
+          *ngIf="allDiagramOptions.additionalLink.icon"
+        ></i>
+        <span class="btn__text" *ngIf="allDiagramOptions.additionalLink.linkText">{{
+          allDiagramOptions.additionalLink.linkText
+        }}</span>
       </a>
     </ng-container>
 
