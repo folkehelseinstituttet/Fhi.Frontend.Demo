@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<fhi-tree-view-selection-check [items]="items" [enableCheckAll]="true"></fhi-tree-view-selection>`;
+<fhi-tree-view-checkbox [items]="items" [enableCheckAll]="true"></fhi-tree-view-checkbox>`;
 }
 
 /*
@@ -44,12 +44,12 @@ function getDocumentationHtml(): string | null {
 
 <ul>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/README.md#API">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/fhi-tree-view-checkbox/README.md#API">
       API-dokumentasjon
     </a>
   </li>
   <li>
-    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection">
+    <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-tree-view-selection/fhi-tree-view-checkbox">
       Kildekode
     </a>
   </li>

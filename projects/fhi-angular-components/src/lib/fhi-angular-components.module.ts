@@ -6,8 +6,8 @@ import { FhiTableModule } from './fhi-table/fhi-table.module';
 import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 
 import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection/fhi-tree-view-selection.component';
-import { FhiTreeViewRadioComponent } from './fhi-tree-view-selection/fhi-tree-view-radio.component';
-import { FhiTreeViewCheckboxComponent } from './fhi-tree-view-selection/fhi-tree-view-checkbox.component';
+import { FhiTreeViewRadioComponent } from './fhi-tree-view-selection/fhi-tree-view-radio/fhi-tree-view-radio.component';
+import { FhiTreeViewCheckboxComponent } from './fhi-tree-view-selection/fhi-tree-view-checkbox/fhi-tree-view-checkbox.component';
 import { FhiDatepickerComponent } from './fhi-time/fhi-datepicker/fhi-datepicker.component';
 // import { FhiDateRangeComponent } from './fhi-time/fhi-date-range/fhi-date-range.component';
 import { FhiDateTimeComponent } from './fhi-time/fhi-date-time/fhi-date-time.component';

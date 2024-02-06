@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection.component';
-import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionComponent } from '../fhi-tree-view-selection.component';
+import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-item.model';
 
 @Component({
   selector: 'fhi-tree-view-radio',
