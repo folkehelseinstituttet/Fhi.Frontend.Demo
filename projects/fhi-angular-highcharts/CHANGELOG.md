@@ -3,7 +3,7 @@
 > Feb 6, 2024
 
 * :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
-* :tada: **Enhancement** Removed table specific CSS classes, being replaced by rules in @folkehelseinstituttet/style
+* :tada: **Enhancement** Removed table specific CSS classes, being replaced by general rules in @folkehelseinstituttet/style
 
 # 2.0.0
 
