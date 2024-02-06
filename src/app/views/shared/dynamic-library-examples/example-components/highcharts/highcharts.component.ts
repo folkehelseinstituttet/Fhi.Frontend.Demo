@@ -34,8 +34,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.getDodsfallEtterAarsak_2017_2021();
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.getDodsfallHjerteOgKarEtterFylke();
-      // this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
+      // this.getDodsfallHjerteOgKarEtterFylke();
+      this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
     }
   }
 
@@ -109,7 +109,8 @@ export class HighchartsComponent implements OnInit {
     this.highchartsDataService.getData(MockData.TestData).subscribe({
       next: (data: FhiDiagramSerie[]) => {
         this.diagramOptions = {
-          title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
+          // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
+          title: 'Row heaers and column heaers',
           series: data,
           // diagramTypeId: 'pie',
           // diagramTypeId: 'map',
