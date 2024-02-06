@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jan 24, 2024
+> Feb 6, 2024
 
+* :gift: **New** `FhiTreeViewRadio` and `FhiTreeViewCheckbox` replaces `FhiTreeViewSelection`
 * :gift: **New** Add modal
 
 ## 3.0.0

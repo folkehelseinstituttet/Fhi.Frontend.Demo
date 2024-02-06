@@ -1,11 +1,11 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 
-export const ButtonPrimary: LibraryItem[] = [
+export const TreeViewSelectionSwitch: LibraryItem[] = [
   {
-    id: ITEMS.ButtonPrimary.id,
-    title: ITEMS.ButtonPrimary.title,
-    type: LibraryItemType.html,
+    id: ITEMS.TreeViewSelectionSwitch.id,
+    title: ITEMS.TreeViewSelectionSwitch.title,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
@@ -16,16 +16,7 @@ export const ButtonPrimary: LibraryItem[] = [
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<button type="button" class="btn fhi-btn-primary mb-3">
-  Hovedhandling
-</button>
-
-<br>
-
-<button type="button" class="btn fhi-btn-primary" disabled>
-  Deaktivert
-</button>`;
+  return ``;
 }
 
 /*
@@ -33,18 +24,12 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<button type="button" class="btn fhi-btn-primary">
-  Hovedhandling
-</button>`;
+  return ``;
 }
 
 /*
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<p>
-  Primærknapp representerer hovedhandlingen på siden; altså det man ønsker at brukeren skal kunne gjøre i en optimal flyt.
-</p>`;
+  return null;
 }

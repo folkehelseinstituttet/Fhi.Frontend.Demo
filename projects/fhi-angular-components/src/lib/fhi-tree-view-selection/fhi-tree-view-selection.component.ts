@@ -8,13 +8,16 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 
 @Component({
   selector: 'fhi-tree-view-selection',
+  standalone: true,
   templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
@@ -28,9 +31,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
-    }
-    if (this.singleSelection && this.name === undefined) {
-      console.warn(this.getSingleSelectionWarningMsg());
     }
   }
 
@@ -138,9 +138,5 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         this.createIds(item.children, (id - 1) * 10 + 1);
       }
     });
-  }
-
-  private getSingleSelectionWarningMsg() {
-    return '[singleSelection]="true" requires [name]="string" if multiple instances of <fhi-tree-view-selection>';
   }
 }
