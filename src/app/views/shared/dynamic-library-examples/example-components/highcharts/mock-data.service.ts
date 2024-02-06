@@ -32,6 +32,9 @@ export class MockDataService {
         // Data for testing while developing locally, do not show in dev or prod.
         case MockData.TestData:
           dataSet.next(TestData);
+          // dataSet.next(DodsfallEtterAarsak_2008_2018);
+          // dataSet.next(DodsfallEtterAarsak_2017_2021);
+          // dataSet.next(DodsfallHjerteOgKarEtterFylke);
           break;
       }
     });

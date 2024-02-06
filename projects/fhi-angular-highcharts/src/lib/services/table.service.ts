@@ -15,7 +15,7 @@ export class TableService {
       };
     }
     return {
-      theadRows: [this.getTableHeaderRow_OrientationRows(series)],
+      theadRows: this.getTableHeaderRow_OrientationRows(series),
       tbodyRows: this.getTableBodyRows_OrientationRows(series),
     };
   }
@@ -29,6 +29,8 @@ export class TableService {
     const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
     const colspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
 
+    console.log('colspanValues', colspanValues);
+
     for (let i = 0; i < dimentionsCount; i++) {
       // Create extra table column for row headers by adding 1
       tableHeaderRows[i] = new Array(series.length + 1);
@@ -36,6 +38,10 @@ export class TableService {
       for (let j = 0; j < tableHeaderRows[i].length; j++) {
         if (j > 0) {
           const hasColspan = this.hasColspan(j, colspanValues[i]);
+
+          // console.log('hasColspan', hasColspan);
+          // console.log('');
+
           tableHeaderRows[i][j] = {
             colspan: hasColspan ? colspanValues[i] : undefined,
             name: hasColspan ? this.getColumnHeaderName(series[j - 1], i) : undefined,
@@ -46,6 +52,7 @@ export class TableService {
         }
       }
     }
+    console.log('tableHeaderRows', tableHeaderRows);
     return tableHeaderRows;
   }
 
@@ -72,7 +79,11 @@ export class TableService {
     return tbodyRows;
   }
 
+  // TODO: can this be generalized for both colspan and rowspan?
   private hasColspan(columnIndex: number, colspanValue: number): boolean {
+    // console.log('columnIndex', columnIndex);
+    // console.log('colspanValue', colspanValue);
+
     let isColspan = false;
     if (columnIndex === 1 || (columnIndex - 1) % colspanValue === 0) {
       isColspan = true;
@@ -88,7 +99,7 @@ export class TableService {
   //  Use series as table rows
   // --------------------------
 
-  private getTableHeaderRow_OrientationRows(series: FhiDiagramSerie[]): TableCell[] {
+  private getTableHeaderRow_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
     const tableHeaderRow: TableCell[] = [];
     series[0].data.forEach((data, i) => {
       if (i === 0) {
@@ -99,7 +110,7 @@ export class TableService {
       }
       tableHeaderRow[i + 1] = { isHeading: true, name: data.name };
     });
-    return tableHeaderRow;
+    return [tableHeaderRow];
   }
 
   private getTableBodyRows_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
@@ -170,12 +181,14 @@ export class TableService {
         (serie) => this.getSerieNameArray(serie.name)[i],
       ) as string[];
 
-      let previousName = '';
+      let previousName = undefined;
+      let valueIsFound = false;
       seriesMappedToNameOnly.forEach((name, index) => {
-        if (previousName !== '' && name !== previousName && !values[i]) {
+        if (!valueIsFound) {
           values[i] = index;
-        } else if (name === previousName && !values[i]) {
-          values[i] = index + 1; // Edge case: more than one dimention totally, but only one category in one of the dimentions
+        }
+        if (previousName !== name && index > 0) {
+          valueIsFound = true;
         }
         previousName = name;
       });
