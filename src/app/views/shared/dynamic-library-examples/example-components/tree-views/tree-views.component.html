@@ -5,16 +5,45 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewCheckbox.id">
-  <fhi-tree-view-selection [enableCheckAll]="true" [items]="itemsCheck" (itemsChange)="onItemsChangeCheck($event)">
-  </fhi-tree-view-selection>
+  <fhi-tree-view-checkbox
+    [items]="itemsCheck"
+    [enableCheckAll]="true"
+    (itemsChange)="onCheckboxChange($event)"
+  ></fhi-tree-view-checkbox>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewRadio.id">
-  <fhi-tree-view-selection
-    [singleSelection]="true"
-    [name]="'radio'"
+  <fhi-tree-view-radio
     [items]="itemsRadio"
-    (itemsChange)="onItemsChangeRadio($event)"
-  >
-  </fhi-tree-view-selection>
+    name="group-name"
+    (itemsChange)="onRadioChange($event)"
+  ></fhi-tree-view-radio>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.TreeViewSelectionSwitch.id">
+  <!-- activate in _tree-views.data.ts -->
+  <div class="d-flex">
+    <fhi-tree-view-checkbox
+      [items]="itemsCheck"
+      [enableCheckAll]="checkAll"
+      *ngIf="!hasRadioButtons"
+    ></fhi-tree-view-checkbox>
+    <fhi-tree-view-radio [items]="itemsRadio" name="group-name-2" *ngIf="hasRadioButtons"></fhi-tree-view-radio>
+
+    <div class="ms-auto">
+      <button class="btn fhi-btn-link" (click)="hasRadioButtons = !hasRadioButtons">
+        Bytt til
+        <span *ngIf="hasRadioButtons">sjekkbokser</span>
+        <span *ngIf="!hasRadioButtons">radioknapper</span>
+      </button>
+
+      <div *ngIf="!hasRadioButtons">
+        <button class="btn fhi-btn-link" (click)="checkAll = !checkAll">
+          <span *ngIf="!checkAll">Aktiver</span>
+          <span *ngIf="checkAll">Deaktiver</span>
+          velg alle
+        </button>
+      </div>
+    </div>
+  </div>
 </ng-container>

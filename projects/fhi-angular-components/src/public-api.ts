@@ -20,8 +20,9 @@ export * from './lib/fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 export * from './lib/fhi-tree-view-navigation/fhi-tree-view-navigation-item.model';
 
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.component';
-export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection.module';
+export * from './lib/fhi-tree-view-selection/fhi-tree-view-checkbox/fhi-tree-view-checkbox.component';
 export * from './lib/fhi-tree-view-selection/fhi-tree-view-selection-item.model';
+export * from './lib/fhi-tree-view-selection/fhi-tree-view-radio/fhi-tree-view-radio.component';
 
 export * from './lib/fhi-time/fhi-datepicker/fhi-datepicker.component';
 // export * from './lib/fhi-time/fhi-date-range/fhi-date-range.component';

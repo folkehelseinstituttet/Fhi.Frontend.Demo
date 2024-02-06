@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import {
@@ -10,14 +10,17 @@ import {
   selector: 'app-tree-views',
   templateUrl: './tree-views.component.html',
 })
-export class TreeViewsComponent {
+export class TreeViewsComponent implements OnInit {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  treeNavItems: any[];
+  treeNavItems: FhiTreeViewNavigationItem[];
 
   itemsCheck!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
+
+  checkAll: boolean = true;
+  hasRadioButtons: boolean = true;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
@@ -28,12 +31,14 @@ export class TreeViewsComponent {
     this.changeDetector.detectChanges();
   }
 
-  onItemsChangeCheck(items: FhiTreeViewSelectionItem[]) {
+  onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsCheck = items;
+    console.info('checkbox items: ', this.itemsCheck);
   }
 
-  onItemsChangeRadio(items: FhiTreeViewSelectionItem[]) {
+  onRadioChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsRadio = items;
+    console.info('radio items: ', this.itemsRadio);
   }
 
   private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {

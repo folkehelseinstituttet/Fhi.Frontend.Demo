@@ -56,7 +56,9 @@
     display: inline-block;
     padding: 2px 5px;
     border-radius: 2px;
-    transition: background-color 0.15s, box-shadow 0.15s;
+    transition:
+        background-color 0.15s,
+        box-shadow 0.15s;
 }
 
 .node-wrapper {
@@ -132,7 +134,10 @@ tree-root .angular-tree-component-rtl {
     direction: rtl;
 }
 
-tree-root .angular-tree-component-rtl .toggle-children-wrapper-collapsed .toggle-children {
+tree-root
+    .angular-tree-component-rtl
+    .toggle-children-wrapper-collapsed
+    .toggle-children {
     transform: rotate(180deg) !important;
 }
 
@@ -144,8 +149,6 @@ tree-root .angular-tree-component-rtl .tree-children {
 tree-node-checkbox {
     padding: 1px;
 }
-
-
 
 // *****************
 // FHI customization
@@ -159,7 +162,7 @@ tree-node-checkbox {
     border-radius: 7px;
     height: 8px;
     margin: 1px 0 1px $fhi-core-space-5;
-    transition: height .1s;
+    transition: height 0.1s;
 }
 
 .tree-node-wrapper,
@@ -227,7 +230,7 @@ tree-node-expander,
     }
 
     &:hover {
-        box-shadow: 0 0 0 .5px $fhi-core-grey-4 inset;
+        box-shadow: 0 0 0 0.5px $fhi-core-grey-4 inset;
     }
 }
 
@@ -274,7 +277,7 @@ tree-node-expander,
         margin-bottom: $fhi-core-px;
         opacity: 0;
         padding: 0;
-        transition: opacity .15s;
+        transition: opacity 0.15s;
         width: $fhi-core-px * 44;
 
         [class*="icon-"] {
@@ -288,7 +291,7 @@ tree-node-expander,
         }
 
         &:hover {
-            background-color: $fhi-core-pink-light-2;
+            background-color: $fhi-core-grey-light-2;
         }
 
         &:focus-visible {
@@ -302,7 +305,7 @@ tree-node-expander,
             opacity: 1;
 
             &.disabled {
-                opacity: .3;
+                opacity: 0.3;
             }
         }
     }

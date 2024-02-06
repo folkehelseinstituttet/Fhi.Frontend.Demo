@@ -391,6 +391,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'tree-view-radio',
     title: 'Tree view radio',
   },
+  TreeViewSelectionSwitch: {
+    id: 'tree-view-selection-switch',
+    title: 'Tree view selection type switch',
+  },
 
   VisualIdentityColors: {
     id: 'colors',

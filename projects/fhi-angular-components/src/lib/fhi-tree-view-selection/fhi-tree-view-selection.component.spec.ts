@@ -8,7 +8,7 @@ describe('FhiTreeViewSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FhiTreeViewSelectionComponent],
+      imports: [FhiTreeViewSelectionComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FhiTreeViewSelectionComponent);

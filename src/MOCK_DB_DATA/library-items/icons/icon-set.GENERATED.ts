@@ -108,6 +108,7 @@ export const IncludedIcons = [
   'skin',
   'sliders',
   'social',
+  'star',
   'stomach',
   'table',
   'thermometer-half',
