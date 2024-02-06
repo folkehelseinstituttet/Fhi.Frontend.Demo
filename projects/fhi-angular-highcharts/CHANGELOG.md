@@ -1,10 +1,11 @@
 # Unreleased
 
-> Jan 24, 2024
+> Feb 6, 2024
 
 * :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
+* :tada: **Enhancement** Removed table specific CSS classes, being replaced by general rules in @folkehelseinstituttet/style
 
-## 2.0.0
+# 2.0.0
 
 > Jan 24, 2024
 

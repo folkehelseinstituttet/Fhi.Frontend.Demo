@@ -1,27 +1,24 @@
-import { Component, Input } from '@angular/core';
-import { TablesDataService } from './tables-data.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { Table, TableEditable } from './table.consts';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
   selector: 'app-tables',
   templateUrl: './tables.component.html',
-  providers: [TablesDataService],
 })
-export class TablesComponent {
+export class TablesComponent implements OnInit {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  table1: any = [];
-  tableEditable: any = [];
+  table1 = [];
+  tableEditable = [];
   sortDirection = 'ascending';
   currentlySortedColumn = '';
   previousSortedColumn = '';
 
-  constructor(private tableDataService: TablesDataService) {}
-
   ngOnInit() {
-    this.table1 = this.tableDataService.table1();
-    this.tableEditable = this.tableDataService.tableEditable();
+    this.table1 = Table;
+    this.tableEditable = TableEditable;
   }
 
   sortTable(column: string) {
@@ -38,7 +35,7 @@ export class TablesComponent {
       this.sortDirection = 'ascending';
     }
 
-    this.table1.tableContent = this.table1.tableContent.sort((a: any, b: any) => {
+    this.table1 = this.table1.sort((a: string, b: string) => {
       if (this.sortDirection === 'ascending') {
         if (a[column] < b[column]) {
           return -1;
@@ -67,7 +64,7 @@ export class TablesComponent {
 
   toggleAll(chkbx: any) {
     const isChecked = chkbx.srcElement.checked;
-    const tableRows = this.table1.tableContent;
+    const tableRows = this.table1;
 
     for (let i = 0; i < tableRows.length; i++) {
       tableRows[i].selected = isChecked;
@@ -92,9 +89,9 @@ export class TablesComponent {
     }
   }
 
-  deleteRow(identificator: string, i: any) {
+  deleteRow(identificator: string, i: number) {
     if (window.confirm(`Er du sikker på at du vil slette ${identificator}?`)) {
-      this.tableEditable.tableContent.splice(i, 1);
+      this.tableEditable.splice(i, 1);
     }
   }
 }
