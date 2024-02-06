@@ -97,6 +97,10 @@ export class HighchartsComponent implements OnInit {
             mapTypeId: 'mapFylker',
             openSource: false,
             showFullScreenButton: true,
+            // additionalLink: {
+            //   linkType: 'href',
+            //   link: '/hoi',
+            // },
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;

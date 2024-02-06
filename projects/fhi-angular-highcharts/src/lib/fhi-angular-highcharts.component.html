@@ -7,6 +7,14 @@
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
     </div>
+
+    <ng-container *ngIf="allDiagramOptions.additionalLink">
+      <a href="#" class="btn fhi-btn-icon" [ngClass]="{ 'me-3': allDiagramOptions.showFullScreenButton }">
+        <i class="icon-question-circle"></i>
+        <span class="btn__text">Fragment?</span>
+      </a>
+    </ng-container>
+
     <div *ngIf="allDiagramOptions.showFullScreenButton">
       <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
     </div>
