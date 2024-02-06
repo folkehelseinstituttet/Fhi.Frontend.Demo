@@ -33,9 +33,10 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>FHI Designsystem vil på sikt tilby en FHI Angular komponent for tabell med innebygget funksjonalitet for redigerbare celler.</p>
-  
-<p>Om du ønsker å lage en tabell med redigerbare celler før denne komponenten blir tilgjengelig, inspect og finn markup her og lag din egen funksjonalitet.</p>
+<div class="alert alert-info" role="alert">
+  <i class="icon-info-circle"></i>
+  <p class="mb-0">FHI Angular Components vil på sikt inkludere en tabellkomponent.</p>
+</div>
 
-<p>Merk! Ved bruk av knapper i tabeller er det kun ikon-knapper som skal benyttes.</p>`;
+<p>Se <a href="${CONST.ExampleComponentsGithubUrl}/tables">kode på Github for disse eksemplene</a>.</p>`;
 }

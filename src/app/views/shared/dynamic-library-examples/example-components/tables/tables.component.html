@@ -1,19 +1,78 @@
+<ng-container *ngIf="itemId === items.Table.id">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <td></td>
+          <th>Kolonne 1</th>
+          <th>Kolonne 2</th>
+          <th>Kolonne 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tableRow of table1">
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td>{{ tableRow.col4 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.TableCompact.id">
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <td></td>
+          <th>Kolonne 1</th>
+          <th>Kolonne 2</th>
+          <th>Kolonne 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tableRow of table1">
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td>{{ tableRow.col4 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="itemId === items.TableStriped.id">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td></td>
+          <th>Kolonne 1</th>
+          <th>Kolonne 2</th>
+          <th>Kolonne 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tableRow of table1">
+          <th>{{ tableRow.col1 }}</th>
+          <td>{{ tableRow.col2 }}</td>
+          <td>{{ tableRow.col3 }}</td>
+          <td>{{ tableRow.col4 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>
+
 <ng-container *ngIf="itemId === items.TableSortable.id">
   <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
-          <th
-            scope="col"
-            tabindex="0"
-            aria-label="Sorter tabell på ID"
-            [attr.aria-sort]="currentlySortedColumn === 'col1' ? sortDirection : 'none'"
-            (keydown.enter)="sortTable('col1')"
-            (click)="sortTable('col1')"
-          >
-            <span class="text-decoration-underline">ID</span>
-            <i [ngClass]="getIconClass('col1')"></i>
-          </th>
+          <td></td>
           <th
             scope="col"
             tabindex="0"
@@ -22,7 +81,7 @@
             (keydown.enter)="sortTable('col2')"
             (click)="sortTable('col2')"
           >
-            <span class="text-decoration-underline">Fornavn</span>
+            <span class="text-decoration-underline">Kolonne 1</span>
             <i [ngClass]="getIconClass('col2')"></i>
           </th>
           <th
@@ -33,7 +92,7 @@
             (keydown.enter)="sortTable('col3')"
             (click)="sortTable('col3')"
           >
-            <span class="text-decoration-underline">Etternavn</span>
+            <span class="text-decoration-underline">Kolonne 2</span>
             <i [ngClass]="getIconClass('col3')"></i>
           </th>
           <th
@@ -44,14 +103,14 @@
             (keydown.enter)="sortTable('col4')"
             (click)="sortTable('col4')"
           >
-            <span class="text-decoration-underline">Rolle</span>
+            <span class="text-decoration-underline">Kolonne 3</span>
             <i [ngClass]="getIconClass('col4')"></i>
           </th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let tableRow of table1.tableContent">
+        <tr *ngFor="let tableRow of table1">
           <th>{{ tableRow.col1 }}</th>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
@@ -67,19 +126,20 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <td></td>
           <th>
             <input class="form-check-input" id="selectAllRows" type="checkbox" (change)="toggleAll($event)" />
             <label for="selectAllRows" class="visually-hidden">Velg alle rader</label>
           </th>
-          <th scope="col">ID</th>
-          <th scope="col">Fornavn</th>
-          <th scope="col">Etternavn</th>
-          <th scope="col">Rolle</th>
+          <th scope="col">Kolonne 1</th>
+          <th scope="col">Kolonne 2</th>
+          <th scope="col">Kolonne 3</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let tableRow of table1.tableContent; index as i" [attr.aria-selected]="tableRow.selected">
+        <tr *ngFor="let tableRow of table1; index as i" [attr.aria-selected]="tableRow.selected">
+          <th>{{ tableRow.col1 }}</th>
           <td>
             <input
               class="form-check-input"
@@ -90,7 +150,6 @@
             />
             <label for="row{{ i }}" class="visually-hidden">Velg denne raden</label>
           </td>
-          <th>{{ tableRow.col1 }}</th>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
           <td>{{ tableRow.col4 }}</td>
@@ -105,16 +164,16 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Fornavn</th>
-          <th scope="col">Etternavn</th>
-          <th scope="col">Rolle</th>
+          <td></td>
+          <th scope="col">Kolonne 1</th>
+          <th scope="col">Kolonne 2</th>
+          <th scope="col">Redigerbar kolonne</th>
           <th class="text-end" scope="col">Handling</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let tableRow of tableEditable.tableContent; index as i">
+        <tr *ngFor="let tableRow of tableEditable; index as i">
           <th>{{ tableRow.col1 }}</th>
           <td>{{ tableRow.col2 }}</td>
           <td>{{ tableRow.col3 }}</td>
