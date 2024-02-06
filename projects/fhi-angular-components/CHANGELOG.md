@@ -2,6 +2,7 @@
 
 > Feb 6, 2024
 
+* :tada: **Enhancement** raise the lower limit for when to display *Fjern Valgte* button in `fhi-multiselect` to three selected items.
 * :gift: **New** `FhiTreeViewRadio` and `FhiTreeViewCheckbox` replaces `FhiTreeViewSelection`
 * :gift: **New** Add modal
 
