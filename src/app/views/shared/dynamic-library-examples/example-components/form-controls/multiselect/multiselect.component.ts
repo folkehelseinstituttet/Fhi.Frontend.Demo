@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MultiselectDataService, Person } from './multiselect-data.service';
@@ -10,11 +10,11 @@ import { map } from 'rxjs';
   imports: [SharedModule],
   templateUrl: './multiselect.component.html',
 })
-export class MultiselectComponent {
-  constructor(private multiselectDataService: MultiselectDataService) {}
-
+export class MultiselectComponent implements OnInit {
   people: Person[] = [];
   selectedPeople = [];
+
+  constructor(private multiselectDataService: MultiselectDataService) {}
 
   ngOnInit() {
     this.multiselectDataService
@@ -22,7 +22,7 @@ export class MultiselectComponent {
       .pipe(map((x) => x.filter((y) => !y.disabled)))
       .subscribe((people) => {
         this.people = people;
-        this.selectedPeople = [this.people[0].id, this.people[1].id];
+        this.selectedPeople = [this.people[0].id, this.people[1].id, this.people[3].id];
       });
   }
 }
