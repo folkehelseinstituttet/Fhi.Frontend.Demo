@@ -170,12 +170,14 @@ export class TableService {
         (serie) => this.getSerieNameArray(serie.name)[i],
       ) as string[];
 
-      let previousName = '';
+      let previousName = undefined;
+      let valueIsFound = false;
       seriesMappedToNameOnly.forEach((name, index) => {
-        if (previousName !== '' && name !== previousName && !values[i]) {
+        if (!valueIsFound) {
           values[i] = index;
-        } else if (name === previousName && !values[i]) {
-          values[i] = index + 1; // Edge case: more than one dimention totally, but only one category in one of the dimentions
+        }
+        if (previousName !== name && index > 0) {
+          valueIsFound = true;
         }
         previousName = name;
       });

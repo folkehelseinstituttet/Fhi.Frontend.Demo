@@ -3,10 +3,11 @@
 > Feb 7, 2024
 
 * :tada: **Enhancement** Add additional button/link to fragment/route/url
+* :bug: **Bugfix** Make the colspan/rowspan calculation for col/row headers correct in tables with multiple dimentions.
 * :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
 * :tada: **Enhancement** Removed table specific CSS classes, being replaced by general rules in @folkehelseinstituttet/style
 
-# 2.0.0
+## 2.0.0
 
 > Jan 24, 2024
 
