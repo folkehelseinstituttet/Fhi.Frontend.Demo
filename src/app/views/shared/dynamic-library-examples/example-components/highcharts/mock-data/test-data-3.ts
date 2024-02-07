@@ -20,7 +20,7 @@ export const TestData = [
     ],
   },
   {
-    name: 'Andel positive (%)',
+    name: 'Andel positive',
     data: [
       // TODO: is number of decimals rounded by FHI Angular Highcharts or by the consumer?
       { name: '2023-51', y: 12.85337 },

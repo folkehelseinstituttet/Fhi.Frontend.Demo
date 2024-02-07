@@ -115,6 +115,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
           },
         ];
 
+        // this.highchartsOptions.series[0].type = 'column';
+        // this.highchartsOptions.series[1].type = 'column';
+
+        this.highchartsOptions.series[2].type = 'line';
+        this.highchartsOptions.series[2].yAxis = 1;
+        this.highchartsOptions.series[2]['tooltip'] = {
+          valueDecimals: 1,
+          valueSuffix: '%',
+        };
+
         // -----------------------------------------------------------------------
       }
       this.showFooter = this.canShowFooter();
