@@ -88,6 +88,34 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.updateMap();
       } else {
         this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+
+        // Dual y-axes POC ---------------------------------------------------
+
+        console.log('this.highchartsOptions', this.highchartsOptions);
+
+        this.highchartsOptions.yAxis = [
+          {
+            // Primary yAxis
+            labels: {
+              format: '{value}',
+            },
+            title: {
+              text: 'Antall', // TODO: add more metadata to diagramOptions (what about defaults?)
+            },
+          },
+          {
+            // Secondary yAxis
+            title: {
+              text: 'Prosent', // TODO: add more metadata to diagramOptions (what about defaults?)
+            },
+            labels: {
+              format: '{value} %',
+            },
+            opposite: true,
+          },
+        ];
+
+        // -----------------------------------------------------------------------
       }
       this.showFooter = this.canShowFooter();
     } catch (error) {

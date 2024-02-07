@@ -30,9 +30,9 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoaded = false;
 
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
-      this.getDodsfallEtterAarsak_2008_2018();
+      // this.getDodsfallEtterAarsak_2008_2018();
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
-      this.getDodsfallEtterAarsak_2017_2021();
+      // this.getDodsfallEtterAarsak_2017_2021();
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       // this.getDodsfallHjerteOgKarEtterFylke();
       this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
@@ -112,9 +112,8 @@ export class HighchartsComponent implements OnInit {
           // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
           title: 'Dual axes, line and column',
           series: data,
-          diagramTypeId: 'pie',
-          // diagramTypeId: 'map',
-          diagramTypeNavId: 'default',
+          diagramTypeId: 'line',
+          // diagramTypeNavId: 'default',
           flags: [
             { symbol: '..', label: 'Manglende data' },
             { symbol: '.', label: 'Lar seg ikke beregne' },
