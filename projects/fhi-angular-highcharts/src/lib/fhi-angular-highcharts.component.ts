@@ -71,6 +71,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    // console.log('this.diagramOptions', this.diagramOptions);
+
     try {
       this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;

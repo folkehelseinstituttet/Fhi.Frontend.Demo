@@ -124,7 +124,8 @@
             </th>
             <td class="text-end" *ngIf="!tableCell.isHeading">
               <ng-container *ngIf="tableCellDataOK(tableCell.data); else tableCellDataIsString">
-                {{ tableCell.data | number }}
+                <!-- TODO: this is where the number of decimals are defined in the number pipe (now set to 2) -->
+                {{ tableCell.data | number: '1.0-2' }}
               </ng-container>
               <ng-template #tableCellDataIsString>
                 {{ tableCell.data }}

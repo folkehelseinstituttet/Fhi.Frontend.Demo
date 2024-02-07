@@ -8,6 +8,8 @@ import { TableCell, TableData } from '../models/table-data.model';
 @Injectable()
 export class TableService {
   getTable(series: FhiDiagramSerie[], orientation: string): TableData {
+    console.log('TableService->getTable(): series', series);
+
     if (orientation === TableOrientationValues.seriesAsColumns) {
       return {
         theadRows: this.getTableHeaderRows_OrientationColumns(series),
@@ -29,8 +31,6 @@ export class TableService {
     const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
     const colspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
 
-    console.log('colspanValues', colspanValues);
-
     for (let i = 0; i < dimentionsCount; i++) {
       // Create extra table column for row headers by adding 1
       tableHeaderRows[i] = new Array(series.length + 1);
@@ -38,10 +38,6 @@ export class TableService {
       for (let j = 0; j < tableHeaderRows[i].length; j++) {
         if (j > 0) {
           const hasColspan = this.hasColspan(j, colspanValues[i]);
-
-          // console.log('hasColspan', hasColspan);
-          // console.log('');
-
           tableHeaderRows[i][j] = {
             colspan: hasColspan ? colspanValues[i] : undefined,
             name: hasColspan ? this.getColumnHeaderName(series[j - 1], i) : undefined,
@@ -52,7 +48,6 @@ export class TableService {
         }
       }
     }
-    console.log('tableHeaderRows', tableHeaderRows);
     return tableHeaderRows;
   }
 
@@ -79,11 +74,7 @@ export class TableService {
     return tbodyRows;
   }
 
-  // TODO: can this be generalized for both colspan and rowspan?
   private hasColspan(columnIndex: number, colspanValue: number): boolean {
-    // console.log('columnIndex', columnIndex);
-    // console.log('colspanValue', colspanValue);
-
     let isColspan = false;
     if (columnIndex === 1 || (columnIndex - 1) % colspanValue === 0) {
       isColspan = true;
