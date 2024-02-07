@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,7 +17,14 @@ import { TableService } from './services/table.service';
 
 @NgModule({
   declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
-  imports: [CommonModule, FormsModule, HighchartsChartModule, NgbPopoverModule, FhiModalComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HighchartsChartModule,
+    NgbPopoverModule,
+    FhiModalComponent,
+    RouterModule,
+  ],
   exports: [FhiAngularHighchartsComponent],
   providers: [TopoJsonService, DiagramTypeService, OptionsService, TableService],
 })
