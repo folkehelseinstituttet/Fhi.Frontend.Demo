@@ -98,7 +98,7 @@ export class HighchartsComponent implements OnInit {
             showFullScreenButton: true,
             additionalLink: {
               icon: 'info-circle',
-              link: 'highcharts-without-menu',
+              link: 'theTestFragment',
               linkText: 'Om dataene',
               linkType: 'fragment',
             },
