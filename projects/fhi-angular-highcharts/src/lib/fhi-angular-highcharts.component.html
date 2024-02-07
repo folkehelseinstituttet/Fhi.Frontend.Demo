@@ -9,22 +9,7 @@
     </div>
 
     <ng-container *ngIf="allDiagramOptions.additionalLink">
-      <a
-        href="#"
-        class="btn fhi-btn-icon"
-        [ngClass]="{
-          'me-3': allDiagramOptions.showFullScreenButton,
-          'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
-        }"
-      >
-        <i
-          [attr.class]="'icon-' + allDiagramOptions.additionalLink.icon"
-          *ngIf="allDiagramOptions.additionalLink.icon"
-        ></i>
-        <span class="btn__text" *ngIf="allDiagramOptions.additionalLink.linkText">{{
-          allDiagramOptions.additionalLink.linkText
-        }}</span>
-      </a>
+      <ng-container *ngTemplateOutlet="additionalLink"></ng-container>
     </ng-container>
 
     <div *ngIf="allDiagramOptions.showFullScreenButton">
@@ -58,6 +43,27 @@
   <ng-container *ngIf="showFooter">
     <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
   </ng-container>
+</ng-template>
+
+<ng-template #additionalLink>
+  <a
+    [attr.href]="allDiagramOptions.additionalLink.linkType === 'href' ? allDiagramOptions.additionalLink.link : null"
+    [routerLink]="
+      allDiagramOptions.additionalLink.linkType === 'routerLink' ? allDiagramOptions.additionalLink.link : null
+    "
+    [routerLink]="allDiagramOptions.additionalLink.linkType === 'fragment' ? '/developer/components/highcharts' : null"
+    [fragment]="allDiagramOptions.additionalLink.linkType === 'fragment' ? allDiagramOptions.additionalLink.link : null"
+    class="btn fhi-btn-icon"
+    [ngClass]="{
+      'me-3': allDiagramOptions.showFullScreenButton,
+      'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
+    }"
+  >
+    <i [attr.class]="'icon-' + allDiagramOptions.additionalLink.icon" *ngIf="allDiagramOptions.additionalLink.icon"></i>
+    <span class="btn__text" *ngIf="allDiagramOptions.additionalLink.linkText">{{
+      allDiagramOptions.additionalLink.linkText
+    }}</span>
+  </a>
 </ng-template>
 
 <ng-template #diagramTypeNav>
