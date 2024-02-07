@@ -60,6 +60,12 @@ export class HighchartsComponent implements OnInit {
             series: data,
             diagramTypeNavId: 'default',
             tableOrientation: 'seriesAsColumns',
+            additionalLink: {
+              icon: 'info-circle',
+              link: 'theTestFragment1',
+              linkText: 'Om dataene',
+              linkType: 'fragment',
+            },
           };
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
@@ -98,7 +104,7 @@ export class HighchartsComponent implements OnInit {
             showFullScreenButton: true,
             additionalLink: {
               icon: 'info-circle',
-              link: 'theTestFragment',
+              link: 'theTestFragment2',
               linkText: 'Om dataene',
               linkType: 'fragment',
             },
