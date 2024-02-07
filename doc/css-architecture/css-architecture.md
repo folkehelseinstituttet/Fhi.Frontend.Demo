@@ -1,6 +1,6 @@
 # How we (try to) systemize the CSS code
 
-[This diagram](css-architecture.png) shows how we want the CSS code to be organized.
+[This diagram](css-architecture.drawio.png) shows how we want the CSS code to be organized.
 _NB! It doesn't look like this now: we have some refactoring to do before we get it the way we want it._
 
 This following is the main take away from the diagram:
