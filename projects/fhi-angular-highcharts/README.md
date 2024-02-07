@@ -22,17 +22,17 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 ## Dependencies
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
-| ---------------------- | ---------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| Unreleased            | Unreleased                  | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
-| 2.0.x                  | -                      | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
-| 1.x.x                  | -                      | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
-| 0.7.0                  | -                      | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
-| 0.6.x                  | -                      | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.5.x                  | -                      | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.4.x                  | -                      | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.3.x                  | -                      | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.2.0                  | -                      | 4         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.1.0                  | -                      | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
+| ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
+| Unreleased             | Unreleased            | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
+| 2.0.x                  | -                     | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/9 *   |
+| 1.x.x                  | -                     | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
+| 0.7.0                  | -                     | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
+| 0.6.x                  | -                     | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.5.x                  | -                     | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.4.x                  | -                     | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.3.x                  | -                     | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.2.0                  | -                     | 4         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
+| 0.1.0                  | -                     | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
 _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
@@ -117,11 +117,12 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 | Property              | Type                       | Default   | Required | Description |
 | --------------------- | -------------------------- | --------- | -------- | ----------- |
+| `additionalLink`      | `AdditionalLink`           | -         | no       | Link to a fragment, route or url |
 | `creditsHref`         | `string`                   | -         | no       | Link to source ref. in footer. |
 | `creditsText`         | `string`                   | -         | no       | Text to source ref. in footer. |
 | `diagramTypeId`       | `string`                   | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
 | `diagramTypeNavId`    | `string`                   | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Values defined by enum `DiagramTypeNavIds` |
-| `[diagramTypeSubset]` | `Array<string>` | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
+| `[diagramTypeSubset]` | `Array<string>`            | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
 | `disclaimer`          | `string`                   | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
 | `[flags]`             | `Array<FhiDiagramFlag>`    | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
 | `lastUpdated`         | `string`                   | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
