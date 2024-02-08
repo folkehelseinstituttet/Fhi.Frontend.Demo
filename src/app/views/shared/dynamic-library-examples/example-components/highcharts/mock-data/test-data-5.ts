@@ -2,7 +2,7 @@
 //   For debugging row col headers in diagram type table
 export const TestData = [
   {
-    name: 'Oslo | Kjonn samlet | 0_120',
+    name: 'Oslo | Kjonn samlet | 0_120 | a',
     data: [
       {
         name: '2023_2023',
@@ -11,7 +11,7 @@ export const TestData = [
     ],
   },
   {
-    name: 'Oslo | menn | 0_120',
+    name: 'Oslo | menn | 0_120 | a',
     data: [
       {
         name: '2023_2023',
@@ -20,7 +20,7 @@ export const TestData = [
     ],
   },
   {
-    name: 'Oslo | kvinner | 0_120',
+    name: 'Oslo | kvinner | 0_120 | a',
     data: [
       {
         name: '2023_2023',

@@ -167,98 +167,22 @@ export class TableService {
     return name.length;
   }
 
-  private getColspanOrRowspanValues(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
-    const values: number[] = [];
-    for (let i = 0; i < dimentionsCount; i++) {
-      const seriesMappedToNameOnly = series.map(
-        (serie) => this.getSerieNameArray(serie.name)[i],
-      ) as string[];
-
-      console.log('seriesMappedToNameOnly', seriesMappedToNameOnly);
-
-      // let previousName = undefined;
-      // let valueIsFound = false;
-
-      const counts = {};
-      seriesMappedToNameOnly.forEach((name, index) => {
-        console.log('name', name);
-
-        // If the value is encountered for the first time, set the count to 1
-        if (!counts[name]) {
-          counts[name] = 1;
-        } else {
-          // If the value has been seen before, increment the count
-          counts[name]++;
-        }
-        // if (!valueIsFound) {
-        //   values[i] = index;
-        // }
-        // if (previousName !== name && index > 0) {
-        //   valueIsFound = true;
-        // }
-        // previousName = name;
-      });
-      console.log('counts', counts);
-      // values[i] =
-    }
-    console.log('values', values);
-
-    // return [3, 1, 1];
-    return values;
-  }
-
-  // private getColspanOrRowspanCounts(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
-  //   const counts: number[] = [];
-  //   let previousUniqueCount: number;
-
-  //   for (let i = 0; i < dimentionsCount; i++) {
-  //     const names = series.map((serie) => this.getSerieNameArray(serie.name)[i]) as string[];
-
-  //     console.log('names', names);
-
-  //     const occurrenceCount = this.getOccurrenceCount(names, names[0]);
-  //     const uniqueCount = this.getUniqueCount(names);
-  //     console.log('occurrenceCount', occurrenceCount);
-  //     console.log('uniqueCount', uniqueCount);
-
-  //     if (i === 0) {
-  //       counts.push(occurrenceCount);
-  //     } else if (i < dimentionsCount - 1) {
-  //       counts.push(occurrenceCount / previousUniqueCount);
-  //     } else {
-  //       counts.push(1);
-  //     }
-  //     previousUniqueCount = uniqueCount;
-  //   }
-  //   console.log('counts', counts);
-  //   return counts;
-  // }
-
-  private getOccurrenceCount(array: string[], value: string) {
-    return array.filter((v) => v === value).length;
-  }
-
-  private getUniqueCount(array: string[]) {
-    return new Set(array).size;
-  }
-
   private getColspanOrRowspanCounts(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
     const counts: number[] = [];
-    let previousUniqueCount: number;
+    let previousCount: number;
 
     for (let i = 0; i < dimentionsCount; i++) {
       const names = series.map((serie) => this.getSerieNameArray(serie.name)[i]) as string[];
-      const occurrenceCount = names.filter((name) => name === names[0]).length;
       const uniqueCount = new Set(names).size;
+      let count: number;
 
-      if (i === 0) {
-        counts.push(occurrenceCount);
-      } else if (i < dimentionsCount - 1) {
-        counts.push(occurrenceCount / previousUniqueCount);
+      if (!previousCount) {
+        count = names.filter((name) => name === names[0]).length;
       } else {
-        counts.push(1);
+        count = previousCount / uniqueCount;
       }
-      previousUniqueCount = uniqueCount;
+      counts.push(count);
+      previousCount = count;
     }
     return counts;
   }
