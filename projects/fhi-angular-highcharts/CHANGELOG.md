@@ -5,6 +5,13 @@
 * :tada: **Enhancement** Add a full screen button.
 * :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
 
+## 1.1.0
+
+> Jan 23, 2024
+
+* :tada: **Enhancement** Add a full screen button.
+* :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
+
 ## 1.0.0
 
 > Des 11, 2023
