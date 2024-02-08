@@ -9,7 +9,8 @@ import { DodsfallEtterAarsak_2017_2021 } from './mock-data/2.dodsfall-etter-aars
 import { DodsfallHjerteOgKarEtterFylke } from './mock-data/3.dodsfall-hjerte-og-kar-etter-fylke';
 // import { TestData } from './mock-data/test-data-1';
 // import { TestData } from './mock-data/test-data-2';
-import { TestData } from './mock-data/test-data-3';
+// import { TestData } from './mock-data/test-data-3';
+import { TestData } from './mock-data/test-data-4';
 
 @Injectable({
   providedIn: 'root',

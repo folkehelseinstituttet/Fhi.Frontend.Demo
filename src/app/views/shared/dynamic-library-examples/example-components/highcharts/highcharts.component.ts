@@ -112,7 +112,7 @@ export class HighchartsComponent implements OnInit {
           // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
           title: 'Dual axes, line and column',
           series: data,
-          diagramTypeId: 'column',
+          // diagramTypeId: 'column',
           diagramTypeNavId: 'default',
           diagramTypeSubset: ['table', 'column'],
           flags: [
