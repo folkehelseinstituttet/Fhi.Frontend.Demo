@@ -1,9 +1,8 @@
-# Unreleased
+# 1.1.1
 
-> Jan 19, 2024
+> Feb 08, 2024
 
-* :tada: **Enhancement** Add a full screen button.
-* :tada: **Enhancement** Add support for transposing the table by setting the new option `tableOrientation`.
+* :bug: **Bugfix** Make the colspan/rowspan calculation for col/row headers correct in tables with multiple dimentions.
 
 ## 1.1.0
 
