@@ -3,8 +3,7 @@ name: Automatic publish of @folkehelseinstituttet/angular-highcharts to NPM
 on:
   push:
     branches:
-      - 'dev'
-      - 'release/fhi-angular-highcharts/**'
+      - '@fhi-angular-highcharts/**'
     paths:
       - 'projects/fhi-angular-highcharts/package.json'
 
