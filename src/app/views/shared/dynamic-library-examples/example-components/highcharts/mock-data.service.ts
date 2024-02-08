@@ -7,11 +7,7 @@ import { MockData } from './mock-data.enum';
 import { DodsfallEtterAarsak_2008_2018 } from './mock-data/1.dodsfall-etter-aarsak-2008-2018';
 import { DodsfallEtterAarsak_2017_2021 } from './mock-data/2.dodsfall-etter-aarsak-2017-2021';
 import { DodsfallHjerteOgKarEtterFylke } from './mock-data/3.dodsfall-hjerte-og-kar-etter-fylke';
-// import { TestData } from './mock-data/test-data-1';
-// import { TestData } from './mock-data/test-data-2';
-// import { TestData } from './mock-data/test-data-3';
-// import { TestData } from './mock-data/test-data-4';
-import { TestData } from './mock-data/test-data-5';
+import { TestData } from './mock-data/test-data-1';
 
 @Injectable({
   providedIn: 'root',
