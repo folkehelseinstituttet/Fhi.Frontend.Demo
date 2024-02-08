@@ -10,7 +10,8 @@ import { DodsfallHjerteOgKarEtterFylke } from './mock-data/3.dodsfall-hjerte-og-
 // import { TestData } from './mock-data/test-data-1';
 // import { TestData } from './mock-data/test-data-2';
 // import { TestData } from './mock-data/test-data-3';
-import { TestData } from './mock-data/test-data-4';
+// import { TestData } from './mock-data/test-data-4';
+import { TestData } from './mock-data/test-data-5';
 
 @Injectable({
   providedIn: 'root',
