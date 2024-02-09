@@ -30,12 +30,12 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoaded = false;
 
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
-      // this.getDodsfallEtterAarsak_2008_2018();
+      this.getDodsfallEtterAarsak_2008_2018();
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
-      // this.getDodsfallEtterAarsak_2017_2021();
+      this.getDodsfallEtterAarsak_2017_2021();
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      // this.getDodsfallHjerteOgKarEtterFylke();
-      this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
+      this.getDodsfallHjerteOgKarEtterFylke();
+      // this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
     }
   }
 
@@ -68,7 +68,6 @@ export class HighchartsComponent implements OnInit {
           title: 'Dødsfall etter årsak, 2017 - 2021',
           series: data,
           diagramTypeNavId: 'default',
-          tableOrientation: 'seriesAsColumns',
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;
