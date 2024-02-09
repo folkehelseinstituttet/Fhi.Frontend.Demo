@@ -6,4 +6,4 @@ A menu builder built with [@ali-hm/angular-tree-component](https://www.npmjs.com
 
 | FHI AngularTreeViewBuilder | FHI Style | NgBootstrap | Angular Tree Component | Angular | Node/NPM |
 | -------------------------- | --------- | ----------- | ---------------------- | ------- | -------- |
-| Unreleased                 | 5         | 15          | 12                     | 16      | 18/9 *   |
+| Unreleased                 | 5         | 16          | 12                     | 17      | 18/9 *   |

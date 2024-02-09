@@ -1,6 +1,6 @@
 import { SharedConstants } from 'src/app/views/shared/shared.constants';
 
-const bootstrapVersion = '5.2';
+const bootstrapVersion = '5.3';
 const bootstrapDocBaseUrl = `https://getbootstrap.com/docs/${bootstrapVersion}`;
 const npmBaseUrl = 'https://www.npmjs.com/package/@folkehelseinstituttet';
 const githubBaseUrl = 'https://github.com/folkehelseinstituttet';
@@ -23,6 +23,7 @@ export class LibraryItemConstants {
 
   static ExampleComponentsGithubUrl = `${githubFrontendDemoUrl}/src/app/views/shared/dynamic-library-examples/example-components`;
 
+  static NgBootstrapBaseUrl = 'https://ng-bootstrap.github.io';
   static NgBootstrapComponentsBaseUrl = 'https://ng-bootstrap.github.io/#/components';
 
   static voidURL = 'javascript:void(0)';

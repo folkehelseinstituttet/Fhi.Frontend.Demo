@@ -1,4 +1,11 @@
-# 1.1.2
+# Unreleased
+
+> Feb 9, 2024
+
+* :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
+* :tada: **Enhancement** Removed table specific CSS classes, being replaced by general rules in @folkehelseinstituttet/style
+
+## 1.1.2
 
 > Feb 09, 2024
 
@@ -9,6 +16,14 @@
 > Feb 08, 2024
 
 * :bug: **Bugfix** Make the colspan/rowspan calculation for col/row headers correct in tables with multiple dimentions.
+
+## 2.0.0
+
+> Jan 24, 2024
+
+* :tada: **Enhancement** Update chart colors
+* :boom: **Breaking** Update to Angular 17
+* :boom: **Breaking** Update to NgBootstrap 16. See their [CHANGELOG](https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md)
 
 ## 1.1.0
 

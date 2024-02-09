@@ -33,7 +33,10 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>FHI Designsystem vil på sikt tilby en FHI Angular komponent for tabell med innebygget sortering.</p>
+<div class="alert alert-info" role="alert">
+  <i class="icon-info-circle"></i>
+  <p class="mb-0">FHI Angular Components vil på sikt inkludere en tabellkomponent.</p>
+</div>
 
-<p>Om du ønsker å lage en sorterbar tabell før denne komponenten blir tilgjengelig, inspect og finn markup her (husk <code>aria-sort</code> på <code>&lt;th&gt;</code> for uu og korrekt stilsetting). Benytt gjerne <a href="${CONST.NgBootstrapComponentsBaseUrl}/table/overview#examples" target="_blank" rel="noopener noreferrer">NgBootstrap sitt eksempel</a> for funksjonalitet.</p>`;
+<p>Se <a href="${CONST.ExampleComponentsGithubUrl}/tables">kode på Github for disse eksemplene</a>.</p>`;
 }

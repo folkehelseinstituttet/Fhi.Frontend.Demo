@@ -17,8 +17,14 @@ export const ButtonPrimary: LibraryItem[] = [
  */
 function getExampleHtml(): string {
   return `
-<button type="button" class="btn fhi-btn-primary">
+<button type="button" class="btn fhi-btn-primary mb-3">
   Hovedhandling
+</button>
+
+<br>
+
+<button type="button" class="btn fhi-btn-primary" disabled>
+  Deaktivert
 </button>`;
 }
 
@@ -27,7 +33,10 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<button type="button" class="btn fhi-btn-primary">
+  Hovedhandling
+</button>`;
 }
 
 /*

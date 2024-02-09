@@ -50,7 +50,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Breadcrumb: {
     id: 'breadcrumb',
-    title: '',
+    title: '', // Only one item, so we use group title is enough
   },
 
   ButtonPrimary: {
@@ -196,7 +196,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Modal: {
     id: 'modal',
-    title: 'Modal',
+    title: '', // Only one item, so we use group title is enough
   },
 
   NavTiles: {
@@ -270,7 +270,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Search: {
     id: 'search',
-    title: 'Search',
+    title: '', // Only one item, so we use group title is enough
   },
 
   Table: {
@@ -362,7 +362,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Toast: {
     id: 'toast',
-    title: 'Toast',
+    title: '', // Only one item, so we use group title is enough
   },
 
   Tooltip: {
@@ -390,6 +390,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   TreeViewRadio: {
     id: 'tree-view-radio',
     title: 'Tree view radio',
+  },
+  TreeViewSelectionSwitch: {
+    id: 'tree-view-selection-switch',
+    title: 'Tree view selection type switch',
   },
 
   VisualIdentityColors: {

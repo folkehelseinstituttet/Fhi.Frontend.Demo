@@ -3,8 +3,7 @@
         font-size: $fhi-core-font-size-2;
     }
     .nav-link.active,
-    .nav-item.show .nav-link
-    .nav-link:hover {
+    .nav-item.show .nav-link .nav-link:hover {
         color: $fhi-core-grey-4;
         background-color: $fhi-core-grey-light-3;
         text-decoration: none;
@@ -74,115 +73,95 @@
     }
 
     // Light grey
-    &__color--fhi-grey-light-1 {
+    &__color--fhi-core-grey-light-1 {
         background-color: $fhi-core-grey-light-1;
     }
-    &__color--fhi-grey-light-2 {
+    &__color--fhi-core-grey-light-2 {
         background-color: $fhi-core-grey-light-2;
     }
-    &__color--fhi-grey-light-3 {
+    &__color--fhi-core-grey-light-3 {
         background-color: $fhi-core-grey-light-3;
     }
-    &__color--fhi-grey-light-4 {
+    &__color--fhi-core-grey-light-4 {
         background-color: $fhi-core-grey-light-4;
     }
 
     // Grey
-    &__color--fhi-grey-1 {
+    &__color--fhi-core-grey-1 {
         background-color: $fhi-core-grey-1;
     }
-    &__color--fhi-grey-2 {
-        background-color: $fhi-core-grey-2;
-    }
-    &__color--fhi-grey-3 {
+    &__color--fhi-core-grey-3 {
         background-color: $fhi-core-grey-3;
     }
-    &__color--fhi-grey-4 {
+    &__color--fhi-core-grey-4 {
         background-color: $fhi-core-grey-4;
     }
 
-    // Koksgrå
-    &__color--fhi-charcoal-1 {
-        background-color: $fhi-core-charcoal-1;
-    }
-
     // Blue/Grey
-    &__color--fhi-blue-grey-1 {
-        background-color: $fhi-core-blue-grey-1;
-    }
-    &__color--fhi-blue-grey-2 {
+    &__color--fhi-core-blue-grey-2 {
         background-color: $fhi-core-blue-grey-2;
     }
-    &__color--fhi-blue-grey-3 {
+    &__color--fhi-core-blue-grey-3 {
         background-color: $fhi-core-blue-grey-3;
     }
-    &__color--fhi-blue-grey-4 {
+    &__color--fhi-core-blue-grey-4 {
         background-color: $fhi-core-blue-grey-4;
     }
-    &__color--fhi-blue-grey-5 {
-        background-color: $fhi-core-blue-grey-5;
-    }
-    &__color--fhi-blue-grey-6 {
+    &__color--fhi-core-blue-grey-6 {
         background-color: $fhi-core-blue-grey-6;
     }
-    &__color--fhi-blue-grey-7 {
+    &__color--fhi-core-blue-grey-7 {
         background-color: $fhi-core-blue-grey-7;
     }
 
+    // Charcoal
+    &__color--fhi-core-charcoal-1 {
+        background-color: $fhi-core-charcoal-1;
+    }
+
     // Blue
-    &__color--fhi-blue-1 {
+    &__color--fhi-core-blue-1 {
         background-color: $fhi-core-blue-1;
     }
-    &__color--fhi-blue-2 {
+    &__color--fhi-core-blue-2 {
         background-color: $fhi-core-blue-2;
     }
-    &__color--fhi-blue-3 {
+    &__color--fhi-core-blue-3 {
         background-color: $fhi-core-blue-3;
     }
 
     // Green
-    &__color--fhi-green-1 {
+    &__color--fhi-core-green-1 {
         background-color: $fhi-core-green-1;
     }
-    &__color--fhi-green-2 {
+    &__color--fhi-core-green-2 {
         background-color: $fhi-core-green-2;
     }
 
-    // Yellow
-    &__color--fhi-yellow-1 {
-        background-color: $fhi-core-yellow-1;
-    }
-
     // Orange
-    &__color--fhi-orange-2 {
+    &__color--fhi-core-orange-2 {
         background-color: $fhi-core-orange-2;
     }
-    &__color--fhi-orange-1 {
+    &__color--fhi-core-orange-1 {
         background-color: $fhi-core-orange-1;
     }
 
     // Red
-    &__color--fhi-red-1 {
+    &__color--fhi-core-red-1 {
         background-color: $fhi-core-red-1;
     }
-    &__color--fhi-red-2 {
+    &__color--fhi-core-red-2 {
         background-color: $fhi-core-red-2;
     }
 
     // Dark pink
-    &__color--fhi-pink-dark-1 {
+    &__color--fhi-core-pink-dark-1 {
         background-color: $fhi-core-pink-dark-1;
     }
 
     // Light pink
-    &__color--fhi-pink-light-1 {
+    &__color--fhi-core-pink-light-1 {
         background-color: $fhi-core-pink-light-1;
-    }
-    &__color--fhi-pink-light-2 {
-        background-color: $fhi-core-pink-light-2;
-    }
-    &__color--fhi-pink-light-4 {
-        background-color: $fhi-core-pink-light-2;
     }
 }
 
@@ -193,8 +172,11 @@
 
         [class*="icon-"] {
             cursor: pointer;
-            margin-right: .5rem;
-            transition: height .15s, width .15s, margin-top .15s;
+            margin-right: 0.5rem;
+            transition:
+                height 0.15s,
+                width 0.15s,
+                margin-top 0.15s;
         }
 
         .icon-sm {

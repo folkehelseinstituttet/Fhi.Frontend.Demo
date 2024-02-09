@@ -29,7 +29,7 @@ function getExampleHtml(): string {
 <hr>
 <h2 class="h5 mt-6 mb-4">Brukerscenarier</h2>
 <p class="d-inline-block position-relative">
-  <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
+  <i class="icon-envelope icon-lg" style="height: 4rem;"></i>
   <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
     <span class="visually-hidden">nye e-poster</span>
@@ -53,7 +53,7 @@ function getExampleHtml(): string {
 function getCodeHtml(): string | null {
   return `
 <p class="d-inline-block position-relative">
-  <i class="icon-envelope-regular" style="background-size: 2rem; height: 2.5rem; width: 2.5rem;"></i>
+  <i class="icon-envelope icon-lg" style="height: 4rem;"></i>
   <span class="position-absolute start-100 translate-middle-x badge fhi-badge fhi-badge--circle-dark">
     25
     <span class="visually-hidden">nye e-poster</span>
