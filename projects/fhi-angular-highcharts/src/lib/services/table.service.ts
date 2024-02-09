@@ -27,7 +27,7 @@ export class TableService {
   private getTableHeaderRows_OrientationColumns(series: FhiDiagramSerie[]): TableCell[][] {
     const tableHeaderRows: TableCell[][] = [];
     const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
-    const colspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
+    const colspanCounts = this.getColspanOrRowspanCounts(dimentionsCount, series);
 
     for (let i = 0; i < dimentionsCount; i++) {
       // Create extra table column for row headers by adding 1
@@ -35,9 +35,9 @@ export class TableService {
 
       for (let j = 0; j < tableHeaderRows[i].length; j++) {
         if (j > 0) {
-          const hasColspan = this.hasColspan(j, colspanValues[i]);
+          const hasColspan = this.hasColspan(j, colspanCounts[i]);
           tableHeaderRows[i][j] = {
-            colspan: hasColspan ? colspanValues[i] : undefined,
+            colspan: hasColspan ? colspanCounts[i] : undefined,
             name: hasColspan ? this.getColumnHeaderName(series[j - 1], i) : undefined,
             isHeading: true,
           };
@@ -104,7 +104,7 @@ export class TableService {
 
   private getTableBodyRows_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
     const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
-    const rowspanValues = this.getColspanOrRowspanValues(dimentionsCount, series);
+    const rowspanCounts = this.getColspanOrRowspanCounts(dimentionsCount, series);
     const tbodyRows = new Array<Array<TableCell>>(series.length);
 
     for (let i = 0; i < series.length; i++) {
@@ -114,9 +114,9 @@ export class TableService {
       for (let j = 0; j < tbodyRows[i].length; j++) {
         if (j < dimentionsCount) {
           // Table row headings
-          const hasRowspan = this.hasRowspan(i, rowspanValues[j]);
+          const hasRowspan = this.hasRowspan(i, rowspanCounts[j]);
           tbodyRows[i][j] = {
-            rowspan: hasRowspan && rowspanValues[j] > 1 ? rowspanValues[j] : undefined,
+            rowspan: hasRowspan && rowspanCounts[j] > 1 ? rowspanCounts[j] : undefined,
             name: hasRowspan ? this.getRowHeaderName(series[i], j) : undefined,
             isHeading: true,
           };
@@ -163,25 +163,23 @@ export class TableService {
     return name.length;
   }
 
-  private getColspanOrRowspanValues(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
-    const values: number[] = [];
-    for (let i = 0; i < dimentionsCount; i++) {
-      const seriesMappedToNameOnly = series.map(
-        (serie) => this.getSerieNameArray(serie.name)[i],
-      ) as string[];
+  private getColspanOrRowspanCounts(dimentionsCount: number, series: FhiDiagramSerie[]): number[] {
+    const counts: number[] = [];
+    let previousCount: number;
 
-      let previousName = undefined;
-      let valueIsFound = false;
-      seriesMappedToNameOnly.forEach((name, index) => {
-        if (!valueIsFound) {
-          values[i] = index;
-        }
-        if (previousName !== name && index > 0) {
-          valueIsFound = true;
-        }
-        previousName = name;
-      });
+    for (let i = 0; i < dimentionsCount; i++) {
+      const names = series.map((serie) => this.getSerieNameArray(serie.name)[i]) as string[];
+      const uniqueNameCount = new Set(names).size;
+      let count: number;
+
+      if (!previousCount) {
+        count = names.length / uniqueNameCount;
+      } else {
+        count = previousCount / uniqueNameCount;
+      }
+      counts.push(count);
+      previousCount = count;
     }
-    return values;
+    return counts;
   }
 }
