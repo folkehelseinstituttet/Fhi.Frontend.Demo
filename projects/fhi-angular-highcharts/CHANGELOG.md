@@ -1,6 +1,6 @@
 # 1.1.2
 
-> Feb 08, 2024
+> Feb 09, 2024
 
 * :bug: **Bugfix** Further improvements to the the colspan/rowspan calculation to make col/row headers correct in tables with multiple dimentions.
 
