@@ -83,6 +83,7 @@ export class HighchartsComponent implements OnInit {
           title: 'Dødsfall hjerte og kar, fordelt på fylke',
           series: data,
           diagramTypeId: 'map',
+          diagramTypeSubset: ['table', 'map', 'column', 'bar', 'pie'],
           diagramTypeNavId: 'default',
           flags: [
             { symbol: '..', label: 'Manglende data' },
