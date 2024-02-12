@@ -1,8 +1,6 @@
-import { DiagramAdditionalLinkType } from '../constants-and-enums/diagram-additional-link-type';
+import { DiagramMetadataLinkType } from '../constants-and-enums/diagram-additional-link-type';
 
-export interface AdditionalLink {
-  icon?: string;
+export interface MetadataLink {
   link: string;
-  linkText?: string;
-  linkType: string[DiagramAdditionalLinkType];
+  linkType: string[DiagramMetadataLinkType];
 }

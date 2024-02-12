@@ -54,6 +54,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showFooter = false;
   showMap = false;
   mapCopyrightInfo!: object;
+  metadataButtonText: string = 'Om dataene';
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;

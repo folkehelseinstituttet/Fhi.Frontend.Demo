@@ -8,8 +8,8 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="allDiagramOptions.additionalLink">
-      <ng-container *ngTemplateOutlet="additionalLink"></ng-container>
+    <ng-container *ngIf="allDiagramOptions.metadataLink">
+      <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
     </ng-container>
 
     <div *ngIf="allDiagramOptions.showFullScreenButton">
@@ -45,15 +45,15 @@
   </ng-container>
 </ng-template>
 
-<ng-template #additionalLink>
-  <ng-container *ngIf="allDiagramOptions.additionalLink.linkType === 'fragment'">
-    <ng-container *ngTemplateOutlet="additionalLinkFragment"></ng-container>
+<ng-template #metadataLink>
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'fragment'">
+    <ng-container *ngTemplateOutlet="metadataLinkFragment"></ng-container>
   </ng-container>
-  <ng-container *ngIf="allDiagramOptions.additionalLink.linkType === 'href'">
-    <ng-container *ngTemplateOutlet="additionalLinkHref"></ng-container>
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'href'">
+    <ng-container *ngTemplateOutlet="metadataLinkHref"></ng-container>
   </ng-container>
-  <ng-container *ngIf="allDiagramOptions.additionalLink.linkType === 'routerLink'">
-    <ng-container *ngTemplateOutlet="additionalLinkRouter"></ng-container>
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'routerLink'">
+    <ng-container *ngTemplateOutlet="metadataLinkRouter"></ng-container>
   </ng-container>
 </ng-template>
 
@@ -215,49 +215,44 @@
   </footer>
 </ng-template>
 
-<ng-template #additionalLinkFragment>
+<ng-template #metadataLinkFragment>
   <a
     routerLink="."
-    [fragment]="allDiagramOptions.additionalLink.link"
+    [fragment]="allDiagramOptions.metadataLink.link"
     class="btn fhi-btn-icon"
     [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton,
-      'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
+      'me-3': allDiagramOptions.showFullScreenButton
     }"
   >
-    <ng-container *ngTemplateOutlet="additionalLinkContent"></ng-container>
+    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
   </a>
 </ng-template>
 
-<ng-template #additionalLinkHref>
+<ng-template #metadataLinkHref>
   <a
-    [href]="allDiagramOptions.additionalLink.link"
+    [href]="allDiagramOptions.metadataLink.link"
     class="btn fhi-btn-icon"
     [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton,
-      'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
+      'me-3': allDiagramOptions.showFullScreenButton
     }"
   >
-    <ng-container *ngTemplateOutlet="additionalLinkContent"></ng-container>
+    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
   </a>
 </ng-template>
 
-<ng-template #additionalLinkRouter>
+<ng-template #metadataLinkRouter>
   <a
-    [routerLink]="allDiagramOptions.additionalLink.link"
+    [routerLink]="allDiagramOptions.metadataLink.link"
     class="btn fhi-btn-icon"
     [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton,
-      'fhi-btn-icon--circular': !allDiagramOptions.additionalLink.linkText
+      'me-3': allDiagramOptions.showFullScreenButton
     }"
   >
-    <ng-container *ngTemplateOutlet="additionalLinkContent"></ng-container>
+    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
   </a>
 </ng-template>
 
-<ng-template #additionalLinkContent>
-  <i [attr.class]="'icon-' + allDiagramOptions.additionalLink.icon" *ngIf="allDiagramOptions.additionalLink.icon"></i>
-  <span class="btn__text" *ngIf="allDiagramOptions.additionalLink.linkText">{{
-    allDiagramOptions.additionalLink.linkText
-  }}</span>
+<ng-template #metadataLinkContent>
+  <i class="icon-info-circle"></i>
+  <span class="btn__text">{{ metadataButtonText }}</span>
 </ng-template>

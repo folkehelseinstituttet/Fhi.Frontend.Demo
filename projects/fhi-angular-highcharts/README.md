@@ -117,7 +117,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 | Property              | Type                       | Default   | Required | Description |
 | --------------------- | -------------------------- | --------- | -------- | ----------- |
-| `additionalLink`      | `AdditionalLink`           | -         | no       | Link to a fragment, route or url |
+| `metadataLink`        | `MetadataLink`             | -         | no       | Link to a fragment, route or url |
 | `creditsHref`         | `string`                   | -         | no       | Link to source ref. in footer. |
 | `creditsText`         | `string`                   | -         | no       | Text to source ref. in footer. |
 | `diagramTypeId`       | `string`                   | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |

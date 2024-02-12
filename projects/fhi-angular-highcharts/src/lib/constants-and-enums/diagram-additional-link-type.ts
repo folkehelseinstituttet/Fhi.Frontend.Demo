@@ -1,11 +1,11 @@
-export enum DiagramAdditionalLinkType {
+export enum DiagramMetadataLinkType {
   fragment,
   href,
   routerLink,
 }
 
-export const DiagramAdditionalLinkTypeValues = {
-  fragment: DiagramAdditionalLinkType.fragment,
-  href: DiagramAdditionalLinkType.href,
-  routerLink: DiagramAdditionalLinkType.routerLink,
+export const DiagramMetadataLinkTypeValues = {
+  fragment: DiagramMetadataLinkType.fragment,
+  href: DiagramMetadataLinkType.href,
+  routerLink: DiagramMetadataLinkType.routerLink,
 };
