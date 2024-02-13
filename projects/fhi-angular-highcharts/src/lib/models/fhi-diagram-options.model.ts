@@ -10,7 +10,6 @@ export type FhiDiagramTypeIds = keyof typeof DiagramTypeIds;
 export type FhiTableOrientations = keyof typeof TableOrientations;
 
 export interface FhiDiagramOptions {
-  metadataLink?: MetadataLink;
   creditsHref?: string;
   creditsText?: string;
   diagramTypeId?: FhiDiagramTypeIds;
@@ -20,6 +19,7 @@ export interface FhiDiagramOptions {
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
   mapTypeId?: keyof typeof MapTypeIds;
+  metadataLink?: MetadataLink;
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   showFullScreenButton?: boolean;

@@ -33,8 +33,8 @@ export class HighchartsComponent implements OnInit {
       this.getDodsfallEtterAarsak_2008_2018();
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.getDodsfallEtterAarsak_2017_2021();
-    } else if (this.itemId === this.items.HighchartsWithMetadata.id) {
-      this.getDodsfallEtterAarsak_2017_2021_metadata();
+      // } else if (this.itemId === this.items.HighchartsWithMetadata.id) {
+      //   this.getDodsfallEtterAarsak_2017_2021_metadata();
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.getDodsfallHjerteOgKarEtterFylke();
       // this.getTestData(); // Data for testing while developing locally, do not show in dev or prod.
@@ -63,24 +63,24 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
-  private getDodsfallEtterAarsak_2017_2021_metadata() {
-    this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2017_2021).subscribe({
-      next: (data: FhiDiagramSerie[]) => {
-        this.diagramOptions = {
-          title: 'Dødsfall etter årsak, 2017 - 2021',
-          series: data,
-          diagramTypeNavId: 'default',
-          metadataLink: {
-            link: 'testFragment',
-            linkType: 'fragment',
-          },
-        };
-        this.dataIsLoading = false;
-        this.dataIsLoaded = true;
-      },
-      error: (e) => console.error(e),
-    });
-  }
+  // private getDodsfallEtterAarsak_2017_2021_metadata() {
+  //   this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2017_2021).subscribe({
+  //     next: (data: FhiDiagramSerie[]) => {
+  //       this.diagramOptions = {
+  //         title: 'Dødsfall etter årsak, 2017 - 2021',
+  //         series: data,
+  //         diagramTypeNavId: 'default',
+  //         metadataLink: {
+  //           link: 'testFragment',
+  //           linkType: 'fragment',
+  //         },
+  //       };
+  //       this.dataIsLoading = false;
+  //       this.dataIsLoaded = true;
+  //     },
+  //     error: (e) => console.error(e),
+  //   });
+  // }
 
   private getDodsfallEtterAarsak_2017_2021() {
     this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2017_2021).subscribe({
@@ -116,6 +116,10 @@ export class HighchartsComponent implements OnInit {
           disclaimer: 'Disse dataene kan inneholde feil.',
           lastUpdated: '06.06.2023',
           mapTypeId: 'mapFylker',
+          metadataLink: {
+            link: 'testFragment',
+            linkType: 'fragment',
+          },
           openSource: false,
           showFullScreenButton: true,
         };

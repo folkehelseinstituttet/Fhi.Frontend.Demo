@@ -3,24 +3,28 @@
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
   </ng-container>
 
-  <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
-    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-    </fhi-angular-highcharts>
-  </ng-container>
-
   <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
     </fhi-angular-highcharts>
   </ng-container>
 
-  <ng-container *ngIf="itemId === items.HighchartsWithMetadata.id">
+  <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
+    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+    </fhi-angular-highcharts>
+    <div id="testFragment">
+      <h3 class="h4 mt-7">Om dataene</h3>
+      <p>Dette er informasjon om disse dataene...</p>
+    </div>
+  </ng-container>
+
+  <!-- <ng-container *ngIf="itemId === items.HighchartsWithMetadata.id">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
     </fhi-angular-highcharts>
     <div id="testFragment">
       <h3 class="h4">Om dataene</h3>
       <p>Dette er informasjon om disse dataene...</p>
     </div>
-  </ng-container>
+  </ng-container> -->
 </ng-container>
 
 <ng-template #spinner>
