@@ -1,10 +1,6 @@
-# How to contribute
+# How to contribute <!-- omit from toc -->
 
 So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodule? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and submodule) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
 
 - [Git submodule](#git-submodule)
 - [Submitting Issues](#submitting-issues)
@@ -24,6 +20,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
     - [Fhi.Frontend.Demo, including library projects](#fhifrontenddemo-including-library-projects)
       - [Feature branches](#feature-branches-1)
       - [Release branches for library projects](#release-branches-for-library-projects)
+      - [Release a patch to older version in a library project](#release-a-patch-to-older-version-in-a-library-project)
       - [Release branches for the Fhi.Frontend.Demo app](#release-branches-for-the-fhifrontenddemo-app)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
@@ -32,8 +29,6 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
   - [TypeScript](#typescript)
 - [Documentation](#documentation)
 - [License](#license)
-
-<!-- /code_chunk_output -->
 
 ## Git submodule
 
@@ -91,6 +86,7 @@ _For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Too
    2. Run `git push --recurse-submodules=check` in the submodule repo
 
 ##### Icon set updates
+
 When making changes to the icon file set, run `npm run generate-icon-list`.
 
 #### How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo
@@ -141,7 +137,7 @@ _A library project is an Angular concept for organising code that are going to b
 
 1. Create a new branch from `dev`.
 2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to merge any changes made to the submodule `Fhi.Frontend.Style` into branch `demo` in the submodule repo.
+3. Before pull request, remember to also push any changes made to the submodule `Fhi.Frontend.Style` so that the branch with changes are available to the reviewer.
 
 ##### Release branches for library projects
 
@@ -158,17 +154,28 @@ _A library project is an Angular concept for organising code that are going to b
 >
 >- When creating a release branch, follow the instructions below to the letter!
 
-1. Create a new branch from `dev`.
+1. Create a new branch from `fhi-[project]/latest`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
 3. Change text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
 4. (If a new line is added) Change text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md`
 5. Change version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
     >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
-6. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `dev`.
+6. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `fhi-[project]/latest` (deploy).
    >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
-   >
-   >_The PR goes into `dev` because this makes the workflow much easier. The fact that `main` may be a bit behind the official history in `dev`, including a release of a library, is a small price to pay._
-7. After approved review, squash and merge to `dev` (deploy)
+
+##### Release a patch to older version in a library project
+
+1. Do as described under [Feature branches](#feature-branches-1) but create new branch from `fhi-[project]/vX` instead of `dev`.
+2. Do as described under [Release branches for library projects](#release-branches-for-library-projects)
+   1. But create release branch from `fhi-[project]/vX` instead of `dev`.
+   2. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, ALSO update publishConfig/tag to `vX` (same number as in branch name PR will be merged into).
+   3. Remember correct git sub module ref.
+   4. Create PR, and when approved, make sure commit message is `Release/fhi-[project]/x.x.x`, and then merge release branch to `fhi-[project]/vX` (deploy).
+3. Extra step when patching: create PR which merges into `dev` the relevant changes from the patch:
+   1. Always CHANGELOG (in chronological order)
+   2. Sometimes changes to the code (ask someone if in doubt about conflicts)
+   3. Never changes to publishConfig/tag in `./projects/fhi-[project]/package.json`
+   4. Remember correct git sub module ref.
 
 ##### Release branches for the Fhi.Frontend.Demo app
 
