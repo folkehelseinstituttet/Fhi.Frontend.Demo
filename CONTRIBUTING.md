@@ -20,7 +20,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
     - [Fhi.Frontend.Demo, including library projects](#fhifrontenddemo-including-library-projects)
       - [Feature branches](#feature-branches-1)
       - [Release branches for library projects](#release-branches-for-library-projects)
-      - [Release a patch to older version in a library projects](#release-a-patch-to-older-version-in-a-library-projects)
+      - [Release a patch to older version in a library project](#release-a-patch-to-older-version-in-a-library-project)
       - [Release branches for the Fhi.Frontend.Demo app](#release-branches-for-the-fhifrontenddemo-app)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
@@ -163,7 +163,7 @@ _A library project is an Angular concept for organising code that are going to b
 6. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `fhi-[project]/latest` (deploy).
    >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
 
-##### Release a patch to older version in a library projects
+##### Release a patch to older version in a library project
 
 1. Do as described under [Feature branches](#feature-branches-1) but create new branch from `fhi-[project]/vX` instead of `dev`.
 2. Do as described under [Release branches for library projects](#release-branches-for-library-projects)
