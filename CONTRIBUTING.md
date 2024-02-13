@@ -165,11 +165,15 @@ _A library project is an Angular concept for organising code that are going to b
 
 ##### Release a patch to older version in a library projects
 
-1. Do as described under [Feature branches](#feature-branches-1), but create new branch from `fhi-[project]/vX` instead of `dev`.
-2. Do as decribed under [Release branches for library projects](#release-branches-for-library-projects)
+1. Do as described under [Feature branches](#feature-branches-1) but create new branch from `fhi-[project]/vX` instead of `dev`.
+2. Do as described under [Release branches for library projects](#release-branches-for-library-projects)
    1. But create release branch from `fhi-[project]/vX` instead of `dev`.
-   2. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, **also** update publishConfig/tag to `vX` (same number as in branch name PR will be merged into).
-   3. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `fhi-[project]/vX` (deploy).
+   2. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, ALSO update publishConfig/tag to `vX` (same number as in branch name PR will be merged into).
+   3. Create PR, and when approved, make sure commit message is `Release/fhi-[project]/x.x.x`, and then merge release branch to `fhi-[project]/vX` (deploy).
+3. Extra step when patching: create PR which merges into `dev` the relevant changes from the patch:
+   1. Always CHANGELOG (in chronological order)
+   2. Sometimes changes to the code
+   3. Never changes to publishConfig/tag in `./projects/fhi-[project]/package.json`
 
 ##### Release branches for the Fhi.Frontend.Demo app
 
