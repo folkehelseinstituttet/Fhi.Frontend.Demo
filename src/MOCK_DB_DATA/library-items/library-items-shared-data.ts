@@ -176,10 +176,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-with-menu',
     title: 'Highcharts with menu',
   },
-  HighchartsWithMetadata: {
-    id: 'highcharts-with-metadata',
-    title: 'Highcharts with metadata',
-  },
   HighchartsAllInclusive: {
     id: 'highcharts-all-inclusive',
     title: 'Highcharts all inclusive',

@@ -6,20 +6,15 @@
   <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
     </fhi-angular-highcharts>
+    <div class="mt-3" id="testFragment">
+      <h3 class="h4">Om dataene</h3>
+      <p>Informasjon om disse dataene... Dette ligger utenfor highcharts-komponenten.</p>
+    </div>
   </ng-container>
 
   <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
     </fhi-angular-highcharts>
-  </ng-container>
-
-  <ng-container *ngIf="itemId === items.HighchartsWithMetadata.id">
-    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-    </fhi-angular-highcharts>
-    <div class="mt-3" id="testFragment">
-      <h3 class="h4">Om dataene</h3>
-      <p>Informasjon om disse dataene... Dette ligger utenfor highcharts-komponenten.</p>
-    </div>
   </ng-container>
 </ng-container>
 
