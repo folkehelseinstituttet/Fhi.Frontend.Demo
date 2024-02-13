@@ -46,13 +46,13 @@
 </ng-template>
 
 <ng-template #metadataLink>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'fragment'">
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.fragment">
     <ng-container *ngTemplateOutlet="metadataLinkFragment"></ng-container>
   </ng-container>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'href'">
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.href">
     <ng-container *ngTemplateOutlet="metadataLinkHref"></ng-container>
   </ng-container>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === 'routerLink'">
+  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.routerLink">
     <ng-container *ngTemplateOutlet="metadataLinkRouter"></ng-container>
   </ng-container>
 </ng-template>
@@ -254,5 +254,5 @@
 
 <ng-template #metadataLinkContent>
   <i class="icon-info-circle"></i>
-  <span class="btn__text">{{ metadataButtonText }}</span>
+  <span class="btn__text">Om dataene</span>
 </ng-template>

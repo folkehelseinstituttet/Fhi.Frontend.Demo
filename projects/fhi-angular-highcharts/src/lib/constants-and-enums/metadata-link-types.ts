@@ -1,11 +1,11 @@
-export enum MetadataLinkType {
+export enum MetadataLinkTypes {
   fragment,
   href,
   routerLink,
 }
 
 export const MetadataLinkTypeValues = {
-  fragment: MetadataLinkType.fragment,
-  href: MetadataLinkType.href,
-  routerLink: MetadataLinkType.routerLink,
+  fragment: MetadataLinkTypes[MetadataLinkTypes.fragment],
+  href: MetadataLinkTypes[MetadataLinkTypes.href],
+  routerLink: MetadataLinkTypes[MetadataLinkTypes.routerLink],
 };
