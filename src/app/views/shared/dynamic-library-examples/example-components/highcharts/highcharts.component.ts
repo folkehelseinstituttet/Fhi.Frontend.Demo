@@ -98,7 +98,7 @@ export class HighchartsComponent implements OnInit {
           openSource: false,
           showFullScreenButton: true,
           metadataLink: {
-            link: 'testFragment',
+            link: 'theFragment',
             linkType: 'fragment',
           },
         };
