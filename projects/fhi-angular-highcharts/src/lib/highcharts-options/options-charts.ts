@@ -9,6 +9,15 @@ export const OptionsCharts = {
     maxHeight: 150,
     symbolPadding: 10,
     symbolWidth: 1,
+
+    // TODO: didn't find any other place to add suffix to label...
+    // labelFormatter: function () {
+    //   if (this.name.includes('Andel')) {
+    //     return this.name + ' (%)';
+    //   } else {
+    //     return this.name;
+    //   }
+    // },
   },
   xAxis: {
     allowDecimals: false,

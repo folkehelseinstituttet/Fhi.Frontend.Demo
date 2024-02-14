@@ -1,8 +1,9 @@
-// Test data: Serier for "Befolkning (antall og andel) - inndeling per 1.1.2024"
-//   For use in a PowerPoint
+// Test data: "Agens"
+//   For use when creating new diagramtype: "Dual axes, line and column"
 export const TestData = [
   {
     name: 'Antall testet',
+    scale: 'foo',
     data: [
       { name: '2023-51', y: 2653 },
       { name: '2023-52', y: 6806 },
@@ -12,6 +13,7 @@ export const TestData = [
   },
   {
     name: 'Antall positive',
+    scale: 'foo',
     data: [
       { name: '2023-51', y: 341 },
       { name: '2023-52', y: 1015 },
@@ -21,12 +23,14 @@ export const TestData = [
   },
   {
     name: 'Andel positive',
+    scale: 'bar',
     data: [
-      // TODO: is number of decimals rounded by FHI Angular Highcharts or by the consumer?
-      { name: '2023-51', y: 12.85337 },
-      { name: '2023-52', y: 14.91331 },
-      { name: '2024-1', y: 15.14092 },
-      { name: '2024-2', y: 14.7148 },
+      // TODO decimals: is number of decimals rounded by FHI Angular Highcharts or by the consumer?
+      // TODO: where is 0.x calculated to a percent value (* 100)?
+      { name: '2023-51', y: 0.1285337 },
+      { name: '2023-52', y: 0.1491331 },
+      { name: '2024-1', y: 0.1514092 },
+      { name: '2024-2', y: 0.147148 },
     ],
   },
 ];
