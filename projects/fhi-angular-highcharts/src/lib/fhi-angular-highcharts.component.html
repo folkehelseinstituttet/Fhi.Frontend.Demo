@@ -8,9 +8,7 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="allDiagramOptions.metadataLink">
-      <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
 
     <div *ngIf="allDiagramOptions.showFullScreenButton">
       <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
@@ -19,6 +17,21 @@
 
   <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
 </article>
+
+<ng-template #diagramTypeNav>
+  <fhi-diagram-type-nav
+    *ngIf="
+      allDiagramOptions.diagramTypeNavId === diagramTypeNavId[diagramTypeNavId.default] &&
+      allDiagramOptions.diagramTypeId !== undefined
+    "
+    [currentDiagramTypeGroup]="currentDiagramTypeGroup"
+    [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
+    [currentMapTypeId]="allDiagramOptions.mapTypeId"
+    [currentSeriesLength]="allDiagramOptions.series.length"
+    (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+  >
+  </fhi-diagram-type-nav>
+</ng-template>
 
 <ng-template #diagramAndFooter>
   <ng-container [ngSwitch]="currentDiagramTypeGroup">
@@ -43,33 +56,6 @@
   <ng-container *ngIf="showFooter">
     <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
   </ng-container>
-</ng-template>
-
-<ng-template #metadataLink>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.fragment">
-    <ng-container *ngTemplateOutlet="metadataLinkFragment"></ng-container>
-  </ng-container>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.href">
-    <ng-container *ngTemplateOutlet="metadataLinkHref"></ng-container>
-  </ng-container>
-  <ng-container *ngIf="allDiagramOptions.metadataLink.linkType === metadataLinkTypes.routerLink">
-    <ng-container *ngTemplateOutlet="metadataLinkRouter"></ng-container>
-  </ng-container>
-</ng-template>
-
-<ng-template #diagramTypeNav>
-  <fhi-diagram-type-nav
-    *ngIf="
-      allDiagramOptions.diagramTypeNavId === diagramTypeNavId[diagramTypeNavId.default] &&
-      allDiagramOptions.diagramTypeId !== undefined
-    "
-    [currentDiagramTypeGroup]="currentDiagramTypeGroup"
-    [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
-    [currentMapTypeId]="allDiagramOptions.mapTypeId"
-    [currentSeriesLength]="allDiagramOptions.series.length"
-    (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-  >
-  </fhi-diagram-type-nav>
 </ng-template>
 
 <ng-template #diagramModal>
@@ -215,43 +201,6 @@
   </footer>
 </ng-template>
 
-<ng-template #metadataLinkFragment>
-  <button
-    class="btn fhi-btn-icon"
-    [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton
-    }"
-    (click)="gotoFragment(allDiagramOptions.metadataLink.link)"
-  >
-    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
-  </button>
-</ng-template>
-
-<ng-template #metadataLinkHref>
-  <a
-    [href]="allDiagramOptions.metadataLink.link"
-    class="btn fhi-btn-icon"
-    [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton
-    }"
-  >
-    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
-  </a>
-</ng-template>
-
-<ng-template #metadataLinkRouter>
-  <a
-    [routerLink]="allDiagramOptions.metadataLink.link"
-    class="btn fhi-btn-icon"
-    [ngClass]="{
-      'me-3': allDiagramOptions.showFullScreenButton
-    }"
-  >
-    <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
-  </a>
-</ng-template>
-
-<ng-template #metadataLinkContent>
-  <i class="icon-info-circle"></i>
-  <span class="btn__text">Om dataene</span>
+<ng-template #metadataLink>
+  <ng-content select="[metadatalink]"></ng-content>
 </ng-template>

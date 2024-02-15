@@ -97,10 +97,6 @@ export class HighchartsComponent implements OnInit {
           mapTypeId: 'mapFylker',
           openSource: false,
           showFullScreenButton: true,
-          metadataLink: {
-            link: 'theFragment',
-            linkType: 'fragment',
-          },
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;

@@ -33,7 +33,6 @@ import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
-import { MetadataLinkTypeValues } from './constants-and-enums/metadata-link-types';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -55,7 +54,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showFooter = false;
   showMap = false;
   mapCopyrightInfo!: object;
-  metadataLinkTypes = MetadataLinkTypeValues;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
