@@ -216,16 +216,15 @@
 </ng-template>
 
 <ng-template #metadataLinkFragment>
-  <a
-    routerLink="."
-    [fragment]="allDiagramOptions.metadataLink.link"
+  <button
     class="btn fhi-btn-icon"
     [ngClass]="{
       'me-3': allDiagramOptions.showFullScreenButton
     }"
+    (click)="gotoFragment(allDiagramOptions.metadataLink.link)"
   >
     <ng-container *ngTemplateOutlet="metadataLinkContent"></ng-container>
-  </a>
+  </button>
 </ng-template>
 
 <ng-template #metadataLinkHref>

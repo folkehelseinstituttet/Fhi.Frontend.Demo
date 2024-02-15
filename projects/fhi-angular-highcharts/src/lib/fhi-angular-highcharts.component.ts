@@ -125,6 +125,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return this.topoJsonService.getMapCopyright();
   }
 
+  gotoFragment(fragment: string) {
+    console.log(fragment);
+  }
+
   private loopSeriesToUpdateAndExtractInfo() {
     let n = 0;
 
