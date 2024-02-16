@@ -112,7 +112,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | Output                     | Event type          | Description |
 | -------------------------- | ------------------- | ----------- |
 | `(diagramTypeNavigation)`  | `FhiDiagramTypeIds` | If diagram type navigation i visible, this event will fire on every navigation. Outputs an existing diagram type id. |
-| `(metadataLinkNavigation)` | `string`            | When link to "Om dataene" is clicked, string is returned. |
+| `(metadataLinkNavigation)` | `string`            | When link to "Om dataene" is clicked, `metadataLink` is emitted. |
 
 ### Type FhiDiagramOptions
 
