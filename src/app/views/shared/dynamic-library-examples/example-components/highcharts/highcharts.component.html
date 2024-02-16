@@ -4,14 +4,10 @@
   </ng-container>
 
   <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
-    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-    </fhi-angular-highcharts>
-    <ng-container metadatalink>
-      <a class="btn fhi-btn-icon" [attr.href]="'#theFragment'">
-        <i class="icon-question-circle"></i>
-        Om dataene
-      </a>
-    </ng-container>
+    <fhi-angular-highcharts
+      [diagramOptions]="diagramOptions"
+      (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+    ></fhi-angular-highcharts>
     <div class="mt-3" id="theFragment">
       <h3 class="h4">Om dataene</h3>
       <p>Informasjon om disse dataene... Dette ligger utenfor highcharts-komponenten.</p>
