@@ -15,8 +15,6 @@ import { UrlNavigateOptions } from '../models/url-navigate-options.model';
   providedIn: 'root',
 })
 export class UrlService {
-  constructor(private router: Router) {}
-
   private updateTimestamp: number;
   private urlSubject = new ReplaySubject<void>(1);
   URL$ = this.urlSubject.asObservable();
@@ -24,6 +22,8 @@ export class UrlService {
   previousUrlAfterRedirects: string;
   previousUrlTree: UrlTree;
   urlTree: UrlTree;
+
+  constructor(private router: Router) {}
 
   updateOnNavigationEnd(event: NavigationEnd) {
     if (this.previousUrlAfterRedirects) {

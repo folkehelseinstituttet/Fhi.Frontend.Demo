@@ -44,6 +44,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   @Input() diagramOptions!: FhiDiagramOptions;
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
+  @Output() metadataLinkNavigation = new EventEmitter<string>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
@@ -97,6 +98,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
+  onMetadataNavigation(link: string) {
+    this.metadataLinkNavigation.emit(link);
+  }
+
   setDiagramTypeGroupToTable() {
     this.diagramTypeNavigation.emit(DiagramTypeIds.table as FhiDiagramTypeIds);
   }
@@ -121,10 +126,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   getMapCopyright(): object {
     return this.topoJsonService.getMapCopyright();
-  }
-
-  gotoFragment(fragment: string) {
-    console.log(fragment);
   }
 
   private loopSeriesToUpdateAndExtractInfo() {
