@@ -50,10 +50,8 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  onMetadataLinkClicked(hasMetadataLink: boolean) {
-    if (hasMetadataLink === true) {
-      this.viewportScroller.scrollToAnchor('theFragment');
-    }
+  onMetadataLinkClicked() {
+    this.viewportScroller.scrollToAnchor('theFragment');
   }
 
   private getDodsfallEtterAarsak_2008_2018() {
@@ -107,7 +105,7 @@ export class HighchartsComponent implements OnInit {
           mapTypeId: 'mapFylker',
           openSource: false,
           showFullScreenButton: true,
-          hasMetadataLink: true,
+          metadataButton: true,
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;

@@ -44,7 +44,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   @Input() diagramOptions!: FhiDiagramOptions;
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
-  @Output() metadataLinkNavigation = new EventEmitter<boolean>();
+  @Output() metadataButtonClick = new EventEmitter<void>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
@@ -98,8 +98,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
-  onHasMetadataNavigation(hasMetadataLink: boolean) {
-    this.metadataLinkNavigation.emit(hasMetadataLink);
+  onMetadataButtonClick(metadataButton: void) {
+    this.metadataButtonClick.emit(metadataButton);
   }
 
   setDiagramTypeGroupToTable() {
