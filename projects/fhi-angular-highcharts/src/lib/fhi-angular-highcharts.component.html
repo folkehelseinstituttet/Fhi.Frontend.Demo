@@ -7,7 +7,12 @@
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
     </div>
-    <div style="margin-right: -15px" *ngIf="allDiagramOptions.showFullScreenButton">
+
+    <ng-container *ngIf="allDiagramOptions.metadataButton">
+      <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
+    </ng-container>
+
+    <div *ngIf="allDiagramOptions.showFullScreenButton">
       <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
     </div>
   </div>
@@ -63,12 +68,26 @@
   >
     <ng-container fhi-modal.button>
       <i class="icon-arrows-fullscreen"></i>
+      <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
       <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
   </fhi-modal>
+</ng-template>
+
+<ng-template #metadataLink>
+  <button
+    class="btn fhi-btn-icon"
+    [ngClass]="{
+      'me-3': allDiagramOptions.showFullScreenButton
+    }"
+    (click)="onMetadataButtonClick()"
+  >
+    <i class="icon-info-circle"></i>
+    <span class="btn__text">Om dataene</span>
+  </button>
 </ng-template>
 
 <ng-template #chart>

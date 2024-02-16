@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data.enum';
@@ -23,7 +24,10 @@ export class HighchartsComponent implements OnInit {
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
 
-  constructor(private highchartsDataService: MockDataService) {}
+  constructor(
+    private highchartsDataService: MockDataService,
+    private viewportScroller: ViewportScroller,
+  ) {}
 
   ngOnInit() {
     this.dataIsLoading = true;
@@ -44,6 +48,10 @@ export class HighchartsComponent implements OnInit {
       ...this.diagramOptions,
       diagramTypeId: diagramTypeId,
     };
+  }
+
+  onMetadataLinkClicked() {
+    this.viewportScroller.scrollToAnchor('theFragment');
   }
 
   private getDodsfallEtterAarsak_2008_2018() {
@@ -97,6 +105,7 @@ export class HighchartsComponent implements OnInit {
           mapTypeId: 'mapFylker',
           openSource: false,
           showFullScreenButton: true,
+          metadataButton: true,
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;
