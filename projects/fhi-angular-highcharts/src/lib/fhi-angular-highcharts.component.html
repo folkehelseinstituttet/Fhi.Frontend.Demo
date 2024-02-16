@@ -8,7 +8,7 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="allDiagramOptions.metadataLink">
+    <ng-container *ngIf="allDiagramOptions.hasMetadataLink">
       <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
     </ng-container>
 
@@ -83,7 +83,7 @@
     [ngClass]="{
       'me-3': allDiagramOptions.showFullScreenButton
     }"
-    (click)="onMetadataNavigation(allDiagramOptions.metadataLink)"
+    (click)="onHasMetadataNavigation(allDiagramOptions.hasMetadataLink)"
   >
     <i class="icon-info-circle"></i>
     <span class="btn__text">Om dataene</span>

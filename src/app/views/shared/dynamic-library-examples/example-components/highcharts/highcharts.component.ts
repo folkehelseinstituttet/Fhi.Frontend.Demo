@@ -4,8 +4,6 @@ import { ViewportScroller } from '@angular/common';
 import { MockDataService } from './mock-data.service';
 import { MockData } from './mock-data.enum';
 
-import { UrlService } from 'src/app/services/url.service';
-
 import {
   FhiDiagramOptions,
   FhiDiagramSerie,
@@ -28,7 +26,6 @@ export class HighchartsComponent implements OnInit {
 
   constructor(
     private highchartsDataService: MockDataService,
-    private urlService: UrlService,
     private viewportScroller: ViewportScroller,
   ) {}
 
@@ -53,8 +50,10 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  onMetadataLinkClicked(link: string) {
-    this.viewportScroller.scrollToAnchor(link);
+  onMetadataLinkClicked(hasMetadataLink: boolean) {
+    if (hasMetadataLink === true) {
+      this.viewportScroller.scrollToAnchor('theFragment');
+    }
   }
 
   private getDodsfallEtterAarsak_2008_2018() {
@@ -108,7 +107,7 @@ export class HighchartsComponent implements OnInit {
           mapTypeId: 'mapFylker',
           openSource: false,
           showFullScreenButton: true,
-          metadataLink: 'theFragment',
+          hasMetadataLink: true,
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;

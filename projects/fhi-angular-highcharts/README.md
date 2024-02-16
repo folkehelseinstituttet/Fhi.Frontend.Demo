@@ -112,13 +112,12 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | Output                     | Event type          | Description |
 | -------------------------- | ------------------- | ----------- |
 | `(diagramTypeNavigation)`  | `FhiDiagramTypeIds` | If diagram type navigation i visible, this event will fire on every navigation. Outputs an existing diagram type id. |
-| `(metadataLinkNavigation)` | `string`            | When link to "Om dataene" is clicked, `metadataLink` is emitted. |
+| `(metadataLinkNavigation)` | `boolean`           | When link to "Om dataene" is clicked. |
 
 ### Type FhiDiagramOptions
 
 | Property              | Type                     | Default   | Required | Description |
 | --------------------- | ------------------------ | --------- | -------- | ----------- |
-| `metadataLink`        | `string`                 | -         | no       | Link to a fragment, route or url. |
 | `creditsHref`         | `string`                 | -         | no       | Link to source ref. in footer. |
 | `creditsText`         | `string`                 | -         | no       | Text to source ref. in footer. |
 | `diagramTypeId`       | `string`                 | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
@@ -126,6 +125,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `[diagramTypeSubset]` | `Array<string>`          | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
 | `disclaimer`          | `string`                 | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
 | `[flags]`             | `Array<FhiDiagramFlag>`  | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
+| `hasMetadataLink`     | `boolean`                | `false`   | no       | Possible to activate a button to trigger or navigate to metadata information in a way you desire. |
 | `lastUpdated`         | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
 | `mapTypeId`           | `MapTypeIds`             | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. |
 | `[openSource]`        | `boolean`                | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
