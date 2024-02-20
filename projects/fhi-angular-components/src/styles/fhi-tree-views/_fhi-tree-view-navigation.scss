@@ -1,4 +1,8 @@
 .fhi-tree-view-navigation {
+    a {
+        font-weight: 400;
+    }
+
     &__list {
         padding: 0;
         width: 100%;
@@ -8,7 +12,7 @@
         align-items: unset;
         display: flex;
         flex-wrap: wrap;
-        font-size: $fhi-core-font-size-3;
+        font-size: $fhi-core-font-size-2;
 
         .fhi-tree-view-navigation__list {
             flex: none;
@@ -21,7 +25,7 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        font-family: $fhi-core-font-family-sans-serif-regular;
+        font-family: $fhi-core-font-family-sans-serif;
         font-size: inherit;
         justify-content: center;
         line-height: 1.125;
@@ -31,7 +35,8 @@
         text-decoration: none;
 
         &.active {
-            font-family: $fhi-core-font-family-sans-serif-medium;
+            font-family: $fhi-core-font-family-sans-serif;
+            font-weight: 700;
         }
     }
 

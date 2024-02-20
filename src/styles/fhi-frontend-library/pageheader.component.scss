@@ -1,7 +1,7 @@
-@import './node_modules/bootstrap/scss/functions';
-@import './node_modules/bootstrap/scss/mixins';
-@import '@folkehelseinstituttet/style/import/_all-variables.scss';
-@import './node_modules/bootstrap/scss/offcanvas';
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/mixins";
+@import "@folkehelseinstituttet/style/import/_all-variables.scss";
+@import "./node_modules/bootstrap/scss/offcanvas";
 
 $fhi-special-menu-animation-speed: 0.3s;
 
@@ -12,8 +12,6 @@ $fhi-special-menu-animation-speed: 0.3s;
     &__section-title {
         border-bottom: $fhi-core-px * 2 solid transparent;
         display: inline-block;
-        font-family: $fhi-core-font-family-sans-serif-regular;
-        letter-spacing: 0;
         line-height: 1.25;
         margin: 0;
         padding: $fhi-core-space-3 $fhi-core-space-4;
@@ -22,7 +20,7 @@ $fhi-special-menu-animation-speed: 0.3s;
         &::before {
             background-color: $fhi-core-red-1;
             bottom: $fhi-core-px * 3 * -1;
-            content: '';
+            content: "";
             display: block;
             height: $fhi-core-px * 3;
             left: 50%;
@@ -57,7 +55,6 @@ $fhi-special-menu-animation-speed: 0.3s;
     }
 
     &__secondary-megamenu-trigger {
-        font-family: $fhi-core-font-family-sans-serif-regular;
         border: 0;
         height: auto;
         padding: 0;
@@ -79,7 +76,7 @@ $fhi-special-menu-animation-speed: 0.3s;
         padding-top: $fhi-core-px * 11;
         width: $fhi-core-px * 44;
 
-        [class*='icon-'] {
+        [class*="icon-"] {
             margin: 0;
         }
     }
@@ -118,7 +115,7 @@ $fhi-special-menu-animation-speed: 0.3s;
     &::before,
     &::after {
         background-color: $fhi-core-red-1;
-        content: '';
+        content: "";
         position: absolute;
     }
 

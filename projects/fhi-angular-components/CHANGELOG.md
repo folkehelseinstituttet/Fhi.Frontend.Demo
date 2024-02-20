@@ -1,7 +1,8 @@
 # Unreleased
 
-> Feb 6, 2024
+> Feb 19, 2024
 
+* :tada: **Enhancement** Adjustments to accommodate for new Lato font
 * :gift: **New** `FhiTreeViewRadio` and `FhiTreeViewCheckbox` replaces `FhiTreeViewSelection`
 * :gift: **New** Add modal
 

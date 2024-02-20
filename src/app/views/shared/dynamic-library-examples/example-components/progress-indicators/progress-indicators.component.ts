@@ -27,7 +27,6 @@ export class ProgressIndicatorsComponent {
   setProgress() {
     setTimeout(() => {
       if (this.valueNow < 100) {
-        console.log('hoi');
         if (this.inProgress) {
           this.valueNow++;
           this.setProgress();
