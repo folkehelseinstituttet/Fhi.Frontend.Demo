@@ -27,11 +27,8 @@
     padding: 6px;
     overflow-y: auto;
 
-    .nav-link {
-        color: inherit;
-    }
-
     .active {
+        color: $fhi-core-red-2;
         font-weight: 700;
         position: relative;
 
