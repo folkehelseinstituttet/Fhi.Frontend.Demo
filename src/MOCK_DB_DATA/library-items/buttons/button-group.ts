@@ -6,7 +6,7 @@ export const ButtonGroup: LibraryItem[] = [
   {
     id: ITEMS.ButtonGroup.id,
     title: ITEMS.ButtonGroup.title,
-    type: LibraryItemType.html,
+    type: LibraryItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
@@ -17,17 +17,7 @@ export const ButtonGroup: LibraryItem[] = [
  * Return value is ignored if LibraryItemType is not html
  */
 function getExampleHtml(): string {
-  return `
-<div class="btn-group fhi-btn-group" role="group" aria-label="Velg tidsintervall">
-  <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio1" checked>
-  <label class="btn fhi-btn-group__btn" for="btnradio1">Dag</label>
-
-  <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio2">
-  <label class="btn fhi-btn-group__btn" for="btnradio2">Måned</label>
-
-  <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio3">
-  <label class="btn fhi-btn-group__btn" for="btnradio3">År</label>
-</div>`;
+  return ``;
 }
 
 /*
@@ -35,7 +25,21 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return ``;
+  return `
+<div class="btn-group fhi-btn-group" role="group">
+  <button class="btn fhi-btn-group__btn">Knapp 1</button>
+  <button class="btn fhi-btn-group__btn active">Knapp 2</button>
+
+  <button type="button" class="btn fhi-btn-group__btn">Split-knapp</button>
+  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+    <button type="button" class="btn fhi-btn-group__btn" ngbDropdownToggle></button>
+    <div class="dropdown-menu" ngbDropdownMenu>
+      <button ngbDropdownItem>En</button>
+      <button ngbDropdownItem>To</button>
+      <button ngbDropdownItem>Tre</button>
+    </div>
+  </div>
+</div>`;
 }
 
 /*
