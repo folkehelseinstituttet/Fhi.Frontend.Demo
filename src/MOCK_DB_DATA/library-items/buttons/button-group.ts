@@ -25,21 +25,7 @@ function getExampleHtml(): string {
  * Return null to remove Code from library-item.
  */
 function getCodeHtml(): string | null {
-  return `
-<div class="btn-group fhi-btn-group" role="group">
-  <button class="btn fhi-btn-group__btn">Knapp 1</button>
-  <button class="btn fhi-btn-group__btn active">Knapp 2</button>
-
-  <button type="button" class="btn fhi-btn-group__btn">Split-knapp</button>
-  <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-    <button type="button" class="btn fhi-btn-group__btn" ngbDropdownToggle></button>
-    <div class="dropdown-menu" ngbDropdownMenu>
-      <button ngbDropdownItem>En</button>
-      <button ngbDropdownItem>To</button>
-      <button ngbDropdownItem>Tre</button>
-    </div>
-  </div>
-</div>`;
+  return ``;
 }
 
 /*
