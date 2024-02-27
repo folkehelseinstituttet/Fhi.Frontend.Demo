@@ -1,66 +1,69 @@
 <ng-container *ngIf="itemId === items.ButtonGroup.id">
-  <div class="btn-group fhi-btn-group" role="group" aria-label="Velg tidsintervall">
-    <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio1" checked />
-    <label class="btn fhi-btn-group__btn" for="btnradio1">Dag</label>
+  <div class="d-flex">
+    <div class="btn-group fhi-btn-group" role="group" aria-label="Velg tidsintervall">
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio1" checked />
+      <label class="btn fhi-btn-group__btn" for="btnradio1">Dag</label>
 
-    <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio2" />
-    <label class="btn fhi-btn-group__btn" for="btnradio2">Måned</label>
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio2" />
+      <label class="btn fhi-btn-group__btn" for="btnradio2">Måned</label>
 
-    <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio3" />
-    <label class="btn fhi-btn-group__btn" for="btnradio3">År</label>
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio3" />
+      <label class="btn fhi-btn-group__btn" for="btnradio3">År</label>
+    </div>
+
+    <button class="btn fhi-btn-icon ms-auto">Vis vertikalt</button>
   </div>
 
   <hr class="my-6" />
 
   <div class="btn-group fhi-btn-group">
-    <button class="btn fhi-btn-group__btn">Knapp 1</button>
-    <button class="btn fhi-btn-group__btn">Knapp 2</button>
-    <button class="btn fhi-btn-group__btn active">Knapp 3</button>
+    <button class="btn fhi-btn-group__btn" [ngClass]="{ active: activeButton === 1 }" (click)="activeButton = 1">
+      Knapp 1
+    </button>
+    <button class="btn fhi-btn-group__btn" [ngClass]="{ active: activeButton === 2 }" (click)="activeButton = 2">
+      Knapp 2
+    </button>
+    <button class="btn fhi-btn-group__btn" [ngClass]="{ active: activeButton === 3 }" (click)="activeButton = 3">
+      Knapp 3
+    </button>
   </div>
 
   <hr class="my-6" />
 
   <div class="bg-success p-4">
-    <div class="btn-group fhi-btn-group" role="group">
-      <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">Split-knapp</button>
-      <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-        <button
-          type="button"
-          class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
-          ngbDropdownToggle
-        ></button>
-        <div class="dropdown-menu" ngbDropdownMenu>
-          <button ngbDropdownItem>En</button>
-          <button ngbDropdownItem>To</button>
-          <button ngbDropdownItem>Tre</button>
+    <div class="btn-group fhi-btn-group me-5" role="group">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">Split-knapp</button>
+        <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+          <button
+            type="button"
+            class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
+            ngbDropdownToggle
+          ></button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <button ngbDropdownItem>En</button>
+            <button ngbDropdownItem>To</button>
+            <button ngbDropdownItem>Tre</button>
+          </div>
         </div>
       </div>
 
       <button class="btn fhi-btn-group__btn active">Knapp 1</button>
-
-      <!-- <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">Split-knapp</button>
-    <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-      <button type="button" class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler" ngbDropdownToggle></button>
-      <div class="dropdown-menu" ngbDropdownMenu>
-        <button ngbDropdownItem>En</button>
-        <button ngbDropdownItem>To</button>
-        <button ngbDropdownItem>Tre</button>
-      </div>
-    </div> -->
-
       <button class="btn fhi-btn-group__btn">Knapp 2</button>
 
-      <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">Split-knapp</button>
-      <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
-        <button
-          type="button"
-          class="btn fhi-btn-group__btn fhi-btn-group__split-btn-toggler"
-          ngbDropdownToggle
-        ></button>
-        <div class="dropdown-menu" ngbDropdownMenu>
-          <button ngbDropdownItem>En</button>
-          <button ngbDropdownItem>To</button>
-          <button ngbDropdownItem>Tre</button>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">Split-knapp</button>
+        <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+          <button
+            type="button"
+            class="btn fhi-btn-group__btn fhi-btn-group__split-btn-toggler"
+            ngbDropdownToggle
+          ></button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <button ngbDropdownItem>En</button>
+            <button ngbDropdownItem>To</button>
+            <button ngbDropdownItem>Tre</button>
+          </div>
         </div>
       </div>
     </div>

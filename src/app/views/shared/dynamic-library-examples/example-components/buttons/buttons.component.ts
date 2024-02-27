@@ -13,4 +13,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 export class ButtonsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
+
+  activeButton: number;
 }
