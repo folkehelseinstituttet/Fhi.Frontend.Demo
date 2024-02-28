@@ -13,6 +13,7 @@ export class TabsExampleComponent {
       tabContent: '<p>Innhold for design.</p>',
     },
     {
+      icon: 'icon-check',
       tabName: 'Komponenter',
       tabContent: '<p>Innhold for komponenter.</p>',
     },
@@ -23,7 +24,6 @@ export class TabsExampleComponent {
     {
       tabName: 'Teknisk dokumentasjon',
       tabContent: '<p>Innhold for teknisk dokumentasjon.</p>',
-      icon: 'icon-info-circle',
     },
     {
       tabName: 'Krav',
