@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tabs-example',
@@ -23,6 +23,7 @@ export class TabsExampleComponent {
     {
       tabName: 'Teknisk dokumentasjon',
       tabContent: '<p>Innhold for teknisk dokumentasjon.</p>',
+      icon: 'icon-info-circle',
     },
     {
       tabName: 'Krav',
