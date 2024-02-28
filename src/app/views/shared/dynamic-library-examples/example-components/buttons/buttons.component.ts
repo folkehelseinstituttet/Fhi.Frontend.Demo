@@ -14,5 +14,6 @@ export class ButtonsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
-  activeButton: number;
+  activeButton: number = 1;
+  verticalGroup: boolean = false;
 }
