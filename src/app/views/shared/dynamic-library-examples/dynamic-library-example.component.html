@@ -6,6 +6,7 @@
     [itemId]="itemId"
     [items]="items"
   ></app-angular-tree-view-builder>
+  <app-buttons *ngSwitchCase="groups.Buttons.id" [itemId]="itemId" [items]="items"></app-buttons>
   <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
   <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
   <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
