@@ -17,6 +17,7 @@
     </div>
 
     <button class="btn fhi-btn-icon ms-auto" (click)="verticalGroup = !verticalGroup">
+      <i [ngClass]="verticalGroup ? 'icon-arrow-right' : 'icon-arrow-down'"></i>
       Vis
       <ng-container *ngIf="!verticalGroup">vertikal</ng-container>
       <ng-container *ngIf="verticalGroup">horisontal</ng-container>
