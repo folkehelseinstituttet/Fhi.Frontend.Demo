@@ -50,8 +50,8 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  onMetadataLinkClicked() {
-    this.viewportScroller.scrollToAnchor('theFragment');
+  onMetadataButtonClick() {
+    this.viewportScroller.scrollToAnchor('om-dataene');
   }
 
   private getDodsfallEtterAarsak_2008_2018() {

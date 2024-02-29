@@ -99,7 +99,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   onMetadataButtonClick() {
-    console.info('Om dataene er klikket!');
+    this.metadataButtonClick.emit();
   }
 
   setDiagramTypeGroupToTable() {

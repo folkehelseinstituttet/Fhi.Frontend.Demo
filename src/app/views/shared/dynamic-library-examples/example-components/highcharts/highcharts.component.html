@@ -7,11 +7,19 @@
     <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
       (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-      (metadataButtonClick)="onMetadataLinkClicked()"
+      (metadataButtonClick)="onMetadataButtonClick()"
     ></fhi-angular-highcharts>
-    <div class="mt-3" id="theFragment">
-      <h3 class="h4">Om dataene</h3>
-      <p>Informasjon om disse dataene... Dette ligger utenfor highcharts-komponenten.</p>
+    <div class="mt-7" id="om-dataene">
+      <div class="alert alert-info" role="alert">
+        <i class="icon-info-circle"></i>
+        <p>
+          <strong>Om dataene</strong> <br />
+          Knappen "Om dataene" er optional. Den trigger en output event som kan brukes til å navigere til diagrammets
+          metadata. I dette tilfelle skrolles det til et anker på siden, men en står fritt til å velge hva som skal skje
+          når bruker klikker på knappen, så fremt handlingen fører til at bruker får se en eller annen form for relevant
+          metadata som ligger utenfor highcharts-komponenten.
+        </p>
+      </div>
     </div>
   </ng-container>
 
