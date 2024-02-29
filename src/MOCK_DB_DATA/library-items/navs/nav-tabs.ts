@@ -29,7 +29,10 @@ function getCodeHtml(): string | null {
 <div class="fhi-nav-tabs">
   <ul ngbNav #nav="ngbNav" class="nav-tabs">
     <li ngbNavItem *ngFor="let tab of tabsList">
-      <a ngbNavLink>{{ tab.tabName }}</a>
+      <a ngbNavLink>
+        <i [attr.class]="tab.icon" *ngIf="tab.icon"></i>
+        {{ tab.tabName }}
+      </a>
       <ng-template ngbNavContent>
         <div [innerHTML]="tab.tabContent"></div>
       </ng-template>
