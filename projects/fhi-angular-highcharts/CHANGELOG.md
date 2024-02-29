@@ -1,7 +1,8 @@
 # Unreleased
 
-> Feb 16, 2024
+> Feb 28, 2024
 
+* :bug: **Bugfix** Fix chart background color in dark mode
 * :tada: **Enhancement** Add link to metadata
 * :tada: **Enhancement** Change modal implementation from local component to a component in @folkehelseinstituttet/angular-components
 * :tada: **Enhancement** Removed table specific CSS classes, being replaced by general rules in @folkehelseinstituttet/style
