@@ -91,18 +91,18 @@ export class DiagramTypeService {
 
     // Remove line
     if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
+      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
     }
 
     // Remove donut and pie
     if (series.length > 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
+      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
     }
 
     // Remove bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
+      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
+      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
     }
 
     // Remove types not in user defined subset
