@@ -50,6 +50,14 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
+  onClickFilterDataset(value: string) {
+    if (value === '2017') {
+      this.getDodsfallEtterAarsak_2017();
+    } else {
+      this.getDodsfallEtterAarsak_2017_2021();
+    }
+  }
+
   onMetadataButtonClick() {
     this.viewportScroller.scrollToAnchor('om-dataene');
   }
@@ -74,6 +82,22 @@ export class HighchartsComponent implements OnInit {
       next: (data: FhiDiagramSerie[]) => {
         this.diagramOptions = {
           title: 'Dødsfall etter årsak, 2017 - 2021',
+          series: data,
+          diagramTypeNavId: 'default',
+        };
+        this.dataIsLoading = false;
+        this.dataIsLoaded = true;
+      },
+      error: (e) => console.error(e),
+    });
+  }
+
+  private getDodsfallEtterAarsak_2017() {
+    this.highchartsDataService.getData(MockData.DodsfallEtterAarsak_2017).subscribe({
+      next: (data: FhiDiagramSerie[]) => {
+        this.diagramOptions = {
+          diagramTypeId: 'line',
+          title: 'Dødsfall etter årsak, 2017',
           series: data,
           diagramTypeNavId: 'default',
         };

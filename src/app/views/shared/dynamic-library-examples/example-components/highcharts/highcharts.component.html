@@ -3,6 +3,15 @@
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
   </ng-container>
 
+  <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
+    <div class="d-flex justify-content-end mb-3">
+      <button type="button" class="btn fhi-btn-link" (click)="onClickFilterDataset('2017')">2017</button>
+      <button type="button" class="btn fhi-btn-link" (click)="onClickFilterDataset('2017-2021')">2017 - 2021</button>
+    </div>
+    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+    </fhi-angular-highcharts>
+  </ng-container>
+
   <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
     <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
@@ -21,11 +30,6 @@
         </p>
       </div>
     </div>
-  </ng-container>
-
-  <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
-    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-    </fhi-angular-highcharts>
   </ng-container>
 </ng-container>
 
