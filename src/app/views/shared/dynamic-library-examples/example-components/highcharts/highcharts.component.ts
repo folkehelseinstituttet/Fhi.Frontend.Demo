@@ -84,6 +84,7 @@ export class HighchartsComponent implements OnInit {
           title: 'Dødsfall etter årsak, 2017 - 2021',
           series: data,
           diagramTypeNavId: 'default',
+          mapTypeId: 'mapFylker',
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;
@@ -100,6 +101,7 @@ export class HighchartsComponent implements OnInit {
           title: 'Dødsfall etter årsak, 2017',
           series: data,
           diagramTypeNavId: 'default',
+          mapTypeId: 'mapFylker',
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;

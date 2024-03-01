@@ -17,6 +17,7 @@ import {
 export class DiagramTypeService {
   private _chartTypes!: DiagramType[];
   private _mapTypes!: DiagramType[];
+  private _disabledDiagramTypeIds!: string[];
   private _series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
@@ -34,6 +35,10 @@ export class DiagramTypeService {
     return this._mapTypes;
   }
 
+  get disabledDiagramTypeIds(): string[] {
+    return this._disabledDiagramTypeIds;
+  }
+
   updateDiagramTypes(
     diagramTypeSubset: string[] | undefined,
     mapTypeId: string | undefined,
@@ -44,7 +49,9 @@ export class DiagramTypeService {
     this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
     this.mapTypeId = mapTypeId;
-    this.updateAvailableTypes();
+    this._chartTypes = this.getChartTypes();
+    this._mapTypes = this.getMapTypes();
+    this._disabledDiagramTypeIds = this.getDisabledDiagramTypeIds();
   }
 
   getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
@@ -79,51 +86,47 @@ export class DiagramTypeService {
     return diagramType;
   }
 
-  private updateAvailableTypes() {
-    this._chartTypes = this.updateAvailableChartTypes();
-    this._mapTypes = this.updateAvailableMapTypes();
+  private getChartTypes(): DiagramType[] {
+    if (this.diagramTypeSubset !== undefined) {
+      return ChartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
+    }
+    return ChartTypes;
   }
 
-  private updateAvailableChartTypes(): DiagramType[] {
+  private getMapTypes(): DiagramType[] {
+    const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
+    if (mapTypeId === undefined) {
+      return [];
+    }
+    if (this.diagramTypeSubset !== undefined) {
+      return MapTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
+    }
+    return MapTypes;
+  }
+
+  private getDisabledDiagramTypeIds(): string[] {
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
     const series = this._series;
-    let chartTypes = ChartTypes;
+    const diagramTypeIds: string[] = [];
 
-    // Remove line
+    // Add line
     if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
-      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
+      diagramTypeIds.push(DiagramTypeIdValues.line);
     }
 
-    // Remove donut and pie
+    // Add map & pie
     if (series.length > 1) {
-      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
+      diagramTypeIds.push(DiagramTypeIdValues.map);
+      diagramTypeIds.push(DiagramTypeIdValues.pie);
     }
 
-    // Remove bar & column
+    // Add bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
-      // chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
+      diagramTypeIds.push(DiagramTypeIdValues.bar);
+      diagramTypeIds.push(DiagramTypeIdValues.column);
     }
 
-    // Remove types not in user defined subset
-    if (this.diagramTypeSubset !== undefined) {
-      chartTypes = chartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
-    }
-
-    return chartTypes;
-  }
-
-  private updateAvailableMapTypes(): DiagramType[] {
-    const series = this._series;
-    const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
-    let mapTypes = MapTypes;
-
-    // Remove all maps
-    if (mapTypeId === undefined || series.length > 1) {
-      mapTypes = [];
-    }
-
-    return mapTypes;
+    return diagramTypeIds;
   }
 
   private getNumberOfDataPointsPrSerie(): number {
