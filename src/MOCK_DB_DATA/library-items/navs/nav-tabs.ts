@@ -29,7 +29,10 @@ function getCodeHtml(): string | null {
 <div class="fhi-nav-tabs">
   <ul ngbNav #nav="ngbNav" class="nav-tabs">
     <li ngbNavItem *ngFor="let tab of tabsList">
-      <a ngbNavLink>{{ tab.tabName }}</a>
+      <a ngbNavLink>
+        <i [attr.class]="tab.icon" *ngIf="tab.icon"></i>
+        {{ tab.tabName }}
+      </a>
       <ng-template ngbNavContent>
         <div [innerHTML]="tab.tabContent"></div>
       </ng-template>
@@ -55,7 +58,7 @@ function getDocumentationHtml(): string | null {
   i FHI Designsystem.
 </p>
 <p>
-  Ved bruk av React Bootstrap Tabbed components er det bare å wrappe i en<br>
-  <code>&lt;div class="fhi-nav-tabs"&gt;&lt;/div&gt;</code>.
+  Ved bruk av React Bootstrap Tabbed components bør det fungere ved å wrappe denne i en<br>
+  <code>&lt;div class="fhi-nav-tabs"&gt;&lt;/div&gt;</code> for å få korrekt stilsetting.
 </p>`;
 }
