@@ -18,14 +18,10 @@ export class DiagramTypeService {
   private _chartTypes!: DiagramType[];
   private _mapTypes!: DiagramType[];
   private _disabledDiagramTypeIds!: string[];
-  private _series!: FhiDiagramSerie[];
+  private series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
   private mapTypeId!: string | undefined;
-
-  get series(): FhiDiagramSerie[] {
-    return this._series;
-  }
 
   get chartTypes(): DiagramType[] {
     return this._chartTypes;
@@ -45,7 +41,7 @@ export class DiagramTypeService {
     series: FhiDiagramSerie[],
     flaggedSeries: FlaggedSerie[],
   ) {
-    this._series = series;
+    this.series = series;
     this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
     this.mapTypeId = mapTypeId;
@@ -106,7 +102,7 @@ export class DiagramTypeService {
 
   private getDisabledDiagramTypeIds(): string[] {
     const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
-    const series = this._series;
+    const series = this.series;
     const diagramTypeIds: string[] = [];
 
     // Add line
@@ -131,6 +127,6 @@ export class DiagramTypeService {
 
   private getNumberOfDataPointsPrSerie(): number {
     // Using series[0] since all series have the same length.
-    return this._series[0].data.length;
+    return this.series[0].data.length;
   }
 }
