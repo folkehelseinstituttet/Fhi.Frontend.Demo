@@ -17,7 +17,9 @@
     </div>
   </div>
 
-  <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+  <ng-container *ngIf="showDiagramTypeDisabledInfo; else diagramAndFooter">
+    <ng-container *ngTemplateOutlet="diagramTypeDisabledInfo"></ng-container>
+  </ng-container>
 </article>
 
 <ng-template #diagramAndFooter>
@@ -214,4 +216,17 @@
       >
     </p>
   </footer>
+</ng-template>
+
+<ng-template #diagramTypeDisabledInfo>
+  <div class="mt-3" id="om-dataene">
+    <div class="alert alert-info" role="alert">
+      <i class="icon-info-circle"></i>
+      <p>
+        Det er dessverre ikke mulig å vise disse dataene med den diagramtypen som nå er valgt. Bytt til en annen
+        diagramtype, eller endre filteringen av dataene. <br /><br />
+        <em>Foreløpig ikke mulig se at en diagramtype er disabled... det kommer en løsning på det ASAP ; )</em>
+      </p>
+    </div>
+  </div>
 </ng-template>
