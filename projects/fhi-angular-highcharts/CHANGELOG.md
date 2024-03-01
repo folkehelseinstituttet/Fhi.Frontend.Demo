@@ -1,6 +1,6 @@
-# Unreleased
+# 2.1.0
 
-> Feb 28, 2024
+> Mar 01, 2024
 
 * :bug: **Bugfix** Fix chart background color in dark mode
 * :tada: **Enhancement** Add link to metadata
