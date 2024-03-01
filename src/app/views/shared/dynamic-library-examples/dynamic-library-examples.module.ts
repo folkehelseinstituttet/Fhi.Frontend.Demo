@@ -11,6 +11,7 @@ import { AccordionsComponent } from './example-components/accordions/accordions.
 import { AlertsComponent } from './example-components/alerts/alerts.component';
 import { AlertClosableComponent } from './example-components/alerts/alert-closable/alert-closable.component';
 import { AngularTreeViewBuilderComponent } from './example-components/angular-tree-view-builder/angular-tree-view-builder.component';
+import { ButtonsComponent } from './example-components/buttons/buttons.component';
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
 import { GlobalHeadersComponent } from './example-components/global-headers/global-headers.component';
 import { HighchartsComponent } from './example-components/highcharts/highcharts.component';
@@ -71,6 +72,9 @@ const NGB_EXAMPLES = [];
     NgbTooltipModule,
     NgSelectModule,
     SharedModule,
+
+    // Standalone components
+    ButtonsComponent,
     FormControlsComponent,
   ],
   exports: [
