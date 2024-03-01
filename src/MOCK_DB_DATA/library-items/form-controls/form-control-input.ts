@@ -1,5 +1,6 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const FormControlInput: LibraryItem[] = [
   {
@@ -41,10 +42,10 @@ function getDocumentationHtml(): string | null {
 <h5>Nyttige lenker</h5>
 <ul>
     <li>
-        <a href="https://ng-bootstrap.github.io/#/components/tooltip/api">API-dokumentasjon for Tooltip-komponent</a>
+        <a href="${CONST.NgBootstrapComponentsBaseUrl}/tooltip/api">API-dokumentasjon for Tooltip-komponent</a>
     </li>
     <li>
-        <a href="https://ng-bootstrap.github.io/#/components/tooltip/examples">Eksempler for Tooltip-komponent</a>
+        <a href="${CONST.NgBootstrapComponentsBaseUrl}/tooltip/examples">Eksempler for Tooltip-komponent</a>
     </li>
 </ul>`;
 }
