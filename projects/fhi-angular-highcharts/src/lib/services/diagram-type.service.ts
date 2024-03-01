@@ -122,6 +122,7 @@ export class DiagramTypeService {
     if (mapTypeId === undefined || series.length > 1) {
       mapTypes = [];
     }
+
     return mapTypes;
   }
 
