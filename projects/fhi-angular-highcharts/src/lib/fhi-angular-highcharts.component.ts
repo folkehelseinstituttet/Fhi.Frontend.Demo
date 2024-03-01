@@ -237,21 +237,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (
       this.diagramTypeService.disabledDiagramTypeIds.find(
         (id) => id === this.allDiagramOptions.diagramTypeId,
-      ) !== undefined
+      ) === undefined
     ) {
-      console.log(
-        'match',
-        this.diagramTypeService.disabledDiagramTypeIds.find(
-          (id) => id === this.allDiagramOptions.diagramTypeId,
-        ),
-      );
-      console.log('diagramType', this.allDiagramOptions.diagramTypeId);
-      console.log('disabledDiagramTypeIds', this.diagramTypeService.disabledDiagramTypeIds);
-
-      this.currentDiagramTypeDisabled = true;
+      this.currentDiagramTypeDisabled = false;
       return;
     }
-    this.currentDiagramTypeDisabled = false;
+    this.currentDiagramTypeDisabled = true;
   }
 
   private updateDiagram() {
