@@ -154,17 +154,18 @@ _A library project is an Angular concept for organising code that are going to b
 >
 >- When creating a release branch, follow the instructions below to the letter!
 
-1. Create a new branch from `fhi-[project]/latest`.
+1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Merge `dev` into `release/fhi-[project]/x.x.x` and commit.
-4. Update the following and commit:
+3. Create a new branch from `dev`.
+4. Name it `release`
+5. On `release`, update the following and commit:
    1. text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
    2. text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
    3. version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
       >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
-5. Create PR, and when approved, make sure commit message is the same as the branch name, except for uppercase R in Release, and then merge release branch to `fhi-[project]/latest` (deploy).
+6. Create PR into `release/fhi-[project]/x.x.x` from `release`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
    >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
-6. Create PR which merges `fhi-[project]/latest` into `dev`.
+7. Create PR into `dev` from `release`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge AND delte branch `release`.
 
 ##### Release a patch to older version in a library project
 
