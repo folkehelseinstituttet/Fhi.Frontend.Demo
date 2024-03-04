@@ -55,3 +55,12 @@
     </label>
   </div>
 </ng-container>
+
+<ng-container *ngIf="itemId === items.FormControlInput.id">
+  <label for="FormInput" class="form-label" aria-describedby="hjelpeTekst">
+    Hjelpetekst
+    <i class="icon-question-circle icon-sm ms-1" ngbTooltip="Tooltip-tekst"></i>
+  </label>
+  <p class="form-text" id="hjelpeTekst">Hjelpetekst, f.eks "Valgfritt felt"</p>
+  <input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt" />
+</ng-container>
