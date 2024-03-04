@@ -40,6 +40,7 @@ import { TableData } from './models/table-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
+  private currentDiagramTypeDisabled: boolean;
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
@@ -51,13 +52,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   highchartsOptions!: Options;
   allDiagramOptions!: AllDiagramOptions;
-  showDefaultChartTemplate = true;
-  showFooter = false;
-  showMap = false;
   mapCopyrightInfo!: object;
   currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
+  showDefaultChartTemplate = true;
+  showDiagramTypeDisabledInfo: boolean;
+  showFooter = false;
+  showMap = false;
   tableData: TableData;
 
   constructor(
@@ -80,15 +82,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateAllDiagramOptions();
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
+      this.checkIfCurrentDiagramTypeDisabled();
 
-      if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
-        this.updateTable();
-      } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
-        this.updateMap();
+      if (this.currentDiagramTypeDisabled) {
+        this.showDiagramTypeDisabledInfo = true;
       } else {
-        this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+        this.showDiagramTypeDisabledInfo = false;
+        this.updateDiagram();
       }
-      this.showFooter = this.canShowFooter();
     } catch (error) {
       console.error(this.getErrorMsg(error));
     }
@@ -99,7 +100,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   onMetadataButtonClick() {
-    console.info('Om dataene er klikket!');
+    this.metadataButtonClick.emit();
   }
 
   setDiagramTypeGroupToTable() {
@@ -230,6 +231,29 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
+  }
+
+  private checkIfCurrentDiagramTypeDisabled() {
+    if (
+      this.diagramTypeService.disabledDiagramTypeIds.find(
+        (id) => id === this.allDiagramOptions.diagramTypeId,
+      ) === undefined
+    ) {
+      this.currentDiagramTypeDisabled = false;
+      return;
+    }
+    this.currentDiagramTypeDisabled = true;
+  }
+
+  private updateDiagram() {
+    if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
+      this.updateTable();
+    } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
+      this.updateMap();
+    } else {
+      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+    }
+    this.showFooter = this.canShowFooter();
   }
 
   private updateTable() {

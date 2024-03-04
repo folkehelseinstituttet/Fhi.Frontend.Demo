@@ -1,6 +1,12 @@
 # Unreleased
 
-> Feb 28, 2024
+> Mar 01, 2024
+
+* :tada: **Enhancement** Add info to user about diagram types that can't be rendered based on the current data
+
+## 2.1.0
+
+> Mar 01, 2024
 
 * :bug: **Bugfix** Fix chart background color in dark mode
 * :tada: **Enhancement** Add link to metadata

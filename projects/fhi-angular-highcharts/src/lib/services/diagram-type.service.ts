@@ -17,14 +17,11 @@ import {
 export class DiagramTypeService {
   private _chartTypes!: DiagramType[];
   private _mapTypes!: DiagramType[];
-  private _series!: FhiDiagramSerie[];
+  private _disabledDiagramTypeIds!: string[];
+  private series!: FhiDiagramSerie[];
   private diagramTypeSubset!: string[] | undefined;
   private flaggedSeries!: FlaggedSerie[];
   private mapTypeId!: string | undefined;
-
-  get series(): FhiDiagramSerie[] {
-    return this._series;
-  }
 
   get chartTypes(): DiagramType[] {
     return this._chartTypes;
@@ -34,17 +31,23 @@ export class DiagramTypeService {
     return this._mapTypes;
   }
 
+  get disabledDiagramTypeIds(): string[] {
+    return this._disabledDiagramTypeIds;
+  }
+
   updateDiagramTypes(
     diagramTypeSubset: string[] | undefined,
     mapTypeId: string | undefined,
     series: FhiDiagramSerie[],
     flaggedSeries: FlaggedSerie[],
   ) {
-    this._series = series;
+    this.series = series;
     this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
     this.mapTypeId = mapTypeId;
-    this.updateAvailableTypes();
+    this._chartTypes = this.getChartTypes();
+    this._mapTypes = this.getMapTypes();
+    this._disabledDiagramTypeIds = this.getDisabledDiagramTypeIds();
   }
 
   getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
@@ -79,54 +82,51 @@ export class DiagramTypeService {
     return diagramType;
   }
 
-  private updateAvailableTypes() {
-    this._chartTypes = this.updateAvailableChartTypes();
-    this._mapTypes = this.updateAvailableMapTypes();
-  }
-
-  private updateAvailableChartTypes(): DiagramType[] {
-    const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
-    const series = this._series;
-    let chartTypes = ChartTypes;
-
-    // Remove line
-    if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.line);
-    }
-
-    // Remove donut and pie
-    if (series.length > 1) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.pie);
-    }
-
-    // Remove bar & column
-    if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.bar);
-      chartTypes = chartTypes.filter((type) => type.id !== DiagramTypeIdValues.column);
-    }
-
-    // Remove types not in user defined subset
+  private getChartTypes(): DiagramType[] {
     if (this.diagramTypeSubset !== undefined) {
-      chartTypes = chartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
+      return ChartTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
     }
-
-    return chartTypes;
+    return ChartTypes;
   }
 
-  private updateAvailableMapTypes(): DiagramType[] {
-    const series = this._series;
+  private getMapTypes(): DiagramType[] {
     const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
-    let mapTypes = MapTypes;
-
-    // Remove all maps
-    if (mapTypeId === undefined || series.length > 1) {
-      mapTypes = [];
+    if (mapTypeId === undefined) {
+      return [];
     }
-    return mapTypes;
+    if (this.diagramTypeSubset !== undefined) {
+      return MapTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
+    }
+    return MapTypes;
+  }
+
+  private getDisabledDiagramTypeIds(): string[] {
+    const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
+    const series = this.series;
+    const diagramTypeIds: string[] = [];
+
+    // Add line
+    if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
+      diagramTypeIds.push(DiagramTypeIdValues.line);
+    }
+
+    // Add map & pie
+    if (series.length > 1) {
+      diagramTypeIds.push(DiagramTypeIdValues.map);
+      diagramTypeIds.push(DiagramTypeIdValues.pie);
+    }
+
+    // Add bar & column
+    if (numOfDataPointsPrSerie > 5 && series.length > 8) {
+      diagramTypeIds.push(DiagramTypeIdValues.bar);
+      diagramTypeIds.push(DiagramTypeIdValues.column);
+    }
+
+    return diagramTypeIds;
   }
 
   private getNumberOfDataPointsPrSerie(): number {
     // Using series[0] since all series have the same length.
-    return this._series[0].data.length;
+    return this.series[0].data.length;
   }
 }
