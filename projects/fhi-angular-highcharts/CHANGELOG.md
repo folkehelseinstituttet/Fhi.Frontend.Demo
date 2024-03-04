@@ -1,8 +1,14 @@
 # Unreleased
 
-> Mar 01, 2024
+> Mar 04, 2024
 
 * :tada: **Enhancement** Add info to user about diagram types that can't be rendered based on the current data
+
+## 2.1.1
+
+> Mar 04, 2024
+
+* :bug: **Bugfix** Fix peerDependency `@folkehelseinstituttet/angular-components`
 
 ## 2.1.0
 
