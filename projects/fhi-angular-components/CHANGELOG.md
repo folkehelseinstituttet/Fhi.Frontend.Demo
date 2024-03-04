@@ -2,7 +2,7 @@
 
 > Mar 4, 2024
 
-* :bug* **Bug** Reset font family on `FhiTreeViewNavigation`
+* :bug* **Bugfix** Reset font family on `FhiTreeViewNavigation`
 
 # 3.1.0
 
