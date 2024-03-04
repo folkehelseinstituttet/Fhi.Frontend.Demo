@@ -1,9 +1,5 @@
 <div class="fhi-diagram-type-nav mb-3">
-  <div
-    class="btn-group fhi-btn-group mb-1"
-    role="group"
-    aria-label="Velg tabell, kart eller graf"
-  >
+  <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Velg tabell, kart eller graf">
     <ng-container *ngFor="let group of navDiagramTypeGroups">
       <ng-container *ngIf="!group.excludeFromMenu">
         <input
@@ -17,11 +13,7 @@
           (change)="navigate(group.diagramType)"
         />
 
-        <label
-          class="btn fhi-btn-group__btn"
-          for="{{ group.id + navId }}"
-          [ngClass]="{ disabled: group.isDisabled }"
-        >
+        <label class="btn fhi-btn-group__btn" for="{{ group.id + navId }}" [ngClass]="{ disabled: group.isDisabled }">
           <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
           {{ group.name }}
         </label>
@@ -40,16 +32,12 @@
         class="btn-check fhi-btn-group__check"
         type="radio"
         name="{{ 'chart-type-' + navId }}"
-        name=""
         id="{{ chartType.id + navId }}"
         [checked]="chartType.id === currentDiagramTypeId"
         (change)="navigate(chartType)"
       />
 
-      <label
-        class="btn fhi-btn-group__btn border-0"
-        for="{{ chartType.id + navId }}"
-      >
+      <label class="btn fhi-btn-group__btn border-0" for="{{ chartType.id + navId }}">
         <i [class]="'icon-md icon-' + chartType.icon"></i>
         <span class="visually-hidden text-dark">{{ chartType.name }}</span>
       </label>

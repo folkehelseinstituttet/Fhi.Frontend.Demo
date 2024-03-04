@@ -109,7 +109,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   private getNavDiagramMapGroup(): NavDiagramTypeGroup {
     const mapType = this.getMapType();
     const isDisabled = this.mapTypes.length === 0;
-    const excludeFromMenu = this.currentMapTypeId === undefined;
+    const excludeFromMenu = this.currentMapTypeId === undefined || this.mapTypes.length === 0;
     return {
       diagramType: mapType,
       icon: mapType.icon,

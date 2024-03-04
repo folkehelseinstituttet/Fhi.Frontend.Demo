@@ -1,4 +1,10 @@
-# 2.1.1
+# Unreleased
+
+> Mar 04, 2024
+
+* :tada: **Enhancement** Add info to user about diagram types that can't be rendered based on the current data
+
+## 2.1.1
 
 > Mar 04, 2024
 

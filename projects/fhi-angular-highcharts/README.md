@@ -34,6 +34,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 | 0.1.0                  | -                     | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
+
 _* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
 
 ## Get started
@@ -154,11 +155,11 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | Property | Type     | Default | Required | Description |
 | -------- | -------- | ------- | -------- | ----------- |
 | `label`  | `string` | -       | yes      | Description of the flag, ie. _Anonymized_ |
-| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`.
+| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`. |
 
 ## Changelog
 
-You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/CHANGELOG.md).
+You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/fhi-angular-highcharts/latest/projects/fhi-angular-highcharts/CHANGELOG.md).
 
 ## Contribute
 
