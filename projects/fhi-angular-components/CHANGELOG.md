@@ -1,7 +1,9 @@
-# Unreleased
+# 3.1.0
 
-> Feb 6, 2024
+> Mar 4, 2024
 
+* :bug: **Bug** Weekpicker fails with `date-fns@3.3.0`. See [date-fns CHANGELOG](https://github.com/date-fns/date-fns/blob/main/CHANGELOG.md#v331---2024-01-22)
+* :tada: **Enhancement** Adjustments to accommodate for new Lato font
 * :gift: **New** `FhiTreeViewRadio` and `FhiTreeViewCheckbox` replaces `FhiTreeViewSelection`
 * :gift: **New** Add modal
 

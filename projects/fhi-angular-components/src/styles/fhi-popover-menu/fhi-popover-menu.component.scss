@@ -9,7 +9,6 @@
     }
 
     &__item {
-        font-family: $fhi-core-font-family-sans-serif-regular;
         padding: 0;
     }
 
@@ -19,6 +18,7 @@
         color: inherit;
         display: block;
         font-family: inherit;
+        font-weight: 400;
         padding: $fhi-core-space-2 $fhi-core-space-3;
         text-align: left;
         text-decoration: none;

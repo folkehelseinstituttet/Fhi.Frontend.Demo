@@ -28,18 +28,20 @@
     overflow-y: auto;
 
     .active {
-        color: var(--bs-nav-link-hover-color);
+        color: $fhi-core-red-2;
+        font-weight: 700;
         position: relative;
 
         &::before {
-            background-color: currentColor;
+            background-color: $fhi-core-red-1;
+            border-radius: #{$fhi-core-px * 1.5};
             content: "";
             display: block;
             height: 1.25em;
             left: 0;
             position: absolute;
             top: calc(#{$fhi-core-space-3} - #{$fhi-core-px * 7});
-            width: 2px;
+            width: 3px;
         }
     }
 }
@@ -166,9 +168,12 @@
 }
 
 .ds-icons-wrapper {
+    margin: 0 -0.5rem;
+
     .ds-icon {
         display: inherit;
-        flex-basis: 100%;
+        padding: 0 0.5rem;
+        width: 100%;
 
         [class*="icon-"] {
             cursor: pointer;
@@ -199,10 +204,12 @@
 
         &__name {
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: inline-block;
+            font-size: $fhi-core-font-size-1;
+            overflow: hidden;
             position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
 
             &:focus {
                 color: $fhi-core-charcoal-1;
@@ -214,7 +221,7 @@
 @include media-breakpoint-up(sm) {
     .ds-icons-wrapper {
         .ds-icon {
-            flex-basis: 50%;
+            width: 50%;
         }
     }
 }
@@ -222,7 +229,7 @@
 @include media-breakpoint-up(lg) {
     .ds-icons-wrapper {
         .ds-icon {
-            flex-basis: 33.333%;
+            width: 33.333%;
         }
     }
 }

@@ -1,0 +1,60 @@
+<ng-container *ngIf="itemId === items.ButtonGroup.id">
+  <div class="d-flex mb-6">
+    <div
+      class="fhi-btn-group"
+      role="group"
+      aria-label="Velg tidsintervall"
+      [ngClass]="verticalGroup ? 'btn-group-vertical' : 'btn-group'"
+    >
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio1" checked />
+      <label class="btn fhi-btn-group__btn" for="btnradio1">Dag</label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio2" />
+      <label class="btn fhi-btn-group__btn" for="btnradio2">Måned</label>
+
+      <input type="radio" class="btn-check fhi-btn-group__check" name="btnradio" id="btnradio3" />
+      <label class="btn fhi-btn-group__btn" for="btnradio3">År</label>
+    </div>
+
+    <button class="btn fhi-btn-icon ms-auto" (click)="verticalGroup = !verticalGroup">
+      <i [ngClass]="verticalGroup ? 'icon-arrow-right' : 'icon-arrow-down'"></i>
+      Vis
+      <ng-container *ngIf="!verticalGroup">vertikal</ng-container>
+      <ng-container *ngIf="verticalGroup">horisontal</ng-container>
+    </button>
+  </div>
+
+  <div class="fhi-btn-group me-5" role="group" [ngClass]="verticalGroup ? 'btn-group-vertical' : 'btn-group'">
+    <button class="btn fhi-btn-group__btn" [ngClass]="{ active: activeButton === 1 }" (click)="activeButton = 1">
+      Knapp 1
+    </button>
+    <button class="btn fhi-btn-group__btn" [ngClass]="{ active: activeButton === 2 }" (click)="activeButton = 2">
+      Knapp 2
+    </button>
+
+    <div class="btn-group" role="group">
+      <button
+        type="button"
+        class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
+        [ngClass]="{ active: activeButton === 3 }"
+        (click)="activeButton = 3"
+      >
+        Knapp 3 (split)
+      </button>
+      <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+        <button
+          type="button"
+          class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
+          aria-label="Velg noe..."
+          [ngClass]="{ active: activeButton === 3 }"
+          ngbDropdownToggle
+        ></button>
+        <div class="dropdown-menu" ngbDropdownMenu>
+          <button ngbDropdownItem (click)="activeButton = 3">A</button>
+          <button ngbDropdownItem (click)="activeButton = 3">B</button>
+          <button ngbDropdownItem (click)="activeButton = 3">C</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tabs-example',
@@ -13,6 +13,7 @@ export class TabsExampleComponent {
       tabContent: '<p>Innhold for design.</p>',
     },
     {
+      icon: 'icon-check',
       tabName: 'Komponenter',
       tabContent: '<p>Innhold for komponenter.</p>',
     },

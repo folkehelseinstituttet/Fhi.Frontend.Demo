@@ -43,7 +43,7 @@
         padding-left: $fhi-core-space-1;
 
         code[class*="language-"] {
-            font-size: 11px;
+            font-size: 12px;
         }
     }
     &__markdown {
@@ -55,10 +55,6 @@
         border-bottom-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
         min-width: $fhi-core-px * 45;
-
-        p {
-            font-size: $fhi-core-px * 12;
-        }
     }
     &__btn-wrapper--full-screen {
         background-color: $fhi-core-grey-light-1;
@@ -72,7 +68,6 @@
         }
 
         small {
-            font-family: $fhi-core-font-family-sans-serif-regular;
             font-size: 12px;
         }
     }

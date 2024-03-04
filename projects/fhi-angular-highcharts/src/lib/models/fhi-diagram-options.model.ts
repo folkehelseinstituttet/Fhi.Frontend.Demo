@@ -18,6 +18,7 @@ export interface FhiDiagramOptions {
   flags?: Array<FhiDiagramFlag>;
   lastUpdated?: string;
   mapTypeId?: keyof typeof MapTypeIds;
+  metadataButton?: boolean;
   openSource?: boolean;
   series: Array<FhiDiagramSerie>;
   showFullScreenButton?: boolean;

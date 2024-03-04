@@ -41,6 +41,11 @@ $ds-modal-top-offset: 47px;
 
     .modal-fullscreen {
         padding: 0;
+
+        .modal-header {
+            padding-top: $fhi-core-space-3;
+            padding-bottom: $fhi-core-space-3;
+        }
     }
 
     .btn-close::after {
@@ -55,8 +60,8 @@ $ds-modal-top-offset: 47px;
 
     &__modal-body {
         background-color: $fhi-core-white;
-        border-top-left-radius: .25rem;
-        border-top-right-radius: .25rem;
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
         padding: 0;
 
         > div {

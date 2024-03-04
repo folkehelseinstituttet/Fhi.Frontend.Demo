@@ -9,7 +9,7 @@
 
                 .ng-placeholder {
                     top: $fhi-core-space-2; // OBS! Is dependeant on default .form-control padding + border
-                    left: .75rem; // OBS! Is dependeant on default .form-control padding
+                    left: 0.75rem; // OBS! Is dependeant on default .form-control padding
                 }
             }
         }
@@ -18,14 +18,9 @@
     .ng-dropdown-panel-items {
         .ng-option {
             padding: $fhi-core-space-2;
-
-            .form-check-input {
-                margin-top: $fhi-core-px * 3;
-            }
         }
     }
 }
-
 
 @include media-breakpoint-up(lg) {
     .fhi-multiselect {
