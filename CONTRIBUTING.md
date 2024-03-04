@@ -143,8 +143,8 @@ _A library project is an Angular concept for organising code that are going to b
 
 >**Before creating a release branch**
 >
->- Check that dependencies in `@folkehelseinstituttet/style` is already released.
->- Check that all peerDependencies are updated.
+>- Check that all peerDependencies are updated
+>- Check that `@folkehelseinstituttet/*` is already released if listed in peerDependencies
 >- Check that the dependency matrix is updated, and has "Unreleased" as latest version.
 >- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
 >
