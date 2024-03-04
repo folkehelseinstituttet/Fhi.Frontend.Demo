@@ -1,4 +1,10 @@
-# 2.1.0
+# 2.1.1
+
+> Mar 04, 2024
+
+* :bug: **Bugfix** Fix peerDependency `@folkehelseinstituttet/angular-components`
+
+## 2.1.0
 
 > Mar 01, 2024
 

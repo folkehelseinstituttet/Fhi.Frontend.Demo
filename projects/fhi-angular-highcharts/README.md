@@ -23,7 +23,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 2.x.x                  | -                     | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/10 *  |
+| 2.x.x                  | 3.1.0                 | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/10 *  |
 | 1.x.x                  | -                     | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
 | 0.7.0                  | -                     | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
 | 0.6.x                  | -                     | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
