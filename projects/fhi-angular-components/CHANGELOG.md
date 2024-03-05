@@ -1,4 +1,10 @@
-# 3.1.2
+# Unreleased
+
+> Mar 5, 2024
+
+* :boom: **Breaking** `[scrollable]` default changed from `false` to `true`
+
+## 3.1.2
 
 > Mar 5, 2024
 
@@ -10,7 +16,7 @@
 
 * :bug: **Bugfix** Reset font family on `FhiTreeViewNavigation`
 
-# 3.1.0
+## 3.1.0
 
 > Mar 4, 2024
 
