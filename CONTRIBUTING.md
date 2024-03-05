@@ -175,8 +175,8 @@ Almost same procedure as described under [Release branches for library projects]
    2. Add and extra `#` to the previous version number.
    3. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, ALSO update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.
 4. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
-5. Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge AND delte branch `release`.
-   >_NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:_
+5. Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is _**Patch**/fhi-[project]/x.x.x_, and then merge.
+   >_**NB!** This PR will probably have conflicts, so just merge `dev` into `release/fhi-[project]/x.x.x` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:_
    >1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version)
    >2. Sometimes merge changes to the code
    >3. **NEVER** merge any changes to `publishConfig.tag` in `./projects/fhi-[project]/package.json`
