@@ -156,31 +156,26 @@ _A library project is an Angular concept for organising code that are going to b
 
 1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Create a new branch from `dev`.
-4. Name it `release`
-5. On `release`, update the following and commit:
+3. Update the following and commit:
    1. text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
    2. text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
    3. version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
       >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
-6. Create PR into `release/fhi-[project]/x.x.x` from `release`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
+4. Create PR into `dev` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
    >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
-7. Create PR into `dev` from `release`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge AND delte branch `release`.
 
 ##### Release a patch to older version in a library project
 
 Almost same procedure as described under [Release branches for library projects](#release-branches-for-library-projects), but there are some minor differences:
 
-1. Create a new branch from `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're patching (remember ref. to correct git submodule).
-2. Name it `release/fhi-[project]/x.x.y`, where `x.x.y` is the version you're releasing.
-3. Create a new branch from `release/fhi-[project]/x.x.y`.
-4. Name it `release`
-5. On `release`, update the following and commit:
-   1. Add `# x.x.y` in beginning of the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
+1. Create a new branch from `fhi-[project]/vx`, where `X` is the major version you're patching (remember ref. to correct git submodule).
+2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+3. Update the following and commit:
+   1. Add `# x.x.x` in beginning of the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
    2. Add and extra `#` to the previous version number.
    3. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, ALSO update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.
-6. Create PR into `release/fhi-[project]/x.x.y` from `release`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.y_, and then merge (ie. deploy).
-7. Create PR into `dev` from `release` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.y_, and then merge AND delte branch `release`.
+4. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
+5. Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge AND delte branch `release`.
    >_NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:_
    >1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version)
    >2. Sometimes merge changes to the code
