@@ -1,8 +1,14 @@
-# Unreleased
+# 3.1.2
+
+> Mar 5, 2024
+
+* :bug: **Bugfix** Previous bugfix was not complete; now it is
+
+## 3.1.1
 
 > Mar 4, 2024
 
-* :bug* **Bugfix** Reset font family on `FhiTreeViewNavigation`
+* :bug: **Bugfix** Reset font family on `FhiTreeViewNavigation`
 
 # 3.1.0
 
