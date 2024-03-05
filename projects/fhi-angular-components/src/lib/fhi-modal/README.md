@@ -9,7 +9,7 @@
 | `[actionButtons]`      | `FhiModalActionButton[]` | -              | no       | Object defining the buttons in the modal. |
 | `modalTitle`           | `string`                 | -              | no       | Title at the top of the modal. |
 | `openModalButtonClass` | `string`                 | `fhi-btn-link` | no       | Button class on the button that opens the modal. The button can also be modified with markup inside the button. |
-| `[scrollable]`         | `boolean`                | `false`        | no       | Same as NgbModal |
+| `[scrollable]`         | `boolean`                | `true`         | no       | Same as NgbModal |
 | `size`                 | `string`                 | `md`           | no       | Same as NgbModal |
 
 ### Output

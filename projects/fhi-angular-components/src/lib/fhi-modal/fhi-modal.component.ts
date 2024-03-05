@@ -26,7 +26,7 @@ export class FhiModalComponent implements OnChanges {
   @Input() actionButtons: FhiModalActionButton[];
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
-  @Input() scrollable = false;
+  @Input() scrollable = true;
   @Input() size = 'md';
 
   @Output() dismissModal = new EventEmitter();
