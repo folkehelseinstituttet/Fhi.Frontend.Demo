@@ -4,7 +4,7 @@ export interface NavDiagramTypeGroup {
   diagramType: DiagramType;
   icon: string;
   id: string;
-  isDisabled: boolean;
+  disabled: boolean;
   name: string;
   excludeFromMenu?: boolean;
 }

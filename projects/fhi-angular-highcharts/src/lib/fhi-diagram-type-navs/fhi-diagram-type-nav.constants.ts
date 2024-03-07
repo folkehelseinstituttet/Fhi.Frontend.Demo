@@ -11,6 +11,6 @@ export const NavDiagramTableGroup = {
   diagramType: DiagramTypes.table,
   icon: DiagramTypes.table.icon,
   id: DiagramTypeGroups.table,
-  isDisabled: false,
+  disabled: false,
   name: DiagramTypes.table.name,
 };

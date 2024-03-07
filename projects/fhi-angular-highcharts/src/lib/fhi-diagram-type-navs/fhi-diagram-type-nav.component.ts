@@ -89,13 +89,13 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
 
   private getNavDiagramChartGroup(): NavDiagramTypeGroup {
     const chartType = this.getChartType();
-    const isDisabled = this.chartTypes.length === 0;
+    const disabled = this.chartTypes.length === 0;
     const excludeFromMenu = this.excludeChartsFromMenu();
     return {
       diagramType: chartType,
       icon: chartType.icon,
       id: DiagramTypeGroups.chart,
-      isDisabled: isDisabled,
+      disabled: disabled,
       name: 'Graf',
       excludeFromMenu: excludeFromMenu,
     };
@@ -113,13 +113,13 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
 
   private getNavDiagramMapGroup(): NavDiagramTypeGroup {
     const mapType = this.getMapType();
-    const isDisabled = this.mapTypes.length === 0;
+    const disabled = this.mapTypes.length === 0;
     const excludeFromMenu = this.currentMapTypeId === undefined || this.mapTypes.length === 0;
     return {
       diagramType: mapType,
       icon: mapType.icon,
       id: DiagramTypeGroups.map,
-      isDisabled: isDisabled,
+      disabled: disabled,
       name: 'Kart',
       excludeFromMenu: excludeFromMenu,
     };

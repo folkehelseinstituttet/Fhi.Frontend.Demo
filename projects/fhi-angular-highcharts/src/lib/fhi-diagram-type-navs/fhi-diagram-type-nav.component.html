@@ -8,12 +8,12 @@
           name="{{ 'diagram-type-nav' + navId }}"
           id="{{ group.id + navId }}"
           [attr.aria-haspopup]="diagramTypeGroupIsChart(group.id)"
-          [disabled]="group.isDisabled"
+          [disabled]="group.disabled"
           [checked]="group.id === currentDiagramTypeGroup"
           (change)="navigate(group.diagramType)"
         />
 
-        <label class="btn fhi-btn-group__btn" for="{{ group.id + navId }}" [ngClass]="{ disabled: group.isDisabled }">
+        <label class="btn fhi-btn-group__btn" for="{{ group.id + navId }}" [ngClass]="{ disabled: group.disabled }">
           <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
           {{ group.name }}
         </label>
