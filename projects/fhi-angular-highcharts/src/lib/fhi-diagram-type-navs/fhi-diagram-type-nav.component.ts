@@ -44,6 +44,11 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   ngOnChanges() {
     this.chartTypes = this.diagramTypeService.chartTypes;
     this.mapTypes = this.diagramTypeService.mapTypes;
+
+    console.log('chartTypes', this.chartTypes);
+    console.log('mapTypes', this.mapTypes);
+    console.log('navDiagramTypeGroups', this.navDiagramTypeGroups);
+
     this.updateNavDiagramTypeGroups();
     this.updateChartSubmenuState();
   }
