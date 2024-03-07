@@ -45,9 +45,9 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
     this.chartTypes = this.diagramTypeService.chartTypes;
     this.mapTypes = this.diagramTypeService.mapTypes;
 
-    console.log('chartTypes', this.chartTypes);
-    console.log('mapTypes', this.mapTypes);
-    console.log('navDiagramTypeGroups', this.navDiagramTypeGroups);
+    //console.log('chartTypes', this.chartTypes);
+    //console.log('mapTypes', this.mapTypes);
+    //console.log('navDiagramTypeGroups', this.navDiagramTypeGroups);
 
     this.updateNavDiagramTypeGroups();
     this.updateChartSubmenuState();
@@ -77,6 +77,7 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   }
 
   private updateNavDiagramTypeGroups() {
+    // TODO: Delete DiagramTypeGroupIndex!
     this.navDiagramTypeGroups[DiagramTypeGroupIndex.chart] = this.getNavDiagramChartGroup();
     this.navDiagramTypeGroups[DiagramTypeGroupIndex.map] = this.getNavDiagramMapGroup();
 

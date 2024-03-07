@@ -1,7 +1,7 @@
 import { Options } from 'highcharts';
 
 export interface DiagramType {
-  disabled: boolean;
+  disabled?: boolean;
   id: string;
   icon: string;
   name: string;
