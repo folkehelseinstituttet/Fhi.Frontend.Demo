@@ -2,9 +2,9 @@ import { DiagramType } from '../models/diagram-type.model';
 
 export interface NavDiagramTypeGroup {
   diagramType: DiagramType;
+  disabled: boolean;
   icon: string;
   id: string;
-  disabled: boolean;
   name: string;
   excludeFromMenu?: boolean;
 }
