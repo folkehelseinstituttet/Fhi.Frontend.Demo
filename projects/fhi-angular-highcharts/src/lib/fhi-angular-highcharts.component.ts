@@ -82,6 +82,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateAllDiagramOptions();
       this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
+
+      // TODO: update implementation
       this.checkIfCurrentDiagramTypeDisabled();
 
       if (this.currentDiagramTypeDisabled) {
@@ -188,7 +190,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(
+    this.diagramTypeService.updateAvailableDiagramTypes(
       this.allDiagramOptions.diagramTypeSubset,
       this.allDiagramOptions.mapTypeId,
       this.allDiagramOptions.series,
@@ -262,6 +264,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateMap() {
+    // TODO: Remove the following from templagte:
+    //    - [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
+    //    - [currentMapTypeId]="allDiagramOptions.mapTypeId"
+    //    and also remvoe from allDiagramOptions...
+    // Can be stored in DiagramTypeService instead.
+
     const mapTypeId = this.allDiagramOptions.mapTypeId;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {

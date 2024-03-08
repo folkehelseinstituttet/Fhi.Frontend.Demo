@@ -40,7 +40,7 @@ export class DiagramTypeService {
     return this._disabledDiagramTypeIds;
   }
 
-  updateDiagramTypes(
+  updateAvailableDiagramTypes(
     diagramTypeSubset: string[] | undefined,
     mapTypeId: string | undefined,
     series: FhiDiagramSerie[],
@@ -50,12 +50,16 @@ export class DiagramTypeService {
     this.diagramTypeSubset = diagramTypeSubset;
     this.flaggedSeries = flaggedSeries;
     this.mapTypeId = mapTypeId;
+
     this._chartTypes = this.getChartTypes();
     this._mapTypes = this.getMapTypes();
-    this.createNavDiagramTypeGroups();
+    this.updateAllDiagramTypesDisabledState();
 
+    this._navDiagramTypeGroups = this.getNavDiagramTypeGroups();
+    console.log('this._navDiagramTypeGroups', this._navDiagramTypeGroups);
+
+    // TODO: Deprecated version (but still in use!)
     this._disabledDiagramTypeIds = this.getDisabledDiagramTypeIds();
-    //this.setDisabledDiagramTypes();
   }
 
   getDiagramTypeById(diagramTypeId: string | undefined): DiagramType {
@@ -96,30 +100,31 @@ export class DiagramTypeService {
     return ChartTypes;
   }
 
+  // TODO:
+  //   - set return value to undefind (but can't do that before new logic is implemented in FhiDiagramTypeNavComponent)
+  //   - make logic same as for ChartTypes (but what about just table, no charts?)
+  //   - update API and doc accordingly
+  //   NB! This is breaking changes!
   private getMapTypes(): DiagramType[] {
     const mapTypeId = MapTypeIdValuesArray.find((id) => id === this.mapTypeId);
-    if (mapTypeId === undefined) {
-      return [];
-    }
-    if (this.diagramTypeSubset !== undefined) {
+    if (mapTypeId !== undefined && this.diagramTypeSubset !== undefined) {
       return MapTypes.filter((type) => this.diagramTypeSubset?.includes(type.id));
     }
-    return MapTypes;
+    return [];
   }
 
-  private createNavDiagramTypeGroups() {
-    this._navDiagramTypeGroups = [NavDiagramTableGroup];
-    if (this._mapTypes[0] !== undefined) {
-      this._navDiagramTypeGroups.push(this.getNavDiagramMapGroup(this._mapTypes[0]));
+  private getNavDiagramTypeGroups(): NavDiagramTypeGroup[] {
+    const groups = [NavDiagramTableGroup];
+    if (this._mapTypes.length !== 0) {
+      groups.push(this.getNavDiagramMapGroup(this._mapTypes[0]));
     }
-    if (this._chartTypes[0] !== undefined) {
-      this._navDiagramTypeGroups.push(this.getNavDiagramChartGroup(this._chartTypes[0]));
-    }
-    console.log('this._navDiagramTypeGroups', this._navDiagramTypeGroups);
+    groups.push(this.getNavDiagramChartGroup(this._chartTypes[0]));
+    return groups;
   }
 
   private getNavDiagramChartGroup(chartType: DiagramType): NavDiagramTypeGroup {
     return {
+      children: this._chartTypes,
       diagramType: chartType,
       icon: chartType.icon,
       id: DiagramTypeGroups.chart,
@@ -130,6 +135,7 @@ export class DiagramTypeService {
 
   private getNavDiagramMapGroup(mapType: DiagramType): NavDiagramTypeGroup {
     return {
+      children: this._mapTypes,
       diagramType: mapType,
       icon: mapType.icon,
       id: DiagramTypeGroups.map,
@@ -138,31 +144,30 @@ export class DiagramTypeService {
     };
   }
 
-  //
-  // WIP
-  //
-  private setDisabledDiagramTypes() {
-    const numOfDataPointsPrSerie = this.getNumberOfDataPointsPrSerie();
-    const series = this.series;
+  private updateAllDiagramTypesDisabledState() {
+    this.resetAllDiagramTypeDisabledStates();
+    this.getDisabledDiagramTypeIds().forEach((id) => {
+      const chartType = this._chartTypes.find((type) => type.id === id);
+      const mapType = this._mapTypes.find((type) => type.id === id);
 
-    // Disable line
-    if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
-      this.disableChartType(DiagramTypeIdValues.line);
-    }
-
-    // Disable map & pie
-    if (series.length > 1) {
-      //this.disableChartType(DiagramTypeIdValues.map);
-      this.disableChartType(DiagramTypeIdValues.pie);
-    }
-
-    // Disable bar & column
-    if (numOfDataPointsPrSerie > 5 && series.length > 8) {
-      this.disableChartType(DiagramTypeIdValues.pie);
-    }
+      if (chartType !== undefined) {
+        chartType.disabled = true;
+      }
+      if (mapType !== undefined) {
+        mapType.disabled = true;
+      }
+    });
   }
-  private disableChartType(diagramTypeId: string) {
-    this._chartTypes.find((type) => type.id === diagramTypeId).disabled = true;
+
+  private resetAllDiagramTypeDisabledStates() {
+    this._chartTypes.forEach((type) => {
+      type.disabled = false;
+    });
+    if (this._mapTypes[0] !== undefined) {
+      this._mapTypes.forEach((type) => {
+        type.disabled = false;
+      });
+    }
   }
 
   private getDisabledDiagramTypeIds(): string[] {
@@ -170,18 +175,15 @@ export class DiagramTypeService {
     const series = this.series;
     const diagramTypeIds: string[] = [];
 
-    // Add line
     if (numOfDataPointsPrSerie === 1 || (series.length > 1 && this.flaggedSeries.length !== 0)) {
       diagramTypeIds.push(DiagramTypeIdValues.line);
     }
 
-    // Add map & pie
     if (series.length > 1) {
       diagramTypeIds.push(DiagramTypeIdValues.map);
       diagramTypeIds.push(DiagramTypeIdValues.pie);
     }
 
-    // Add bar & column
     if (numOfDataPointsPrSerie > 5 && series.length > 8) {
       diagramTypeIds.push(DiagramTypeIdValues.bar);
       diagramTypeIds.push(DiagramTypeIdValues.column);
