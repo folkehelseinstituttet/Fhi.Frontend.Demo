@@ -28,6 +28,10 @@ export class DiagramTypeService {
   private flaggedSeries!: FlaggedSerie[];
   private mapTypeId!: string | undefined;
 
+  get diagramTypeGroups(): NavDiagramTypeGroup[] {
+    return this._navDiagramTypeGroups;
+  }
+
   get chartTypes(): DiagramType[] {
     return this._chartTypes;
   }
@@ -55,10 +59,11 @@ export class DiagramTypeService {
     this._mapTypes = this.getMapTypes();
     this.updateAllDiagramTypesDisabledState();
 
+    // TODO: split methode (or DiagramGroupService?), it does to much now...
     this._navDiagramTypeGroups = this.getNavDiagramTypeGroups();
     console.log('this._navDiagramTypeGroups', this._navDiagramTypeGroups);
 
-    // TODO: Deprecated version (but still in use!)
+    // TODO: DEPRECATED version (but still in use!)
     this._disabledDiagramTypeIds = this.getDisabledDiagramTypeIds();
   }
 

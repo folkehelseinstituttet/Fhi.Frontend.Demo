@@ -20,9 +20,9 @@ import { DiagramTypeService } from '../services/diagram-type.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiDiagramTypeNavComponent implements OnChanges {
-  @Input() currentDiagramTypeGroup!: string;
-  @Input() currentDiagramTypeId!: string;
-  @Input() currentMapTypeId!: string | undefined;
+  @Input() currentDiagramTypeGroup!: string; // TODO: DEPRECATED input (and should be currentDiagramTypeGroupId when moved to DiagramTypeService (or DiagramGroupService?))
+  @Input() currentDiagramTypeId!: string; // TODO: DEPRECATED input
+  @Input() currentMapTypeId!: string | undefined; // TODO: DEPRECATED input
   @Input() currentSeriesLength!: number;
 
   @Output() diagramTypeNavigation = new EventEmitter<DiagramType>();
@@ -30,7 +30,8 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   chartSubmenuIsOpen = false;
   chartTypes!: DiagramType[];
   mapTypes!: DiagramType[];
-  navDiagramTypeGroups!: NavDiagramTypeGroup[];
+  diagramTypeGroups!: NavDiagramTypeGroup[];
+  navDiagramTypeGroups!: NavDiagramTypeGroup[]; // TODO: DEPRECATED
   navId: number;
   previousSeriesLength!: number;
   previousDiagramTypeId!: string;
@@ -42,13 +43,14 @@ export class FhiDiagramTypeNavComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    console.log('Update menu!', this.navId); // TODO: must always fire! -> this.diagramTypeGroups must be @Input()
+    this.diagramTypeGroups = this.diagramTypeService.diagramTypeGroups;
+
     this.chartTypes = this.diagramTypeService.chartTypes;
     this.mapTypes = this.diagramTypeService.mapTypes;
-
     //console.log('chartTypes', this.chartTypes);
     //console.log('mapTypes', this.mapTypes);
     //console.log('navDiagramTypeGroups', this.navDiagramTypeGroups);
-
     this.updateNavDiagramTypeGroups();
     this.updateChartSubmenuState();
   }
