@@ -44,3 +44,56 @@
     </ng-container>
   </div>
 </div>
+
+<!-- DEPRECATED -->
+
+<div class="fhi-diagram-type-nav mb-3">
+  <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Velg tabell, kart eller graf">
+    <ng-container *ngFor="let group of navDiagramTypeGroups">
+      <ng-container *ngIf="!group.excludeFromMenu">
+        <input
+          class="btn-check fhi-btn-group__check"
+          type="radio"
+          name="DEPRECATED-diagram-type-nav-{{ navId }}"
+          id="DEPRECATED-{{ group.id + navId }}"
+          [attr.aria-haspopup]="diagramTypeGroupIsChart(group.id)"
+          [disabled]="group.disabled"
+          [checked]="group.id === currentDiagramTypeGroup"
+          (change)="navigate(group.diagramType)"
+        />
+
+        <label
+          class="btn fhi-btn-group__btn"
+          for="DEPRECATED-{{ group.id + navId }}"
+          [ngClass]="{ disabled: group.disabled }"
+        >
+          <i class="icon-md" [ngClass]="'icon-' + group.icon"></i>
+          {{ group.name }}
+        </label>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div
+    class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
+    role="group"
+    aria-label="Velg graftype"
+    *ngIf="chartSubmenuIsOpen && chartTypes.length > 1"
+  >
+    <ng-container *ngFor="let chartType of chartTypes; index as i">
+      <input
+        class="btn-check fhi-btn-group__check"
+        type="radio"
+        name="DEPRECATED-chart-type-{{ navId }}"
+        id="DEPRECATED-{{ chartType.id + navId }}"
+        [checked]="chartType.id === currentDiagramTypeId"
+        (change)="navigate(chartType)"
+      />
+
+      <label class="btn fhi-btn-group__btn border-0" for="DEPRECATED-{{ chartType.id + navId }}">
+        <i [class]="'icon-md icon-' + chartType.icon"></i>
+        <span class="visually-hidden text-dark">{{ chartType.name }}</span>
+      </label>
+    </ng-container>
+  </div>
+</div>

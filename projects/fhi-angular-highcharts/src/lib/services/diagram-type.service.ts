@@ -42,7 +42,7 @@ export class DiagramTypeService {
 
   updateAvailableDiagramTypes(
     diagramTypeSubset: string[] | undefined,
-    mapTypeId: string | undefined,
+    mapTypeId: string | undefined, // TODO: should be part of diagramTypeSubset, ie. not one map diagram type (with seperate map ids)
     series: FhiDiagramSerie[],
     flaggedSeries: FlaggedSerie[],
   ) {
