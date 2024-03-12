@@ -85,6 +85,7 @@ export class HighchartsComponent implements OnInit {
           series: data,
           diagramTypeNavId: 'default',
           mapTypeId: 'mapFylker',
+          digitsCount: 2,
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;
