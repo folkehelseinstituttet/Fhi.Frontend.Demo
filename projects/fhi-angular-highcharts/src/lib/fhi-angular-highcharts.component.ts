@@ -149,8 +149,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.allDiagramOptions.seriesHasDecimalDataPoints = true;
       }
       if (decimalData.length !== 0 && this.allDiagramOptions.digitsCount > 0) {
-        // this.digitsInfo = `1.${this.allDiagramOptions.digitsCount}-${this.allDiagramOptions.digitsCount}`;
-        this.digitsInfo = `1.0-${this.allDiagramOptions.digitsCount}`;
+        this.digitsInfo = `1.${this.allDiagramOptions.digitsCount}-${this.allDiagramOptions.digitsCount}`;
+        // this.digitsInfo = `1.0-${this.allDiagramOptions.digitsCount}`;
       }
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;
