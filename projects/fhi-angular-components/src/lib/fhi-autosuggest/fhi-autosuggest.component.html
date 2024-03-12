@@ -2,9 +2,10 @@
   <label class="form-label" for="{{ labelForId }}">{{ label }}</label>
   <p *ngIf="description !== undefined">{{ description }}</p>
   <ng-select
+    [(ngModel)]="selectedItem"
+    name="fhi-auto-suggest"
     [items]="items"
     [editableSearchTerm]="true"
-    [(ngModel)]="selectedItem"
     bindLabel="name"
     bindValue="id"
     labelForId="{{ labelForId }}"

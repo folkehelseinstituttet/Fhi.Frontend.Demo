@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FhiAutosuggestComponent } from './fhi-autosuggest.component';
+import { FormsModule } from '@angular/forms';
+import { FhiAutosuggestModule } from './fhi-autosuggest.module';
 
 describe('FhiAutosuggestComponent', () => {
   let component: FhiAutosuggestComponent;
@@ -9,6 +11,7 @@ describe('FhiAutosuggestComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [FhiAutosuggestComponent],
+      imports: [FormsModule, FhiAutosuggestModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FhiAutosuggestComponent);

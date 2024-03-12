@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FhiDatepickerComponent } from './fhi-datepicker.component';
+import { LOCALE_ID } from '@angular/core';
 
 describe('FhiDatepickerComponent', () => {
   let component: FhiDatepickerComponent;
@@ -9,6 +10,7 @@ describe('FhiDatepickerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FhiDatepickerComponent],
+      providers: [{ provide: LOCALE_ID, useValue: 'nb' }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FhiDatepickerComponent);

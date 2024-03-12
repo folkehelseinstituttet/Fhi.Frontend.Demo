@@ -8,14 +8,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './fhi-angular-tree-view-builder.component.html',
 })
 export class FhiAngularTreeViewBuilderComponent {
-  constructor(private modalService: NgbModal) {}
+  @ViewChild(TreeComponent) private tree: TreeComponent;
 
   elementName: string;
   saveState: string | null = null;
   currentNode: any;
   currentNodeData: any;
-
-  @ViewChild(TreeComponent) private tree: TreeComponent;
 
   treeViewNodes: any = [
     {
@@ -51,6 +49,8 @@ export class FhiAngularTreeViewBuilderComponent {
     allowDrag: true,
     allowDrop: true,
   };
+
+  constructor(private modalService: NgbModal) {}
 
   editNode(content: any, nodeElmData: any) {
     this.saveState = 'edit';
