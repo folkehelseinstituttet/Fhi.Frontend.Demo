@@ -1,7 +1,8 @@
 # Unreleased
 
-> Mar 04, 2024
+> Mar 15, 2024
 
+* :boom: **Breaking** Support for `@folkehelseinstituttet/style` v.6
 * :tada: **Enhancement** Add info to user about diagram types that can't be rendered based on the current data
 
 ## 2.1.1
