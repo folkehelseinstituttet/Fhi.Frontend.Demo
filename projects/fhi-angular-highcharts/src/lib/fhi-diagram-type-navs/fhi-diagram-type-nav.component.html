@@ -1,5 +1,5 @@
 <div class="fhi-diagram-type-nav mb-3">
-  <div class="btn-group fhi-btn-group mb-1" role="group" aria-label="Velg tabell, kart eller graf">
+  <div class="btn-group fhi-btn-group mb-1 me-1" role="group" aria-label="Velg tabell, kart eller graf">
     <ng-container *ngFor="let group of navDiagramTypeGroups">
       <ng-container *ngIf="!group.excludeFromMenu">
         <input
@@ -22,7 +22,7 @@
   </div>
 
   <div
-    class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1"
+    class="btn-group fhi-btn-group fhi-diagram-type-nav__chart-type mb-1 shadow-none"
     role="group"
     aria-label="Velg graftype"
     *ngIf="chartSubmenuIsOpen && chartTypes.length > 1"
