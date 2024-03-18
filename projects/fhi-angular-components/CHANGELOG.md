@@ -1,7 +1,8 @@
 # Unreleased
 
-> Mar 5, 2024
+> Mar 18, 2024
 
+* :boom: **Breaking** Support `@folkehelseinstituttet/style` v6
 * :boom: **Breaking** `[scrollable]` default changed from `false` to `true`
 
 ## 3.1.2
