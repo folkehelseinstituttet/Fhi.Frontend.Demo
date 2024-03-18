@@ -24,6 +24,7 @@ jobs:
       - name: Build fhi-angular-highcharts
         run: |
           npm install
+          npm run build-angular-components
           npm run build-angular-highcharts
 
       - name: Check new npm version and publish
