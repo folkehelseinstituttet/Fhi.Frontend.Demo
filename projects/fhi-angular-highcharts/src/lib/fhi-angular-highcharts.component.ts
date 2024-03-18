@@ -54,6 +54,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   allDiagramOptions!: AllDiagramOptions;
   mapCopyrightInfo!: object;
   currentDiagramTypeGroup!: string;
+  digitsInfo = '1.0-2';
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeNavId = DiagramTypeNavIds;
   showDefaultChartTemplate = true;
@@ -146,6 +147,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
       if (decimalData.length !== 0) {
         this.allDiagramOptions.seriesHasDecimalDataPoints = true;
+      }
+      if (decimalData.length !== 0 && this.allDiagramOptions.decimals > 0) {
+        this.digitsInfo = `1.0-${this.allDiagramOptions.decimals}`;
       }
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;

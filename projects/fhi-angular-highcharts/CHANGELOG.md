@@ -1,8 +1,9 @@
 # Unreleased
 
-> Mar 15, 2024
+> Mar 18, 2024
 
 * :boom: **Breaking** Support for `@folkehelseinstituttet/style` v.6
+* :tada: **Enhancement** Add new property `decimals` on `FhiDiagramOptions`; user can now specify max number of decimal places in diagram type table.
 * :tada: **Enhancement** Add info to user about diagram types that can't be rendered based on the current data
 
 ## 2.1.1

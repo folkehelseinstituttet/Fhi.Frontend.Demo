@@ -11,6 +11,7 @@ export type FhiTableOrientations = keyof typeof TableOrientations;
 export interface FhiDiagramOptions {
   creditsHref?: string;
   creditsText?: string;
+  decimals?: number;
   diagramTypeId?: FhiDiagramTypeIds;
   diagramTypeNavId?: keyof typeof DiagramTypeNavIds;
   diagramTypeSubset?: Array<FhiDiagramTypeIds>;
