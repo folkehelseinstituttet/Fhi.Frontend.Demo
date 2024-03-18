@@ -1,4 +1,10 @@
-# 4.0.0
+# Unreleased
+
+> Mar 18, 2024
+
+* :bug: **Bugfix** Removed ref to font-family variable on `tree-view-navigation`
+
+## 4.0.0
 
 > Mar 18, 2024
 
