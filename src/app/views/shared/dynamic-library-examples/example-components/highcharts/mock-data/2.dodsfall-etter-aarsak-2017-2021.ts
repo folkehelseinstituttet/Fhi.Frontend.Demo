@@ -3,10 +3,10 @@ export const DodsfallEtterAarsak_2017_2021 = [
     name: 'Hjerteinfarkt| Kvinne',
     data: [
       { name: '2017', y: 984 },
-      { name: '2018', y: 880.1 },
-      { name: '2019', y: 818.2120989 },
-      { name: '2020', y: 718.0 },
-      { name: '2021', y: 660.01 },
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
     ],
   },
   {
