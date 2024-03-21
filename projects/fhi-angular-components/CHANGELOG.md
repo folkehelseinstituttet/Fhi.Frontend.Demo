@@ -1,8 +1,14 @@
+# Unreleased
+
+> Mar 21, 2024
+
+* :bug: **Bugfix** White background-color on `form-control` in `fhi-autosuggest` and `fhi-multiselect`
+
 # 4.0.1
 
 > Mar 18, 2024
 
-* :bug: **Bugfix** Removed ref to font-family variable on `tree-view-navigation`
+* :bug: **Bugfix** Removed ref to font-family variable on `fhi-tree-view-navigation`
 
 ## 4.0.0
 

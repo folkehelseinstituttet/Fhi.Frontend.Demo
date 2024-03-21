@@ -32,7 +32,6 @@
                 .ng-input > input,
                 .ng-input > input:focus {
                     @extend .form-control;
-                    background: none transparent;
                     box-sizing: border-box;
                 }
 
