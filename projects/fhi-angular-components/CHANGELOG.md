@@ -1,10 +1,10 @@
-# Unreleased
+# 4.0.2
 
-> Mar 21, 2024
+> Mar 25, 2024
 
 * :bug: **Bugfix** White background-color on `form-control` in `fhi-autosuggest` and `fhi-multiselect`
 
-# 4.0.1
+## 4.0.1
 
 > Mar 18, 2024
 
