@@ -81,7 +81,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.loopSeriesToUpdateAndExtractInfo();
       this.updateAvailableDiagramTypes();
       this.updateAllDiagramOptions();
-      this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
       this.checkIfCurrentDiagramTypeDisabled();
 
@@ -213,12 +212,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
-  }
-
-  private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType = this.diagramTypeService.getDiagramTypeById(
-      this.allDiagramOptions.diagramTypeId,
-    );
   }
 
   private updateCurrentDiagramTypeGroup() {
