@@ -49,10 +49,7 @@
 
 <ng-template #diagramTypeNav>
   <fhi-diagram-type-nav
-    *ngIf="
-      allDiagramOptions.diagramTypeNavId === diagramTypeNavId[diagramTypeNavId.default] &&
-      allDiagramOptions.diagramTypeId !== undefined
-    "
+    *ngIf="allDiagramOptions.diagramTypeNavId !== undefined && allDiagramOptions.diagramTypeId !== undefined"
     [currentDiagramTypeGroup]="currentDiagramTypeGroup"
     [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
     [currentMapTypeId]="allDiagramOptions.mapTypeId"

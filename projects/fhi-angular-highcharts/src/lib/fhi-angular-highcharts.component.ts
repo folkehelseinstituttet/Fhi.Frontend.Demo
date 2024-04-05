@@ -25,7 +25,6 @@ import { DiagramType } from './models/diagram-type.model';
 import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
@@ -56,7 +55,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   currentDiagramTypeGroup!: string;
   digitsInfo = '1.0-2';
   diagramTypeGroups = DiagramTypeGroups;
-  diagramTypeNavId = DiagramTypeNavIds;
   showDefaultChartTemplate = true;
   showDiagramTypeDisabledInfo: boolean;
   showFooter = false;
