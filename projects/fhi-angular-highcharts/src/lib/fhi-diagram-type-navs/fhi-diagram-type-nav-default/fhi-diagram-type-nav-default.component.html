@@ -1,1 +1,19 @@
-<pre><code>{{ diagramTypeGroups | json }}</code></pre>
+<ul *ngFor="let group of diagramTypeGroups">
+  <li>
+    {{ group.name }}
+    <span *ngIf="group.active">(active)</span>
+    <span *ngIf="group.disabled">(disabled)</span>
+
+    <ng-container *ngIf="group.children?.length > 1">
+      <ul *ngFor="let diagramType of group.children">
+        <li>
+          {{ diagramType.name }}
+          <span *ngIf="diagramType.active">(active)</span>
+          <span *ngIf="diagramType.disabled">(disabled)</span>
+        </li>
+      </ul>
+    </ng-container>
+  </li>
+</ul>
+
+<!-- <pre><code>{{ diagramTypeGroups | json }}</code></pre> -->

@@ -6,7 +6,10 @@ import { ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class DiagramTypeGroupService {
-  private diagramTypeGroups!: DiagramTypeGroup[];
+  // TODO: The premise for the new diagramTypeGroups is that "map types" is implementend the same
+  //       way as "chart types", ie. that FhiDiagramOptions.mapTypeId is deprecated, and diferent
+  //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
+  private diagramTypeGroups = DiagramTypeGroups_NEW;
   private diagramTypeGroupsSubject = new ReplaySubject<DiagramTypeGroup[]>(1);
   diagramTypeGroups$ = this.diagramTypeGroupsSubject.asObservable();
 
@@ -15,12 +18,14 @@ export class DiagramTypeGroupService {
   }
 
   updateDiagramTypeGroups() {
-    if (this.diagramTypeGroups !== undefined && this.diagramTypeGroups[0].active) {
+    this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
+  }
+
+  updateDiagramTypeGroups__DUMMY() {
+    if (this.diagramTypeGroups[0].active) {
       this.diagramTypeGroups[0].active = false;
-    } else if (this.diagramTypeGroups !== undefined && !this.diagramTypeGroups[0].active) {
+    } else if (!this.diagramTypeGroups[0].active) {
       this.diagramTypeGroups[0].active = true;
-    } else {
-      this.diagramTypeGroups = DiagramTypeGroups_NEW;
     }
     this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
   }
