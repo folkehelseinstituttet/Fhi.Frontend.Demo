@@ -1,10 +1,10 @@
 import { DiagramType } from './diagram-type.model';
 
 export interface DiagramTypeGroup {
+  active: boolean;
   children: DiagramType[];
   diagramType: DiagramType;
   disabled: boolean;
-  icon: string;
   id: string;
   name: string;
 }
