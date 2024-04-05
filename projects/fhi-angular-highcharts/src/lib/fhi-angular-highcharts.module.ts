@@ -11,6 +11,7 @@ import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-
 
 import { TopoJsonService } from './services/topo-json.service';
 import { DiagramTypeService } from './services/diagram-type.service';
+import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 
@@ -18,6 +19,12 @@ import { TableService } from './services/table.service';
   declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
   imports: [CommonModule, FormsModule, HighchartsChartModule, NgbPopoverModule, FhiModalComponent],
   exports: [FhiAngularHighchartsComponent],
-  providers: [TopoJsonService, DiagramTypeService, OptionsService, TableService],
+  providers: [
+    TopoJsonService,
+    DiagramTypeService,
+    DiagramTypeGroupService,
+    OptionsService,
+    TableService,
+  ],
 })
 export class FhiAngularHighchartsModule {}

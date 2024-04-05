@@ -30,6 +30,7 @@ import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
+import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
 
@@ -65,6 +66,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
+    private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
   ) {
@@ -77,6 +79,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
+
+      this.updateDiagramTypeGroups();
+      console.log('DiagramTypeGroups', this.diagramTypeGroupService.getDiagramTypeGroups());
+
       this.updateAvailableDiagramTypes();
       this.updateAllDiagramOptions();
       this.updateCurrentDiagramTypeGroup();
@@ -90,6 +96,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
     } catch (error) {
       console.error(this.getErrorMsg(error));
+    }
+  }
+
+  // TODO: make private
+  updateDiagramTypeGroups() {
+    if (this.diagramOptions.diagramTypeNavId !== undefined) {
+      this.diagramTypeGroupService.updateDiagramTypeGroups();
     }
   }
 
