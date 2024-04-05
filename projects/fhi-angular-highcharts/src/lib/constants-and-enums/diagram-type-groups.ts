@@ -9,26 +9,20 @@ export const DiagramTypeGroups = {
 
 export const DiagramTypeGroups_NEW: DiagramTypeGroup[] = [
   {
-    active: true,
-    children: [],
+    children: [DiagramTypes.table],
     diagramType: DiagramTypes.table,
-    disabled: false,
     id: 'table',
     name: 'Table',
   },
   {
-    active: false,
     children: MapTypes,
     diagramType: DiagramTypes.map,
-    disabled: false,
     id: 'map',
     name: 'Kart',
   },
   {
-    active: false,
     children: ChartTypes,
     diagramType: DiagramTypes.line,
-    disabled: false,
     id: 'chart',
     name: 'Graf',
   },
