@@ -25,7 +25,6 @@ import { DiagramType } from './models/diagram-type.model';
 import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
 import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
@@ -56,7 +55,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   currentDiagramTypeGroup!: string;
   digitsInfo = '1.0-2';
   diagramTypeGroups = DiagramTypeGroups;
-  diagramTypeNavId = DiagramTypeNavIds;
   showDefaultChartTemplate = true;
   showDiagramTypeDisabledInfo: boolean;
   showFooter = false;
@@ -81,7 +79,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.loopSeriesToUpdateAndExtractInfo();
       this.updateAvailableDiagramTypes();
       this.updateAllDiagramOptions();
-      this.updateCurrentDiagramType();
       this.updateCurrentDiagramTypeGroup();
       this.checkIfCurrentDiagramTypeDisabled();
 
@@ -213,12 +210,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
-  }
-
-  private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType = this.diagramTypeService.getDiagramTypeById(
-      this.allDiagramOptions.diagramTypeId,
-    );
   }
 
   private updateCurrentDiagramTypeGroup() {
