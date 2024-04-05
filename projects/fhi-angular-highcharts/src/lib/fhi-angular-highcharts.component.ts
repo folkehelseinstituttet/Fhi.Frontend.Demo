@@ -33,6 +33,7 @@ import { DiagramTypeService } from './services/diagram-type.service';
 import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
+import { DiagramTypeGroup } from './models/diagram-type-group.model';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -56,6 +57,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   currentDiagramTypeGroup!: string;
   digitsInfo = '1.0-2';
   diagramTypeGroups = DiagramTypeGroups;
+  diagramTypeGroups_NEW!: DiagramTypeGroup[];
   showDefaultChartTemplate = true;
   showDiagramTypeDisabledInfo: boolean;
   showFooter = false;
@@ -80,8 +82,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
 
+      // DiagramTypeGroups POC
       this.updateDiagramTypeGroups();
-      console.log('DiagramTypeGroups', this.diagramTypeGroupService.getDiagramTypeGroups());
 
       this.updateAvailableDiagramTypes();
       this.updateAllDiagramOptions();
@@ -101,9 +103,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   // TODO: make private
   updateDiagramTypeGroups() {
-    if (this.diagramOptions.diagramTypeNavId !== undefined) {
-      this.diagramTypeGroupService.updateDiagramTypeGroups();
-    }
+    this.diagramTypeGroupService.updateDiagramTypeGroups();
+    // this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
+    // console.log('updateDiagramTypeGroups()', this.diagramTypeGroups_NEW);
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
