@@ -56,8 +56,10 @@ export class HighchartsComponent implements OnInit {
 
     if (value === '2017') {
       this.getDodsfallEtterAarsak_2017_Dummyfilter();
-    } else {
+    } else if (value === '2017-2021') {
       this.getDodsfallEtterAarsak_2017_2021_Dummyfilter();
+    } else {
+      this.getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_Dummyfilter();
     }
   }
 
@@ -86,9 +88,11 @@ export class HighchartsComponent implements OnInit {
         this.diagramOptions = {
           title: 'Dødsfall etter årsak, 2017 - 2021',
           series: data,
+          // diagramTypeId: 'pie',
           diagramTypeNavId: 'default',
           diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
           decimals: 2,
+          mapTypeId: 'mapFylker',
         };
         this.dataIsLoading = false;
         this.dataIsLoaded = true;
@@ -129,6 +133,25 @@ export class HighchartsComponent implements OnInit {
       },
       error: (e) => console.error(e),
     });
+  }
+
+  private getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_Dummyfilter() {
+    this.highchartsDataService
+      .getData(MockData.DodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann)
+      .subscribe({
+        next: (data: FhiDiagramSerie[]) => {
+          this.diagramOptions = {
+            ...this.diagramOptions,
+            title: 'Dødsfall etter årsak, 2017 - 2021, Hjerteinfarkt | Mann',
+            series: data,
+          };
+          setTimeout(() => {
+            this.dataIsLoading = false;
+            this.dataIsLoaded = true;
+          }, 200);
+        },
+        error: (e) => console.error(e),
+      });
   }
 
   private getDodsfallHjerteOgKarEtterFylke() {

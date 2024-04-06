@@ -106,6 +106,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   // TODO: make private
   updateDiagramTypeGroups() {
     this.diagramTypeGroupService.updateDiagramTypeGroups(
+      this.allDiagramOptions.diagramTypeId,
       this.allDiagramOptions.diagramTypeSubset,
       this.flaggedSeries,
       this.allDiagramOptions.series,

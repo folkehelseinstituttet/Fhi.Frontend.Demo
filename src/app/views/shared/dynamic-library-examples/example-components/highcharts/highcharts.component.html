@@ -6,8 +6,12 @@
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
   <div class="d-flex justify-content-end mb-3">
+    <span class="btn">Dummy filter:</span>
     <button type="button" class="btn fhi-btn-link" (click)="onClickFilterDataset('2017')">2017</button>
     <button type="button" class="btn fhi-btn-link" (click)="onClickFilterDataset('2017-2021')">2017 - 2021</button>
+    <button type="button" class="btn fhi-btn-link" (click)="onClickFilterDataset('Hjerteinfarkt-Mann')">
+      Hjerteinfarkt | Mann
+    </button>
   </div>
   <ng-container *ngIf="!dataIsLoading; else spinner">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">

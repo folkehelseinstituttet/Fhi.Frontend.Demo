@@ -64,6 +64,9 @@ export class TopoJsonService {
     const geometry = geometries.find(
       (geometry: object) => geometry['properties'].name === dataPoint.name,
     );
+
+    console.log('geometry', geometry);
+
     return [geometry['properties']['hc-key'], dataPoint.y as number];
   }
 }

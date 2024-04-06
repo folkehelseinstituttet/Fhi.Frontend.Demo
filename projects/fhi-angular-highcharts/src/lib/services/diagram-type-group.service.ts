@@ -3,7 +3,10 @@ import { ReplaySubject } from 'rxjs';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
-import { DiagramTypeGroups_NEW } from '../constants-and-enums/diagram-type-groups';
+import {
+  DiagramTypeGroupIndex,
+  DiagramTypeGroups_NEW,
+} from '../constants-and-enums/diagram-type-groups';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
@@ -13,6 +16,7 @@ export class DiagramTypeGroupService {
   // TODO: The premise for the new diagramTypeGroups is that "map types" is implementend the same
   //       way as "chart types", ie. that FhiDiagramOptions.mapTypeId is deprecated, and diferent
   //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
+  private activeDiagramTypeIsSet: boolean;
   private diagramTypeGroups = DiagramTypeGroups_NEW;
   private flaggedSeries!: FlaggedSerie[];
   private series!: FhiDiagramSerie[];
@@ -24,24 +28,33 @@ export class DiagramTypeGroupService {
   }
 
   updateDiagramTypeGroups(
+    diagramTypeId: string,
     diagramTypeSubset: string[] | undefined,
     flaggedSeries: FlaggedSerie[],
     series: FhiDiagramSerie[],
   ) {
     this.flaggedSeries = flaggedSeries;
     this.series = series;
+    this.activeDiagramTypeIsSet = false;
 
+    this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
+
+    if (!this.activeDiagramTypeIsSet) {
+      this.diagramTypeGroups[DiagramTypeGroupIndex.tableGroup].diagramType.active = true;
+    }
+    this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
+  }
+
+  private loopAndUpdateGroups(diagramTypeSubset: string[], diagramTypeId: string) {
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
       group.children.forEach((diagramType) => {
         this.disableDiagramType(diagramType);
-        this.setDiagramTypeToActive(diagramType);
+        this.setDiagramTypeToActive(diagramType, diagramTypeId);
       });
     });
-
-    this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
   }
 
   private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
@@ -49,24 +62,27 @@ export class DiagramTypeGroupService {
     group.diagramType = group.children[0];
   }
 
-  private setDiagramTypeToActive(diagramType: DiagramType) {
-    if (diagramType.id === 'table') {
+  private setDiagramTypeToActive(diagramType: DiagramType, diagramTypeId: string) {
+    if (diagramType.id === diagramTypeId) {
       diagramType.active = true;
+      this.activeDiagramTypeIsSet = true;
+    } else {
+      diagramType.active = false;
     }
   }
 
   private disableDiagramType(diagramType: DiagramType) {
     switch (diagramType.id) {
+      case DiagramTypeIdValues.map:
+        diagramType.disabled = this.diagramTypeMapDisabled();
+        break;
+
       case DiagramTypeIdValues.line:
-        diagramType.disabled = this.disableDiagramTypeLine();
+        diagramType.disabled = this.diagramTypeLineDisabled();
         break;
 
       case DiagramTypeIdValues.pie:
-        diagramType.disabled = this.disableDiagramTypePie();
-        break;
-
-      case DiagramTypeIdValues.map:
-        diagramType.disabled = this.disableDiagramTypeMap();
+        diagramType.disabled = this.diagramTypePieDisabled();
         break;
 
       default:
@@ -74,20 +90,20 @@ export class DiagramTypeGroupService {
     }
   }
 
-  private disableDiagramTypeMap(): boolean {
+  private diagramTypeMapDisabled(): boolean {
     // TODO: how to figure out isGeo?
     //       ie. this.series[0].data[n].name must be a valid geo name: geometry['properties'].name === dataPoint.name
     return this.series.length > 1; // && isGeo
   }
 
-  private disableDiagramTypeLine(): boolean {
+  private diagramTypeLineDisabled(): boolean {
     return (
       this.getNumberOfDataPointsPrSerie() === 1 ||
       (this.series.length > 1 && this.flaggedSeries.length !== 0)
     );
   }
 
-  private disableDiagramTypePie(): boolean {
+  private diagramTypePieDisabled(): boolean {
     return this.series.length > 1;
   }
 
