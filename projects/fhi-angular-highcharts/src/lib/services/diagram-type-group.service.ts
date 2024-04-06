@@ -75,7 +75,9 @@ export class DiagramTypeGroupService {
   }
 
   private disableDiagramTypeMap(): boolean {
-    return this.series.length > 1;
+    // TODO: how to figure out isGeo?
+    //       ie. this.series[0].data[n].name must be a valid geo name: geometry['properties'].name === dataPoint.name
+    return this.series.length > 1; // && isGeo
   }
 
   private disableDiagramTypeLine(): boolean {
