@@ -110,8 +110,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.flaggedSeries,
       this.allDiagramOptions.series,
     );
-    this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
-    console.log('updateDiagramTypeGroups()', this.diagramTypeGroups_NEW);
+    // this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
+    // console.log('updateDiagramTypeGroups()', this.diagramTypeGroups_NEW);
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
