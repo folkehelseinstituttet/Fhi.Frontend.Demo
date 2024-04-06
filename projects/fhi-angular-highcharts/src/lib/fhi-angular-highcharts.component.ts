@@ -44,7 +44,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private currentDiagramTypeDisabled: boolean;
   private flaggedSeries: FlaggedSerie[] = [];
 
+  // TODO: document the quirk regarding diagramOptions that it must be reassigned to trigger change detection!
   @Input() diagramOptions!: FhiDiagramOptions;
+
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
   @Output() metadataButtonClick = new EventEmitter<void>();
 
