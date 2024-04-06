@@ -65,7 +65,12 @@ export class TopoJsonService {
       (geometry: object) => geometry['properties'].name === dataPoint.name,
     );
 
-    console.log('geometry', geometry);
+    // TODO: Create a list of leagal names for each map and store it in DiagramTypeGroupService
+    //       so that it can be used to test for disabling of map without calling TopoJsonService.
+    //       This gives 1 fact in 2 places, but the benefit is high, and the maps will not change that often.
+    // geometries.forEach((geometry) => {
+    //   console.log('geometry[properties].name', geometry['properties'].name);
+    // });
 
     return [geometry['properties']['hc-key'], dataPoint.y as number];
   }
