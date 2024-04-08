@@ -3,13 +3,11 @@ import { ReplaySubject } from 'rxjs';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
-import {
-  DiagramTypeGroupIndex,
-  DiagramTypeGroups_NEW,
-} from '../constants-and-enums/diagram-type-groups';
+import { DiagramTypeGroups_NEW } from '../constants-and-enums/diagram-type-groups';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
+import { DiagramTypeGroupIndex } from '../constants-and-enums/fhi-diagram-types';
 
 @Injectable()
 export class DiagramTypeGroupService {
@@ -41,9 +39,10 @@ export class DiagramTypeGroupService {
     this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
 
     if (this.activeDiagramTypeIsSet) {
-      this.diagramTypeGroups[DiagramTypeGroupIndex.chartGroup].diagramType = this.activeDiagramType;
+      this.diagramTypeGroups[this.activeDiagramType.groupIndex].diagramType =
+        this.activeDiagramType;
     } else {
-      this.diagramTypeGroups[DiagramTypeGroupIndex.tableGroup].diagramType.active = true;
+      this.diagramTypeGroups[DiagramTypeGroupIndex.tableIndex].diagramType.active = true;
     }
     this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
   }

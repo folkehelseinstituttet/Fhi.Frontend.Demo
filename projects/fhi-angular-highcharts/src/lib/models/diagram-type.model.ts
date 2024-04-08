@@ -5,6 +5,7 @@ export interface DiagramType {
   disabled?: boolean;
   id: string;
   icon: string;
+  groupIndex: number;
   name: string;
   options?: Options;
 }

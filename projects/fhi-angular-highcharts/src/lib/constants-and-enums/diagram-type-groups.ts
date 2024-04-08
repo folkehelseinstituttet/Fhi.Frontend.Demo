@@ -7,12 +7,6 @@ export const DiagramTypeGroups = {
   table: 'table',
 };
 
-export enum DiagramTypeGroupIndex {
-  tableGroup = 0,
-  mapGroup = 1,
-  chartGroup = 2,
-}
-
 export const DiagramTypeGroups_NEW: DiagramTypeGroup[] = [
   {
     children: [DiagramTypes.table],
