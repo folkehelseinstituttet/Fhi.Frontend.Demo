@@ -54,12 +54,16 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    if (value === '2017') {
-      this.getDodsfallEtterAarsak_2017_Dummyfilter();
-    } else if (value === '2017-2021') {
-      this.getDodsfallEtterAarsak_2017_2021_Dummyfilter();
-    } else {
-      this.getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_Dummyfilter();
+    switch (value) {
+      case '2017-2021':
+        this.getDodsfallEtterAarsak_2017_2021_Dummyfilter();
+        break;
+      case '2017':
+        this.getDodsfallEtterAarsak_2017_Dummyfilter();
+        break;
+      case 'hjerteinfarkt-mann':
+        this.getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_Dummyfilter();
+        break;
     }
   }
 
