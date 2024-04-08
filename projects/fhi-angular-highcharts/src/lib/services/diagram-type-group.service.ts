@@ -16,6 +16,7 @@ export class DiagramTypeGroupService {
   // TODO: The premise for the new diagramTypeGroups is that "map types" is implementend the same
   //       way as "chart types", ie. that FhiDiagramOptions.mapTypeId is deprecated, and diferent
   //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
+  private activeDiagramType: DiagramType;
   private activeDiagramTypeIsSet: boolean;
   private diagramTypeGroups = DiagramTypeGroups_NEW;
   private flaggedSeries!: FlaggedSerie[];
@@ -39,7 +40,9 @@ export class DiagramTypeGroupService {
 
     this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
 
-    if (!this.activeDiagramTypeIsSet) {
+    if (this.activeDiagramTypeIsSet) {
+      this.diagramTypeGroups[DiagramTypeGroupIndex.chartGroup].diagramType = this.activeDiagramType;
+    } else {
       this.diagramTypeGroups[DiagramTypeGroupIndex.tableGroup].diagramType.active = true;
     }
     this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
@@ -66,6 +69,7 @@ export class DiagramTypeGroupService {
     if (diagramType.id === diagramTypeId) {
       diagramType.active = true;
       this.activeDiagramTypeIsSet = true;
+      this.activeDiagramType = diagramType;
     } else {
       diagramType.active = false;
     }
@@ -116,16 +120,16 @@ export class DiagramTypeGroupService {
   }
 
   private getNumberOfDataPointsPrSerie(): number {
-    // Using series[0] since all series should have the same length.
+    // Using series[0] since all series should have the same length
     return this.series[0].data.length;
   }
 
   /**
    * @returns a list of leagal geo names for all maps
    *
-   * This gives 1 fact in 2 places, but the the maps will not change that often,
-   * and the benefit of being able to do a "disable map test" before the maps are
-   * loaded makes it worth it.
+   * PS. This gives 1 fact in 2 places, but the the maps will not change
+   *     that often, and the benefit of being able to do a "disable map test"
+   *     before the maps are loaded makes it worth it.
    */
   private getValidGeoNames(): string[] {
     const mapFylkerNames = [
@@ -162,6 +166,7 @@ export class DiagramTypeGroupService {
       'Telemark',
       'Aust-Agder',
     ];
+
     return mapFylkerNames.concat(mapFylker2019Names);
   }
 }
