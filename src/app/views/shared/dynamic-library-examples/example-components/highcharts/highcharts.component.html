@@ -1,6 +1,6 @@
 <ng-container *ngIf="itemId === items.HighchartsWithoutMenu.id">
   <ng-container *ngIf="!dataIsLoading; else spinner">
-    <!-- <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts> -->
+    <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
   </ng-container>
 </ng-container>
 
@@ -23,11 +23,11 @@
 
 <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
   <ng-container *ngIf="!dataIsLoading; else spinner">
-    <!-- <fhi-angular-highcharts
+    <fhi-angular-highcharts
       [diagramOptions]="diagramOptions"
       (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
       (metadataButtonClick)="onMetadataButtonClick()"
-    ></fhi-angular-highcharts> -->
+    ></fhi-angular-highcharts>
   </ng-container>
   <div class="mt-7" id="om-dataene">
     <div class="alert alert-info" role="alert">
