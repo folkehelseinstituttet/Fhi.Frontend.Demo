@@ -91,9 +91,17 @@ export class DiagramTypeGroupService {
   }
 
   private diagramTypeMapDisabled(): boolean {
-    // TODO: how to figure out isGeo?
-    //       ie. this.series[0].data[n].name must be a valid geo name: geometry['properties'].name === dataPoint.name
-    return this.series.length > 1; // && isGeo
+    return this.series.length > 1 || (this.series.length === 1 && this.isNotGeo(this.series[0]));
+  }
+
+  private isNotGeo(serie: FhiDiagramSerie): boolean {
+    const validGeoNames = this.getValidGeoNames();
+
+    // Only testing first data point in serie since all data points should be valid geo
+    if (validGeoNames.find((name) => name === serie.data[0].name) === undefined) {
+      return true;
+    }
+    return false;
   }
 
   private diagramTypeLineDisabled(): boolean {
@@ -110,5 +118,50 @@ export class DiagramTypeGroupService {
   private getNumberOfDataPointsPrSerie(): number {
     // Using series[0] since all series should have the same length.
     return this.series[0].data.length;
+  }
+
+  /**
+   * @returns a list of leagal geo names for all maps
+   *
+   * This gives 1 fact in 2 places, but the the maps will not change that often,
+   * and the benefit of being able to do a "disable map test" before the maps are
+   * loaded makes it worth it.
+   */
+  private getValidGeoNames(): string[] {
+    const mapFylkerNames = [
+      'Vestland',
+      'Møre og Romsdal',
+      'Agder',
+      'Nordland',
+      'Vikeng',
+      'Rogaland',
+      'Troms og Finnmark',
+      'Trøndelag',
+      'Oslo',
+      'Vestfold og Telemark',
+      'Innlandet',
+    ];
+    const mapFylker2019Names = [
+      'Romsdal',
+      'Sør-Trøndelag',
+      'Hordaland',
+      'Sogn og Fjordane',
+      'Vest-Agder',
+      'Østfold',
+      'Nord-Trøndelag',
+      'Rogaland',
+      'Buskerud',
+      'Vestfold',
+      'Finnmark',
+      'Nordland',
+      'Troms',
+      'Akershus',
+      'Oppland',
+      'Hedmark',
+      'Oslo',
+      'Telemark',
+      'Aust-Agder',
+    ];
+    return mapFylkerNames.concat(mapFylker2019Names);
   }
 }
