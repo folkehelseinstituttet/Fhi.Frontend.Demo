@@ -44,7 +44,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private currentDiagramTypeDisabled: boolean;
   private flaggedSeries: FlaggedSerie[] = [];
 
-  // TODO: document the quirk regarding diagramOptions that it must be reassigned to trigger change detection!
   @Input() diagramOptions!: FhiDiagramOptions;
 
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
@@ -83,8 +82,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
-
-      // DiagramTypeGroups POC
       this.updateDiagramTypeGroups();
 
       this.updateAvailableDiagramTypes();
@@ -101,18 +98,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     } catch (error) {
       console.error(this.getErrorMsg(error));
     }
-  }
-
-  // TODO: make private
-  updateDiagramTypeGroups() {
-    this.diagramTypeGroupService.updateDiagramTypeGroups(
-      this.allDiagramOptions.diagramTypeId,
-      this.allDiagramOptions.diagramTypeSubset,
-      this.flaggedSeries,
-      this.allDiagramOptions.series,
-    );
-    // this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
-    // console.log('updateDiagramTypeGroups()', this.diagramTypeGroups_NEW);
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -175,6 +160,15 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
       serie.name = this.formatSerieName(serie.name);
     });
+  }
+
+  private updateDiagramTypeGroups() {
+    this.diagramTypeGroupService.updateDiagramTypeGroups(
+      this.allDiagramOptions.diagramTypeId,
+      this.allDiagramOptions.diagramTypeSubset,
+      this.flaggedSeries,
+      this.allDiagramOptions.series,
+    );
   }
 
   private formatSerieName(name: string | Array<string>): string {
