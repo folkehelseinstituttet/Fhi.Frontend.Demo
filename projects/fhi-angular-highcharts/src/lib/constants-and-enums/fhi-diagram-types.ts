@@ -8,9 +8,16 @@ import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pi
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypeIdValues } from './diagram-type-ids';
 
+export enum DiagramTypeGroupIndex {
+  tableIndex = 0,
+  mapIndex = 1,
+  chartIndex = 2,
+}
+
 const bar: DiagramType = {
   id: DiagramTypeIdValues.bar,
   icon: 'bar-chart-line-horizontal',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Liggende søylediagram',
   options: OptionsChartTypeBar,
 };
@@ -18,6 +25,7 @@ const bar: DiagramType = {
 const barStacked: DiagramType = {
   id: DiagramTypeIdValues.barStacked,
   icon: 'bar-chart-line-stacked-horizontal',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Stablet liggende søylediagram',
   options: OptionsChartTypeBarStacked,
 };
@@ -25,6 +33,7 @@ const barStacked: DiagramType = {
 const column: DiagramType = {
   id: DiagramTypeIdValues.column,
   icon: 'bar-chart-line',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Søylediagram',
   options: OptionsChartTypeColumn,
 };
@@ -32,6 +41,7 @@ const column: DiagramType = {
 const columnStacked: DiagramType = {
   id: DiagramTypeIdValues.columnStacked,
   icon: 'bar-chart-line-stacked',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Stablet søylediagram',
   options: OptionsChartTypeColumnStacked,
 };
@@ -39,6 +49,7 @@ const columnStacked: DiagramType = {
 const line: DiagramType = {
   id: DiagramTypeIdValues.line,
   icon: 'graph-up',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Linjediagram',
   options: OptionsChartTypeLine,
 };
@@ -46,6 +57,7 @@ const line: DiagramType = {
 const map: DiagramType = {
   id: DiagramTypeIdValues.map,
   icon: 'geo-alt',
+  groupIndex: DiagramTypeGroupIndex.mapIndex,
   name: 'Kart',
   options: {
     chart: {
@@ -57,6 +69,7 @@ const map: DiagramType = {
 const pie: DiagramType = {
   id: DiagramTypeIdValues.pie,
   icon: 'pie-chart',
+  groupIndex: DiagramTypeGroupIndex.chartIndex,
   name: 'Kakediagram',
   options: OptionsChartTypePie,
 };
@@ -64,6 +77,7 @@ const pie: DiagramType = {
 const table: DiagramType = {
   id: DiagramTypeIdValues.table,
   icon: 'table',
+  groupIndex: DiagramTypeGroupIndex.tableIndex,
   name: 'Tabell',
 };
 

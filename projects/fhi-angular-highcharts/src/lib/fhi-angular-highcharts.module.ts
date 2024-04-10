@@ -8,16 +8,31 @@ import { FhiModalComponent } from '@folkehelseinstituttet/angular-components';
 
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
 import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
+import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav-default/fhi-diagram-type-nav-default.component';
 
 import { TopoJsonService } from './services/topo-json.service';
 import { DiagramTypeService } from './services/diagram-type.service';
+import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 
 @NgModule({
   declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
-  imports: [CommonModule, FormsModule, HighchartsChartModule, NgbPopoverModule, FhiModalComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HighchartsChartModule,
+    NgbPopoverModule,
+    FhiModalComponent,
+    FhiDiagramTypeNavDefaultComponent,
+  ],
   exports: [FhiAngularHighchartsComponent],
-  providers: [TopoJsonService, DiagramTypeService, OptionsService, TableService],
+  providers: [
+    TopoJsonService,
+    DiagramTypeService,
+    DiagramTypeGroupService,
+    OptionsService,
+    TableService,
+  ],
 })
 export class FhiAngularHighchartsModule {}

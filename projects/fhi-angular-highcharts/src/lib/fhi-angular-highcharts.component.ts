@@ -30,8 +30,10 @@ import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeService } from './services/diagram-type.service';
+import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
+import { DiagramTypeGroup } from './models/diagram-type-group.model';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -43,6 +45,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
+
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
   @Output() metadataButtonClick = new EventEmitter<void>();
 
@@ -55,6 +58,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   currentDiagramTypeGroup!: string;
   digitsInfo = '1.0-2';
   diagramTypeGroups = DiagramTypeGroups;
+  diagramTypeGroups_NEW!: DiagramTypeGroup[];
   showDefaultChartTemplate = true;
   showDiagramTypeDisabledInfo: boolean;
   showFooter = false;
@@ -65,6 +69,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
     private diagramTypeService: DiagramTypeService,
+    private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
   ) {
@@ -77,6 +82,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.showMap = false;
       this.allDiagramOptions = this.diagramOptions;
       this.loopSeriesToUpdateAndExtractInfo();
+      this.updateDiagramTypeGroups();
+
       this.updateAvailableDiagramTypes();
       this.updateAllDiagramOptions();
       this.updateCurrentDiagramTypeGroup();
@@ -153,6 +160,15 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
       serie.name = this.formatSerieName(serie.name);
     });
+  }
+
+  private updateDiagramTypeGroups() {
+    this.diagramTypeGroupService.updateDiagramTypeGroups(
+      this.allDiagramOptions.diagramTypeId,
+      this.allDiagramOptions.diagramTypeSubset,
+      this.flaggedSeries,
+      this.allDiagramOptions.series,
+    );
   }
 
   private formatSerieName(name: string | Array<string>): string {

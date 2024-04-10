@@ -64,6 +64,9 @@ export class TopoJsonService {
     const geometry = geometries.find(
       (geometry: object) => geometry['properties'].name === dataPoint.name,
     );
-    return [geometry['properties']['hc-key'], dataPoint.y as number];
+    if (geometry !== undefined) {
+      return [geometry['properties']['hc-key'], dataPoint.y as number];
+    }
+    throw new Error('No data.name in the given serie match any geo names in given TopoJson file.');
   }
 }
