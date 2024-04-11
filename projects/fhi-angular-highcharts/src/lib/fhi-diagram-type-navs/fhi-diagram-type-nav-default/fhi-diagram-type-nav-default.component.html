@@ -1,5 +1,30 @@
-<ul *ngFor="let group of diagramTypeGroups">
-  <li>
+<div class="btn-group fhi-btn-group mb-5" role="group">
+  <ng-container *ngFor="let group of diagramTypeGroups">
+    <ng-container *ngIf="group.children.length <= 1">
+      <button class="btn fhi-btn-group__btn" [ngClass]="{ active: group.diagramType.active }">
+        {{ group.name }}
+      </button>
+    </ng-container>
+    <ng-container *ngIf="group.children.length > 1">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">{{ group.name }}</button>
+        <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+          <button
+            type="button"
+            class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
+            aria-label="Velg noe..."
+            ngbDropdownToggle
+          ></button>
+          <div class="dropdown-menu" ngbDropdownMenu>
+            <ng-container *ngFor="let diagramType of group.children">
+              <button ngbDropdownItem>{{ diagramType.name }}</button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <!-- <li>
     {{ group.name }}
     <span> (id:{{ group.diagramType.id }}) </span>
     <span *ngIf="group.diagramType.active"><strong>[active]</strong></span>
@@ -14,7 +39,7 @@
         </li>
       </ul>
     </ng-container>
-  </li>
-</ul>
+  </li> -->
+</div>
 
 <!-- <pre><code>{{ diagramTypeGroups | json }}</code></pre> -->

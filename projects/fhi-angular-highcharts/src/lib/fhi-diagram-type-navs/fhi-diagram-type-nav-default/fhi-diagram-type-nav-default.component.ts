@@ -5,10 +5,12 @@ import { Subscription } from 'rxjs';
 import { DiagramTypeGroupService } from '../../services/diagram-type-group.service';
 import { DiagramTypeGroup } from '../../models/diagram-type-group.model';
 
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'fhi-diagram-type-nav-default',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgbDropdownModule],
   templateUrl: './fhi-diagram-type-nav-default.component.html',
 })
 export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {

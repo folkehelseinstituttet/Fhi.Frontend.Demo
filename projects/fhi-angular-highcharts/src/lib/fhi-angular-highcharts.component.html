@@ -48,18 +48,7 @@
 </ng-template>
 
 <ng-template #diagramTypeNav>
-  <fhi-diagram-type-nav
-    *ngIf="allDiagramOptions.diagramTypeId !== undefined"
-    [currentDiagramTypeGroup]="currentDiagramTypeGroup"
-    [currentDiagramTypeId]="allDiagramOptions.diagramTypeId"
-    [currentMapTypeId]="allDiagramOptions.mapTypeId"
-    [currentSeriesLength]="allDiagramOptions.series.length"
-    (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-  >
-  </fhi-diagram-type-nav>
-
-  <!-- POC for new default nav -->
-  <!-- <fhi-diagram-type-nav-default></fhi-diagram-type-nav-default> -->
+  <fhi-diagram-type-nav-default></fhi-diagram-type-nav-default>
 </ng-template>
 
 <ng-template #diagramModal>
