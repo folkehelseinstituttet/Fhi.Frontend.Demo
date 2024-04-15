@@ -1,13 +1,38 @@
 <div class="btn-group fhi-btn-group mb-5" role="group">
   <ng-container *ngFor="let group of diagramTypeGroups">
     <ng-container *ngIf="group.children.length <= 1">
-      <button class="btn fhi-btn-group__btn" [ngClass]="{ active: group.diagramType.active }">
+      <button
+        type="button"
+        class="btn fhi-btn-group__btn"
+        [ngClass]="{ active: group.diagramType.active }"
+        [disabled]="group.diagramType.disabled"
+        (click)="navigate(group.diagramType)"
+      >
+        <i
+          [class]="'icon-' + group.diagramType.icon"
+          [ngClass]="{ 'icon-white': group.diagramType.active }"
+          *ngIf="group.diagramType.icon"
+        ></i>
         {{ group.name }}
       </button>
     </ng-container>
     <ng-container *ngIf="group.children.length > 1">
       <div class="btn-group" role="group">
-        <button type="button" class="btn fhi-btn-group__btn fhi-btn-group__split-btn">{{ group.name }}</button>
+        <button
+          type="button"
+          class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
+          [ngClass]="{ active: group.diagramType.active }"
+          (click)="navigate(group.diagramType)"
+        >
+          <span>
+            <i
+              [class]="'icon-' + group.diagramType.icon"
+              [ngClass]="{ 'icon-white': group.diagramType.active }"
+              *ngIf="group.diagramType.icon"
+            ></i>
+            {{ group.name }}
+          </span>
+        </button>
         <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
           <button
             type="button"
@@ -16,30 +41,40 @@
             ngbDropdownToggle
           ></button>
           <div class="dropdown-menu" ngbDropdownMenu>
-            <ng-container *ngFor="let diagramType of group.children">
-              <button ngbDropdownItem>{{ diagramType.name }}</button>
+            <ng-container *ngFor="let subItem of group.children">
+              <button ngbDropdownItem>
+                <i
+                  [class]="'icon-' + subItem.icon"
+                  [ngClass]="{ 'icon-white': subItem.active }"
+                  *ngIf="subItem.icon"
+                ></i>
+                {{ subItem.name }}
+              </button>
             </ng-container>
           </div>
         </div>
       </div>
     </ng-container>
   </ng-container>
-  <!-- <li>
-    {{ group.name }}
-    <span> (id:{{ group.diagramType.id }}) </span>
-    <span *ngIf="group.diagramType.active"><strong>[active]</strong></span>
-    <span *ngIf="group.diagramType.disabled"><strong>[disabled]</strong></span>
+</div>
 
-    <ng-container *ngIf="group.children?.length > 1">
-      <ul *ngFor="let diagramType of group.children">
+<ul>
+  <li *ngFor="let group2 of diagramTypeGroups">
+    {{ group2.name }}
+    <span> (id:{{ group2.diagramType.id }}) </span>
+    <span *ngIf="group2.diagramType.active"><strong>[active]</strong></span>
+    <span *ngIf="group2.diagramType.disabled"><strong>[disabled]</strong></span>
+
+    <ng-container *ngIf="group2.children?.length > 1">
+      <ul *ngFor="let diagramType2 of group2.children">
         <li>
-          {{ diagramType.name }}
-          <span *ngIf="diagramType.active"><strong>[active]</strong></span>
-          <span *ngIf="diagramType.disabled"><strong>[disabled]</strong></span>
+          {{ diagramType2.name }}
+          <span *ngIf="diagramType2.active"><strong>[active]</strong></span>
+          <span *ngIf="diagramType2.disabled"><strong>[disabled]</strong></span>
         </li>
       </ul>
     </ng-container>
-  </li> -->
-</div>
+  </li>
+</ul>
 
 <!-- <pre><code>{{ diagramTypeGroups | json }}</code></pre> -->
