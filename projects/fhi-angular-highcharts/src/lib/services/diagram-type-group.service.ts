@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
@@ -16,11 +15,9 @@ export class DiagramTypeGroupService {
   //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
   private activeDiagramType: DiagramType;
   private activeDiagramTypeIsSet: boolean;
-  private diagramTypeGroups = DiagramTypeGroups_NEW;
+  private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
   private series!: FhiDiagramSerie[];
-  private diagramTypeGroupsSubject = new ReplaySubject<DiagramTypeGroup[]>(1);
-  diagramTypeGroups$ = this.diagramTypeGroupsSubject.asObservable();
 
   getDiagramTypeGroups(): DiagramTypeGroup[] {
     return this.diagramTypeGroups;
@@ -31,10 +28,12 @@ export class DiagramTypeGroupService {
     diagramTypeSubset: string[] | undefined,
     flaggedSeries: FlaggedSerie[],
     series: FhiDiagramSerie[],
+    diagramTypeGroups: DiagramTypeGroup[],
   ) {
     this.flaggedSeries = flaggedSeries;
     this.series = series;
     this.activeDiagramTypeIsSet = false;
+    this.diagramTypeGroups = diagramTypeGroups ? diagramTypeGroups : DiagramTypeGroups_NEW;
 
     this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
 
@@ -44,7 +43,6 @@ export class DiagramTypeGroupService {
     } else {
       this.diagramTypeGroups[DiagramTypeGroupIndex.tableIndex].diagramType.active = true;
     }
-    this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
   }
 
   private loopAndUpdateGroups(diagramTypeSubset: string[], diagramTypeId: string) {
