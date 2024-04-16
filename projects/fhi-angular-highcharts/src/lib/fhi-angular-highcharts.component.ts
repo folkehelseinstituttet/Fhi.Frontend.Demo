@@ -39,6 +39,13 @@ import { DiagramTypeGroup } from './models/diagram-type-group.model';
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    TopoJsonService,
+    DiagramTypeService,
+    DiagramTypeGroupService,
+    OptionsService,
+    TableService,
+  ],
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private currentDiagramTypeDisabled: boolean;

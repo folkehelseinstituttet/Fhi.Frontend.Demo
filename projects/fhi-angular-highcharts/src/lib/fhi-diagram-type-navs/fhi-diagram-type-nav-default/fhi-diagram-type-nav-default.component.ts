@@ -27,6 +27,8 @@ export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.diagramTypeGroupService.diagramTypeGroups$.subscribe({
         next: (diagramTypeGroups) => {
+          console.log('next: diagramTypeGroups', diagramTypeGroups);
+
           this.diagramTypeGroups = diagramTypeGroups;
         },
         error: (error) => console.log(error),
@@ -39,6 +41,8 @@ export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {
   }
 
   navigate(diagramType: DiagramType) {
+    console.log('FhiDiagramTypeNavDefault, diagramType', diagramType);
+
     this.diagramTypeNavigation.emit(diagramType);
   }
 }
