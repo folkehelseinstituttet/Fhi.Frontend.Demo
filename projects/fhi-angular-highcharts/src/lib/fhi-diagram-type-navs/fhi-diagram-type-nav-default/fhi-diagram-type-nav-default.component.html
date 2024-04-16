@@ -1,6 +1,6 @@
 <div class="btn-group fhi-btn-group mb-5" role="group">
   <ng-container *ngFor="let group of diagramTypeGroups">
-    <ng-container *ngIf="group.children.length <= 1">
+    <ng-container *ngIf="group.children.length === 1">
       <button
         type="button"
         class="btn fhi-btn-group__btn"
@@ -16,7 +16,8 @@
         {{ group.name }}
       </button>
     </ng-container>
-    <ng-container *ngIf="group.children.length > 1">
+
+    <ng-container *ngIf="group.children?.length > 1">
       <div class="btn-group" role="group">
         <button
           type="button"
@@ -33,6 +34,7 @@
             {{ group.name }}
           </span>
         </button>
+
         <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
           <button
             type="button"
@@ -41,14 +43,14 @@
             ngbDropdownToggle
           ></button>
           <div class="dropdown-menu" ngbDropdownMenu>
-            <ng-container *ngFor="let subItem of group.children">
-              <button ngbDropdownItem>
+            <ng-container *ngFor="let diagramType of group.children">
+              <button ngbDropdownItem (click)="navigate(diagramType)">
                 <i
-                  [class]="'icon-' + subItem.icon"
-                  [ngClass]="{ 'icon-white': subItem.active }"
-                  *ngIf="subItem.icon"
+                  [class]="'icon-' + diagramType.icon"
+                  [ngClass]="{ 'icon-white': diagramType.active }"
+                  *ngIf="diagramType.icon"
                 ></i>
-                {{ subItem.name }}
+                {{ diagramType.name }}
               </button>
             </ng-container>
           </div>
@@ -65,7 +67,7 @@
     <span *ngIf="group2.diagramType.active"><strong>[active]</strong></span>
     <span *ngIf="group2.diagramType.disabled"><strong>[disabled]</strong></span>
 
-    <ng-container *ngIf="group2.children?.length > 1">
+    <ng-container *ngIf="group2.children.length > 1">
       <ul *ngFor="let diagramType2 of group2.children">
         <li>
           {{ diagramType2.name }}
