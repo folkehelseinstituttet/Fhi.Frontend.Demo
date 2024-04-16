@@ -44,8 +44,6 @@ export class HighchartsComponent implements OnInit {
   }
 
   onDiagramTypeNavigation(diagramTypeId: FhiDiagramTypeIds) {
-    console.log('onDiagramTypeNavigation(), diagramTypeId', diagramTypeId);
-
     this.diagramOptions = {
       ...this.diagramOptions,
       diagramTypeId: diagramTypeId,

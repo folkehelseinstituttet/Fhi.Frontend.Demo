@@ -28,21 +28,22 @@ export class DiagramTypeGroupService {
     diagramTypeSubset: string[] | undefined,
     flaggedSeries: FlaggedSerie[],
     series: FhiDiagramSerie[],
+    diagramTypeGroups: DiagramTypeGroup[],
   ) {
     this.flaggedSeries = flaggedSeries;
     this.series = series;
-    this.resetStateOfAllGroups();
-    this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
-    this.removeEmptyGroups();
-    this.setActiveGroup();
-  }
-
-  private resetStateOfAllGroups() {
     this.activeDiagramType = undefined;
-    this.diagramTypeGroups = cloneDeep(DiagramTypeGroups_NEW);
+    this.diagramTypeGroups = diagramTypeGroups
+      ? cloneDeep(diagramTypeGroups)
+      : cloneDeep(DiagramTypeGroups_NEW);
+
+    this.loopGroupsAndUpdateDiagramTypes(diagramTypeSubset, diagramTypeId);
+    this.removeEmptyGroups();
+    this.updateInactiveGroup();
+    this.updateActiveGroup();
   }
 
-  private loopAndUpdateGroups(diagramTypeSubset: string[], diagramTypeId: string) {
+  private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
@@ -60,21 +61,35 @@ export class DiagramTypeGroupService {
     );
   }
 
-  private setActiveGroup() {
-    const activeDiagramType: DiagramType = this.activeDiagramType
-      ? this.activeDiagramType
-      : { ...DiagramTypes.table, active: true };
-
+  private updateInactiveGroup() {
     this.diagramTypeGroups.forEach((group) => {
-      if (group.children.find((type) => type.id === activeDiagramType.id) !== undefined) {
+      if (group.children.find((diagramType) => diagramType === group.diagramType) === undefined) {
+        group.diagramType = group.children[0];
+      }
+    });
+  }
+
+  private updateActiveGroup() {
+    let activeDiagramType: DiagramType;
+
+    if (this.activeDiagramType) {
+      activeDiagramType = this.activeDiagramType;
+    } else {
+      activeDiagramType = { ...DiagramTypes.table, active: true };
+    }
+    this.diagramTypeGroups.forEach((group) => {
+      if (
+        group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
+      ) {
         group.diagramType = activeDiagramType;
+      } else {
+        group.diagramType.active = false;
       }
     });
   }
 
   private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
     group.children = group.children.filter((type) => diagramTypeSubset.includes(type.id));
-    group.diagramType = group.children[0];
   }
 
   private setDiagramTypeToActive(diagramType: DiagramType, diagramTypeId: string) {

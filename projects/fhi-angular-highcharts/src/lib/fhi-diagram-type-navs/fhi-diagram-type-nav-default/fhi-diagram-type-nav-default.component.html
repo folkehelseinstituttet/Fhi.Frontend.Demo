@@ -17,7 +17,7 @@
       </button>
     </ng-container>
 
-    <ng-container *ngIf="group.children?.length > 1">
+    <ng-container *ngIf="group.children.length > 1">
       <div class="btn-group" role="group">
         <button
           type="button"
@@ -34,7 +34,6 @@
             {{ group.name }}
           </span>
         </button>
-
         <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
           <button
             type="button"
