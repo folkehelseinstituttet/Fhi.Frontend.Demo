@@ -17,8 +17,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
-  currentActiveDiagramType: DiagramType;
-
   @Output() diagramTypeNavigation = new EventEmitter<DiagramType>();
 
   diagramTypeGroups!: DiagramTypeGroup[];
@@ -30,7 +28,6 @@ export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {
       this.diagramTypeGroupService.diagramTypeGroups$.subscribe({
         next: (diagramTypeGroups) => {
           this.diagramTypeGroups = diagramTypeGroups;
-          this.currentActiveDiagramType = this.findCurrentActiveDiagramType(diagramTypeGroups);
         },
         error: (error) => console.log(error),
       }),
@@ -42,18 +39,6 @@ export class FhiDiagramTypeNavDefaultComponent implements OnInit, OnDestroy {
   }
 
   navigate(diagramType: DiagramType) {
-    this.currentActiveDiagramType.active = false;
-    diagramType.active = true;
     this.diagramTypeNavigation.emit(diagramType);
-    this.currentActiveDiagramType = diagramType;
-  }
-
-  findCurrentActiveDiagramType(diagramTypeGroup: DiagramTypeGroup[]) {
-    // console.log('find diagram type group', diagramTypeGroup);
-    for (let i = 0; i < diagramTypeGroup.length; i++) {
-      if (diagramTypeGroup[i].diagramType.active === true) {
-        return diagramTypeGroup[i].diagramType;
-      }
-    }
   }
 }
