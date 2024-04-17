@@ -38,17 +38,20 @@
           <button
             type="button"
             class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
+            [ngClass]="{ active: diagramTypeGroup.diagramType.active }"
             aria-label="Velg noe..."
             ngbDropdownToggle
           ></button>
           <div class="dropdown-menu" ngbDropdownMenu>
             <ng-container *ngFor="let diagramType of diagramTypeGroup.children">
-              <button ngbDropdownItem (click)="navigate(diagramType)">
-                <i
-                  [class]="'icon-' + diagramType.icon"
-                  [ngClass]="{ 'icon-white': diagramType.active }"
-                  *ngIf="diagramType.icon"
-                ></i>
+              <button
+                class="text-nowrap"
+                [ngClass]="{ active: diagramType.active }"
+                ngbDropdownItem
+                [disabled]="diagramType.disabled"
+                (click)="navigate(diagramType)"
+              >
+                <i [class]="'icon-' + diagramType.icon" *ngIf="diagramType.icon"></i>
                 {{ diagramType.name }}
               </button>
             </ng-container>
