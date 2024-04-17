@@ -10,12 +10,6 @@ import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.componen
 import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
 import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav-default/fhi-diagram-type-nav-default.component';
 
-import { TopoJsonService } from './services/topo-json.service';
-import { DiagramTypeService } from './services/diagram-type.service';
-import { DiagramTypeGroupService } from './services/diagram-type-group.service';
-import { OptionsService } from './services/options.service';
-import { TableService } from './services/table.service';
-
 @NgModule({
   declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
   imports: [
@@ -27,12 +21,5 @@ import { TableService } from './services/table.service';
     FhiDiagramTypeNavDefaultComponent,
   ],
   exports: [FhiAngularHighchartsComponent],
-  providers: [
-    TopoJsonService,
-    DiagramTypeService,
-    DiagramTypeGroupService,
-    OptionsService,
-    TableService,
-  ],
 })
 export class FhiAngularHighchartsModule {}

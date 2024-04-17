@@ -39,6 +39,13 @@ import { DiagramTypeGroup } from './models/diagram-type-group.model';
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    TopoJsonService,
+    DiagramTypeService,
+    DiagramTypeGroupService,
+    OptionsService,
+    TableService,
+  ],
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private currentDiagramTypeDisabled: boolean;
@@ -168,7 +175,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.allDiagramOptions.diagramTypeSubset,
       this.flaggedSeries,
       this.allDiagramOptions.series,
+      this.diagramTypeGroups_NEW,
     );
+    this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
   }
 
   private formatSerieName(name: string | Array<string>): string {
