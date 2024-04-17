@@ -56,9 +56,7 @@ export class DiagramTypeGroupService {
   }
 
   private removeEmptyGroups() {
-    this.diagramTypeGroups = this.diagramTypeGroups.filter(
-      (group) => group.diagramType !== undefined,
-    );
+    this.diagramTypeGroups = this.diagramTypeGroups.filter((group) => group.children?.length > 0);
   }
 
   private updateInactiveGroup() {
@@ -75,12 +73,15 @@ export class DiagramTypeGroupService {
     if (this.activeDiagramType) {
       activeDiagramType = this.activeDiagramType;
     } else {
-      activeDiagramType = { ...DiagramTypes.table, active: true };
+      activeDiagramType = { ...DiagramTypes.table, active: true, disabled: false };
     }
     this.diagramTypeGroups.forEach((group) => {
       if (
         group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
       ) {
+        if (group.diagramType.id === DiagramTypes.table.id) {
+          group.children[0] = activeDiagramType;
+        }
         group.diagramType = activeDiagramType;
       } else {
         group.diagramType.active = false;
