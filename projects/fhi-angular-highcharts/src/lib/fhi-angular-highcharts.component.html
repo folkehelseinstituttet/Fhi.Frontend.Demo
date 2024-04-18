@@ -1,18 +1,22 @@
 <article *ngIf="allDiagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ allDiagramOptions.title }}</h1>
 
-  <div class="d-flex flex-wrap">
-    <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
-      <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
-    </ng-container>
+  <div class="fhi-highcharts-nav">
+    <div class="d-flex flex-wrap">
+      <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
+        <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      </ng-container>
 
-    <ng-container *ngIf="allDiagramOptions.metadataButton">
-      <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
-    </ng-container>
+      <div class="fhi-highcharts-nav__standalone-btns">
+        <ng-container *ngIf="allDiagramOptions.metadataButton">
+          <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
+        </ng-container>
 
-    <ng-container *ngIf="allDiagramOptions.showFullScreenButton">
-      <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
-    </ng-container>
+        <ng-container *ngIf="allDiagramOptions.showFullScreenButton">
+          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+        </ng-container>
+      </div>
+    </div>
   </div>
 
   <ng-container *ngIf="showDiagramTypeDisabledInfo; else diagramAndFooter">
@@ -47,16 +51,22 @@
 
 <ng-template #diagramTypeNav>
   <div
-    class="fhi-diagram-type-nav mb-3"
+    class="mb-3"
     [ngClass]="{
-      'me-3': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+      'me-auto': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
     }"
   >
-    <fhi-diagram-type-nav-default
-      [diagramTypeGroups]="diagramTypeGroups_NEW"
-      (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+    <div
+      [ngClass]="{
+        'me-3': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+      }"
     >
-    </fhi-diagram-type-nav-default>
+      <fhi-diagram-type-nav-default
+        [diagramTypeGroups]="diagramTypeGroups_NEW"
+        (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+      >
+      </fhi-diagram-type-nav-default>
+    </div>
   </div>
 </ng-template>
 
@@ -79,7 +89,7 @@
 
 <ng-template #metadataLink>
   <button
-    class="btn fhi-btn-icon mb-3"
+    class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
     [ngClass]="{
       'me-3': allDiagramOptions.showFullScreenButton
     }"
