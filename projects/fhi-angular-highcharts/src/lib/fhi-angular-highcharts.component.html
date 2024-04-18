@@ -228,12 +228,11 @@
 
 <ng-template #diagramTypeDisabledInfo>
   <div class="mt-3" id="om-dataene">
-    <div class="alert alert-info" role="alert">
-      <i class="icon-info-circle"></i>
-      <p>
-        Det er dessverre ikke mulig å vise disse dataene med den diagramtypen som nå er valgt. Bytt til en annen
-        diagramtype, eller endre filteringen av dataene. <br /><br />
-        <em>Foreløpig ikke mulig å se at en diagramtype er disabled... det kommer en løsning på det ASAP!</em>
+    <div class="alert alert-warning" role="alert">
+      <i class="icon-bell"></i>
+      <p class="mb-0">
+        Diagramtypen kan ikke vises med dette filtervalget.<br />
+        Velg en annen diagramtype eller gjør et annet filtervalg.
       </p>
     </div>
   </div>
