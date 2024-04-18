@@ -11,7 +11,7 @@ export const DiagramTypeGroups_NEW: DiagramTypeGroup[] = [
   {
     children: [DiagramTypes.table],
     diagramType: DiagramTypes.table,
-    name: 'Table',
+    name: 'Tabell',
   },
   {
     children: MapTypes,

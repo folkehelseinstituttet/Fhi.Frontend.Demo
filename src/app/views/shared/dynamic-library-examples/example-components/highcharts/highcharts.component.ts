@@ -92,7 +92,6 @@ export class HighchartsComponent implements OnInit {
         this.diagramOptions = {
           title: 'Dødsfall etter årsak, 2017 - 2021',
           series: data,
-          // diagramTypeId: 'pie',
           diagramTypeNavId: 'default',
           diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
           decimals: 2,
@@ -164,8 +163,7 @@ export class HighchartsComponent implements OnInit {
         this.diagramOptions = {
           title: 'Dødsfall hjerte og kar, fordelt på fylke',
           series: data,
-          diagramTypeId: 'map',
-          diagramTypeSubset: ['table', 'map', 'column', 'bar', 'pie'],
+          diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
           diagramTypeNavId: 'default',
           flags: [
             { symbol: '..', label: 'Manglende data' },

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { cloneDeep } from 'lodash-es';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
@@ -7,7 +7,7 @@ import { DiagramTypeGroups_NEW } from '../constants-and-enums/diagram-type-group
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
-import { DiagramTypeGroupIndex } from '../constants-and-enums/fhi-diagram-types';
+import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 
 @Injectable()
 export class DiagramTypeGroupService {
@@ -15,12 +15,9 @@ export class DiagramTypeGroupService {
   //       way as "chart types", ie. that FhiDiagramOptions.mapTypeId is deprecated, and diferent
   //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
   private activeDiagramType: DiagramType;
-  private activeDiagramTypeIsSet: boolean;
-  private diagramTypeGroups = DiagramTypeGroups_NEW;
+  private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
   private series!: FhiDiagramSerie[];
-  private diagramTypeGroupsSubject = new ReplaySubject<DiagramTypeGroup[]>(1);
-  diagramTypeGroups$ = this.diagramTypeGroupsSubject.asObservable();
 
   getDiagramTypeGroups(): DiagramTypeGroup[] {
     return this.diagramTypeGroups;
@@ -31,25 +28,24 @@ export class DiagramTypeGroupService {
     diagramTypeSubset: string[] | undefined,
     flaggedSeries: FlaggedSerie[],
     series: FhiDiagramSerie[],
+    diagramTypeGroups: DiagramTypeGroup[],
   ) {
     this.flaggedSeries = flaggedSeries;
     this.series = series;
-    this.activeDiagramTypeIsSet = false;
+    this.activeDiagramType = undefined;
+    this.diagramTypeGroups = diagramTypeGroups
+      ? cloneDeep(diagramTypeGroups)
+      : cloneDeep(DiagramTypeGroups_NEW);
 
-    this.loopAndUpdateGroups(diagramTypeSubset, diagramTypeId);
-
-    if (this.activeDiagramTypeIsSet) {
-      this.diagramTypeGroups[this.activeDiagramType.groupIndex].diagramType =
-        this.activeDiagramType;
-    } else {
-      this.diagramTypeGroups[DiagramTypeGroupIndex.tableIndex].diagramType.active = true;
-    }
-    this.diagramTypeGroupsSubject.next(this.diagramTypeGroups);
+    this.loopGroupsAndUpdateDiagramTypes(diagramTypeSubset, diagramTypeId);
+    this.removeEmptyGroups();
+    this.updateInactiveGroup();
+    this.updateActiveGroup();
   }
 
-  private loopAndUpdateGroups(diagramTypeSubset: string[], diagramTypeId: string) {
+  private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
     this.diagramTypeGroups.forEach((group) => {
-      if (diagramTypeSubset !== undefined && group.diagramType.id !== DiagramTypeIdValues.table) {
+      if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
       group.children.forEach((diagramType) => {
@@ -59,15 +55,47 @@ export class DiagramTypeGroupService {
     });
   }
 
+  private removeEmptyGroups() {
+    this.diagramTypeGroups = this.diagramTypeGroups.filter((group) => group.children?.length > 0);
+  }
+
+  private updateInactiveGroup() {
+    this.diagramTypeGroups.forEach((group) => {
+      if (group.children.find((diagramType) => diagramType === group.diagramType) === undefined) {
+        group.diagramType = group.children[0];
+      }
+    });
+  }
+
+  private updateActiveGroup() {
+    let activeDiagramType: DiagramType;
+
+    if (this.activeDiagramType) {
+      activeDiagramType = this.activeDiagramType;
+    } else {
+      activeDiagramType = { ...DiagramTypes.table, active: true, disabled: false };
+    }
+    this.diagramTypeGroups.forEach((group) => {
+      if (
+        group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
+      ) {
+        if (group.diagramType.id === DiagramTypes.table.id) {
+          group.children[0] = activeDiagramType;
+        }
+        group.diagramType = activeDiagramType;
+      } else {
+        group.diagramType.active = false;
+      }
+    });
+  }
+
   private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
     group.children = group.children.filter((type) => diagramTypeSubset.includes(type.id));
-    group.diagramType = group.children[0];
   }
 
   private setDiagramTypeToActive(diagramType: DiagramType, diagramTypeId: string) {
     if (diagramType.id === diagramTypeId) {
       diagramType.active = true;
-      this.activeDiagramTypeIsSet = true;
       this.activeDiagramType = diagramType;
     } else {
       diagramType.active = false;
