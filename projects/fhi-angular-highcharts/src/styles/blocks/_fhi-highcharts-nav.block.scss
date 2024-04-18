@@ -42,7 +42,8 @@
     }
 }
 
-@container highcharts-nav (width < 322px) {
+// < 322px
+@container highcharts-nav (width < 20.125rem) {
     .fhi-highcharts-nav {
         &__meta-btn {
             display: inline;
