@@ -9,9 +9,9 @@
 @import "../theme/map";
 
 // Blocks: all custom css for the FHI AngularHighcharts
-@import "../blocks/fhi-diagram-type-nav.block";
 @import "../blocks/fhi-highcharts-chart.block";
 @import "../blocks/fhi-highcharts-map.block";
+@import "../blocks/fhi-highcharts-nav.block";
 
 :root {
     // Data series and points (extends default FHI color palette)
