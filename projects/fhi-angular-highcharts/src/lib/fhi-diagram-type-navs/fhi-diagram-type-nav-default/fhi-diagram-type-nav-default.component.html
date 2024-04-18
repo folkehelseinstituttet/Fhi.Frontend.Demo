@@ -23,6 +23,7 @@
           type="button"
           class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
           [ngClass]="{ active: diagramTypeGroup.diagramType.active }"
+          [disabled]="diagramTypeGroup.diagramType.disabled"
           (click)="navigate(diagramTypeGroup.diagramType)"
         >
           <span>
