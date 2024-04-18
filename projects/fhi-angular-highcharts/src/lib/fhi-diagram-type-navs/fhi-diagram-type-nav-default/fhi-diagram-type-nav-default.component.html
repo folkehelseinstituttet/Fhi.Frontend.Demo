@@ -1,4 +1,4 @@
-<div class="btn-group fhi-btn-group mb-5" role="group">
+<div class="btn-group fhi-btn-group" role="group">
   <ng-container *ngFor="let diagramTypeGroup of diagramTypeGroups">
     <ng-container *ngIf="diagramTypeGroup.children.length === 1">
       <button
@@ -62,7 +62,7 @@
   </ng-container>
 </div>
 
-<ul>
+<!-- <ul>
   <li *ngFor="let group2 of diagramTypeGroups">
     {{ group2.name }}
     <span> (id:{{ group2.diagramType.id }}) </span>
@@ -79,6 +79,6 @@
       </ul>
     </ng-container>
   </li>
-</ul>
+</ul> -->
 
 <!-- <pre><code>{{ diagramTypeGroups | json }}</code></pre> -->
