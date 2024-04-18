@@ -4,6 +4,15 @@
     flex-grow: 1;
     position: relative;
     z-index: 1;
+
+    &__standalone-btn {
+        container-name: highcharts-nav__standalone-btns;
+        container-type: inline-size;
+    }
+
+    &__meta-btn--push-end {
+        margin-right: $fhi-core-space-3;
+    }
 }
 
 // < 360px
@@ -25,7 +34,22 @@
 
         &__meta-btn {
             display: block;
-            margin-right: 0 !important;
+
+            &--push-end {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+@container highcharts-nav (width < 322px) {
+    .fhi-highcharts-nav {
+        &__meta-btn {
+            display: inline;
+
+            &--push-end {
+                margin-right: $fhi-core-space-3;
+            }
         }
     }
 }
