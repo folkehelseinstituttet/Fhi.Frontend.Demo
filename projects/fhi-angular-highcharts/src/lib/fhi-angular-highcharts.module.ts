@@ -7,11 +7,10 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FhiModalComponent } from '@folkehelseinstituttet/angular-components';
 
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
-import { FhiDiagramTypeNavComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav.component';
 import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav-default/fhi-diagram-type-nav-default.component';
 
 @NgModule({
-  declarations: [FhiAngularHighchartsComponent, FhiDiagramTypeNavComponent],
+  declarations: [FhiAngularHighchartsComponent],
   imports: [
     CommonModule,
     FormsModule,
