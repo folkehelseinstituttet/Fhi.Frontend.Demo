@@ -39,6 +39,10 @@
                 margin-right: 0;
             }
         }
+
+        .dropdown-menu {
+            left: calc(#{$fhi-core-px} * -97) !important;
+        }
     }
 }
 
