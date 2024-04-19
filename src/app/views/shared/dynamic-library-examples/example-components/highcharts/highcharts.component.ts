@@ -40,7 +40,7 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.selectMockData('aarsak_2017_2021');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.selectMockData('kart');
+      this.selectMockData('befolkning_antall');
     }
   }
 
@@ -80,23 +80,21 @@ export class HighchartsComponent implements OnInit {
 
   private selectMockData(value: string) {
     switch (value) {
-      // init
+      // dataset (init)
       case 'aarsak_2008_2018':
+        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
         this.getDodsfallEtterAarsak_2008_2018();
         break;
       case 'aarsak_2017_2021':
         this.getDodsfallEtterAarsak_2017_2021();
         break;
-      case 'kart':
-        this.getDodsfallHjerteOgKarEtterFylke();
-        this.showUnitSelect = false;
-        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-        break;
-
-      // select option dataset
       case 'befolkning_antall':
         this.getBefolkningInndelingPr2024_antall();
         this.showUnitSelect = true;
+        break;
+      case 'kart':
+        this.getDodsfallHjerteOgKarEtterFylke();
+        this.showUnitSelect = false;
         break;
 
       // select option filter
