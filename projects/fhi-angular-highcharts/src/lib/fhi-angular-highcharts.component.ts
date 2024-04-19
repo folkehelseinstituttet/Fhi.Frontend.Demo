@@ -76,6 +76,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
+    this.highcharts.setOptions({
+      lang: {
+        decimalPoint: ',',
+      },
+    });
   }
 
   ngOnChanges() {
