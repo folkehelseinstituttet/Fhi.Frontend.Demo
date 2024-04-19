@@ -1,34 +1,51 @@
 <ng-container *ngIf="itemId === items.HighchartsWithoutMenu.id">
-  <ng-container *ngIf="!dataIsLoading; else spinner">
+  <!-- <ng-container *ngIf="!dataIsLoading; else spinner">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
-  </ng-container>
+  </ng-container> -->
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
   <div class="row gx-3 gx-sm-5">
-    <div class="col-auto col-md-6 mb-3 mb-md-5">
-      <label for="dummy-filter" class="form-label">Dummy filter</label>
-      <select class="form-select" id="dummy-filter" (change)="onClickFilterDataset($event.target['value'])">
-        <option value="2017-2021">2017 - 2021</option>
-        <option value="2017">2017</option>
-        <option value="hjerteinfarkt-mann">Hjerteinfarkt | Mann</option>
+    <div class="col-auto col-md-6 mb-4 mb-md-5">
+      <label for="dummy-filter" class="form-label">Filter dataene</label>
+      <select class="form-select" id="dummy-filter" (change)="onSelectMockData($event.target['value'])">
+        <option value="filter:aarsak_2017_2021">2017 - 2021</option>
+        <option value="filter:aarsak_2017">2017</option>
+        <option value="filter:hjerteinfarkt_mann">Hjerteinfarkt | Mann</option>
       </select>
     </div>
   </div>
-  <ng-container *ngIf="!dataIsLoading; else spinner">
-    <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-    </fhi-angular-highcharts>
-  </ng-container>
+  <!-- <ng-container *ngIf="!dataIsLoading; else spinner">
+  <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+  </fhi-angular-highcharts>
+  </ng-container> -->
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
-  <ng-container *ngIf="!dataIsLoading; else spinner">
-    <fhi-angular-highcharts
-      [diagramOptions]="diagramOptions"
-      (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-      (metadataButtonClick)="onMetadataButtonClick()"
-    ></fhi-angular-highcharts>
-  </ng-container>
+  <div class="row gx-3 gx-sm-5">
+    <div class="col-auto col-md-6 mb-4 mb-md-5">
+      <label for="dummy-filter" class="form-label">Velg datasett</label>
+      <select class="form-select" id="dummy-" (change)="onSelectMockData($event.target['value'])">
+        <option value="kart">Datasett som kan vises som kart</option>
+        <option value="befolkning_antall">Datasett som kan vises med to måltall</option>
+      </select>
+    </div>
+    <div class="col-auto col-md-6 mb-4 mb-md-5" *ngIf="showUnitSelect">
+      <label for="dummy-filter" class="form-label">Velg måltall</label>
+      <select class="form-select" id="dummy-" (change)="onSelectMockData($event.target['value'])">
+        <option value="unit:befolkning_antall">Antall</option>
+        <option value="unit:befolkning_andel">Andel i prosent</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- <ng-container *ngIf="!dataIsLoading; else spinner"> </ng-container> -->
+  <fhi-angular-highcharts
+    [diagramOptions]="diagramOptions"
+    (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+    (metadataButtonClick)="onMetadataButtonClick()"
+  ></fhi-angular-highcharts>
+
   <div class="mt-7" id="om-dataene">
     <div class="alert alert-info" role="alert">
       <i class="icon-info-circle"></i>

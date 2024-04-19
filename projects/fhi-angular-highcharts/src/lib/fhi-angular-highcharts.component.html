@@ -187,7 +187,10 @@
         </tbody>
       </table>
     </div>
-    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table">
+    <div
+      class="mb-3"
+      *ngIf="flaggedSeries.length > 0 && allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table"
+    >
       <p>
         <a
           role="button"

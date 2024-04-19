@@ -6,6 +6,7 @@ import { isValid, parseISO } from 'date-fns';
 import {
   Options,
   SeriesOptionsType,
+  TooltipOptions,
   XAxisLabelsOptions,
   XAxisOptions,
   YAxisOptions,
@@ -47,6 +48,7 @@ export class OptionsService {
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
+      options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.mapTypeId;
     }
@@ -101,7 +103,52 @@ export class OptionsService {
     if (allDiagramOptions.seriesHasNegativeDataPoints) {
       yAxis.min = undefined;
     }
+    if (allDiagramOptions.unit?.length === 1) {
+      yAxis.title.text = allDiagramOptions.unit[0].label;
+    }
+    if (allDiagramOptions.unit?.length === 1) {
+      yAxis.title.text = allDiagramOptions.unit[0].label;
+    }
+    if (allDiagramOptions.unit?.length === 1 && allDiagramOptions.unit[0].symbol) {
+      yAxis.labels = {
+        format:
+          allDiagramOptions.unit[0].position === 'start'
+            ? `${allDiagramOptions.unit[0].symbol} {value}`
+            : `{value} ${allDiagramOptions.unit[0].symbol}`,
+      };
+    } else {
+      yAxis.labels = {
+        format: '{value}',
+      };
+    }
     return yAxis;
+  }
+
+  private getTooltip(
+    tooltip: TooltipOptions,
+    allDiagramOptions: AllDiagramOptions,
+  ): TooltipOptions {
+    tooltip = tooltip ? tooltip : {};
+    if (allDiagramOptions.unit?.length !== 1) {
+      return tooltip;
+    }
+    if (allDiagramOptions.unit[0].symbol) {
+      if (allDiagramOptions.unit[0].decimals) {
+        tooltip.valueDecimals = allDiagramOptions.unit[0].decimals;
+      } else if (allDiagramOptions.decimals) {
+        tooltip.valueDecimals = allDiagramOptions.decimals;
+      }
+      if (allDiagramOptions.unit[0].position === 'start') {
+        tooltip.valuePrefix = allDiagramOptions.unit[0].symbol + ' ';
+      } else {
+        tooltip.valueSuffix = ' ' + allDiagramOptions.unit[0].symbol;
+      }
+    } else {
+      tooltip.valueDecimals = undefined;
+      tooltip.valuePrefix = undefined;
+      tooltip.valueSuffix = undefined;
+    }
+    return tooltip;
   }
 
   private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {
