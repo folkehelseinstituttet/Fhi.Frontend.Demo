@@ -1,4 +1,11 @@
-# 3.0.0
+# Unreleased
+
+> Apr 19, 2024
+
+* :tada: **Enhancement** Diagram navigation with split button on chart selector
+* :tada: **Enhancement** Alert on disabled diagram type changed to warning type
+
+## 3.0.0
 
 > Mar 18, 2024
 
