@@ -1,7 +1,7 @@
 <ng-container *ngIf="itemId === items.HighchartsWithoutMenu.id">
-  <!-- <ng-container *ngIf="!dataIsLoading; else spinner">
+  <ng-container *ngIf="!dataIsLoading; else spinner">
     <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
-  </ng-container> -->
+  </ng-container>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
@@ -15,10 +15,9 @@
       </select>
     </div>
   </div>
-  <!-- <ng-container *ngIf="!dataIsLoading; else spinner">
-  </ng-container> -->
-  <!-- <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
-  </fhi-angular-highcharts> -->
+  <!-- <ng-container *ngIf="!dataIsLoading; else spinner"> </ng-container> -->
+  <fhi-angular-highcharts [diagramOptions]="diagramOptions" (diagramTypeNavigation)="onDiagramTypeNavigation($event)">
+  </fhi-angular-highcharts>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
