@@ -62,7 +62,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   tableData: TableData;
 
   showDefaultChartTemplate: boolean;
-  showDiagramTypeDisabledInfo: boolean;
+  showDiagramTypeDisabledWarning: boolean;
   showFooter: boolean;
   showMap: boolean;
 
@@ -93,9 +93,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.checkIfCurrentDiagramTypeDisabled();
 
       if (this.currentDiagramTypeDisabled) {
-        this.showDiagramTypeDisabledInfo = true;
+        this.showDiagramTypeDisabledWarning = true;
       } else {
-        this.showDiagramTypeDisabledInfo = false;
+        this.showDiagramTypeDisabledWarning = false;
         this.updateDiagram();
       }
     } catch (error) {
@@ -138,7 +138,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private resetDiagramState() {
-    this.showDiagramTypeDisabledInfo = false;
+    this.showDiagramTypeDisabledWarning = false;
     this.showFooter = false;
     this.showMap = false;
     this.flaggedSeries = [];
