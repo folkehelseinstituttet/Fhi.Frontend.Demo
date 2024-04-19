@@ -5,8 +5,9 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
-  <div class="row gx-3 gx-sm-5">
-    <div class="col-auto col-md-6 mb-4 mb-md-5">
+  <span class="small fst-italic">Dummy-filter:</span>
+  <div class="row ds-ui-documentation__item-container mb-7 pb-4">
+    <div class="col-sm-7 col-md-6">
       <label for="dummy-filter" class="form-label">Filter dataene</label>
       <select class="form-select" id="dummy-filter" (change)="onSelectMockData($event.target['value'])">
         <option value="filter:aarsak_2017_2021">2017 - 2021</option>
@@ -21,15 +22,16 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
-  <div class="row gx-3 gx-sm-5">
-    <div class="col-auto col-md-6 mb-4 mb-md-5">
+  <span class="small fst-italic">Dummy-datasettvelger/ -måltallsvelger:</span>
+  <div class="row ds-ui-documentation__item-container mb-7 pb-4">
+    <div class="col-sm-auto col-md-6 mb-3 mb-md-0">
       <label for="dummy-filter" class="form-label">Velg datasett</label>
       <select class="form-select" id="dummy-" (change)="onSelectMockData($event.target['value'])">
         <option value="kart">Datasett som kan vises som kart</option>
         <option value="befolkning_antall">Datasett som kan vises med to måltall</option>
       </select>
     </div>
-    <div class="col-auto col-md-6 mb-4 mb-md-5" *ngIf="showUnitSelect">
+    <div class="col-sm-auto col-md-6" *ngIf="showUnitSelect">
       <label for="dummy-filter" class="form-label">Velg måltall</label>
       <select class="form-select" id="dummy-" (change)="onSelectMockData($event.target['value'])">
         <option value="unit:befolkning_antall">Antall</option>

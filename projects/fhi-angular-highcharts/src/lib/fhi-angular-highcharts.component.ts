@@ -195,8 +195,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       decimals = this.allDiagramOptions.decimals;
     }
 
-    if (decimals >= 0) {
-      this.digitsInfo = `1.0-${decimals}`;
+    if (decimals > 14) {
+      this.digitsInfo = '1.14-14';
+      console.warn('Max decimal places is 14 due to loss of precision at runtime!');
+    } else if (decimals >= 0) {
+      this.digitsInfo = `1.${decimals}-${decimals}`;
     }
   }
 
@@ -365,19 +368,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private getErrorMsg(error: any) {
-    return `ERROR: @Input() diagramOptions === undefined,
-    diagramOptions.title === undefined or diagramOptions.series === undefined
-    at FhiAngularHighchartsComponent.ngOnChanges()
-    FhiAngularHighchartsComponent can not be rendered.
+    return `${error}
 
     To avoid this error message:
     Make sure [yourOptions] are valid before calling template:
     <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
 
-    If [yourOptions] are in accordance with specification; contact maintainer of
-    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
+    If [yourOptions] are in accordance with specification, contact maintainer of package:
+    https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
 
-    Stacktrace:
-    ${error}`;
+    API documentation:
+    https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
   }
 }
