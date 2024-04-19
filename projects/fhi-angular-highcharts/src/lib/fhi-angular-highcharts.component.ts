@@ -138,7 +138,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private resetDiagramState() {
-    this.showDefaultChartTemplate = true;
     this.showDiagramTypeDisabledInfo = false;
     this.showFooter = false;
     this.showMap = false;
@@ -287,9 +286,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
       this.updateMap();
     } else {
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
-      this.showFooter = this.canShowFooter();
+      this.updateChart();
     }
+  }
+
+  private updateChart() {
+    this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+    this.showFooter = this.canShowFooter();
   }
 
   private updateTable() {
