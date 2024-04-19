@@ -15,6 +15,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Type FhiDiagramSerie](#type-fhidiagramserie)
     - [Type FhiDiagramSerieData](#type-fhidiagramseriedata)
     - [Type FhiDiagramFlag](#type-fhidiagramflag)
+    - [Type FhiDiagramUnit](#type-fhidiagramunit)
   - [Changelog](#changelog)
   - [Contribute](#contribute)
   - [Demo](#demo)
@@ -23,16 +24,17 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 3.x.x                  | 4.0.0                 | 6.0.0     | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/10 *  |
-| 2.x.x                  | 3.1.0                 | 5.9       | 5.3.2     | 16          | 11.1.0     | 4.0.0              | 17      | 18/10 *  |
-| 1.x.x                  | -                     | 5         | 5         | 15          | 11.1.0     | 4.0.0              | 16      | 18/9 *   |
-| 0.7.0                  | -                     | 5         | 5         | 14          | 11.1.0     | 3.1.2              | 15      | 18/9 *   |
-| 0.6.x                  | -                     | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.5.x                  | -                     | 5         | 5         | 14          | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.4.x                  | -                     | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.3.x                  | -                     | 5         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.2.0                  | -                     | 4         | 5         |             | 10.3.3     | 3.1.0              | 15      | 18/9 *   |
-| 0.1.0                  | -                     | 4         | 5         |             | 10.3.0     | 3                  | 14      | 16/8 *   |
+| Unreleased             | 4.0                   | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
+| 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
+| 2                      | 3.1                   | 5.9       | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
+| 1                      | -                     | 5         | 5         | 15          | 11.1       | 4.0                | 16      | 18/9 *   |
+| 0.7                    | -                     | 5         | 5         | 14          | 11.1       | 3.1.2              | 15      | 18/9 *   |
+| 0.6                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
+| 0.5                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
+| 0.4                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
+| 0.3                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
+| 0.2                    | -                     | 4         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
+| 0.1                    | -                     | 4         | 5         |             | 10.3       | 3                  | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
 
@@ -106,7 +108,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 | Input | Type | Default | Required | Description |
 | ----- | ---- | ------- | -------- | ----------- |
-| `[diagramOptions]` | `FhiDiagramOptions` | - | yes | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. |
+| `[diagramOptions]` | `FhiDiagramOptions` | - | yes | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. **NB!** The object sendt inn to `@Input diagramOptions` needs to be reassigned for change detection to kick in. |
 
 ### Outputs
 
@@ -133,12 +135,13 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `[series]`            | `Array<FhiDiagramSerie>` | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#type-fhidiagramserie) for details. |
 | `tableOrientation`    | `string`                 | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`               | `string`                 | -         | yes      | The title above the diagram. |
+| `unit`                | `Array<FhiDiagramUnit>`  | -         | no       | Decimal count, and metadata for y-axis and tooltip. |
 
 ### Type FhiDiagramSerie
 
 | Property | Type                         | Default | Required | Description |
 | -------- | ---------------------------- | ------- | -------- | ----------- |
-| `data`   | `Array<FhiDiagramSerieData>` | -       | yes      | The individual data points in a serie. See [Data](#type-data) for details. |
+| `data`   | `Array<FhiDiagramSerieData>` | -       | yes      | The individual data points in a serie. |
 | `name`   | `string \| Array<string>`    | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependency on a given separator, use an array of category names instead. |
 | `stack`  | `string`                     | -       | yes      | This option allows for grouping series in a stacked chart. Only applies to diagramTypeId `barStacked` and `columnStacked`. |
 
@@ -148,7 +151,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 | Property | Type                 | Default | Required | Description |
 | -------- | -------------------- | ------- | -------- | ----------- |
-| `name`   | `string`             | -       | yes      | The name of the data point as shown in the tooltip.
+| `name`   | `string`             | -       | yes      | The name of the data point as shown in the tooltip. |
 | `y`      | `number \| string`   | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value. |
 
 ### Type FhiDiagramFlag
@@ -157,6 +160,15 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | -------- | -------- | ------- | -------- | ----------- |
 | `label`  | `string` | -       | yes      | Description of the flag, ie. _Anonymized_ |
 | `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`. |
+
+### Type FhiDiagramUnit
+
+| Property   | Type     | Default | Required | Description |
+| ---------- | -------- | ------- | -------- | ----------- |
+| `decimals` | `number` | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
+| `label`    | `string` | -       | yes      | The vertical y-axis label, showing next to the axis line. |
+| `symbol`   | `string` | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
+| `position` | `string` | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
 
 ## Changelog
 
