@@ -39,17 +39,9 @@ import { DiagramTypeGroup } from './models/diagram-type-group.model';
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    TopoJsonService,
-    DiagramTypeService,
-    DiagramTypeGroupService,
-    OptionsService,
-    TableService,
-  ],
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private currentDiagramTypeDisabled: boolean;
-  private flaggedSeries: FlaggedSerie[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
 
@@ -63,14 +55,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   allDiagramOptions!: AllDiagramOptions;
   mapCopyrightInfo!: object;
   currentDiagramTypeGroup!: string;
-  digitsInfo = '1.0-2';
+  digitsInfo = '1.0-14';
   diagramTypeGroups = DiagramTypeGroups;
   diagramTypeGroups_NEW!: DiagramTypeGroup[];
-  showDefaultChartTemplate = true;
-  showDiagramTypeDisabledInfo: boolean;
-  showFooter = false;
-  showMap = false;
+  flaggedSeries: FlaggedSerie[];
   tableData: TableData;
+
+  showDefaultChartTemplate: boolean;
+  showDiagramTypeDisabledWarning: boolean;
+  showFooter: boolean;
+  showMap: boolean;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -82,24 +76,31 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
+    this.highcharts.setOptions({
+      lang: {
+        decimalPoint: ',',
+      },
+    });
   }
 
   ngOnChanges() {
-    try {
-      this.showMap = false;
-      this.allDiagramOptions = this.diagramOptions;
-      this.loopSeriesToUpdateAndExtractInfo();
-      this.updateDiagramTypeGroups();
+    this.resetDiagramState();
 
-      this.updateAvailableDiagramTypes();
+    try {
+      this.loopSeriesToUpdateAndExtractInfo();
+      this.updateDecimals();
+
+      this.updateDiagramTypeGroups();
+      this.updateAvailableDiagramTypes(); // Deprecates in v5
+
       this.updateAllDiagramOptions();
       this.updateCurrentDiagramTypeGroup();
       this.checkIfCurrentDiagramTypeDisabled();
 
       if (this.currentDiagramTypeDisabled) {
-        this.showDiagramTypeDisabledInfo = true;
+        this.showDiagramTypeDisabledWarning = true;
       } else {
-        this.showDiagramTypeDisabledInfo = false;
+        this.showDiagramTypeDisabledWarning = false;
         this.updateDiagram();
       }
     } catch (error) {
@@ -141,6 +142,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return this.topoJsonService.getMapCopyright();
   }
 
+  private resetDiagramState() {
+    this.showDiagramTypeDisabledWarning = false;
+    this.showFooter = false;
+    this.showMap = false;
+    this.flaggedSeries = [];
+    this.allDiagramOptions = this.diagramOptions;
+  }
+
   private loopSeriesToUpdateAndExtractInfo() {
     let n = 0;
 
@@ -159,9 +168,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       if (decimalData.length !== 0) {
         this.allDiagramOptions.seriesHasDecimalDataPoints = true;
       }
-      if (decimalData.length !== 0 && this.allDiagramOptions.decimals > 0) {
-        this.digitsInfo = `1.0-${this.allDiagramOptions.decimals}`;
-      }
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;
       }
@@ -178,6 +184,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups_NEW,
     );
     this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
+  }
+
+  private updateDecimals() {
+    const unit = this.allDiagramOptions.unit;
+
+    // Currently only support for one unit
+    const decimals = unit?.length >= 0 ? unit[0].decimals : this.allDiagramOptions.decimals; // Temporary fallback before this.allDiagramOptions.decimals deprecates in v5
+
+    if (decimals > 14) {
+      this.digitsInfo = '1.14-14';
+      console.warn('Max decimal places is 14 due to loss of precision at runtime!');
+    } else if (decimals >= 0) {
+      this.digitsInfo = `1.${decimals}-${decimals}`;
+    }
   }
 
   private formatSerieName(name: string | Array<string>): string {
@@ -271,14 +291,19 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
       this.updateMap();
     } else {
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.updateChart();
     }
+  }
+
+  private updateChart() {
+    this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
     this.showFooter = this.canShowFooter();
   }
 
   private updateTable() {
     const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
     this.tableData = this.tableService.getTable(series, this.allDiagramOptions.tableOrientation);
+    this.showFooter = this.canShowFooter();
   }
 
   private updateMap() {
@@ -288,6 +313,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
+      this.showFooter = this.canShowFooter();
       this.changeDetector.detectChanges();
     } else {
       this.loadMap(mapTypeId);
@@ -339,19 +365,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private getErrorMsg(error: any) {
-    return `ERROR: @Input() diagramOptions === undefined,
-    diagramOptions.title === undefined or diagramOptions.series === undefined
-    at FhiAngularHighchartsComponent.ngOnChanges()
-    FhiAngularHighchartsComponent can not be rendered.
+    return `${error}
 
     To avoid this error message:
     Make sure [yourOptions] are valid before calling template:
     <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
 
-    If [yourOptions] are in accordance with specification; contact maintainer of
-    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
+    If [yourOptions] are in accordance with specification, contact maintainer of package:
+    https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
 
-    Stacktrace:
-    ${error}`;
+    API documentation:
+    https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
   }
 }
