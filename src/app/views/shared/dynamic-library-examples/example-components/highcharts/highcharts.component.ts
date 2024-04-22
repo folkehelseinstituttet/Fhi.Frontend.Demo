@@ -69,11 +69,14 @@ export class HighchartsComponent implements OnInit {
           ...diagramOptions,
           series: data,
         };
+
+        // Mocking a delayed server response
         setTimeout(() => {
           this.dataIsLoading = false;
           this.dataIsLoaded = true;
         }, 750);
       },
+
       error: (e) => console.error(e),
     });
   }
