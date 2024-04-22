@@ -2,6 +2,11 @@
 
 > Apr 19, 2024
 
+* :bug: **Bugfix** Fix bug: _"footer doesn't always show when map"_
+* :tada: **Enhancement** Better support for decimals, both in table and in tooltip
+* :tada: **Enhancement** Add support for one unit at the time on yAxis
+* :tada: **Enhancement** Add support for unit i tooltip
+* :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Alert on disabled diagram type changed to warning type
 
