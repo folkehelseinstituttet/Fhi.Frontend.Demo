@@ -3,7 +3,7 @@
 > Apr 22, 2024
 
 * :bug: **Bugfix** Popover trigger is circular when placed in table context
-* :bug: **Bugfix** Links to API in documentation tab no longer lead to a 404
+* :bug: **Bugfix** Links to API in example documentation tab no longer lead to a 404
 
 # 4.0.2
 
