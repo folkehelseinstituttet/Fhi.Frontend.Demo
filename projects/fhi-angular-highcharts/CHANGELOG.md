@@ -1,6 +1,6 @@
-# Unreleased
+# 3.1.0
 
-> Apr 19, 2024
+> Apr 22, 2024
 
 * :bug: **Bugfix** Fix bug: _"footer doesn't always show when map"_
 * :tada: **Enhancement** Better support for decimals, both in table and in tooltip
