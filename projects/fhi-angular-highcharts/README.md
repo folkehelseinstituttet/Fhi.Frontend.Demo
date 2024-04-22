@@ -106,9 +106,9 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 ### Inputs
 
-| Input | Type | Default | Required | Description |
-| ----- | ---- | ------- | -------- | ----------- |
-| `[diagramOptions]` | `FhiDiagramOptions` | - | yes | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. **NB!** The object sendt inn to `@Input diagramOptions` needs to be reassigned for change detection to kick in. |
+| Input              | Type                | Default | Required | Description |
+| ------------------ | ------------------- | ------- | -------- | ----------- |
+| `[diagramOptions]` | `FhiDiagramOptions` | -       | yes      | All properties used to configure the diagram. See [FhiDiagramOptions](#type-fhidiagramoptions) for details. **NB!** The object sent in to `@Input diagramOptions` needs to be reassigned for change detection to kick in. |
 
 ### Outputs
 
