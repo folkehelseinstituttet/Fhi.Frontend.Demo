@@ -1,3 +1,10 @@
+# Unreleased
+
+> Apr 22, 2024
+
+* :bug: **Bugfix** Popover trigger is circular when placed in table context
+* :bug: **Bugfix** Links to API in documentation tab no longer lead to a 404
+
 # 4.0.2
 
 > Mar 25, 2024
