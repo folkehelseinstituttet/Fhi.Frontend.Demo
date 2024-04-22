@@ -188,12 +188,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateDecimals() {
     const unit = this.allDiagramOptions.unit;
-    let decimals = unit?.length >= 0 ? unit[0].decimals : undefined; // Currently only support for one unit
 
-    // Temporary fallback before this.allDiagramOptions.decimals deprecates in v5
-    if (decimals === undefined) {
-      decimals = this.allDiagramOptions.decimals;
-    }
+    // Currently only support for one unit
+    const decimals = unit?.length >= 0 ? unit[0].decimals : this.allDiagramOptions.decimals; // Temporary fallback before this.allDiagramOptions.decimals deprecates in v5
 
     if (decimals > 14) {
       this.digitsInfo = '1.14-14';
