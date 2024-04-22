@@ -2,6 +2,7 @@
 
 > Apr 22, 2024
 
+* :tada: **Enhancement** Popover closes on click of an item
 * :bug: **Bugfix** Popover trigger is circular when placed in table context
 * :bug: **Bugfix** Links to API in example documentation tab no longer lead to a 404
 
