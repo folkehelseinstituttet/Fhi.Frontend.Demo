@@ -106,9 +106,6 @@ export class OptionsService {
     if (allDiagramOptions.unit?.length === 1) {
       yAxis.title.text = allDiagramOptions.unit[0].label;
     }
-    if (allDiagramOptions.unit?.length === 1) {
-      yAxis.title.text = allDiagramOptions.unit[0].label;
-    }
     if (allDiagramOptions.unit?.length === 1 && allDiagramOptions.unit[0].symbol) {
       yAxis.labels = {
         format:
