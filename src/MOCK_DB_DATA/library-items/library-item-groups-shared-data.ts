@@ -203,10 +203,4 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'PrototypeTablesData',
     parentUrlSegment: UrlSegment.prototypes,
   },
-  TreeViewBuilder: {
-    id: 'tree-view-builder',
-    title: 'Tree view builder',
-    apiEndPoint: 'TreeViewBuilderData',
-    parentUrlSegment: UrlSegment.prototypes,
-  },
 };
