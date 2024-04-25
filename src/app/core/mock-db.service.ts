@@ -37,7 +37,6 @@ import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
 import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
-import { TreeViewBuilderData } from 'src/MOCK_DB_DATA/library-items/tree-view-builder/_tree-view-builder.data';
 import { PrototypeFormsData } from 'src/MOCK_DB_DATA/library-items/prototype-forms/_prototype-forms.data';
 import { PrototypeTablesData } from 'src/MOCK_DB_DATA/library-items/prototype-tables/_prototype-tables.data';
 import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
@@ -83,7 +82,6 @@ export class MockDbService implements InMemoryDbService {
       NavsData,
       PaginationsData,
       ProgressIndicatorsData,
-      TreeViewBuilderData,
       PrototypeFormsData,
       PrototypeTablesData,
       SearchData,
