@@ -193,10 +193,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     const decimals = unit?.length >= 0 ? unit[0].decimals : this.allDiagramOptions.decimals; // Temporary fallback before this.allDiagramOptions.decimals deprecates in v5
 
     if (decimals > 14) {
-      this.digitsInfo = '1.14-14';
       console.warn('Max decimal places is 14 due to loss of precision at runtime!');
     } else if (decimals >= 0) {
-      this.digitsInfo = `1.${decimals}-${decimals}`;
+      this.digitsInfo = `1.0-${decimals}`;
     }
   }
 
