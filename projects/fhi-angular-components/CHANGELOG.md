@@ -1,3 +1,10 @@
+# Unreleased
+
+> Apr 30, 2024
+
+* :tada: **Enhancement** `FhiPopoverMenu` closes on click of an item inside
+* :bug: **Bugfix** Popover menu trigger is circular when placed in table context
+
 # 4.0.2
 
 > Mar 25, 2024

@@ -4,4 +4,39 @@
 
 <ng-container *ngIf="itemId === items.NavPopoverMenu.id">
   <fhi-popover-menu [items]="popoverMenuItems" (actionEvent)="action($event)"></fhi-popover-menu>
+
+  <hr class="mt-5 mb-6" />
+
+  <table class="table table-striped w-100">
+    <thead>
+      <tr>
+        <th class="w-50">Overskrift</th>
+        <th class="w-50">Overskrift</th>
+        <th class="text-center">Handling</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tekst</td>
+        <td>Tekst</td>
+        <td class="text-end">
+          <fhi-popover-menu [items]="popoverMenuItems" (actionEvent)="action($event)"></fhi-popover-menu>
+        </td>
+      </tr>
+      <tr>
+        <td>Tekst</td>
+        <td>Tekst</td>
+        <td class="text-end">
+          <fhi-popover-menu [items]="popoverMenuItems" (actionEvent)="action($event)"></fhi-popover-menu>
+        </td>
+      </tr>
+      <tr>
+        <td>Tekst</td>
+        <td>Tekst</td>
+        <td class="text-end">
+          <fhi-popover-menu [items]="popoverMenuItems" (actionEvent)="action($event)"></fhi-popover-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </ng-container>
