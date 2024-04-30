@@ -20,7 +20,7 @@
 | Property       | Type                                   | Default | Required | Description                                                                                                      |
 |----------------|----------------------------------------|---------|----------|------------------------------------------------------------------------------------------------------------------|
 | `action`       | `string`                               | -       | no       | String to identify the wanted action                                                                             |
-| `link`         | `{ href: string; download?: boolean }` | -       | no       | Link or                                                                                                          |
+| `link`         | `{ href: string; download?: boolean }` | -       | no       | Url and indication if it's a file download link                                                                  |
 | `icon`         | `string`                               | -       | no       | Icon name from [FHI Designsystem icon set](https://designsystem.fhi.no/developer/visual-identity/icons#icon-set) |
 | `name`         | `string`                               | -       | yes      | Name on item for display                                                                                         |
 | `routerLink`   | `string`                               | -       | no       | String for routing                                                                                               |

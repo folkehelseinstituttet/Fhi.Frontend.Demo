@@ -26,7 +26,6 @@ export class NavsComponent {
     },
     {
       action: 'delete',
-      closeOnClick: true,
       icon: 'trash3',
       name: 'Slett',
     },
