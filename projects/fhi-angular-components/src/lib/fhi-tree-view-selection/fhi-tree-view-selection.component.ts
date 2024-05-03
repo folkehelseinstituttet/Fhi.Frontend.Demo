@@ -111,13 +111,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           }
           item.descendantStateConfirmed = true;
         }
-        this.updateDecendantState(item.children, initialState);
-      } else if (!item.descendantStateConfirmed) {
-        item.descendantStateConfirmed = true; // I.e. has no descendants
-        this.updateDecendantState(this.items, initialState);
-      }
-      if (items.length === 1 && !item.descendantStateConfirmed) {
-        this.updateDecendantState(this.items, initialState);
+        // Only makes recursive call if there are unconfirmed descendants
+        if (!item.descendantStateConfirmed) {
+          this.updateDecendantState(item.children, initialState);
+        }
+      } else {
+        item.descendantStateConfirmed = true;
       }
     });
   }
