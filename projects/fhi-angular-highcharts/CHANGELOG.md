@@ -1,6 +1,6 @@
-# Unreleased
+# 3.2.0
 
-> Apr 29, 2024
+> Mai 6, 2024
 
 * :bug: **Bugfix** Add null check for `FhiDiagramOptions.decimals` and `FhiDiagramOptions.unit.decimals`
 * :tada: **Enhancement** Set `minFractionDigits` in `digitsInfo` to `0` (DecimalPipe), since padding the number with extra zeros actually changes the number.
