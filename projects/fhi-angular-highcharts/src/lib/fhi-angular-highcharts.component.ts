@@ -41,8 +41,6 @@ import { DiagramTypeGroup } from './models/diagram-type-group.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
-  private currentDiagramTypeDisabled: boolean;
-
   @Input() diagramOptions!: FhiDiagramOptions;
 
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
@@ -238,15 +236,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return flaggedDataPoints;
   }
 
-  private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(
-      this.allDiagramOptions.diagramTypeSubset,
-      this.allDiagramOptions.mapTypeId,
-      this.allDiagramOptions.series,
-      this.flaggedSeries,
-    );
-  }
-
   private updateAllDiagramOptions() {
     const diagramTypeId = this.allDiagramOptions.diagramTypeId;
     const flags = this.allDiagramOptions.flags;
@@ -254,28 +243,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     this.allDiagramOptions = {
       ...this.allDiagramOptions,
-      diagramTypeId: diagramTypeId
-        ? (this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId) as FhiDiagramTypeIds)
-        : (DiagramTypeIds.table as FhiDiagramTypeIds),
+      diagramTypeId: diagramTypeId ? diagramTypeId : (DiagramTypeIds.table as FhiDiagramTypeIds),
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
-  }
-
-  private updateCurrentDiagramTypeGroup() {
-    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
-      return;
-    }
-    if (
-      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
-      this.diagramTypeService.mapTypes.length !== 0
-    ) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
-      return;
-    }
-    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 
   private updateDiagram() {
@@ -369,5 +340,32 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     API documentation:
     https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
+  }
+
+  // All methods below will be deprecated in v5
+
+  private updateAvailableDiagramTypes() {
+    this.diagramTypeService.updateDiagramTypes(
+      this.allDiagramOptions.diagramTypeSubset,
+      this.allDiagramOptions.mapTypeId,
+      this.allDiagramOptions.series,
+      this.flaggedSeries,
+    );
+  }
+
+  private updateCurrentDiagramTypeGroup() {
+    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
+      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
+      return;
+    }
+    if (
+      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
+      this.diagramTypeService.mapTypes.length !== 0
+    ) {
+      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
+      return;
+    }
+    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 }
