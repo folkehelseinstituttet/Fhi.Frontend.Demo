@@ -91,13 +91,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateDecimals();
 
       this.updateDiagramTypeGroups();
-      this.updateAvailableDiagramTypes(); // Deprecates in v5
+      this.updateAvailableDiagramTypes(); // To be deprecated in v5
 
       this.updateAllDiagramOptions();
-      this.updateCurrentDiagramTypeGroup();
-      this.checkIfCurrentDiagramTypeDisabled();
 
-      if (this.currentDiagramTypeDisabled) {
+      this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
+      // this.updateCurrentDiagramTypeGroup_NEW();
+
+      if (this.diagramTypeGroupService.diagramTypeDisabled(this.allDiagramOptions.diagramTypeId)) {
         this.showDiagramTypeDisabledWarning = true;
       } else {
         this.showDiagramTypeDisabledWarning = false;
@@ -184,6 +185,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups_NEW,
     );
     this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
+
+    console.log('this.diagramTypeGroups_NEW', this.diagramTypeGroups_NEW);
   }
 
   private updateDecimals() {
@@ -273,18 +276,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-  }
-
-  private checkIfCurrentDiagramTypeDisabled() {
-    if (
-      this.diagramTypeService.disabledDiagramTypeIds.find(
-        (id) => id === this.allDiagramOptions.diagramTypeId,
-      ) === undefined
-    ) {
-      this.currentDiagramTypeDisabled = false;
-      return;
-    }
-    this.currentDiagramTypeDisabled = true;
   }
 
   private updateDiagram() {

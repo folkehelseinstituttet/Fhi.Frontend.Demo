@@ -1,6 +1,6 @@
 <ng-container *ngIf="itemId === items.HighchartsWithoutMenu.id">
   <!-- <ng-container *ngIf="!dataIsLoading; else spinner"> </ng-container> -->
-  <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts>
+  <!-- <fhi-angular-highcharts [diagramOptions]="diagramOptions"></fhi-angular-highcharts> -->
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
@@ -40,7 +40,7 @@
   </div>
 
   <!-- <ng-container *ngIf="!dataIsLoading; else spinner"> </ng-container> -->
-  <fhi-angular-highcharts
+  <!-- <fhi-angular-highcharts
     [diagramOptions]="diagramOptions"
     (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
     (metadataButtonClick)="onMetadataButtonClick()"
@@ -57,7 +57,7 @@
         metadata som ligger utenfor highcharts-komponenten.
       </p>
     </div>
-  </div>
+  </div> -->
 </ng-container>
 
 <ng-template #spinner>

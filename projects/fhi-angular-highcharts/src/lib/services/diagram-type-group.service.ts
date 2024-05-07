@@ -43,6 +43,21 @@ export class DiagramTypeGroupService {
     this.updateActiveGroup();
   }
 
+  diagramTypeDisabled(diagramTypeId: string): boolean {
+    let disabled = false;
+    this.diagramTypeGroups.forEach((group) => {
+      group.children.forEach((diagramType) => {
+        if (diagramTypeId === diagramType.id && diagramType.disabled) {
+          disabled = true;
+        }
+      });
+    });
+    if (disabled) {
+      return true;
+    }
+    return false;
+  }
+
   private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
