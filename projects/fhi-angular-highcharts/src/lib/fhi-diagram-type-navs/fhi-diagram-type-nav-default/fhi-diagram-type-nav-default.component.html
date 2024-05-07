@@ -5,7 +5,6 @@
         type="button"
         class="btn fhi-btn-group__btn"
         [ngClass]="{ active: diagramTypeGroup.diagramType.active }"
-        [disabled]="diagramTypeGroup.diagramType.disabled"
         (click)="navigate(diagramTypeGroup.diagramType)"
       >
         <i
@@ -23,7 +22,6 @@
           type="button"
           class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
           [ngClass]="{ active: diagramTypeGroup.diagramType.active }"
-          [disabled]="diagramTypeGroup.diagramType.disabled"
           (click)="navigate(diagramTypeGroup.diagramType)"
         >
           <span>
@@ -49,7 +47,6 @@
                 class="text-nowrap"
                 [ngClass]="{ active: diagramType.active }"
                 ngbDropdownItem
-                [disabled]="diagramType.disabled"
                 (click)="navigate(diagramType)"
               >
                 <i [class]="'icon-' + diagramType.icon" *ngIf="diagramType.icon"></i>
