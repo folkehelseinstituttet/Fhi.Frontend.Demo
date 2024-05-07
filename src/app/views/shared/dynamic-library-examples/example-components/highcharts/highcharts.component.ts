@@ -85,11 +85,11 @@ export class HighchartsComponent implements OnInit {
     switch (value) {
       // dataset (init)
       case 'aarsak_2008_2018':
-        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
         this.getDodsfallEtterAarsak_2008_2018();
         break;
       case 'aarsak_2017_2021':
-        this.getDodsfallEtterAarsak_2017_2021();
+        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+        // this.getDodsfallEtterAarsak_2017_2021();
         break;
       case 'befolkning_antall':
         this.getBefolkningInndelingPr2024_antall();
@@ -240,7 +240,6 @@ export class HighchartsComponent implements OnInit {
       title: 'Unit',
       // diagramTypeId: 'column',
       diagramTypeNavId: 'default',
-      diagramTypeSubset: ['column'],
       decimals: 2,
       flags: [
         { symbol: '..', label: 'Manglende data' },
@@ -256,15 +255,15 @@ export class HighchartsComponent implements OnInit {
       // showFullScreenButton: true,
       // tableOrientation: 'seriesAsColumns',
       unit: [
-        // {
-        //   label: 'Antall',
-        // },
         {
-          decimals: 1,
-          label: 'Prosent',
-          symbol: '%',
-          position: 'end',
+          label: 'Antall',
         },
+        // {
+        //   decimals: 1,
+        //   label: 'Prosent',
+        //   symbol: '%',
+        //   position: 'end',
+        // },
       ],
     });
   }
