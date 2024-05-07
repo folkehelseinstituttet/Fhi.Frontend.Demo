@@ -252,7 +252,7 @@ export class HighchartsComponent implements OnInit {
       // lastUpdated: '06.06.2023',
       // mapTypeId: 'mapFylker',
       openSource: false,
-      // showFullScreenButton: true,
+      showFullScreenButton: true,
       // tableOrientation: 'seriesAsColumns',
       unit: [
         {

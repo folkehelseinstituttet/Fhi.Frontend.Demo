@@ -94,7 +94,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateAllDiagramOptions();
 
       this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
-      // this.updateCurrentDiagramTypeGroup_NEW();
 
       if (this.diagramTypeGroupService.diagramTypeDisabled(this.allDiagramOptions.diagramTypeId)) {
         this.showDiagramTypeDisabledWarning = true;
