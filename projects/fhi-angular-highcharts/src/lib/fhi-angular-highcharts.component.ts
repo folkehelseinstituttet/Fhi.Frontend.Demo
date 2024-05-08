@@ -182,8 +182,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups_NEW,
     );
     this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
-
-    console.log('this.diagramTypeGroups_NEW', this.diagramTypeGroups_NEW);
   }
 
   private updateDecimals() {
