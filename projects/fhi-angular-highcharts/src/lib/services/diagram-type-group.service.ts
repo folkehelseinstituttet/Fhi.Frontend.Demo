@@ -43,6 +43,21 @@ export class DiagramTypeGroupService {
     this.updateActiveGroup();
   }
 
+  diagramTypeDisabled(diagramTypeId: string): boolean {
+    let disabled = false;
+    this.diagramTypeGroups.forEach((group) => {
+      group.children.forEach((diagramType) => {
+        if (diagramTypeId === diagramType.id && diagramType.disabled) {
+          disabled = true;
+        }
+      });
+    });
+    if (disabled) {
+      return true;
+    }
+    return false;
+  }
+
   private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
@@ -104,12 +119,28 @@ export class DiagramTypeGroupService {
 
   private disableDiagramType(diagramType: DiagramType) {
     switch (diagramType.id) {
-      case DiagramTypeIdValues.map:
-        diagramType.disabled = this.diagramTypeMapDisabled();
+      case DiagramTypeIdValues.bar:
+        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        break;
+
+      case DiagramTypeIdValues.barStacked:
+        diagramType.disabled = this.diagramTypeLineDisabled();
+        break;
+
+      case DiagramTypeIdValues.column:
+        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        break;
+
+      case DiagramTypeIdValues.columnStacked:
+        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
         break;
 
       case DiagramTypeIdValues.line:
         diagramType.disabled = this.diagramTypeLineDisabled();
+        break;
+
+      case DiagramTypeIdValues.map:
+        diagramType.disabled = this.diagramTypeMapDisabled();
         break;
 
       case DiagramTypeIdValues.pie:
@@ -119,6 +150,10 @@ export class DiagramTypeGroupService {
       default:
         diagramType.disabled = false;
     }
+  }
+
+  private diagramTypeBarAndColumnDisabled(): boolean {
+    return this.series.length > 1 && this.flaggedSeries.length !== 0;
   }
 
   private diagramTypeMapDisabled(): boolean {
