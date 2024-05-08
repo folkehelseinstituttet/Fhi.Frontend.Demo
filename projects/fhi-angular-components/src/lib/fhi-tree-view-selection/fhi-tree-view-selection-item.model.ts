@@ -7,3 +7,9 @@ export interface FhiTreeViewSelectionItem {
   hasCheckedDescendant?: boolean;
   name: string;
 }
+
+
+export interface FhiTreeViewSelectionItemState {
+  hasExpandedDescendant?: boolean;
+  hasCheckedDescendant?: boolean;
+}
