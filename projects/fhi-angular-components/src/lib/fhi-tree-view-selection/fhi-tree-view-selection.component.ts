@@ -11,7 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
-import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 
 @Component({
   selector: 'fhi-tree-view-selection',
