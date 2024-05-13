@@ -106,7 +106,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       if (item.children && item.children.length > 0) {
         this.updateCheckedState(id, item.children, multiToggle, checkAll);
       }
-      item.descendantStateConfirmed = false;
     });
   }
 
@@ -173,8 +172,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         if (item.children && item.children.length > 0) {
           childrenState = this.updateDecendantState(item.children, expandCheckedItems);
         }
-        // Logic for CHECKED
-        // Update this items hasCheckedDescendant and the overall hasCheckedDescendant for all items in this loop
+        // Compute  CHECKED states
+        // Update  hasCheckedDescendant for this item and the overall hasCheckedDescendant for all items in this loop that will be returned to caller
         if (item.isChecked) {
           itemsState.hasCheckedDescendant = true;
         } else if (!childrenState.hasCheckedDescendant) {
@@ -185,7 +184,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           item.hasCheckedDescendant = true;
         }
 
-        // Logic for EXPANDED
+        // Compute  EXPANDED states
         // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
         if (expandCheckedItems) {
           if (item.isChecked) {
