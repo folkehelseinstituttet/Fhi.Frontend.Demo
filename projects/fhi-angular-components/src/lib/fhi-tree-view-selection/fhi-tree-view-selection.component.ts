@@ -109,50 +109,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     });
   }
 
-  private updateDecendantStateDifferentLogic(
-    items: Item[],
-    expandCheckedItems: boolean,
-  ): FhiTreeViewSelectionItemState {
-    const itemsState = {
-      hasExpandedDescendant: false,
-      hasCheckedDescendant: false,
-    };
-    if (items && items.length > 0) {
-      items.forEach((item) => {
-        // Make sure isChecked and isExpanded is always set, if not the default to false
-        item.isChecked = item.isChecked || false;
-        item.isExpanded = item.isExpanded || false;
-        if (item.children && item.children.length > 0) {
-          const childrensState = this.updateDecendantState(item.children, expandCheckedItems);
-          // Update hasCheckedDescendant in the allItemsState  in this loop based on the stat in  this items children
-          itemsState.hasCheckedDescendant =
-            itemsState.hasCheckedDescendant || // One of the other items has checked descendtans, so dont overwrite it
-            item.isChecked || // The item is checked, so count it in
-            childrensState.hasCheckedDescendant; // One of the children of this item has a checked decendant
-          // Update hasExpandedDecendant in the allItemsState if one of the children has expandedDecendants
-          itemsState.hasExpandedDescendant =
-            itemsState.hasExpandedDescendant || childrensState.hasExpandedDescendant;
-          // Make sure this item is expanded if any og the chldren is expanded
-          item.isExpanded = item.isExpanded || childrensState.hasExpandedDescendant;
-          if (expandCheckedItems) {
-            item.isExpanded = item.isExpanded || item.isChecked;
-            itemsState.hasExpandedDescendant = itemsState.hasExpandedDescendant || item.isChecked;
-          }
-          item.hasCheckedDescendant = childrensState.hasCheckedDescendant;
-        } else {
-          // This is leaf node.
-          if (item.isChecked) {
-            itemsState.hasCheckedDescendant = true;
-            itemsState.hasExpandedDescendant = expandCheckedItems;
-          } else if (!expandCheckedItems) {
-            itemsState.hasExpandedDescendant = item.isExpanded;
-          }
-        }
-      });
-    }
-    return itemsState;
-  }
-
   private updateDecendantState(
     items: Item[],
     expandCheckedItems: boolean,
