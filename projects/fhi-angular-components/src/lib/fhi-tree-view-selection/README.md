@@ -22,7 +22,6 @@
 | Property                   | Type                         | Default | Required | Description |
 | -------------------------- | ---------------------------- | ------- | -------- | ----------- |
 | `children`                 | `FhiTreeViewSelectionItem[]` | -       | no       | Recursively add items to the tree. |
-| `descendantStateConfirmed` | `boolean`                    | -       | no       | Only for internal use. |
 | `id`                       | `number \| string`           | -       | no       | Custom id's. Id's are added automatically if not set in item. |
 | `isChecked`                | `boolean`                    | -       | no       | Whether the item is checked or not. |
 | `isExpanded`               | `boolean`                    | -       | no       | Whether the item is expanded or not. |

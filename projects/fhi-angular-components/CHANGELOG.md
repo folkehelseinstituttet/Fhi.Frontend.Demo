@@ -1,6 +1,12 @@
-# 4.1.0
+# Unreleased
 
-> Mai 6, 2024
+> May 13, 2024
+
+* :bug: **Bugfix** Fix "lost active branch state" for Tree View Selection in `FhiTreeViewRadioComponent` and `FhiTreeViewCheckboxComponent`
+
+## 4.1.0
+
+> May 6, 2024
 
 * :bug: **Bugfix** Fix "exceeding maximum call stack size" if large item count in `FhiTreeViewRadioComponent` and `FhiTreeViewCheckboxComponent`
 * :tada: **Enhancement** `FhiPopoverMenu` closes on click of an item inside

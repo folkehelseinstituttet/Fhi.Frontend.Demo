@@ -11,6 +11,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 
 @Component({
   selector: 'fhi-tree-view-selection',
@@ -93,39 +94,55 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       if (item.children && item.children.length > 0) {
         this.updateCheckedState(id, item.children, multiToggle, checkAll);
       }
-      item.descendantStateConfirmed = false;
     });
   }
 
-  private updateDecendantState(items: Item[], initialState: boolean) {
-    items.forEach((item) => {
-      if (item.children && item.children.length > 0) {
-        if (item.children.every((item) => item.descendantStateConfirmed)) {
-          if (item.children.find((item) => item.isChecked) !== undefined) {
-            this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
-          } else {
-            this.setHasCheckedDescendantAndIsExpanded(false, item, initialState);
-          }
-          if (item.children.find((item) => item.hasCheckedDescendant) !== undefined) {
-            this.setHasCheckedDescendantAndIsExpanded(true, item, initialState);
-          }
-          item.descendantStateConfirmed = true;
+  private updateDecendantState(
+    items: Item[],
+    expandCheckedItems: boolean,
+  ): FhiTreeViewSelectionItemState {
+    const itemsState: FhiTreeViewSelectionItemState = {
+      hasExpandedDescendant: false,
+      hasCheckedDescendant: false,
+    };
+    if (Array.isArray(items) && items.length > 0) {
+      items.forEach((item) => {
+        item.isChecked = !!item.isChecked;
+        item.isExpanded = !!item.isExpanded;
+        let childrenState: FhiTreeViewSelectionItemState = {
+          hasExpandedDescendant: false,
+          hasCheckedDescendant: false,
+        };
+        if (item.children && item.children.length > 0) {
+          childrenState = this.updateDecendantState(item.children, expandCheckedItems);
         }
-        // Only makes recursive call if there are unconfirmed descendants
-        if (!item.descendantStateConfirmed) {
-          this.updateDecendantState(item.children, initialState);
-        }
-      } else {
-        item.descendantStateConfirmed = true;
-      }
-    });
-  }
 
-  private setHasCheckedDescendantAndIsExpanded(value: boolean, item: Item, initialState: boolean) {
-    item.hasCheckedDescendant = value;
-    if (initialState) {
-      item.isExpanded = value;
+        // Compute  CHECKED states
+        // Update  hasCheckedDescendant for this item and the overall hasCheckedDescendant for all items in this loop that will be returned to caller
+        if (item.isChecked) {
+          itemsState.hasCheckedDescendant = true;
+        }
+        if (childrenState.hasCheckedDescendant) {
+          itemsState.hasCheckedDescendant = true;
+          item.hasCheckedDescendant = true;
+        } else {
+          item.hasCheckedDescendant = false;
+        }
+
+        // Compute  EXPANDED states
+        // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
+        if (expandCheckedItems) {
+          if (item.isChecked) {
+            item.isExpanded = true;
+            itemsState.hasExpandedDescendant = true;
+          }
+        }
+        itemsState.hasExpandedDescendant =
+          itemsState.hasExpandedDescendant || childrenState.hasExpandedDescendant;
+        item.isExpanded = item.isExpanded || childrenState.hasExpandedDescendant;
+      });
     }
+    return itemsState;
   }
 
   private createIds(items: Item[], id: number) {
