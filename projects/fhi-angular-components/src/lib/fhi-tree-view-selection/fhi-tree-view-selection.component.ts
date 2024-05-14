@@ -121,12 +121,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         // Update  hasCheckedDescendant for this item and the overall hasCheckedDescendant for all items in this loop that will be returned to caller
         if (item.isChecked) {
           itemsState.hasCheckedDescendant = true;
-        } else if (!childrenState.hasCheckedDescendant) {
-          item.hasCheckedDescendant = false;
         }
         if (childrenState.hasCheckedDescendant) {
           itemsState.hasCheckedDescendant = true;
           item.hasCheckedDescendant = true;
+        } else {
+          item.hasCheckedDescendant = false;
         }
 
         // Compute  EXPANDED states
