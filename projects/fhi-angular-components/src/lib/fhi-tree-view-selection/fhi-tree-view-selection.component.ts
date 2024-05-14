@@ -108,7 +108,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (items && items.length > 0) {
       items.forEach((item) => {
         item.isChecked = !!item.isChecked;
-        item.isExpanded = item.isExpanded || false;
+        item.isExpanded = !!item.isExpanded;
         let childrenState: FhiTreeViewSelectionItemState = {
           hasExpandedDescendant: false,
           hasCheckedDescendant: false,
