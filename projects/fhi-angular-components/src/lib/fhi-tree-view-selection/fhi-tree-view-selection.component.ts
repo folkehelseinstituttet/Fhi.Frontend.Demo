@@ -101,7 +101,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     items: Item[],
     expandCheckedItems: boolean,
   ): FhiTreeViewSelectionItemState {
-    const itemsState = {
+    const itemsState: FhiTreeViewSelectionItemState = {
       hasExpandedDescendant: false,
       hasCheckedDescendant: false,
     };
