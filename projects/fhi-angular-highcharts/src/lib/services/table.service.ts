@@ -178,7 +178,7 @@ export class TableService {
         count = previousCount / uniqueNameCount;
       }
 
-      this.testIfNamesContainsDuplicates(count);
+      // this.testIfNamesContainsDuplicates(count);
 
       counts.push(count);
       previousCount = count;
@@ -190,7 +190,8 @@ export class TableService {
 
   private testIfNamesContainsDuplicates(count: number) {
     if (!Number.isInteger(count)) {
-      throw new Error(`Diagram type Table doesn't support duplicate names within a dimention.`);
+      console.warn(`Diagram type Table doesn't support duplicate names within a dimention.`);
+      // throw new Error(`Diagram type Table doesn't support duplicate names within a dimention.`);
     }
   }
 }
