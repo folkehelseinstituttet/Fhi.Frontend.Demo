@@ -1,4 +1,10 @@
-# 3.2.0
+# Unreleased
+
+> Mai 15, 2024
+
+* :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old model stil works will be deprecated in v5.
+
+## 3.2.0
 
 > Mai 6, 2024
 
