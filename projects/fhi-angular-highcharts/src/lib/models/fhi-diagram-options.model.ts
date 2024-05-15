@@ -10,21 +10,81 @@ export type FhiDiagramTypeIds = keyof typeof DiagramTypeIds;
 export type FhiTableOrientations = keyof typeof TableOrientations;
 
 export interface FhiDiagramOptions {
+  // activeDiagramType: FhiDiagramTypeIds;
+  // controls?: FhiDiagramControls;;
+  // footer?: FhiDiagramFooter;
+  openSource?: boolean;
+  series: FhiDiagramSerie[];
+  tableOrientation?: FhiTableOrientations;
+  title: string;
+  unit?: FhiDiagramUnit[];
+
+  // The following will be deprecated in v5
   creditsHref?: string;
   creditsText?: string;
   decimals?: number;
   diagramTypeId?: FhiDiagramTypeIds;
   diagramTypeNavId?: keyof typeof DiagramTypeNavIds;
-  diagramTypeSubset?: Array<FhiDiagramTypeIds>;
+  diagramTypeSubset?: FhiDiagramTypeIds[];
   disclaimer?: string;
-  flags?: Array<FhiDiagramFlag>;
+  flags?: FhiDiagramFlag[];
   lastUpdated?: string;
   mapTypeId?: keyof typeof MapTypeIds;
   metadataButton?: boolean;
-  openSource?: boolean;
-  series: Array<FhiDiagramSerie>;
   showFullScreenButton?: boolean;
-  tableOrientation?: FhiTableOrientations;
-  title: string;
-  unit?: FhiDiagramUnit[];
 }
+
+// export interface FhiDiagramOptions {
+//   activeDiagramType: FhiDiagramTypeIds;
+//   controls?: {
+//     fullScreenButton?: {
+//       show?: boolean;
+//     };
+//     metadataButton?: {
+//       show?: boolean;
+//     };
+//     navigation?: {
+//       items?: {
+//         chartTypes?: Array<keyof typeof ChartTypeIds>;
+//         mapTypes?: Array<keyof typeof MapTypeIds>;
+//       };
+//       show?: boolean;
+//       type?: keyof typeof DiagramTypeNavIds;
+//     };
+//     tableOrientationButton?: {
+//       show?: boolean;
+//     };
+//   };
+//   footer?: {
+//     credits?: {
+//       href: string;
+//       text: string;
+//     };
+//     disclaimer?: string;
+//     flags?: Array<FhiDiagramFlag>;
+//     lastUpdated?: string;
+//   };
+//   openSource?: boolean;
+//   series: [
+//     {
+//       data: {
+//         name: string;
+//         y: number | string;
+//       };
+//       name: string | Array<string>;
+//       stack?: string;
+//       unitId?: number | string;
+//     },
+//   ];
+//   tableOrientation?: FhiTableOrientations;
+//   title: string;
+//   unit?: [
+//     {
+//       id: number | string;
+//       decimals: number;
+//       label: string;
+//       symbol: string;
+//       position: keyof typeof UnitSymbolPosition;
+//     },
+//   ];
+// }
