@@ -1,6 +1,6 @@
-# Unreleased
+# 4.1.1
 
-> May 13, 2024
+> May 15, 2024
 
 * :bug: **Bugfix** Fix "lost active branch state" for Tree View Selection in `FhiTreeViewRadioComponent` and `FhiTreeViewCheckboxComponent`
 
