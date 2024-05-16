@@ -29,7 +29,13 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: FhiDiagramFlag[];
   lastUpdated?: string;
+
+  // TODO: make a tmp solution for converting
+  //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
+  //   to avoid breaking change in PR for issue:
+  //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
   mapTypeId?: keyof typeof MapTypeIds;
+
   metadataButton?: boolean;
   showFullScreenButton?: boolean;
 }

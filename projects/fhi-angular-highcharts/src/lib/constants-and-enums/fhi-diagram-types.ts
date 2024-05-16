@@ -14,6 +14,8 @@ export enum DiagramTypeGroupIndex {
   chartIndex = 2,
 }
 
+// Charts
+
 const bar: DiagramType = {
   id: DiagramTypeIdValues.bar,
   icon: 'bar-chart-line-horizontal',
@@ -49,8 +51,16 @@ const line: DiagramType = {
   options: OptionsChartTypeLine,
 };
 
-const map: DiagramType = {
-  id: DiagramTypeIdValues.map,
+const pie: DiagramType = {
+  id: DiagramTypeIdValues.pie,
+  icon: 'pie-chart',
+  name: 'Kakediagram',
+  options: OptionsChartTypePie,
+};
+
+// Maps
+
+const mapShared = {
   icon: 'geo-alt',
   name: 'Kart',
   options: {
@@ -60,18 +70,30 @@ const map: DiagramType = {
   },
 };
 
-const pie: DiagramType = {
-  id: DiagramTypeIdValues.pie,
-  icon: 'pie-chart',
-  name: 'Kakediagram',
-  options: OptionsChartTypePie,
+const map: DiagramType = {
+  id: DiagramTypeIdValues.map,
+  ...mapShared,
 };
+
+const mapFylker: DiagramType = {
+  id: DiagramTypeIdValues.mapFylker,
+  ...mapShared,
+};
+
+const mapFylker2019: DiagramType = {
+  id: DiagramTypeIdValues.mapFylker2019,
+  ...mapShared,
+};
+
+// Table
 
 const table: DiagramType = {
   id: DiagramTypeIdValues.table,
   icon: 'table',
   name: 'Tabell',
 };
+
+// All diagram types
 
 export class DiagramTypes {
   static bar = bar;
@@ -80,16 +102,25 @@ export class DiagramTypes {
   static columnStacked = columnStacked;
   static line = line;
   static map = map;
+  static mapFylker = mapFylker;
+  static mapFylker2019 = mapFylker2019;
   static pie = pie;
   static table = table;
 }
 
-export const AllDiagramTypes = [bar, barStacked, column, columnStacked, line, map, pie, table];
+export const AllDiagramTypes = [
+  bar,
+  barStacked,
+  column,
+  columnStacked,
+  line,
+  map,
+  mapFylker,
+  mapFylker2019,
+  pie,
+  table,
+];
 
 // This is the order used in diagram-type-navs
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie];
-
-// MapTypes is kept as an array even though it may not get more than one item,
-// because the implementation in the diagram type nav is the same for
-// both ChartTypes and MapTypes
-export const MapTypes = [map];
+export const MapTypes = [map, mapFylker, mapFylker2019];

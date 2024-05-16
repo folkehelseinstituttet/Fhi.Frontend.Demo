@@ -38,3 +38,9 @@ export enum MapTypeIds {
   mapFylker,
   mapFylker2019,
 }
+
+// export const MapTypeIdValuesArray = [
+//   DiagramTypeIdValues.map,
+//   DiagramTypeIdValues.mapFylker,
+//   DiagramTypeIdValues.mapFylker2019,
+// ];
