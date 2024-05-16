@@ -48,8 +48,8 @@ export const MapTypeIdValues = {
 };
 
 // TODO: rename MapTypeIdValuesArray -> MapTypeIdValues
-// export const MapTypeIdValuesArray = [
-//   DiagramTypeIdValues.map,
-//   DiagramTypeIdValues.mapFylker,
-//   DiagramTypeIdValues.mapFylker2019,
-// ];
+export const MapTypeIdValuesArray = [
+  DiagramTypeIdValues.map,
+  DiagramTypeIdValues.mapFylker,
+  DiagramTypeIdValues.mapFylker2019,
+];

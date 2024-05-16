@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
-import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
-import { MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
+import { DiagramTypeIdValues, MapTypeIdValuesArray } from '../constants-and-enums/diagram-type-ids';
 
 import {
   AllDiagramTypes,

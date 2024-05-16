@@ -5,8 +5,7 @@ import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
-import { MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
-import { MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
+import { MapTypeIdValues, MapTypeIdValuesArray } from '../constants-and-enums/diagram-type-ids';
 
 @Injectable()
 export class TopoJsonService {
