@@ -41,6 +41,13 @@ export enum MapTypeIds {
   mapFylker2019,
 }
 
+// TODO: rename MapTypeIdValues -> MapTypeIdAsString
+export const MapTypeIdValues = {
+  mapFylker: MapTypeIds[MapTypeIds.mapFylker],
+  mapFylker2019: MapTypeIds[MapTypeIds.mapFylker2019],
+};
+
+// TODO: rename MapTypeIdValuesArray -> MapTypeIdValues
 // export const MapTypeIdValuesArray = [
 //   DiagramTypeIdValues.map,
 //   DiagramTypeIdValues.mapFylker,

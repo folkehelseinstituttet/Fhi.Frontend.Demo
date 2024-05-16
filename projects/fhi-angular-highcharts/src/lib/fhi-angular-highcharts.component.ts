@@ -52,10 +52,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   highchartsOptions!: Options;
   allDiagramOptions!: AllDiagramOptions;
   mapCopyrightInfo!: object;
-  currentDiagramTypeGroup!: string;
   digitsInfo = '1.0-14';
+
+  currentDiagramTypeGroup!: string;
   diagramTypeGroups = DiagramTypeGroups;
+
   diagramTypeGroups_NEW!: DiagramTypeGroup[];
+
   flaggedSeries: FlaggedSerie[];
   tableData: TableData;
 
@@ -85,26 +88,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.resetDiagramState();
 
-    try {
-      this.loopSeriesToUpdateAndExtractInfo();
-      this.updateDecimals();
+    this.loopSeriesToUpdateAndExtractInfo();
+    this.updateDecimals();
 
-      this.updateDiagramTypeGroups();
-      this.updateAvailableDiagramTypes(); // To be deprecated in v5
+    this.updateDiagramTypeGroups();
+    this.updateAvailableDiagramTypes(); // To be deprecated in v5
 
-      this.updateAllDiagramOptions();
+    this.updateAllDiagramOptions();
 
-      this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
+    this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
 
-      if (this.diagramTypeGroupService.diagramTypeDisabled(this.allDiagramOptions.diagramTypeId)) {
-        this.showDiagramTypeDisabledWarning = true;
-      } else {
-        this.showDiagramTypeDisabledWarning = false;
-        this.updateDiagram();
-      }
-    } catch (error) {
-      console.error(this.getErrorMsg(error));
+    if (this.diagramTypeGroupService.diagramTypeDisabled(this.allDiagramOptions.diagramTypeId)) {
+      this.showDiagramTypeDisabledWarning = true;
+    } else {
+      this.showDiagramTypeDisabledWarning = false;
+      this.updateDiagram();
     }
+    // try {
+    // } catch (error) {
+    //   console.error(this.getErrorMsg(error));
+    // }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -252,6 +255,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
+
+    // TODO: make a tmp solution for converting
+    //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
+    //   to avoid breaking change in PR for issue:
+    //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+    // if (this.allDiagramOptions.mapTypeId && this.allDiagramOptions.diagramTypeId === 'map') {
+    //   this.allDiagramOptions.diagramTypeId = this.allDiagramOptions.mapTypeId;
+    // }
+
+    console.log('this.allDiagramOptions', this.allDiagramOptions);
   }
 
   private updateDiagram() {

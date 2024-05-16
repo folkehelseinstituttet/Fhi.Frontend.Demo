@@ -19,11 +19,6 @@ export interface FhiDiagramOptions {
   title: string;
   unit?: FhiDiagramUnit[];
 
-  // TODO: make a tmp solution for converting
-  //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
-  //   to avoid breaking change in PR for issue:
-  //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
-
   // FhiDiagramOptions.mapTypeId will be deprecated in v4
   mapTypeId?: keyof typeof MapTypeIds;
 

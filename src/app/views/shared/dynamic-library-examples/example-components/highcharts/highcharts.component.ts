@@ -40,7 +40,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.selectMockData('aarsak_2017_2021');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.selectMockData('befolkning_antall');
+      this.selectMockData('kart');
+      //this.selectMockData('befolkning_antall');
     }
   }
 
