@@ -1,5 +1,5 @@
 import { DiagramTypeNavIds } from '../constants-and-enums/diagram-type-nav-ids';
-import { MapTypeIds } from '../constants-and-enums/map-type-ids';
+import { MapTypeIds } from '../constants-and-enums/diagram-type-ids';
 
 export interface FhiDiagramControls {
   metadataButton?: {

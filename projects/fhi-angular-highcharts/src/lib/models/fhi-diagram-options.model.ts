@@ -1,6 +1,6 @@
 import { DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeNavIds } from '../constants-and-enums/diagram-type-nav-ids';
-import { MapTypeIds } from '../constants-and-enums/map-type-ids';
+import { MapTypeIds } from '../constants-and-enums/diagram-type-ids';
 import { TableOrientations } from '../constants-and-enums/table-orientations';
 import { FhiDiagramFlag } from './fhi-diagram-flag.model';
 import { FhiDiagramSerie } from './fhi-diagram-serie.model';
@@ -19,6 +19,14 @@ export interface FhiDiagramOptions {
   title: string;
   unit?: FhiDiagramUnit[];
 
+  // TODO: make a tmp solution for converting
+  //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
+  //   to avoid breaking change in PR for issue:
+  //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+
+  // FhiDiagramOptions.mapTypeId will be deprecated in v4
+  mapTypeId?: keyof typeof MapTypeIds;
+
   // The following will be deprecated in v5
   creditsHref?: string;
   creditsText?: string;
@@ -29,13 +37,6 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: FhiDiagramFlag[];
   lastUpdated?: string;
-
-  // TODO: make a tmp solution for converting
-  //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
-  //   to avoid breaking change in PR for issue:
-  //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
-  mapTypeId?: keyof typeof MapTypeIds;
-
   metadataButton?: boolean;
   showFullScreenButton?: boolean;
 }

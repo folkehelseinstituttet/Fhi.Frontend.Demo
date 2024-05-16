@@ -1,8 +1,4 @@
-// MapTypeIds represents the different topo.json maps currently supported
-export enum MapTypeIds {
-  mapFylker,
-  mapFylker2019,
-}
+import { MapTypeIds } from './diagram-type-ids';
 
 export const MapTypeIdValues = {
   mapFylker: MapTypeIds[MapTypeIds.mapFylker],

@@ -33,6 +33,8 @@ export enum ChartTypeIds {
   pie,
 }
 
+// MapTypeIds represents the different topo.json maps currently supported,
+// except for "map", which is just a default type (alias of "mapFylker")
 export enum MapTypeIds {
   map,
   mapFylker,
