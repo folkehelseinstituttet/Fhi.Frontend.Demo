@@ -86,10 +86,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    // TODO: make a tmp solution for converting
+    // -------------------------------------------------------------------------------------
+    // Tmp solution for converting
     //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
     //   to avoid breaking change in PR for issue:
     //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+    //
+    // This code block will be removed in v5
     if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
       this.diagramOptions.diagramTypeId = this.diagramOptions.mapTypeId;
       console.log('this.diagramOptions', this.diagramOptions);
@@ -101,6 +104,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramOptions.diagramTypeSubset.push('mapFylker');
       console.log('this.diagramOptions', this.diagramOptions);
     }
+    // End of tmp solution.
+    // -------------------------------------------------------------------------------------
 
     this.resetDiagramState();
 
@@ -111,13 +116,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     console.log('activeDiagramType', this.diagramTypeGroupService.getActiveDiagramType());
 
-    this.updateAvailableDiagramTypes(); // To be deprecated in v5
+    // this.updateAvailableDiagramTypes(); // To be deprecated in v5
 
     this.updateAllDiagramOptions();
 
-    this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
+    // this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
+    console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
 
-    if (this.diagramTypeGroupService.diagramTypeDisabled(this.allDiagramOptions.diagramTypeId)) {
+    if (this.diagramTypeGroupService.diagramTypeIsDisabled(this.allDiagramOptions.diagramTypeId)) {
       this.showDiagramTypeDisabledWarning = true;
     } else {
       this.showDiagramTypeDisabledWarning = false;
@@ -282,6 +288,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
       this.updateMap();
     } else {
+      this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
       this.updateChart();
     }
   }

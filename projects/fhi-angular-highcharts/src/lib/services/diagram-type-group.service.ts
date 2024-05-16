@@ -23,6 +23,16 @@ export class DiagramTypeGroupService {
     return this.activeDiagramType;
   }
 
+  getActiveDiagramTypeGroup(): DiagramTypeGroup {
+    let activeGroup: DiagramTypeGroup;
+    this.diagramTypeGroups.forEach((group) => {
+      if (group.diagramType.active) {
+        activeGroup = group;
+      }
+    });
+    return activeGroup;
+  }
+
   getDiagramTypeGroups(): DiagramTypeGroup[] {
     return this.diagramTypeGroups;
   }
@@ -47,7 +57,7 @@ export class DiagramTypeGroupService {
     this.updateActiveGroup();
   }
 
-  diagramTypeDisabled(diagramTypeId: string): boolean {
+  diagramTypeIsDisabled(diagramTypeId: string): boolean {
     let disabled = false;
     this.diagramTypeGroups.forEach((group) => {
       group.children.forEach((diagramType) => {
@@ -143,7 +153,6 @@ export class DiagramTypeGroupService {
         diagramType.disabled = this.diagramTypeLineDisabled();
         break;
 
-      case DiagramTypeIdValues.map:
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
         diagramType.disabled = this.diagramTypeMapDisabled();

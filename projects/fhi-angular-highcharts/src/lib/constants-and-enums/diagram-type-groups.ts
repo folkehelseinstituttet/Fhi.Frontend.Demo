@@ -7,20 +7,26 @@ export const DiagramTypeGroups = {
   table: 'table',
 };
 
+export const DiagramTypeGroupNames = {
+  chart: 'Graf',
+  map: 'Kart',
+  table: 'Tabell',
+};
+
 export const DiagramTypeGroups_NEW: DiagramTypeGroup[] = [
   {
     children: [DiagramTypes.table],
     diagramType: DiagramTypes.table,
-    name: 'Tabell',
+    name: DiagramTypeGroupNames.table,
   },
   {
     children: MapTypes,
     diagramType: DiagramTypes.map,
-    name: 'Kart',
+    name: DiagramTypeGroupNames.map,
   },
   {
     children: ChartTypes,
     diagramType: DiagramTypes.line,
-    name: 'Graf',
+    name: DiagramTypeGroupNames.chart,
   },
 ];
