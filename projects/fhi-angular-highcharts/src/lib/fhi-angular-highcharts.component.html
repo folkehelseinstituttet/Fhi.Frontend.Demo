@@ -21,8 +21,8 @@
 
   @if (showDiagramTypeDisabledWarning) {
     <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning"></ng-container>
-  } @else if (showDuplicateSerieNamesError) {
-    <ng-container *ngTemplateOutlet="duplicateSerieNamesError"></ng-container>
+  } @else if (showDuplicateSerieNameError) {
+    <ng-container *ngTemplateOutlet="duplicateSerieNameError"></ng-container>
   } @else {
     <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
   }
@@ -245,7 +245,7 @@
   </div>
 </ng-template>
 
-<ng-template #duplicateSerieNamesError>
+<ng-template #duplicateSerieNameError>
   <div class="mt-3" id="om-dataene">
     <div class="alert alert-error" role="alert">
       <i class="icon-exclamation-circle"></i>

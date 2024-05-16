@@ -61,7 +61,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
-  showDuplicateSerieNamesError: boolean;
+  showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showMap: boolean;
 
@@ -175,7 +175,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       serie.name = this.formatSerieName(serie.name);
 
       if (names.find((name) => name === serie.name)) {
-        this.showDuplicateSerieNamesError = true;
+        this.showDuplicateSerieNameError = true;
       }
       names.push(serie.name);
     });
