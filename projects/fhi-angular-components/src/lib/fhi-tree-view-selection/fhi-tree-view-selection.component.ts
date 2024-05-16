@@ -109,6 +109,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       items.forEach((item) => {
         item.isChecked = !!item.isChecked;
         item.isExpanded = !!item.isExpanded;
+        item.hasCheckedDescendant = !!item.hasCheckedDescendant;
         let childrenState: FhiTreeViewSelectionItemState = {
           hasExpandedDescendant: false,
           hasCheckedDescendant: false,
@@ -131,11 +132,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
         // Compute  EXPANDED states
         // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
-        if (expandCheckedItems) {
-          if (item.isChecked) {
-            item.isExpanded = true;
+        if (expandCheckedItems && item.isChecked) {
             itemsState.hasExpandedDescendant = true;
-          }
         }
         itemsState.hasExpandedDescendant =
           itemsState.hasExpandedDescendant || childrenState.hasExpandedDescendant;
