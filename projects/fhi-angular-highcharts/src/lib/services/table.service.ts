@@ -177,21 +177,9 @@ export class TableService {
       } else {
         count = previousCount / uniqueNameCount;
       }
-
-      // this.testIfNamesContainsDuplicates(count);
-
       counts.push(count);
       previousCount = count;
     }
     return counts;
-  }
-
-  // TODO: update API-doc with the same information
-
-  private testIfNamesContainsDuplicates(count: number) {
-    if (!Number.isInteger(count)) {
-      console.warn(`Diagram type Table doesn't support duplicate names within a dimention.`);
-      // throw new Error(`Diagram type Table doesn't support duplicate names within a dimention.`);
-    }
   }
 }
