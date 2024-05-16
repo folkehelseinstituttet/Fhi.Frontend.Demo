@@ -433,4 +433,115 @@ export const TestData = [
       { name: '2021', y: 660 },
     ],
   },
+
+  // debugging
+
+  {
+    name: 'Mangler dødsmelding | Total | a',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Total | b',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Total | c',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Total | d',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Kvinne | a',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Kvinne | b',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Kvinne | c',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Kvinne | d',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Mann | a',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Mann | b',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Mann | c',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
+  {
+    name: 'Mangler dødsmelding | Mann | d',
+    data: [
+      { name: '2018', y: 880 },
+      { name: '2019', y: 818 },
+      { name: '2020', y: 718 },
+      { name: '2021', y: 660 },
+    ],
+  },
 ];

@@ -1,5 +1,5 @@
-// Test data: Serier for
-//   For debugging sorting bug
+// Test data: GEO
+//   For debugging sorting bug in diagram type
 export const TestData = [
   {
     name: 'Oslo',
