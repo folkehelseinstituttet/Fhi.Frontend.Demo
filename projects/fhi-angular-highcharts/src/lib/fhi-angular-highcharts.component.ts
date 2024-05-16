@@ -92,6 +92,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.updateDecimals();
 
     this.updateDiagramTypeGroups();
+
+    console.log('activeDiagramType', this.diagramTypeGroupService.getActiveDiagramType());
+
     this.updateAvailableDiagramTypes(); // To be deprecated in v5
 
     this.updateAllDiagramOptions();

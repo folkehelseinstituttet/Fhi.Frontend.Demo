@@ -19,6 +19,10 @@ export class DiagramTypeGroupService {
   private flaggedSeries!: FlaggedSerie[];
   private series!: FhiDiagramSerie[];
 
+  getActiveDiagramType(): DiagramType {
+    return this.activeDiagramType;
+  }
+
   getDiagramTypeGroups(): DiagramTypeGroup[] {
     return this.diagramTypeGroups;
   }
