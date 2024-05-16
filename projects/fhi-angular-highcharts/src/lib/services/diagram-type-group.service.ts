@@ -144,6 +144,8 @@ export class DiagramTypeGroupService {
         break;
 
       case DiagramTypeIdValues.map:
+      case DiagramTypeIdValues.mapFylker:
+      case DiagramTypeIdValues.mapFylker2019:
         diagramType.disabled = this.diagramTypeMapDisabled();
         break;
 

@@ -86,6 +86,22 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    // TODO: make a tmp solution for converting
+    //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
+    //   to avoid breaking change in PR for issue:
+    //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+    if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
+      this.diagramOptions.diagramTypeId = this.diagramOptions.mapTypeId;
+      console.log('this.diagramOptions', this.diagramOptions);
+    }
+    if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
+      this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
+        (type) => type !== 'map',
+      );
+      this.diagramOptions.diagramTypeSubset.push('mapFylker');
+      console.log('this.diagramOptions', this.diagramOptions);
+    }
+
     this.resetDiagramState();
 
     this.loopSeriesToUpdateAndExtractInfo();
@@ -258,16 +274,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
-
-    // TODO: make a tmp solution for converting
-    //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
-    //   to avoid breaking change in PR for issue:
-    //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
-    // if (this.allDiagramOptions.mapTypeId && this.allDiagramOptions.diagramTypeId === 'map') {
-    //   this.allDiagramOptions.diagramTypeId = this.allDiagramOptions.mapTypeId;
-    // }
-
-    console.log('this.allDiagramOptions', this.allDiagramOptions);
   }
 
   private updateDiagram() {
