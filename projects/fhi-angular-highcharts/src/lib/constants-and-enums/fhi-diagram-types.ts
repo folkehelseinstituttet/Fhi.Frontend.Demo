@@ -70,7 +70,7 @@ const mapShared = {
   },
 };
 
-// DiagramTypes.map will be deprecated in v4
+// DiagramTypes.map will be deprecated in v5
 //   Was the only map type before v3.3, but is after v3.3 just an alias for "mapFylker"
 const map: DiagramType = {
   id: DiagramTypeIdValues.map,

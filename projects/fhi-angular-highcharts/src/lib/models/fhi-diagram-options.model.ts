@@ -19,9 +19,6 @@ export interface FhiDiagramOptions {
   title: string;
   unit?: FhiDiagramUnit[];
 
-  // FhiDiagramOptions.mapTypeId will be deprecated in v4
-  mapTypeId?: keyof typeof MapTypeIds;
-
   // The following will be deprecated in v5
   creditsHref?: string;
   creditsText?: string;
@@ -32,6 +29,7 @@ export interface FhiDiagramOptions {
   disclaimer?: string;
   flags?: FhiDiagramFlag[];
   lastUpdated?: string;
+  mapTypeId?: keyof typeof MapTypeIds;
   metadataButton?: boolean;
   showFullScreenButton?: boolean;
 }

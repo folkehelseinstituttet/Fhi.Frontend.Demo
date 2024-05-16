@@ -92,7 +92,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     //   to avoid breaking change in PR for issue:
     //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
     //
-    // This code block will be removed in v5
+    // This tmp solution will be removed in v5
+    //
     if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
       this.diagramOptions.diagramTypeId = this.diagramOptions.mapTypeId;
       console.log('this.diagramOptions', this.diagramOptions);
@@ -108,10 +109,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     // -------------------------------------------------------------------------------------
 
     this.resetDiagramState();
-
     this.loopSeriesToUpdateAndExtractInfo();
     this.updateDecimals();
-
     this.updateDiagramTypeGroups();
 
     console.log('activeDiagramType', this.diagramTypeGroupService.getActiveDiagramType());
