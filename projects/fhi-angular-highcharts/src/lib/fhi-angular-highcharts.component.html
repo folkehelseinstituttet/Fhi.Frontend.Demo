@@ -19,9 +19,13 @@
     </div>
   </div>
 
-  <ng-container *ngIf="showDiagramTypeDisabledWarning; else diagramAndFooter">
+  @if (showDiagramTypeDisabledWarning) {
     <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning"></ng-container>
-  </ng-container>
+  } @else if (showDuplicateSerieNameError) {
+    <ng-container *ngTemplateOutlet="duplicateSerieNameError"></ng-container>
+  } @else {
+    <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+  }
 </article>
 
 <ng-template #diagramAndFooter>
@@ -237,6 +241,15 @@
         Diagramtypen kan ikke vises med dette filtervalget.<br />
         Velg en annen diagramtype eller gjør et annet filtervalg.
       </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #duplicateSerieNameError>
+  <div class="mt-3" id="om-dataene">
+    <div class="alert alert-error" role="alert">
+      <i class="icon-exclamation-circle"></i>
+      <p class="mb-0">Det finnes duplikate serienavn, diagrammet kan ikke vises.</p>
     </div>
   </div>
 </ng-template>

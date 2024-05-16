@@ -143,7 +143,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | Property | Type                         | Default | Required | Description |
 | -------- | ---------------------------- | ------- | -------- | ----------- |
 | `data`   | `Array<FhiDiagramSerieData>` | -       | yes      | The individual data points in a serie. |
-| `name`   | `string \| Array<string>`    | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependency on a given separator, use an array of category names instead. |
+| `name`   | `string \| Array<string>`    | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependency on a given separator, use an array of category names instead. NB! `series` can not contain duplicate `serie.name` |
 | `stack`  | `string`                     | -       | yes      | This option allows for grouping series in a stacked chart. Only applies to diagramTypeId `barStacked` and `columnStacked`. |
 
 ### Type FhiDiagramSerieData

@@ -61,6 +61,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
+  showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showMap: boolean;
 
@@ -150,6 +151,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private loopSeriesToUpdateAndExtractInfo() {
     let n = 0;
+    const names: string[] = [];
 
     this.allDiagramOptions.series.forEach((serie) => {
       const decimalData = serie.data.filter(
@@ -169,7 +171,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;
       }
+
       serie.name = this.formatSerieName(serie.name);
+
+      if (names.find((name) => name === serie.name)) {
+        this.showDuplicateSerieNameError = true;
+      }
+      names.push(serie.name);
     });
   }
 
