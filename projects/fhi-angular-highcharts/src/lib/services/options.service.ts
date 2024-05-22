@@ -149,7 +149,7 @@ export class OptionsService {
 
   /*
   The methods below is for date formatting, that is abandoned.
-  Keep for possibility that this need will be reintroduced.
+  Keep for possibility that this will be reintroduced.
   */
 
   private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {
