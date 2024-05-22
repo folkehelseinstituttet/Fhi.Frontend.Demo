@@ -26,24 +26,6 @@
     margin-right: -6px;
     padding: 6px;
     overflow-y: auto;
-
-    .active {
-        color: $fhi-core-red-2;
-        font-weight: 700;
-        position: relative;
-
-        &::before {
-            background-color: $fhi-core-red-1;
-            border-radius: #{$fhi-core-px * 1.5};
-            content: "";
-            display: block;
-            height: 1.25em;
-            left: 0;
-            position: absolute;
-            top: calc(#{$fhi-core-space-3} - #{$fhi-core-px * 7});
-            width: 3px;
-        }
-    }
 }
 
 .ds-scroll-to-top {
