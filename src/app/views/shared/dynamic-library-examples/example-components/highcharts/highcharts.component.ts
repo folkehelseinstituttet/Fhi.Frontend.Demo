@@ -238,7 +238,7 @@ export class HighchartsComponent implements OnInit {
       // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
       // title: 'Dual axes, line and column',
       title: 'Unit',
-      diagramTypeId: 'line',
+      // diagramTypeId: 'column',
       diagramTypeNavId: 'default',
       decimals: 2,
       flags: [
@@ -246,7 +246,6 @@ export class HighchartsComponent implements OnInit {
         { symbol: '.', label: 'Lar seg ikke beregne' },
         { symbol: ':', label: 'Anonymisert' },
       ],
-      tableOrientation: 'seriesAsColumns',
       // creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
       // creditsText: 'Nøkkeltall for folkehelse',
       // disclaimer: 'Disse dataene kan inneholde feil.',
