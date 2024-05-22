@@ -1,19 +1,13 @@
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
 import { ChartTypes, DiagramTypes, MapTypes } from './fhi-diagram-types';
 
-export const DiagramTypeGroups = {
-  chart: 'chart',
-  map: 'map',
-  table: 'table',
-};
-
 export const DiagramTypeGroupNames = {
   chart: 'Graf',
   map: 'Kart',
   table: 'Tabell',
 };
 
-export const DiagramTypeGroups_NEW: DiagramTypeGroup[] = [
+export const DiagramTypeGroups: DiagramTypeGroup[] = [
   {
     children: [DiagramTypes.table],
     diagramType: DiagramTypes.table,

@@ -22,14 +22,12 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
+import { DiagramTypeGroupNames } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
-import { DiagramTypeService } from './services/diagram-type.service';
 import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
@@ -54,10 +52,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   mapCopyrightInfo!: object;
   digitsInfo = '1.0-14';
 
-  currentDiagramTypeGroup!: string;
-  diagramTypeGroups = DiagramTypeGroups;
-
-  diagramTypeGroups_NEW!: DiagramTypeGroup[];
+  diagramTypeGroupNames = DiagramTypeGroupNames;
+  diagramTypeGroups!: DiagramTypeGroup[];
+  activeDiagramTypeGroup!: DiagramTypeGroup;
 
   flaggedSeries: FlaggedSerie[];
   tableData: TableData;
@@ -71,7 +68,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   constructor(
     private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
-    private diagramTypeService: DiagramTypeService,
     private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
@@ -112,15 +108,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.loopSeriesToUpdateAndExtractInfo();
     this.updateDecimals();
     this.updateDiagramTypeGroups();
-
-    console.log('activeDiagramType', this.diagramTypeGroupService.getActiveDiagramType());
-
-    // this.updateAvailableDiagramTypes(); // To be deprecated in v5
-
     this.updateAllDiagramOptions();
-
-    // this.updateCurrentDiagramTypeGroup(); // To be deprecated in v5
-    console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
 
     if (this.diagramTypeGroupService.diagramTypeIsDisabled(this.allDiagramOptions.diagramTypeId)) {
       this.showDiagramTypeDisabledWarning = true;
@@ -214,9 +202,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.allDiagramOptions.diagramTypeSubset,
       this.flaggedSeries,
       this.allDiagramOptions.series,
-      this.diagramTypeGroups_NEW,
+      this.diagramTypeGroups,
     );
-    this.diagramTypeGroups_NEW = this.diagramTypeGroupService.getDiagramTypeGroups();
+    this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
+    this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
+    console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
   }
 
   private updateDecimals() {
@@ -282,9 +272,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagram() {
-    if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
+    if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.table) {
       this.updateTable();
-    } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
+    } else if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.map) {
       this.updateMap();
     } else {
       this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
@@ -373,32 +363,5 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     API documentation:
     https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
-  }
-
-  // All methods below will be deprecated in v5
-
-  private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(
-      this.allDiagramOptions.diagramTypeSubset,
-      this.allDiagramOptions.mapTypeId,
-      this.allDiagramOptions.series,
-      this.flaggedSeries,
-    );
-  }
-
-  private updateCurrentDiagramTypeGroup() {
-    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
-      return;
-    }
-    if (
-      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
-      this.diagramTypeService.mapTypes.length !== 0
-    ) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
-      return;
-    }
-    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
   }
 }

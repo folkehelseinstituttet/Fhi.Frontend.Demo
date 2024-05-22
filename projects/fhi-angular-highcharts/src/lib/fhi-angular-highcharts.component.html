@@ -29,16 +29,16 @@
 </article>
 
 <ng-template #diagramAndFooter>
-  <ng-container [ngSwitch]="currentDiagramTypeGroup">
-    <ng-container *ngSwitchCase="diagramTypeGroups.table">
+  <ng-container [ngSwitch]="activeDiagramTypeGroup?.name">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.table">
       <ng-container *ngTemplateOutlet="table"></ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="diagramTypeGroups.map">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.map">
       <ng-container *ngIf="showMap">
         <ng-container *ngTemplateOutlet="map"></ng-container>
       </ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="diagramTypeGroups.chart">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.chart">
       <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-container>
@@ -66,7 +66,7 @@
       }"
     >
       <fhi-diagram-type-nav-default
-        [diagramTypeGroups]="diagramTypeGroups_NEW"
+        [diagramTypeGroups]="diagramTypeGroups"
         (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
       >
       </fhi-diagram-type-nav-default>
@@ -180,7 +180,7 @@
       <strong>Kilde </strong>
       <a href="{{ allDiagramOptions.creditsHref }}">{{ allDiagramOptions.creditsText }}</a>
     </p>
-    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
+    <div class="mb-3" *ngIf="allDiagramOptions.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table">
       <strong>Tegnforklaringer</strong><br />
       <table>
         <tbody>
@@ -193,7 +193,11 @@
     </div>
     <div
       class="mb-3"
-      *ngIf="flaggedSeries.length > 0 && allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table"
+      *ngIf="
+        flaggedSeries.length > 0 &&
+        allDiagramOptions.flags &&
+        activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
+      "
     >
       <p>
         <a

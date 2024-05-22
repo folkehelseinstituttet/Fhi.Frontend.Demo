@@ -3,7 +3,7 @@ import { cloneDeep } from 'lodash-es';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
-import { DiagramTypeGroups_NEW } from '../constants-and-enums/diagram-type-groups';
+import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
@@ -11,9 +11,6 @@ import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 
 @Injectable()
 export class DiagramTypeGroupService {
-  // TODO: The premise for the new diagramTypeGroups is that "map types" is implementend the same
-  //       way as "chart types", ie. that FhiDiagramOptions.mapTypeId is deprecated, and diferent
-  //       maps has it own type in DiagramTypes, not just one type with id "map" as is the case today.
   private activeDiagramType: DiagramType;
   private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
@@ -49,7 +46,7 @@ export class DiagramTypeGroupService {
     this.activeDiagramType = undefined;
     this.diagramTypeGroups = diagramTypeGroups
       ? cloneDeep(diagramTypeGroups)
-      : cloneDeep(DiagramTypeGroups_NEW);
+      : cloneDeep(DiagramTypeGroups);
 
     this.loopGroupsAndUpdateDiagramTypes(diagramTypeSubset, diagramTypeId);
     this.removeEmptyGroups();
