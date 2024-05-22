@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+// import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -8,9 +9,12 @@ import { SharedConstants as CONST } from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-library-items-section',
+
   templateUrl: './library-items-section.component.html',
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
   isDebugging = false;
   lang_NO: string = CONST.languageLocaleId_NO;
   lang_EN: string = CONST.languageLocaleId_EN;
@@ -21,11 +25,10 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   sectionTitleLang!: string;
   sectionIntro!: string;
 
-  private subscription: Subscription = new Subscription();
-
   constructor(
     private urlService: UrlService,
     private itemsDataService: LibraryItemGroupsDataService,
+    // private router: Router,
   ) {}
 
   ngOnInit() {
@@ -41,6 +44,11 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  scrollToLibraryItem(itemFragment: string) {
+    console.log(itemFragment);
+    // this.router.navigate([], { fragment: itemFragment });
   }
 
   private getLibraryItems(lastSegmentPath: string) {

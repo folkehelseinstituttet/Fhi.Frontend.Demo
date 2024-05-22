@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xl-8">
+  <div class="col-xl-9 col-xxl-8">
     <section class="ds-library-items">
       <header class="mb-7" *ngIf="sectionTitle">
         <h1 [attr.lang]="sectionTitleLang === lang_NO ? null : lang_EN">{{ sectionTitle }}</h1>
@@ -24,7 +24,7 @@
   <div class="col-xl-3 ms-auto" *ngIf="libraryItems.length > 1">
     <div class="position-sticky top-0 pt-5">
       <ul>
-        <li *ngFor="let fragment of libraryItems">
+        <li class="mb-1" *ngFor="let fragment of libraryItems">
           <a routerLink="./" [fragment]="fragment.id">{{ fragment.title }}</a>
         </li>
       </ul>
