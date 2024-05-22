@@ -253,7 +253,7 @@ export class HighchartsComponent implements OnInit {
       // mapTypeId: 'mapFylker',
       openSource: false,
       showFullScreenButton: true,
-      // tableOrientation: 'seriesAsColumns',
+      tableOrientation: 'seriesAsColumns',
       unit: [
         {
           label: 'Antall',
