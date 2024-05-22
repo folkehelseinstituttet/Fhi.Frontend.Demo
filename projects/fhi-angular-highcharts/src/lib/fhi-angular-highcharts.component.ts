@@ -92,14 +92,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     //
     if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
       this.diagramOptions.diagramTypeId = this.diagramOptions.mapTypeId;
-      console.log('this.diagramOptions', this.diagramOptions);
+      // console.log('this.diagramOptions', this.diagramOptions);
     }
     if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
       this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
         (type) => type !== 'map',
       );
       this.diagramOptions.diagramTypeSubset.push('mapFylker');
-      console.log('this.diagramOptions', this.diagramOptions);
+      // console.log('this.diagramOptions', this.diagramOptions);
     }
     // End of tmp solution.
     // -------------------------------------------------------------------------------------
@@ -206,7 +206,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     );
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
-    console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
+    // console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
   }
 
   private updateDecimals() {
