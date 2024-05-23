@@ -33,6 +33,8 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.currentAnchor = window.location.hash.substring(1);
+
     this.subscription.add(
       this.urlService.URL$.subscribe(() => {
         const lastSegmentPath = this.urlService.getLastSegmentPath();
