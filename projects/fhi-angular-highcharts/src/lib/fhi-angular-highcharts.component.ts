@@ -82,27 +82,29 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    // -------------------------------------------------------------------------------------
-    // Tmp solution for converting
-    //   diagramTypeId === 'map' to diagramTypeId === [mapTypeId]
-    //   to avoid breaking change in PR for issue:
-    //   https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+    // -----------------------------------------------------------------------------------------------
+    // Tmp adapter for converting deprecated API properties to avoid breaking change in PR for issue:
+    // https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
     //
-    // This tmp solution will be removed in v5
+    // This adapter will be removed in v5
     //
+    console.log('this.diagramOptions 1', this.diagramOptions);
+
     if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
-      this.diagramOptions.diagramTypeId = this.diagramOptions.mapTypeId;
-      // console.log('this.diagramOptions', this.diagramOptions);
+      this.diagramOptions.activeDiagramType = this.diagramOptions.mapTypeId;
+    } else if (this.diagramOptions.diagramTypeId) {
+      this.diagramOptions.activeDiagramType = this.diagramOptions.diagramTypeId;
     }
     if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
       this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
         (type) => type !== 'map',
       );
       this.diagramOptions.diagramTypeSubset.push('mapFylker');
-      // console.log('this.diagramOptions', this.diagramOptions);
     }
+
+    console.log('this.diagramOptions 2', this.diagramOptions);
     // End of tmp solution.
-    // -------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------
 
     this.resetDiagramState();
     this.loopSeriesToUpdateAndExtractInfo();
@@ -110,7 +112,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.updateDiagramTypeGroups();
     this.updateAllDiagramOptions();
 
-    if (this.diagramTypeGroupService.diagramTypeIsDisabled(this.allDiagramOptions.diagramTypeId)) {
+    if (
+      this.diagramTypeGroupService.diagramTypeIsDisabled(this.allDiagramOptions.activeDiagramType)
+    ) {
       this.showDiagramTypeDisabledWarning = true;
     } else {
       this.showDiagramTypeDisabledWarning = false;
@@ -198,7 +202,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateDiagramTypeGroups() {
     this.diagramTypeGroupService.updateDiagramTypeGroups(
-      this.allDiagramOptions.diagramTypeId,
+      this.allDiagramOptions.activeDiagramType,
       this.allDiagramOptions.diagramTypeSubset,
       this.flaggedSeries,
       this.allDiagramOptions.series,
@@ -259,13 +263,15 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateAllDiagramOptions() {
-    const diagramTypeId = this.allDiagramOptions.diagramTypeId;
+    const activeDiagramType = this.allDiagramOptions.activeDiagramType;
     const flags = this.allDiagramOptions.flags;
     const openSource = this.allDiagramOptions.openSource;
 
     this.allDiagramOptions = {
       ...this.allDiagramOptions,
-      diagramTypeId: diagramTypeId ? diagramTypeId : (DiagramTypeIds.table as FhiDiagramTypeIds),
+      activeDiagramType: activeDiagramType
+        ? activeDiagramType
+        : (DiagramTypeIds.table as FhiDiagramTypeIds),
       flags: flags ? flags : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
@@ -294,7 +300,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateMap() {
-    const mapTypeId = this.allDiagramOptions.mapTypeId;
+    const mapTypeId = this.allDiagramOptions.activeDiagramType;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);

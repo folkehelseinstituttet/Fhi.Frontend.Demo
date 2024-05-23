@@ -144,6 +144,7 @@ export class HighchartsComponent implements OnInit {
   private getDodsfallHjerteOgKarEtterFylke() {
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
+      // ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall_DEPRECATED_API(),
       title: 'Dødsfall hjerte og kar, fordelt på fylke',
     });
   }
@@ -208,6 +209,40 @@ export class HighchartsComponent implements OnInit {
   private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
+
+      activeDiagramType: 'mapFylker',
+      // controls?: FhiDiagramControls;
+      // footer?: FhiDiagramFooter;
+      openSource: false,
+      // tableOrientation: 'seriesAsColumns',
+      title: '',
+      unit: [
+        {
+          label: 'Antall',
+        },
+      ],
+
+      // TODO: remove
+      diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
+      diagramTypeNavId: 'default',
+      flags: [
+        { symbol: '..', label: 'Manglende data' },
+        { symbol: '.', label: 'Lar seg ikke beregne' },
+        { symbol: ':', label: 'Anonymisert' },
+      ],
+      creditsHref: 'https://www.fhi.no',
+      creditsText: 'Folkehelseinstituttet',
+      disclaimer: 'Disse dataene kan inneholde feil.',
+      lastUpdated: '18.04.2024',
+      mapTypeId: 'mapFylker',
+      showFullScreenButton: true,
+      metadataButton: true,
+    };
+  }
+
+  private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall_DEPRECATED_API(): FhiDiagramOptions {
+    return {
+      ...this.diagramOptions_INIT,
       title: '',
       diagramTypeId: 'map',
       diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
@@ -236,9 +271,27 @@ export class HighchartsComponent implements OnInit {
   private getTestData() {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
-      // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
-      // title: 'Dual axes, line and column',
+
+      activeDiagramType: 'mapFylker',
+      // controls?: FhiDiagramControls;
+      // footer?: FhiDiagramFooter;
+      openSource: false,
+      // tableOrientation: 'seriesAsColumns',
       title: 'Unit',
+      unit: [
+        {
+          label: 'Antall',
+        },
+        // {
+        //   decimals: 1,
+        //   label: 'Prosent',
+        //   symbol: '%',
+        //   position: 'end',
+        // },
+      ],
+
+      // The following will be deprecated in v5
+
       // diagramTypeId: 'column',
       diagramTypeNavId: 'default',
       decimals: 2,
@@ -252,20 +305,7 @@ export class HighchartsComponent implements OnInit {
       // disclaimer: 'Disse dataene kan inneholde feil.',
       // lastUpdated: '06.06.2023',
       // mapTypeId: 'mapFylker',
-      openSource: false,
       showFullScreenButton: true,
-      // tableOrientation: 'seriesAsColumns',
-      unit: [
-        {
-          label: 'Antall',
-        },
-        // {
-        //   decimals: 1,
-        //   label: 'Prosent',
-        //   symbol: '%',
-        //   position: 'end',
-        // },
-      ],
     });
   }
 }

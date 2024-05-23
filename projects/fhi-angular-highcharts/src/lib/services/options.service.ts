@@ -32,8 +32,10 @@ export class OptionsService {
   }
 
   updateOptions(allDiagramOptions: AllDiagramOptions): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(allDiagramOptions.diagramTypeId));
-    const isPie = allDiagramOptions.diagramTypeId === DiagramTypeIds.pie;
+    const options: Options = cloneDeep(
+      this.allStaticOptions.get(allDiagramOptions.activeDiagramType),
+    );
+    const isPie = allDiagramOptions.activeDiagramType === DiagramTypeIds.pie;
     const isMap = options?.chart && 'map' in options.chart;
     const series = allDiagramOptions.series;
 
@@ -50,7 +52,7 @@ export class OptionsService {
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
-      options.chart.map = allDiagramOptions.mapTypeId;
+      options.chart.map = allDiagramOptions.activeDiagramType;
     }
     return options;
   }

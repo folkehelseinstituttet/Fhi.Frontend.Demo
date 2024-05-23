@@ -10,8 +10,8 @@ export type FhiDiagramTypeIds = keyof typeof DiagramTypeIds;
 export type FhiTableOrientations = keyof typeof TableOrientations;
 
 export interface FhiDiagramOptions {
-  // activeDiagramType: FhiDiagramTypeIds;
-  // controls?: FhiDiagramControls;;
+  activeDiagramType?: FhiDiagramTypeIds;
+  // controls?: FhiDiagramControls;
   // footer?: FhiDiagramFooter;
   openSource?: boolean;
   series: FhiDiagramSerie[];
