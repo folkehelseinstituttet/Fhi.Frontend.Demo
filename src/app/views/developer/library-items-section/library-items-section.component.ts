@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
+import { ViewportScroller } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -24,11 +24,12 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   sectionTitle!: string;
   sectionTitleLang!: string;
   sectionIntro!: string;
+  currentAnchor: string;
 
   constructor(
     private urlService: UrlService,
     private itemsDataService: LibraryItemGroupsDataService,
-    // private router: Router,
+    private viewportScroller: ViewportScroller,
   ) {}
 
   ngOnInit() {
@@ -46,9 +47,10 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  scrollToLibraryItem(itemFragment: string) {
-    console.log(itemFragment);
-    // this.router.navigate([], { fragment: itemFragment });
+  scrollToLibraryItem(itemId: string) {
+    this.currentAnchor = itemId;
+    this.viewportScroller.scrollToAnchor(itemId);
+    window.location.hash = itemId;
   }
 
   private getLibraryItems(lastSegmentPath: string) {

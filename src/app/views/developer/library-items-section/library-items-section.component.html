@@ -21,13 +21,23 @@
     </section>
   </div>
 
-  <div class="col-xl-3 ms-auto" *ngIf="libraryItems.length > 1">
-    <div class="position-sticky top-0 pt-5">
-      <ul>
-        <li class="mb-1" *ngFor="let fragment of libraryItems">
-          <a routerLink="./" [fragment]="fragment.id">{{ fragment.title }}</a>
-        </li>
-      </ul>
+  <div class="d-none d-xl-block col-xl-3 ms-auto" *ngIf="libraryItems.length > 1">
+    <div class="position-sticky top-0 pt-4">
+      <div class="fhi-tree-view-navigation">
+        <ul class="fhi-tree-view-navigation__list">
+          <li class="fhi-tree-view-navigation__item" *ngFor="let item of libraryItems">
+            <a
+              class="fhi-tree-view-navigation__link"
+              href="javascript:void(0)"
+              role="button"
+              [ngClass]="{ active: currentAnchor === item.id }"
+              (click)="scrollToLibraryItem(item.id)"
+            >
+              {{ item.title }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
