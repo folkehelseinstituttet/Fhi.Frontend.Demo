@@ -209,24 +209,23 @@ export class HighchartsComponent implements OnInit {
   private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
-
       activeDiagramType: 'mapFylker',
       controls: {
         metadataButton: {
           show: true,
         },
         navigation: {
-          // items: {
-          //   chartTypes: ['bar', 'column', 'pie'],
-          //   mapTypes: ['mapFylker'],
-          // },
+          items: {
+            chartTypes: ['bar', 'column', 'pie'],
+            mapTypes: ['mapFylker'],
+          },
           show: true,
-          // type?: keyof typeof DiagramTypeNavIds;
+          type: 'default', // this has no effect since currently only one type
         },
       },
       // footer?: FhiDiagramFooter;
       openSource: false,
-      // tableOrientation: 'seriesAsColumns',
+      tableOrientation: 'seriesAsColumns',
       title: '',
       unit: [
         {
@@ -235,7 +234,6 @@ export class HighchartsComponent implements OnInit {
       ],
 
       // TODO: remove
-      diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
       flags: [
         { symbol: '..', label: 'Manglende data' },
         { symbol: '.', label: 'Lar seg ikke beregne' },

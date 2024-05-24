@@ -22,7 +22,11 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
+import {
+  ChartTypeIds,
+  DiagramTypeIdValues as DiagramTypeIds,
+  MapTypeIds,
+} from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeGroupNames } from './constants-and-enums/diagram-type-groups';
 
@@ -176,14 +180,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private updateDiagramTypeGroups() {
     this.diagramTypeGroupService.updateDiagramTypeGroups(
       this.allDiagramOptions.activeDiagramType,
-      this.allDiagramOptions.diagramTypeSubset,
+      this.diagramOptions.controls.navigation.items.chartTypes,
+      this.diagramOptions.controls.navigation.items.mapTypes,
       this.flaggedSeries,
       this.allDiagramOptions.series,
       this.diagramTypeGroups,
     );
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
-    // console.log('activeDiagramTypeGroup', this.diagramTypeGroupService.getActiveDiagramTypeGroup());
   }
 
   private updateDecimals() {
@@ -398,11 +402,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     delete opt.diagramTypeNavId;
 
-    // diagramTypeNavId
-    if (opt.diagramTypeSubset?.find((type) => type === 'map')) {
-      opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
-      opt.diagramTypeSubset.push('mapFylker');
+    // diagramTypeSubset
+    if (opt.diagramTypeSubset && !opt.controls?.navigation?.items) {
+      if (opt.diagramTypeSubset.find((type) => type === 'map')) {
+        opt.diagramTypeSubset.push('mapFylker');
+        opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
+      }
+      opt.controls.navigation.items = {};
+
+      if (!opt.controls.navigation.items.mapTypes) {
+        opt.controls.navigation.items.mapTypes = opt.diagramTypeSubset.filter(
+          (type) => type.slice(0, 3) === 'map',
+        ) as (keyof typeof MapTypeIds)[];
+      }
+      if (!opt.controls.navigation.items.chartTypes) {
+        opt.controls.navigation.items.chartTypes = opt.diagramTypeSubset.filter(
+          (type) => type.slice(0, 3) !== 'map',
+        ) as (keyof typeof ChartTypeIds)[];
+      }
     }
+    delete opt.diagramTypeSubset;
 
     // metadataButton
     if (opt.metadataButton && !opt.controls?.metadataButton?.show) {
