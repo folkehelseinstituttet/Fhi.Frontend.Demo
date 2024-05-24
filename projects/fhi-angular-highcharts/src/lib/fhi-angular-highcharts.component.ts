@@ -67,6 +67,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showDiagramTypeDisabledWarning: boolean;
   showDiagramTypeNav: boolean;
   showDuplicateSerieNameError: boolean;
+  showFullScreenButton: boolean;
   showFooter: boolean;
   showMap: boolean;
   showMetadataButton: boolean;
@@ -258,15 +259,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     const disabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
       this.allDiagramOptions.activeDiagramType,
     );
-
+    this.showDiagramTypeDisabledWarning = disabled ? true : false;
+    this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
     this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
     this.showDiagramTypeNav = !!this.diagramOptions.controls?.navigation?.show;
-    console.log('this.showDiagramTypeNav', this.showDiagramTypeNav);
+    console.log('this.showFullScreenButton', this.showFullScreenButton);
 
-    if (disabled) {
-      this.showDiagramTypeDisabledWarning = true;
-    } else {
-      this.showDiagramTypeDisabledWarning = false;
+    if (!disabled) {
       this.updateDiagram();
     }
   }
@@ -423,8 +422,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     delete opt.diagramTypeSubset;
 
+    // fullScreenButton
+    if (
+      opt.showFullScreenButton !== undefined &&
+      opt.controls?.fullScreenButton?.show === undefined
+    ) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.fullScreenButton) {
+        opt.controls.fullScreenButton = {
+          show: opt.showFullScreenButton,
+        };
+      } else {
+        opt.controls.fullScreenButton.show = opt.showFullScreenButton;
+      }
+    }
+    delete opt.showFullScreenButton;
+
     // metadataButton
-    if (opt.metadataButton && !opt.controls?.metadataButton?.show) {
+    if (opt.metadataButton !== undefined && opt.controls?.metadataButton?.show === undefined) {
       if (!opt.controls) {
         opt.controls = {};
       }

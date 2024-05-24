@@ -211,6 +211,9 @@ export class HighchartsComponent implements OnInit {
       ...this.diagramOptions_INIT,
       activeDiagramType: 'mapFylker',
       controls: {
+        fullScreenButton: {
+          show: true,
+        },
         metadataButton: {
           show: true,
         },
@@ -220,7 +223,7 @@ export class HighchartsComponent implements OnInit {
             mapTypes: ['mapFylker'],
           },
           show: true,
-          type: 'default', // this has no effect since currently only one type
+          type: 'default', // this has no effect since currently only one type exists
         },
       },
       // footer?: FhiDiagramFooter;
@@ -243,7 +246,6 @@ export class HighchartsComponent implements OnInit {
       creditsText: 'Folkehelseinstituttet',
       disclaimer: 'Disse dataene kan inneholde feil.',
       lastUpdated: '18.04.2024',
-      showFullScreenButton: true,
     };
   }
 

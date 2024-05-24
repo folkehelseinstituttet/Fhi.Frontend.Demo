@@ -12,7 +12,7 @@
           <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
         </ng-container>
 
-        <ng-container *ngIf="allDiagramOptions.showFullScreenButton">
+        <ng-container *ngIf="showFullScreenButton">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
@@ -57,12 +57,12 @@
   <div
     class="mb-3"
     [ngClass]="{
-      'me-auto': showMetadataButton || allDiagramOptions.showFullScreenButton
+      'me-auto': showMetadataButton || showFullScreenButton
     }"
   >
     <div
       [ngClass]="{
-        'me-3': showMetadataButton || allDiagramOptions.showFullScreenButton
+        'me-3': showMetadataButton || showFullScreenButton
       }"
     >
       <fhi-diagram-type-nav-default
@@ -95,7 +95,7 @@
   <button
     class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
     [ngClass]="{
-      'fhi-highcharts-nav__meta-btn--push-end': allDiagramOptions.showFullScreenButton
+      'fhi-highcharts-nav__meta-btn--push-end': showFullScreenButton
     }"
     (click)="onMetadataButtonClick()"
   >
