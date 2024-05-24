@@ -82,29 +82,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    // -----------------------------------------------------------------------------------------------
-    // Tmp adapter for converting deprecated API properties to avoid breaking change in PR for issue:
-    // https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
-    //
-    // This adapter will be removed in v5
-    //
-    console.log('this.diagramOptions 1', this.diagramOptions);
-
-    if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
-      this.diagramOptions.activeDiagramType = this.diagramOptions.mapTypeId;
-    } else if (this.diagramOptions.diagramTypeId) {
-      this.diagramOptions.activeDiagramType = this.diagramOptions.diagramTypeId;
-    }
-    if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
-      this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
-        (type) => type !== 'map',
-      );
-      this.diagramOptions.diagramTypeSubset.push('mapFylker');
-    }
-
-    console.log('this.diagramOptions 2', this.diagramOptions);
-    // End of tmp solution.
-    // -----------------------------------------------------------------------------------------------
+    this.tmpAdapterForDeprecatedDiagramOptions();
 
     this.resetDiagramState();
     this.loopSeriesToUpdateAndExtractInfo();
@@ -369,5 +347,29 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     API documentation:
     https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  // Tmp adapter for converting deprecated API properties to avoid breaking change in PR for issue:
+  // https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+  //
+  // This adapter will be removed in v5
+  //
+  private tmpAdapterForDeprecatedDiagramOptions() {
+    console.log('this.diagramOptions 1', this.diagramOptions);
+
+    if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
+      this.diagramOptions.activeDiagramType = this.diagramOptions.mapTypeId;
+    } else if (this.diagramOptions.diagramTypeId) {
+      this.diagramOptions.activeDiagramType = this.diagramOptions.diagramTypeId;
+    }
+    if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
+      this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
+        (type) => type !== 'map',
+      );
+      this.diagramOptions.diagramTypeSubset.push('mapFylker');
+    }
+
+    console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }
