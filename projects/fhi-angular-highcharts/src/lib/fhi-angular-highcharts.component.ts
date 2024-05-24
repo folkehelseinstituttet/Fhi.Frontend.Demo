@@ -61,6 +61,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
+  showDiagramTypeNav: boolean;
   showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showMap: boolean;
@@ -95,21 +96,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     // } catch (error) {
     //   console.error(this.getErrorMsg(error));
     // }
-  }
-  updateDiagramState() {
-    const disabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
-      this.allDiagramOptions.activeDiagramType,
-    );
-
-    this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
-    console.log('this.showMetadataButton', this.showMetadataButton);
-
-    if (disabled) {
-      this.showDiagramTypeDisabledWarning = true;
-    } else {
-      this.showDiagramTypeDisabledWarning = false;
-      this.updateDiagram();
-    }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -264,6 +250,23 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     };
   }
 
+  private updateDiagramState() {
+    const disabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+      this.allDiagramOptions.activeDiagramType,
+    );
+
+    this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
+    this.showDiagramTypeNav = !!this.diagramOptions.controls?.navigation?.show;
+    console.log('this.showDiagramTypeNav', this.showDiagramTypeNav);
+
+    if (disabled) {
+      this.showDiagramTypeDisabledWarning = true;
+    } else {
+      this.showDiagramTypeDisabledWarning = false;
+      this.updateDiagram();
+    }
+  }
+
   private updateDiagram() {
     if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.table) {
       this.updateTable();
@@ -378,6 +381,29 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     delete opt.diagramTypeId;
     delete opt.mapTypeId;
 
+    // diagramTypeNavId
+    if (opt.diagramTypeNavId && !opt.controls?.navigation) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.navigation) {
+        opt.controls.navigation = {
+          show: !!opt.diagramTypeNavId,
+          type: opt.diagramTypeNavId,
+        };
+      } else {
+        opt.controls.navigation.show = !!opt.diagramTypeNavId;
+        opt.controls.navigation.type = opt.diagramTypeNavId;
+      }
+    }
+    delete opt.diagramTypeNavId;
+
+    // diagramTypeNavId
+    if (opt.diagramTypeSubset?.find((type) => type === 'map')) {
+      opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
+      opt.diagramTypeSubset.push('mapFylker');
+    }
+
     // metadataButton
     if (opt.metadataButton && !opt.controls?.metadataButton?.show) {
       if (!opt.controls) {
@@ -387,15 +413,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         opt.controls.metadataButton = {
           show: opt.metadataButton,
         };
+      } else {
+        opt.controls.metadataButton.show = opt.metadataButton;
       }
     }
     delete opt.metadataButton;
-
-    // navigation
-    if (opt.diagramTypeSubset.find((type) => type === 'map')) {
-      opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
-      opt.diagramTypeSubset.push('mapFylker');
-    }
 
     this.diagramOptions = opt;
     console.log('this.diagramOptions 2', this.diagramOptions);

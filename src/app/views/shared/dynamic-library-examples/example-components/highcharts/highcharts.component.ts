@@ -215,6 +215,14 @@ export class HighchartsComponent implements OnInit {
         metadataButton: {
           show: true,
         },
+        navigation: {
+          // items: {
+          //   chartTypes: ['bar', 'column', 'pie'],
+          //   mapTypes: ['mapFylker'],
+          // },
+          show: true,
+          // type?: keyof typeof DiagramTypeNavIds;
+        },
       },
       // footer?: FhiDiagramFooter;
       openSource: false,
@@ -228,7 +236,6 @@ export class HighchartsComponent implements OnInit {
 
       // TODO: remove
       diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
-      diagramTypeNavId: 'default',
       flags: [
         { symbol: '..', label: 'Manglende data' },
         { symbol: '.', label: 'Lar seg ikke beregne' },

@@ -3,7 +3,7 @@
 
   <div class="fhi-highcharts-nav">
     <div class="d-flex flex-wrap">
-      <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
+      <ng-container *ngIf="showDiagramTypeNav">
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
 
