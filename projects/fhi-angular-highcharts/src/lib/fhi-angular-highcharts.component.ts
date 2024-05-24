@@ -242,7 +242,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateAllDiagramOptions() {
     const activeDiagramType = this.allDiagramOptions.activeDiagramType;
-    const flags = this.allDiagramOptions.flags;
+    const footer = this.allDiagramOptions.footer;
     const openSource = this.allDiagramOptions.openSource;
 
     this.allDiagramOptions = {
@@ -250,7 +250,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       activeDiagramType: activeDiagramType
         ? activeDiagramType
         : (DiagramTypeIds.table as FhiDiagramTypeIds),
-      flags: flags ? flags : undefined,
+      footer: footer ? footer : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
   }
@@ -328,16 +328,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.showMap && !this.allDiagramOptions.openSource) {
       return true;
     }
-    if (this.flaggedSeries.length !== 0) {
+    if (this.allDiagramOptions.footer?.flags && this.flaggedSeries.length !== 0) {
       return true;
     }
-    if (this.allDiagramOptions.lastUpdated !== undefined) {
+    if (this.allDiagramOptions.footer?.lastUpdated) {
       return true;
     }
-    if (this.allDiagramOptions.footer?.disclaimer !== undefined) {
+    if (this.allDiagramOptions.footer?.disclaimer) {
       return true;
     }
-    if (this.allDiagramOptions.footer?.credits !== undefined) {
+    if (this.allDiagramOptions.footer?.credits) {
       return true;
     }
     return false;
@@ -474,6 +474,28 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
     }
     delete opt.disclaimer;
+
+    // flags
+    if (opt.flags && !opt.footer?.flags) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.flags) {
+        opt.footer.flags = opt.flags;
+      }
+    }
+    delete opt.flags;
+
+    // lastUpdated
+    if (opt.lastUpdated && !opt.footer?.lastUpdated) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.lastUpdated) {
+        opt.footer.lastUpdated = opt.lastUpdated;
+      }
+    }
+    delete opt.lastUpdated;
 
     this.diagramOptions = opt;
     console.log('this.diagramOptions 2', this.diagramOptions);

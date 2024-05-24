@@ -223,7 +223,7 @@ export class HighchartsComponent implements OnInit {
             mapTypes: ['mapFylker'],
           },
           show: true,
-          type: 'default', // this has no effect since currently only one type exists
+          type: 'default', // this has no effect (currently only one nav type)
         },
       },
       footer: {
@@ -232,6 +232,12 @@ export class HighchartsComponent implements OnInit {
           text: 'Folkehelseinstituttet',
         },
         disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [
+          { symbol: '..', label: 'Manglende data' },
+          { symbol: '.', label: 'Lar seg ikke beregne' },
+          { symbol: ':', label: 'Anonymisert' },
+        ],
+        lastUpdated: '18.04.2024',
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
@@ -241,14 +247,6 @@ export class HighchartsComponent implements OnInit {
           label: 'Antall',
         },
       ],
-
-      // TODO: remove
-      flags: [
-        { symbol: '..', label: 'Manglende data' },
-        { symbol: '.', label: 'Lar seg ikke beregne' },
-        { symbol: ':', label: 'Anonymisert' },
-      ],
-      lastUpdated: '18.04.2024',
     };
   }
 
