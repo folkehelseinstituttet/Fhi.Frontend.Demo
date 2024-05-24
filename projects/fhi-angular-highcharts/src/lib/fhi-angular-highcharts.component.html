@@ -176,9 +176,9 @@
 <ng-template #diagramFooter>
   <footer class="mt-3">
     <p *ngIf="allDiagramOptions.lastUpdated"><strong>Sist oppdatert </strong>{{ allDiagramOptions.lastUpdated }}</p>
-    <p *ngIf="allDiagramOptions.creditsText && allDiagramOptions.creditsHref">
+    <p *ngIf="allDiagramOptions.footer?.credits">
       <strong>Kilde </strong>
-      <a href="{{ allDiagramOptions.creditsHref }}">{{ allDiagramOptions.creditsText }}</a>
+      <a href="{{ allDiagramOptions.footer.credits.href }}">{{ allDiagramOptions.footer.credits.text }}</a>
     </p>
     <div class="mb-3" *ngIf="allDiagramOptions.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table">
       <strong>Tegnforklaringer</strong><br />

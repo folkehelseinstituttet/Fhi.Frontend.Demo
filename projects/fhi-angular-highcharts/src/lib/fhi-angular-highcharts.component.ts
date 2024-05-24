@@ -256,16 +256,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramState() {
-    const disabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+    const diagramTypeIsDisabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
       this.allDiagramOptions.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = disabled ? true : false;
+    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
+    this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
     this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
     this.showDiagramTypeNav = !!this.diagramOptions.controls?.navigation?.show;
-    console.log('this.showFullScreenButton', this.showFullScreenButton);
 
-    if (!disabled) {
+    if (!diagramTypeIsDisabled) {
       this.updateDiagram();
     }
   }
@@ -283,13 +283,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateChart() {
     this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
-    this.showFooter = this.canShowFooter();
   }
 
   private updateTable() {
     const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
     this.tableData = this.tableService.getTable(series, this.allDiagramOptions.tableOrientation);
-    this.showFooter = this.canShowFooter();
   }
 
   private updateMap() {
@@ -299,7 +297,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
       this.showMap = true;
-      this.showFooter = this.canShowFooter();
       this.changeDetector.detectChanges();
     } else {
       this.loadMap(mapTypeId);
@@ -340,10 +337,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.allDiagramOptions.disclaimer !== undefined) {
       return true;
     }
-    if (
-      this.allDiagramOptions.creditsHref !== undefined &&
-      this.allDiagramOptions.creditsText !== undefined
-    ) {
+    if (this.allDiagramOptions.footer?.credits !== undefined) {
       return true;
     }
     return false;
@@ -375,7 +369,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     // debugger;
     const opt = this.diagramOptions;
 
-    // diagramTypeId, mapTypeId
+    // diagramTypeId & mapTypeId
     if (opt.mapTypeId && opt.diagramTypeId === 'map') {
       opt.activeDiagramType = opt.mapTypeId;
     } else if (opt.diagramTypeId) {
@@ -422,7 +416,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     delete opt.diagramTypeSubset;
 
-    // fullScreenButton
+    // showFullScreenButton
     if (
       opt.showFullScreenButton !== undefined &&
       opt.controls?.fullScreenButton?.show === undefined
@@ -454,6 +448,21 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
     }
     delete opt.metadataButton;
+
+    // creditsHref & creditsText
+    if ((opt.creditsHref || opt.creditsText) && !opt.footer?.credits) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.credits) {
+        opt.footer.credits = {
+          href: opt.creditsHref,
+          text: opt.creditsText,
+        };
+      }
+    }
+    delete opt.creditsHref;
+    delete opt.creditsText;
 
     this.diagramOptions = opt;
     console.log('this.diagramOptions 2', this.diagramOptions);

@@ -226,7 +226,12 @@ export class HighchartsComponent implements OnInit {
           type: 'default', // this has no effect since currently only one type exists
         },
       },
-      // footer?: FhiDiagramFooter;
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+      },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
       title: '',
@@ -242,8 +247,6 @@ export class HighchartsComponent implements OnInit {
         { symbol: '.', label: 'Lar seg ikke beregne' },
         { symbol: ':', label: 'Anonymisert' },
       ],
-      creditsHref: 'https://www.fhi.no',
-      creditsText: 'Folkehelseinstituttet',
       disclaimer: 'Disse dataene kan inneholde feil.',
       lastUpdated: '18.04.2024',
     };
