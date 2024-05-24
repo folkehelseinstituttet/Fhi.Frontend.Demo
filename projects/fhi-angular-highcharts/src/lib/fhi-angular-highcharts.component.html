@@ -223,8 +223,8 @@
       <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
       for å se flere detaljer.
     </div>
-    <p class="fst-italic small" *ngIf="allDiagramOptions.disclaimer">
-      {{ allDiagramOptions.disclaimer }}
+    <p class="fst-italic small" *ngIf="allDiagramOptions.footer?.disclaimer">
+      {{ allDiagramOptions.footer?.disclaimer }}
     </p>
     <p>
       <a

@@ -334,7 +334,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.allDiagramOptions.lastUpdated !== undefined) {
       return true;
     }
-    if (this.allDiagramOptions.disclaimer !== undefined) {
+    if (this.allDiagramOptions.footer?.disclaimer !== undefined) {
       return true;
     }
     if (this.allDiagramOptions.footer?.credits !== undefined) {
@@ -463,6 +463,17 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
     delete opt.creditsHref;
     delete opt.creditsText;
+
+    // disclaimer
+    if (opt.disclaimer && !opt.footer?.disclaimer) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.disclaimer) {
+        opt.footer.disclaimer = opt.disclaimer;
+      }
+    }
+    delete opt.disclaimer;
 
     this.diagramOptions = opt;
     console.log('this.diagramOptions 2', this.diagramOptions);

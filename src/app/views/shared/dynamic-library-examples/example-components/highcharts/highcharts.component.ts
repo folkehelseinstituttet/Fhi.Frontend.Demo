@@ -231,6 +231,7 @@ export class HighchartsComponent implements OnInit {
           href: 'https://www.fhi.no',
           text: 'Folkehelseinstituttet',
         },
+        disclaimer: 'Disse dataene kan inneholde feil.',
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
@@ -247,7 +248,6 @@ export class HighchartsComponent implements OnInit {
         { symbol: '.', label: 'Lar seg ikke beregne' },
         { symbol: ':', label: 'Anonymisert' },
       ],
-      disclaimer: 'Disse dataene kan inneholde feil.',
       lastUpdated: '18.04.2024',
     };
   }
