@@ -144,7 +144,6 @@ export class HighchartsComponent implements OnInit {
   private getDodsfallHjerteOgKarEtterFylke() {
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
-      //...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall_DEPRECATED_API(),
       title: 'Dødsfall hjerte og kar, fordelt på fylke',
     });
   }
@@ -242,34 +241,6 @@ export class HighchartsComponent implements OnInit {
       openSource: false,
       tableOrientation: 'seriesAsColumns',
       title: '',
-      unit: [
-        {
-          label: 'Antall',
-        },
-      ],
-    };
-  }
-
-  private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall_DEPRECATED_API(): FhiDiagramOptions {
-    return {
-      ...this.diagramOptions_INIT,
-      title: '',
-      diagramTypeId: 'map',
-      diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
-      diagramTypeNavId: 'default',
-      flags: [
-        { symbol: '..', label: 'Manglende data' },
-        { symbol: '.', label: 'Lar seg ikke beregne' },
-        { symbol: ':', label: 'Anonymisert' },
-      ],
-      creditsHref: 'https://www.fhi.no',
-      creditsText: 'Folkehelseinstituttet',
-      disclaimer: 'Disse dataene kan inneholde feil.',
-      lastUpdated: '18.04.2024',
-      mapTypeId: 'mapFylker',
-      openSource: false,
-      showFullScreenButton: true,
-      metadataButton: true,
       unit: [
         {
           label: 'Antall',

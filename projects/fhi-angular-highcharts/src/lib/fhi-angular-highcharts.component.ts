@@ -181,8 +181,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private updateDiagramTypeGroups() {
     this.diagramTypeGroupService.updateDiagramTypeGroups(
       this.allDiagramOptions.activeDiagramType,
-      this.diagramOptions.controls.navigation.items.chartTypes,
-      this.diagramOptions.controls.navigation.items.mapTypes,
+      this.diagramOptions.controls?.navigation?.items?.chartTypes,
+      this.diagramOptions.controls?.navigation?.items?.mapTypes,
       this.flaggedSeries,
       this.allDiagramOptions.series,
       this.diagramTypeGroups,
@@ -365,15 +365,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   // This adapter will be removed in v5
   //
   private tmpAdapterForDeprecatedDiagramOptions() {
-    console.log('this.diagramOptions 1', this.diagramOptions);
-    // debugger;
     const opt = this.diagramOptions;
+    // console.log('this.diagramOptions 1', this.diagramOptions);
+    // debugger;
 
     // diagramTypeId & mapTypeId
-    if (opt.mapTypeId && opt.diagramTypeId === 'map') {
-      opt.activeDiagramType = opt.mapTypeId;
-    } else if (opt.diagramTypeId) {
-      opt.activeDiagramType = opt.diagramTypeId;
+    if (opt.diagramTypeId) {
+      if (opt.diagramTypeId === 'map') {
+        opt.activeDiagramType = opt.mapTypeId;
+      } else {
+        opt.activeDiagramType = opt.diagramTypeId;
+      }
+    }
+    if (opt.activeDiagramType === 'map') {
+      opt.activeDiagramType = 'mapFylker';
     }
     delete opt.diagramTypeId;
     delete opt.mapTypeId;
@@ -388,9 +393,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
           show: !!opt.diagramTypeNavId,
           type: opt.diagramTypeNavId,
         };
-      } else {
-        opt.controls.navigation.show = !!opt.diagramTypeNavId;
-        opt.controls.navigation.type = opt.diagramTypeNavId;
       }
     }
     delete opt.diagramTypeNavId;
@@ -428,8 +430,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         opt.controls.fullScreenButton = {
           show: opt.showFullScreenButton,
         };
-      } else {
-        opt.controls.fullScreenButton.show = opt.showFullScreenButton;
       }
     }
     delete opt.showFullScreenButton;
@@ -443,8 +443,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         opt.controls.metadataButton = {
           show: opt.metadataButton,
         };
-      } else {
-        opt.controls.metadataButton.show = opt.metadataButton;
       }
     }
     delete opt.metadataButton;
@@ -498,6 +496,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     delete opt.lastUpdated;
 
     this.diagramOptions = opt;
-    console.log('this.diagramOptions 2', this.diagramOptions);
+    // console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }

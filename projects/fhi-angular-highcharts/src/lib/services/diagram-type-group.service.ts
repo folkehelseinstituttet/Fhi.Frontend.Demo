@@ -49,7 +49,7 @@ export class DiagramTypeGroupService {
       ? cloneDeep(diagramTypeGroups)
       : cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes(chartTypeSubset.concat(mapTypeSubset), diagramTypeId);
+    this.loopGroupsAndUpdateDiagramTypes(chartTypeSubset?.concat(mapTypeSubset), diagramTypeId);
     this.removeEmptyGroups();
     this.updateInactiveGroup();
     this.updateActiveGroup();
