@@ -88,8 +88,8 @@ export class HighchartsComponent implements OnInit {
         this.getDodsfallEtterAarsak_2008_2018();
         break;
       case 'aarsak_2017_2021':
-        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-        // this.getDodsfallEtterAarsak_2017_2021();
+        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+        this.getDodsfallEtterAarsak_2017_2021();
         break;
       case 'befolkning_antall':
         this.getBefolkningInndelingPr2024_antall();
@@ -133,8 +133,9 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.DodsfallEtterAarsak_2017_2021, {
       ...this.diagramOptions_INIT,
       title: 'Dødsfall etter årsak, 2017 - 2021',
+      diagramTypeId: 'bar',
       diagramTypeNavId: 'default',
-      diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
+      // diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
       decimals: 2,
       mapTypeId: 'mapFylker',
     });
@@ -238,7 +239,7 @@ export class HighchartsComponent implements OnInit {
       // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
       // title: 'Dual axes, line and column',
       title: 'Unit',
-      // diagramTypeId: 'column',
+      diagramTypeId: 'bar',
       diagramTypeNavId: 'default',
       decimals: 2,
       flags: [

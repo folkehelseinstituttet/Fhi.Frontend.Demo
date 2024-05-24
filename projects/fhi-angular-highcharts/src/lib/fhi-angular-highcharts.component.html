@@ -105,8 +105,10 @@
 </ng-template>
 
 <ng-template #chart>
-  <highcharts-chart class="fhi-highcharts-chart" [Highcharts]="highcharts" [options]="highchartsOptions">
-  </highcharts-chart>
+  <div class="fhi-highcharts-wrapper">
+    <highcharts-chart class="fhi-highcharts-chart" [Highcharts]="highcharts" [options]="highchartsOptions">
+    </highcharts-chart>
+  </div>
 </ng-template>
 
 <ng-template #map>
