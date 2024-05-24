@@ -2,7 +2,7 @@
 
 > Mai 15, 2024
 
-* :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old model stil works will be deprecated in v5.
+* :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
 
 ## 3.2.0
 

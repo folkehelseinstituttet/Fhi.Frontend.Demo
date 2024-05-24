@@ -64,6 +64,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showMap: boolean;
+  showMetadataButton: boolean;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -89,19 +90,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.updateDecimals();
     this.updateDiagramTypeGroups();
     this.updateAllDiagramOptions();
+    this.updateDiagramState();
+    // try {
+    // } catch (error) {
+    //   console.error(this.getErrorMsg(error));
+    // }
+  }
+  updateDiagramState() {
+    const disabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+      this.allDiagramOptions.activeDiagramType,
+    );
 
-    if (
-      this.diagramTypeGroupService.diagramTypeIsDisabled(this.allDiagramOptions.activeDiagramType)
-    ) {
+    this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
+    console.log('this.showMetadataButton', this.showMetadataButton);
+
+    if (disabled) {
       this.showDiagramTypeDisabledWarning = true;
     } else {
       this.showDiagramTypeDisabledWarning = false;
       this.updateDiagram();
     }
-    // try {
-    // } catch (error) {
-    //   console.error(this.getErrorMsg(error));
-    // }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -142,6 +150,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showDiagramTypeDisabledWarning = false;
     this.showFooter = false;
     this.showMap = false;
+    this.showMetadataButton = false;
     this.flaggedSeries = [];
     this.allDiagramOptions = this.diagramOptions;
   }
@@ -357,19 +366,38 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   //
   private tmpAdapterForDeprecatedDiagramOptions() {
     console.log('this.diagramOptions 1', this.diagramOptions);
+    // debugger;
+    const opt = this.diagramOptions;
 
-    if (this.diagramOptions.mapTypeId && this.diagramOptions.diagramTypeId === 'map') {
-      this.diagramOptions.activeDiagramType = this.diagramOptions.mapTypeId;
-    } else if (this.diagramOptions.diagramTypeId) {
-      this.diagramOptions.activeDiagramType = this.diagramOptions.diagramTypeId;
+    // diagramTypeId, mapTypeId
+    if (opt.mapTypeId && opt.diagramTypeId === 'map') {
+      opt.activeDiagramType = opt.mapTypeId;
+    } else if (opt.diagramTypeId) {
+      opt.activeDiagramType = opt.diagramTypeId;
     }
-    if (this.diagramOptions.diagramTypeSubset.find((type) => type === 'map')) {
-      this.diagramOptions.diagramTypeSubset = this.diagramOptions.diagramTypeSubset.filter(
-        (type) => type !== 'map',
-      );
-      this.diagramOptions.diagramTypeSubset.push('mapFylker');
+    delete opt.diagramTypeId;
+    delete opt.mapTypeId;
+
+    // metadataButton
+    if (opt.metadataButton && !opt.controls?.metadataButton?.show) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.metadataButton) {
+        opt.controls.metadataButton = {
+          show: opt.metadataButton,
+        };
+      }
+    }
+    delete opt.metadataButton;
+
+    // navigation
+    if (opt.diagramTypeSubset.find((type) => type === 'map')) {
+      opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
+      opt.diagramTypeSubset.push('mapFylker');
     }
 
+    this.diagramOptions = opt;
     console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }

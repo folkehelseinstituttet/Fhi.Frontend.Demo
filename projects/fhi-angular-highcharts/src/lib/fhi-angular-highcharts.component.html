@@ -8,7 +8,7 @@
       </ng-container>
 
       <div class="fhi-highcharts-nav__standalone-btns">
-        <ng-container *ngIf="allDiagramOptions.metadataButton">
+        <ng-container *ngIf="showMetadataButton">
           <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
         </ng-container>
 
@@ -57,12 +57,12 @@
   <div
     class="mb-3"
     [ngClass]="{
-      'me-auto': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+      'me-auto': showMetadataButton || allDiagramOptions.showFullScreenButton
     }"
   >
     <div
       [ngClass]="{
-        'me-3': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+        'me-3': showMetadataButton || allDiagramOptions.showFullScreenButton
       }"
     >
       <fhi-diagram-type-nav-default

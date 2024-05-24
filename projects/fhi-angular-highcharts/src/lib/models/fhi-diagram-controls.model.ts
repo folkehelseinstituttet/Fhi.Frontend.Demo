@@ -3,10 +3,10 @@ import { MapTypeIds } from '../constants-and-enums/diagram-type-ids';
 
 export interface FhiDiagramControls {
   metadataButton?: {
-    show?: boolean;
+    show: boolean;
   };
   navigation?: {
-    items?: {
+    items: {
       //chartTypes?: keyof (typeof ChartTypeIds)[];
       mapTypes?: keyof (typeof MapTypeIds)[];
     };
@@ -14,9 +14,9 @@ export interface FhiDiagramControls {
     type?: keyof typeof DiagramTypeNavIds;
   };
   showFullScreenButton?: {
-    show?: boolean;
+    show: boolean;
   };
   tableOrientationButton?: {
-    show?: boolean;
+    show: boolean;
   };
 }

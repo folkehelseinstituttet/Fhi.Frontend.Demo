@@ -5,13 +5,14 @@ import { TableOrientations } from '../constants-and-enums/table-orientations';
 import { FhiDiagramFlag } from './fhi-diagram-flag.model';
 import { FhiDiagramSerie } from './fhi-diagram-serie.model';
 import { FhiDiagramUnit } from './fhi-diagram-unit.model';
+import { FhiDiagramControls } from './fhi-diagram-controls.model';
 
 export type FhiDiagramTypeIds = keyof typeof DiagramTypeIds;
 export type FhiTableOrientations = keyof typeof TableOrientations;
 
 export interface FhiDiagramOptions {
   activeDiagramType?: FhiDiagramTypeIds;
-  // controls?: FhiDiagramControls;
+  controls?: FhiDiagramControls;
   // footer?: FhiDiagramFooter;
   openSource?: boolean;
   series: FhiDiagramSerie[];
