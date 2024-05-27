@@ -159,7 +159,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `fullScreenButton.show`       | `boolean`                    | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
 | `metadataButton`              | `object`                     | -       | no       | Properties related to metadata button. |
 | `metadataButton.show`         | `boolean`                    | `false` | yes      | Whether to show a button with an event for custom navigation to your metadata. |
-| `navigation`                  | `object`                     | -       | no       | Properties related to diagram type navigaton. |
+| `navigation`                  | `object`                     | -       | no       | Properties related to diagram type navigaton. PS. `navigation.items` will always contain table, therefore no `navigation.items.table` as part of the items interface. |
 | `navigation.items.chartTypes` | `string[]`                   | -       | no       | Chart types to show in diagram type navigaton defined by enum ChartTypeIds. |
 | `navigation.items.mapTypes`   | `string[]`                   | -       | no       | Map types to show in diagram type navigaton defined by enum MapTypeIds. |
 | `navigation.show`             | `boolean`                    | `false` | yes      | Whether to show diagram type navigaton. |
