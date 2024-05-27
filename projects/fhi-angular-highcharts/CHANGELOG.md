@@ -1,12 +1,13 @@
 # Unreleased
 
-> Mai 15, 2024
+> May 27, 2024
 
 * :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
+* :bug: **Bugfix** Remove compact date formatting on chart diagrams
 
 ## 3.2.0
 
-> Mai 6, 2024
+> May 6, 2024
 
 * :bug: **Bugfix** Add null check for `FhiDiagramOptions.decimals` and `FhiDiagramOptions.unit.decimals`
 * :tada: **Enhancement** Set `minFractionDigits` in `digitsInfo` to `0` (DecimalPipe), since padding the number with extra zeros actually changes the number.

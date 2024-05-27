@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -8,9 +9,12 @@ import { SharedConstants as CONST } from '../../shared/shared.constants';
 
 @Component({
   selector: 'app-library-items-section',
+
   templateUrl: './library-items-section.component.html',
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
   isDebugging = false;
   lang_NO: string = CONST.languageLocaleId_NO;
   lang_EN: string = CONST.languageLocaleId_EN;
@@ -20,15 +24,17 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   sectionTitle!: string;
   sectionTitleLang!: string;
   sectionIntro!: string;
-
-  private subscription: Subscription = new Subscription();
+  currentAnchor: string;
 
   constructor(
     private urlService: UrlService,
     private itemsDataService: LibraryItemGroupsDataService,
+    private viewportScroller: ViewportScroller,
   ) {}
 
   ngOnInit() {
+    this.currentAnchor = window.location.hash.substring(1);
+
     this.subscription.add(
       this.urlService.URL$.subscribe(() => {
         const lastSegmentPath = this.urlService.getLastSegmentPath();
@@ -41,6 +47,12 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  scrollToLibraryItem(itemId: string) {
+    this.currentAnchor = itemId;
+    this.viewportScroller.scrollToAnchor(itemId);
+    window.location.hash = itemId;
   }
 
   private getLibraryItems(lastSegmentPath: string) {

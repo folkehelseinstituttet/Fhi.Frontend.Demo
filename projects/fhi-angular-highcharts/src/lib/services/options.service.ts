@@ -48,7 +48,7 @@ export class OptionsService {
       options.legend.title.text = options.series[0].name;
     }
     if (!isMap) {
-      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, series);
+      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
@@ -87,9 +87,8 @@ export class OptionsService {
     }
   }
 
-  private getXAxis(xAxis: XAxisOptions, series: FhiDiagramSerie[]): XAxisOptions | XAxisOptions[] {
+  private getXAxis(xAxis: XAxisOptions): XAxisOptions | XAxisOptions[] {
     xAxis = xAxis ? xAxis : {};
-    xAxis.labels = this.getFormattedLabels(series);
     return xAxis;
   }
 
@@ -149,6 +148,11 @@ export class OptionsService {
     }
     return tooltip;
   }
+
+  /*
+  The methods below is for date formatting, that is abandoned.
+  Keep for possibility that this will be reintroduced.
+  */
 
   private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {
     const isDayLabels = isValid(
