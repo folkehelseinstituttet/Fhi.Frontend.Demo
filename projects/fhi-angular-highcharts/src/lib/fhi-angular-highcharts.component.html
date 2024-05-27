@@ -112,13 +112,15 @@
 </ng-template>
 
 <ng-template #map>
-  <highcharts-chart
-    class="fhi-highcharts-map"
-    [Highcharts]="highmaps"
-    [constructorType]="'mapChart'"
-    [options]="highchartsOptions"
-  >
-  </highcharts-chart>
+  <div class="fhi-highcharts-map-container">
+    <highcharts-chart
+      class="fhi-highcharts-map"
+      [Highcharts]="highmaps"
+      [constructorType]="'mapChart'"
+      [options]="highchartsOptions"
+    >
+    </highcharts-chart>
+  </div>
 </ng-template>
 
 <ng-template #table>
