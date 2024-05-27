@@ -91,16 +91,16 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    this.resetDiagramState();
-    this.loopSeriesToUpdateAndExtractInfo();
-    this.updateDecimals();
-    this.updateDiagramTypeGroups();
-    this.updateAllDiagramOptions();
-    this.updateDiagramState();
-    // try {
-    // } catch (error) {
-    //   console.error(this.getErrorMsg(error));
-    // }
+    try {
+      this.resetDiagramState();
+      this.loopSeriesToUpdateAndExtractInfo();
+      this.updateDecimals();
+      this.updateDiagramTypeGroups();
+      this.updateAllDiagramOptions();
+      this.updateDiagramState();
+    } catch (error) {
+      console.error(this.getErrorMsg(error));
+    }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
