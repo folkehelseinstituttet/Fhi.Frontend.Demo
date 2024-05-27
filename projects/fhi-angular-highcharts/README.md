@@ -153,19 +153,19 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 
 ### Interface FhiDiagramControls
 
-| Property                      | Type                         | Default | Required | Description |
-| ----------------------------- | ---------------------------- | ------- | -------- | ----------- |
-| `fullScreenButton`            | `object`                     | -       | no       | Properties related to fullScreenButton. |
-| `fullScreenButton.show`       | `boolean`                    | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
-| `metadataButton`              | `object`                     | -       | no       | Properties related to metadata button. |
-| `metadataButton.show`         | `boolean`                    | `false` | yes      | Whether to show a button with an event for custom navigation to your metadata. |
-| `navigation`                  | `object`                     | -       | no       | Properties related to diagram type navigaton. PS. `navigation.items` will always contain table, therefore no `navigation.items.table` as part of the items interface. |
-| `navigation.items.chartTypes` | `string[]`                   | -       | no       | Chart types to show in diagram type navigaton defined by enum ChartTypeIds. |
-| `navigation.items.mapTypes`   | `string[]`                   | -       | no       | Map types to show in diagram type navigaton defined by enum MapTypeIds. |
-| `navigation.show`             | `boolean`                    | `false` | yes      | Whether to show diagram type navigaton. |
-| `navigation.type`             | `string`                     | -       | no       | ID to specify which type of navigation to use defined by enum DiagramTypeNavIds. |
-| `tableOrientationButton`      | `object`                     | -       | no       | Properties related to tableOrientationButton. |
-| `tableOrientationButton.show` | `boolean`                    | `false` | yes      | Whether to show a button which toggles rows/columns in the diagram type table. **Not implemented yet, so has no effect atm.** |
+| Property                      | Type       | Default | Required | Description |
+| ----------------------------- | ---------- | ------- | -------- | ----------- |
+| `fullScreenButton`            | `object`   | -       | no       | Properties related to fullScreenButton. |
+| `fullScreenButton.show`       | `boolean`  | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
+| `metadataButton`              | `object`   | -       | no       | Properties related to metadata button. |
+| `metadataButton.show`         | `boolean`  | `false` | yes      | Whether to show a button with an event for custom navigation to your metadata. |
+| `navigation`                  | `object`   | -       | no       | Properties related to diagram type navigaton. PS. `navigation.items` will always contain table, therefore no `navigation.items.table` as part of the items interface. |
+| `navigation.items.chartTypes` | `string[]` | -       | no       | Chart types to show in diagram type navigaton defined by enum ChartTypeIds. |
+| `navigation.items.mapTypes`   | `string[]` | -       | no       | Map types to show in diagram type navigaton defined by enum MapTypeIds. |
+| `navigation.show`             | `boolean`  | `false` | yes      | Whether to show diagram type navigaton. |
+| `navigation.type`             | `string`   | -       | no       | ID to specify which type of navigation to use defined by enum DiagramTypeNavIds. |
+| `tableOrientationButton`      | `object`   | -       | no       | Properties related to tableOrientationButton. |
+| `tableOrientationButton.show` | `boolean`  | `false` | yes      | Whether to show a button which toggles rows/columns in the diagram type table. **Not implemented yet, so has no effect atm.** |
 
 ### Interface FhiDiagramFooter
 
