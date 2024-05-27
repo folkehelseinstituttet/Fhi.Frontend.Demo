@@ -1,7 +1,8 @@
 # Unreleased
 
-> May 22, 2024
+> May 27, 2024
 
+* :tada: **Enhancement** Container on map and charts that provides better aspect ratios in different viewports
 * :bug: **Bugfix** Remove compact date formatting on chart diagrams
 
 ## 3.2.0
