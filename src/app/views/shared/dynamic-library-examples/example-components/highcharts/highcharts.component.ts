@@ -40,8 +40,7 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.selectMockData('aarsak_2017_2021');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.selectMockData('kart');
-      //this.selectMockData('befolkning_antall');
+      this.selectMockData('befolkning_antall');
     }
   }
 
@@ -209,6 +208,9 @@ export class HighchartsComponent implements OnInit {
     return {
       ...this.diagramOptions_INIT,
       activeDiagramType: 'mapFylker',
+
+      diagramTypeNavId: 'default',
+
       controls: {
         fullScreenButton: {
           show: true,
