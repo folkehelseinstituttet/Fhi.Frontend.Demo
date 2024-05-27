@@ -208,9 +208,6 @@ export class HighchartsComponent implements OnInit {
     return {
       ...this.diagramOptions_INIT,
       activeDiagramType: 'mapFylker',
-
-      diagramTypeNavId: 'default',
-
       controls: {
         fullScreenButton: {
           show: true,
