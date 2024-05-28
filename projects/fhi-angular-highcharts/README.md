@@ -174,7 +174,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `credits`      | `object`           | -       | no       | Properties related to source ref. |
 | `credits.href` | `string`           | -       | yes      | Link to source ref. |
 | `credits.text` | `string`           | -       | yes      | Text to source ref. |
-| `disclaimer`   | `string`           | -       | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
+| `disclaimer`   | `string`           | -       | no       | Text at the bottom of the footer used to say something about uncertainty in the data shown in a diagram. |
 | `[flags]`      | `FhiDiagramFlag[]` | -       | no       | List of all flags used in `FhiDiagramSerie[]`. See [FhiDiagramFlag](#interface-fhidiagramflag) for details. |
 | `lastUpdated`  | `string`           | -       | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
 
