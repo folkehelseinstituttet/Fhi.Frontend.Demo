@@ -17,7 +17,6 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
-import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
@@ -59,7 +58,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   seriesInfo: SeriesInfo = {
     digitsInfo: '1.0-14',
   };
-  flaggedSeries: FlaggedSerie[];
 
   tableData: TableData;
 
@@ -125,7 +123,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   getFlaggedDataPoints(): Array<string> {
     const flagged: Array<string> = [];
     let n = 0;
-    this.flaggedSeries.forEach((serie) => {
+    this.seriesInfo.flaggedSeries.forEach((serie) => {
       serie.flaggedDataPoints.forEach((dataPoint) => {
         flagged[n++] = serie.name.concat(Seperator.output, dataPoint.name);
       });
@@ -142,7 +140,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
-    this.flaggedSeries = [];
+    this.seriesInfo.flaggedSeries = [];
   }
 
   private loopSeriesToUpdateAndExtractInfo() {
@@ -182,7 +180,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramOptions.activeDiagramType,
       this.diagramOptions.controls?.navigation?.items?.chartTypes,
       this.diagramOptions.controls?.navigation?.items?.mapTypes,
-      this.flaggedSeries,
+      this.seriesInfo.flaggedSeries,
       this.diagramOptions.series,
       this.diagramTypeGroups,
     );
@@ -218,7 +216,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     flaggedData: FhiDiagramSerieData[],
     index: number,
   ) {
-    this.flaggedSeries[index] = {
+    this.seriesInfo.flaggedSeries[index] = {
       name: serie.name as string,
       flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     };
@@ -333,7 +331,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.showMap && !this.diagramOptions.openSource) {
       return true;
     }
-    if (this.diagramOptions.footer?.flags && this.flaggedSeries.length !== 0) {
+    if (this.diagramOptions.footer?.flags && this.seriesInfo.flaggedSeries.length !== 0) {
       return true;
     }
     if (this.diagramOptions.footer?.lastUpdated) {
