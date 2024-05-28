@@ -9,6 +9,7 @@ export const UnitSymbolPositionValues = {
 };
 
 export interface FhiDiagramUnit {
+  id?: number | string;
   decimals?: number;
   label: string;
   symbol?: string;

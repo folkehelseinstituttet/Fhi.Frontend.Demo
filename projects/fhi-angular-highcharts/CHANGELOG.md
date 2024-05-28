@@ -3,6 +3,7 @@
 > May 27, 2024
 
 * :tada: **Enhancement** Container on map and charts that provides better aspect ratios in different viewports
+* :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
 * :bug: **Bugfix** Remove compact date formatting on chart diagrams
 
 ## 3.2.0
