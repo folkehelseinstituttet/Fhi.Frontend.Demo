@@ -53,7 +53,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   highmaps: typeof Highmaps = Highmaps;
   highchartsOptions!: Options;
 
-  allDiagramOptions!: AllDiagramOptions;
+  allDiagramOptions!: FhiDiagramOptions;
 
   activeDiagramTypeGroup!: DiagramTypeGroup;
   diagramTypeGroups!: DiagramTypeGroup[];
@@ -170,7 +170,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.seriesInfo.decimalDataPointsExists = true;
       }
       if (negativeData.length !== 0) {
-        this.allDiagramOptions.seriesHasNegativeDataPoints = true;
         this.seriesInfo.negativeDataPointsExists = true;
       }
 
