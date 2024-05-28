@@ -17,6 +17,7 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
 import { AllDiagramOptions } from '../models/all-diagram-options.model';
+import { SeriesInfo } from '../models/series-info.model';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
@@ -31,7 +32,7 @@ export class OptionsService {
     this.setAllStaticOptions();
   }
 
-  updateOptions(allDiagramOptions: AllDiagramOptions): Options {
+  updateOptions(allDiagramOptions: AllDiagramOptions, seriesInfo: SeriesInfo): Options {
     const options: Options = cloneDeep(
       this.allStaticOptions.get(allDiagramOptions.activeDiagramType),
     );
@@ -49,7 +50,7 @@ export class OptionsService {
     }
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
-      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions, seriesInfo);
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, allDiagramOptions);
     } else if (options.chart !== undefined) {
       options.chart.map = allDiagramOptions.activeDiagramType;
@@ -95,9 +96,10 @@ export class OptionsService {
   private getYAxis(
     yAxis: YAxisOptions,
     allDiagramOptions: AllDiagramOptions,
+    seriesInfo: SeriesInfo,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
-    if (allDiagramOptions.seriesHasDecimalDataPoints) {
+    if (seriesInfo.decimalDataPointsExists) {
       yAxis.allowDecimals = true;
       yAxis.min = undefined;
     }

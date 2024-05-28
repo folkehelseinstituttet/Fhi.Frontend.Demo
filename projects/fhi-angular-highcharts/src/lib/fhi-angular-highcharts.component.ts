@@ -36,6 +36,7 @@ import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
 import { DiagramTypeGroup } from './models/diagram-type-group.model';
+import { SeriesInfo } from './models/series-info.model';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -50,25 +51,28 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
-
   highchartsOptions!: Options;
+
   allDiagramOptions!: AllDiagramOptions;
 
-  digitsInfo = '1.0-14';
-
-  diagramTypeGroupNames = DiagramTypeGroupNames;
-  diagramTypeGroups!: DiagramTypeGroup[];
   activeDiagramTypeGroup!: DiagramTypeGroup;
+  diagramTypeGroups!: DiagramTypeGroup[];
+  diagramTypeGroupNames = DiagramTypeGroupNames;
 
+  seriesInfo: SeriesInfo = {
+    digitsInfo: '1.0-14',
+  };
+  digitsInfo = '1.0-14';
   flaggedSeries: FlaggedSerie[];
+
   tableData: TableData;
 
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
   showDiagramTypeNav: boolean;
   showDuplicateSerieNameError: boolean;
-  showFullScreenButton: boolean;
   showFooter: boolean;
+  showFullScreenButton: boolean;
   showMap: boolean;
   showMetadataButton: boolean;
 
@@ -163,7 +167,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.updateFlaggedSeries(serie, flaggedData, n++);
       }
       if (decimalData.length !== 0) {
-        this.allDiagramOptions.seriesHasDecimalDataPoints = true;
+        this.seriesInfo.decimalDataPointsExists = true;
       }
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;
@@ -282,7 +286,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateChart() {
-    this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+    this.highchartsOptions = this.optionsService.updateOptions(
+      this.allDiagramOptions,
+      this.seriesInfo,
+    );
   }
 
   private updateTable() {
@@ -295,7 +302,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.highchartsOptions = this.optionsService.updateOptions(
+        this.allDiagramOptions,
+        this.seriesInfo,
+      );
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
