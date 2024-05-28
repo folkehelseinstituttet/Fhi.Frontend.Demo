@@ -53,7 +53,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   highchartsOptions!: Options;
   allDiagramOptions!: AllDiagramOptions;
-  mapCopyrightInfo!: object;
+
   digitsInfo = '1.0-14';
 
   diagramTypeGroupNames = DiagramTypeGroupNames;
