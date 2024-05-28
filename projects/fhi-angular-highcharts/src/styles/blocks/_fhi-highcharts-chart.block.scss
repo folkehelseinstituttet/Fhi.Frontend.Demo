@@ -1,10 +1,11 @@
-$chart-container-aspect-regular: calc(100% / 4 * 3);
+$chart-container-aspect-wider: calc(100% / 4 * 3);
+$chart-container-aspect-taller: calc(100% / 3 * 4);
 
 .fhi-highcharts-chart-container {
     position: relative;
     height: 0;
     min-height: 400px;
-    padding-bottom: 125%;
+    padding-bottom: 100%;
     width: 100%;
 }
 
@@ -17,8 +18,18 @@ $chart-container-aspect-regular: calc(100% / 4 * 3);
     bottom: 0;
 }
 
+@media (orientation: portrait) {
+    @include media-breakpoint-down(md) {
+        .fhi-highcharts-chart-container--taller {
+            padding-bottom: $chart-container-aspect-taller;
+        }
+    }
+}
+
 @media (orientation: landscape) {
-    .fhi-highcharts-chart-container {
-        padding-bottom: $chart-container-aspect-regular;
+    @include media-breakpoint-up(lg) {
+        .fhi-highcharts-chart-container {
+            padding-bottom: $chart-container-aspect-wider;
+        }
     }
 }

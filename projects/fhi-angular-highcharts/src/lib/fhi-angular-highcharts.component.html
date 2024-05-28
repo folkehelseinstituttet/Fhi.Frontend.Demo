@@ -105,7 +105,10 @@
 </ng-template>
 
 <ng-template #chart>
-  <div class="fhi-highcharts-chart-container">
+  <div
+    class="fhi-highcharts-chart-container"
+    [ngClass]="getAdditionalChartContainerClass() ? 'fhi-highcharts-chart-container--taller' : null"
+  >
     <highcharts-chart class="fhi-highcharts-chart" [Highcharts]="highcharts" [options]="highchartsOptions">
     </highcharts-chart>
   </div>
