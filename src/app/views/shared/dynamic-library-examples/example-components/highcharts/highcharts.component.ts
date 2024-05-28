@@ -82,14 +82,14 @@ export class HighchartsComponent implements OnInit {
   }
 
   private selectMockData(value: string) {
+    // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     switch (value) {
       // dataset (init)
       case 'aarsak_2008_2018':
         this.getDodsfallEtterAarsak_2008_2018();
         break;
       case 'aarsak_2017_2021':
-        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-        // this.getDodsfallEtterAarsak_2017_2021();
+        this.getDodsfallEtterAarsak_2017_2021();
         break;
       case 'befolkning_antall':
         this.getBefolkningInndelingPr2024_antall();
@@ -207,23 +207,39 @@ export class HighchartsComponent implements OnInit {
   private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
-      title: '',
-      diagramTypeId: 'map',
-      diagramTypeSubset: ['map', 'column', 'bar', 'pie'],
-      diagramTypeNavId: 'default',
-      flags: [
-        { symbol: '..', label: 'Manglende data' },
-        { symbol: '.', label: 'Lar seg ikke beregne' },
-        { symbol: ':', label: 'Anonymisert' },
-      ],
-      creditsHref: 'https://www.fhi.no',
-      creditsText: 'Folkehelseinstituttet',
-      disclaimer: 'Disse dataene kan inneholde feil.',
-      lastUpdated: '18.04.2024',
-      mapTypeId: 'mapFylker',
+      activeDiagramType: 'mapFylker',
+      controls: {
+        fullScreenButton: {
+          show: true,
+        },
+        metadataButton: {
+          show: true,
+        },
+        navigation: {
+          items: {
+            chartTypes: ['bar', 'column', 'pie'],
+            mapTypes: ['mapFylker'],
+          },
+          show: true,
+          type: 'default', // this has no effect (currently only one nav type)
+        },
+      },
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [
+          { symbol: '..', label: 'Manglende data' },
+          { symbol: '.', label: 'Lar seg ikke beregne' },
+          { symbol: ':', label: 'Anonymisert' },
+        ],
+        lastUpdated: '18.04.2024',
+      },
       openSource: false,
-      showFullScreenButton: true,
-      metadataButton: true,
+      tableOrientation: 'seriesAsColumns',
+      title: '',
       unit: [
         {
           label: 'Antall',
@@ -235,9 +251,27 @@ export class HighchartsComponent implements OnInit {
   private getTestData() {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
-      // title: 'Befolkning (antall og andel) - inndeling per 1.1.2024',
-      // title: 'Dual axes, line and column',
+
+      activeDiagramType: 'mapFylker',
+      // controls?: FhiDiagramControls;
+      // footer?: FhiDiagramFooter;
+      openSource: false,
+      // tableOrientation: 'seriesAsColumns',
       title: 'Unit',
+      unit: [
+        {
+          label: 'Antall',
+        },
+        // {
+        //   decimals: 1,
+        //   label: 'Prosent',
+        //   symbol: '%',
+        //   position: 'end',
+        // },
+      ],
+
+      // The following will be deprecated in v5
+
       // diagramTypeId: 'column',
       diagramTypeNavId: 'default',
       decimals: 2,
@@ -251,20 +285,7 @@ export class HighchartsComponent implements OnInit {
       // disclaimer: 'Disse dataene kan inneholde feil.',
       // lastUpdated: '06.06.2023',
       // mapTypeId: 'mapFylker',
-      openSource: false,
       showFullScreenButton: true,
-      tableOrientation: 'seriesAsColumns',
-      unit: [
-        {
-          label: 'Antall',
-        },
-        // {
-        //   decimals: 1,
-        //   label: 'Prosent',
-        //   symbol: '%',
-        //   position: 'end',
-        // },
-      ],
     });
   }
 }

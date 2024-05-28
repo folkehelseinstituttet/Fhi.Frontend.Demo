@@ -3,16 +3,16 @@
 
   <div class="fhi-highcharts-nav">
     <div class="d-flex flex-wrap">
-      <ng-container *ngIf="allDiagramOptions.diagramTypeNavId !== undefined">
+      <ng-container *ngIf="showDiagramTypeNav">
         <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
       </ng-container>
 
       <div class="fhi-highcharts-nav__standalone-btns">
-        <ng-container *ngIf="allDiagramOptions.metadataButton">
+        <ng-container *ngIf="showMetadataButton">
           <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
         </ng-container>
 
-        <ng-container *ngIf="allDiagramOptions.showFullScreenButton">
+        <ng-container *ngIf="showFullScreenButton">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
@@ -29,16 +29,16 @@
 </article>
 
 <ng-template #diagramAndFooter>
-  <ng-container [ngSwitch]="currentDiagramTypeGroup">
-    <ng-container *ngSwitchCase="diagramTypeGroups.table">
+  <ng-container [ngSwitch]="activeDiagramTypeGroup?.name">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.table">
       <ng-container *ngTemplateOutlet="table"></ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="diagramTypeGroups.map">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.map">
       <ng-container *ngIf="showMap">
         <ng-container *ngTemplateOutlet="map"></ng-container>
       </ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="diagramTypeGroups.chart">
+    <ng-container *ngSwitchCase="diagramTypeGroupNames?.chart">
       <ng-container *ngIf="showDefaultChartTemplate; else chartAnimationHack">
         <ng-container *ngTemplateOutlet="chart"></ng-container>
       </ng-container>
@@ -57,16 +57,16 @@
   <div
     class="mb-3"
     [ngClass]="{
-      'me-auto': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+      'me-auto': showMetadataButton || showFullScreenButton
     }"
   >
     <div
       [ngClass]="{
-        'me-3': allDiagramOptions.metadataButton || allDiagramOptions.showFullScreenButton
+        'me-3': showMetadataButton || showFullScreenButton
       }"
     >
       <fhi-diagram-type-nav-default
-        [diagramTypeGroups]="diagramTypeGroups_NEW"
+        [diagramTypeGroups]="diagramTypeGroups"
         (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
       >
       </fhi-diagram-type-nav-default>
@@ -95,7 +95,7 @@
   <button
     class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
     [ngClass]="{
-      'fhi-highcharts-nav__meta-btn--push-end': allDiagramOptions.showFullScreenButton
+      'fhi-highcharts-nav__meta-btn--push-end': showFullScreenButton
     }"
     (click)="onMetadataButtonClick()"
   >
@@ -175,16 +175,21 @@
 
 <ng-template #diagramFooter>
   <footer class="mt-3">
-    <p *ngIf="allDiagramOptions.lastUpdated"><strong>Sist oppdatert </strong>{{ allDiagramOptions.lastUpdated }}</p>
-    <p *ngIf="allDiagramOptions.creditsText && allDiagramOptions.creditsHref">
-      <strong>Kilde </strong>
-      <a href="{{ allDiagramOptions.creditsHref }}">{{ allDiagramOptions.creditsText }}</a>
+    <p *ngIf="allDiagramOptions.footer?.lastUpdated">
+      <strong>Sist oppdatert </strong>{{ allDiagramOptions.footer?.lastUpdated }}
     </p>
-    <div class="mb-3" *ngIf="allDiagramOptions.flags && currentDiagramTypeGroup === diagramTypeGroups.table">
+    <p *ngIf="allDiagramOptions.footer?.credits">
+      <strong>Kilde </strong>
+      <a href="{{ allDiagramOptions.footer.credits.href }}">{{ allDiagramOptions.footer.credits.text }}</a>
+    </p>
+    <div
+      class="mb-3"
+      *ngIf="allDiagramOptions.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
+    >
       <strong>Tegnforklaringer</strong><br />
       <table>
         <tbody>
-          <tr *ngFor="let flag of allDiagramOptions.flags">
+          <tr *ngFor="let flag of allDiagramOptions.footer?.flags">
             <td class="pe-2">{{ flag.symbol }}</td>
             <td>{{ flag.label }}</td>
           </tr>
@@ -193,7 +198,11 @@
     </div>
     <div
       class="mb-3"
-      *ngIf="flaggedSeries.length > 0 && allDiagramOptions.flags && currentDiagramTypeGroup !== diagramTypeGroups.table"
+      *ngIf="
+        flaggedSeries.length > 0 &&
+        allDiagramOptions.footer?.flags &&
+        activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
+      "
     >
       <p>
         <a
@@ -219,8 +228,8 @@
       <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
       for å se flere detaljer.
     </div>
-    <p class="fst-italic small" *ngIf="allDiagramOptions.disclaimer">
-      {{ allDiagramOptions.disclaimer }}
+    <p class="fst-italic small" *ngIf="allDiagramOptions.footer?.disclaimer">
+      {{ allDiagramOptions.footer?.disclaimer }}
     </p>
     <p>
       <a

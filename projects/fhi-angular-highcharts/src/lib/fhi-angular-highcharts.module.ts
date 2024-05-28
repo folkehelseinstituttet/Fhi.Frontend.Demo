@@ -8,7 +8,6 @@ import { FhiModalComponent } from '@folkehelseinstituttet/angular-components';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
-import { DiagramTypeService } from './services/diagram-type.service';
 import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 
@@ -26,12 +25,6 @@ import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-d
     FhiDiagramTypeNavDefaultComponent,
   ],
   exports: [FhiAngularHighchartsComponent],
-  providers: [
-    TopoJsonService,
-    DiagramTypeService,
-    DiagramTypeGroupService,
-    OptionsService,
-    TableService,
-  ],
+  providers: [TopoJsonService, DiagramTypeGroupService, OptionsService, TableService],
 })
 export class FhiAngularHighchartsModule {}
