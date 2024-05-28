@@ -171,6 +171,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
       if (negativeData.length !== 0) {
         this.allDiagramOptions.seriesHasNegativeDataPoints = true;
+        this.seriesInfo.negativeDataPointsExists = true;
       }
 
       serie.name = this.formatSerieName(serie.name);

@@ -103,7 +103,8 @@ export class OptionsService {
       yAxis.allowDecimals = true;
       yAxis.min = undefined;
     }
-    if (allDiagramOptions.seriesHasNegativeDataPoints) {
+    // if (allDiagramOptions.seriesHasNegativeDataPoints) {
+    if (seriesInfo.negativeDataPointsExists) {
       yAxis.min = undefined;
     }
     if (allDiagramOptions.unit?.length === 1) {
