@@ -253,7 +253,11 @@ export class HighchartsComponent implements OnInit {
       ...this.diagramOptions_INIT,
 
       activeDiagramType: 'column',
-      // controls?: FhiDiagramControls;
+      controls: {
+        navigation: {
+          show: true,
+        },
+      },
       // footer?: FhiDiagramFooter;
       openSource: false,
       // series -> is set in this.getData()

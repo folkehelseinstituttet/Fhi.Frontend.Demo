@@ -37,6 +37,13 @@ const column: DiagramType = {
   options: OptionsChartTypeColumn,
 };
 
+const columnAndLine: DiagramType = {
+  id: DiagramTypeIdValues.columnAndLine,
+  icon: 'question-circle',
+  name: 'Dobbel akse, linje og søyle',
+  options: OptionsChartTypeColumn,
+};
+
 const columnStacked: DiagramType = {
   id: DiagramTypeIdValues.columnStacked,
   icon: 'bar-chart-line-stacked',
@@ -101,6 +108,7 @@ export class DiagramTypes {
   static bar = bar;
   static barStacked = barStacked;
   static column = column;
+  static columnAndLine = columnAndLine;
   static columnStacked = columnStacked;
   static line = line;
   static map = map;
@@ -114,6 +122,7 @@ export const AllDiagramTypes = [
   bar,
   barStacked,
   column,
+  columnAndLine,
   columnStacked,
   line,
   map,
@@ -124,5 +133,5 @@ export const AllDiagramTypes = [
 ];
 
 // This is the order used in diagram-type-navs
-export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie];
+export const ChartTypes = [line, columnAndLine, column, bar, columnStacked, barStacked, pie];
 export const MapTypes = [map, mapFylker, mapFylker2019];
