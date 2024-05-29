@@ -1,8 +1,9 @@
-$map-container-aspect-regular: calc(100% / 4 * 5);
+$map-container-aspect-landscape: calc(100% / 3 * 2);
 
 .fhi-highcharts-map-container {
     position: relative;
     height: 0;
+    min-height: 400px;
     padding-bottom: 100%;
     width: 100%;
 }
@@ -16,8 +17,16 @@ $map-container-aspect-regular: calc(100% / 4 * 5);
     bottom: 0;
 }
 
-@media (orientation: portrait) {
+@media (orientation: landscape) {
     .fhi-highcharts-map-container {
-        padding-bottom: $map-container-aspect-regular;
+        padding-bottom: $map-container-aspect-landscape;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .fhi-highcharts-map-container {
+        .modal-fullscreen & {
+            padding-bottom: 60vh;
+        }
     }
 }
