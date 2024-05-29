@@ -23,7 +23,7 @@ $chart-container-aspect-wider: calc(100% / 4 * 3);
     }
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(sm) {
     .fhi-highcharts-chart-container {
         .modal-fullscreen & {
             padding-bottom: 60vh;

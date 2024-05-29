@@ -23,7 +23,7 @@ $map-container-aspect-landscape: calc(100% / 3 * 2);
     }
 }
 
-@include media-breakpoint-up(md) {
+@include media-breakpoint-up(sm) {
     .fhi-highcharts-map-container {
         .modal-fullscreen & {
             padding-bottom: 60vh;
