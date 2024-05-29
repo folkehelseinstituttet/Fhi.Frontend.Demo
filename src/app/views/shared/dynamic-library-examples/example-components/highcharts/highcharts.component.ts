@@ -82,7 +82,6 @@ export class HighchartsComponent implements OnInit {
   }
 
   private selectMockData(value: string) {
-    // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     switch (value) {
       // dataset (init)
       case 'aarsak_2008_2018':
@@ -92,7 +91,8 @@ export class HighchartsComponent implements OnInit {
         this.getDodsfallEtterAarsak_2017_2021();
         break;
       case 'befolkning_antall':
-        this.getBefolkningInndelingPr2024_antall();
+        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+        //this.getBefolkningInndelingPr2024_antall();
         this.showUnitSelect = true;
         break;
       case 'kart':
@@ -252,12 +252,13 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
 
-      activeDiagramType: 'mapFylker',
+      activeDiagramType: 'column',
       // controls?: FhiDiagramControls;
       // footer?: FhiDiagramFooter;
       openSource: false,
+      // series -> is set in this.getData()
       // tableOrientation: 'seriesAsColumns',
-      title: 'Unit',
+      title: 'Dobbel akse, linje og søyle',
       unit: [
         {
           label: 'Antall',

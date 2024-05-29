@@ -13,7 +13,7 @@ import { BefolkningInndelingPr2024_antall } from './mock-data/6.befolkning-innde
 import { BefolkningInndelingPr2024_andel } from './mock-data/7.befolkning-inndeling-pr-2024-andel';
 
 // Data for testing/debugging while developing locally, do not show in dev or prod.
-import { TestData } from './mock-data/test-data-2';
+import { TestData } from './mock-data/test-data-8';
 
 @Injectable({
   providedIn: 'root',
