@@ -273,12 +273,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     } else if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.map) {
       this.updateMap();
     } else {
-      this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
       this.updateChart();
     }
   }
 
   private updateChart() {
+    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     this.highchartsOptions = this.optionsService.updateOptions(
       this.diagramOptions,
       this.seriesInfo,
