@@ -137,18 +137,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return this.topoJsonService.getMapCopyright();
   }
 
-  getAdditionalChartContainerClass(): boolean {
-    if (
-      this.diagramOptions.activeDiagramType === 'bar' ||
-      this.diagramOptions.activeDiagramType === 'barStacked'
-    ) {
-      if (this.diagramOptions.series.length > 5 && this.diagramOptions.series[0].data.length > 3) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   private resetDiagramState() {
     this.showDiagramTypeDisabledWarning = false;
     this.showFooter = false;
