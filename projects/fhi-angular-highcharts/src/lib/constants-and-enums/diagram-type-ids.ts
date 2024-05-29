@@ -5,7 +5,7 @@ export enum DiagramTypeIds {
   columnAndLine,
   columnStacked,
   line,
-  map,
+  map, // TODO: remove in v5
   mapFylker,
   mapFylker2019,
   pie,
@@ -19,7 +19,6 @@ export const DiagramTypeIdValues = {
   columnAndLine: DiagramTypeIds[DiagramTypeIds.columnAndLine],
   columnStacked: DiagramTypeIds[DiagramTypeIds.columnStacked],
   line: DiagramTypeIds[DiagramTypeIds.line],
-  map: DiagramTypeIds[DiagramTypeIds.map],
   mapFylker: DiagramTypeIds[DiagramTypeIds.mapFylker],
   mapFylker2019: DiagramTypeIds[DiagramTypeIds.mapFylker2019],
   pie: DiagramTypeIds[DiagramTypeIds.pie],

@@ -252,7 +252,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
 
-      activeDiagramType: 'column',
+      activeDiagramType: 'columnAndLine',
       controls: {
         navigation: {
           show: true,
@@ -279,9 +279,9 @@ export class HighchartsComponent implements OnInit {
 
       // The following will be deprecated in v5
 
-      // diagramTypeId: 'column',
+      // diagramTypeId: 'map',
       // diagramTypeNavId: 'default',
-      // decimals: 2,
+      decimals: 2,
       // flags: [
       //   { symbol: '..', label: 'Manglende data' },
       //   { symbol: '.', label: 'Lar seg ikke beregne' },

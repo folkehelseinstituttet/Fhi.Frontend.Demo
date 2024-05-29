@@ -39,7 +39,6 @@ const column: DiagramType = {
 
 const columnAndLine: DiagramType = {
   id: DiagramTypeIdValues.columnAndLine,
-  icon: 'question-circle',
   name: 'Dobbel akse, linje og søyle',
   options: OptionsChartTypeColumn,
 };
@@ -69,7 +68,6 @@ const pie: DiagramType = {
 
 const mapShared = {
   icon: 'geo-alt',
-  name: 'Kart',
   options: {
     chart: {
       map: undefined,
@@ -77,20 +75,15 @@ const mapShared = {
   },
 };
 
-// DiagramTypes.map will be deprecated in v5
-//   Was the only map type before v3.3, but is after v3.3 just an alias for "mapFylker"
-const map: DiagramType = {
-  id: DiagramTypeIdValues.map,
-  ...mapShared,
-};
-
 const mapFylker: DiagramType = {
   id: DiagramTypeIdValues.mapFylker,
+  name: 'Kart (fylker)',
   ...mapShared,
 };
 
 const mapFylker2019: DiagramType = {
   id: DiagramTypeIdValues.mapFylker2019,
+  name: 'Kart (fylker 2019)',
   ...mapShared,
 };
 
@@ -111,7 +104,6 @@ export class DiagramTypes {
   static columnAndLine = columnAndLine;
   static columnStacked = columnStacked;
   static line = line;
-  static map = map;
   static mapFylker = mapFylker;
   static mapFylker2019 = mapFylker2019;
   static pie = pie;
@@ -125,7 +117,6 @@ export const AllDiagramTypes = [
   columnAndLine,
   columnStacked,
   line,
-  map,
   mapFylker,
   mapFylker2019,
   pie,
@@ -133,5 +124,5 @@ export const AllDiagramTypes = [
 ];
 
 // This is the order used in diagram-type-navs
-export const ChartTypes = [line, columnAndLine, column, bar, columnStacked, barStacked, pie];
-export const MapTypes = [map, mapFylker, mapFylker2019];
+export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
+export const MapTypes = [mapFylker, mapFylker2019];
