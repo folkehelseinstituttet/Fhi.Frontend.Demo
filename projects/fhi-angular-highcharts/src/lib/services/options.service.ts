@@ -13,10 +13,11 @@ import {
 } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
+import { SeriesInfo } from '../models/series-info.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
-import { AllDiagramOptions } from '../models/all-diagram-options.model';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
@@ -31,17 +32,15 @@ export class OptionsService {
     this.setAllStaticOptions();
   }
 
-  updateOptions(allDiagramOptions: AllDiagramOptions): Options {
-    const options: Options = cloneDeep(
-      this.allStaticOptions.get(allDiagramOptions.activeDiagramType),
-    );
-    const isPie = allDiagramOptions.activeDiagramType === DiagramTypeIds.pie;
+  updateOptions(diagramOptions: FhiDiagramOptions, seriesInfo: SeriesInfo): Options {
+    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
+    const isPie = diagramOptions.activeDiagramType === DiagramTypeIds.pie;
     const isMap = options?.chart && 'map' in options.chart;
-    const series = allDiagramOptions.series;
+    const series = diagramOptions.series;
 
     options.series = this.getSeries(series, isMap);
 
-    if (!allDiagramOptions.openSource) {
+    if (!diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
     if (isPie && options.legend && options.legend.title) {
@@ -49,10 +48,10 @@ export class OptionsService {
     }
     if (!isMap) {
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
-      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, allDiagramOptions);
-      options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, allDiagramOptions);
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, diagramOptions, seriesInfo);
+      options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, diagramOptions);
     } else if (options.chart !== undefined) {
-      options.chart.map = allDiagramOptions.activeDiagramType;
+      options.chart.map = diagramOptions.activeDiagramType;
     }
     return options;
   }
@@ -94,25 +93,26 @@ export class OptionsService {
 
   private getYAxis(
     yAxis: YAxisOptions,
-    allDiagramOptions: AllDiagramOptions,
+    diagramOptions: FhiDiagramOptions,
+    seriesInfo: SeriesInfo,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
-    if (allDiagramOptions.seriesHasDecimalDataPoints) {
+    if (seriesInfo.decimalDataPointsExists) {
       yAxis.allowDecimals = true;
       yAxis.min = undefined;
     }
-    if (allDiagramOptions.seriesHasNegativeDataPoints) {
+    if (seriesInfo.negativeDataPointsExists) {
       yAxis.min = undefined;
     }
-    if (allDiagramOptions.unit?.length === 1) {
-      yAxis.title.text = allDiagramOptions.unit[0].label;
+    if (diagramOptions.unit?.length === 1) {
+      yAxis.title.text = diagramOptions.unit[0].label;
     }
-    if (allDiagramOptions.unit?.length === 1 && allDiagramOptions.unit[0].symbol) {
+    if (diagramOptions.unit?.length === 1 && diagramOptions.unit[0].symbol) {
       yAxis.labels = {
         format:
-          allDiagramOptions.unit[0].position === 'start'
-            ? `${allDiagramOptions.unit[0].symbol} {value}`
-            : `{value} ${allDiagramOptions.unit[0].symbol}`,
+          diagramOptions.unit[0].position === 'start'
+            ? `${diagramOptions.unit[0].symbol} {value}`
+            : `{value} ${diagramOptions.unit[0].symbol}`,
       };
     } else {
       yAxis.labels = {
@@ -122,24 +122,21 @@ export class OptionsService {
     return yAxis;
   }
 
-  private getTooltip(
-    tooltip: TooltipOptions,
-    allDiagramOptions: AllDiagramOptions,
-  ): TooltipOptions {
+  private getTooltip(tooltip: TooltipOptions, diagramOptions: FhiDiagramOptions): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
-    if (allDiagramOptions.unit?.length !== 1) {
+    if (diagramOptions.unit?.length !== 1) {
       return tooltip;
     }
-    if (allDiagramOptions.unit[0].symbol) {
-      if (allDiagramOptions.unit[0].decimals) {
-        tooltip.valueDecimals = allDiagramOptions.unit[0].decimals;
-      } else if (allDiagramOptions.decimals) {
-        tooltip.valueDecimals = allDiagramOptions.decimals;
+    if (diagramOptions.unit[0].symbol) {
+      if (diagramOptions.unit[0].decimals) {
+        tooltip.valueDecimals = diagramOptions.unit[0].decimals;
+      } else if (diagramOptions.decimals) {
+        tooltip.valueDecimals = diagramOptions.decimals;
       }
-      if (allDiagramOptions.unit[0].position === 'start') {
-        tooltip.valuePrefix = allDiagramOptions.unit[0].symbol + ' ';
+      if (diagramOptions.unit[0].position === 'start') {
+        tooltip.valuePrefix = diagramOptions.unit[0].symbol + ' ';
       } else {
-        tooltip.valueSuffix = ' ' + allDiagramOptions.unit[0].symbol;
+        tooltip.valueSuffix = ' ' + diagramOptions.unit[0].symbol;
       }
     } else {
       tooltip.valueDecimals = undefined;

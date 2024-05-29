@@ -1,5 +1,5 @@
-<article *ngIf="allDiagramOptions !== undefined">
-  <h1 class="h3 mb-3">{{ allDiagramOptions.title }}</h1>
+<article *ngIf="diagramOptions !== undefined">
+  <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
 
   <div class="fhi-highcharts-nav">
     <div class="d-flex flex-wrap">
@@ -77,7 +77,7 @@
 <ng-template #diagramModal>
   <fhi-modal
     [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular mb-3'"
-    [modalTitle]="allDiagramOptions.title"
+    [modalTitle]="diagramOptions.title"
     [size]="'fullscreen'"
   >
     <ng-container fhi-modal.button>
@@ -164,7 +164,7 @@
             </th>
             <td class="text-end" *ngIf="!tableCell.isHeading">
               <ng-container *ngIf="tableCellDataOK(tableCell.data); else tableCellDataIsString">
-                {{ tableCell.data | number: digitsInfo }}
+                {{ tableCell.data | number: seriesInfo.digitsInfo }}
               </ng-container>
               <ng-template #tableCellDataIsString>
                 {{ tableCell.data }}
@@ -179,21 +179,21 @@
 
 <ng-template #diagramFooter>
   <footer class="mt-3">
-    <p *ngIf="allDiagramOptions.footer?.lastUpdated">
-      <strong>Sist oppdatert </strong>{{ allDiagramOptions.footer?.lastUpdated }}
+    <p *ngIf="diagramOptions.footer?.lastUpdated">
+      <strong>Sist oppdatert </strong>{{ diagramOptions.footer?.lastUpdated }}
     </p>
-    <p *ngIf="allDiagramOptions.footer?.credits">
+    <p *ngIf="diagramOptions.footer?.credits">
       <strong>Kilde </strong>
-      <a href="{{ allDiagramOptions.footer.credits.href }}">{{ allDiagramOptions.footer.credits.text }}</a>
+      <a href="{{ diagramOptions.footer.credits.href }}">{{ diagramOptions.footer.credits.text }}</a>
     </p>
     <div
       class="mb-3"
-      *ngIf="allDiagramOptions.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
+      *ngIf="diagramOptions.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
     >
       <strong>Tegnforklaringer</strong><br />
       <table>
         <tbody>
-          <tr *ngFor="let flag of allDiagramOptions.footer?.flags">
+          <tr *ngFor="let flag of diagramOptions.footer?.flags">
             <td class="pe-2">{{ flag.symbol }}</td>
             <td>{{ flag.label }}</td>
           </tr>
@@ -203,8 +203,8 @@
     <div
       class="mb-3"
       *ngIf="
-        flaggedSeries.length > 0 &&
-        allDiagramOptions.footer?.flags &&
+        seriesInfo.flaggedSeries.length > 0 &&
+        diagramOptions.footer?.flags &&
         activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
       "
     >
@@ -232,14 +232,11 @@
       <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
       for å se flere detaljer.
     </div>
-    <p class="fst-italic small" *ngIf="allDiagramOptions.footer?.disclaimer">
-      {{ allDiagramOptions.footer?.disclaimer }}
+    <p class="fst-italic small" *ngIf="diagramOptions.footer?.disclaimer">
+      {{ diagramOptions.footer?.disclaimer }}
     </p>
     <p>
-      <a
-        class="highcharts-credits"
-        href="{{ getMapCopyright()['url'] }}"
-        *ngIf="!allDiagramOptions.openSource && showMap"
+      <a class="highcharts-credits" href="{{ getMapCopyright()['url'] }}" *ngIf="!diagramOptions.openSource && showMap"
         >Kartdata fra &#169; {{ getMapCopyright()['text'] }}</a
       >
     </p>
