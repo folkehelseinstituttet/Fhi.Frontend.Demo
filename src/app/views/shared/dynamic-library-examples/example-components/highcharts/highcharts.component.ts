@@ -138,6 +138,11 @@ export class HighchartsComponent implements OnInit {
       // diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
       decimals: 2,
       mapTypeId: 'mapFylker',
+      controls: {
+        fullScreenButton: {
+          show: true,
+        },
+      },
     });
   }
 

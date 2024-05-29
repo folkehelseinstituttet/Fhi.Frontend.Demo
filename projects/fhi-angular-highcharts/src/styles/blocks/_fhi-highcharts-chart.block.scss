@@ -22,3 +22,11 @@ $chart-container-aspect-wider: calc(100% / 4 * 3);
         padding-bottom: $chart-container-aspect-wider;
     }
 }
+
+@include media-breakpoint-up(md) {
+    .fhi-highcharts-chart-container {
+        .modal-fullscreen & {
+            padding-bottom: 60vh;
+        }
+    }
+}
