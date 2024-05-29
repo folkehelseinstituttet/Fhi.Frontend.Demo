@@ -4,6 +4,7 @@
 
 * :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
 * :bug: **Bugfix** Remove compact date formatting on chart diagrams
+* :bug: **Bugfix** Remove confusing menu item disabling if diagramtype is impossible to show. New solution: no items disabled, only a warning is given when diagramtype is impossible to show.
 
 ## 3.2.0
 

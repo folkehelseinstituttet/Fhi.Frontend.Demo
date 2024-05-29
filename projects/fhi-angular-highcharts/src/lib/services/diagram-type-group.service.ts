@@ -38,8 +38,8 @@ export class DiagramTypeGroupService {
     diagramTypeId: string,
     chartTypeSubset: string[] | undefined,
     mapTypeSubset: string[] | undefined,
-    flaggedSeries: FlaggedSerie[],
     series: FhiDiagramSerie[],
+    flaggedSeries: FlaggedSerie[],
     diagramTypeGroups: DiagramTypeGroup[],
   ) {
     this.flaggedSeries = flaggedSeries;
