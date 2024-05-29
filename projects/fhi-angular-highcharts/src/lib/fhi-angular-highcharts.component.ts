@@ -189,10 +189,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDecimals() {
-    const unit = this.diagramOptions.unit;
+    const units = this.diagramOptions.units;
 
     // Currently only support for one unit
-    const decimals = unit?.length >= 0 ? unit[0].decimals : this.diagramOptions.decimals; // Temporary fallback before this.diagramOptions.decimals deprecates in v5
+    const decimals = units && units[0]?.decimals ? units[0].decimals : null;
 
     if (decimals === null) {
       return;
@@ -497,6 +497,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       }
     }
     delete opt.lastUpdated;
+
+    // decimals
+    if (opt.decimals && opt.units?.length === 1) {
+      if (!opt.units[0].decimals) {
+        opt.units[0].decimals = opt.decimals;
+      }
+    }
+    delete opt.decimals;
 
     this.diagramOptions = opt;
     // console.log('this.diagramOptions 2', this.diagramOptions);

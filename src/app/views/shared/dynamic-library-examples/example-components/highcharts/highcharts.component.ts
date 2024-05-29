@@ -152,7 +152,7 @@ export class HighchartsComponent implements OnInit {
       ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
       diagramTypeId: 'column',
-      unit: [{ label: 'Antall' }],
+      units: [{ label: 'Antall' }],
     });
   }
 
@@ -181,7 +181,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
       ...this.diagramOptions,
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
-      unit: [
+      units: [
         {
           label: 'Antall',
         },
@@ -193,7 +193,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
       title: 'Befolkning - inndeling per 1.1.2024 (andel)',
-      unit: [
+      units: [
         {
           decimals: 1,
           label: 'Prosent',
@@ -240,7 +240,7 @@ export class HighchartsComponent implements OnInit {
       openSource: false,
       tableOrientation: 'seriesAsColumns',
       title: '',
-      unit: [
+      units: [
         {
           label: 'Antall',
         },
@@ -263,7 +263,7 @@ export class HighchartsComponent implements OnInit {
       // series -> is set in this.getData()
       // tableOrientation: 'seriesAsColumns',
       title: 'Dobbel akse, linje og søyle',
-      unit: [
+      units: [
         {
           id: 'antall',
           label: 'Antall',

@@ -104,15 +104,15 @@ export class OptionsService {
     if (seriesInfo.negativeDataPointsExists) {
       yAxis.min = undefined;
     }
-    if (diagramOptions.unit?.length === 1) {
-      yAxis.title.text = diagramOptions.unit[0].label;
+    if (diagramOptions.units?.length === 1) {
+      yAxis.title.text = diagramOptions.units[0].label;
     }
-    if (diagramOptions.unit?.length === 1 && diagramOptions.unit[0].symbol) {
+    if (diagramOptions.units?.length === 1 && diagramOptions.units[0].symbol) {
       yAxis.labels = {
         format:
-          diagramOptions.unit[0].position === 'start'
-            ? `${diagramOptions.unit[0].symbol} {value}`
-            : `{value} ${diagramOptions.unit[0].symbol}`,
+          diagramOptions.units[0].position === 'start'
+            ? `${diagramOptions.units[0].symbol} {value}`
+            : `{value} ${diagramOptions.units[0].symbol}`,
       };
     } else {
       yAxis.labels = {
@@ -124,19 +124,19 @@ export class OptionsService {
 
   private getTooltip(tooltip: TooltipOptions, diagramOptions: FhiDiagramOptions): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
-    if (diagramOptions.unit?.length !== 1) {
+    if (diagramOptions.units?.length !== 1) {
       return tooltip;
     }
-    if (diagramOptions.unit[0].symbol) {
-      if (diagramOptions.unit[0].decimals) {
-        tooltip.valueDecimals = diagramOptions.unit[0].decimals;
+    if (diagramOptions.units[0].symbol) {
+      if (diagramOptions.units[0].decimals) {
+        tooltip.valueDecimals = diagramOptions.units[0].decimals;
       } else if (diagramOptions.decimals) {
         tooltip.valueDecimals = diagramOptions.decimals;
       }
-      if (diagramOptions.unit[0].position === 'start') {
-        tooltip.valuePrefix = diagramOptions.unit[0].symbol + ' ';
+      if (diagramOptions.units[0].position === 'start') {
+        tooltip.valuePrefix = diagramOptions.units[0].symbol + ' ';
       } else {
-        tooltip.valueSuffix = ' ' + diagramOptions.unit[0].symbol;
+        tooltip.valueSuffix = ' ' + diagramOptions.units[0].symbol;
       }
     } else {
       tooltip.valueDecimals = undefined;
