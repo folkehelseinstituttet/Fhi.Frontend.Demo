@@ -8,12 +8,6 @@ import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pi
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypeIdValues } from './diagram-type-ids';
 
-export enum DiagramTypeGroupIndex {
-  tableIndex = 0,
-  mapIndex = 1,
-  chartIndex = 2,
-}
-
 // Charts
 
 const bar: DiagramType = {
