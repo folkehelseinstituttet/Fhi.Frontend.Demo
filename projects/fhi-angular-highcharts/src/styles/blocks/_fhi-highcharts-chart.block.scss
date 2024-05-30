@@ -1,30 +1,19 @@
-$chart-container-aspect-wider: calc(100% / 4 * 3);
-
-.fhi-highcharts-chart-container {
-    position: relative;
-    height: 0;
-    min-height: 400px;
-    padding-bottom: 100%;
-    width: 100%;
-}
-
 .fhi-highcharts-chart {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    @include diagram-container;
+
+    highcharts-chart {
+        @include fill-container;
+    }
 }
 
 @media (orientation: landscape) {
-    .fhi-highcharts-chart-container {
-        padding-bottom: $chart-container-aspect-wider;
+    .fhi-highcharts-chart {
+        padding-bottom: calc(100% / 4 * 3);
     }
 }
 
 @include media-breakpoint-up(sm) {
-    .fhi-highcharts-chart-container {
+    .fhi-highcharts-chart {
         .modal-fullscreen & {
             padding-bottom: 60vh;
         }

@@ -105,20 +105,14 @@
 </ng-template>
 
 <ng-template #chart>
-  <div class="fhi-highcharts-chart-container">
-    <highcharts-chart class="fhi-highcharts-chart" [Highcharts]="highcharts" [options]="highchartsOptions">
-    </highcharts-chart>
+  <div class="fhi-highcharts-chart">
+    <highcharts-chart [Highcharts]="highcharts" [options]="highchartsOptions"></highcharts-chart>
   </div>
 </ng-template>
 
 <ng-template #map>
-  <div class="fhi-highcharts-map-container">
-    <highcharts-chart
-      class="fhi-highcharts-map"
-      [Highcharts]="highmaps"
-      [constructorType]="'mapChart'"
-      [options]="highchartsOptions"
-    >
+  <div class="fhi-highcharts-map">
+    <highcharts-chart [Highcharts]="highmaps" [constructorType]="'mapChart'" [options]="highchartsOptions">
     </highcharts-chart>
   </div>
 </ng-template>
