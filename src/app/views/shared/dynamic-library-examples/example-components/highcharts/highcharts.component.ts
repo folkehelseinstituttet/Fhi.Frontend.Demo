@@ -133,9 +133,8 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.DodsfallEtterAarsak_2017_2021, {
       ...this.diagramOptions_INIT,
       title: 'Dødsfall etter årsak, 2017 - 2021',
-      diagramTypeId: 'bar',
       diagramTypeNavId: 'default',
-      // diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
+      diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
       decimals: 2,
       mapTypeId: 'mapFylker',
     });
