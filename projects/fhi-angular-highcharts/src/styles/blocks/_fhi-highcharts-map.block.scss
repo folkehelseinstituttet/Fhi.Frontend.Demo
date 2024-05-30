@@ -6,6 +6,12 @@
     }
 }
 
+@media (orientation: portrait) {
+    .fhi-highcharts-map {
+        min-height: 450px;
+    }
+}
+
 @media (orientation: landscape) {
     .fhi-highcharts-map {
         padding-bottom: calc(100% / 3 * 2);
@@ -17,5 +23,11 @@
         .modal-fullscreen & {
             padding-bottom: 60vh;
         }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .fhi-highcharts-map {
+        min-height: 600px;
     }
 }
