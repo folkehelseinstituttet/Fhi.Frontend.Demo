@@ -56,7 +56,7 @@ After installing the package and all dependencies, add the following code to you
 
 ```scss
 // In global css-file (usually style.scss)
-@import "./node_modules/@folkehelseinstituttet/angular-highcharts/styles/import/all";
+@import "@folkehelseinstituttet/angular-highcharts/styles/import/all";
 ```
 
 ```ts
