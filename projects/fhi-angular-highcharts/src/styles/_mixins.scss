@@ -14,3 +14,11 @@
     right: 0;
     bottom: 0;
 }
+
+@mixin chart-in-fullscreen-modal {
+    @include media-breakpoint-up(sm) {
+        .modal-fullscreen & {
+            padding-bottom: 60vh;
+        }
+    }
+}

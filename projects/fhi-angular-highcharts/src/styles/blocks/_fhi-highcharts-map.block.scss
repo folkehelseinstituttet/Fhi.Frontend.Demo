@@ -1,5 +1,6 @@
 .fhi-highcharts-map {
     @include diagram-container;
+    @include chart-in-fullscreen-modal;
 
     highcharts-chart {
         @include fill-container;
@@ -18,16 +19,8 @@
     }
 }
 
-@include media-breakpoint-up(sm) {
-    .fhi-highcharts-map {
-        .modal-fullscreen & {
-            padding-bottom: 60vh;
-        }
-    }
-}
-
 @include media-breakpoint-up(md) {
     .fhi-highcharts-map {
-        min-height: 600px;
+        min-height: 550px;
     }
 }

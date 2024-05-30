@@ -1,5 +1,6 @@
 .fhi-highcharts-chart {
     @include diagram-container;
+    @include chart-in-fullscreen-modal;
 
     highcharts-chart {
         @include fill-container;
@@ -9,13 +10,5 @@
 @media (orientation: landscape) {
     .fhi-highcharts-chart {
         padding-bottom: calc(100% / 4 * 3);
-    }
-}
-
-@include media-breakpoint-up(sm) {
-    .fhi-highcharts-chart {
-        .modal-fullscreen & {
-            padding-bottom: 60vh;
-        }
     }
 }
