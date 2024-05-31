@@ -96,20 +96,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    try {
-      this.resetDiagramState();
+    // try {
+    this.resetDiagramState();
 
-      this.formatSerieNamesAndFindDuplicates();
-      this.updateSeriesMetadata();
-      this.loopSeriesToUpdateAndExtractInfo(); // TODO: remove
-      this.updateDecimals(); // TODO: remove
+    this.formatSerieNamesAndFindDuplicates();
+    this.updateSeriesMetadata();
+    this.loopSeriesToUpdateAndExtractInfo(); // TODO: remove
+    this.updateDecimals(); // TODO: remove
 
-      this.updateDiagramTypeGroups();
-      this.updateDiagramOptions();
-      this.updateDiagramState();
-    } catch (error) {
-      console.error(this.getErrorMsg(error));
-    }
+    this.updateDiagramTypeGroups();
+    this.updateDiagramOptions();
+    this.updateDiagramState();
+    // } catch (error) {
+    //   console.error(this.getErrorMsg(error));
+    // }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -218,15 +218,21 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
-    const unit = this.diagramOptions.units.find((unit) => unit.id === serie.unitId);
+    let unit = this.diagramOptions.units?.find((unit) => unit.id === serie.unitId);
 
-    if (unit.decimals >= 0 && unit.decimals <= 14) {
+    // Fallback if no "serie.unitId" (then only support for one unit)
+    // TODO: how to document? Must be good ;)
+    if (!unit && this.diagramOptions.units?.length === 1) {
+      unit = this.diagramOptions.units[0];
+    }
+
+    if (unit?.decimals >= 0 && unit?.decimals <= 12) {
       return unit.decimals;
     }
-    if (unit.decimals > 14) {
-      console.warn('Max decimal places is 14 due to loss of precision at runtime!');
+    if (unit?.decimals > 12) {
+      console.warn('Max decimal places is 12 due to loss of precision at runtime!');
     }
-    return 14;
+    return 12;
   }
   // private getDigitsInfo(serie: FhiDiagramSerie): string {
   //   const unit = this.diagramOptions.units.find((unit) => unit.id === serie.unitId);
@@ -585,7 +591,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     delete opt.lastUpdated;
 
     // decimals
-    if (opt.decimals && opt.units?.length === 1) {
+    if (opt.decimals && (!opt.units || opt.units?.length === 1)) {
+      if (!opt.units) {
+        opt.units = [{ label: undefined }];
+      }
       if (!opt.units[0].decimals) {
         opt.units[0].decimals = opt.decimals;
       }
@@ -593,6 +602,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     delete opt.decimals;
 
     this.diagramOptions = opt;
-    // console.log('this.diagramOptions 2', this.diagramOptions);
+    console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }
