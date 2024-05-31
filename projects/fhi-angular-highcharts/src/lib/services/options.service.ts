@@ -123,10 +123,16 @@ export class OptionsService {
   }
 
   private getTooltip(tooltip: TooltipOptions, diagramOptions: FhiDiagramOptions): TooltipOptions {
+    console.log('getTooltip() -> diagramOptions.units', diagramOptions.units);
+
     tooltip = tooltip ? tooltip : {};
     if (diagramOptions.units?.length !== 1) {
+      console.log('getTooltip() -> tooltip 1', tooltip);
+
       return tooltip;
     }
+
+    // OLD solution
     if (diagramOptions.units[0].symbol) {
       if (diagramOptions.units[0].decimals) {
         tooltip.valueDecimals = diagramOptions.units[0].decimals;
@@ -143,6 +149,15 @@ export class OptionsService {
       tooltip.valuePrefix = undefined;
       tooltip.valueSuffix = undefined;
     }
+
+    // NEW solution
+
+    if (diagramOptions.units[0].decimals) {
+      tooltip.valueDecimals = diagramOptions.units[0].decimals;
+    }
+
+    console.log('getTooltip() -> tooltip 2', tooltip);
+
     return tooltip;
   }
 

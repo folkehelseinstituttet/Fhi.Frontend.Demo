@@ -244,8 +244,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
 
-      // activeDiagramType: 'columnAndLine',
-      activeDiagramType: 'table',
+      activeDiagramType: 'columnAndLine',
       controls: {
         navigation: {
           show: true,
@@ -263,19 +262,20 @@ export class HighchartsComponent implements OnInit {
       // series -> is set in this.getData()
       // tableOrientation: 'seriesAsColumns',
       title: 'Dobbel akse, linje og søyle',
-      units: [
-        {
-          id: 'antall',
-          label: 'Antall',
-        },
-        {
-          id: 'prosent',
-          decimals: 1,
-          label: 'Prosent',
-          symbol: '%',
-          position: 'end',
-        },
-      ],
+      // units: [
+      //   {
+      //     id: 'antall',
+      //     decimals: 3,
+      //     label: 'Antall',
+      //   },
+      //   // {
+      //   //   id: 'prosent',
+      //   //   decimals: 1,
+      //   //   label: 'Prosent',
+      //   //   symbol: '%',
+      //   //   position: 'end',
+      //   // },
+      // ],
 
       // The following will be deprecated in v5
 
