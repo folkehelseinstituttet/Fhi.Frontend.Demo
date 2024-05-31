@@ -98,6 +98,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     // try {
     this.resetDiagramState();
+    this.loopSeries();
 
     this.formatSerieNamesAndFindDuplicates();
     this.updateSeriesMetadata();
@@ -134,7 +135,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   getFlaggedDataPoints(): Array<string> {
     const flagged: Array<string> = [];
     let n = 0;
-    this.seriesInfo.flaggedSeries.forEach((serie) => {
+    this.flaggedSeries.forEach((serie) => {
       serie.flaggedDataPoints.forEach((dataPoint) => {
         flagged[n++] = serie.name.concat(Seperator.output, dataPoint.name);
       });
@@ -159,29 +160,71 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.seriesInfo.flaggedSeries = [];
   }
 
+  // TODO: better name?
+  private loopSeries() {
+    this.diagramOptions.series.forEach((serie) => {
+      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+    });
+  }
+
+  private testForFlaggedDataAndUpdateFlaggedSeries(serie: FhiDiagramSerie) {
+    const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
+    if (flaggedData.length !== 0) {
+      this.updateFlaggedSeries(serie, flaggedData);
+    }
+  }
+
+  private updateFlaggedSeries(serie: FhiDiagramSerie, flaggedData: FhiDiagramSerieData[]) {
+    this.flaggedSeries.push({
+      name: serie.name as string,
+      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
+    });
+
+    // TODO: remove
+    // this.seriesInfo.flaggedSeries[index] = {
+    //   name: serie.name as string,
+    //   flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
+    // };
+  }
+
+  private getFlaggedDataPointsForCurrentSerie(
+    data: FhiDiagramSerieData[],
+  ): FlagWithDataPointName[] {
+    const flaggedDataPoints: FlagWithDataPointName[] = [];
+    let n = 0;
+    data.forEach((category) => {
+      flaggedDataPoints[n++] = {
+        name: category.name,
+        symbol: category.y as string,
+        label: 'N/A',
+      };
+    });
+    return flaggedDataPoints;
+  }
+
   private loopSeriesToUpdateAndExtractInfo() {
-    let flaggedSeriesIndex = 0;
+    // let flaggedSeriesIndex = 0;
     const names: string[] = [];
 
     this.diagramOptions.series.forEach((serie) => {
-      const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
-      if (flaggedData.length !== 0) {
-        this.updateFlaggedSeries(serie, flaggedData, flaggedSeriesIndex++);
-      }
+      // const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
+      // if (flaggedData.length !== 0) {
+      //   this.updateFlaggedSeries(serie, flaggedData, flaggedSeriesIndex++);
+      // }
 
-      const decimalData = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
-      );
-      if (decimalData.length !== 0) {
-        this.seriesInfo.decimalDataPointsExists = true;
-      }
+      // const decimalData = serie.data.filter(
+      //   (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
+      // );
+      // if (decimalData.length !== 0) {
+      //   this.seriesInfo.decimalDataPointsExists = true;
+      // }
 
-      const negativeData = serie.data.filter(
-        (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
-      );
-      if (negativeData.length !== 0) {
-        this.seriesInfo.negativeDataPointsExists = true;
-      }
+      // const negativeData = serie.data.filter(
+      //   (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
+      // );
+      // if (negativeData.length !== 0) {
+      //   this.seriesInfo.negativeDataPointsExists = true;
+      // }
 
       serie.name = this.formatSerieName(serie.name);
 
@@ -288,7 +331,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramOptions.controls?.navigation?.items?.chartTypes,
       this.diagramOptions.controls?.navigation?.items?.mapTypes,
       this.diagramOptions.series,
-      this.seriesInfo.flaggedSeries,
+      this.flaggedSeries,
       this.diagramTypeGroups,
     );
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
@@ -300,38 +343,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       return name.split(Seperator.input).join(Seperator.output);
     }
     return name.join(Seperator.output);
-  }
-
-  private updateFlaggedSeries(
-    serie: FhiDiagramSerie,
-    flaggedData: FhiDiagramSerieData[],
-    index: number,
-  ) {
-    this.flaggedSeries[index] = {
-      name: serie.name as string,
-      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
-    };
-
-    // TODO: remove
-    this.seriesInfo.flaggedSeries[index] = {
-      name: serie.name as string,
-      flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
-    };
-  }
-
-  private getFlaggedDataPointsForCurrentSerie(
-    data: FhiDiagramSerieData[],
-  ): FlagWithDataPointName[] {
-    const flaggedDataPoints: FlagWithDataPointName[] = [];
-    let n = 0;
-    data.forEach((category) => {
-      flaggedDataPoints[n++] = {
-        name: category.name,
-        symbol: category.y as string,
-        label: 'N/A',
-      };
-    });
-    return flaggedDataPoints;
   }
 
   private updateDiagramOptions() {
@@ -434,7 +445,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.showMap && !this.diagramOptions.openSource) {
       return true;
     }
-    if (this.diagramOptions.footer?.flags && this.seriesInfo.flaggedSeries.length !== 0) {
+    if (this.diagramOptions.footer?.flags && this.flaggedSeries.length !== 0) {
       return true;
     }
     if (this.diagramOptions.footer?.lastUpdated) {

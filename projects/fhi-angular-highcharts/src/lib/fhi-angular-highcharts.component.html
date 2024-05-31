@@ -160,7 +160,6 @@
             </th>
             <td class="text-end" *ngIf="!tableCell.isHeading">
               <ng-container *ngIf="tableCellDataOK(tableCell.data); else tableCellDataIsString">
-                <!-- TODO: remove! {{ tableCell.data | number: seriesInfo.digitsInfo }} -->
                 {{ tableCell.data | number: '1.0-' + tableCell.decimals }}
               </ng-container>
               <ng-template #tableCellDataIsString>
@@ -200,7 +199,7 @@
     <div
       class="mb-3"
       *ngIf="
-        seriesInfo.flaggedSeries.length > 0 &&
+        flaggedSeries.length > 0 &&
         diagramOptions.footer?.flags &&
         activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
       "
