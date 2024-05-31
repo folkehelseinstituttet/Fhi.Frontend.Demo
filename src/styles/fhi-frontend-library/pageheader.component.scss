@@ -1,7 +1,7 @@
-@import "./node_modules/bootstrap/scss/functions";
-@import "./node_modules/bootstrap/scss/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
 @import "@folkehelseinstituttet/style/import/_all-variables.scss";
-@import "./node_modules/bootstrap/scss/offcanvas";
+@import "bootstrap/scss/offcanvas";
 
 $fhi-special-menu-animation-speed: 0.3s;
 
