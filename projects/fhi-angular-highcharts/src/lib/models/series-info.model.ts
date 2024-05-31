@@ -9,10 +9,8 @@ export interface SeriesInfo {
 
 export interface MetadataForSerie {
   decimals: number;
-  digitsInfo?: string;
-
-  // hasDecimalData: boolean;
-  // dataIsNegative: boolean;
+  hasDecimalData?: boolean;
+  hasNegativeData?: boolean;
   // dataIsFlagged: boolean;
   // flag?: string;
 }

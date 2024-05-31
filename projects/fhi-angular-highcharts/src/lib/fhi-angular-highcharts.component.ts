@@ -207,11 +207,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateSeriesMetadata() {
     this.diagramOptions.series.forEach((serie) => {
-      console.log('serie', serie);
+      // console.log('serie', serie);
 
       this.metadataForSeries.push({
         decimals: this.getVerifiedMaxDecimalCount(serie),
-        // hasDecimalData: this.serieHasDecimalDataPoints(serie),
+        hasDecimalData: this.serieHasDecimalDataPoints(serie),
+        hasNegativeData: this.serieHasNegativeDataPoints(serie),
       });
     });
     console.log('this.metadataForSeries', this.metadataForSeries);
@@ -221,7 +222,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     let unit = this.diagramOptions.units?.find((unit) => unit.id === serie.unitId);
 
     // Fallback if no "serie.unitId" (then only support for one unit)
-    // TODO: how to document? Must be good ;)
+    // TODO: how to document? Must be good and understandable ;)
     if (!unit && this.diagramOptions.units?.length === 1) {
       unit = this.diagramOptions.units[0];
     }
@@ -235,7 +236,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return 12;
   }
   // private getDigitsInfo(serie: FhiDiagramSerie): string {
-  //   const unit = this.diagramOptions.units.find((unit) => unit.id === serie.unitId);
+  //   const unit = this.diagramOptions.units.find((unit) => unit.id === serie.unitI and understandabled);
 
   //   if (unit.decimals > 14) {
   //     console.warn('Max decimal places is 14 due to loss of precision at runtime!');
@@ -261,11 +262,21 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
   }
 
-  private serieHasDecimalDataPoints(serie: FhiDiagramSerie) {
+  private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
     const decimalData = serie.data.filter(
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
     );
     if (decimalData.length !== 0) {
+      return true;
+    }
+    return false;
+  }
+
+  private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
+    const negativeData = serie.data.filter(
+      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
+    );
+    if (negativeData.length !== 0) {
       return true;
     }
     return false;
@@ -367,7 +378,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     this.highchartsOptions = this.optionsService.updateOptions(
       this.diagramOptions,
-      this.seriesInfo,
+      this.metadataForSeries,
     );
   }
 
@@ -389,7 +400,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       this.highchartsOptions = this.optionsService.updateOptions(
         this.diagramOptions,
-        this.seriesInfo,
+        this.metadataForSeries,
       );
       this.showMap = true;
       this.changeDetector.detectChanges();

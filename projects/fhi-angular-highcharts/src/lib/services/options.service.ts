@@ -14,7 +14,7 @@ import {
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
-import { SeriesInfo } from '../models/series-info.model';
+import { MetadataForSerie } from '../models/series-info.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
@@ -32,7 +32,7 @@ export class OptionsService {
     this.setAllStaticOptions();
   }
 
-  updateOptions(diagramOptions: FhiDiagramOptions, seriesInfo: SeriesInfo): Options {
+  updateOptions(diagramOptions: FhiDiagramOptions, metadataForSeries: MetadataForSerie[]): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
     const isPie = diagramOptions.activeDiagramType === DiagramTypeIds.pie;
     const isMap = options?.chart && 'map' in options.chart;
@@ -40,6 +40,7 @@ export class OptionsService {
 
     options.series = this.getSeries(series, isMap);
 
+    // TODO: try to make this into a switch in a separate method
     if (!diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
@@ -47,12 +48,26 @@ export class OptionsService {
       options.legend.title.text = options.series[0].name;
     }
     if (!isMap) {
-      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
-      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, diagramOptions, seriesInfo);
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, diagramOptions);
+      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
+
+      if (diagramOptions.units?.length > 1) {
+        console.log('MORE THAN ONE Y-AXIS!');
+      } else {
+        const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
+        const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
+
+        options.yAxis = this.getYAxis(
+          options.yAxis as YAxisOptions,
+          diagramOptions,
+          hasDecimalData,
+          hasNegativeData,
+        );
+      }
     } else if (options.chart !== undefined) {
       options.chart.map = diagramOptions.activeDiagramType;
     }
+
     return options;
   }
 
@@ -94,14 +109,15 @@ export class OptionsService {
   private getYAxis(
     yAxis: YAxisOptions,
     diagramOptions: FhiDiagramOptions,
-    seriesInfo: SeriesInfo,
+    hasDecimalData: boolean,
+    hasNegativeData: boolean,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
-    if (seriesInfo.decimalDataPointsExists) {
+    if (hasDecimalData) {
       yAxis.allowDecimals = true;
       yAxis.min = undefined;
     }
-    if (seriesInfo.negativeDataPointsExists) {
+    if (hasNegativeData) {
       yAxis.min = undefined;
     }
     if (diagramOptions.units?.length === 1) {
@@ -123,11 +139,11 @@ export class OptionsService {
   }
 
   private getTooltip(tooltip: TooltipOptions, diagramOptions: FhiDiagramOptions): TooltipOptions {
-    console.log('getTooltip() -> diagramOptions.units', diagramOptions.units);
+    // console.log('getTooltip() -> diagramOptions.units', diagramOptions.units);
 
     tooltip = tooltip ? tooltip : {};
     if (diagramOptions.units?.length !== 1) {
-      console.log('getTooltip() -> tooltip 1', tooltip);
+      // console.log('getTooltip() -> tooltip 1', tooltip);
 
       return tooltip;
     }
@@ -156,7 +172,7 @@ export class OptionsService {
       tooltip.valueDecimals = diagramOptions.units[0].decimals;
     }
 
-    console.log('getTooltip() -> tooltip 2', tooltip);
+    // console.log('getTooltip() -> tooltip 2', tooltip);
 
     return tooltip;
   }
