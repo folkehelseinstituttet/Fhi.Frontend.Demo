@@ -4,7 +4,7 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 import { TableCell, TableData } from '../models/table-data.model';
-import { MetadataForSerie } from '../models/series-info.model';
+import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 @Injectable()
 export class TableService {

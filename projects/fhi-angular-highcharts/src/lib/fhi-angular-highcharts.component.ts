@@ -34,7 +34,7 @@ import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
 import { DiagramTypeGroup } from './models/diagram-type-group.model';
-import { MetadataForSerie, SeriesInfo } from './models/series-info.model';
+import { MetadataForSerie } from './models/metadata-for-serie.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
 
 @Component({
@@ -43,7 +43,7 @@ import { FlaggedSerie } from './models/flagged-serie.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
-  private defaultDigitsInfo = '1.0-14';
+  private allSerieNames: string[] = [];
 
   @Input() diagramOptions!: FhiDiagramOptions;
 
@@ -57,15 +57,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   activeDiagramTypeGroup!: DiagramTypeGroup;
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
-
-  // Old approach:
-  seriesInfo: SeriesInfo = {
-    digitsInfo: '1.0-14',
-  };
-  // New approach:
   flaggedSeries: FlaggedSerie[];
   metadataForSeries: MetadataForSerie[];
-
   tableData: TableData;
 
   showDefaultChartTemplate: boolean;
@@ -98,13 +91,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     // try {
     this.resetDiagramState();
-    this.loopSeries();
-
-    this.formatSerieNamesAndFindDuplicates();
-    this.updateSeriesMetadata();
-    this.loopSeriesToUpdateAndExtractInfo(); // TODO: remove
-    this.updateDecimals(); // TODO: remove
-
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+      this.findDuplicateSerieNames(serie.name);
+      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+      this.updateMetadataForSeries(serie);
+    });
     this.updateDiagramTypeGroups();
     this.updateDiagramOptions();
     this.updateDiagramState();
@@ -152,19 +144,22 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
-
     this.flaggedSeries = [];
     this.metadataForSeries = [];
-
-    // TODO: remove
-    this.seriesInfo.flaggedSeries = [];
   }
 
-  // TODO: better name?
-  private loopSeries() {
-    this.diagramOptions.series.forEach((serie) => {
-      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-    });
+  private formatSerieName(name: string | Array<string>): string {
+    if (typeof name === 'string') {
+      return name.split(Seperator.input).join(Seperator.output);
+    }
+    return name.join(Seperator.output);
+  }
+
+  private findDuplicateSerieNames(serieName: string) {
+    if (this.allSerieNames.find((name) => name === serieName)) {
+      this.showDuplicateSerieNameError = true;
+    }
+    this.allSerieNames.push(serieName);
   }
 
   private testForFlaggedDataAndUpdateFlaggedSeries(serie: FhiDiagramSerie) {
@@ -179,12 +174,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       name: serie.name as string,
       flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     });
-
-    // TODO: remove
-    // this.seriesInfo.flaggedSeries[index] = {
-    //   name: serie.name as string,
-    //   flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
-    // };
   }
 
   private getFlaggedDataPointsForCurrentSerie(
@@ -202,63 +191,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return flaggedDataPoints;
   }
 
-  private loopSeriesToUpdateAndExtractInfo() {
-    // let flaggedSeriesIndex = 0;
-    const names: string[] = [];
-
-    this.diagramOptions.series.forEach((serie) => {
-      // const flaggedData = serie.data.filter((dataPoint) => typeof dataPoint.y === 'string');
-      // if (flaggedData.length !== 0) {
-      //   this.updateFlaggedSeries(serie, flaggedData, flaggedSeriesIndex++);
-      // }
-
-      // const decimalData = serie.data.filter(
-      //   (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
-      // );
-      // if (decimalData.length !== 0) {
-      //   this.seriesInfo.decimalDataPointsExists = true;
-      // }
-
-      // const negativeData = serie.data.filter(
-      //   (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
-      // );
-      // if (negativeData.length !== 0) {
-      //   this.seriesInfo.negativeDataPointsExists = true;
-      // }
-
-      serie.name = this.formatSerieName(serie.name);
-
-      if (names.find((name) => name === serie.name)) {
-        this.showDuplicateSerieNameError = true;
-      }
-      names.push(serie.name);
+  private updateMetadataForSeries(serie: FhiDiagramSerie) {
+    this.metadataForSeries.push({
+      decimals: this.getVerifiedMaxDecimalCount(serie),
+      hasDecimalData: this.serieHasDecimalDataPoints(serie),
+      hasNegativeData: this.serieHasNegativeDataPoints(serie),
     });
-  }
-
-  private formatSerieNamesAndFindDuplicates() {
-    const serieNames: string[] = [];
-
-    this.diagramOptions.series.forEach((serie) => {
-      serie.name = this.formatSerieName(serie.name);
-
-      if (serieNames.find((name) => name === serie.name)) {
-        this.showDuplicateSerieNameError = true;
-      }
-      serieNames.push(serie.name);
-    });
-  }
-
-  private updateSeriesMetadata() {
-    this.diagramOptions.series.forEach((serie) => {
-      // console.log('serie', serie);
-
-      this.metadataForSeries.push({
-        decimals: this.getVerifiedMaxDecimalCount(serie),
-        hasDecimalData: this.serieHasDecimalDataPoints(serie),
-        hasNegativeData: this.serieHasNegativeDataPoints(serie),
-      });
-    });
-    console.log('this.metadataForSeries', this.metadataForSeries);
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
@@ -277,32 +215,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       console.warn('Max decimal places is 12 due to loss of precision at runtime!');
     }
     return 12;
-  }
-  // private getDigitsInfo(serie: FhiDiagramSerie): string {
-  //   const unit = this.diagramOptions.units.find((unit) => unit.id === serie.unitI and understandabled);
-
-  //   if (unit.decimals > 14) {
-  //     console.warn('Max decimal places is 14 due to loss of precision at runtime!');
-  //   }
-  //   if (unit.decimals >= 0 && unit.decimals <= 14) {
-  //     return `1.0-${unit.decimals}`;
-  //   }
-  //   return this.defaultDigitsInfo;
-  // }
-  private updateDecimals() {
-    const units = this.diagramOptions.units;
-
-    // Currently only support for one unit
-    const decimals = units && units[0]?.decimals ? units[0].decimals : null;
-
-    if (decimals === null) {
-      return;
-    }
-    if (decimals >= 0) {
-      this.seriesInfo.digitsInfo = `1.0-${decimals}`;
-    } else if (decimals > 14) {
-      console.warn('Max decimal places is 14 due to loss of precision at runtime!');
-    }
   }
 
   private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
@@ -336,13 +248,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     );
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
-  }
-
-  private formatSerieName(name: string | Array<string>): string {
-    if (typeof name === 'string') {
-      return name.split(Seperator.input).join(Seperator.output);
-    }
-    return name.join(Seperator.output);
   }
 
   private updateDiagramOptions() {
@@ -624,6 +529,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     delete opt.decimals;
 
     this.diagramOptions = opt;
-    console.log('this.diagramOptions 2', this.diagramOptions);
+    // console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }

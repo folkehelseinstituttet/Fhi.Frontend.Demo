@@ -14,7 +14,7 @@ import {
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
-import { MetadataForSerie } from '../models/series-info.model';
+import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
