@@ -181,11 +181,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
       ...this.diagramOptions,
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
-      units: [
-        {
-          label: 'Antall',
-        },
-      ],
+      units: [{ label: 'Antall' }],
     });
   }
 
@@ -240,11 +236,7 @@ export class HighchartsComponent implements OnInit {
       openSource: false,
       tableOrientation: 'seriesAsColumns',
       title: '',
-      units: [
-        {
-          label: 'Antall',
-        },
-      ],
+      units: [{ label: 'Antall' }],
     };
   }
 
@@ -252,13 +244,21 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
 
-      activeDiagramType: 'columnAndLine',
+      // activeDiagramType: 'columnAndLine',
+      activeDiagramType: 'table',
       controls: {
         navigation: {
           show: true,
         },
       },
-      // footer?: FhiDiagramFooter;
+      footer: {
+        flags: [
+          {
+            symbol: ':',
+            label: 'Anonymisert',
+          },
+        ],
+      },
       openSource: false,
       // series -> is set in this.getData()
       // tableOrientation: 'seriesAsColumns',

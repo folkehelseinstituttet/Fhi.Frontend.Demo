@@ -160,7 +160,8 @@
             </th>
             <td class="text-end" *ngIf="!tableCell.isHeading">
               <ng-container *ngIf="tableCellDataOK(tableCell.data); else tableCellDataIsString">
-                {{ tableCell.data | number: seriesInfo.digitsInfo }}
+                <!-- TODO: remove! {{ tableCell.data | number: seriesInfo.digitsInfo }} -->
+                {{ tableCell.data | number: '1.0-' + tableCell.decimals }}
               </ng-container>
               <ng-template #tableCellDataIsString>
                 {{ tableCell.data }}

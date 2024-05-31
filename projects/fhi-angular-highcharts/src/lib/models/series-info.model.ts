@@ -6,3 +6,13 @@ export interface SeriesInfo {
   negativeDataPointsExists?: boolean;
   flaggedSeries?: FlaggedSerie[];
 }
+
+export interface MetadataForSerie {
+  decimals: number;
+  digitsInfo?: string;
+
+  // hasDecimalData: boolean;
+  // dataIsNegative: boolean;
+  // dataIsFlagged: boolean;
+  // flag?: string;
+}
