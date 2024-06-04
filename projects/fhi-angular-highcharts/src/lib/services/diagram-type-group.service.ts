@@ -136,7 +136,7 @@ export class DiagramTypeGroupService {
         break;
 
       case DiagramTypeIdValues.barStacked:
-        diagramType.disabled = this.diagramTypeLineDisabled();
+        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
         break;
 
       case DiagramTypeIdValues.column:
