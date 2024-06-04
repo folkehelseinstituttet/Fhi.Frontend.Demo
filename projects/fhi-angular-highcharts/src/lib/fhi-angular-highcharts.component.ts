@@ -140,10 +140,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private resetDiagramState() {
+    this.showDiagramTypeNav = false;
+    this.showDuplicateSerieNameError = false;
+    this.showFullScreenButton = false;
     this.showDiagramTypeDisabledWarning = false;
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
+    this.allSerieNames = [];
     this.flaggedSeries = [];
     this.metadataForSeries = [];
   }
