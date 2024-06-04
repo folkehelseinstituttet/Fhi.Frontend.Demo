@@ -23,6 +23,7 @@ import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
+import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 
 @Injectable()
 export class OptionsService {
@@ -51,8 +52,26 @@ export class OptionsService {
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, diagramOptions);
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
 
-      if (diagramOptions.units?.length > 1) {
+      if (diagramOptions.units?.length > 1 && diagramOptions.units?.length <= 2) {
         console.log('MORE THAN ONE Y-AXIS!');
+
+        const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
+        const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
+
+        let serieIndex: number;
+
+        options.yAxis = [];
+        diagramOptions.units.forEach((unit, index) => {
+          options.yAxis[index] = this.getYAxis__NEW(unit, hasDecimalData, hasNegativeData);
+          if (index === 1) {
+            serieIndex = series.findIndex((serie) => serie.unitId === unit.id);
+            options.yAxis[index].opposite = true;
+          }
+        });
+
+        console.log('serieIndex', serieIndex);
+        options.series[serieIndex].type = 'line';
+        options.series[serieIndex].yAxis = 1;
       } else {
         const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
         const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
@@ -68,7 +87,37 @@ export class OptionsService {
       options.chart.map = diagramOptions.activeDiagramType;
     }
 
+    console.log('options', options);
     return options;
+  }
+
+  private getYAxis__NEW(
+    unit: FhiDiagramUnit,
+    hasDecimalData: boolean,
+    hasNegativeData: boolean,
+  ): YAxisOptions {
+    const yAxis: YAxisOptions = {};
+    yAxis.title = {
+      text: unit.label,
+    };
+
+    if (hasDecimalData) {
+      yAxis.allowDecimals = true;
+      yAxis.min = undefined;
+    }
+    if (hasNegativeData) {
+      yAxis.min = undefined;
+    }
+    if (unit.symbol && unit.position) {
+      yAxis.labels = {
+        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+      };
+    } else {
+      yAxis.labels = {
+        format: '{value}',
+      };
+    }
+    return yAxis;
   }
 
   private setAllStaticOptions() {
@@ -113,6 +162,7 @@ export class OptionsService {
     hasNegativeData: boolean,
   ): YAxisOptions | YAxisOptions[] {
     yAxis = yAxis ? yAxis : {};
+
     if (hasDecimalData) {
       yAxis.allowDecimals = true;
       yAxis.min = undefined;
