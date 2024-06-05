@@ -4,7 +4,7 @@ export const TestData = [
   {
     name: 'Antall testet',
     data: [
-      { name: '2023-51', y: 2653 },
+      { name: '2023-51', y: 2653.987897 },
       { name: '2023-52', y: 6806 },
       { name: '2024-1', y: 8870 },
       { name: '2024-2', y: 6925 },
