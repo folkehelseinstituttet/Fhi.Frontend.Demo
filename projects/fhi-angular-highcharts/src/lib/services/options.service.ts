@@ -45,80 +45,6 @@ export class OptionsService {
     return this.updateOptionsForCurrentDiagramType(options);
   }
 
-  //
-  // ----------------------------------------------------------
-  // updateOptions() needs refactoring
-  // AND "how to match series with yAxis?" must be resolved...
-  // ----------------------------------------------------------
-  //
-  updateOptions_DEPRECATED(
-    diagramOptions: FhiDiagramOptions,
-    // metadataForSeries: MetadataForSerie[],
-  ): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
-    // const isPie = diagramOptions.activeDiagramType === DiagramTypeIdValues.pie;
-    // const isMap = options?.chart && 'map' in options.chart;
-    const series = diagramOptions.series;
-
-    // options.series = this.getSeries(series, isMap);
-
-    // 1. Generic
-    // if (!diagramOptions.openSource) {
-    //   options.credits = { enabled: false };
-    // }
-
-    // 4. Only spesific diagram types
-    // if (isPie && options.legend && options.legend.title) {
-    //   options.legend.title.text = options.series[0].name;
-    // }
-
-    // 3. Only chart
-    // if (!isMap) {
-    // options.tooltip = this.getTooltip_DEPRECATED(
-    //   options.tooltip as TooltipOptions,
-    //   diagramOptions,
-    // );
-    // options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
-
-    if (diagramOptions.units?.length > 1 && diagramOptions.units?.length <= 2) {
-      console.log('MORE THAN ONE Y-AXIS!');
-
-      let serieIndex: number;
-
-      options.yAxis = [];
-      diagramOptions.units.forEach((unit, index) => {
-        // options.yAxis[index] = this.getYAxis(unit);
-
-        if (index === 1) {
-          serieIndex = series.findIndex((serie) => serie.unitId === unit.id); // TODO: how to match series with yAxis?
-          options.yAxis[index].opposite = true;
-        }
-      });
-
-      // console.log('serieIndex', serieIndex);
-      options.series[serieIndex].yAxis = 1; // TODO: how to match series with yAxis?
-      options.series[serieIndex].type = 'line'; // TODO: how to match series with yAxis?
-      // } else {
-      //   const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
-      //   const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
-
-      //   options.yAxis = this.getYAxis_DEPRECATED(
-      //     options.yAxis as YAxisOptions,
-      //     diagramOptions,
-      //     hasDecimalData,
-      //     hasNegativeData,
-      //   );
-    }
-
-    // 2. Only map
-    // } else if (options.chart !== undefined) {
-    //   options.chart.map = diagramOptions.activeDiagramType;
-    // }
-
-    // console.log('options', options);
-    return options;
-  }
-
   private setAllStaticOptions() {
     AllDiagramTypes.forEach((FhiDiagramType) => {
       const options = FhiDiagramType.options;
@@ -143,11 +69,6 @@ export class OptionsService {
         options.tooltip as TooltipOptions,
         this.diagramOptions.units[0],
       );
-    } else if (this.diagramOptions.units?.length === 2) {
-      // TODO...
-      // this.diagramOptions.units.forEach((unit) => {
-      //   options.tooltip = this.getTooltip(options.tooltip as TooltipOptions);
-      // });
     }
     return options;
   }
@@ -180,27 +101,11 @@ export class OptionsService {
 
       case DiagramTypeIdValues.columnAndLine:
         if (this.diagramOptions.units?.length === 2) {
-          options.yAxis = this.getTwoYAxis(
-            options.yAxis as YAxisOptions[],
-            this.diagramOptions.units,
-          );
-          this.matchSeriesWithDiagramTypeAndYAxis(options.series);
+          this.updateOptionsForDiagramTypeColumnAndLine(options);
         }
         break;
     }
     return options;
-  }
-
-  private matchSeriesWithDiagramTypeAndYAxis(highchartsSeries: SeriesOptionsType[]) {
-    this.diagramOptions.series.forEach((serie, index) => {
-      if (serie.unitId === this.diagramOptions.units[0].id) {
-        highchartsSeries[index].type = 'column';
-        highchartsSeries[index].yAxis = 0;
-      } else if (serie.unitId === this.diagramOptions.units[1].id) {
-        highchartsSeries[index].type = 'line';
-        highchartsSeries[index].yAxis = 1;
-      }
-    });
   }
 
   private getSeriesWithoutFlaggedDataPoints() {
@@ -256,6 +161,21 @@ export class OptionsService {
     return yAxis;
   }
 
+  private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+    this.diagramOptions.series.forEach((serie, i) => {
+      if (serie.unitId === this.diagramOptions.units[0].id) {
+        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[0]);
+        options.series[i].type = 'column';
+        options.series[i].yAxis = 0;
+      } else if (serie.unitId === this.diagramOptions.units[1].id) {
+        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[1]);
+        options.series[i].type = 'line';
+        options.series[i].yAxis = 1;
+      }
+    });
+    options.yAxis = this.getTwoYAxis(options.yAxis as YAxisOptions[], this.diagramOptions.units);
+  }
+
   private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
     yAxis = [];
     yAxis[0] = this.getYAxis({}, units[0]);
@@ -263,84 +183,6 @@ export class OptionsService {
     yAxis[1].opposite = true;
     return yAxis;
   }
-  // private getYAxis_DEPRECATED(
-  //   yAxis: YAxisOptions,
-  //   diagramOptions: FhiDiagramOptions,
-  //   hasDecimalData: boolean,
-  //   hasNegativeData: boolean,
-  // ): YAxisOptions | YAxisOptions[] {
-  //   yAxis = yAxis ? yAxis : {};
-
-  //   if (hasDecimalData) {
-  //     yAxis.allowDecimals = true;
-  //     yAxis.min = undefined;
-  //   }
-  //   if (hasNegativeData) {
-  //     yAxis.min = undefined;
-  //   }
-  //   if (diagramOptions.units?.length === 1) {
-  //     yAxis.title.text = diagramOptions.units[0].label;
-  //   }
-  //   if (diagramOptions.units?.length === 1 && diagramOptions.units[0].symbol) {
-  //     yAxis.labels = {
-  //       format:
-  //         diagramOptions.units[0].position === 'start'
-  //           ? `${diagramOptions.units[0].symbol} {value}`
-  //           : `{value} ${diagramOptions.units[0].symbol}`,
-  //     };
-  //   } else {
-  //     yAxis.labels = {
-  //       format: '{value}',
-  //     };
-  //   }
-  //   return yAxis;
-  // }
-
-  // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
-  //   const highchartsSeries = cloneDeep(series);
-
-  //   // Remove flagged data from Highcharts options series
-  //   highchartsSeries.forEach((serie) => {
-  //     serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
-  //   });
-
-  //   if (isMap) {
-  //     return [this.topoJsonService.getHighmapsSerie(highchartsSeries[0])];
-  //   }
-  //   return highchartsSeries as SeriesOptionsType[];
-  // }
-
-  // private getXAxis(xAxis: XAxisOptions): XAxisOptions | XAxisOptions[] {
-  //   xAxis = xAxis ? xAxis : {};
-  //   return xAxis;
-  // }
-
-  // private getTooltip_DEPRECATED(
-  //   tooltip: TooltipOptions,
-  //   diagramOptions: FhiDiagramOptions,
-  // ): TooltipOptions {
-  //   tooltip = tooltip ? tooltip : {};
-  //   if (diagramOptions.units?.length !== 1) {
-  //     return tooltip;
-  //   }
-  //   if (diagramOptions.units[0].symbol) {
-  //     if (diagramOptions.units[0].decimals) {
-  //       tooltip.valueDecimals = diagramOptions.units[0].decimals;
-  //     } else if (diagramOptions.decimals) {
-  //       tooltip.valueDecimals = diagramOptions.decimals;
-  //     }
-  //     if (diagramOptions.units[0].position === 'start') {
-  //       tooltip.valuePrefix = diagramOptions.units[0].symbol + ' ';
-  //     } else {
-  //       tooltip.valueSuffix = ' ' + diagramOptions.units[0].symbol;
-  //     }
-  //   } else {
-  //     tooltip.valueDecimals = undefined;
-  //     tooltip.valuePrefix = undefined;
-  //     tooltip.valueSuffix = undefined;
-  //   }
-  //   return tooltip;
-  // }
 
   /**
    * The following date formatting methods are currently not in use,
