@@ -43,12 +43,12 @@ function getDocumentationHtml(): string | null {
   
   <ul>
     <li>
-      <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-popover/README.md#API">
+      <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-popover-menu/README.md#API">
         API-dokumentasjon
       </a>
     </li>
     <li>
-      <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-popover">
+      <a href="${CONST.FhiAngularComponentsGithubLibUrl}/fhi-popover-menu">
         Kildekode
       </a>
     </li>

@@ -1,10 +1,11 @@
 <button
   arrow="false"
-  autoClose="outside"
+  [autoClose]="true"
   class="btn fhi-popover-menu-trigger"
   [ngbPopover]="popContent"
   popoverClass="fhi-popover-menu"
   [popperOptions]="popperOptions"
+  #popoverId="ngbPopover"
   type="button"
 >
   <i [class]="'icon-' + triggerIcon + ' icon-md'"></i>

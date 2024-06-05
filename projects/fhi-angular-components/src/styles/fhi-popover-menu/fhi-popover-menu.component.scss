@@ -63,5 +63,15 @@
         margin: 0;
         top: 50%;
         transform: translate(-50%, -50%);
+
+        .table & {
+            background-position: 50% 50%;
+            background-size: ($fhi-core-px * 16) auto;
+        }
+    }
+
+    .table & {
+        height: $fhi-core-px * 33;
+        width: $fhi-core-px * 33;
     }
 }

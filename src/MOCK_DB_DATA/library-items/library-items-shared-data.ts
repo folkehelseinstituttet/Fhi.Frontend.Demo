@@ -373,12 +373,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'popover',
     title: 'Popover',
   },
-
-  TreeViewBuilder: {
-    id: 'prototype-angular-tree',
-    title: 'Tree view builder',
-  },
-
   TreeViewCheckbox: {
     id: 'tree-view-checkbox',
     title: 'Tree view checkbox',

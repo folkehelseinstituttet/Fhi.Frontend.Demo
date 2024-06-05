@@ -10,7 +10,6 @@ import { DynamicLibraryExampleComponent } from './dynamic-library-example.compon
 import { AccordionsComponent } from './example-components/accordions/accordions.component';
 import { AlertsComponent } from './example-components/alerts/alerts.component';
 import { AlertClosableComponent } from './example-components/alerts/alert-closable/alert-closable.component';
-import { AngularTreeViewBuilderComponent } from './example-components/angular-tree-view-builder/angular-tree-view-builder.component';
 import { ButtonsComponent } from './example-components/buttons/buttons.component';
 import { FormControlsComponent } from './example-components/form-controls/form-controls.component';
 import { GlobalHeadersComponent } from './example-components/global-headers/global-headers.component';
@@ -36,7 +35,6 @@ const EXAMPLE_COMPONENTS = [
   AccordionsComponent,
   AlertsComponent,
   AlertClosableComponent,
-  AngularTreeViewBuilderComponent,
   GlobalHeadersComponent,
   HighchartsComponent,
   IconListComponent,

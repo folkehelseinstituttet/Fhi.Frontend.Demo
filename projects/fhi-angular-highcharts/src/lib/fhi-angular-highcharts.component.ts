@@ -16,23 +16,25 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 
 import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
-import { AllDiagramOptions } from './models/all-diagram-options.model';
 import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
-import { FlaggedSerie } from './models/flagged-serie.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import { DiagramTypes } from './constants-and-enums/fhi-diagram-types';
-import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
+import {
+  ChartTypeIds,
+  DiagramTypeIdValues as DiagramTypeIds,
+  MapTypeIds,
+} from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
-import { DiagramTypeNavIds } from './constants-and-enums/diagram-type-nav-ids';
-import { DiagramTypeGroups } from './constants-and-enums/diagram-type-groups';
+import { DiagramTypeGroupNames } from './constants-and-enums/diagram-type-groups';
 
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
-import { DiagramTypeService } from './services/diagram-type.service';
+import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
+import { DiagramTypeGroup } from './models/diagram-type-group.model';
+import { SeriesInfo } from './models/series-info.model';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -40,57 +42,60 @@ import { TableData } from './models/table-data.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
-  private currentDiagramTypeDisabled: boolean;
-  private flaggedSeries: FlaggedSerie[] = [];
-
   @Input() diagramOptions!: FhiDiagramOptions;
+
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
   @Output() metadataButtonClick = new EventEmitter<void>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
-
   highchartsOptions!: Options;
-  allDiagramOptions!: AllDiagramOptions;
-  mapCopyrightInfo!: object;
-  currentDiagramTypeGroup!: string;
-  digitsInfo = '1.0-2';
-  diagramTypeGroups = DiagramTypeGroups;
-  diagramTypeNavId = DiagramTypeNavIds;
-  showDefaultChartTemplate = true;
-  showDiagramTypeDisabledInfo: boolean;
-  showFooter = false;
-  showMap = false;
+
+  activeDiagramTypeGroup!: DiagramTypeGroup;
+  diagramTypeGroups!: DiagramTypeGroup[];
+  diagramTypeGroupNames = DiagramTypeGroupNames;
+
+  seriesInfo: SeriesInfo = {
+    digitsInfo: '1.0-14',
+  };
+
   tableData: TableData;
+
+  showDefaultChartTemplate: boolean;
+  showDiagramTypeDisabledWarning: boolean;
+  showDiagramTypeNav: boolean;
+  showDuplicateSerieNameError: boolean;
+  showFooter: boolean;
+  showFullScreenButton: boolean;
+  showMap: boolean;
+  showMetadataButton: boolean;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
     private optionsService: OptionsService,
-    private diagramTypeService: DiagramTypeService,
+    private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
+    this.highcharts.setOptions({
+      lang: {
+        decimalPoint: ',',
+      },
+    });
   }
 
   ngOnChanges() {
-    try {
-      this.showMap = false;
-      this.allDiagramOptions = this.diagramOptions;
-      this.loopSeriesToUpdateAndExtractInfo();
-      this.updateAvailableDiagramTypes();
-      this.updateAllDiagramOptions();
-      this.updateCurrentDiagramType();
-      this.updateCurrentDiagramTypeGroup();
-      this.checkIfCurrentDiagramTypeDisabled();
+    this.tmpAdapterForDeprecatedDiagramOptions();
 
-      if (this.currentDiagramTypeDisabled) {
-        this.showDiagramTypeDisabledInfo = true;
-      } else {
-        this.showDiagramTypeDisabledInfo = false;
-        this.updateDiagram();
-      }
+    try {
+      this.resetDiagramState();
+      this.loopSeriesToUpdateAndExtractInfo();
+      this.updateDecimals();
+      this.updateDiagramTypeGroups();
+      this.updateDiagramOptions();
+      this.updateDiagramState();
     } catch (error) {
       console.error(this.getErrorMsg(error));
     }
@@ -118,7 +123,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   getFlaggedDataPoints(): Array<string> {
     const flagged: Array<string> = [];
     let n = 0;
-    this.flaggedSeries.forEach((serie) => {
+    this.seriesInfo.flaggedSeries.forEach((serie) => {
       serie.flaggedDataPoints.forEach((dataPoint) => {
         flagged[n++] = serie.name.concat(Seperator.output, dataPoint.name);
       });
@@ -130,10 +135,19 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return this.topoJsonService.getMapCopyright();
   }
 
+  private resetDiagramState() {
+    this.showDiagramTypeDisabledWarning = false;
+    this.showFooter = false;
+    this.showMap = false;
+    this.showMetadataButton = false;
+    this.seriesInfo.flaggedSeries = [];
+  }
+
   private loopSeriesToUpdateAndExtractInfo() {
     let n = 0;
+    const names: string[] = [];
 
-    this.allDiagramOptions.series.forEach((serie) => {
+    this.diagramOptions.series.forEach((serie) => {
       const decimalData = serie.data.filter(
         (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
       );
@@ -146,16 +160,48 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.updateFlaggedSeries(serie, flaggedData, n++);
       }
       if (decimalData.length !== 0) {
-        this.allDiagramOptions.seriesHasDecimalDataPoints = true;
-      }
-      if (decimalData.length !== 0 && this.allDiagramOptions.decimals > 0) {
-        this.digitsInfo = `1.0-${this.allDiagramOptions.decimals}`;
+        this.seriesInfo.decimalDataPointsExists = true;
       }
       if (negativeData.length !== 0) {
-        this.allDiagramOptions.seriesHasNegativeDataPoints = true;
+        this.seriesInfo.negativeDataPointsExists = true;
       }
+
       serie.name = this.formatSerieName(serie.name);
+
+      if (names.find((name) => name === serie.name)) {
+        this.showDuplicateSerieNameError = true;
+      }
+      names.push(serie.name);
     });
+  }
+
+  private updateDiagramTypeGroups() {
+    this.diagramTypeGroupService.updateDiagramTypeGroups(
+      this.diagramOptions.activeDiagramType,
+      this.diagramOptions.controls?.navigation?.items?.chartTypes,
+      this.diagramOptions.controls?.navigation?.items?.mapTypes,
+      this.diagramOptions.series,
+      this.seriesInfo.flaggedSeries,
+      this.diagramTypeGroups,
+    );
+    this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
+    this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
+  }
+
+  private updateDecimals() {
+    const unit = this.diagramOptions.unit;
+
+    // Currently only support for one unit
+    const decimals = unit?.length >= 0 ? unit[0].decimals : this.diagramOptions.decimals; // Temporary fallback before this.diagramOptions.decimals deprecates in v5
+
+    if (decimals === null) {
+      return;
+    }
+    if (decimals >= 0) {
+      this.seriesInfo.digitsInfo = `1.0-${decimals}`;
+    } else if (decimals > 14) {
+      console.warn('Max decimal places is 14 due to loss of precision at runtime!');
+    }
   }
 
   private formatSerieName(name: string | Array<string>): string {
@@ -170,7 +216,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     flaggedData: FhiDiagramSerieData[],
     index: number,
   ) {
-    this.flaggedSeries[index] = {
+    this.seriesInfo.flaggedSeries[index] = {
       name: serie.name as string,
       flaggedDataPoints: this.getFlaggedDataPointsForCurrentSerie(flaggedData),
     };
@@ -191,86 +237,68 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return flaggedDataPoints;
   }
 
-  private updateAvailableDiagramTypes() {
-    this.diagramTypeService.updateDiagramTypes(
-      this.allDiagramOptions.diagramTypeSubset,
-      this.allDiagramOptions.mapTypeId,
-      this.allDiagramOptions.series,
-      this.flaggedSeries,
-    );
-  }
+  private updateDiagramOptions() {
+    const activeDiagramType = this.diagramOptions.activeDiagramType;
+    const footer = this.diagramOptions.footer;
+    const openSource = this.diagramOptions.openSource;
 
-  private updateAllDiagramOptions() {
-    const diagramTypeId = this.allDiagramOptions.diagramTypeId;
-    const flags = this.allDiagramOptions.flags;
-    const openSource = this.allDiagramOptions.openSource;
-
-    this.allDiagramOptions = {
-      ...this.allDiagramOptions,
-      diagramTypeId: diagramTypeId
-        ? (this.diagramTypeService.getVerifiedDiagramTypeId(diagramTypeId) as FhiDiagramTypeIds)
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      activeDiagramType: activeDiagramType
+        ? activeDiagramType
         : (DiagramTypeIds.table as FhiDiagramTypeIds),
-      flags: flags ? flags : undefined,
+      footer: footer ? footer : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
   }
 
-  private updateCurrentDiagramType() {
-    this.allDiagramOptions.diagramType = this.diagramTypeService.getDiagramTypeById(
-      this.allDiagramOptions.diagramTypeId,
+  private updateDiagramState() {
+    const diagramTypeIsDisabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+      this.diagramOptions.activeDiagramType,
     );
-  }
+    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
+    this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
+    this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
+    this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
+    this.showDiagramTypeNav = !!this.diagramOptions.controls?.navigation?.show;
 
-  private updateCurrentDiagramTypeGroup() {
-    if (this.allDiagramOptions.diagramTypeId === DiagramTypes.table.id) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.table;
-      return;
+    if (!diagramTypeIsDisabled) {
+      this.updateDiagram();
     }
-    if (
-      this.allDiagramOptions.diagramTypeId === DiagramTypeIds.map &&
-      this.diagramTypeService.mapTypes.length !== 0
-    ) {
-      this.currentDiagramTypeGroup = DiagramTypeGroups.map;
-      return;
-    }
-    this.currentDiagramTypeGroup = DiagramTypeGroups.chart;
-    this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-  }
-
-  private checkIfCurrentDiagramTypeDisabled() {
-    if (
-      this.diagramTypeService.disabledDiagramTypeIds.find(
-        (id) => id === this.allDiagramOptions.diagramTypeId,
-      ) === undefined
-    ) {
-      this.currentDiagramTypeDisabled = false;
-      return;
-    }
-    this.currentDiagramTypeDisabled = true;
   }
 
   private updateDiagram() {
-    if (this.currentDiagramTypeGroup === DiagramTypeGroups.table) {
+    if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.table) {
       this.updateTable();
-    } else if (this.currentDiagramTypeGroup === DiagramTypeGroups.map) {
+    } else if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.map) {
       this.updateMap();
     } else {
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
+      this.updateChart();
     }
-    this.showFooter = this.canShowFooter();
+  }
+
+  private updateChart() {
+    this.highchartsOptions = this.optionsService.updateOptions(
+      this.diagramOptions,
+      this.seriesInfo,
+    );
   }
 
   private updateTable() {
-    const series: FhiDiagramSerie[] = this.allDiagramOptions.series;
-    this.tableData = this.tableService.getTable(series, this.allDiagramOptions.tableOrientation);
+    const series: FhiDiagramSerie[] = this.diagramOptions.series;
+    this.tableData = this.tableService.getTable(series, this.diagramOptions.tableOrientation);
   }
 
   private updateMap() {
-    const mapTypeId = this.allDiagramOptions.mapTypeId;
+    const mapTypeId = this.diagramOptions.activeDiagramType;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
-      this.highchartsOptions = this.optionsService.updateOptions(this.allDiagramOptions);
+      this.highchartsOptions = this.optionsService.updateOptions(
+        this.diagramOptions,
+        this.seriesInfo,
+      );
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
@@ -300,22 +328,19 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private canShowFooter(): boolean {
-    if (this.showMap && !this.allDiagramOptions.openSource) {
+    if (this.showMap && !this.diagramOptions.openSource) {
       return true;
     }
-    if (this.flaggedSeries.length !== 0) {
+    if (this.diagramOptions.footer?.flags && this.seriesInfo.flaggedSeries.length !== 0) {
       return true;
     }
-    if (this.allDiagramOptions.lastUpdated !== undefined) {
+    if (this.diagramOptions.footer?.lastUpdated) {
       return true;
     }
-    if (this.allDiagramOptions.disclaimer !== undefined) {
+    if (this.diagramOptions.footer?.disclaimer) {
       return true;
     }
-    if (
-      this.allDiagramOptions.creditsHref !== undefined &&
-      this.allDiagramOptions.creditsText !== undefined
-    ) {
+    if (this.diagramOptions.footer?.credits) {
       return true;
     }
     return false;
@@ -323,19 +348,157 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private getErrorMsg(error: any) {
-    return `ERROR: @Input() diagramOptions === undefined,
-    diagramOptions.title === undefined or diagramOptions.series === undefined
-    at FhiAngularHighchartsComponent.ngOnChanges()
-    FhiAngularHighchartsComponent can not be rendered.
+    return `${error}
 
     To avoid this error message:
     Make sure [yourOptions] are valid before calling template:
     <fhi-angular-highcharts [diagramOptions]="yourOptions"></fhi-angular-highcharts>
 
-    If [yourOptions] are in accordance with specification; contact maintainer of
-    package https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
+    If [yourOptions] are in accordance with specification, contact maintainer of package:
+    https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts
 
-    Stacktrace:
-    ${error}`;
+    API documentation:
+    https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
+  }
+
+  // -----------------------------------------------------------------------------------------------
+  // Tmp adapter for converting deprecated API properties to avoid breaking change in PR for issue:
+  // https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
+  //
+  // This adapter will be removed in v5
+  //
+  private tmpAdapterForDeprecatedDiagramOptions() {
+    const opt = this.diagramOptions;
+    // console.log('this.diagramOptions 1', this.diagramOptions);
+    // debugger;
+
+    // diagramTypeId & mapTypeId
+    if (opt.diagramTypeId) {
+      if (opt.diagramTypeId === 'map') {
+        opt.activeDiagramType = opt.mapTypeId;
+      } else {
+        opt.activeDiagramType = opt.diagramTypeId;
+      }
+    }
+    if (opt.activeDiagramType === 'map') {
+      opt.activeDiagramType = 'mapFylker';
+    }
+    delete opt.diagramTypeId;
+    delete opt.mapTypeId;
+
+    // diagramTypeNavId
+    if (opt.diagramTypeNavId && !opt.controls?.navigation) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.navigation) {
+        opt.controls.navigation = {
+          show: !!opt.diagramTypeNavId,
+          type: opt.diagramTypeNavId,
+        };
+      }
+    }
+    delete opt.diagramTypeNavId;
+
+    // diagramTypeSubset
+    if (opt.diagramTypeSubset && !opt.controls?.navigation?.items) {
+      if (opt.diagramTypeSubset.find((type) => type === 'map')) {
+        opt.diagramTypeSubset.push('mapFylker');
+        opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
+      }
+      opt.controls.navigation.items = {};
+
+      if (!opt.controls.navigation.items.mapTypes) {
+        opt.controls.navigation.items.mapTypes = opt.diagramTypeSubset.filter(
+          (type) => type.slice(0, 3) === 'map',
+        ) as (keyof typeof MapTypeIds)[];
+      }
+      if (!opt.controls.navigation.items.chartTypes) {
+        opt.controls.navigation.items.chartTypes = opt.diagramTypeSubset.filter(
+          (type) => type.slice(0, 3) !== 'map',
+        ) as (keyof typeof ChartTypeIds)[];
+      }
+    }
+    delete opt.diagramTypeSubset;
+
+    // showFullScreenButton
+    if (
+      opt.showFullScreenButton !== undefined &&
+      opt.controls?.fullScreenButton?.show === undefined
+    ) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.fullScreenButton) {
+        opt.controls.fullScreenButton = {
+          show: opt.showFullScreenButton,
+        };
+      }
+    }
+    delete opt.showFullScreenButton;
+
+    // metadataButton
+    if (opt.metadataButton !== undefined && opt.controls?.metadataButton?.show === undefined) {
+      if (!opt.controls) {
+        opt.controls = {};
+      }
+      if (!opt.controls.metadataButton) {
+        opt.controls.metadataButton = {
+          show: opt.metadataButton,
+        };
+      }
+    }
+    delete opt.metadataButton;
+
+    // creditsHref & creditsText
+    if ((opt.creditsHref || opt.creditsText) && !opt.footer?.credits) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.credits) {
+        opt.footer.credits = {
+          href: opt.creditsHref,
+          text: opt.creditsText,
+        };
+      }
+    }
+    delete opt.creditsHref;
+    delete opt.creditsText;
+
+    // disclaimer
+    if (opt.disclaimer && !opt.footer?.disclaimer) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.disclaimer) {
+        opt.footer.disclaimer = opt.disclaimer;
+      }
+    }
+    delete opt.disclaimer;
+
+    // flags
+    if (opt.flags && !opt.footer?.flags) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.flags) {
+        opt.footer.flags = opt.flags;
+      }
+    }
+    delete opt.flags;
+
+    // lastUpdated
+    if (opt.lastUpdated && !opt.footer?.lastUpdated) {
+      if (!opt.footer) {
+        opt.footer = {};
+      }
+      if (!opt.footer.lastUpdated) {
+        opt.footer.lastUpdated = opt.lastUpdated;
+      }
+    }
+    delete opt.lastUpdated;
+
+    this.diagramOptions = opt;
+    // console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }

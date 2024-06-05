@@ -6,6 +6,7 @@ import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from 'src/app/models/menu-item.model';
 import { LibraryItemGroupsShared } from '../models/library-item.model';
+import { FhiTreeViewNavigationItem } from '@folkehelseinstituttet/angular-components';
 
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
@@ -63,14 +64,14 @@ export class LibraryMenuService {
     return false;
   }
 
-  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): MenuItem[] {
-    const menu: MenuItem[] = [];
+  getSecondLevelMenuItems(libraryItemGroups: LibraryItemGroupsShared): FhiTreeViewNavigationItem[] {
+    const menu: FhiTreeViewNavigationItem[] = [];
     Object.keys(libraryItemGroups).forEach((key) => {
       if (libraryItemGroups[key].parentUrlSegment === this.urlService.getSegmentPath(1)) {
         menu.push({
           name: libraryItemGroups[key].title,
-          link: libraryItemGroups[key].id,
-          titleLang: libraryItemGroups[key].titleLang,
+          routerLink: libraryItemGroups[key].id,
+          // titleLang: libraryItemGroups[key].titleLang,
         });
       }
     });

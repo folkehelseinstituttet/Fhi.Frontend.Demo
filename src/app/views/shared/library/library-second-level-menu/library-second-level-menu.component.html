@@ -6,17 +6,6 @@
   <i class="icon-list"></i>
 </button>
 
-<div class="ds-left-menu" [ngClass]="{ 'd-none d-xl-block': !leftMenuMobileTriggerOpen }">
-  <ul class="nav flex-column d-inline-block pb-2">
-    <li class="nav-item" *ngFor="let menuItem of menuItems">
-      <a
-        class="nav-link"
-        routerLinkActive="active"
-        [routerLink]="'./' + menuItem.link"
-        [attr.lang]="menuItem.titleLang === lang_NO ? null : lang_EN"
-        (click)="leftMenuMobileTriggerOpen = false"
-        >{{ menuItem.name }}</a
-      >
-    </li>
-  </ul>
+<div class="ds-left-menu" lang="en" [ngClass]="{ 'd-none d-xl-block': !leftMenuMobileTriggerOpen }">
+  <fhi-tree-view-navigation [items]="menuItems"></fhi-tree-view-navigation>
 </div>

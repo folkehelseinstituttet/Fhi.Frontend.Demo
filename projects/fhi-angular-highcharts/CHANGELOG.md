@@ -1,4 +1,33 @@
-# 3.0.0
+# 3.3.0
+
+> May 31, 2024
+
+* :tada: **Enhancement** Update README for `@folkehelseinstituttet/angular-highcharts` to reflect changes in `@folkehelseinstituttet/style`, and fix import path accordingly
+* :tada: **Enhancement** Container on map and charts that provides better aspect ratios in different viewports
+* :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
+* :bug: **Bugfix** Remove compact date formatting on chart diagrams
+* :bug: **Bugfix** Remove confusing menu item disabling if diagramtype is impossible to show. New solution: no items disabled, only a warning is given when diagramtype is impossible to show.
+
+## 3.2.0
+
+> May 6, 2024
+
+* :bug: **Bugfix** Add null check for `FhiDiagramOptions.decimals` and `FhiDiagramOptions.unit.decimals`
+* :tada: **Enhancement** Set `minFractionDigits` in `digitsInfo` to `0` (DecimalPipe), since padding the number with extra zeros actually changes the number.
+
+## 3.1.0
+
+> Apr 22, 2024
+
+* :bug: **Bugfix** Fix bug: _"footer doesn't always show when map"_
+* :tada: **Enhancement** Better support for decimals, both in table and in tooltip
+* :tada: **Enhancement** Add support for one unit at the time on yAxis
+* :tada: **Enhancement** Add support for unit i tooltip
+* :tada: **Enhancement** Diagram navigation with split button on chart selector
+* :tada: **Enhancement** Diagram navigation with split button on chart selector
+* :tada: **Enhancement** Alert on disabled diagram type changed to warning type
+
+## 3.0.0
 
 > Mar 18, 2024
 

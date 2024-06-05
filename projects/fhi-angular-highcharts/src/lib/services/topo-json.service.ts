@@ -5,7 +5,7 @@ import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
-import { MapTypeIdValues, MapTypeIdValuesArray } from '../constants-and-enums/map-type-ids';
+import { MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 @Injectable()
 export class TopoJsonService {
@@ -30,8 +30,9 @@ export class TopoJsonService {
   }
 
   getMap(mapTypeId: string | undefined): Observable<object> {
-    if (MapTypeIdValuesArray.find((id) => id === mapTypeId) === undefined) {
-      throw new Error("No supported mapTypeId given, can't get map!");
+    const maps = [MapTypeIdValues.mapFylker, MapTypeIdValues.mapFylker2019];
+    if (maps.find((id) => id === mapTypeId) === undefined) {
+      throw new Error("No supported map matches given mapTypeId, can't get map!");
     }
     const fallbackUrl = `${location.origin}/${this.appMapFolder}/${mapTypeId}.topo.json`;
     const url = mapTypeId === MapTypeIdValues.mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
@@ -64,6 +65,9 @@ export class TopoJsonService {
     const geometry = geometries.find(
       (geometry: object) => geometry['properties'].name === dataPoint.name,
     );
-    return [geometry['properties']['hc-key'], dataPoint.y as number];
+    if (geometry !== undefined) {
+      return [geometry['properties']['hc-key'], dataPoint.y as number];
+    }
+    throw new Error('No data.name in the given serie match any geo names in given TopoJson file.');
   }
 }

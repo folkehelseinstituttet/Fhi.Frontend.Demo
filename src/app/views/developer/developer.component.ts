@@ -5,6 +5,7 @@ import { mergeMap } from 'rxjs/operators';
 import { UrlService } from '../../services/url.service';
 import { LibraryMenuService } from '../shared/services/library-menu.service';
 import { MenuItem } from '../../models/menu-item.model';
+import { FhiTreeViewNavigationItem } from '@folkehelseinstituttet/angular-components';
 import { LibraryItemGroupsSharedDataService } from '../shared/services/library-item-groups-shared-data.service';
 import { LibraryItemGroupsShared } from '../shared/models/library-item.model';
 
@@ -13,12 +14,12 @@ import { LibraryItemGroupsShared } from '../shared/models/library-item.model';
   templateUrl: './developer.component.html',
 })
 export class DeveloperComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
   topLevelMenuItems!: MenuItem[];
-  secondLevelMenuItems!: MenuItem[];
+  secondLevelMenuItems!: Array<FhiTreeViewNavigationItem>;
   isDebugging = false;
   libraryItemGroupsShared!: LibraryItemGroupsShared;
-
-  private subscription: Subscription = new Subscription();
 
   constructor(
     private urlService: UrlService,
