@@ -185,6 +185,21 @@ export class OptionsService {
             options.yAxis as YAxisOptions[],
             this.diagramOptions.units,
           );
+          console.log('options.yAxis', options.yAxis);
+
+          // TODO: how to match series with yAxis?
+
+          options.series[0].type = 'column';
+          options.series[0].yAxis = 0;
+
+          options.series[1].type = 'column';
+          options.series[1].yAxis = 0;
+
+          options.series[2].type = 'line';
+          options.series[2].yAxis = 1;
+
+          options.series[3].type = 'line';
+          options.series[3].yAxis = 1;
         }
         break;
     }
@@ -245,8 +260,10 @@ export class OptionsService {
   }
 
   private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
-    yAxis = [{}];
-    console.log('units', units);
+    yAxis = [];
+    yAxis[0] = this.getYAxis({}, units[0]);
+    yAxis[1] = this.getYAxis({}, units[1]);
+    yAxis[1].opposite = true;
     return yAxis;
   }
   // private getYAxis_DEPRECATED(

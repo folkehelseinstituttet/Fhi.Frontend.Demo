@@ -1,6 +1,7 @@
 import { OptionsChartTypeBar } from '../highcharts-options/options-chart-type-bar';
 import { OptionsChartTypeBarStacked } from '../highcharts-options/options-chart-type-bar-stacked';
 import { OptionsChartTypeColumn } from '../highcharts-options/options-chart-type-column';
+import { OptionsChartTypeColumnAndLine } from '../highcharts-options/options-chart-type-column-and-line';
 import { OptionsChartTypeColumnStacked } from '../highcharts-options/options-chart-type-column-stacked';
 import { OptionsChartTypeLine } from '../highcharts-options/options-chart-type-line';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
@@ -34,7 +35,7 @@ const column: DiagramType = {
 const columnAndLine: DiagramType = {
   id: DiagramTypeIdValues.columnAndLine,
   name: 'Dobbel akse, linje og søyle',
-  options: OptionsChartTypeColumn,
+  options: OptionsChartTypeColumnAndLine,
 };
 
 const columnStacked: DiagramType = {
