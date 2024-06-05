@@ -1,4 +1,10 @@
-# 4.1.1
+# 4.2.0
+
+> May 31, 2024
+
+* :tada: **Enhancement** Update README for `@folkehelseinstituttet/angular-components` to reflect changes in `@folkehelseinstituttet/style`
+
+## 4.1.1
 
 > May 15, 2024
 

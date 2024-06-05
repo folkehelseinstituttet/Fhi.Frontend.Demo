@@ -27,8 +27,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 3.2                    | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
-| 3.1                    | 4.0                   | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
+| >3.1                   | 4.0                   | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
 | 2                      | 3.1                   | 5.9       | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
 | 1                      | -                     | 5         | 5         | 15          | 11.1       | 4.0                | 16      | 18/9 *   |
@@ -56,7 +55,7 @@ After installing the package and all dependencies, add the following code to you
 
 ```scss
 // In global css-file (usually style.scss)
-@import "./node_modules/@folkehelseinstituttet/angular-highcharts/styles/import/all";
+@import "@folkehelseinstituttet/angular-highcharts/styles/import/all";
 ```
 
 ```ts
