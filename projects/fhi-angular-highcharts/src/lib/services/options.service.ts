@@ -8,7 +8,6 @@ import {
   SeriesOptionsType,
   TooltipOptions,
   XAxisLabelsOptions,
-  XAxisOptions,
   YAxisOptions,
 } from 'highcharts';
 
@@ -88,7 +87,7 @@ export class OptionsService {
 
       options.yAxis = [];
       diagramOptions.units.forEach((unit, index) => {
-        options.yAxis[index] = this.getYAxis(unit);
+        // options.yAxis[index] = this.getYAxis(unit);
 
         if (index === 1) {
           serieIndex = series.findIndex((serie) => serie.unitId === unit.id); // TODO: how to match series with yAxis?
@@ -144,25 +143,32 @@ export class OptionsService {
         options.tooltip as TooltipOptions,
         this.diagramOptions.units[0],
       );
+    } else if (this.diagramOptions.units?.length === 2) {
+      // TODO...
+      // this.diagramOptions.units.forEach((unit) => {
+      //   options.tooltip = this.getTooltip(options.tooltip as TooltipOptions);
+      // });
     }
-    // if (this.diagramOptions.units?.length === 2) {
-    //   this.diagramOptions.units.forEach((unit) => {
-    //     options.tooltip = this.getTooltip(options.tooltip as TooltipOptions);
-    //   });
-    // }
     return options;
   }
 
   private updateMapOptions(options: Options): Options {
-    const seriesWithoutFlags = this.getSeriesWithoutFlaggedDataPoints();
     options.chart.map = this.diagramOptions.activeDiagramType;
-    options.series = [this.topoJsonService.getHighmapsSerie(seriesWithoutFlags[0])];
+    options.series = [
+      this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
+    ];
     return options;
   }
 
   private updateChartOptions(options: Options): Options {
-    const seriesWithoutFlags = this.getSeriesWithoutFlaggedDataPoints();
-    options.series = seriesWithoutFlags as SeriesOptionsType[];
+    options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
+    if (this.diagramOptions.units?.length === 1) {
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, this.diagramOptions.units[0]);
+    } else if (this.diagramOptions.units?.length === 2) {
+      // TODO...
+    } else {
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions);
+    }
     return options;
   }
 
@@ -172,9 +178,6 @@ export class OptionsService {
         if (options.legend && options.legend.title) {
           options.legend.title.text = options.series[0].name;
         }
-        break;
-
-      default:
     }
     return options;
   }
@@ -193,8 +196,79 @@ export class OptionsService {
     if (unit.decimals) {
       tooltip.valueDecimals = unit.decimals;
     }
+    if (unit.symbol) {
+      if (unit.position === 'start') {
+        tooltip.valuePrefix = unit.symbol + ' ';
+      } else {
+        tooltip.valueSuffix = ' ' + unit.symbol;
+      }
+    }
     return tooltip;
   }
+
+  private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {
+    const hasDecimalData = !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
+    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+    yAxis = yAxis ? yAxis : {};
+
+    if (hasDecimalData) {
+      yAxis.allowDecimals = true;
+    }
+    if (hasNegativeData) {
+      yAxis.min = undefined;
+    }
+
+    if (unit === undefined) {
+      return yAxis;
+    }
+
+    yAxis.title = {
+      text: unit.label,
+    };
+    if (unit.symbol && unit.position) {
+      yAxis.labels = {
+        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+      };
+    } else {
+      yAxis.labels = {
+        format: '{value}',
+      };
+    }
+    return yAxis;
+  }
+
+  // private getYAxis_DEPRECATED(
+  //   yAxis: YAxisOptions,
+  //   diagramOptions: FhiDiagramOptions,
+  //   hasDecimalData: boolean,
+  //   hasNegativeData: boolean,
+  // ): YAxisOptions | YAxisOptions[] {
+  //   yAxis = yAxis ? yAxis : {};
+
+  //   if (hasDecimalData) {
+  //     yAxis.allowDecimals = true;
+  //     yAxis.min = undefined;
+  //   }
+  //   if (hasNegativeData) {
+  //     yAxis.min = undefined;
+  //   }
+  //   if (diagramOptions.units?.length === 1) {
+  //     yAxis.title.text = diagramOptions.units[0].label;
+  //   }
+  //   if (diagramOptions.units?.length === 1 && diagramOptions.units[0].symbol) {
+  //     yAxis.labels = {
+  //       format:
+  //         diagramOptions.units[0].position === 'start'
+  //           ? `${diagramOptions.units[0].symbol} {value}`
+  //           : `{value} ${diagramOptions.units[0].symbol}`,
+  //     };
+  //   } else {
+  //     yAxis.labels = {
+  //       format: '{value}',
+  //     };
+  //   }
+  //   return yAxis;
+  // }
 
   // private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
   //   const highchartsSeries = cloneDeep(series);
@@ -215,92 +289,32 @@ export class OptionsService {
   //   return xAxis;
   // }
 
-  private getTooltip_DEPRECATED(
-    tooltip: TooltipOptions,
-    diagramOptions: FhiDiagramOptions,
-  ): TooltipOptions {
-    tooltip = tooltip ? tooltip : {};
-    if (diagramOptions.units?.length !== 1) {
-      return tooltip;
-    }
-    if (diagramOptions.units[0].symbol) {
-      if (diagramOptions.units[0].decimals) {
-        tooltip.valueDecimals = diagramOptions.units[0].decimals;
-      } else if (diagramOptions.decimals) {
-        tooltip.valueDecimals = diagramOptions.decimals;
-      }
-      if (diagramOptions.units[0].position === 'start') {
-        tooltip.valuePrefix = diagramOptions.units[0].symbol + ' ';
-      } else {
-        tooltip.valueSuffix = ' ' + diagramOptions.units[0].symbol;
-      }
-    } else {
-      tooltip.valueDecimals = undefined;
-      tooltip.valuePrefix = undefined;
-      tooltip.valueSuffix = undefined;
-    }
-    return tooltip;
-  }
-
-  private getYAxis(unit: FhiDiagramUnit): YAxisOptions {
-    const hasDecimalData = !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
-    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
-    const yAxis: YAxisOptions = {};
-
-    yAxis.title = {
-      text: unit.label,
-    };
-    if (hasDecimalData) {
-      yAxis.allowDecimals = true;
-      yAxis.min = undefined;
-    }
-    if (hasNegativeData) {
-      yAxis.min = undefined;
-    }
-    if (unit.symbol && unit.position) {
-      yAxis.labels = {
-        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
-      };
-    } else {
-      yAxis.labels = {
-        format: '{value}',
-      };
-    }
-    return yAxis;
-  }
-
-  private getYAxis_DEPRECATED(
-    yAxis: YAxisOptions,
-    diagramOptions: FhiDiagramOptions,
-    hasDecimalData: boolean,
-    hasNegativeData: boolean,
-  ): YAxisOptions | YAxisOptions[] {
-    yAxis = yAxis ? yAxis : {};
-
-    if (hasDecimalData) {
-      yAxis.allowDecimals = true;
-      yAxis.min = undefined;
-    }
-    if (hasNegativeData) {
-      yAxis.min = undefined;
-    }
-    if (diagramOptions.units?.length === 1) {
-      yAxis.title.text = diagramOptions.units[0].label;
-    }
-    if (diagramOptions.units?.length === 1 && diagramOptions.units[0].symbol) {
-      yAxis.labels = {
-        format:
-          diagramOptions.units[0].position === 'start'
-            ? `${diagramOptions.units[0].symbol} {value}`
-            : `{value} ${diagramOptions.units[0].symbol}`,
-      };
-    } else {
-      yAxis.labels = {
-        format: '{value}',
-      };
-    }
-    return yAxis;
-  }
+  // private getTooltip_DEPRECATED(
+  //   tooltip: TooltipOptions,
+  //   diagramOptions: FhiDiagramOptions,
+  // ): TooltipOptions {
+  //   tooltip = tooltip ? tooltip : {};
+  //   if (diagramOptions.units?.length !== 1) {
+  //     return tooltip;
+  //   }
+  //   if (diagramOptions.units[0].symbol) {
+  //     if (diagramOptions.units[0].decimals) {
+  //       tooltip.valueDecimals = diagramOptions.units[0].decimals;
+  //     } else if (diagramOptions.decimals) {
+  //       tooltip.valueDecimals = diagramOptions.decimals;
+  //     }
+  //     if (diagramOptions.units[0].position === 'start') {
+  //       tooltip.valuePrefix = diagramOptions.units[0].symbol + ' ';
+  //     } else {
+  //       tooltip.valueSuffix = ' ' + diagramOptions.units[0].symbol;
+  //     }
+  //   } else {
+  //     tooltip.valueDecimals = undefined;
+  //     tooltip.valuePrefix = undefined;
+  //     tooltip.valueSuffix = undefined;
+  //   }
+  //   return tooltip;
+  // }
 
   /**
    * The following date formatting methods are currently not in use,
