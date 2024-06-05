@@ -180,30 +180,27 @@ export class OptionsService {
 
       case DiagramTypeIdValues.columnAndLine:
         if (this.diagramOptions.units?.length === 2) {
-          console.log('MORE THAN ONE Y-AXIS!');
           options.yAxis = this.getTwoYAxis(
             options.yAxis as YAxisOptions[],
             this.diagramOptions.units,
           );
-          console.log('options.yAxis', options.yAxis);
-
-          // TODO: how to match series with yAxis?
-
-          options.series[0].type = 'column';
-          options.series[0].yAxis = 0;
-
-          options.series[1].type = 'column';
-          options.series[1].yAxis = 0;
-
-          options.series[2].type = 'line';
-          options.series[2].yAxis = 1;
-
-          options.series[3].type = 'line';
-          options.series[3].yAxis = 1;
+          this.matchSeriesWithDiagramTypeAndYAxis(options.series);
         }
         break;
     }
     return options;
+  }
+
+  private matchSeriesWithDiagramTypeAndYAxis(highchartsSeries: SeriesOptionsType[]) {
+    this.diagramOptions.series.forEach((serie, index) => {
+      if (serie.unitId === this.diagramOptions.units[0].id) {
+        highchartsSeries[index].type = 'column';
+        highchartsSeries[index].yAxis = 0;
+      } else if (serie.unitId === this.diagramOptions.units[1].id) {
+        highchartsSeries[index].type = 'line';
+        highchartsSeries[index].yAxis = 1;
+      }
+    });
   }
 
   private getSeriesWithoutFlaggedDataPoints() {

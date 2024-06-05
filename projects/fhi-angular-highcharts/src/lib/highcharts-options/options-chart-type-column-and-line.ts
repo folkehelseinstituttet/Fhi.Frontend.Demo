@@ -1,5 +1,5 @@
-// import { OptionsTickmarkPlacementValue } from 'highcharts';
-// const tickmarkPlacement: OptionsTickmarkPlacementValue = 'on';
+import { OptionsTickmarkPlacementValue } from 'highcharts';
+const tickmarkPlacement: OptionsTickmarkPlacementValue = 'on';
 
 export const OptionsChartTypeColumnAndLine = {
   chart: {},
@@ -16,9 +16,9 @@ export const OptionsChartTypeColumnAndLine = {
       },
     },
   },
-  // xAxis: {
-  //   tickLength: 7,
-  //   tickmarkPlacement: tickmarkPlacement,
-  //   tickWidth: 1,
-  // },
+  xAxis: {
+    tickLength: 7,
+    tickmarkPlacement: tickmarkPlacement,
+    tickWidth: 1,
+  },
 };
