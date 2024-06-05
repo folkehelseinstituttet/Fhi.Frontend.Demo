@@ -17,7 +17,7 @@ import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
-import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
+import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
@@ -28,26 +28,69 @@ import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 @Injectable()
 export class OptionsService {
   private allStaticOptions = new Map();
+  private diagramOptions: FhiDiagramOptions;
+  private metadataForSeries: MetadataForSerie[];
 
   constructor(private topoJsonService: TopoJsonService) {
     this.setAllStaticOptions();
   }
 
   updateOptions(diagramOptions: FhiDiagramOptions, metadataForSeries: MetadataForSerie[]): Options {
+    let options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
+    const isMap = options.chart && 'map' in options.chart;
+    this.diagramOptions = diagramOptions;
+    this.metadataForSeries = metadataForSeries;
+
+    options = this.updateGenericOptions(options);
+    options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
+    return this.updateOptionsForCurrentDiagramType(options);
+  }
+  updateGenericOptions(options: Options): Options {
+    if (!this.diagramOptions.openSource) {
+      options.credits = { enabled: false };
+    }
+    return options;
+  }
+  updateMapOptions(options: Options): Options {
+    options.chart.map = this.diagramOptions.activeDiagramType;
+    return options;
+  }
+  updateChartOptions(options: Options): Options {
+    return options;
+  }
+  updateOptionsForCurrentDiagramType(options: Options): Options {
+    //    TODO: Switch for options updates of particular diagramtypes (but switch in seprate method)
+    return options;
+  }
+
+  //
+  // ----------------------------------------------------------
+  // updateOptions() needs refactoring
+  // AND "how to match series with yAxis?" must be resolved...
+  // ----------------------------------------------------------
+  //
+  updateOptions_DEPRECATED(
+    diagramOptions: FhiDiagramOptions,
+    metadataForSeries: MetadataForSerie[],
+  ): Options {
     const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
-    const isPie = diagramOptions.activeDiagramType === DiagramTypeIds.pie;
+    const isPie = diagramOptions.activeDiagramType === DiagramTypeIdValues.pie;
     const isMap = options?.chart && 'map' in options.chart;
     const series = diagramOptions.series;
 
     options.series = this.getSeries(series, isMap);
 
-    // TODO: try to make this into a switch in a separate method
+    // 1. Generic
     if (!diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
+
+    // 4. Only spesific diagram types
     if (isPie && options.legend && options.legend.title) {
       options.legend.title.text = options.series[0].name;
     }
+
+    // 3. Only chart
     if (!isMap) {
       options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, diagramOptions);
       options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
@@ -55,69 +98,40 @@ export class OptionsService {
       if (diagramOptions.units?.length > 1 && diagramOptions.units?.length <= 2) {
         console.log('MORE THAN ONE Y-AXIS!');
 
-        const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
-        const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
-
         let serieIndex: number;
 
         options.yAxis = [];
         diagramOptions.units.forEach((unit, index) => {
-          options.yAxis[index] = this.getYAxis__NEW(unit, hasDecimalData, hasNegativeData);
+          options.yAxis[index] = this.getYAxis(unit);
+
           if (index === 1) {
-            serieIndex = series.findIndex((serie) => serie.unitId === unit.id);
+            serieIndex = series.findIndex((serie) => serie.unitId === unit.id); // TODO: how to match series with yAxis?
             options.yAxis[index].opposite = true;
           }
         });
 
-        console.log('serieIndex', serieIndex);
-        options.series[serieIndex].type = 'line';
-        options.series[serieIndex].yAxis = 1;
+        // console.log('serieIndex', serieIndex);
+        options.series[serieIndex].yAxis = 1; // TODO: how to match series with yAxis?
+        options.series[serieIndex].type = 'line'; // TODO: how to match series with yAxis?
       } else {
         const hasDecimalData = !!metadataForSeries.find((serie) => serie.hasDecimalData);
         const hasNegativeData = !!metadataForSeries.find((serie) => serie.hasNegativeData);
 
-        options.yAxis = this.getYAxis(
+        options.yAxis = this.getYAxis_DEPRECATED(
           options.yAxis as YAxisOptions,
           diagramOptions,
           hasDecimalData,
           hasNegativeData,
         );
       }
+
+      // 2. Only map
     } else if (options.chart !== undefined) {
       options.chart.map = diagramOptions.activeDiagramType;
     }
 
     console.log('options', options);
     return options;
-  }
-
-  private getYAxis__NEW(
-    unit: FhiDiagramUnit,
-    hasDecimalData: boolean,
-    hasNegativeData: boolean,
-  ): YAxisOptions {
-    const yAxis: YAxisOptions = {};
-    yAxis.title = {
-      text: unit.label,
-    };
-
-    if (hasDecimalData) {
-      yAxis.allowDecimals = true;
-      yAxis.min = undefined;
-    }
-    if (hasNegativeData) {
-      yAxis.min = undefined;
-    }
-    if (unit.symbol && unit.position) {
-      yAxis.labels = {
-        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
-      };
-    } else {
-      yAxis.labels = {
-        format: '{value}',
-      };
-    }
-    return yAxis;
   }
 
   private setAllStaticOptions() {
@@ -155,7 +169,34 @@ export class OptionsService {
     return xAxis;
   }
 
-  private getYAxis(
+  private getYAxis(unit: FhiDiagramUnit): YAxisOptions {
+    const hasDecimalData = !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
+    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+    const yAxis: YAxisOptions = {};
+
+    yAxis.title = {
+      text: unit.label,
+    };
+    if (hasDecimalData) {
+      yAxis.allowDecimals = true;
+      yAxis.min = undefined;
+    }
+    if (hasNegativeData) {
+      yAxis.min = undefined;
+    }
+    if (unit.symbol && unit.position) {
+      yAxis.labels = {
+        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+      };
+    } else {
+      yAxis.labels = {
+        format: '{value}',
+      };
+    }
+    return yAxis;
+  }
+
+  private getYAxis_DEPRECATED(
     yAxis: YAxisOptions,
     diagramOptions: FhiDiagramOptions,
     hasDecimalData: boolean,
