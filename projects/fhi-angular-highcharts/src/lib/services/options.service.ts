@@ -164,8 +164,6 @@ export class OptionsService {
     options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
     if (this.diagramOptions.units?.length === 1) {
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, this.diagramOptions.units[0]);
-    } else if (this.diagramOptions.units?.length === 2) {
-      // TODO...
     } else {
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions);
     }
@@ -178,6 +176,17 @@ export class OptionsService {
         if (options.legend && options.legend.title) {
           options.legend.title.text = options.series[0].name;
         }
+        break;
+
+      case DiagramTypeIdValues.columnAndLine:
+        if (this.diagramOptions.units?.length === 2) {
+          console.log('MORE THAN ONE Y-AXIS!');
+          options.yAxis = this.getTwoYAxis(
+            options.yAxis as YAxisOptions[],
+            this.diagramOptions.units,
+          );
+        }
+        break;
     }
     return options;
   }
@@ -235,6 +244,11 @@ export class OptionsService {
     return yAxis;
   }
 
+  private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
+    yAxis = [{}];
+    console.log('units', units);
+    return yAxis;
+  }
   // private getYAxis_DEPRECATED(
   //   yAxis: YAxisOptions,
   //   diagramOptions: FhiDiagramOptions,

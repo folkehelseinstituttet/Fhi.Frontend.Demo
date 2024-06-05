@@ -263,10 +263,10 @@ export class HighchartsComponent implements OnInit {
       // tableOrientation: 'seriesAsColumns',
       title: 'Dobbel akse, linje og søyle',
       units: [
-        // {
-        //   id: 'antall',
-        //   label: 'Antall',
-        // },
+        {
+          id: 'antall',
+          label: 'Antall',
+        },
         {
           id: 'prosent',
           decimals: 1,
