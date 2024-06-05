@@ -1,7 +1,8 @@
-# Unreleased
+# 3.3.0
 
-> May 27, 2024
+> May 31, 2024
 
+* :tada: **Enhancement** Update README for `@folkehelseinstituttet/angular-highcharts` to reflect changes in `@folkehelseinstituttet/style`, and fix import path accordingly
 * :tada: **Enhancement** Container on map and charts that provides better aspect ratios in different viewports
 * :tada: **Enhancement** Update model `FhiDiagramOptions`: add more grouping of properties, rename some properties and remove some properties. The old properties still works, but will be deprecated in v5.
 * :bug: **Bugfix** Remove compact date formatting on chart diagrams
