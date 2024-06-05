@@ -218,21 +218,19 @@ export class OptionsService {
       yAxis.min = undefined;
     }
 
-    if (unit === undefined) {
-      return yAxis;
-    }
-
-    yAxis.title = {
-      text: unit.label,
-    };
-    if (unit.symbol && unit.position) {
-      yAxis.labels = {
-        format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+    if (unit !== undefined) {
+      yAxis.title = {
+        text: unit.label,
       };
-    } else {
-      yAxis.labels = {
-        format: '{value}',
-      };
+      if (unit.symbol && unit.position) {
+        yAxis.labels = {
+          format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+        };
+      } else {
+        yAxis.labels = {
+          format: '{value}',
+        };
+      }
     }
     return yAxis;
   }
