@@ -9,12 +9,16 @@ import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
+import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
   private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
+
+  private diagramOptions: FhiDiagramOptions;
+
   private series!: FhiDiagramSerie[];
   private units!: FhiDiagramUnit[];
 
@@ -37,23 +41,27 @@ export class DiagramTypeGroupService {
   }
 
   updateDiagramTypeGroups(
+    diagramOptions: FhiDiagramOptions,
+
     diagramTypeId: string,
-    chartTypeSubset: string[] | undefined,
-    mapTypeSubset: string[] | undefined,
     series: FhiDiagramSerie[],
     units: FhiDiagramUnit[],
+
     flaggedSeries: FlaggedSerie[],
     diagramTypeGroups: DiagramTypeGroup[],
   ) {
-    this.flaggedSeries = flaggedSeries;
+    this.diagramOptions = diagramOptions;
+
     this.series = series;
     this.units = units;
+
+    this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
     this.diagramTypeGroups = diagramTypeGroups
       ? cloneDeep(diagramTypeGroups)
       : cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes(chartTypeSubset?.concat(mapTypeSubset), diagramTypeId);
+    this.loopGroupsAndUpdateDiagramTypes(diagramTypeId);
     this.removeEmptyGroups();
     this.updateInactiveGroup();
     this.updateActiveGroup();
@@ -74,7 +82,8 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
+  private loopGroupsAndUpdateDiagramTypes(diagramTypeId: string) {
+    const diagramTypeSubset = this.getDiagramTypeSubset();
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
@@ -84,6 +93,14 @@ export class DiagramTypeGroupService {
         this.setDiagramTypeToActive(diagramType, diagramTypeId);
       });
     });
+  }
+
+  private getDiagramTypeSubset(): string[] {
+    const chartTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.chartTypes;
+    const mapTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.mapTypes;
+    return chartTypeSubset?.concat(mapTypeSubset);
   }
 
   private removeEmptyGroups() {
