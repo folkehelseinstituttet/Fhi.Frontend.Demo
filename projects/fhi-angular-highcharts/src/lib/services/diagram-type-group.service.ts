@@ -179,7 +179,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableBar(): boolean {
-    return this.series.length > 1 && this.flaggedSeries.length !== 0;
+    return this.series.length > 1 && this.flaggedSeries?.length !== 0;
   }
 
   private disableBarStacked(): boolean {
@@ -191,7 +191,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableColumnAndLine(): boolean {
-    return this.disableBar() || this.diagramOptions.units.length < 2;
+    return this.disableBar() || this.diagramOptions.units?.length < 2;
   }
 
   private disableColumnStacked(): boolean {
@@ -201,7 +201,7 @@ export class DiagramTypeGroupService {
   private disableLine(): boolean {
     return (
       this.getNumberOfDataPointsPrSerie() === 1 ||
-      (this.series.length > 1 && this.flaggedSeries.length !== 0)
+      (this.series.length > 1 && this.flaggedSeries?.length !== 0)
     );
   }
 
