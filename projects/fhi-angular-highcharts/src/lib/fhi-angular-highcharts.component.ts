@@ -247,6 +247,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramOptions.controls?.navigation?.items?.chartTypes,
       this.diagramOptions.controls?.navigation?.items?.mapTypes,
       this.diagramOptions.series,
+      this.diagramOptions.units,
       this.flaggedSeries,
       this.diagramTypeGroups,
     );
