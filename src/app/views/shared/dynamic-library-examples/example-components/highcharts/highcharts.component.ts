@@ -254,7 +254,7 @@ export class HighchartsComponent implements OnInit {
     const diagramOptions: FhiDiagramOptions = {
       ...this.getDiagramOptions_AllInclusive(),
     };
-    diagramOptions.controls.navigation.items.chartTypes = ['columnAndLine'];
+    diagramOptions.controls.navigation.items.chartTypes = ['columnAndLine', 'pie'];
     diagramOptions.controls.navigation.items.mapTypes = ['mapFylker'];
     return {
       ...diagramOptions,
