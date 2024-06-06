@@ -1,18 +1,13 @@
 import { OptionsChartTypeBar } from '../highcharts-options/options-chart-type-bar';
 import { OptionsChartTypeBarStacked } from '../highcharts-options/options-chart-type-bar-stacked';
 import { OptionsChartTypeColumn } from '../highcharts-options/options-chart-type-column';
+import { OptionsChartTypeColumnAndLine } from '../highcharts-options/options-chart-type-column-and-line';
 import { OptionsChartTypeColumnStacked } from '../highcharts-options/options-chart-type-column-stacked';
 import { OptionsChartTypeLine } from '../highcharts-options/options-chart-type-line';
 import { OptionsChartTypePie } from '../highcharts-options/options-chart-type-pie';
 
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypeIdValues } from './diagram-type-ids';
-
-export enum DiagramTypeGroupIndex {
-  tableIndex = 0,
-  mapIndex = 1,
-  chartIndex = 2,
-}
 
 // Charts
 
@@ -35,6 +30,12 @@ const column: DiagramType = {
   icon: 'bar-chart-line',
   name: 'Søylediagram',
   options: OptionsChartTypeColumn,
+};
+
+const columnAndLine: DiagramType = {
+  id: DiagramTypeIdValues.columnAndLine,
+  name: 'Dobbel akse, linje og søyle',
+  options: OptionsChartTypeColumnAndLine,
 };
 
 const columnStacked: DiagramType = {
@@ -62,7 +63,6 @@ const pie: DiagramType = {
 
 const mapShared = {
   icon: 'geo-alt',
-  name: 'Kart',
   options: {
     chart: {
       map: undefined,
@@ -70,20 +70,15 @@ const mapShared = {
   },
 };
 
-// DiagramTypes.map will be deprecated in v5
-//   Was the only map type before v3.3, but is after v3.3 just an alias for "mapFylker"
-const map: DiagramType = {
-  id: DiagramTypeIdValues.map,
-  ...mapShared,
-};
-
 const mapFylker: DiagramType = {
   id: DiagramTypeIdValues.mapFylker,
+  name: 'Kart (fylker)',
   ...mapShared,
 };
 
 const mapFylker2019: DiagramType = {
   id: DiagramTypeIdValues.mapFylker2019,
+  name: 'Kart (fylker 2019)',
   ...mapShared,
 };
 
@@ -101,9 +96,9 @@ export class DiagramTypes {
   static bar = bar;
   static barStacked = barStacked;
   static column = column;
+  static columnAndLine = columnAndLine;
   static columnStacked = columnStacked;
   static line = line;
-  static map = map;
   static mapFylker = mapFylker;
   static mapFylker2019 = mapFylker2019;
   static pie = pie;
@@ -114,9 +109,9 @@ export const AllDiagramTypes = [
   bar,
   barStacked,
   column,
+  columnAndLine,
   columnStacked,
   line,
-  map,
   mapFylker,
   mapFylker2019,
   pie,
@@ -124,5 +119,5 @@ export const AllDiagramTypes = [
 ];
 
 // This is the order used in diagram-type-navs
-export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie];
-export const MapTypes = [map, mapFylker, mapFylker2019];
+export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
+export const MapTypes = [mapFylker, mapFylker2019];

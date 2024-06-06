@@ -15,7 +15,7 @@ export const DiagramTypeGroups: DiagramTypeGroup[] = [
   },
   {
     children: MapTypes,
-    diagramType: DiagramTypes.map,
+    diagramType: DiagramTypes.mapFylker,
     name: DiagramTypeGroupNames.map,
   },
   {

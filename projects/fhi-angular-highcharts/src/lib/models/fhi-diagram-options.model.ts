@@ -19,7 +19,7 @@ export interface FhiDiagramOptions {
   series: FhiDiagramSerie[];
   tableOrientation?: FhiTableOrientations;
   title: string;
-  unit?: FhiDiagramUnit[];
+  units?: FhiDiagramUnit[];
 
   // The following will be deprecated in v5
   creditsHref?: string;

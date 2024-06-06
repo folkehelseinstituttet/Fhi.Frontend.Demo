@@ -8,12 +8,14 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
+import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
   private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
+  private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
 
   getActiveDiagramType(): DiagramType {
@@ -34,22 +36,14 @@ export class DiagramTypeGroupService {
     return this.diagramTypeGroups;
   }
 
-  updateDiagramTypeGroups(
-    diagramTypeId: string,
-    chartTypeSubset: string[] | undefined,
-    mapTypeSubset: string[] | undefined,
-    series: FhiDiagramSerie[],
-    flaggedSeries: FlaggedSerie[],
-    diagramTypeGroups: DiagramTypeGroup[],
-  ) {
+  updateDiagramTypeGroups(diagramOptions: FhiDiagramOptions, flaggedSeries: FlaggedSerie[]) {
+    this.diagramOptions = diagramOptions;
+    this.series = this.diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
-    this.series = series;
     this.activeDiagramType = undefined;
-    this.diagramTypeGroups = diagramTypeGroups
-      ? cloneDeep(diagramTypeGroups)
-      : cloneDeep(DiagramTypeGroups);
+    this.diagramTypeGroups = cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes(chartTypeSubset?.concat(mapTypeSubset), diagramTypeId);
+    this.loopGroupsAndUpdateDiagramTypes();
     this.removeEmptyGroups();
     this.updateInactiveGroup();
     this.updateActiveGroup();
@@ -70,16 +64,25 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
+  private loopGroupsAndUpdateDiagramTypes() {
+    const diagramTypeSubset = this.getDiagramTypeSubset();
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
       group.children.forEach((diagramType) => {
         this.disableDiagramType(diagramType);
-        this.setDiagramTypeToActive(diagramType, diagramTypeId);
+        this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
       });
     });
+  }
+
+  private getDiagramTypeSubset(): string[] {
+    const chartTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.chartTypes;
+    const mapTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.mapTypes;
+    return chartTypeSubset?.concat(mapTypeSubset);
   }
 
   private removeEmptyGroups() {
@@ -132,32 +135,36 @@ export class DiagramTypeGroupService {
   private disableDiagramType(diagramType: DiagramType) {
     switch (diagramType.id) {
       case DiagramTypeIdValues.bar:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableBar();
         break;
 
       case DiagramTypeIdValues.barStacked:
-        diagramType.disabled = this.diagramTypeLineDisabled();
+        diagramType.disabled = this.disableBarStacked();
         break;
 
       case DiagramTypeIdValues.column:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableColumn();
+        break;
+
+      case DiagramTypeIdValues.columnAndLine:
+        diagramType.disabled = this.disableColumnAndLine();
         break;
 
       case DiagramTypeIdValues.columnStacked:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableColumnStacked();
         break;
 
       case DiagramTypeIdValues.line:
-        diagramType.disabled = this.diagramTypeLineDisabled();
+        diagramType.disabled = this.disableLine();
         break;
 
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
-        diagramType.disabled = this.diagramTypeMapDisabled();
+        diagramType.disabled = this.disableMap();
         break;
 
       case DiagramTypeIdValues.pie:
-        diagramType.disabled = this.diagramTypePieDisabled();
+        diagramType.disabled = this.disablePie();
         break;
 
       default:
@@ -165,12 +172,44 @@ export class DiagramTypeGroupService {
     }
   }
 
-  private diagramTypeBarAndColumnDisabled(): boolean {
-    return this.series.length > 1 && this.flaggedSeries.length !== 0;
+  private disableBar(): boolean {
+    return this.series.length > 1 && this.flaggedSeries?.length !== 0;
   }
 
-  private diagramTypeMapDisabled(): boolean {
+  private disableBarStacked(): boolean {
+    return this.disableBar();
+  }
+
+  private disableColumn(): boolean {
+    return this.disableBar();
+  }
+
+  private disableColumnAndLine(): boolean {
+    return this.disableBar() || this.diagramOptions.units?.length < 2;
+  }
+
+  private disableColumnStacked(): boolean {
+    return this.disableBar();
+  }
+
+  private disableLine(): boolean {
+    return (
+      this.getNumberOfDataPointsPrSerie() === 1 ||
+      (this.series.length > 1 && this.flaggedSeries?.length !== 0)
+    );
+  }
+
+  private disableMap(): boolean {
     return this.series.length > 1 || (this.series.length === 1 && this.isNotGeo(this.series[0]));
+  }
+
+  private disablePie(): boolean {
+    return this.series.length > 1;
+  }
+
+  private getNumberOfDataPointsPrSerie(): number {
+    // Using series[0] since all series should have the same length
+    return this.series[0].data.length;
   }
 
   private isNotGeo(serie: FhiDiagramSerie): boolean {
@@ -183,24 +222,8 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private diagramTypeLineDisabled(): boolean {
-    return (
-      this.getNumberOfDataPointsPrSerie() === 1 ||
-      (this.series.length > 1 && this.flaggedSeries.length !== 0)
-    );
-  }
-
-  private diagramTypePieDisabled(): boolean {
-    return this.series.length > 1;
-  }
-
-  private getNumberOfDataPointsPrSerie(): number {
-    // Using series[0] since all series should have the same length
-    return this.series[0].data.length;
-  }
-
   /**
-   * @returns a list of leagal geo names for all maps
+   * Returns a list of leagal geo names for all maps
    *
    * PS. This gives 1 fact in 2 places, but the the maps will not change
    *     that often, and the benefit of being able to do a "disable map test"

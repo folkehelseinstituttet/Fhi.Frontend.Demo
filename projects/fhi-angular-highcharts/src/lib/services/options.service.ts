@@ -8,52 +8,41 @@ import {
   SeriesOptionsType,
   TooltipOptions,
   XAxisLabelsOptions,
-  XAxisOptions,
   YAxisOptions,
 } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
-import { SeriesInfo } from '../models/series-info.model';
+import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
-import { DiagramTypeIdValues as DiagramTypeIds } from '../constants-and-enums/diagram-type-ids';
+import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
+import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 
 @Injectable()
 export class OptionsService {
   private allStaticOptions = new Map();
+  private diagramOptions: FhiDiagramOptions;
+  private metadataForSeries: MetadataForSerie[];
 
   constructor(private topoJsonService: TopoJsonService) {
     this.setAllStaticOptions();
   }
 
-  updateOptions(diagramOptions: FhiDiagramOptions, seriesInfo: SeriesInfo): Options {
-    const options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
-    const isPie = diagramOptions.activeDiagramType === DiagramTypeIds.pie;
-    const isMap = options?.chart && 'map' in options.chart;
-    const series = diagramOptions.series;
+  updateOptions(diagramOptions: FhiDiagramOptions, metadataForSeries: MetadataForSerie[]): Options {
+    let options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
+    const isMap = options.chart && 'map' in options.chart;
+    this.diagramOptions = diagramOptions;
+    this.metadataForSeries = metadataForSeries;
 
-    options.series = this.getSeries(series, isMap);
-
-    if (!diagramOptions.openSource) {
-      options.credits = { enabled: false };
-    }
-    if (isPie && options.legend && options.legend.title) {
-      options.legend.title.text = options.series[0].name;
-    }
-    if (!isMap) {
-      options.xAxis = this.getXAxis(options.xAxis as XAxisOptions);
-      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, diagramOptions, seriesInfo);
-      options.tooltip = this.getTooltip(options.tooltip as TooltipOptions, diagramOptions);
-    } else if (options.chart !== undefined) {
-      options.chart.map = diagramOptions.activeDiagramType;
-    }
-    return options;
+    options = this.updateGenericOptions(options);
+    options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
+    return this.updateOptionsForCurrentDiagramType(options);
   }
 
   private setAllStaticOptions() {
@@ -71,85 +60,134 @@ export class OptionsService {
     return merge(chartsAndMaps, current, options);
   }
 
-  private getSeries(series: FhiDiagramSerie[], isMap: boolean | undefined): SeriesOptionsType[] {
-    const highchartsSeries = cloneDeep(series);
+  private updateGenericOptions(options: Options): Options {
+    if (!this.diagramOptions.openSource) {
+      options.credits = { enabled: false };
+    }
+    if (this.diagramOptions.units?.length === 1) {
+      options.tooltip = this.getTooltip(
+        options.tooltip as TooltipOptions,
+        this.diagramOptions.units[0],
+      );
+    }
+    return options;
+  }
 
-    // Remove flagged data from Highcharts options series
-    highchartsSeries.forEach((serie) => {
+  private updateMapOptions(options: Options): Options {
+    options.chart.map = this.diagramOptions.activeDiagramType;
+    options.series = [
+      this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
+    ];
+    return options;
+  }
+
+  private updateChartOptions(options: Options): Options {
+    options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
+    if (this.diagramOptions.units?.length === 1) {
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, this.diagramOptions.units[0]);
+    } else {
+      options.yAxis = this.getYAxis(options.yAxis as YAxisOptions);
+    }
+    return options;
+  }
+
+  private updateOptionsForCurrentDiagramType(options: Options): Options {
+    switch (this.diagramOptions.activeDiagramType) {
+      case DiagramTypeIdValues.pie:
+        if (options.legend && options.legend.title) {
+          options.legend.title.text = options.series[0].name;
+        }
+        break;
+
+      case DiagramTypeIdValues.columnAndLine:
+        if (this.diagramOptions.units?.length === 2) {
+          this.updateOptionsForDiagramTypeColumnAndLine(options);
+        }
+        break;
+    }
+    return options;
+  }
+
+  private getSeriesWithoutFlaggedDataPoints() {
+    const seriesWithoutFlags = cloneDeep(this.diagramOptions.series);
+    seriesWithoutFlags.forEach((serie) => {
       serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
     });
-
-    if (isMap) {
-      return [this.topoJsonService.getHighmapsSerie(highchartsSeries[0])];
-    } else {
-      return highchartsSeries as SeriesOptionsType[];
-    }
+    return seriesWithoutFlags;
   }
 
-  private getXAxis(xAxis: XAxisOptions): XAxisOptions | XAxisOptions[] {
-    xAxis = xAxis ? xAxis : {};
-    return xAxis;
-  }
-
-  private getYAxis(
-    yAxis: YAxisOptions,
-    diagramOptions: FhiDiagramOptions,
-    seriesInfo: SeriesInfo,
-  ): YAxisOptions | YAxisOptions[] {
-    yAxis = yAxis ? yAxis : {};
-    if (seriesInfo.decimalDataPointsExists) {
-      yAxis.allowDecimals = true;
-      yAxis.min = undefined;
-    }
-    if (seriesInfo.negativeDataPointsExists) {
-      yAxis.min = undefined;
-    }
-    if (diagramOptions.unit?.length === 1) {
-      yAxis.title.text = diagramOptions.unit[0].label;
-    }
-    if (diagramOptions.unit?.length === 1 && diagramOptions.unit[0].symbol) {
-      yAxis.labels = {
-        format:
-          diagramOptions.unit[0].position === 'start'
-            ? `${diagramOptions.unit[0].symbol} {value}`
-            : `{value} ${diagramOptions.unit[0].symbol}`,
-      };
-    } else {
-      yAxis.labels = {
-        format: '{value}',
-      };
-    }
-    return yAxis;
-  }
-
-  private getTooltip(tooltip: TooltipOptions, diagramOptions: FhiDiagramOptions): TooltipOptions {
+  private getTooltip(tooltip: TooltipOptions, unit: FhiDiagramUnit): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
-    if (diagramOptions.unit?.length !== 1) {
-      return tooltip;
+
+    if (unit.decimals) {
+      tooltip.valueDecimals = unit.decimals;
     }
-    if (diagramOptions.unit[0].symbol) {
-      if (diagramOptions.unit[0].decimals) {
-        tooltip.valueDecimals = diagramOptions.unit[0].decimals;
-      } else if (diagramOptions.decimals) {
-        tooltip.valueDecimals = diagramOptions.decimals;
-      }
-      if (diagramOptions.unit[0].position === 'start') {
-        tooltip.valuePrefix = diagramOptions.unit[0].symbol + ' ';
+    if (unit.symbol) {
+      if (unit.position === 'start') {
+        tooltip.valuePrefix = unit.symbol + ' ';
       } else {
-        tooltip.valueSuffix = ' ' + diagramOptions.unit[0].symbol;
+        tooltip.valueSuffix = ' ' + unit.symbol;
       }
-    } else {
-      tooltip.valueDecimals = undefined;
-      tooltip.valuePrefix = undefined;
-      tooltip.valueSuffix = undefined;
     }
     return tooltip;
   }
 
-  /*
-  The methods below is for date formatting, that is abandoned.
-  Keep for possibility that this will be reintroduced.
-  */
+  private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {
+    const hasDecimalData = !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
+    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+    yAxis = yAxis ? yAxis : {};
+
+    if (hasDecimalData) {
+      yAxis.allowDecimals = true;
+    }
+    if (hasNegativeData) {
+      yAxis.min = undefined;
+    }
+
+    if (unit !== undefined) {
+      yAxis.title = {
+        text: unit.label,
+      };
+      if (unit.symbol && unit.position) {
+        yAxis.labels = {
+          format: unit.position === 'start' ? `${unit.symbol} {value}` : `{value} ${unit.symbol}`,
+        };
+      } else {
+        yAxis.labels = {
+          format: '{value}',
+        };
+      }
+    }
+    return yAxis;
+  }
+
+  private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+    this.diagramOptions.series.forEach((serie, i) => {
+      if (serie.unitId === this.diagramOptions.units[0].id) {
+        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[0]);
+        options.series[i].type = 'column';
+        options.series[i].yAxis = 0;
+      } else if (serie.unitId === this.diagramOptions.units[1].id) {
+        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[1]);
+        options.series[i].type = 'line';
+        options.series[i].yAxis = 1;
+      }
+    });
+    options.yAxis = this.getTwoYAxis(options.yAxis as YAxisOptions[], this.diagramOptions.units);
+  }
+
+  private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
+    yAxis = [];
+    yAxis[0] = this.getYAxis({}, units[0]);
+    yAxis[1] = this.getYAxis({}, units[1]);
+    yAxis[1].opposite = true;
+    return yAxis;
+  }
+
+  /**
+   * The following date formatting methods are currently not in use,
+   * but they are kept around since they probably will be reintroduced.
+   */
 
   private getFormattedLabels(series: FhiDiagramSerie[]): XAxisLabelsOptions {
     const isDayLabels = isValid(
