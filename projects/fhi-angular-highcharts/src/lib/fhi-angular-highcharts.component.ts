@@ -89,20 +89,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    // try {
-    this.resetDiagramState();
-    this.diagramOptions.series.forEach((serie) => {
-      serie.name = this.formatSerieName(serie.name);
-      this.findDuplicateSerieNames(serie.name);
-      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-      this.updateMetadataForSeries(serie);
-    });
-    this.updateDiagramTypeGroups();
-    this.updateDiagramOptions();
-    this.updateDiagramState();
-    // } catch (error) {
-    //   console.error(this.getErrorMsg(error));
-    // }
+    try {
+      this.resetDiagramState();
+      this.diagramOptions.series.forEach((serie) => {
+        serie.name = this.formatSerieName(serie.name);
+        this.findDuplicateSerieNames(serie.name);
+        this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+        this.updateMetadataForSeries(serie);
+      });
+      this.updateDiagramTypeGroups();
+      this.updateDiagramOptions();
+      this.updateDiagramState();
+    } catch (error) {
+      console.error(this.getErrorMsg(error));
+    }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {
@@ -206,12 +206,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
     let unit = this.diagramOptions.units?.find((unit) => unit.id === serie.unitId);
 
-    // Fallback if no "serie.unitId" (then only support for one unit)
-    // TODO: how to document? Must be good and understandable ;)
     if (!unit && this.diagramOptions.units?.length === 1) {
       unit = this.diagramOptions.units[0];
     }
-
     if (unit?.decimals >= 0 && unit?.decimals <= 12) {
       return unit.decimals;
     }
@@ -244,17 +241,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private updateDiagramTypeGroups() {
     this.diagramTypeGroupService.updateDiagramTypeGroups(
       this.diagramOptions,
-
-      this.diagramOptions.activeDiagramType,
-      this.diagramOptions.series,
-      this.diagramOptions.units,
-
       this.flaggedSeries,
       this.diagramTypeGroups,
     );
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
-    // console.log('this.diagramTypeGroups', this.diagramTypeGroups);
   }
 
   private updateDiagramOptions() {

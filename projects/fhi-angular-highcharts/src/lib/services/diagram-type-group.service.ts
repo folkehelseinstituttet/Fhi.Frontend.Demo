@@ -5,7 +5,6 @@ import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
 import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
-import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
@@ -16,11 +15,8 @@ export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
   private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
-
   private diagramOptions: FhiDiagramOptions;
-
   private series!: FhiDiagramSerie[];
-  private units!: FhiDiagramUnit[];
 
   getActiveDiagramType(): DiagramType {
     return this.activeDiagramType;
@@ -42,26 +38,18 @@ export class DiagramTypeGroupService {
 
   updateDiagramTypeGroups(
     diagramOptions: FhiDiagramOptions,
-
-    diagramTypeId: string,
-    series: FhiDiagramSerie[],
-    units: FhiDiagramUnit[],
-
     flaggedSeries: FlaggedSerie[],
     diagramTypeGroups: DiagramTypeGroup[],
   ) {
     this.diagramOptions = diagramOptions;
-
-    this.series = series;
-    this.units = units;
-
+    this.series = this.diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
     this.diagramTypeGroups = diagramTypeGroups
       ? cloneDeep(diagramTypeGroups)
       : cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes(diagramTypeId);
+    this.loopGroupsAndUpdateDiagramTypes();
     this.removeEmptyGroups();
     this.updateInactiveGroup();
     this.updateActiveGroup();
@@ -82,7 +70,7 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes(diagramTypeId: string) {
+  private loopGroupsAndUpdateDiagramTypes() {
     const diagramTypeSubset = this.getDiagramTypeSubset();
     this.diagramTypeGroups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
@@ -90,7 +78,7 @@ export class DiagramTypeGroupService {
       }
       group.children.forEach((diagramType) => {
         this.disableDiagramType(diagramType);
-        this.setDiagramTypeToActive(diagramType, diagramTypeId);
+        this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
       });
     });
   }
@@ -203,7 +191,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableColumnAndLine(): boolean {
-    return this.disableBar() || this.units.length < 2;
+    return this.disableBar() || this.diagramOptions.units.length < 2;
   }
 
   private disableColumnStacked(): boolean {
