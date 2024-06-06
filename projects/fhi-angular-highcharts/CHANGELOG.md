@@ -1,4 +1,11 @@
-# 3.3.0
+# Unreleased
+
+> Jun 6, 2024
+
+* :tada: **Enhancement** Add support for a new diagram type: "Dobbel akse, linje og søyle" (`columnAndLine`)
+* :boom: **Breaking** Rename `FhiDiagramOptions.unit` to `FhiDiagramOptions.units` since it's an array
+
+## 3.3.0
 
 > May 31, 2024
 

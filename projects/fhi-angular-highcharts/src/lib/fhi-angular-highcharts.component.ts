@@ -310,8 +310,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramOptions.tableOrientation,
       this.metadataForSeries,
     );
-
-    console.log('this.tableData', this.tableData);
   }
 
   private updateMap() {
