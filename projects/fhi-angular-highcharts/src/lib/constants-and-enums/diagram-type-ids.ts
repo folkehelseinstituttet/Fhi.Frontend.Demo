@@ -29,6 +29,7 @@ export enum ChartTypeIds {
   bar,
   barStacked,
   column,
+  columnAndLine,
   columnStacked,
   line,
   pie,

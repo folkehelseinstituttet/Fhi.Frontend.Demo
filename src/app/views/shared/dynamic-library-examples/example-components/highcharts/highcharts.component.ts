@@ -82,6 +82,7 @@ export class HighchartsComponent implements OnInit {
   }
 
   private selectMockData(value: string) {
+    // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     switch (value) {
       // dataset (init)
       case 'aarsak_2008_2018':
@@ -91,9 +92,12 @@ export class HighchartsComponent implements OnInit {
         this.getDodsfallEtterAarsak_2017_2021();
         break;
       case 'befolkning_antall':
-        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-        //this.getBefolkningInndelingPr2024_antall();
+        this.getBefolkningInndelingPr2024_antall();
         this.showUnitSelect = true;
+        break;
+      case 'agens':
+        this.getAgensAntallOgAndel();
+        this.showUnitSelect = false;
         break;
       case 'kart':
         this.getDodsfallHjerteOgKarEtterFylke();
@@ -140,16 +144,22 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
+  private getAgensAntallOgAndel() {
+    this.getData(MockData.AgensAntallOgAndel, {
+      ...this.getDiagramOptions_Agens(),
+    });
+  }
+
   private getDodsfallHjerteOgKarEtterFylke() {
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
-      ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
+      ...this.getDiagramOptions_AllInclusive(),
       title: 'Dødsfall hjerte og kar, fordelt på fylke',
     });
   }
 
   private getBefolkningInndelingPr2024_antall() {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
-      ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
+      ...this.getDiagramOptions_AllInclusive(),
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
       diagramTypeId: 'column',
       units: [{ label: 'Antall' }],
@@ -200,7 +210,7 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
-  private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(): FhiDiagramOptions {
+  private getDiagramOptions_AllInclusive(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
       activeDiagramType: 'mapFylker',
@@ -237,6 +247,32 @@ export class HighchartsComponent implements OnInit {
       tableOrientation: 'seriesAsColumns',
       title: '',
       units: [{ label: 'Antall' }],
+    };
+  }
+
+  private getDiagramOptions_Agens(): FhiDiagramOptions {
+    const diagramOptions: FhiDiagramOptions = {
+      ...this.getDiagramOptions_AllInclusive(),
+    };
+    diagramOptions.controls.navigation.items.chartTypes = ['columnAndLine'];
+    diagramOptions.controls.navigation.items.mapTypes = ['mapFylker'];
+    return {
+      ...diagramOptions,
+      activeDiagramType: 'columnAndLine',
+      title: 'Dobbel akse, linje og søyle',
+      units: [
+        {
+          id: 'antall',
+          label: 'Antall',
+        },
+        {
+          id: 'prosent',
+          decimals: 1,
+          label: 'Prosent',
+          symbol: '%',
+          position: 'end',
+        },
+      ],
     };
   }
 

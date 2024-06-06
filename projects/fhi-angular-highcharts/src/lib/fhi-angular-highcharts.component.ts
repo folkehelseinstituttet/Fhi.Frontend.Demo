@@ -239,11 +239,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramTypeGroups() {
-    this.diagramTypeGroupService.updateDiagramTypeGroups(
-      this.diagramOptions,
-      this.flaggedSeries,
-      this.diagramTypeGroups,
-    );
+    this.diagramTypeGroupService.updateDiagramTypeGroups(this.diagramOptions, this.flaggedSeries);
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
   }
