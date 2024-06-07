@@ -235,7 +235,7 @@ export class DiagramTypeGroupService {
       'Møre og Romsdal',
       'Agder',
       'Nordland',
-      'Vikeng',
+      'Viken',
       'Rogaland',
       'Troms og Finnmark',
       'Trøndelag',

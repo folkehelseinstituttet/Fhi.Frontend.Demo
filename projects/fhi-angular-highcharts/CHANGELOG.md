@@ -1,13 +1,13 @@
 # Unreleased
 
-> Jun 6, 2024
+> Jun 7, 2024
 
-* :bug: **Bugfix** Fixing diagram type ids for maps that was out of sync with maps from [code.highcharts.com](https://code.highcharts.com/mapdata/)
-  * `mapFylker` -> Norway 2024 (was 2023 in v3.3.0)
-  * `mapFylker2023` -> Norway 2023
-  * `mapFylker2019` -> Norway 2019
 * :tada: **Enhancement** Add support for a new diagram type: "Dobbel akse, linje og søyle" (`columnAndLine`)
 * :boom: **Breaking** Rename `FhiDiagramOptions.unit` to `FhiDiagramOptions.units` since it's an array
+* :boom: **Breaking** Diagram type ids for maps is changed to be in sync with maps from [code.highcharts.com](https://code.highcharts.com/mapdata/)
+  * `mapFylker` -> "Norway 2024" (was "Norway 2023" in v3.3.0)
+  * `mapFylker2023` -> "Norway 2023" (new)
+  * `mapFylker2019` -> "Norway 2019" (unchanged)
 
 ## 3.3.0
 
