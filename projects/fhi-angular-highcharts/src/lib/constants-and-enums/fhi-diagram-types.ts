@@ -84,7 +84,7 @@ const mapFylker2019: DiagramType = {
 
 const mapFylker2023: DiagramType = {
   id: DiagramTypeIdValues.mapFylker2023,
-  name: 'Kart (fylker 2019)',
+  name: 'Kart (fylker 2023)',
   ...mapShared,
 };
 
