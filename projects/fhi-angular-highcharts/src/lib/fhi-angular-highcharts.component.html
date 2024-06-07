@@ -173,6 +173,15 @@
 
 <ng-template #diagramFooter>
   <footer class="mt-3">
+    <p *ngIf="diagramOptions.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table">
+      <strong>Måltall </strong>
+      <span>
+        @for (unit of diagramOptions.units; track unit; let i = $index) {
+          <ng-container *ngIf="i === 0">{{ unit.label }}</ng-container>
+          <ng-container *ngIf="i > 0">, {{ unit.label }}</ng-container>
+        }
+      </span>
+    </p>
     <p *ngIf="diagramOptions.footer?.lastUpdated">
       <strong>Sist oppdatert </strong>{{ diagramOptions.footer?.lastUpdated }}
     </p>
