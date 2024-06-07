@@ -160,6 +160,7 @@ export class DiagramTypeGroupService {
 
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
+      case DiagramTypeIdValues.mapFylker2023:
         diagramType.disabled = this.disableMap();
         break;
 
@@ -231,18 +232,23 @@ export class DiagramTypeGroupService {
    */
   private getValidGeoNames(): string[] {
     const mapFylkerNames = [
-      'Vestland',
-      'Møre og Romsdal',
-      'Agder',
-      'Nordland',
-      'Viken',
-      'Rogaland',
-      'Troms og Finnmark',
-      'Trøndelag',
+      'Akershus',
       'Oslo',
-      'Vestfold og Telemark',
+      'Vestland',
+      'Rogaland',
+      'Trøndelag',
       'Innlandet',
+      'Agder',
+      'Østfold',
+      'Møre og Romsdal',
+      'Buskerud',
+      'Vestfold',
+      'Nordland',
+      'Telemark',
+      'Troms',
+      'Finnmark',
     ];
+
     const mapFylker2019Names = [
       'Romsdal',
       'Sør-Trøndelag',
@@ -265,6 +271,20 @@ export class DiagramTypeGroupService {
       'Aust-Agder',
     ];
 
-    return mapFylkerNames.concat(mapFylker2019Names);
+    const mapFylker2023Names = [
+      'Vestland',
+      'Møre og Romsdal',
+      'Agder',
+      'Nordland',
+      'Viken',
+      'Rogaland',
+      'Troms og Finnmark',
+      'Trøndelag',
+      'Oslo',
+      'Vestfold og Telemark',
+      'Innlandet',
+    ];
+
+    return mapFylkerNames.concat(mapFylker2019Names, mapFylker2023Names);
   }
 }
