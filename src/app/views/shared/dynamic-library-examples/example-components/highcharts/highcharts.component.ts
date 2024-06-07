@@ -213,7 +213,7 @@ export class HighchartsComponent implements OnInit {
   private getDiagramOptions_AllInclusive(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
-      activeDiagramType: 'mapFylker',
+      activeDiagramType: 'mapFylker2023',
       controls: {
         fullScreenButton: {
           show: true,
@@ -224,7 +224,7 @@ export class HighchartsComponent implements OnInit {
         navigation: {
           items: {
             chartTypes: ['bar', 'column', 'pie'],
-            mapTypes: ['mapFylker'],
+            mapTypes: ['mapFylker2023'],
           },
           show: true,
           type: 'default', // this has no effect (currently only one nav type)

@@ -82,6 +82,12 @@ const mapFylker2019: DiagramType = {
   ...mapShared,
 };
 
+const mapFylker2023: DiagramType = {
+  id: DiagramTypeIdValues.mapFylker2023,
+  name: 'Kart (fylker 2023)',
+  ...mapShared,
+};
+
 // Table
 
 const table: DiagramType = {
@@ -101,6 +107,7 @@ export class DiagramTypes {
   static line = line;
   static mapFylker = mapFylker;
   static mapFylker2019 = mapFylker2019;
+  static mapFylker2023 = mapFylker2023;
   static pie = pie;
   static table = table;
 }
@@ -114,10 +121,11 @@ export const AllDiagramTypes = [
   line,
   mapFylker,
   mapFylker2019,
+  mapFylker2023,
   pie,
   table,
 ];
 
 // This is the order used in diagram-type-navs
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
-export const MapTypes = [mapFylker, mapFylker2019];
+export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023];
