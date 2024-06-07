@@ -333,7 +333,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
           }
         },
         error: (error) => {
-          console.error('ERROR:', error);
+          console.error('TopoJson map loading error:', error);
         },
       });
   }
