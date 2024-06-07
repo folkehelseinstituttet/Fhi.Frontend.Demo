@@ -2,6 +2,7 @@
 
 > Jun 7, 2024
 
+* :tada: **Enhancement** Add support for showing units in the footer
 * :tada: **Enhancement** Add support for a new diagram type: "Dobbel akse, linje og søyle" (`columnAndLine`)
 * :boom: **Breaking** Rename `FhiDiagramOptions.unit` to `FhiDiagramOptions.units` since it's an array
 * :boom: **Breaking** Diagram type ids for maps is changed to be in sync with maps from [code.highcharts.com](https://code.highcharts.com/mapdata/)
