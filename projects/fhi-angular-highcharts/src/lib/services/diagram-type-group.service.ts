@@ -41,7 +41,7 @@ export class DiagramTypeGroupService {
     this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
 
-    groups = this.loopGroupsAndUpdateDiagramTypes(groups);
+    groups = this.updateDiagramTypes(groups);
     groups = this.removeEmptyGroups(groups);
     groups = this.updateInactiveGroup(groups);
     groups = this.updateActiveGroup(groups);
@@ -64,7 +64,7 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+  private updateDiagramTypes(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
     const diagramTypeSubset = this.getDiagramTypeSubset();
     groups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
