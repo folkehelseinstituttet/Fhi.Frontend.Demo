@@ -13,18 +13,13 @@ import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 @Injectable()
 export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
-  private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
 
-  getActiveDiagramType(): DiagramType {
-    return this.activeDiagramType;
-  }
-
-  getActiveDiagramTypeGroup(): DiagramTypeGroup {
+  getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
     let activeGroup: DiagramTypeGroup;
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       if (group.diagramType.active) {
         activeGroup = group;
       }
@@ -32,26 +27,29 @@ export class DiagramTypeGroupService {
     return activeGroup;
   }
 
-  getDiagramTypeGroups(): DiagramTypeGroup[] {
-    return this.diagramTypeGroups;
-  }
-
-  updateDiagramTypeGroups(diagramOptions: FhiDiagramOptions, flaggedSeries: FlaggedSerie[]) {
+  getDiagramTypeGroups(
+    diagramOptions: FhiDiagramOptions,
+    flaggedSeries: FlaggedSerie[],
+    diagramTypeGroups: DiagramTypeGroup[],
+  ): DiagramTypeGroup[] {
     this.diagramOptions = diagramOptions;
     this.series = this.diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
-    this.diagramTypeGroups = cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes();
-    this.removeEmptyGroups();
-    this.updateInactiveGroup();
-    this.updateActiveGroup();
+    let groups = diagramTypeGroups ? cloneDeep(diagramTypeGroups) : cloneDeep(DiagramTypeGroups);
+
+    groups = this.updateDiagramTypes(groups);
+    groups = this.removeEmptyGroups(groups);
+    groups = this.updateInactiveGroup(groups);
+    groups = this.updateActiveGroup(groups);
+
+    return groups;
   }
 
-  diagramTypeIsDisabled(diagramTypeId: string): boolean {
+  diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
     let disabled = false;
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       group.children.forEach((diagramType) => {
         if (diagramTypeId === diagramType.id && diagramType.disabled) {
           disabled = true;
@@ -64,9 +62,9 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes() {
+  private updateDiagramTypes(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
     const diagramTypeSubset = this.getDiagramTypeSubset();
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
@@ -75,6 +73,7 @@ export class DiagramTypeGroupService {
         this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
       });
     });
+    return groups;
   }
 
   private getDiagramTypeSubset(): string[] {
@@ -85,19 +84,20 @@ export class DiagramTypeGroupService {
     return chartTypeSubset?.concat(mapTypeSubset);
   }
 
-  private removeEmptyGroups() {
-    this.diagramTypeGroups = this.diagramTypeGroups.filter((group) => group.children?.length > 0);
+  private removeEmptyGroups(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    return groups.filter((group) => group.children?.length > 0);
   }
 
-  private updateInactiveGroup() {
-    this.diagramTypeGroups.forEach((group) => {
+  private updateInactiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    groups.forEach((group) => {
       if (group.children.find((diagramType) => diagramType === group.diagramType) === undefined) {
         group.diagramType = group.children[0];
       }
     });
+    return groups;
   }
 
-  private updateActiveGroup() {
+  private updateActiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
     let activeDiagramType: DiagramType;
 
     if (this.activeDiagramType) {
@@ -105,7 +105,7 @@ export class DiagramTypeGroupService {
     } else {
       activeDiagramType = { ...DiagramTypes.table, active: true, disabled: false };
     }
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       if (
         group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
       ) {
@@ -117,6 +117,7 @@ export class DiagramTypeGroupService {
         group.diagramType.active = false;
       }
     });
+    return groups;
   }
 
   private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
