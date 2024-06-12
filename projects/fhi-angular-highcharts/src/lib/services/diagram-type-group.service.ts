@@ -30,16 +30,14 @@ export class DiagramTypeGroupService {
   getDiagramTypeGroups(
     diagramOptions: FhiDiagramOptions,
     flaggedSeries: FlaggedSerie[],
-    previousDiagramTypeGroups: DiagramTypeGroup[],
+    diagramTypeGroups: DiagramTypeGroup[],
   ): DiagramTypeGroup[] {
-    let groups = previousDiagramTypeGroups
-      ? cloneDeep(previousDiagramTypeGroups)
-      : cloneDeep(DiagramTypeGroups);
-
     this.diagramOptions = diagramOptions;
     this.series = this.diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
+
+    let groups = diagramTypeGroups ? cloneDeep(diagramTypeGroups) : cloneDeep(DiagramTypeGroups);
 
     groups = this.updateDiagramTypes(groups);
     groups = this.removeEmptyGroups(groups);
