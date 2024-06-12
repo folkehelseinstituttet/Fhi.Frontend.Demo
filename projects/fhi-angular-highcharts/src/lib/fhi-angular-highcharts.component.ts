@@ -239,9 +239,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramTypeGroups() {
-    this.diagramTypeGroupService.updateDiagramTypeGroups(this.diagramOptions, this.flaggedSeries);
-    this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups();
-    this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup();
+    this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups(
+      this.diagramOptions,
+      this.flaggedSeries,
+      this.diagramTypeGroups,
+    );
+    this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup(
+      this.diagramTypeGroups,
+    );
   }
 
   private updateDiagramOptions() {
@@ -261,6 +266,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateDiagramState() {
     const diagramTypeIsDisabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+      this.diagramTypeGroups,
       this.diagramOptions.activeDiagramType,
     );
     this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
