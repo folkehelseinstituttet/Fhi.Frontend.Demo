@@ -1,6 +1,13 @@
 <div class="fhi-date-time">
   <div class="d-flex">
-    <fhi-datepicker class="me-2" [date]="date" [label]="label" (dateSelect)="onDateSelect($event)"></fhi-datepicker>
+    <fhi-datepicker
+      class="me-2"
+      [date]="date"
+      [label]="label"
+      [maxDate]="maxDate"
+      [minDate]="minDate"
+      (dateSelect)="onDateSelect($event)"
+    ></fhi-datepicker>
 
     <div class="fhi-date-time__time-container d-flex flex-column justify-content-start">
       <div class="position-relative mt-5">

@@ -19,12 +19,14 @@ import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 export class FhiDateTimeComponent implements OnInit {
   @Input() label = 'Velg dato og tidspunkt';
   @Input() dateTime: FhiDateTime;
-  // @Input() minDateTime: FhiDateTime; // TODO
-  // @Input() maxDateTime: FhiDateTime; // TODO
+  @Input() minDateTime: FhiDateTime;
+  @Input() maxDateTime: FhiDateTime;
 
   @Output() dateTimeSelect = new EventEmitter<FhiDateTime>();
 
   date!: FhiDate;
+  minDate!: FhiDate;
+  maxDate!: FhiDate;
   id: string;
   isValid = true;
   timeModel!: string;
@@ -39,6 +41,14 @@ export class FhiDateTimeComponent implements OnInit {
     if (this.dateTime) {
       this.setInitDate();
       this.setInitTime();
+    }
+    if (this.minDateTime) {
+      this.setMinDate();
+      this.setMinTime();
+    }
+    if (this.minDateTime) {
+      this.setMaxDate();
+      this.setMaxTime();
     }
   }
 
@@ -126,6 +136,12 @@ export class FhiDateTimeComponent implements OnInit {
     minute = minute.length > 1 ? minute : minute.padStart(2, '0');
     this.timeModel = `${hour}:${minute}`;
   }
+
+  private setMinDate() {}
+  private setMinTime() {}
+
+  private setMaxDate() {}
+  private setMaxTime() {}
 
   private addColon(eventKey: string) {
     const keys = ['Backspace', 'Delete', ':'];

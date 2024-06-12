@@ -11,13 +11,30 @@ export class TimeSelectorsComponent {
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
+  today = new Date();
+
   // Datepicker
   date: FhiDate;
   minDate: FhiDate;
   maxDate: FhiDate;
 
   // Date time
-  dateTime = { date: { year: 2023, month: 11, day: 9 }, time: { hour: 8, minute: 10, second: 0 } };
+  dateTime: FhiDateTime = {
+    date: {
+      year: this.today.getFullYear(),
+      month: this.today.getMonth() + 1,
+      day: this.today.getDate(),
+    },
+    time: { hour: this.today.getHours(), minute: this.today.getMinutes(), second: 0 },
+  };
+  maxDateTime: FhiDateTime = {
+    date: { year: 2025, month: 12, day: 31 },
+    time: { hour: 16, minute: 45 },
+  };
+  minDateTime: FhiDateTime = {
+    date: { year: 2024, month: 1, day: 1 },
+    time: { hour: 8, minute: 15 },
+  };
 
   // Weekpicker
   week: FhiWeek;

@@ -21,7 +21,11 @@
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
-  <fhi-date-time [dateTime]="dateTime" (dateTimeSelect)="onDateTimeSelect($event)"></fhi-date-time>
+  <fhi-date-time
+    [dateTime]="dateTime"
+    [maxDateTime]="maxDateTime"
+    (dateTimeSelect)="onDateTimeSelect($event)"
+  ></fhi-date-time>
 </div>
 
 <div *ngIf="itemId === items.TimeSelectorWeekpicker.id">
