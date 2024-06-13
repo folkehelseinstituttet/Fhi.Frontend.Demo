@@ -27,8 +27,8 @@ export class TimeSelectorsComponent {
     },
     time: { hour: this.today.getHours(), minute: this.today.getMinutes(), second: 0 },
   };
-  maxDateTime: FhiDate = { year: 2025, month: 12, day: 31 };
-  minDateTime: FhiDate = { year: 2024, month: 1, day: 1 };
+  maxDateTime: FhiDate = { year: 2027, month: 12, day: 31 };
+  minDateTime: FhiDate = { year: 2023, month: 1, day: 1 };
 
   // Weekpicker
   week: FhiWeek;
