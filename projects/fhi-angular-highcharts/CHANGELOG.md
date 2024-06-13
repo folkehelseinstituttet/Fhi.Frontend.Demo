@@ -1,8 +1,8 @@
-# Unreleased
+# 4.0.0
 
-> Jun 12, 2024
+> Jun 13, 2024
 
-* :bug: **Bugfix** Shared state in diagram type nav is now isolated to each instance of `FhiAngularHighchartsComponent`
+* :bug: **Bugfix** Isolate diagram type group state to each instance of `FhiAngularHighchartsComponent`
 * :tada: **Enhancement** Add support for showing units in the footer
 * :tada: **Enhancement** Add support for a new diagram type: "Dobbel akse, linje og søyle" (`columnAndLine`)
 * :boom: **Breaking** Rename `FhiDiagramOptions.unit` to `FhiDiagramOptions.units` since it's an array
