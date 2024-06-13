@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jun 11, 2024
+> Jun 13, 2024
 
+* :tada: **Enhancement** `minDate` and `maxDate` inputs added to `FhiDateTimeComponent`
 * :tada: **Enhancement** Default `maxYear` and `maxDate` is set to `2099` and `31.12.2099`, repectively
 
 ## 4.2.0
