@@ -23,7 +23,8 @@
 <div *ngIf="itemId === items.TimeSelectorDateAndTime.id">
   <fhi-date-time
     [dateTime]="dateTime"
-    [maxDateTime]="maxDateTime"
+    [maxDate]="maxDateTime"
+    [minDate]="minDateTime"
     (dateTimeSelect)="onDateTimeSelect($event)"
   ></fhi-date-time>
 </div>
