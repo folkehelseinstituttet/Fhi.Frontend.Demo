@@ -14,4 +14,5 @@ export interface FhiDiagramUnit {
   label: string;
   symbol?: string;
   position?: keyof typeof UnitSymbolPosition;
+  yAxis?: number;
 }

@@ -95,6 +95,10 @@ export class HighchartsComponent implements OnInit {
         this.getBefolkningInndelingPr2024_antall();
         this.showUnitSelect = true;
         break;
+      case 'agens':
+        this.getAgensAntallOgAndel();
+        this.showUnitSelect = false;
+        break;
       case 'kart':
         this.getDodsfallHjerteOgKarEtterFylke();
         this.showUnitSelect = false;
@@ -140,19 +144,25 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
+  private getAgensAntallOgAndel() {
+    this.getData(MockData.AgensAntallOgAndel, {
+      ...this.getDiagramOptions_Agens(),
+    });
+  }
+
   private getDodsfallHjerteOgKarEtterFylke() {
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
-      ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
+      ...this.getDiagramOptions_AllInclusive(),
       title: 'Dødsfall hjerte og kar, fordelt på fylke',
     });
   }
 
   private getBefolkningInndelingPr2024_antall() {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
-      ...this.getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(),
+      ...this.getDiagramOptions_AllInclusive(),
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
       diagramTypeId: 'column',
-      unit: [{ label: 'Antall' }],
+      units: [{ label: 'Antall' }],
     });
   }
 
@@ -181,11 +191,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
       ...this.diagramOptions,
       title: 'Befolkning - inndeling per 1.1.2024 (antall)',
-      unit: [
-        {
-          label: 'Antall',
-        },
-      ],
+      units: [{ label: 'Antall' }],
     });
   }
 
@@ -193,7 +199,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
       title: 'Befolkning - inndeling per 1.1.2024 (andel)',
-      unit: [
+      units: [
         {
           decimals: 1,
           label: 'Prosent',
@@ -204,10 +210,10 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
-  private getDiagramOptions_Kart_and_BefolkningInndelingPr2024_antall(): FhiDiagramOptions {
+  private getDiagramOptions_AllInclusive(): FhiDiagramOptions {
     return {
       ...this.diagramOptions_INIT,
-      activeDiagramType: 'mapFylker',
+      activeDiagramType: 'mapFylker2023',
       controls: {
         fullScreenButton: {
           show: true,
@@ -218,7 +224,7 @@ export class HighchartsComponent implements OnInit {
         navigation: {
           items: {
             chartTypes: ['bar', 'column', 'pie'],
-            mapTypes: ['mapFylker'],
+            mapTypes: ['mapFylker2023'],
           },
           show: true,
           type: 'default', // this has no effect (currently only one nav type)
@@ -240,9 +246,31 @@ export class HighchartsComponent implements OnInit {
       openSource: false,
       tableOrientation: 'seriesAsColumns',
       title: '',
-      unit: [
+      units: [{ label: 'Antall' }],
+    };
+  }
+
+  private getDiagramOptions_Agens(): FhiDiagramOptions {
+    const diagramOptions: FhiDiagramOptions = {
+      ...this.getDiagramOptions_AllInclusive(),
+    };
+    diagramOptions.controls.navigation.items.chartTypes = ['columnAndLine', 'pie'];
+    diagramOptions.controls.navigation.items.mapTypes = ['mapFylker'];
+    return {
+      ...diagramOptions,
+      activeDiagramType: 'columnAndLine',
+      title: 'Dobbel akse, linje og søyle',
+      units: [
         {
+          id: 'antall',
           label: 'Antall',
+        },
+        {
+          id: 'prosent',
+          decimals: 1,
+          label: 'Prosent',
+          symbol: '%',
+          position: 'end',
         },
       ],
     };
@@ -252,40 +280,54 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       ...this.diagramOptions_INIT,
 
-      activeDiagramType: 'mapFylker',
-      // controls?: FhiDiagramControls;
-      // footer?: FhiDiagramFooter;
+      activeDiagramType: 'columnAndLine',
+      controls: {
+        navigation: {
+          show: true,
+        },
+      },
+      footer: {
+        flags: [
+          {
+            symbol: ':',
+            label: 'Anonymisert',
+          },
+        ],
+      },
       openSource: false,
+      // series -> is set in this.getData()
       // tableOrientation: 'seriesAsColumns',
-      title: 'Unit',
-      unit: [
+      title: 'Dobbel akse, linje og søyle',
+      units: [
         {
+          id: 'antall',
           label: 'Antall',
         },
-        // {
-        //   decimals: 1,
-        //   label: 'Prosent',
-        //   symbol: '%',
-        //   position: 'end',
-        // },
+        {
+          id: 'prosent',
+          decimals: 1,
+          label: 'Prosent',
+          symbol: '%',
+          position: 'end',
+        },
       ],
 
       // The following will be deprecated in v5
 
-      // diagramTypeId: 'column',
-      diagramTypeNavId: 'default',
+      // diagramTypeId: 'map',
+      // diagramTypeNavId: 'default',
       decimals: 2,
-      flags: [
-        { symbol: '..', label: 'Manglende data' },
-        { symbol: '.', label: 'Lar seg ikke beregne' },
-        { symbol: ':', label: 'Anonymisert' },
-      ],
+      // flags: [
+      //   { symbol: '..', label: 'Manglende data' },
+      //   { symbol: '.', label: 'Lar seg ikke beregne' },
+      //   { symbol: ':', label: 'Anonymisert' },
+      // ],
       // creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
       // creditsText: 'Nøkkeltall for folkehelse',
       // disclaimer: 'Disse dataene kan inneholde feil.',
       // lastUpdated: '06.06.2023',
       // mapTypeId: 'mapFylker',
-      showFullScreenButton: true,
+      // showFullScreenButton: true,
     });
   }
 }

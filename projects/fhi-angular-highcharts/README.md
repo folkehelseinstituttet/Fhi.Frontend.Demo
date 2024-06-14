@@ -131,7 +131,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `unit`              | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. |
+| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. |
 
 ### (TO BE DEPRECATED IN v5) Interface FhiDiagramOptions
 

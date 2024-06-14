@@ -8,21 +8,18 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
+import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
-  private diagramTypeGroups!: DiagramTypeGroup[];
   private flaggedSeries!: FlaggedSerie[];
+  private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
 
-  getActiveDiagramType(): DiagramType {
-    return this.activeDiagramType;
-  }
-
-  getActiveDiagramTypeGroup(): DiagramTypeGroup {
+  getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
     let activeGroup: DiagramTypeGroup;
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       if (group.diagramType.active) {
         activeGroup = group;
       }
@@ -30,34 +27,29 @@ export class DiagramTypeGroupService {
     return activeGroup;
   }
 
-  getDiagramTypeGroups(): DiagramTypeGroup[] {
-    return this.diagramTypeGroups;
-  }
-
-  updateDiagramTypeGroups(
-    diagramTypeId: string,
-    chartTypeSubset: string[] | undefined,
-    mapTypeSubset: string[] | undefined,
-    series: FhiDiagramSerie[],
+  getDiagramTypeGroups(
+    diagramOptions: FhiDiagramOptions,
     flaggedSeries: FlaggedSerie[],
     diagramTypeGroups: DiagramTypeGroup[],
-  ) {
+  ): DiagramTypeGroup[] {
+    this.diagramOptions = diagramOptions;
+    this.series = this.diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
-    this.series = series;
     this.activeDiagramType = undefined;
-    this.diagramTypeGroups = diagramTypeGroups
-      ? cloneDeep(diagramTypeGroups)
-      : cloneDeep(DiagramTypeGroups);
 
-    this.loopGroupsAndUpdateDiagramTypes(chartTypeSubset?.concat(mapTypeSubset), diagramTypeId);
-    this.removeEmptyGroups();
-    this.updateInactiveGroup();
-    this.updateActiveGroup();
+    let groups = diagramTypeGroups ? cloneDeep(diagramTypeGroups) : cloneDeep(DiagramTypeGroups);
+
+    groups = this.updateDiagramTypes(groups);
+    groups = this.removeEmptyGroups(groups);
+    groups = this.updateInactiveGroup(groups);
+    groups = this.updateActiveGroup(groups);
+
+    return groups;
   }
 
-  diagramTypeIsDisabled(diagramTypeId: string): boolean {
+  diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
     let disabled = false;
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       group.children.forEach((diagramType) => {
         if (diagramTypeId === diagramType.id && diagramType.disabled) {
           disabled = true;
@@ -70,31 +62,42 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private loopGroupsAndUpdateDiagramTypes(diagramTypeSubset: string[], diagramTypeId: string) {
-    this.diagramTypeGroups.forEach((group) => {
+  private updateDiagramTypes(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    const diagramTypeSubset = this.getDiagramTypeSubset();
+    groups.forEach((group) => {
       if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
       group.children.forEach((diagramType) => {
         this.disableDiagramType(diagramType);
-        this.setDiagramTypeToActive(diagramType, diagramTypeId);
+        this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
       });
     });
+    return groups;
   }
 
-  private removeEmptyGroups() {
-    this.diagramTypeGroups = this.diagramTypeGroups.filter((group) => group.children?.length > 0);
+  private getDiagramTypeSubset(): string[] {
+    const chartTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.chartTypes;
+    const mapTypeSubset: string[] | undefined =
+      this.diagramOptions.controls?.navigation?.items?.mapTypes;
+    return chartTypeSubset?.concat(mapTypeSubset);
   }
 
-  private updateInactiveGroup() {
-    this.diagramTypeGroups.forEach((group) => {
+  private removeEmptyGroups(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    return groups.filter((group) => group.children?.length > 0);
+  }
+
+  private updateInactiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    groups.forEach((group) => {
       if (group.children.find((diagramType) => diagramType === group.diagramType) === undefined) {
         group.diagramType = group.children[0];
       }
     });
+    return groups;
   }
 
-  private updateActiveGroup() {
+  private updateActiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
     let activeDiagramType: DiagramType;
 
     if (this.activeDiagramType) {
@@ -102,7 +105,7 @@ export class DiagramTypeGroupService {
     } else {
       activeDiagramType = { ...DiagramTypes.table, active: true, disabled: false };
     }
-    this.diagramTypeGroups.forEach((group) => {
+    groups.forEach((group) => {
       if (
         group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
       ) {
@@ -114,6 +117,7 @@ export class DiagramTypeGroupService {
         group.diagramType.active = false;
       }
     });
+    return groups;
   }
 
   private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
@@ -132,32 +136,37 @@ export class DiagramTypeGroupService {
   private disableDiagramType(diagramType: DiagramType) {
     switch (diagramType.id) {
       case DiagramTypeIdValues.bar:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableBar();
         break;
 
       case DiagramTypeIdValues.barStacked:
-        diagramType.disabled = this.diagramTypeLineDisabled();
+        diagramType.disabled = this.disableBarStacked();
         break;
 
       case DiagramTypeIdValues.column:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableColumn();
+        break;
+
+      case DiagramTypeIdValues.columnAndLine:
+        diagramType.disabled = this.disableColumnAndLine();
         break;
 
       case DiagramTypeIdValues.columnStacked:
-        diagramType.disabled = this.diagramTypeBarAndColumnDisabled();
+        diagramType.disabled = this.disableColumnStacked();
         break;
 
       case DiagramTypeIdValues.line:
-        diagramType.disabled = this.diagramTypeLineDisabled();
+        diagramType.disabled = this.disableLine();
         break;
 
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
-        diagramType.disabled = this.diagramTypeMapDisabled();
+      case DiagramTypeIdValues.mapFylker2023:
+        diagramType.disabled = this.disableMap();
         break;
 
       case DiagramTypeIdValues.pie:
-        diagramType.disabled = this.diagramTypePieDisabled();
+        diagramType.disabled = this.disablePie();
         break;
 
       default:
@@ -165,12 +174,44 @@ export class DiagramTypeGroupService {
     }
   }
 
-  private diagramTypeBarAndColumnDisabled(): boolean {
-    return this.series.length > 1 && this.flaggedSeries.length !== 0;
+  private disableBar(): boolean {
+    return this.series.length > 1 && this.flaggedSeries?.length !== 0;
   }
 
-  private diagramTypeMapDisabled(): boolean {
+  private disableBarStacked(): boolean {
+    return this.disableBar();
+  }
+
+  private disableColumn(): boolean {
+    return this.disableBar();
+  }
+
+  private disableColumnAndLine(): boolean {
+    return this.disableBar() || this.diagramOptions.units?.length < 2;
+  }
+
+  private disableColumnStacked(): boolean {
+    return this.disableBar();
+  }
+
+  private disableLine(): boolean {
+    return (
+      this.getNumberOfDataPointsPrSerie() === 1 ||
+      (this.series.length > 1 && this.flaggedSeries?.length !== 0)
+    );
+  }
+
+  private disableMap(): boolean {
     return this.series.length > 1 || (this.series.length === 1 && this.isNotGeo(this.series[0]));
+  }
+
+  private disablePie(): boolean {
+    return this.series.length > 1;
+  }
+
+  private getNumberOfDataPointsPrSerie(): number {
+    // Using series[0] since all series should have the same length
+    return this.series[0].data.length;
   }
 
   private isNotGeo(serie: FhiDiagramSerie): boolean {
@@ -183,24 +224,8 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private diagramTypeLineDisabled(): boolean {
-    return (
-      this.getNumberOfDataPointsPrSerie() === 1 ||
-      (this.series.length > 1 && this.flaggedSeries.length !== 0)
-    );
-  }
-
-  private diagramTypePieDisabled(): boolean {
-    return this.series.length > 1;
-  }
-
-  private getNumberOfDataPointsPrSerie(): number {
-    // Using series[0] since all series should have the same length
-    return this.series[0].data.length;
-  }
-
   /**
-   * @returns a list of leagal geo names for all maps
+   * Returns a list of leagal geo names for all maps
    *
    * PS. This gives 1 fact in 2 places, but the the maps will not change
    *     that often, and the benefit of being able to do a "disable map test"
@@ -208,18 +233,23 @@ export class DiagramTypeGroupService {
    */
   private getValidGeoNames(): string[] {
     const mapFylkerNames = [
-      'Vestland',
-      'Møre og Romsdal',
-      'Agder',
-      'Nordland',
-      'Vikeng',
-      'Rogaland',
-      'Troms og Finnmark',
-      'Trøndelag',
+      'Akershus',
       'Oslo',
-      'Vestfold og Telemark',
+      'Vestland',
+      'Rogaland',
+      'Trøndelag',
       'Innlandet',
+      'Agder',
+      'Østfold',
+      'Møre og Romsdal',
+      'Buskerud',
+      'Vestfold',
+      'Nordland',
+      'Telemark',
+      'Troms',
+      'Finnmark',
     ];
+
     const mapFylker2019Names = [
       'Romsdal',
       'Sør-Trøndelag',
@@ -242,6 +272,20 @@ export class DiagramTypeGroupService {
       'Aust-Agder',
     ];
 
-    return mapFylkerNames.concat(mapFylker2019Names);
+    const mapFylker2023Names = [
+      'Vestland',
+      'Møre og Romsdal',
+      'Agder',
+      'Nordland',
+      'Viken',
+      'Rogaland',
+      'Troms og Finnmark',
+      'Trøndelag',
+      'Oslo',
+      'Vestfold og Telemark',
+      'Innlandet',
+    ];
+
+    return mapFylkerNames.concat(mapFylker2019Names, mapFylker2023Names);
   }
 }

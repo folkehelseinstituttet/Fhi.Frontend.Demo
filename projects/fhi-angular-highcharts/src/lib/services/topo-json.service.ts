@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
@@ -9,14 +9,10 @@ import { MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 @Injectable()
 export class TopoJsonService {
-  private HC_mapFylker = 'https://code.highcharts.com/mapdata/countries/no/no-all.topo.json';
-  private HC_mapFylker2019 =
-    'https://code.highcharts.com/mapdata/historical/countries/no-2019/no-all-2019.topo.json';
-  private appMapFolder = 'assets/fhi-angular-highcharts-topo-json';
   private topoJsonMaps: object = {};
   private currentMapTypeId: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   setCurrentMapTypeId(mapTypeId: string) {
     this.currentMapTypeId = mapTypeId;
@@ -30,13 +26,13 @@ export class TopoJsonService {
   }
 
   getMap(mapTypeId: string | undefined): Observable<object> {
-    const maps = [MapTypeIdValues.mapFylker, MapTypeIdValues.mapFylker2019];
-    if (maps.find((id) => id === mapTypeId) === undefined) {
-      throw new Error("No supported map matches given mapTypeId, can't get map!");
+    const maps = this.getMapUrls();
+    const map = maps.find((map) => map.id === mapTypeId);
+
+    if (map !== undefined) {
+      return this.httpClient.get<object>(map.url);
     }
-    const fallbackUrl = `${location.origin}/${this.appMapFolder}/${mapTypeId}.topo.json`;
-    const url = mapTypeId === MapTypeIdValues.mapFylker ? this.HC_mapFylker : this.HC_mapFylker2019;
-    return this.http.get<object>(url).pipe(catchError(() => this.http.get<object>(fallbackUrl)));
+    throw new Error(`No supported map matches given mapTypeId, can't get map!`);
   }
 
   addMap(map: object, mapTypeId: string) {
@@ -48,18 +44,18 @@ export class TopoJsonService {
     serie.data.forEach((dataPoint, index) => {
       if (index === 0) {
         mapSerie = {
-          data: [this.getMapSerieData(dataPoint)],
+          data: [this.getMapSerieDataPoint(dataPoint)],
           name: serie.name as string,
           type: 'map',
         };
       } else if (mapSerie.data !== undefined) {
-        mapSerie.data.push(this.getMapSerieData(dataPoint));
+        mapSerie.data.push(this.getMapSerieDataPoint(dataPoint));
       }
     });
     return mapSerie;
   }
 
-  private getMapSerieData(dataPoint: FhiDiagramSerieData): [string, number] {
+  private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
     const geometry = geometries.find(
@@ -68,6 +64,27 @@ export class TopoJsonService {
     if (geometry !== undefined) {
       return [geometry['properties']['hc-key'], dataPoint.y as number];
     }
-    throw new Error('No data.name in the given serie match any geo names in given TopoJson file.');
+    console.warn(
+      `Data point name "${dataPoint.name}" doesn't match any geo names in given TopoJson file.`,
+    );
+  }
+
+  private getMapUrls() {
+    const baseUrl = 'https://code.highcharts.com/mapdata/';
+    const maps = [
+      {
+        id: MapTypeIdValues.mapFylker,
+        url: baseUrl + 'countries/no/no-all.topo.json',
+      },
+      {
+        id: MapTypeIdValues.mapFylker2019,
+        url: baseUrl + 'historical/countries/no-2019/no-all-2019.topo.json',
+      },
+      {
+        id: MapTypeIdValues.mapFylker2023,
+        url: baseUrl + 'historical/countries/no-2023/no-all-2023.topo.json',
+      },
+    ];
+    return maps;
   }
 }

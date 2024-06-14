@@ -6,5 +6,6 @@ export enum MockData {
   DodsfallHjerteOgKarEtterFylke,
   BefolkningInndelingPr2024_antall,
   BefolkningInndelingPr2024_andel,
+  AgensAntallOgAndel,
   TestData,
 }
