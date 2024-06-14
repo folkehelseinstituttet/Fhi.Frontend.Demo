@@ -212,7 +212,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 ## Changelog
 
-You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/fhi-angular-highcharts/latest/projects/fhi-angular-highcharts/CHANGELOG.md).
+You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/CHANGELOG.md).
 
 ## Contribute
 
