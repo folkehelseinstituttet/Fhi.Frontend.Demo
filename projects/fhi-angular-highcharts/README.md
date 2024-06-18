@@ -203,12 +203,14 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 ### Interface FhiDiagramUnit
 
-| Property   | Type     | Default | Required | Description |
-| ---------- | -------- | ------- | -------- | ----------- |
-| `decimals` | `number` | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
-| `label`    | `string` | -       | yes      | The vertical y-axis label, showing next to the axis line. |
-| `symbol`   | `string` | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
-| `position` | `string` | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
+| Property   | Type               | Default | Required | Description |
+| ---------- | ------------------ | ------- | -------- | ----------- |
+| `id`       | `number \| string` | -       | no       | Unit id is used to associate the unit with a serie. This only works if `serie.unitId` is set, and value is equal to `unit.id`. |
+| `decimals` | `number`           | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
+| `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
+| `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
+| `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
+| `yAxis`    | `number`           | -       | no       | Which y-axis to associate the unit with. Only support for two y-axis is implemented: `0` is left hand y-axis, `1` is right hand y-axis. |
 
 ## Changelog
 
