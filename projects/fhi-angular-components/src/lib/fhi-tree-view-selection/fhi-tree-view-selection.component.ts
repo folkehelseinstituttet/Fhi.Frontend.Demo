@@ -29,6 +29,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
+  uniqueFilterId: string;
+
+  constructor() {
+    this.uniqueFilterId = this.generateUniqueFilterId();
+  }
+
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
@@ -70,6 +76,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
+  }
+
+  private generateUniqueFilterId(): string {
+    return 'search-filter-' + Math.random().toString(36).substring(2, 11);
   }
 
   private updateCheckedState(
@@ -133,7 +143,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         // Compute  EXPANDED states
         // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
         if (expandCheckedItems && item.isChecked) {
-            itemsState.hasExpandedDescendant = true;
+          itemsState.hasExpandedDescendant = true;
         }
         itemsState.hasExpandedDescendant =
           itemsState.hasExpandedDescendant || childrenState.hasExpandedDescendant;
