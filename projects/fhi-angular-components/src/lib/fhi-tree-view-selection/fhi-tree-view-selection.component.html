@@ -1,9 +1,16 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
-  <div class="mb-5">
+  <div class="fhi-tree-view-checkbox__search mb-5">
     <label [for]="uniqueFilterId" class="form-label">Filtrer listen</label>
-    <input [id]="uniqueFilterId" type="search" class="form-control" placeholder="Søk etter elementer i listen" />
+    <input
+      [id]="uniqueFilterId"
+      type="search"
+      class="form-control"
+      placeholder="Søk etter elementer i listen"
+      (change)="filterTree()"
+      [(ngModel)]="searchInput"
+    />
   </div>
-  <ng-container *ngTemplateOutlet="checkboxItems; context: { items: items, itemId: null }"></ng-container>
+  <ng-container *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: null }"></ng-container>
 </div>
 
 <ng-template #checkboxItems let-items="items" let-itemId="itemId">

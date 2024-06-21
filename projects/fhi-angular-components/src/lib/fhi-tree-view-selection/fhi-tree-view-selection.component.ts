@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
@@ -18,7 +19,7 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   standalone: true,
   templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
@@ -29,7 +30,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
+  searchInput = '';
   uniqueFilterId: string;
+  filteredItems: Item[];
 
   constructor() {
     this.uniqueFilterId = this.generateUniqueFilterId();
@@ -39,6 +42,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
+    this.filteredItems = [...this.items];
   }
 
   ngOnChanges() {
@@ -76,6 +80,62 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
+  }
+
+  // filterTree() {
+  //   if (this.searchInput !== '' && this.searchInput.length >= 2) {
+  //     this.filteredItems = [...this.items].filter((item) =>
+  //       item.name.toLowerCase().includes(this.searchInput.toLowerCase()),
+  //     );
+  //   } else {
+  //     this.filteredItems = [...this.items];
+  //   }
+  // }
+
+  filterTree() {
+    if (this.searchInput.length >= 2) {
+      this.filteredItems = this.filterDataIteratively(this.items, this.searchInput);
+    } else {
+      this.filteredItems = [...this.items];
+    }
+  }
+
+  private filterDataIteratively(data, query) {
+    // console.log('Starting filtering with query:', query);
+
+    const stack = [...data];
+    const result = [];
+
+    while (stack.length > 0) {
+      const currentItem = stack.pop();
+
+      // console.log('Current item:', currentItem);
+
+      let matches = false;
+      for (const key in currentItem) {
+        if (
+          typeof currentItem[key] === 'string' &&
+          currentItem[key].toLowerCase().includes(query.toLowerCase())
+        ) {
+          matches = true;
+          break;
+        }
+      }
+
+      // console.log('Current item matches:', matches);
+
+      if (matches) {
+        result.push(currentItem);
+      } else if (currentItem.children) {
+        const filteredChildren = this.filterDataIteratively(currentItem.children, query);
+        if (filteredChildren.length > 0) {
+          result.push({ ...currentItem, children: filteredChildren });
+        }
+      }
+    }
+
+    console.log('Filtering complete. Result:', result);
+    return result.reverse();
   }
 
   private generateUniqueFilterId(): string {

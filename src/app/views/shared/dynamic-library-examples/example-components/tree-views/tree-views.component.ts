@@ -6,6 +6,8 @@ import {
   FhiTreeViewSelectionItem,
 } from '@folkehelseinstituttet/angular-components';
 
+import { alleAtcKoderSomItems } from './alle_atckoder_som_items';
+
 @Component({
   selector: 'app-tree-views',
   templateUrl: './tree-views.component.html',
@@ -85,44 +87,45 @@ export class TreeViewsComponent implements OnInit {
   }
 
   private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
-    return [
-      {
-        name: 'For utviklere',
-        children: [
-          {
-            name: 'Visuell identitet',
-          },
-          {
-            name: 'Komponenter',
-            children: [
-              {
-                name: 'Accordions',
-              },
-              {
-                name: 'Advanced select',
-              },
-              {
-                name: 'Alerts',
-              },
-            ],
-          },
-          {
-            name: 'Layout og sidemaler',
-          },
-        ],
-      },
-      {
-        name: 'For designere',
-        id: 'for-designere',
-      },
-      {
-        name: 'Github',
-        children: [
-          {
-            name: 'Fhi.Frontend.Style',
-          },
-        ],
-      },
-    ];
+    return alleAtcKoderSomItems;
+    // return [
+    //   {
+    //     name: 'For utviklere',
+    //     children: [
+    //       {
+    //         name: 'Visuell identitet',
+    //       },
+    //       {
+    //         name: 'Komponenter',
+    //         children: [
+    //           {
+    //             name: 'Accordions',
+    //           },
+    //           {
+    //             name: 'Advanced select',
+    //           },
+    //           {
+    //             name: 'Alerts',
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         name: 'Layout og sidemaler',
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     name: 'For designere',
+    //     id: 'for-designere',
+    //   },
+    //   {
+    //     name: 'Github',
+    //     children: [
+    //       {
+    //         name: 'Fhi.Frontend.Style',
+    //       },
+    //     ],
+    //   },
+    // ];
   }
 }
