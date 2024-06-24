@@ -100,7 +100,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  private filterDataIteratively(data, query) {
+  // ChatGPT...
+  private filterDataIteratively(data: Item[], query: string) {
     // console.log('Starting filtering with query:', query);
 
     const stack = [...data];
@@ -134,7 +135,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       }
     }
 
-    console.log('Filtering complete. Result:', result);
+    // console.log('Filtering complete. Result:', result);
     return result.reverse();
   }
 
