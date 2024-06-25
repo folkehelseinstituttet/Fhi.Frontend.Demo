@@ -171,24 +171,28 @@ export class OptionsService {
     const units = this.diagramOptions.units;
     this.diagramOptions.series.forEach((serie, i) => {
       if (units[0].id === serie.unitId) {
-        options.series[i]['tooltip'] = this.getTooltip({}, units[0]);
-        options.series[i].yAxis = units[0].yAxis;
-        options.series[i].type = 'column';
+        options.series[i] = {
+          ...serie,
+          tooltip: this.getTooltip({}, units[0]),
+          yAxis: 0,
+          type: 'column',
+        } as SeriesOptionsType;
       } else if (units[1].id === serie.unitId) {
-        options.series[i]['tooltip'] = this.getTooltip({}, units[1]);
-        options.series[i].yAxis = units[1].yAxis;
-        options.series[i].type = 'line';
+        options.series[i] = {
+          ...serie,
+          tooltip: this.getTooltip({}, units[1]),
+          yAxis: 1,
+          type: 'line',
+        } as SeriesOptionsType;
       }
     });
-    options.yAxis = this.getTwoYAxis(options.yAxis as YAxisOptions[], this.diagramOptions.units);
-  }
-
-  private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
-    yAxis = [];
-    yAxis[0] = this.getYAxis({}, units[0]);
-    yAxis[1] = this.getYAxis({}, units[1]);
-    yAxis[1].opposite = true;
-    return yAxis;
+    options.yAxis = [
+      this.getYAxis({}, units[0]),
+      {
+        ...this.getYAxis({}, units[1]),
+        opposite: true,
+      },
+    ];
   }
 
   /**
