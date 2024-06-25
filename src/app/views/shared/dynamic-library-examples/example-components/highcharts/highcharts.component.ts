@@ -225,6 +225,7 @@ export class HighchartsComponent implements OnInit {
         {
           id: 'antall',
           label: 'Antall',
+          yAxis: 0,
         },
         {
           id: 'prosent',
@@ -232,6 +233,8 @@ export class HighchartsComponent implements OnInit {
           label: 'Prosent',
           symbol: '%',
           position: 'end',
+          yAxis: 1,
+          yAxisMax: 100,
         },
       ],
     });
