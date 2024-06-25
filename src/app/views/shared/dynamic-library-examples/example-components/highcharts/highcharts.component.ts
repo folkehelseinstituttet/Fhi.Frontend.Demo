@@ -234,7 +234,6 @@ export class HighchartsComponent implements OnInit {
           symbol: '%',
           position: 'end',
           yAxis: 1,
-          yAxisMax: 100,
         },
       ],
     });
