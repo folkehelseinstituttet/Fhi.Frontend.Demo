@@ -212,6 +212,8 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
 | `yAxis`    | `number`           | -       | no       | Which y-axis to associate the unit with. Only support for two y-axis is implemented: `0` is left hand y-axis, `1` is right hand y-axis. |
+| `yAxisMax` | `number`           | -       | no       | The maximum value of the y-axis. If not set, the max value is automatically calculated. |
+| `yAxisMin` | `number`           | -       | no       | The minimum value of the y-axis. If not set, the min value is automatically calculated. |
 
 ## Changelog
 
