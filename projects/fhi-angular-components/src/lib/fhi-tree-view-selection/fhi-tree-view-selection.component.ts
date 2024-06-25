@@ -27,12 +27,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() singleSelection = false;
   @Input() items: Item[];
   @Input() name: string;
+  @Input() enableFilter: boolean = false;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
-  searchInput = '';
-  uniqueFilterId: string;
   filteredItems: Item[];
+  filterString = '';
+  searchMode: boolean = false;
+  uniqueFilterId: string;
 
   constructor() {
     this.uniqueFilterId = this.generateUniqueFilterId();
@@ -82,61 +84,44 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  // filterTree() {
-  //   if (this.searchInput !== '' && this.searchInput.length >= 2) {
-  //     this.filteredItems = [...this.items].filter((item) =>
-  //       item.name.toLowerCase().includes(this.searchInput.toLowerCase()),
-  //     );
-  //   } else {
-  //     this.filteredItems = [...this.items];
-  //   }
-  // }
-
   filterTree() {
-    if (this.searchInput.length >= 2) {
-      this.filteredItems = this.filterDataIteratively(this.items, this.searchInput);
+    if (this.filterString.length >= 2) {
+      this.searchMode = true;
+      this.filteredItems = this.filterTreeData(this.items, this.filterString);
     } else {
+      this.searchMode = false;
       this.filteredItems = [...this.items];
     }
   }
 
-  // ChatGPT...
-  private filterDataIteratively(data: Item[], query: string) {
-    // console.log('Starting filtering with query:', query);
+  private filterTreeData(treeData: Item[], filterString: string) {
+    const lowerCaseNameFilter = filterString.toLowerCase();
 
-    const stack = [...data];
-    const result = [];
+    function filterNestedArray(array: Item[]) {
+      return array.reduce((filteredArray, item) => {
+        const lowerCaseName = item.name.toLowerCase();
 
-    while (stack.length > 0) {
-      const currentItem = stack.pop();
+        if (lowerCaseName.includes(lowerCaseNameFilter)) {
+          if (Array.isArray(item.children)) {
+            const filteredChildren = filterNestedArray(item.children);
 
-      // console.log('Current item:', currentItem);
+            filteredArray.push({ ...item, children: filteredChildren });
+          } else {
+            filteredArray.push(item);
+          }
+        } else if (Array.isArray(item.children)) {
+          const filteredChildren = filterNestedArray(item.children);
 
-      let matches = false;
-      for (const key in currentItem) {
-        if (
-          typeof currentItem[key] === 'string' &&
-          currentItem[key].toLowerCase().includes(query.toLowerCase())
-        ) {
-          matches = true;
-          break;
+          if (filteredChildren.length > 0) {
+            filteredArray.push({ ...item, children: filteredChildren });
+          }
         }
-      }
 
-      // console.log('Current item matches:', matches);
-
-      if (matches) {
-        result.push(currentItem);
-      } else if (currentItem.children) {
-        const filteredChildren = this.filterDataIteratively(currentItem.children, query);
-        if (filteredChildren.length > 0) {
-          result.push({ ...currentItem, children: filteredChildren });
-        }
-      }
+        return filteredArray;
+      }, []);
     }
 
-    // console.log('Filtering complete. Result:', result);
-    return result.reverse();
+    return filterNestedArray(treeData);
   }
 
   private generateUniqueFilterId(): string {

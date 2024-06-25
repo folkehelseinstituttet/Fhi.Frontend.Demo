@@ -10,6 +10,7 @@ import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-ite
   templateUrl: './fhi-tree-view-radio.component.html',
 })
 export class FhiTreeViewRadioComponent {
+  @Input() enableFilter: boolean = false;
   @Input() items: Item[];
   @Input({ required: true }) name: string;
 

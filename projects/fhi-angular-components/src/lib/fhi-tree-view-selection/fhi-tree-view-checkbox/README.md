@@ -7,6 +7,7 @@
 | Input             | Type                               | Default | Required | Description |
 | ----------------- | ---------------------------------- | ------- | -------- | ----------- |
 | `enableCheckAll`  | `boolean`                          | false   | no       | Enable a button with text "Velg alle" above each level of checkboxes. |
+| `enableFilter`    | `boolean`                          | false   | no       | Enable a text input for filtering the checkbox tree. |
 | `items`           | `Array<FhiTreeViewSelectionItem>`  | -       | yes      | Array of all items in checkbox tree. |
 
 ### Output

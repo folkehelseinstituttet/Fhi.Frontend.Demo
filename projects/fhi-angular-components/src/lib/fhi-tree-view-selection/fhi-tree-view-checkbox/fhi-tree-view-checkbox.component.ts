@@ -11,6 +11,7 @@ import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-ite
 })
 export class FhiTreeViewCheckboxComponent {
   @Input() enableCheckAll = false;
+  @Input() enableFilter: boolean = false;
   @Input() items: Item[];
 
   @Output() itemsChange = new EventEmitter<Item[]>();

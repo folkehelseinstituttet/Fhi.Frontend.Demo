@@ -1,5 +1,5 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
-  <div class="fhi-tree-view-checkbox__search mb-5">
+  <div class="fhi-tree-view-checkbox__search mb-5" *ngIf="enableFilter">
     <label [for]="uniqueFilterId" class="form-label">Filtrer listen</label>
     <input
       [id]="uniqueFilterId"
@@ -7,9 +7,10 @@
       class="form-control"
       placeholder="Søk etter elementer i listen"
       (change)="filterTree()"
-      [(ngModel)]="searchInput"
+      [(ngModel)]="filterString"
     />
   </div>
+  <button></button>
   <ng-container *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: null }"></ng-container>
 </div>
 
@@ -20,7 +21,7 @@
     [attr.id]="itemId !== null ? 'list' + itemId : null"
     [attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null"
   >
-    <ng-container *ngIf="enableCheckAll">
+    <ng-container *ngIf="enableCheckAll && !searchMode">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
     </ng-container>
 
@@ -36,7 +37,7 @@
         <ng-container *ngTemplateOutlet="radioItem; context: { item: item }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="item.isExpanded && item.children">
+      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && searchMode)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
             *ngTemplateOutlet="checkboxItems; context: { items: item.children, itemId: item.id }"
@@ -77,10 +78,10 @@
   >
     <i
       [ngClass]="{
-        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant,
-        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant,
-        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant,
-        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant
+        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !searchMode,
+        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !searchMode,
+        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !searchMode,
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !searchMode
       }"
     >
     </i>
