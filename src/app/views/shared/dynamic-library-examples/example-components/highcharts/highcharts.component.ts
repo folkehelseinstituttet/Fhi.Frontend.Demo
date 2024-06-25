@@ -196,7 +196,7 @@ export class HighchartsComponent implements OnInit {
   private getData__example_3b() {
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
-      activeDiagramType: 'column',
+      activeDiagramType: 'line',
       title: this.titles.title_3b,
       units: [
         {
@@ -204,6 +204,8 @@ export class HighchartsComponent implements OnInit {
           label: 'Prosent',
           symbol: '%',
           position: 'end',
+          yAxisMax: 20,
+          yAxisMin: 10,
         },
       ],
     });
