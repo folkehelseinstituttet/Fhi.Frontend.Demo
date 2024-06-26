@@ -172,14 +172,14 @@ export class OptionsService {
     this.diagramOptions.series.forEach((serie, i) => {
       if (units[0].id === serie.unitId) {
         options.series[i] = {
-          ...serie,
+          ...options.series[i],
           tooltip: this.getTooltip({}, units[0]),
           yAxis: 0,
           type: 'column',
         } as SeriesOptionsType;
       } else if (units[1].id === serie.unitId) {
         options.series[i] = {
-          ...serie,
+          ...options.series[i],
           tooltip: this.getTooltip({}, units[1]),
           yAxis: 1,
           type: 'line',

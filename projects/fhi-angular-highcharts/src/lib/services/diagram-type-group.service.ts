@@ -187,7 +187,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableColumnAndLine(): boolean {
-    return this.disableBar() || this.diagramOptions.units?.length < 2;
+    return this.disableBar() || this.diagramOptions.units?.length !== 2;
   }
 
   private disableColumnStacked(): boolean {
