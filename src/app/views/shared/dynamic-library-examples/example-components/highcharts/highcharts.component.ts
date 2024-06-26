@@ -127,8 +127,10 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_2a() {
+    const activeDiagramType = this.diagramOptions?.activeDiagramType;
     this.getData(MockData.DodsfallEtterAarsak_2017_2021, {
       series: undefined,
+      activeDiagramType: activeDiagramType ? activeDiagramType : undefined,
       title: this.titles.title_2a,
       controls: {
         navigation: {
@@ -194,7 +196,7 @@ export class HighchartsComponent implements OnInit {
   private getData__example_3b() {
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
-      activeDiagramType: 'column',
+      activeDiagramType: 'line',
       title: this.titles.title_3b,
       units: [
         {
@@ -202,6 +204,8 @@ export class HighchartsComponent implements OnInit {
           label: 'Prosent',
           symbol: '%',
           position: 'end',
+          yAxisMax: 20,
+          yAxisMin: 10,
         },
       ],
     });

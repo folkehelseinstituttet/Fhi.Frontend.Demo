@@ -157,31 +157,42 @@ export class OptionsService {
           format: '{value}',
         };
       }
+      if (unit.yAxisMax !== undefined) {
+        yAxis.max = unit.yAxisMax;
+      }
+      if (unit.yAxisMin !== undefined) {
+        yAxis.min = unit.yAxisMin;
+      }
     }
     return yAxis;
   }
 
   private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+    const units = this.diagramOptions.units;
     this.diagramOptions.series.forEach((serie, i) => {
-      if (serie.unitId === this.diagramOptions.units[0].id) {
-        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[0]);
-        options.series[i].type = 'column';
-        options.series[i].yAxis = 0;
-      } else if (serie.unitId === this.diagramOptions.units[1].id) {
-        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[1]);
-        options.series[i].type = 'line';
-        options.series[i].yAxis = 1;
+      if (units[0].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip({}, units[0]),
+          yAxis: 0,
+          type: 'column',
+        } as SeriesOptionsType;
+      } else if (units[1].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip({}, units[1]),
+          yAxis: 1,
+          type: 'line',
+        } as SeriesOptionsType;
       }
     });
-    options.yAxis = this.getTwoYAxis(options.yAxis as YAxisOptions[], this.diagramOptions.units);
-  }
-
-  private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
-    yAxis = [];
-    yAxis[0] = this.getYAxis({}, units[0]);
-    yAxis[1] = this.getYAxis({}, units[1]);
-    yAxis[1].opposite = true;
-    return yAxis;
+    options.yAxis = [
+      this.getYAxis({}, units[0]),
+      {
+        ...this.getYAxis({}, units[1]),
+        opposite: true,
+      },
+    ];
   }
 
   /**
