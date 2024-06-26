@@ -95,34 +95,28 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  private filterTreeData(treeData: Item[], filterString: string) {
-    const lowerCaseNameFilter = filterString.toLowerCase();
+  private filterTreeData(treeData: Item[], filterString: string): Item[] {
+    const lowerCaseFilter = filterString.toLowerCase();
 
-    function filterNestedArray(array: Item[]) {
-      return array.reduce((filteredArray, item) => {
+    const filterItems = (items: Item[]): Item[] => {
+      return items.reduce((filteredItems: Item[], item: Item) => {
         const lowerCaseName = item.name.toLowerCase();
 
-        if (lowerCaseName.includes(lowerCaseNameFilter)) {
-          if (Array.isArray(item.children)) {
-            const filteredChildren = filterNestedArray(item.children);
-
-            filteredArray.push({ ...item, children: filteredChildren });
-          } else {
-            filteredArray.push(item);
-          }
-        } else if (Array.isArray(item.children)) {
-          const filteredChildren = filterNestedArray(item.children);
-
+        if (lowerCaseName.includes(lowerCaseFilter)) {
+          const filteredChildren = item.children ? filterItems(item.children) : [];
+          filteredItems.push({ ...item, children: filteredChildren });
+        } else if (item.children) {
+          const filteredChildren = filterItems(item.children);
           if (filteredChildren.length > 0) {
-            filteredArray.push({ ...item, children: filteredChildren });
+            filteredItems.push({ ...item, children: filteredChildren });
           }
         }
 
-        return filteredArray;
+        return filteredItems;
       }, []);
-    }
+    };
 
-    return filterNestedArray(treeData);
+    return filterItems(treeData);
   }
 
   private generateUniqueFilterId(): string {
