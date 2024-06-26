@@ -33,6 +33,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   filteredItems: Item[];
   filterString = '';
+  minimumFilterLength: number = 3;
   searchMode: boolean = false;
   uniqueFilterId: string;
 
@@ -85,7 +86,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   filterTree() {
-    if (this.filterString.length >= 2) {
+    if (this.filterString.length >= this.minimumFilterLength) {
       this.searchMode = true;
       this.filteredItems = this.filterTreeData(this.items, this.filterString);
     } else {

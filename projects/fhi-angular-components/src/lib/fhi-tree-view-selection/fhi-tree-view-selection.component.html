@@ -1,16 +1,31 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
-  <div class="fhi-tree-view-checkbox__search mb-5" *ngIf="enableFilter">
+  <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
     <label [for]="uniqueFilterId" class="form-label">Filtrer listen</label>
-    <input
-      [id]="uniqueFilterId"
-      type="search"
-      class="form-control"
-      placeholder="Søk etter elementer i listen"
-      (change)="filterTree()"
-      [(ngModel)]="filterString"
-    />
+    <div class="d-flex">
+      <div class="w-100 position-relative">
+        <input
+          [id]="uniqueFilterId"
+          type="search"
+          class="form-control fhi-search__form-control"
+          placeholder="Søk med minimum 3 tegn"
+          (change)="filterTree()"
+          [(ngModel)]="filterString"
+        />
+      </div>
+      <button class="btn fhi-search__btn" (click)="filterTree()">
+        <i class="fhi-search__btn-icon" [ngClass]="{ 'd-none': searchMode }"></i>
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+          [ngClass]="{ 'd-none': !searchMode }"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </span>
+        <span class="fhi-search__btn__text">Søk</span>
+      </button>
+    </div>
   </div>
-  <button></button>
   <ng-container *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: null }"></ng-container>
 </div>
 
