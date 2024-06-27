@@ -1,6 +1,6 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
   <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
-    <label [for]="uniqueFilterId" class="form-label">Filtrer listen</label>
+    <label [for]="uniqueFilterId" class="form-label">{{ filterLabel }}</label>
     <div class="d-flex">
       <div class="w-100 position-relative">
         <input
@@ -8,11 +8,12 @@
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
-          (change)="filterTree()"
+          (keyup)="filterTree(null, $event)"
           [(ngModel)]="filterString"
+          [attr.aria-controls]="'list-' + uniqueFilterId"
         />
       </div>
-      <button class="btn fhi-search__btn" (click)="filterTree()">
+      <button class="btn fhi-search__btn" (click)="filterTree($event, null)">
         <i class="fhi-search__btn-icon"></i>
         <span class="fhi-search__btn__text">Søk</span>
       </button>
@@ -27,6 +28,7 @@
     role="tree"
     [attr.id]="itemId !== null ? 'list' + itemId : null"
     [attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null"
+    aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !searchMode">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>

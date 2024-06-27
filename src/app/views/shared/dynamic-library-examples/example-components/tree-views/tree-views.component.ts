@@ -27,8 +27,8 @@ export class TreeViewsComponent implements OnInit {
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.itemsCheck = this.getTreeviewSelectionItems();
-    this.itemsRadio = this.getTreeviewSelectionItems();
+    this.itemsCheck = this.getTreeviewCheckboxItems();
+    this.itemsRadio = this.getTreeViewRadioItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
     this.changeDetector.detectChanges();
   }
@@ -86,46 +86,49 @@ export class TreeViewsComponent implements OnInit {
     ];
   }
 
-  private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
+  private getTreeviewCheckboxItems(): FhiTreeViewSelectionItem[] {
     return alleAtcKoderSomItems;
-    // return [
-    //   {
-    //     name: 'For utviklere',
-    //     children: [
-    //       {
-    //         name: 'Visuell identitet',
-    //       },
-    //       {
-    //         name: 'Komponenter',
-    //         children: [
-    //           {
-    //             name: 'Accordions',
-    //           },
-    //           {
-    //             name: 'Advanced select',
-    //           },
-    //           {
-    //             name: 'Alerts',
-    //           },
-    //         ],
-    //       },
-    //       {
-    //         name: 'Layout og sidemaler',
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     name: 'For designere',
-    //     id: 'for-designere',
-    //   },
-    //   {
-    //     name: 'Github',
-    //     children: [
-    //       {
-    //         name: 'Fhi.Frontend.Style',
-    //       },
-    //     ],
-    //   },
-    // ];
+  }
+
+  private getTreeViewRadioItems(): FhiTreeViewSelectionItem[] {
+    return [
+      {
+        name: 'For utviklere',
+        children: [
+          {
+            name: 'Visuell identitet',
+          },
+          {
+            name: 'Komponenter',
+            children: [
+              {
+                name: 'Accordions',
+              },
+              {
+                name: 'Advanced select',
+              },
+              {
+                name: 'Alerts',
+              },
+            ],
+          },
+          {
+            name: 'Layout og sidemaler',
+          },
+        ],
+      },
+      {
+        name: 'For designere',
+        id: 'for-designere',
+      },
+      {
+        name: 'Github',
+        children: [
+          {
+            name: 'Fhi.Frontend.Style',
+          },
+        ],
+      },
+    ];
   }
 }

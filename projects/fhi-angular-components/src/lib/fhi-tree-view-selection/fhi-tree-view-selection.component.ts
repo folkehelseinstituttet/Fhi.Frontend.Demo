@@ -23,8 +23,9 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  @Input() enableCheckAll = false;
-  @Input() singleSelection = false;
+  @Input() enableCheckAll: boolean = false;
+  @Input() filterLabel: string = 'Filtrer listen';
+  @Input() singleSelection: boolean = false;
   @Input() items: Item[];
   @Input() name: string;
   @Input() enableFilter: boolean = false;
@@ -85,11 +86,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree() {
-    if (this.filterString.length >= this.minimumFilterLength) {
+  filterTree(clickEvent: MouseEvent, keyboardEvent: KeyboardEvent) {
+    if (
+      this.filterString.length >= this.minimumFilterLength &&
+      ((keyboardEvent && keyboardEvent.key === 'Enter') || clickEvent)
+    ) {
       this.searchMode = true;
       this.filteredItems = this.filterTreeData(this.items, this.filterString);
-    } else {
+    } else if (this.filterString.length < this.minimumFilterLength) {
       this.searchMode = false;
       this.filteredItems = [...this.items];
     }

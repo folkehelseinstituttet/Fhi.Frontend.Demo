@@ -11,6 +11,7 @@ import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-ite
 })
 export class FhiTreeViewRadioComponent {
   @Input() enableFilter: boolean = false;
+  @Input() filterLabel: string = 'Filtrer listen';
   @Input() items: Item[];
   @Input({ required: true }) name: string;
 
