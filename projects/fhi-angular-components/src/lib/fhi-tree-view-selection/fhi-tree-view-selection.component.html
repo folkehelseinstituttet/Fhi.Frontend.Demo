@@ -8,12 +8,13 @@
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
-          (keyup)="filterTree(null, $event)"
+          (keyup)="filterTree($event)"
+          (search)="filterTree()"
           [(ngModel)]="filterString"
           [attr.aria-controls]="'list-' + uniqueFilterId"
         />
       </div>
-      <button class="btn fhi-search__btn" (click)="filterTree($event, null)">
+      <button class="btn fhi-search__btn" (click)="filterTree()">
         <i class="fhi-search__btn-icon"></i>
         <span class="fhi-search__btn__text">Søk</span>
       </button>
@@ -107,9 +108,12 @@
       [checked]="item.isChecked"
       (click)="toggleChecked(item.id)"
     />
-    <label class="form-check-label" [for]="'check-input' + item.id" [id]="'label' + item.id">
-      {{ item.name }}
-    </label>
+    <label
+      class="form-check-label"
+      [for]="'check-input' + item.id"
+      [id]="'label' + item.id"
+      [innerHTML]="item.name"
+    ></label>
   </div>
 </ng-template>
 
@@ -123,8 +127,11 @@
       [checked]="item.isChecked"
       (change)="toggleChecked(item.id, false, false)"
     />
-    <label class="form-check-label" [for]="name + '-' + item.id" [id]="'label' + item.id">
-      {{ item.name }}
-    </label>
+    <label
+      class="form-check-label"
+      [for]="name + '-' + item.id"
+      [id]="'label' + item.id"
+      [innerHTML]="item.name"
+    ></label>
   </div>
 </ng-template>

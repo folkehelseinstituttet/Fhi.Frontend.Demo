@@ -86,16 +86,17 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree(clickEvent: MouseEvent, keyboardEvent: KeyboardEvent) {
-    if (
-      this.filterString.length >= this.minimumFilterLength &&
-      ((keyboardEvent && keyboardEvent.key === 'Enter') || clickEvent)
-    ) {
-      this.searchMode = true;
-      this.filteredItems = this.filterTreeData(this.items, this.filterString);
-    } else if (this.filterString.length < this.minimumFilterLength) {
-      this.searchMode = false;
-      this.filteredItems = [...this.items];
+  filterTree(keyEvent?: KeyboardEvent) {
+    let filterString = '';
+
+    if ((keyEvent && this.filterString.length < this.minimumFilterLength) || !keyEvent) {
+      if (this.filterString.length >= this.minimumFilterLength) {
+        this.searchMode = true;
+        filterString = this.filterString;
+      } else {
+        this.searchMode = false;
+      }
+      this.filteredItems = this.filterTreeData(this.items, filterString);
     }
   }
 
@@ -104,9 +105,16 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
     const filterItems = (items: Item[]): Item[] => {
       return items.reduce((filteredItems: Item[], item: Item) => {
+        item.name = item.name.replace(/<[^>]*>/g, '');
         const lowerCaseName = item.name.toLowerCase();
 
         if (lowerCaseName.includes(lowerCaseFilter)) {
+          if (lowerCaseFilter !== '') {
+            item.name = item.name.replace(
+              RegExp(filterString, 'gi'),
+              '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
+            );
+          }
           const filteredChildren = item.children ? filterItems(item.children) : [];
           filteredItems.push({ ...item, children: filteredChildren });
         } else if (item.children) {
