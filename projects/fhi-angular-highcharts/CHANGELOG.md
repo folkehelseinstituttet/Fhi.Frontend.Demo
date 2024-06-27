@@ -1,6 +1,6 @@
-# Unreleased
+# 4.1.0
 
-> Jun 25, 2024
+> Jun 27, 2024
 
 * :tada: **Enhancement** Add support for user defined max/min y-axis value
 
