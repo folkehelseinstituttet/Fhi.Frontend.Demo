@@ -35,12 +35,10 @@ export class TreeViewsComponent implements OnInit {
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsCheck = items;
-    console.info('checkbox items: ', this.itemsCheck);
   }
 
   onRadioChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsRadio = items;
-    console.info('radio items: ', this.itemsRadio);
   }
 
   private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {
