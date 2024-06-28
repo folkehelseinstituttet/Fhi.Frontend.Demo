@@ -56,6 +56,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
+  onFilterChange(filterValue: string) {
+    if (filterValue.length === 0) {
+      this.filterString = filterValue;
+      this.filterTree();
+    }
+  }
+
   toggleExpanded(item: Item) {
     item.isExpanded = !item.isExpanded;
   }

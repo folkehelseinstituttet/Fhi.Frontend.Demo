@@ -9,8 +9,7 @@
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
           (keyup.enter)="filterTree()"
-          (clear)="filterTree()"
-          (search)="filterTree()"
+          (ngModelChange)="onFilterChange($event)"
           [(ngModel)]="filterString"
           [attr.aria-controls]="'list-' + uniqueFilterId"
         />
