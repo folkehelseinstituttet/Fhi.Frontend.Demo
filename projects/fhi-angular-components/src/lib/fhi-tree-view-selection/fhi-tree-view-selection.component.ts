@@ -123,7 +123,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         if (lowerCaseName.includes(lowerCaseFilter)) {
           if (lowerCaseFilter !== '') {
             item.name = item.name.replace(
-              RegExp(filterString, 'g'), // find filter string to highlight
+              RegExp(filterString, 'gi'), // find filter string to highlight
               '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
             );
           }
