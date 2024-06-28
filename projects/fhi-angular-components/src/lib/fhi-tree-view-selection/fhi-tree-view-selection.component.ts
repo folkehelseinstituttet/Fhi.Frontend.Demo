@@ -86,19 +86,20 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree(keyEvent?: KeyboardEvent) {
-    if ((keyEvent && this.filterString.length < this.minimumFilterLength) || !keyEvent) {
-      if (this.filterString.length >= this.minimumFilterLength) {
-        this.searchMode = true;
-        this.filteredItems = this.filterTreeData(this.items, this.filterString);
-      } else {
-        this.searchMode = false;
-        // reset filter and remove filter marks
-        this.filteredItems = this.filterTreeData(this.items, '');
-        // reset to original items
-        this.filteredItems = [...this.items];
-      }
+  filterTree() {
+    // filterTree(keyEvent?: KeyboardEvent) {
+    // if ((keyEvent && this.filterString.length < this.minimumFilterLength) || !keyEvent) {
+    if (this.filterString.length >= this.minimumFilterLength) {
+      this.searchMode = true;
+      this.filteredItems = this.filterTreeData(this.items, this.filterString);
+    } else {
+      this.searchMode = false;
+      // reset filter and remove filter marks
+      this.filteredItems = this.filterTreeData(this.items, '');
+      // reset to original items
+      this.filteredItems = [...this.items];
     }
+    // }
   }
 
   private filterTreeData(treeData: Item[], filterString: string): Item[] {
