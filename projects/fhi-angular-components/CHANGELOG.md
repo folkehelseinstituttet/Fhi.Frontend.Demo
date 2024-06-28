@@ -1,6 +1,6 @@
 # Unreleased
 
-> Jun 20, 2024
+> Jun 28, 2024
 
 * :tada: **Enhancement** Add search filter to `FhiTreeViewCheckbox` and `FhiTreeViewRadio`
 
