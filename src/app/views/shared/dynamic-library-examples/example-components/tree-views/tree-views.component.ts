@@ -6,6 +6,8 @@ import {
   FhiTreeViewSelectionItem,
 } from '@folkehelseinstituttet/angular-components';
 
+import { alleAtcKoderSomItems } from './alle_atckoder_som_items';
+
 @Component({
   selector: 'app-tree-views',
   templateUrl: './tree-views.component.html',
@@ -25,20 +27,18 @@ export class TreeViewsComponent implements OnInit {
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.itemsCheck = this.getTreeviewSelectionItems();
-    this.itemsRadio = this.getTreeviewSelectionItems();
+    this.itemsCheck = this.getTreeviewCheckboxItems();
+    this.itemsRadio = this.getTreeViewRadioItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
     this.changeDetector.detectChanges();
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsCheck = items;
-    console.info('checkbox items: ', this.itemsCheck);
   }
 
   onRadioChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsRadio = items;
-    console.info('radio items: ', this.itemsRadio);
   }
 
   private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {
@@ -84,7 +84,11 @@ export class TreeViewsComponent implements OnInit {
     ];
   }
 
-  private getTreeviewSelectionItems(): FhiTreeViewSelectionItem[] {
+  private getTreeviewCheckboxItems(): FhiTreeViewSelectionItem[] {
+    return alleAtcKoderSomItems;
+  }
+
+  private getTreeViewRadioItems(): FhiTreeViewSelectionItem[] {
     return [
       {
         name: 'For utviklere',

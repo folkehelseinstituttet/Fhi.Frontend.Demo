@@ -4,10 +4,12 @@
 
 ### Input
 
-| Input             | Type                               | Default | Required | Description |
-| ----------------- | ---------------------------------- | ------- | -------- | ----------- |
-| `enableCheckAll`  | `boolean`                          | false   | no       | Enable a button with text "Velg alle" above each level of checkboxes. |
-| `items`           | `Array<FhiTreeViewSelectionItem>`  | -       | yes      | Array of all items in checkbox tree. |
+| Input            | Type                              | Default          | Required | Description                                                           |
+|------------------|-----------------------------------|------------------|----------|-----------------------------------------------------------------------|
+| `enableCheckAll` | `boolean`                         | false            | no       | Enable a button with text "Velg alle" above each level of checkboxes. |
+| `enableFilter`   | `boolean`                         | false            | no       | Enable a text input for filtering the checkbox tree.                  |
+| `filterLabel`    | `string`                          | `Filtrer listen` | no       | Label for the checkbox tree filter.                                   |
+| `items`          | `Array<FhiTreeViewSelectionItem>` | -                | yes      | Array of all items in checkbox tree.                                  |
 
 ### Output
 
