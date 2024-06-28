@@ -1,6 +1,6 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
   <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
-    <label [for]="uniqueFilterId" class="form-label">{{ filterLabel }}</label>
+    <label [for]="uniqueFilterId" class="form-label" [id]="'label-' + uniqueFilterId">{{ filterLabel }}</label>
     <div class="d-flex">
       <div class="w-100 position-relative">
         <input
@@ -19,15 +19,17 @@
       </button>
     </div>
   </div>
-  <ng-container *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: null }"></ng-container>
+  <ng-container
+    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: enableFilter ? uniqueFilterId : null }"
+  ></ng-container>
 </div>
 
 <ng-template #checkboxItems let-items="items" let-itemId="itemId">
   <ul
     class="fhi-tree-view-checkbox__list"
     role="tree"
-    [attr.id]="itemId !== null ? 'list' + itemId : null"
-    [attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null"
+    [attr.id]="itemId !== null ? 'list-' + itemId : null"
+    [attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null"
     aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !searchMode">
