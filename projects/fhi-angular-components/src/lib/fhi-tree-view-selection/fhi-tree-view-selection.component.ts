@@ -56,11 +56,19 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  onFilterChange(filterValue: string) {
+  onModelChange(filterValue: string) {
     if (filterValue.length === 0) {
       this.filterString = filterValue;
       this.filterTree();
     }
+  }
+
+  onFilterKeydownEnter() {
+    this.filterTree();
+  }
+
+  onFilterButtonClick() {
+    this.filterTree();
   }
 
   toggleExpanded(item: Item) {
@@ -99,10 +107,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       this.filteredItems = this.filterTreeData(this.items, this.filterString);
     } else {
       this.searchMode = false;
-      // reset filter and remove filter marks
-      this.filteredItems = this.filterTreeData(this.items, '');
-      // reset to original items
-      this.filteredItems = [...this.items];
+      this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
+      this.filteredItems = [...this.items]; // show all
     }
   }
 
@@ -111,13 +117,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
     const filterItems = (items: Item[]): Item[] => {
       return items.reduce((filteredItems: Item[], item: Item) => {
-        item.name = item.name.replace(/<[^>]*>/g, '');
+        item.name = item.name.replace(/<[^>]*>/g, ''); // remove <mark> tag that was added for highlighting
         const lowerCaseName = item.name.toLowerCase();
 
         if (lowerCaseName.includes(lowerCaseFilter)) {
           if (lowerCaseFilter !== '') {
             item.name = item.name.replace(
-              RegExp(filterString, 'gi'),
+              RegExp(filterString, 'g'), // find filter string to highlight
               '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
             );
           }

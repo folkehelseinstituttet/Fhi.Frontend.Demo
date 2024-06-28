@@ -8,13 +8,13 @@
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
-          (keydown.enter)="filterTree()"
-          (ngModelChange)="onFilterChange($event)"
+          (keydown.enter)="onFilterKeydownEnter()"
+          (ngModelChange)="onModelChange($event)"
           [(ngModel)]="filterString"
           [attr.aria-controls]="'list-' + uniqueFilterId"
         />
       </div>
-      <button class="btn fhi-search__btn" (click)="filterTree()">
+      <button class="btn fhi-search__btn" (click)="onFilterButtonClick()">
         <i class="fhi-search__btn-icon"></i>
         <span class="fhi-search__btn__text">Søk</span>
       </button>
