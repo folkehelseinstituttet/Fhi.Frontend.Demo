@@ -56,7 +56,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  onModelChange(filterValue: string) {
+  onFilterNgModelChange(filterValue: string) {
     if (filterValue.length === 0) {
       this.filterString = filterValue;
       this.filterTree();
