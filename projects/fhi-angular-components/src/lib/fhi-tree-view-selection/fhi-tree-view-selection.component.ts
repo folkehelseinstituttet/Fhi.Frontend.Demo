@@ -94,8 +94,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   filterTree() {
-    // filterTree(keyEvent?: KeyboardEvent) {
-    // if ((keyEvent && this.filterString.length < this.minimumFilterLength) || !keyEvent) {
     if (this.filterString.length >= this.minimumFilterLength) {
       this.searchMode = true;
       this.filteredItems = this.filterTreeData(this.items, this.filterString);
@@ -106,7 +104,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       // reset to original items
       this.filteredItems = [...this.items];
     }
-    // }
   }
 
   private filterTreeData(treeData: Item[], filterString: string): Item[] {
