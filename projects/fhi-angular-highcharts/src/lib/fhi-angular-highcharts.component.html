@@ -9,7 +9,11 @@
 
       <div class="fhi-highcharts-nav__standalone-btns">
         <ng-container *ngIf="showMetadataButton">
-          <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
+          <ng-container *ngTemplateOutlet="metadataButton"></ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="true">
+          <ng-container *ngTemplateOutlet="downloadButton"></ng-container>
         </ng-container>
 
         <ng-container *ngIf="showFullScreenButton">
@@ -91,7 +95,7 @@
   </fhi-modal>
 </ng-template>
 
-<ng-template #metadataLink>
+<ng-template #metadataButton>
   <button
     class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
     [ngClass]="{
@@ -101,6 +105,12 @@
   >
     <i class="icon-info-circle"></i>
     <span class="btn__text">Om dataene</span>
+  </button>
+</ng-template>
+
+<ng-template #downloadButton>
+  <button class="btn fhi-btn-icon fhi-highcharts-nav__download-btn mb-3" (click)="onMetadataButtonClick()">
+    <i class="icon-download"></i>
   </button>
 </ng-template>
 
