@@ -1,60 +1,66 @@
-.fhi-highcharts-nav {
-    container-name: highcharts-nav;
+.fhi-diagram-controls {
+    container-name: diagramControls;
     container-type: inline-size;
     flex-grow: 1;
     position: relative;
     z-index: 1;
 
-    &__standalone-btn {
-        container-name: highcharts-nav__standalone-btns;
-        container-type: inline-size;
-    }
-
-    &__meta-btn--push-end {
+    &__start {
+        margin-bottom: $fhi-core-space-3;
         margin-right: $fhi-core-space-3;
     }
-}
 
-// < 360px
-@container highcharts-nav (width < 22.5rem) {
-    .fhi-highcharts-nav {
-        .fhi-btn-group {
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-
-            > .btn {
-                width: 100%;
-            }
+    &__end {
+        .fhi-btn-icon {
+            margin-bottom: $fhi-core-space-3;
         }
 
-        &__standalone-btns {
-            text-align: right;
+        .fhi-btn-icon:not(:last-child) {
+            margin-right: $fhi-core-space-3;
         }
 
-        &__meta-btn {
-            display: block;
-
-            &--push-end {
-                margin-right: 0;
-            }
-        }
-
-        .dropdown-menu {
-            left: calc(#{$fhi-core-px} * -97) !important;
+        .fhi-btn-icon.fhi-diagram-controls__end-start {
+            margin-right: 0;
         }
     }
 }
 
-// < 322px
-@container highcharts-nav (width < 20.125rem) {
-    .fhi-highcharts-nav {
-        &__meta-btn {
-            display: inline;
+@container diagramControls (max-width: #{$fhi-core-px * 359}) {
+    .fhi-btn-group {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+    }
 
-            &--push-end {
+    .dropdown-menu {
+        left: calc(#{$fhi-core-px} * -97) !important;
+    }
+}
+
+@container diagramControls (min-width: #{$fhi-core-px * 360}) {
+    .fhi-diagram-controls {
+        &__end {
+            .fhi-btn-icon.fhi-diagram-controls__end-start {
                 margin-right: $fhi-core-space-3;
             }
         }
+
+        &__end-start,
+        &__end-end {
+            display: inline;
+        }
     }
 }
+
+@container diagramControls (min-width: #{$fhi-core-px * 730}) {
+    .fhi-diagram-controls {
+        &__end {
+            margin-left: auto;
+        }
+    }
+}
+
+// @container diagramControls (min-width: #{$fhi-core-px * 322}) and (max-width: #{$fhi-core-px * 359}) {
+//     .fhi-diagram-controls {
+//     }
+// }

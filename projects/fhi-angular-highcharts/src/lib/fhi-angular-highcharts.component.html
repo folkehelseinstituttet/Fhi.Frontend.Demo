@@ -1,28 +1,9 @@
 <article *ngIf="diagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
 
-  <div class="fhi-highcharts-nav">
-    <div class="d-flex flex-wrap">
-      <ng-container *ngIf="showDiagramTypeNav">
-        <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
-      </ng-container>
-
-      <div class="fhi-highcharts-nav__standalone-btns">
-        <ng-container *ngIf="showMetadataButton">
-          <ng-container *ngTemplateOutlet="metadataButton"></ng-container>
-        </ng-container>
-
-        <ng-container *ngIf="true">
-          <ng-container *ngTemplateOutlet="downloadButton"></ng-container>
-        </ng-container>
-
-        <ng-container *ngIf="showFullScreenButton">
-          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
-        </ng-container>
-      </div>
-    </div>
-  </div>
-
+  @if (true) {
+    <ng-container *ngTemplateOutlet="diagramControls"></ng-container>
+  }
   @if (showDiagramTypeDisabledWarning) {
     <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning"></ng-container>
   } @else if (showDuplicateSerieNameError) {
@@ -57,30 +38,73 @@
   </ng-container>
 </ng-template>
 
-<ng-template #diagramTypeNav>
-  <div
-    class="mb-3"
-    [ngClass]="{
-      'me-auto': showMetadataButton || showFullScreenButton
-    }"
-  >
-    <div
-      [ngClass]="{
-        'me-3': showMetadataButton || showFullScreenButton
-      }"
-    >
+<ng-template #diagramControls let-controlsInModal="controlsInModal">
+  <div class="d-flex flex-wrap fhi-diagram-controls">
+    <div class="fhi-diagram-controls__start" *ngIf="true">
       <fhi-diagram-type-nav-default
         [diagramTypeGroups]="diagramTypeGroups"
         (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
       >
       </fhi-diagram-type-nav-default>
     </div>
+
+    <div class="fhi-diagram-controls__end">
+      <button class="btn fhi-btn-icon fhi-diagram-controls__end-start" *ngIf="true" (click)="onMetadataButtonClick()">
+        <i class="icon-info-circle"></i>
+        <span class="btn__text">Om dataene</span>
+      </button>
+
+      <div class="fhi-diagram-controls__end-end">
+        <button class="btn fhi-btn-icon fhi-btn-icon--circular" *ngIf="true" (click)="onMetadataButtonClick()">
+          <i class="icon-download"></i>
+        </button>
+
+        <ng-container *ngIf="true && !controlsInModal">
+          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+        </ng-container>
+      </div>
+    </div>
   </div>
+  <!-- <div class="fhi-diagram-controls">
+    <div class="d-flex flex-wrap">
+      <div
+        *ngIf="showDiagramTypeNav"
+        class="fhi-diagram-controls__start"
+        [ngClass]="{ 'me-auto': showMetadataButton || showFullScreenButton }"
+      >
+        <fhi-diagram-type-nav-default
+          [diagramTypeGroups]="diagramTypeGroups"
+          (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+        >
+        </fhi-diagram-type-nav-default>
+      </div>
+
+      <div class="fhi-diagram-controls__end">
+        <button
+          *ngIf="showMetadataButton && !controlsInModal"
+          class="btn fhi-btn-icon fhi-diagram-controls__meta-btn"
+          [ngClass]="{ 'fhi-diagram-controls__meta-btn--push-end': showFullScreenButton }"
+          (click)="onMetadataButtonClick()"
+        >
+          <i class="icon-info-circle"></i>
+          <span class="btn__text">Om dataene</span>
+        </button>
+
+        <button *ngIf="true" class="btn fhi-btn-icon fhi-btn-icon--circular" (click)="onMetadataButtonClick()">
+          <i class="icon-download"></i>
+        </button>
+
+        <ng-container *ngIf="showFullScreenButton && !controlsInModal">
+          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div> -->
 </ng-template>
 
 <ng-template #diagramModal>
   <fhi-modal
-    [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular mb-3'"
+    [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
     [modalTitle]="diagramOptions.title"
     [size]="'fullscreen'"
   >
@@ -89,29 +113,10 @@
       <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
-      <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramControls; context: { controlsInModal: true }"></ng-container>
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
   </fhi-modal>
-</ng-template>
-
-<ng-template #metadataButton>
-  <button
-    class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
-    [ngClass]="{
-      'fhi-highcharts-nav__meta-btn--push-end': showFullScreenButton
-    }"
-    (click)="onMetadataButtonClick()"
-  >
-    <i class="icon-info-circle"></i>
-    <span class="btn__text">Om dataene</span>
-  </button>
-</ng-template>
-
-<ng-template #downloadButton>
-  <button class="btn fhi-btn-icon fhi-highcharts-nav__download-btn mb-3" (click)="onMetadataButtonClick()">
-    <i class="icon-download"></i>
-  </button>
 </ng-template>
 
 <ng-template #chart>
