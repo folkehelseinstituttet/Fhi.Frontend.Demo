@@ -160,6 +160,9 @@ export class HighchartsComponent implements OnInit {
       activeDiagramType: 'column',
       title: this.titles.title_3a,
       controls: {
+        downloadButton: {
+          show: true,
+        },
         fullScreenButton: {
           show: true,
         },

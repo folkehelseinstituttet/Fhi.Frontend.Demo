@@ -58,7 +58,11 @@
       </button>
 
       <div class="fhi-diagram-controls__max-4-circular-buttons">
-        <button class="btn fhi-btn-icon fhi-btn-icon--circular" *ngIf="true" (click)="onDownloadButtonClick()">
+        <button
+          class="btn fhi-btn-icon fhi-btn-icon--circular"
+          *ngIf="showDownloadButton"
+          (click)="onDownloadButtonClick()"
+        >
           <i class="icon-download"></i>
         </button>
 
