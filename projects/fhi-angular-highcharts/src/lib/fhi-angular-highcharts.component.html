@@ -49,12 +49,12 @@
     </div>
 
     <div class="fhi-diagram-controls__end">
-      <button class="btn fhi-btn-icon fhi-diagram-controls__end-start" *ngIf="true" (click)="onMetadataButtonClick()">
+      <button class="btn fhi-btn-icon fhi-diagram-controls__metadata" *ngIf="true" (click)="onMetadataButtonClick()">
         <i class="icon-info-circle"></i>
         <span class="btn__text">Om dataene</span>
       </button>
 
-      <div class="fhi-diagram-controls__end-end">
+      <div class="fhi-diagram-controls__max-4-circular-buttons">
         <button class="btn fhi-btn-icon fhi-btn-icon--circular" *ngIf="true" (click)="onMetadataButtonClick()">
           <i class="icon-download"></i>
         </button>
@@ -65,41 +65,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="fhi-diagram-controls">
-    <div class="d-flex flex-wrap">
-      <div
-        *ngIf="showDiagramTypeNav"
-        class="fhi-diagram-controls__start"
-        [ngClass]="{ 'me-auto': showMetadataButton || showFullScreenButton }"
-      >
-        <fhi-diagram-type-nav-default
-          [diagramTypeGroups]="diagramTypeGroups"
-          (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-        >
-        </fhi-diagram-type-nav-default>
-      </div>
-
-      <div class="fhi-diagram-controls__end">
-        <button
-          *ngIf="showMetadataButton && !controlsInModal"
-          class="btn fhi-btn-icon fhi-diagram-controls__meta-btn"
-          [ngClass]="{ 'fhi-diagram-controls__meta-btn--push-end': showFullScreenButton }"
-          (click)="onMetadataButtonClick()"
-        >
-          <i class="icon-info-circle"></i>
-          <span class="btn__text">Om dataene</span>
-        </button>
-
-        <button *ngIf="true" class="btn fhi-btn-icon fhi-btn-icon--circular" (click)="onMetadataButtonClick()">
-          <i class="icon-download"></i>
-        </button>
-
-        <ng-container *ngIf="showFullScreenButton && !controlsInModal">
-          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
-        </ng-container>
-      </div>
-    </div>
-  </div> -->
 </ng-template>
 
 <ng-template #diagramModal>
