@@ -40,7 +40,7 @@
 
 <ng-template #diagramControls let-controlsInModal="controlsInModal">
   <div class="d-flex flex-wrap fhi-diagram-controls">
-    <div class="fhi-diagram-controls__start" *ngIf="true">
+    <div class="fhi-diagram-controls__start" *ngIf="showDiagramTypeNav">
       <fhi-diagram-type-nav-default
         [diagramTypeGroups]="diagramTypeGroups"
         (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
@@ -48,7 +48,11 @@
     </div>
 
     <div class="fhi-diagram-controls__end">
-      <button class="btn fhi-btn-icon fhi-diagram-controls__metadata" *ngIf="true" (click)="onMetadataButtonClick()">
+      <button
+        class="btn fhi-btn-icon fhi-diagram-controls__metadata"
+        *ngIf="showMetadataButton"
+        (click)="onMetadataButtonClick()"
+      >
         <i class="icon-info-circle"></i>
         <span class="btn__text">Om dataene</span>
       </button>
@@ -58,7 +62,7 @@
           <i class="icon-download"></i>
         </button>
 
-        <ng-container *ngIf="true && !controlsInModal">
+        <ng-container *ngIf="showFullScreenButton && !controlsInModal">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
