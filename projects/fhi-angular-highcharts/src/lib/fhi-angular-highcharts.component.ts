@@ -117,10 +117,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.chartInstance = chartInstance;
   }
 
-  onDownloadButtonClick() {
-    // MIMEtype: ExportingMimeTypeValue
-    const MIMEtype = 'image/svg+xml';
-    this.downloadService.downloadImage(this.chartInstance, MIMEtype, this.diagramOptions.title);
+  onControlsPopoverMenuAction(actionName: string) {
+    if (actionName === 'downloadSvg') {
+      this.downloadService.downloadImage(
+        this.chartInstance,
+        'image/svg+xml',
+        this.diagramOptions.title,
+      );
+    }
   }
 
   onDiagramTypeNavigation(diagramType: DiagramType) {

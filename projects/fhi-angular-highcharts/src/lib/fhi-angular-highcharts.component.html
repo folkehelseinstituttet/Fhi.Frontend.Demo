@@ -39,37 +39,34 @@
 </ng-template>
 
 <ng-template #diagramControls let-controlsInModal="controlsInModal">
-  <div class="d-flex flex-wrap fhi-diagram-controls">
-    <div class="fhi-diagram-controls__start" *ngIf="showDiagramTypeNav">
-      <fhi-diagram-type-nav-default
-        [diagramTypeGroups]="diagramTypeGroups"
-        (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-      ></fhi-diagram-type-nav-default>
-    </div>
-
-    <div class="fhi-diagram-controls__end">
-      <button
-        class="btn fhi-btn-icon fhi-diagram-controls__metadata"
-        *ngIf="showMetadataButton"
-        (click)="onMetadataButtonClick()"
-      >
-        <i class="icon-info-circle"></i>
-        <span class="btn__text">Om dataene</span>
-      </button>
-
-      <div class="fhi-diagram-controls__max-4-circular-buttons">
+  <div class="d-flex fhi-diagram-controls">
+    <div class="d-flex flex-wrap me-3">
+      <div class="fhi-diagram-controls__navigation">
+        <fhi-diagram-type-nav-default
+          [diagramTypeGroups]="diagramTypeGroups"
+          (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+        ></fhi-diagram-type-nav-default>
+      </div>
+      <div class="mb-3">
         <button
-          class="btn fhi-btn-icon fhi-btn-icon--circular"
-          *ngIf="showDownloadButton"
-          (click)="onDownloadButtonClick()"
+          class="btn fhi-btn-icon fhi-diagram-controls__metadata"
+          *ngIf="showMetadataButton && !controlsInModal"
+          (click)="onMetadataButtonClick()"
         >
-          <i class="icon-download"></i>
+          <i class="icon-info-circle"></i>
+          <span class="btn__text">Om dataene</span>
         </button>
-
         <ng-container *ngIf="showFullScreenButton && !controlsInModal">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
+    </div>
+    <div class="ms-auto">
+      <fhi-popover-menu
+        *ngIf="showDownloadButton && !controlsInModal"
+        [items]="[{ name: 'Last ned SVG', action: 'downloadSvg', icon: 'download' }]"
+        (actionEvent)="onControlsPopoverMenuAction($event)"
+      ></fhi-popover-menu>
     </div>
   </div>
 </ng-template>

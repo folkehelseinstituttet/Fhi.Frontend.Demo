@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { FhiModalComponent } from '@folkehelseinstituttet/angular-components';
+import {
+  FhiModalComponent,
+  FhiPopoverMenuComponent,
+} from '@folkehelseinstituttet/angular-components';
 
 import { DownloadService } from './services/download.service';
 import { OptionsService } from './services/options.service';
@@ -23,6 +26,7 @@ import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-d
     HighchartsChartModule,
     NgbPopoverModule,
     FhiModalComponent,
+    FhiPopoverMenuComponent,
     FhiDiagramTypeNavDefaultComponent,
   ],
   exports: [FhiAngularHighchartsComponent],

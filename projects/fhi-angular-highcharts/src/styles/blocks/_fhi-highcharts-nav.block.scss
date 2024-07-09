@@ -1,31 +1,17 @@
 .fhi-diagram-controls {
     container-name: diagramControls;
     container-type: inline-size;
-    flex-grow: 1;
     position: relative;
     z-index: 1;
 
-    &__start {
-        margin-bottom: $fhi-core-space-3;
+    &__navigation,
+    &__metadata {
         margin-right: $fhi-core-space-3;
-    }
-
-    &__end {
-        .fhi-btn-icon {
-            margin-bottom: $fhi-core-space-3;
-        }
-
-        .fhi-btn-icon:not(:last-child) {
-            margin-right: $fhi-core-space-3;
-        }
-
-        .fhi-btn-icon.fhi-diagram-controls__end-start {
-            margin-right: 0;
-        }
+        margin-bottom: $fhi-core-space-3;
     }
 }
 
-@container diagramControls (max-width: #{$fhi-core-px * 399}) {
+@container diagramControls (max-width: #{$fhi-core-px * 449}) {
     .fhi-btn-group {
         flex-direction: column;
         align-items: flex-start;
@@ -45,25 +31,10 @@
     }
 }
 
-@container diagramControls (min-width: #{$fhi-core-px * 400}) {
+@container diagramControls (min-width: #{$fhi-core-px * 288}) {
     .fhi-diagram-controls {
-        &__end {
-            .fhi-btn-icon.fhi-diagram-controls__end-start {
-                margin-right: $fhi-core-space-3;
-            }
-        }
-
-        &__metadata,
-        &__max-4-circular-buttons {
-            display: inline;
-        }
-    }
-}
-
-@container diagramControls (min-width: #{$fhi-core-px * 730}) {
-    .fhi-diagram-controls {
-        &__end {
-            margin-left: auto;
+        &__metadata {
+            margin-bottom: 0;
         }
     }
 }
