@@ -44,8 +44,7 @@
       <fhi-diagram-type-nav-default
         [diagramTypeGroups]="diagramTypeGroups"
         (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-      >
-      </fhi-diagram-type-nav-default>
+      ></fhi-diagram-type-nav-default>
     </div>
 
     <div class="fhi-diagram-controls__end">
@@ -86,14 +85,22 @@
 
 <ng-template #chart>
   <div class="fhi-highcharts-chart">
-    <highcharts-chart [Highcharts]="highcharts" [options]="highchartsOptions"></highcharts-chart>
+    <highcharts-chart
+      [Highcharts]="highcharts"
+      [options]="highchartsOptions"
+      (chartInstance)="onChartInstance($event)"
+    ></highcharts-chart>
   </div>
 </ng-template>
 
 <ng-template #map>
   <div class="fhi-highcharts-map">
-    <highcharts-chart [Highcharts]="highmaps" [constructorType]="'mapChart'" [options]="highchartsOptions">
-    </highcharts-chart>
+    <highcharts-chart
+      [Highcharts]="highmaps"
+      [constructorType]="'mapChart'"
+      [options]="highchartsOptions"
+      (chartInstance)="onChartInstance($event)"
+    ></highcharts-chart>
   </div>
 </ng-template>
 

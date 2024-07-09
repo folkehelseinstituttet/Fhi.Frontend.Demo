@@ -6,6 +6,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { FhiModalComponent } from '@folkehelseinstituttet/angular-components';
 
+import { DownloadService } from './services/download.service';
 import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeGroupService } from './services/diagram-type-group.service';
@@ -25,6 +26,12 @@ import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-d
     FhiDiagramTypeNavDefaultComponent,
   ],
   exports: [FhiAngularHighchartsComponent],
-  providers: [TopoJsonService, DiagramTypeGroupService, OptionsService, TableService],
+  providers: [
+    TopoJsonService,
+    DiagramTypeGroupService,
+    DownloadService,
+    OptionsService,
+    TableService,
+  ],
 })
 export class FhiAngularHighchartsModule {}

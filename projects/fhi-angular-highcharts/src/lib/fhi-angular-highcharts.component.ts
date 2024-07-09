@@ -11,8 +11,10 @@ import {
 import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import * as Highmaps from 'highcharts/highmaps';
-import { Options } from 'highcharts';
+import { Chart, Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
+import HighchartsExporting from 'highcharts/modules/exporting';
+import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 
 import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
@@ -36,6 +38,7 @@ import { TableData } from './models/table-data.model';
 import { DiagramTypeGroup } from './models/diagram-type-group.model';
 import { MetadataForSerie } from './models/metadata-for-serie.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
+import { DownloadService } from './services/download.service';
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -44,6 +47,7 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
+  private chartInstance!: Chart;
 
   @Input() diagramOptions!: FhiDiagramOptions;
 
@@ -72,6 +76,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
+    private downloadService: DownloadService,
     private optionsService: OptionsService,
     private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
@@ -79,6 +84,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
+    HighchartsExporting(Highcharts);
+    HighchartsOfflineExporting(Highcharts);
     this.highcharts.setOptions({
       lang: {
         decimalPoint: ',',
@@ -105,13 +112,18 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     }
   }
 
-  onDiagramTypeNavigation(diagramType: DiagramType) {
-    this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
+  onChartInstance(chartInstance: Chart) {
+    this.chartInstance = chartInstance;
   }
 
   onDownloadButtonClick() {
-    console.log('onDownloadButtonClick');
-    // this.metadataButtonClick.emit();
+    // MIMEtype: ExportingMimeTypeValue
+    const MIMEtype = 'image/svg+xml';
+    this.downloadService.downloadImage(this.chartInstance, MIMEtype, this.diagramOptions.title);
+  }
+
+  onDiagramTypeNavigation(diagramType: DiagramType) {
+    this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
   onMetadataButtonClick() {
