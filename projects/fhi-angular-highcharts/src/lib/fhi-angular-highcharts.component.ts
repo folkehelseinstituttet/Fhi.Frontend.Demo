@@ -109,6 +109,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.diagramTypeNavigation.emit(diagramType.id as FhiDiagramTypeIds);
   }
 
+  onDownloadButtonClick() {
+    console.log('onDownloadButtonClick');
+    // this.metadataButtonClick.emit();
+  }
+
   onMetadataButtonClick() {
     this.metadataButtonClick.emit();
   }
