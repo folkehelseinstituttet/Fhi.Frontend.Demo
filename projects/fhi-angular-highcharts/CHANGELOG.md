@@ -1,4 +1,10 @@
-# 4.1.0
+# Unreleased
+
+> Jun 27, 2024
+
+* :tada: **Enhancement** Add support for SVG export
+
+## 4.1.0
 
 > Jun 27, 2024
 
