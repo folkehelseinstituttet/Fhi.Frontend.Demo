@@ -1,7 +1,7 @@
 <article *ngIf="diagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
 
-  @if (true) {
+  @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
     <ng-container *ngTemplateOutlet="diagramControls"></ng-container>
   }
   @if (showDiagramTypeDisabledWarning) {
@@ -41,7 +41,7 @@
 <ng-template #diagramControls let-controlsInModal="controlsInModal">
   <div class="d-flex fhi-diagram-controls">
     <div class="d-flex flex-wrap me-3">
-      <div class="fhi-diagram-controls__navigation">
+      <div class="fhi-diagram-controls__navigation" *ngIf="showDiagramTypeNav">
         <fhi-diagram-type-nav-default
           [diagramTypeGroups]="diagramTypeGroups"
           (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
