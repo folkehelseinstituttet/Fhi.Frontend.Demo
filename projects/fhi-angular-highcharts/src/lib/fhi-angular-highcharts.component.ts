@@ -368,13 +368,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private canShowDownloadButton(): boolean {
-    if (
+    return (
       !!this.diagramOptions.controls?.downloadButton?.show &&
       this.diagramOptions.activeDiagramType !== 'table'
-    ) {
-      return true;
-    }
-    return false;
+    );
   }
 
   private canShowFooter(): boolean {
