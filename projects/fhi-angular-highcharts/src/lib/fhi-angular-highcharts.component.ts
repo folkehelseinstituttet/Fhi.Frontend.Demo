@@ -40,7 +40,9 @@ import { MetadataForSerie } from './models/metadata-for-serie.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
 import { DownloadService } from './services/download.service';
 
-type ControlsPopoverMenuActions = 'downloadSvg';
+enum ControlsPopoverMenuActions {
+  downloadSvg = 'downloadSvg',
+}
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -119,8 +121,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.chartInstance = chartInstance;
   }
 
-  onControlsPopoverMenuAction(actionName: ControlsPopoverMenuActions) {
-    if (actionName === 'downloadSvg') {
+  onControlsPopoverMenuAction(actionName: string) {
+    if (actionName === ControlsPopoverMenuActions.downloadSvg) {
       this.downloadService.downloadImage(
         this.chartInstance,
         'image/svg+xml',
