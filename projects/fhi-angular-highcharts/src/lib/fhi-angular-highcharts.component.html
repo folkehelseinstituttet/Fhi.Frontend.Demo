@@ -1,24 +1,9 @@
 <article *ngIf="diagramOptions !== undefined">
   <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
 
-  <div class="fhi-highcharts-nav">
-    <div class="d-flex flex-wrap">
-      <ng-container *ngIf="showDiagramTypeNav">
-        <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
-      </ng-container>
-
-      <div class="fhi-highcharts-nav__standalone-btns">
-        <ng-container *ngIf="showMetadataButton">
-          <ng-container *ngTemplateOutlet="metadataLink"></ng-container>
-        </ng-container>
-
-        <ng-container *ngIf="showFullScreenButton">
-          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
-        </ng-container>
-      </div>
-    </div>
-  </div>
-
+  @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
+    <ng-container *ngTemplateOutlet="diagramControls"></ng-container>
+  }
   @if (showDiagramTypeDisabledWarning) {
     <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning"></ng-container>
   } @else if (showDuplicateSerieNameError) {
@@ -53,30 +38,42 @@
   </ng-container>
 </ng-template>
 
-<ng-template #diagramTypeNav>
-  <div
-    class="mb-3"
-    [ngClass]="{
-      'me-auto': showMetadataButton || showFullScreenButton
-    }"
-  >
-    <div
-      [ngClass]="{
-        'me-3': showMetadataButton || showFullScreenButton
-      }"
-    >
-      <fhi-diagram-type-nav-default
-        [diagramTypeGroups]="diagramTypeGroups"
-        (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
-      >
-      </fhi-diagram-type-nav-default>
+<ng-template #diagramControls let-controlsInModal="controlsInModal">
+  <div class="d-flex fhi-diagram-controls">
+    <div class="d-flex flex-wrap me-3">
+      <div class="fhi-diagram-controls__navigation" *ngIf="showDiagramTypeNav">
+        <fhi-diagram-type-nav-default
+          [diagramTypeGroups]="diagramTypeGroups"
+          (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
+        ></fhi-diagram-type-nav-default>
+      </div>
+      <div class="mb-3">
+        <button
+          class="btn fhi-btn-icon fhi-diagram-controls__metadata"
+          *ngIf="showMetadataButton && !controlsInModal"
+          (click)="onMetadataButtonClick()"
+        >
+          <i class="icon-info-circle"></i>
+          <span class="btn__text">Om dataene</span>
+        </button>
+        <ng-container *ngIf="showFullScreenButton && !controlsInModal">
+          <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="ms-auto">
+      <fhi-popover-menu
+        *ngIf="showDownloadButton && !controlsInModal"
+        [items]="[{ name: 'Last ned SVG', action: 'downloadSvg', icon: 'download' }]"
+        (actionEvent)="onControlsPopoverMenuAction($event)"
+      ></fhi-popover-menu>
     </div>
   </div>
 </ng-template>
 
 <ng-template #diagramModal>
   <fhi-modal
-    [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular mb-3'"
+    [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
     [modalTitle]="diagramOptions.title"
     [size]="'fullscreen'"
   >
@@ -85,35 +82,30 @@
       <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
-      <ng-container *ngTemplateOutlet="diagramTypeNav"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramControls; context: { controlsInModal: true }"></ng-container>
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
   </fhi-modal>
 </ng-template>
 
-<ng-template #metadataLink>
-  <button
-    class="btn fhi-btn-icon fhi-highcharts-nav__meta-btn mb-3"
-    [ngClass]="{
-      'fhi-highcharts-nav__meta-btn--push-end': showFullScreenButton
-    }"
-    (click)="onMetadataButtonClick()"
-  >
-    <i class="icon-info-circle"></i>
-    <span class="btn__text">Om dataene</span>
-  </button>
-</ng-template>
-
 <ng-template #chart>
   <div class="fhi-highcharts-chart">
-    <highcharts-chart [Highcharts]="highcharts" [options]="highchartsOptions"></highcharts-chart>
+    <highcharts-chart
+      [Highcharts]="highcharts"
+      [options]="highchartsOptions"
+      (chartInstance)="onChartInstance($event)"
+    ></highcharts-chart>
   </div>
 </ng-template>
 
 <ng-template #map>
   <div class="fhi-highcharts-map">
-    <highcharts-chart [Highcharts]="highmaps" [constructorType]="'mapChart'" [options]="highchartsOptions">
-    </highcharts-chart>
+    <highcharts-chart
+      [Highcharts]="highmaps"
+      [constructorType]="'mapChart'"
+      [options]="highchartsOptions"
+      (chartInstance)="onChartInstance($event)"
+    ></highcharts-chart>
   </div>
 </ng-template>
 

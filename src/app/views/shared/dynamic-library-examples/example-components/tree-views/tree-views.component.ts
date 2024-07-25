@@ -6,7 +6,7 @@ import {
   FhiTreeViewSelectionItem,
 } from '@folkehelseinstituttet/angular-components';
 
-import { alleAtcKoderSomItems } from './alle_atckoder_som_items';
+// import { alleAtcKoderSomItems } from './alle_atckoder_som_items'; // use this for stress testing fhi-tree-view-checkbox or fhi-tree-view-radio with large dataset
 
 @Component({
   selector: 'app-tree-views',
@@ -17,18 +17,16 @@ export class TreeViewsComponent implements OnInit {
   @Input() items!: LibraryItemsShared;
 
   treeNavItems: FhiTreeViewNavigationItem[];
-
   itemsCheck!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
-
   checkAll: boolean = true;
   hasRadioButtons: boolean = true;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.itemsCheck = this.getTreeviewCheckboxItems();
-    this.itemsRadio = this.getTreeViewRadioItems();
+    this.itemsCheck = this.getTreeViewSelectionItems();
+    this.itemsRadio = this.getTreeViewSelectionItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
     this.changeDetector.detectChanges();
   }
@@ -84,11 +82,7 @@ export class TreeViewsComponent implements OnInit {
     ];
   }
 
-  private getTreeviewCheckboxItems(): FhiTreeViewSelectionItem[] {
-    return alleAtcKoderSomItems;
-  }
-
-  private getTreeViewRadioItems(): FhiTreeViewSelectionItem[] {
+  private getTreeViewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [
       {
         name: 'For utviklere',
