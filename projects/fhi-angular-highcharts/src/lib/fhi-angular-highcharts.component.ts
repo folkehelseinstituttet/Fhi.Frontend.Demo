@@ -65,6 +65,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   activeDiagramTypeGroup!: DiagramTypeGroup;
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
+
+  diagramTypeDisabledWarningMsg!: string;
   flaggedSeries: FlaggedSerie[];
   metadataForSeries: MetadataForSerie[];
   tableData: TableData;
@@ -101,20 +103,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    try {
-      this.resetDiagramState();
-      this.diagramOptions.series.forEach((serie) => {
-        serie.name = this.formatSerieName(serie.name);
-        this.findDuplicateSerieNames(serie.name);
-        this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-        this.updateMetadataForSeries(serie);
-      });
-      this.updateDiagramTypeGroups();
-      this.updateDiagramOptions();
-      this.updateDiagramState();
-    } catch (error) {
-      console.error(this.getErrorMsg(error));
-    }
+    this.resetDiagramState();
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+      this.findDuplicateSerieNames(serie.name);
+      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+      this.updateMetadataForSeries(serie);
+    });
+    this.updateDiagramTypeGroups();
+    this.updateDiagramOptions();
+    this.updateDiagramState();
+    // try {
+    // } catch (error) {
+    //   console.error(this.getErrorMsg(error));
+    // }
   }
 
   onChartInstance(chartInstance: Chart) {
@@ -295,7 +297,17 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups,
       this.diagramOptions.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
+
+    if (diagramTypeIsDisabled) {
+      this.diagramTypeDisabledWarningMsg =
+        this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
+          this.diagramOptions.activeDiagramType,
+        );
+      this.showDiagramTypeDisabledWarning = true;
+    } else {
+      this.showDiagramTypeDisabledWarning = false;
+    }
+
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;

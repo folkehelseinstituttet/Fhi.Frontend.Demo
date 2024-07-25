@@ -8,7 +8,7 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
-import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
+import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DiagramTypeGroupService {
@@ -16,6 +16,24 @@ export class DiagramTypeGroupService {
   private flaggedSeries!: FlaggedSerie[];
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
+  private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]: string } = {
+    bar: '',
+    barStacked: '',
+    column: '',
+    columnAndLine: '',
+    columnStacked: '',
+    line: '',
+    map: '',
+    mapFylker: '',
+    mapFylker2019: '',
+    mapFylker2023: '',
+    pie: '',
+    table: '',
+  };
+
+  getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
+    return this.diagramTypeDisabledWarnings[activeDiagramType];
+  }
 
   getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
     let activeGroup: DiagramTypeGroup;
@@ -175,38 +193,85 @@ export class DiagramTypeGroupService {
   }
 
   private disableBar(): boolean {
-    return this.series.length > 1 && this.flaggedSeries?.length !== 0;
+    if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
+      this.diagramTypeDisabledWarnings.bar = 'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    }
+    return false;
   }
 
   private disableBarStacked(): boolean {
-    return this.disableBar();
+    if (this.disableBar()) {
+      this.diagramTypeDisabledWarnings.barStacked =
+        'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    }
+    return false;
   }
 
   private disableColumn(): boolean {
-    return this.disableBar();
+    if (this.disableBar()) {
+      this.diagramTypeDisabledWarnings.column = 'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    }
+    return false;
   }
 
   private disableColumnAndLine(): boolean {
-    return this.disableBar() || this.diagramOptions.units?.length !== 2;
+    if (this.disableBar()) {
+      this.diagramTypeDisabledWarnings.columnAndLine =
+        'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    } else if (this.diagramOptions.units?.length !== 2) {
+      this.diagramTypeDisabledWarnings.columnAndLine = 'diagramOptions.units?.length !== 2';
+      return true;
+    }
+    return false;
   }
 
   private disableColumnStacked(): boolean {
-    return this.disableBar();
+    if (this.disableBar()) {
+      this.diagramTypeDisabledWarnings.columnStacked =
+        'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    }
+    return false;
   }
 
   private disableLine(): boolean {
-    return (
-      this.getNumberOfDataPointsPrSerie() === 1 ||
-      (this.series.length > 1 && this.flaggedSeries?.length !== 0)
-    );
+    if (this.getNumberOfDataPointsPrSerie() === 1) {
+      this.diagramTypeDisabledWarnings.line = 'numberOfDataPointsPrSerie() === 1';
+      return true;
+    } else if (this.disableBar()) {
+      this.diagramTypeDisabledWarnings.line = 'series.length > 1 && flaggedSeries?.length !== 0';
+      return true;
+    }
+    return false;
   }
 
   private disableMap(): boolean {
-    return this.series.length > 1 || (this.series.length === 1 && this.isNotGeo(this.series[0]));
+    if (this.series.length > 1) {
+      this.diagramTypeDisabledWarnings.mapFylker =
+        this.diagramTypeDisabledWarnings.mapFylker2019 =
+        this.diagramTypeDisabledWarnings.mapFylker2023 =
+          'series.length > 1';
+      return true;
+    } else if (this.series.length === 1 && this.isNotGeo(this.series[0])) {
+      this.diagramTypeDisabledWarnings.mapFylker =
+        this.diagramTypeDisabledWarnings.mapFylker2019 =
+        this.diagramTypeDisabledWarnings.mapFylker2023 =
+          'series.length === 1 && isNotGeo(this.series[0])';
+      return true;
+    }
+    return false;
   }
 
   private disablePie(): boolean {
-    return this.series.length > 1;
+    if (this.series.length > 1) {
+      this.diagramTypeDisabledWarnings.pie = 'this.series.length > 1';
+      return true;
+    }
+    return false;
   }
 
   private getNumberOfDataPointsPrSerie(): number {
