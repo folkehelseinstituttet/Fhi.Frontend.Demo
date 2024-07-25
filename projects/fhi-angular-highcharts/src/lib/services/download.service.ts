@@ -5,8 +5,8 @@ import { Chart, ExportingMimeTypeValue, ExportingOptions } from 'highcharts';
 @Injectable()
 export class DownloadService {
   downloadImage(chartInstance: Chart, MIMEtype: ExportingMimeTypeValue, title: string) {
-    if (chartInstance === null) {
-      console.warn('chartInstance is null, can not download chart.');
+    if (!chartInstance) {
+      console.warn(`No "chartInstance", can't download chart.`);
       return;
     }
     const exportingOptions: ExportingOptions = {
