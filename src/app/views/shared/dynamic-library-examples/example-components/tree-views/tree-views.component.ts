@@ -22,10 +22,18 @@ export class TreeViewsComponent implements OnInit {
   checkAll: boolean = true;
   hasRadioButtons: boolean = true;
 
+  itemsCheck1!: FhiTreeViewSelectionItem[];
+  itemsCheck2!: FhiTreeViewSelectionItem[];
+  itemsCheck3!: FhiTreeViewSelectionItem[];
+
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.itemsCheck = this.getTreeViewSelectionItems();
+    // this.itemsCheck = this.getTreeViewSelectionItems();
+    this.itemsCheck1 = this.getTreeViewSelectionItems_TEST(1);
+    this.itemsCheck2 = this.getTreeViewSelectionItems_TEST(1);
+    this.itemsCheck3 = this.getTreeViewSelectionItems_TEST(1);
+
     this.itemsRadio = this.getTreeViewSelectionItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
     this.changeDetector.detectChanges();
@@ -82,6 +90,57 @@ export class TreeViewsComponent implements OnInit {
     ];
   }
 
+  private getTreeViewSelectionItems_TEST(instance?: number): FhiTreeViewSelectionItem[] {
+    return [
+      {
+        name: 'For utviklere',
+        id: 10 * instance + 1,
+        children: [
+          {
+            name: 'Visuell identitet',
+            id: 10 * instance + 2,
+          },
+          {
+            name: 'Komponenter',
+            id: 10 * instance + 3,
+            children: [
+              {
+                name: 'Accordions',
+                id: 10 * instance + 4,
+              },
+              {
+                name: 'Advanced select',
+                id: 10 * instance + 5,
+              },
+              {
+                name: 'Alerts',
+                id: 10 * instance + 6,
+              },
+            ],
+          },
+          {
+            name: 'Layout og sidemaler',
+            id: 10 * instance + 7,
+          },
+        ],
+      },
+      {
+        name: 'For designere',
+        id: 10 * instance + 8,
+      },
+      {
+        name: 'Github',
+        id: 10 * instance + 9,
+        children: [
+          {
+            name: 'Fhi.Frontend.Style',
+            id: 10 * instance + 10,
+          },
+        ],
+      },
+    ];
+  }
+
   private getTreeViewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [
       {
@@ -106,18 +165,6 @@ export class TreeViewsComponent implements OnInit {
           },
           {
             name: 'Layout og sidemaler',
-          },
-        ],
-      },
-      {
-        name: 'For designere',
-        id: 'for-designere',
-      },
-      {
-        name: 'Github',
-        children: [
-          {
-            name: 'Fhi.Frontend.Style',
           },
         ],
       },
