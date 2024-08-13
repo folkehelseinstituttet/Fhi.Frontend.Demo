@@ -22,10 +22,6 @@ export class TreeViewsComponent implements OnInit {
   checkAll: boolean = true;
   hasRadioButtons: boolean = true;
 
-  itemsCheck1!: FhiTreeViewSelectionItem[];
-  itemsCheck2!: FhiTreeViewSelectionItem[];
-  itemsCheck3!: FhiTreeViewSelectionItem[];
-
   constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
