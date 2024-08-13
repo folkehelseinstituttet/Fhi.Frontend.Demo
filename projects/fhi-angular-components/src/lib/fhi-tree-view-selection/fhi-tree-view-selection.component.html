@@ -32,7 +32,6 @@
     class="fhi-tree-view-checkbox__list"
     role="tree"
     [attr.id]="listID !== null ? 'list-' + listID : null"
-    [attr.aria-labelledby]="listID !== null ? 'search-input-label-' + listID : null"
     aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !searchMode">
