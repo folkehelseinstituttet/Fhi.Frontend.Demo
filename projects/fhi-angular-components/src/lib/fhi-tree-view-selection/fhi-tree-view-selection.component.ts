@@ -6,6 +6,7 @@ import {
   OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,11 +37,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   filterString = '';
   minimumFilterLength: number = 3;
   searchMode: boolean = false;
-  instanceID: number;
-
-  constructor() {
-    this.instanceID = Math.floor(Math.random() * Math.pow(10, 8));
-  }
+  instanceID = Math.floor(Math.random() * Math.pow(10, 8));
 
   ngOnInit() {
     if (this.enableCheckAll) {
@@ -49,8 +46,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.filteredItems = [...this.items];
   }
 
-  ngOnChanges() {
-    if (this.items !== undefined) {
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
@@ -214,18 +211,16 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[]) {
+  private createIds(items: Item[], id?: number) {
+    let itemID = id ? id : 0;
     items.forEach((item) => {
       if (item.id === undefined) {
-        item.id = this.getRandomID();
+        itemID++;
+        item.id = this.instanceID + '-' + itemID;
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children);
+        this.createIds(item.children, itemID * 10);
       }
     });
-  }
-
-  private getRandomID(): number {
-    return Math.floor(Math.random() * Math.pow(10, 8));
   }
 }

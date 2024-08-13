@@ -116,7 +116,7 @@
       class="form-check-label"
       [for]="'check-input-' + item.id"
       [id]="'label-' + item.id"
-      [innerHTML]="item.name"
+      [innerHTML]="item.name + ' ID: ' + item.id + ' instanceID: ' + instanceID"
     ></label>
   </div>
 </ng-template>

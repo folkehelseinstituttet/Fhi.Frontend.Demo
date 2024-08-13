@@ -18,6 +18,7 @@ export class TreeViewsComponent implements OnInit {
 
   treeNavItems: FhiTreeViewNavigationItem[];
   itemsCheck!: FhiTreeViewSelectionItem[];
+  itemsCheck2!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
   checkAll: boolean = true;
   hasRadioButtons: boolean = true;
@@ -26,6 +27,7 @@ export class TreeViewsComponent implements OnInit {
 
   ngOnInit() {
     this.itemsCheck = this.getTreeViewSelectionItems();
+    this.itemsCheck2 = this.getTreeViewSelectionItems();
     this.itemsRadio = this.getTreeViewSelectionItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
     this.changeDetector.detectChanges();
