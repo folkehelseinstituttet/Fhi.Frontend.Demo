@@ -39,7 +39,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   uniqueFilterId: string;
 
   constructor() {
-    this.uniqueFilterId = this.generateUniqueFilterId();
+    this.uniqueFilterId = 'search-filter-' + this.getRandomID();
   }
 
   ngOnInit() {
@@ -141,10 +141,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     };
 
     return filterItems(treeData);
-  }
-
-  private generateUniqueFilterId(): string {
-    return 'search-filter-' + Math.random().toString(36).substring(2, 11);
   }
 
   private updateCheckedState(
