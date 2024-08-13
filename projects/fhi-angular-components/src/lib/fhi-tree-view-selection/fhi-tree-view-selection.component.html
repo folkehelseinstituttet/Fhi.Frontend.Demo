@@ -1,17 +1,19 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
   <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
-    <label [for]="filterID" class="form-label" [id]="'label-' + filterID">{{ filterLabel }}</label>
+    <label [for]="'search-input-' + instanceID" class="form-label" [id]="'search-input-label-' + instanceID">
+      {{ filterLabel }}
+    </label>
     <div class="d-flex">
       <div class="w-100 position-relative">
         <input
-          [id]="filterID"
+          [id]="'search-input-' + instanceID"
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
           (keydown.enter)="onFilterKeydownEnter()"
           (ngModelChange)="onFilterNgModelChange($event)"
           [(ngModel)]="filterString"
-          [attr.aria-controls]="'list-' + filterID"
+          [attr.aria-controls]="'list-' + instanceID"
         />
       </div>
       <button class="btn fhi-search__btn" (click)="onFilterButtonClick()">
@@ -21,16 +23,16 @@
     </div>
   </div>
   <ng-container
-    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: enableFilter ? filterID : null }"
+    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, listID: enableFilter ? instanceID : null }"
   ></ng-container>
 </div>
 
-<ng-template #checkboxItems let-items="items" let-itemId="itemId">
+<ng-template #checkboxItems let-items="items" let-listID="listID">
   <ul
     class="fhi-tree-view-checkbox__list"
     role="tree"
-    [attr.id]="itemId !== null ? 'list-' + itemId : null"
-    [attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null"
+    [attr.id]="listID !== null ? 'list-' + listID : null"
+    [attr.aria-labelledby]="listID !== null ? 'search-input-label-' + listID : null"
     aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !searchMode">
@@ -52,7 +54,7 @@
       <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && searchMode)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
-            *ngTemplateOutlet="checkboxItems; context: { items: item.children, itemId: item.id }"
+            *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.id }"
           ></ng-container>
         </div>
       </ng-container>
