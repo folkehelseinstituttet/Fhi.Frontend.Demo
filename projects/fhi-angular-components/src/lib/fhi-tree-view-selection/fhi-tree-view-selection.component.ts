@@ -36,10 +36,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   filterString = '';
   minimumFilterLength: number = 3;
   searchMode: boolean = false;
-  uniqueFilterId: string;
+  filterID: string;
 
   constructor() {
-    this.uniqueFilterId = 'search-filter-' + this.getRandomID();
+    this.filterID = 'search-filter-' + this.getRandomID();
   }
 
   ngOnInit() {
