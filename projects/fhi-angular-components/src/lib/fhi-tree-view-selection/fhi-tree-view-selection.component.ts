@@ -51,7 +51,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (this.items !== undefined) {
-      this.createIds(this.items, 1);
+      this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
   }
@@ -218,14 +218,18 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[], id: number) {
+  private createIds(items: Item[]) {
     items.forEach((item) => {
       if (item.id === undefined) {
-        item.id = id++;
+        item.id = this.getRandomID();
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, (id - 1) * 10 + 1);
+        this.createIds(item.children);
       }
     });
+  }
+
+  private getRandomID(): number {
+    return Math.floor(Math.random() * Math.pow(10, 8));
   }
 }

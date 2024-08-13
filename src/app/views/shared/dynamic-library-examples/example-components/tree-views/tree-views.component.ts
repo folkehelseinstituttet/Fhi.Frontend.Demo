@@ -94,11 +94,11 @@ export class TreeViewsComponent implements OnInit {
     return [
       {
         name: 'For utviklere',
-        id: 10 * instance + 1,
+        // id: 10 * instance + 1,
         children: [
           {
             name: 'Visuell identitet',
-            id: 10 * instance + 2,
+            // id: 10 * instance + 2,
           },
           {
             name: 'Komponenter',
@@ -106,7 +106,7 @@ export class TreeViewsComponent implements OnInit {
             children: [
               {
                 name: 'Accordions',
-                id: 10 * instance + 4,
+                // id: 10 * instance + 4,
               },
               {
                 name: 'Advanced select',
