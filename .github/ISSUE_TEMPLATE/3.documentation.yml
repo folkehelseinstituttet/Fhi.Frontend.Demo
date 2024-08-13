@@ -1,0 +1,43 @@
+name: 📖 Documentation
+description: Report a problem with the documentation
+labels: ['status: unconfirmed', 'documentation']
+projects: ['folkehelseinstituttet/12']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thanks for taking the time to report a problem with the documentation!
+
+        > [!TIP]
+        > We accept content written in norwegian if that is your preferred language.
+        > _Vi aksepterer innhold skrevet på norsk hvis det er ditt foretrukne språk._
+
+  - type: input
+    id: link
+    attributes:
+      label: URL to the relevant documentation page
+      placeholder: https://...
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe what you were looking for, and what you found problematic or missing in the documentation?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Proposed improvement
+      description: Your proposed improvement of the spesific part of the documentation that you described above
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+
+  # - type: markdown
+  #   attributes:
+  #     value: |
+  #       By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/FHIDev/...)
