@@ -37,7 +37,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   filterString = '';
   minimumFilterLength: number = 3;
   searchMode: boolean = false;
-  instanceID = Math.floor(Math.random() * Math.pow(10, 8));
+  instanceID = crypto.randomUUID();
 
   ngOnInit() {
     if (this.enableCheckAll) {
