@@ -6,6 +6,7 @@ import {
   OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -36,11 +37,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   filterString = '';
   minimumFilterLength: number = 3;
   searchMode: boolean = false;
-  uniqueFilterId: string;
-
-  constructor() {
-    this.uniqueFilterId = this.generateUniqueFilterId();
-  }
+  instanceID = crypto.randomUUID();
 
   ngOnInit() {
     if (this.enableCheckAll) {
@@ -49,9 +46,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.filteredItems = [...this.items];
   }
 
-  ngOnChanges() {
-    if (this.items !== undefined) {
-      this.createIds(this.items, 1);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'].currentValue !== undefined) {
+      this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
   }
@@ -143,10 +140,6 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return filterItems(treeData);
   }
 
-  private generateUniqueFilterId(): string {
-    return 'search-filter-' + Math.random().toString(36).substring(2, 11);
-  }
-
   private updateCheckedState(
     id: number | string,
     items: Item[],
@@ -218,13 +211,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[], id: number) {
+  private createIds(items: Item[], id?: number) {
+    let itemID = id ? id : 0;
     items.forEach((item) => {
       if (item.id === undefined) {
-        item.id = id++;
+        item.id = this.instanceID + '-' + itemID++;
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, (id - 1) * 10 + 1);
+        this.createIds(item.children, itemID * 10);
       }
     });
   }

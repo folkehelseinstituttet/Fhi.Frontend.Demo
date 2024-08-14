@@ -1,17 +1,19 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
   <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
-    <label [for]="uniqueFilterId" class="form-label" [id]="'label-' + uniqueFilterId">{{ filterLabel }}</label>
+    <label [for]="'search-input-' + instanceID" class="form-label" [id]="'search-input-label-' + instanceID">
+      {{ filterLabel }}
+    </label>
     <div class="d-flex">
       <div class="w-100 position-relative">
         <input
-          [id]="uniqueFilterId"
+          [id]="'search-input-' + instanceID"
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="Søk med minimum 3 tegn"
           (keydown.enter)="onFilterKeydownEnter()"
           (ngModelChange)="onFilterNgModelChange($event)"
           [(ngModel)]="filterString"
-          [attr.aria-controls]="'list-' + uniqueFilterId"
+          [attr.aria-controls]="'list-' + instanceID"
         />
       </div>
       <button class="btn fhi-search__btn" (click)="onFilterButtonClick()">
@@ -21,16 +23,15 @@
     </div>
   </div>
   <ng-container
-    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, itemId: enableFilter ? uniqueFilterId : null }"
+    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, listID: enableFilter ? instanceID : null }"
   ></ng-container>
 </div>
 
-<ng-template #checkboxItems let-items="items" let-itemId="itemId">
+<ng-template #checkboxItems let-items="items" let-listID="listID">
   <ul
     class="fhi-tree-view-checkbox__list"
     role="tree"
-    [attr.id]="itemId !== null ? 'list-' + itemId : null"
-    [attr.aria-labelledby]="itemId !== null ? 'label-' + itemId : null"
+    [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !searchMode">
@@ -52,7 +53,7 @@
       <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && searchMode)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
-            *ngTemplateOutlet="checkboxItems; context: { items: item.children, itemId: item.id }"
+            *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.id }"
           ></ng-container>
         </div>
       </ng-container>
@@ -83,7 +84,7 @@
   <button
     class="fhi-tree-view-checkbox__toggler"
     [attr.aria-label]="'Toggle ' + item.name"
-    [attr.aria-controls]="'list' + item.id"
+    [attr.aria-controls]="'list-' + item.id"
     [attr.aria-haspopup]="'tree'"
     [attr.aria-expanded]="item.isExpanded"
     (click)="toggleExpanded(item)"
@@ -106,14 +107,14 @@
       class="form-check-input"
       type="checkbox"
       value=""
-      [id]="'check-input' + item.id"
+      [id]="'check-input-' + item.id"
       [checked]="item.isChecked"
       (click)="toggleChecked(item.id)"
     />
     <label
       class="form-check-label"
-      [for]="'check-input' + item.id"
-      [id]="'label' + item.id"
+      [for]="'check-input-' + item.id"
+      [id]="'label-' + item.id"
       [innerHTML]="item.name"
     ></label>
   </div>
@@ -132,7 +133,7 @@
     <label
       class="form-check-label"
       [for]="name + '-' + item.id"
-      [id]="'label' + item.id"
+      [id]="'label-' + item.id"
       [innerHTML]="item.name"
     ></label>
   </div>
