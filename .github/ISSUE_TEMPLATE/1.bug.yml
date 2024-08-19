@@ -1,6 +1,6 @@
 name: 🐛 Bug report
 description: File a bug report
-labels: ['status: unconfirmed', 'bug']
+labels: ['Status: Unconfirmed', 'Bug']
 projects: ['folkehelseinstituttet/12']
 body:
   - type: markdown

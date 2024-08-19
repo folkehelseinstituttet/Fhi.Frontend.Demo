@@ -1,6 +1,6 @@
 name: 💡 Feature request
 description: Request a new feature, or improvements to existing features
-labels: ['status: unconfirmed']
+labels: ['Status: Unconfirmed']
 projects: ['folkehelseinstituttet/12']
 body:
   - type: markdown

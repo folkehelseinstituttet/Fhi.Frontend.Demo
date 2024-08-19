@@ -1,6 +1,6 @@
 name: 📖 Documentation
 description: Report a problem with the documentation
-labels: ['status: unconfirmed', 'documentation']
+labels: ['Status: Unconfirmed', 'Documentation']
 projects: ['folkehelseinstituttet/12']
 body:
   - type: markdown
