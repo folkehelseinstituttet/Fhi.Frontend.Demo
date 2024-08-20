@@ -110,10 +110,10 @@ export class OptionsService {
       [0.92, '#2a6a82'], // B2-50
       [1, '#234e5f'], // B2-40
     ];
-    if (hasNegativeData && !hasPositiveData) {
-      options.colorAxis = { ...colorAxis, stops: stopsNegative };
-    } else if (hasNegativeData && hasPositiveData) {
+    if (hasNegativeData && hasPositiveData) {
       options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
+    } else if (hasNegativeData) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegative };
     } else {
       options.colorAxis = { ...colorAxis, stops: stopsPositive };
     }
