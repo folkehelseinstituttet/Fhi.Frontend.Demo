@@ -1,6 +1,6 @@
 export const OptionsCharts = {
   chart: {
-    colorCount: 9,
+    // colorCount: 9,
   },
   legend: {
     align: 'left',
@@ -20,5 +20,9 @@ export const OptionsCharts = {
       text: null,
     },
     min: 0,
+  },
+  colorAxis: {
+    maxColor: '#32345C',
+    minColor: '#95e8ff',
   },
 };

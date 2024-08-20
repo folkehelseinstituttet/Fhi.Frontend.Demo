@@ -74,6 +74,16 @@ export class OptionsService {
   }
 
   private updateMapOptions(options: Options): Options {
+    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+    const hasPositiveData = true;
+
+    if (hasNegativeData && !hasPositiveData) {
+      options.colorAxis = { stops: options.colorAxis['stopsNegative'] };
+    } else if (hasNegativeData && hasPositiveData) {
+      options.colorAxis = { stops: options.colorAxis['stopsNegativeAndPositive'] };
+    } else {
+      options.colorAxis = { stops: options.colorAxis['stopsPositive'] };
+    }
     options.chart.map = this.diagramOptions.activeDiagramType;
     options.series = [
       this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
