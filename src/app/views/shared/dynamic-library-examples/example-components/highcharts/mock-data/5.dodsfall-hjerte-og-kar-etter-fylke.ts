@@ -30,7 +30,7 @@ export const DodsfallHjerteOgKarEtterFylke = [
       },
       {
         name: 'Troms og Finnmark',
-        y: -1566,
+        y: 1566,
       },
       {
         name: 'Trøndelag',
@@ -42,7 +42,7 @@ export const DodsfallHjerteOgKarEtterFylke = [
       },
       {
         name: 'Vestland',
-        y: -3625,
+        y: 3625,
       },
       {
         name: 'Viken',

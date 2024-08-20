@@ -75,14 +75,46 @@ export class OptionsService {
 
   private updateMapOptions(options: Options): Options {
     const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
-    const hasPositiveData = true;
-
+    const hasPositiveData = !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
+    const stopsPositive: Array<[number, string]> = [
+      [0, '#ffffff'],
+      [0.17, '#c8e1ec'], // B2-90
+      [0.33, '#8fc5dc'], // B2-80
+      [0.5, '#65a9c5'], // B2-70
+      [0.67, '#4089a7'], // B2-60
+      [0.83, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    const stopsNegative: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.17, '#a93c38'], // R1-50
+      [0.33, '#d74b46'], // R1-60
+      [0.5, '#ec7c73'], // R1-70
+      [0.67, '#fda49b'], // R1-80
+      [0.83, '#ffd2cc'], // R1-90
+      [1, '#ffffff'],
+    ];
+    const stopsNegativeAndPositive: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.08, '#a93c38'], // R1-50
+      [0.17, '#d74b46'], // R1-60
+      [0.25, '#ec7c73'], // R1-70
+      [0.33, '#fda49b'], // R1-80
+      [0.42, '#ffd2cc'], // R1-90
+      [0.5, '#ffffff'],
+      [0.58, '#c8e1ec'], // B2-90
+      [0.67, '#8fc5dc'], // B2-80
+      [0.75, '#65a9c5'], // B2-70
+      [0.83, '#4089a7'], // B2-60
+      [0.92, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
     if (hasNegativeData && !hasPositiveData) {
-      options.colorAxis = { stops: options.colorAxis['stopsNegative'] };
+      options.colorAxis = { stops: stopsNegative };
     } else if (hasNegativeData && hasPositiveData) {
-      options.colorAxis = { stops: options.colorAxis['stopsNegativeAndPositive'] };
+      options.colorAxis = { stops: stopsNegativeAndPositive };
     } else {
-      options.colorAxis = { stops: options.colorAxis['stopsPositive'] };
+      options.colorAxis = { stops: stopsPositive };
     }
     options.chart.map = this.diagramOptions.activeDiagramType;
     options.series = [

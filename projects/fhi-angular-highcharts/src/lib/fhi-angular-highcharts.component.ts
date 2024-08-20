@@ -226,6 +226,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       decimals: this.getVerifiedMaxDecimalCount(serie),
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
+      hasPositiveData: this.serieHasPositiveDataPoints(serie),
     });
   }
 
@@ -258,10 +259,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     const negativeData = serie.data.filter(
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
     );
-    if (negativeData.length !== 0) {
-      return true;
-    }
-    return false;
+    return negativeData.length > 0 ? true : false;
+  }
+
+  private serieHasPositiveDataPoints(serie: FhiDiagramSerie): boolean {
+    const positiveData = serie.data.filter(
+      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
+    );
+    return positiveData.length > 0 ? true : false;
   }
 
   private updateDiagramTypeGroups() {
