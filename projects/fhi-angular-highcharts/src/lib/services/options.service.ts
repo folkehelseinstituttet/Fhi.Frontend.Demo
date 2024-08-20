@@ -76,6 +76,7 @@ export class OptionsService {
   private updateMapOptions(options: Options): Options {
     const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
     const hasPositiveData = !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
+    const colorAxis = options.colorAxis;
     const stopsPositive: Array<[number, string]> = [
       [0, '#ffffff'],
       [0.17, '#c8e1ec'], // B2-90
@@ -110,11 +111,11 @@ export class OptionsService {
       [1, '#234e5f'], // B2-40
     ];
     if (hasNegativeData && !hasPositiveData) {
-      options.colorAxis = { stops: stopsNegative };
+      options.colorAxis = { ...colorAxis, stops: stopsNegative };
     } else if (hasNegativeData && hasPositiveData) {
-      options.colorAxis = { stops: stopsNegativeAndPositive };
+      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
     } else {
-      options.colorAxis = { stops: stopsPositive };
+      options.colorAxis = { ...colorAxis, stops: stopsPositive };
     }
     options.chart.map = this.diagramOptions.activeDiagramType;
     options.series = [
