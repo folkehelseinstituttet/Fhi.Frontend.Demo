@@ -6,11 +6,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## Thanks for taking the time to report a problem with the documentation!
+        ## Thanks for helping us improve the documentation!
 
         > [!TIP]
-        > We accept content written in norwegian if that is your preferred language.
-        > _Vi aksepterer innhold skrevet på norsk hvis det er ditt foretrukne språk._
+        >  You may choose between writing in English or Norwegian.
+        > _Du kan velge mellom å skrive på engelsk eller norsk._
 
   - type: input
     id: link
@@ -22,7 +22,7 @@ body:
     id: description
     attributes:
       label: Description
-      description: Describe what you were looking for, and what you found problematic or missing in the documentation?
+      description: How could we improve the documentation? Is something missing, unclear or confusing?
     validations:
       required: true
 
@@ -30,7 +30,7 @@ body:
     id: proposed-improvement
     attributes:
       label: Proposed improvement
-      description: Your proposed improvement of the spesific part of the documentation that you described above
+      description: Your proposed improvement, if you have any, for the specific part you described above
 
   - type: textarea
     id: additional-information
