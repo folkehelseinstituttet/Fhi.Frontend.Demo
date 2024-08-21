@@ -11,13 +11,14 @@ body:
         Please fill out the sections below to help us reproduce and fix the bug you are encountering.
 
         > [!TIP]
-        > We accept content written in norwegian if that is your preferred language.
-        > _Vi aksepterer innhold skrevet på norsk hvis det er ditt foretrukne språk._
+        >  You may choose between writing in English or Norwegian.
+        > _Du kan velge mellom å skrive på engelsk eller norsk._
 
   - type: textarea
     id: description
     attributes:
       label: Description
+      description: Explain, in as much detail as possible, the bug you've met. Is this something that used to work and now doesn't?
       placeholder: When I click the accordion header the site freezes...
     validations:
       required: true
@@ -65,7 +66,7 @@ body:
     id: additional-information
     attributes:
       label: Additional information
-      description: Please add any other comments or pieces of information you think are useful.
+      description: Please add any other comments or pieces of information you think are useful. For example, if you've found a workaround, share it with us to help others while we're swatting this bug.
 
   - type: markdown
     attributes:
