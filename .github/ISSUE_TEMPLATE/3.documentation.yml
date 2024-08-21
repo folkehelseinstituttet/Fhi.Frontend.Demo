@@ -1,5 +1,5 @@
 name: 📖 Documentation
-description: Report a problem with the documentation
+description: For questions, improvements and issues relating to documentation
 labels: ['Status: Unconfirmed', 'Documentation']
 projects: ['folkehelseinstituttet/12']
 body:
