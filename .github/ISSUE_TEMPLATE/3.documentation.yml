@@ -21,7 +21,7 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: Description *
       description: How could we improve the documentation? Is something missing, unclear or confusing?
     validations:
       required: true

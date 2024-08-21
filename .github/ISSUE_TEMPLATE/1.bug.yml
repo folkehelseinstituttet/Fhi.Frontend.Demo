@@ -17,7 +17,7 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: Description
+      label: Description *
       description: Explain, in as much detail as possible, the bug you've met. Is this something that used to work and now doesn't?
       placeholder: When I click the accordion header the site freezes...
     validations:
@@ -26,7 +26,7 @@ body:
   - type: textarea
     id: expected-result
     attributes:
-      label: What was the expected result?
+      label: What was the expected result? *
       placeholder: I expected the accordion to toggle open/closed...
     validations:
       required: true
@@ -46,7 +46,7 @@ body:
   - type: textarea
     id: steps-to-reproduce
     attributes:
-      label: Steps to reproduce
+      label: Steps to reproduce *
       description: Please add a list of steps we can follow to reproduce the bug.
       placeholder: |
         1. Open www.example.com/booking
