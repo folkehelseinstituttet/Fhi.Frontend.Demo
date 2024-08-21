@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jul 16, 2024
+> Aug 20, 2024
 
+* :tada: **Enhancement** Add new color palette, extend the color count to 20, and add support for negative values in map gradient (red to blue)
 * :tada: **Enhancement** Add support for SVG export
 
 ## 4.1.0
