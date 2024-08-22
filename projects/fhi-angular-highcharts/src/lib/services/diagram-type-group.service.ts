@@ -192,9 +192,17 @@ export class DiagramTypeGroupService {
     }
   }
 
+  private getDisableMessageFlaggedData(): string {
+    return 'series.length > 1 && flaggedSeries?.length !== 0';
+  }
+
+  private getDisableMessageMoreThanOneSerie(): string {
+    return 'series.length > 1';
+  }
+
   private disableBar(): boolean {
     if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
-      this.diagramTypeDisabledWarnings.bar = 'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.bar = this.getDisableMessageFlaggedData();
       return true;
     }
     return false;
@@ -202,8 +210,7 @@ export class DiagramTypeGroupService {
 
   private disableBarStacked(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.barStacked =
-        'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.barStacked = this.getDisableMessageFlaggedData();
       return true;
     }
     return false;
@@ -211,7 +218,7 @@ export class DiagramTypeGroupService {
 
   private disableColumn(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.column = 'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.column = this.getDisableMessageFlaggedData();
       return true;
     }
     return false;
@@ -219,8 +226,7 @@ export class DiagramTypeGroupService {
 
   private disableColumnAndLine(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnAndLine =
-        'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.columnAndLine = this.getDisableMessageFlaggedData();
       return true;
     } else if (this.diagramOptions.units?.length !== 2) {
       this.diagramTypeDisabledWarnings.columnAndLine = 'diagramOptions.units?.length !== 2';
@@ -231,8 +237,7 @@ export class DiagramTypeGroupService {
 
   private disableColumnStacked(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnStacked =
-        'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.columnStacked = this.getDisableMessageFlaggedData();
       return true;
     }
     return false;
@@ -243,7 +248,7 @@ export class DiagramTypeGroupService {
       this.diagramTypeDisabledWarnings.line = 'numberOfDataPointsPrSerie() === 1';
       return true;
     } else if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.line = 'series.length > 1 && flaggedSeries?.length !== 0';
+      this.diagramTypeDisabledWarnings.line = this.getDisableMessageFlaggedData();
       return true;
     }
     return false;
@@ -254,7 +259,7 @@ export class DiagramTypeGroupService {
       this.diagramTypeDisabledWarnings.mapFylker =
         this.diagramTypeDisabledWarnings.mapFylker2019 =
         this.diagramTypeDisabledWarnings.mapFylker2023 =
-          'series.length > 1';
+          this.getDisableMessageMoreThanOneSerie();
       return true;
     } else if (this.series.length === 1 && this.isNotGeo(this.series[0])) {
       this.diagramTypeDisabledWarnings.mapFylker =
@@ -268,7 +273,7 @@ export class DiagramTypeGroupService {
 
   private disablePie(): boolean {
     if (this.series.length > 1) {
-      this.diagramTypeDisabledWarnings.pie = 'this.series.length > 1';
+      this.diagramTypeDisabledWarnings.pie = this.getDisableMessageMoreThanOneSerie();
       return true;
     }
     return false;
