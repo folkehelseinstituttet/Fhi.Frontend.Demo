@@ -19,6 +19,5 @@ export const OptionsCharts = {
     title: {
       text: null,
     },
-    min: 0,
   },
 };
