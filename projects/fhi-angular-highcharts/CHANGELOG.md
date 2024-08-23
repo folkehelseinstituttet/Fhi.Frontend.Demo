@@ -2,6 +2,8 @@
 
 > Aug 20, 2024
 
+<!-- * :tada: **Enhancement** Update warning messages when noe diagram can be rendered. -->
+* :tada: **Enhancement** Remove 0 as default value on y-axis in diagram type line when no unit is defined.
 * :tada: **Enhancement** Add new color palette, extend the color count to 20, and add support for negative values in map gradient (red to blue)
 * :tada: **Enhancement** Add support for SVG export
 
