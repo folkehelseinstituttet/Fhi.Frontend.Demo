@@ -244,10 +244,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableLine(): boolean {
-    if (this.getNumberOfDataPointsPrSerie() === 1) {
-      this.diagramTypeDisabledWarnings.line = 'numberOfDataPointsPrSerie() === 1';
-      return true;
-    } else if (this.disableBar()) {
+    if (this.disableBar()) {
       this.diagramTypeDisabledWarnings.line = this.getDisableMessageFlaggedData();
       return true;
     }
