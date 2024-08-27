@@ -16,20 +16,7 @@ export class DiagramTypeGroupService {
   private flaggedSeries!: FlaggedSerie[];
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
-  private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]: string } = {
-    bar: '',
-    barStacked: '',
-    column: '',
-    columnAndLine: '',
-    columnStacked: '',
-    line: '',
-    map: '',
-    mapFylker: '',
-    mapFylker2019: '',
-    mapFylker2023: '',
-    pie: '',
-    table: '',
-  };
+  private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
     return this.diagramTypeDisabledWarnings[activeDiagramType];
