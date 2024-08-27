@@ -66,7 +66,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
 
-  diagramTypeDisabledWarningMsg!: string;
   flaggedSeries: FlaggedSerie[];
   metadataForSeries: MetadataForSerie[];
   tableData: TableData;
@@ -101,22 +100,22 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.tmpAdapterForDeprecatedDiagramOptions();
+    try {
+      this.tmpAdapterForDeprecatedDiagramOptions();
 
-    this.resetDiagramState();
-    this.diagramOptions.series.forEach((serie) => {
-      serie.name = this.formatSerieName(serie.name);
-      this.findDuplicateSerieNames(serie.name);
-      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-      this.updateMetadataForSeries(serie);
-    });
-    this.updateDiagramTypeGroups();
-    this.updateDiagramOptions();
-    this.updateDiagramState();
-    // try {
-    // } catch (error) {
-    //   console.error(this.getErrorMsg(error));
-    // }
+      this.resetDiagramState();
+      this.diagramOptions.series.forEach((serie) => {
+        serie.name = this.formatSerieName(serie.name);
+        this.findDuplicateSerieNames(serie.name);
+        this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+        this.updateMetadataForSeries(serie);
+      });
+      this.updateDiagramTypeGroups();
+      this.updateDiagramOptions();
+      this.updateDiagramState();
+    } catch (error) {
+      console.error(this.getErrorMsg(error));
+    }
   }
 
   onChartInstance(chartInstance: Chart) {
@@ -301,10 +300,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     );
 
     if (diagramTypeIsDisabled) {
-      this.diagramTypeDisabledWarningMsg =
-        this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
+      console.warn(
+        `Kan ikke vise diagramtype "${this.diagramOptions.activeDiagramType}" fordi "${this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
           this.diagramOptions.activeDiagramType,
-        );
+        )}"`,
+      );
       this.showDiagramTypeDisabledWarning = true;
     } else {
       this.showDiagramTypeDisabledWarning = false;

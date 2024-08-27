@@ -9,66 +9,6 @@
   } @else if (showDuplicateSerieNameError) {
     <ng-container *ngTemplateOutlet="duplicateSerieNameError"></ng-container>
   } @else {
-    <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Kan ikke vise diagramtype ...<br />
-          <code>bar, barStacked, column, columnAndLine, columnStacked, line</code><br />
-          fordi ... <br />
-          <code>series.length > 1 && flaggedSeries?.length !== 0</code>
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Kan ikke vise diagramtype ...<br />
-          <code>columnAndLine</code><br />
-          fordi ... <br />
-          <code>diagramOptions.units?.length !== 2</code>
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Kan ikke vise diagramtype ...<br />
-          <code>line</code><br />
-          fordi ... <br />
-          <code>numberOfDataPointsPrSerie() === 1</code>
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Kan ikke vise diagramtype ...<br />
-          <code>mapFylker, mapFylker2019, mapFylker2023, pie</code><br />
-          fordi ... <br />
-          <code>series.length > 1</code>
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Kan ikke vise diagramtype ...<br />
-          <code>mapFylker, mapFylker2019, mapFylker2023</code><br />
-          fordi ... <br />
-          <code>series.length === 1 && isNotGeo(this.series[0])</code>
-        </p>
-      </div>
-    </div>
-
     <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
   }
 </article>
@@ -306,10 +246,6 @@
         Diagramtypen kan ikke vises med dette filtervalget.<br />
         Velg en annen diagramtype eller gjør et annet filtervalg.
       </p> -->
-      <p class="mb-0">
-        Kan ikke vise diagramtype <code>{{ diagramOptions?.activeDiagramType }}</code> fordi: <br /><br />
-        <code>{{ diagramTypeDisabledWarningMsg }}</code>
-      </p>
     </div>
   </div>
 </ng-template>
