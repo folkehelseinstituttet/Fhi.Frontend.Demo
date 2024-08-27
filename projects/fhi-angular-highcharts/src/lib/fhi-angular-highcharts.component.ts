@@ -65,7 +65,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   activeDiagramTypeGroup!: DiagramTypeGroup;
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
-
   flaggedSeries: FlaggedSerie[];
   metadataForSeries: MetadataForSerie[];
   tableData: TableData;
@@ -100,9 +99,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    try {
-      this.tmpAdapterForDeprecatedDiagramOptions();
+    this.tmpAdapterForDeprecatedDiagramOptions();
 
+    try {
       this.resetDiagramState();
       this.diagramOptions.series.forEach((serie) => {
         serie.name = this.formatSerieName(serie.name);
