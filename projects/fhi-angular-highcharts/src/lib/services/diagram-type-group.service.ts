@@ -185,14 +185,6 @@ export class DiagramTypeGroupService {
     }
   }
 
-  private getDisableMessageFlaggedData(): string {
-    return 'series.length > 1 && flaggedSeries?.length !== 0';
-  }
-
-  private getDisableMessageMoreThanOneSerie(): string {
-    return 'series.length > 1';
-  }
-
   private disableBar(): boolean {
     if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
       this.diagramTypeDisabledWarnings.bar = this.diagramTypeDisabledWarningsText.flaggedData;
@@ -271,11 +263,6 @@ export class DiagramTypeGroupService {
       return true;
     }
     return false;
-  }
-
-  private getNumberOfDataPointsPrSerie(): number {
-    // Using series[0] since all series should have the same length
-    return this.series[0].data.length;
   }
 
   private isNotGeo(serie: FhiDiagramSerie): boolean {
