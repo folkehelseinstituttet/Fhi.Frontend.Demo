@@ -56,7 +56,7 @@
           <i class="icon-info-circle"></i>
           <span class="btn__text">Om dataene</span>
         </button>
-        <ng-container *ngIf="showFullScreenButton && !controlsInModal">
+        <ng-container *ngIf="showFullScreenButton && !controlsInModal && !showDiagramTypeDisabledWarning">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
