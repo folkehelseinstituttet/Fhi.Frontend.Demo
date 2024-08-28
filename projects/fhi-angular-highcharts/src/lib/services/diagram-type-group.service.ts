@@ -17,6 +17,12 @@ export class DiagramTypeGroupService {
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
   private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
+  private diagramTypeDisabledWarningsText = {
+    flaggedData: 'series.length > 1 && flaggedSeries?.length !== 0',
+    moreThanOneSeries: 'series.length > 1',
+    notTwoUnits: 'diagramOptions.units?.length !== 2',
+    notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
+  };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
     return this.diagramTypeDisabledWarnings[activeDiagramType];
@@ -189,7 +195,7 @@ export class DiagramTypeGroupService {
 
   private disableBar(): boolean {
     if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
-      this.diagramTypeDisabledWarnings.bar = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.bar = this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;
@@ -197,7 +203,8 @@ export class DiagramTypeGroupService {
 
   private disableBarStacked(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.barStacked = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.barStacked =
+        this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;
@@ -205,7 +212,7 @@ export class DiagramTypeGroupService {
 
   private disableColumn(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.column = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.column = this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;
@@ -213,10 +220,12 @@ export class DiagramTypeGroupService {
 
   private disableColumnAndLine(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnAndLine = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.columnAndLine =
+        this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     } else if (this.diagramOptions.units?.length !== 2) {
-      this.diagramTypeDisabledWarnings.columnAndLine = 'diagramOptions.units?.length !== 2';
+      this.diagramTypeDisabledWarnings.columnAndLine =
+        this.diagramTypeDisabledWarningsText.notTwoUnits;
       return true;
     }
     return false;
@@ -224,7 +233,8 @@ export class DiagramTypeGroupService {
 
   private disableColumnStacked(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnStacked = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.columnStacked =
+        this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;
@@ -232,7 +242,7 @@ export class DiagramTypeGroupService {
 
   private disableLine(): boolean {
     if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.line = this.getDisableMessageFlaggedData();
+      this.diagramTypeDisabledWarnings.line = this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;
@@ -243,13 +253,13 @@ export class DiagramTypeGroupService {
       this.diagramTypeDisabledWarnings.mapFylker =
         this.diagramTypeDisabledWarnings.mapFylker2019 =
         this.diagramTypeDisabledWarnings.mapFylker2023 =
-          this.getDisableMessageMoreThanOneSerie();
+          this.diagramTypeDisabledWarningsText.moreThanOneSeries;
       return true;
     } else if (this.series.length === 1 && this.isNotGeo(this.series[0])) {
       this.diagramTypeDisabledWarnings.mapFylker =
         this.diagramTypeDisabledWarnings.mapFylker2019 =
         this.diagramTypeDisabledWarnings.mapFylker2023 =
-          'series.length === 1 && isNotGeo(this.series[0])';
+          this.diagramTypeDisabledWarningsText.notGeo;
       return true;
     }
     return false;
@@ -257,7 +267,7 @@ export class DiagramTypeGroupService {
 
   private disablePie(): boolean {
     if (this.series.length > 1) {
-      this.diagramTypeDisabledWarnings.pie = this.getDisableMessageMoreThanOneSerie();
+      this.diagramTypeDisabledWarnings.pie = this.diagramTypeDisabledWarningsText.moreThanOneSeries;
       return true;
     }
     return false;
