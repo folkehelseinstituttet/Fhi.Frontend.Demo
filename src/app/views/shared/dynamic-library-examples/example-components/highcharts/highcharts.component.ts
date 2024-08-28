@@ -251,6 +251,7 @@ export class HighchartsComponent implements OnInit {
   private getData__example_3e() {
     this.getData(MockData.PrikkedeDataMedToSerier, {
       ...this.diagramOptions,
+      activeDiagramType: 'line',
       title: this.titles.title_3e,
       units: undefined,
     });
