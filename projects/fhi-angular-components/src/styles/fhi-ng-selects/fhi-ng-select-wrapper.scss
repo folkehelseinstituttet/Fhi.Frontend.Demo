@@ -1,23 +1,13 @@
-//    Disclaimer!
-//
-//    We need to make some changes to https://github.com/folkehelseinstituttet/Fhi.Frontend.Style
-//    (See https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/234) before all
-//    todo's in this file can be removed. The Designsystem team is woring hard to get this
-//    done as soon as possible.
-//
-
 .fhi-ng-select-wrapper {
-    // TODO: should be part of default form style
     label {
         font-weight: 600;
     }
 
     p {
-        color: $fhi-core-grey-3; // TODO: need $fhi-[skjemahjelpetekst?]-color in core.variables
+        color: $fhi-core-grey-3;
         font-size: $fhi-core-font-size-2;
         margin: 0;
     }
-    // /form style
 
     .ng-select {
         font-size: 1rem;
@@ -40,7 +30,8 @@
                 }
 
                 .ng-placeholder {
-                    color: $fhi-core-grey-3; // TODO: need $fhi-input-placeholder-color in core.variables and $input-placeholder-color: $fhi-input-placeholder-color
+                    color: $fhi-core-grey-3;
+                    z-index: 3 !important;
                 }
             }
         }
@@ -77,8 +68,8 @@
     .ng-dropdown-panel {
         background-color: $fhi-core-white;
         border: 1px solid $fhi-core-grey-3;
-        border-radius: $fhi-core-px * 4; // TODO: lage core.variables for standard border radius
-        box-shadow: 0 3px 6px rgba($fhi-core-grey-4, 0.16); // TODO: lage core.variables for de fire tilatte drop-shadows
+        border-radius: $fhi-core-px * 4;
+        box-shadow: 0 3px 6px rgba($fhi-core-grey-4, 0.16);
         margin: $fhi-core-space-2 0 $fhi-core-space-2;
 
         &.ng-select-top {
