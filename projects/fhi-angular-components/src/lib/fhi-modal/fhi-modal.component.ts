@@ -58,13 +58,6 @@ export class FhiModalComponent implements OnChanges {
   }
 
   onModalAction(button: FhiModalActionButton) {
-    // TODO: should we use [disabled]="button.disabled" in the
-    //       template as currently implemented
-    //       OR should we emit undefined (code blow)?
-    // if (button.disabled) {
-    //   this.modalAction.emit();
-    //   return;
-    // }
     this.modalAction.emit(button.name);
     this.modal.dismissAll();
   }
