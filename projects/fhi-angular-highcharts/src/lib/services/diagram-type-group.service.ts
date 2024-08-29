@@ -22,6 +22,7 @@ export class DiagramTypeGroupService {
     moreThanOneSeries: 'series.length > 1',
     notTwoUnits: 'diagramOptions.units?.length !== 2',
     notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
+    noSeriesOrNoData: 'this.series.length === 0 || this.series[0].data.length === 0',
   };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
@@ -80,7 +81,13 @@ export class DiagramTypeGroupService {
         this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
       }
       group.children.forEach((diagramType) => {
-        this.disableDiagramType(diagramType);
+        if (this.series.length === 0 || this.series[0].data.length === 0) {
+          diagramType.disabled = true;
+          this.diagramTypeDisabledWarnings[diagramType.id] =
+            this.diagramTypeDisabledWarningsText.noSeriesOrNoData;
+        } else {
+          this.disableDiagramType(diagramType);
+        }
         this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
       });
     });
