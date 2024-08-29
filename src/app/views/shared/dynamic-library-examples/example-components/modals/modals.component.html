@@ -30,3 +30,13 @@
     <pre><code>&#64;Input() actionButtons: FhiModalActionButton[] = {{ actionButtons | json }};</code></pre>
   </ng-container>
 </fhi-modal>
+<br /><br />
+
+<fhi-popover-menu
+  [items]="[{ name: 'Åpne modal fra foreldrekomponent', action: 'openModal' }]"
+  (actionEvent)="onPopoverActionOpenModalFromParent($event)"
+></fhi-popover-menu>
+
+<fhi-modal [parentAction]="modalParentAction" (dismissModal)="onDismissModal()">
+  <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
+</fhi-modal>

@@ -17,7 +17,19 @@ export class ModalsComponent {
     { name: 'Handling 1' },
   ];
 
+  modalParentAction: string;
+
   onModalAction(action: string) {
     console.info('onModalAction:', action);
+  }
+
+  onPopoverActionOpenModalFromParent(action: string) {
+    if (action === 'openModal') {
+      this.modalParentAction = 'openModal';
+    }
+  }
+
+  onDismissModal() {
+    this.modalParentAction = undefined;
   }
 }
