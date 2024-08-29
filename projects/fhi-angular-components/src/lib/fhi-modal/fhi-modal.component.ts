@@ -30,7 +30,7 @@ export class FhiModalComponent implements OnChanges {
   @Input() openModalButtonClass = 'fhi-btn-link';
   @Input() scrollable = true;
   @Input() size = 'md';
-  @Input() parentAction!: string; // TODO: typing
+  @Input() openModalFromParent = false;
 
   @Output() dismissModal = new EventEmitter();
   @Output() modalAction = new EventEmitter<string | undefined>();
@@ -47,7 +47,7 @@ export class FhiModalComponent implements OnChanges {
       this.buttons = cloneDeep(this.actionButtons);
       this.buttons[this.buttons.length - 1].primary = true;
     }
-    if (changes['parentAction']?.currentValue === 'openModal') {
+    if (changes['openModalFromParent']?.currentValue === true) {
       this.modalOpen(this.modalContentRef);
     }
   }

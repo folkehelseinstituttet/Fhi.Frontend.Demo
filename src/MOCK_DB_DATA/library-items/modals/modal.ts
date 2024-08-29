@@ -64,9 +64,10 @@ function getCodeHtml(): string | null {
   [items]="[{ name: 'Åpne modal fra foreldrekomponent', action: 'openModal' }]"
   (actionEvent)="onPopoverActionOpenModalFromParent($event)"
 ></fhi-popover-menu>
-<fhi-modal [parentAction]="modalParentAction" (dismissModal)="onDismissModal()">
+<fhi-modal [openModalFromParent]="openModal" (dismissModal)="onDismissModal()">
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
-</fhi-modal>`;
+</fhi-modal>
+`;
 }
 
 /*

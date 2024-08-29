@@ -17,7 +17,7 @@ export class ModalsComponent {
     { name: 'Handling 1' },
   ];
 
-  modalParentAction: string;
+  openModal = false;
 
   onModalAction(action: string) {
     console.info('onModalAction:', action);
@@ -25,11 +25,11 @@ export class ModalsComponent {
 
   onPopoverActionOpenModalFromParent(action: string) {
     if (action === 'openModal') {
-      this.modalParentAction = 'openModal';
+      this.openModal = true;
     }
   }
 
   onDismissModal() {
-    this.modalParentAction = undefined;
+    this.openModal = false;
   }
 }
