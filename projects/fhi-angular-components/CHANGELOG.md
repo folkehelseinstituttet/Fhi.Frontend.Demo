@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jun 28, 2024
+> Aug 29, 2024
 
+* :tada: **Enhancement** Add support for opening `fhi-modal` by a method call from the parent
 * :tada: **Enhancement** Add search filter to `FhiTreeViewCheckbox` and `FhiTreeViewRadio`
 
 ## 4.3.0
