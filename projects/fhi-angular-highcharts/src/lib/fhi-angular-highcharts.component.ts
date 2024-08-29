@@ -297,7 +297,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups,
       this.diagramOptions.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
+    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
@@ -306,6 +306,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     if (!diagramTypeIsDisabled) {
       this.updateDiagram();
+    } else {
+      console.warn(
+        `Kan ikke vise diagramtype "${this.diagramOptions.activeDiagramType}" fordi "${this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
+          this.diagramOptions.activeDiagramType,
+        )}"`,
+      );
     }
   }
 

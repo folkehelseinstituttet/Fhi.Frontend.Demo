@@ -34,6 +34,7 @@ export class HighchartsComponent implements OnInit {
     title_3b: 'Befolkning - inndeling per 1.1.2024 (andel)',
     title_3c: 'Dødsfall hjerte og kar, fordelt på fylke',
     title_3d: 'Dobbel akse, linje og søyle',
+    title_3e: 'Prikkede data med to serier',
   };
 
   constructor(
@@ -113,6 +114,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3d':
         this.getData__example_3d();
+        break;
+      case '3e':
+        this.getData__example_3e();
         break;
       // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     }
@@ -241,6 +245,15 @@ export class HighchartsComponent implements OnInit {
           position: 'end',
         },
       ],
+    });
+  }
+
+  private getData__example_3e() {
+    this.getData(MockData.PrikkedeDataMedToSerier, {
+      ...this.diagramOptions,
+      activeDiagramType: 'line',
+      title: this.titles.title_3e,
+      units: undefined,
     });
   }
 

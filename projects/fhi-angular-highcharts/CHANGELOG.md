@@ -1,7 +1,10 @@
 # Unreleased
 
-> Aug 20, 2024
+> Aug 27, 2024
 
+* :tada: **Enhancement** Add console warning if a diagram type can't be rendered.
+* :tada: **Enhancement** Enable line diagram with only one data point pr series.
+* :tada: **Enhancement** Remove 0 as default value on y-axis in diagram type line when no unit is defined.
 * :tada: **Enhancement** Add new color palette, extend the color count to 20, and add support for negative values in map gradient (red to blue)
 * :tada: **Enhancement** Add support for SVG export
 

@@ -7,5 +7,6 @@ export enum MockData {
   BefolkningInndelingPr2024_antall,
   BefolkningInndelingPr2024_andel,
   AgensAntallOgAndel,
+  PrikkedeDataMedToSerier,
   TestData,
 }
