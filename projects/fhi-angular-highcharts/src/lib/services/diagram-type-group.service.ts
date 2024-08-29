@@ -23,6 +23,7 @@ export class DiagramTypeGroupService {
     notTwoUnits: 'diagramOptions.units?.length !== 2',
     notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
     noSeriesOrNoData: 'this.series.length === 0 || this.series[0].data.length === 0',
+    allDataInOneOrMoreSeriesAreFlagged: 'allDataInOneOrMoreSeriesAreFlagged',
   };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
@@ -248,20 +249,24 @@ export class DiagramTypeGroupService {
   }
 
   private disableMap(): boolean {
+    let disable: boolean;
+    let message: string;
+
     if (this.series.length > 1) {
-      this.diagramTypeDisabledWarnings.mapFylker =
-        this.diagramTypeDisabledWarnings.mapFylker2019 =
-        this.diagramTypeDisabledWarnings.mapFylker2023 =
-          this.diagramTypeDisabledWarningsText.moreThanOneSeries;
-      return true;
+      disable = true;
+      message = this.diagramTypeDisabledWarningsText.moreThanOneSeries;
     } else if (this.series.length === 1 && this.isNotGeo(this.series[0])) {
-      this.diagramTypeDisabledWarnings.mapFylker =
-        this.diagramTypeDisabledWarnings.mapFylker2019 =
-        this.diagramTypeDisabledWarnings.mapFylker2023 =
-          this.diagramTypeDisabledWarningsText.notGeo;
-      return true;
+      disable = true;
+      message = this.diagramTypeDisabledWarningsText.notGeo;
+    } else if (this.allDataInOneOrMoreSeriesAreFlagged(this.series)) {
+      disable = true;
+      message = this.diagramTypeDisabledWarningsText.allDataInOneOrMoreSeriesAreFlagged;
     }
-    return false;
+    this.diagramTypeDisabledWarnings.mapFylker =
+      this.diagramTypeDisabledWarnings.mapFylker2019 =
+      this.diagramTypeDisabledWarnings.mapFylker2023 =
+        message;
+    return disable;
   }
 
   private disablePie(): boolean {
@@ -280,6 +285,20 @@ export class DiagramTypeGroupService {
       return true;
     }
     return false;
+  }
+
+  private allDataInOneOrMoreSeriesAreFlagged(series: FhiDiagramSerie[]) {
+    let allFlaggedInOneOreMoreSeries = true;
+    series.forEach((serie) => {
+      let allFlaggedInCurrentSerie = true;
+      serie.data.forEach((dataPoint) => {
+        allFlaggedInCurrentSerie = !(dataPoint.y.valueOf() === 'number');
+      });
+      if (allFlaggedInOneOreMoreSeries && !allFlaggedInCurrentSerie) {
+        allFlaggedInOneOreMoreSeries = false;
+      }
+    });
+    return allFlaggedInOneOreMoreSeries;
   }
 
   /**
