@@ -1,7 +1,8 @@
 # Unreleased
 
-> Jun 28, 2024
+> Aug 29, 2024
 
+* :bug: **Bugfix** Make placeholders visible in `FhiAutosuggestComponent` and `FhiMultiselectComponent` by adding correct z-index
 * :tada: **Enhancement** Add search filter to `FhiTreeViewCheckbox` and `FhiTreeViewRadio`
 
 ## 4.3.0
