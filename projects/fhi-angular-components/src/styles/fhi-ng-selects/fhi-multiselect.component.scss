@@ -15,6 +15,16 @@
         }
     }
 
+    .ng-select.ng-select-multiple {
+        .ng-select-container {
+            .ng-value-container {
+                .ng-placeholder {
+                    z-index: 3;
+                }
+            }
+        }
+    }
+
     .ng-dropdown-panel-items {
         .ng-option {
             padding: $fhi-core-space-2;
