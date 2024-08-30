@@ -287,18 +287,14 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private allDataInOneOrMoreSeriesAreFlagged(series: FhiDiagramSerie[]) {
-    let allFlaggedInOneOreMoreSeries = true;
+  private allDataInOneOrMoreSeriesAreFlagged(series: FhiDiagramSerie[]): boolean {
+    let allDataInOneSerieFlagged = false;
     series.forEach((serie) => {
-      let allFlaggedInCurrentSerie = true;
-      serie.data.forEach((dataPoint) => {
-        allFlaggedInCurrentSerie = !(dataPoint.y.valueOf() === 'number');
-      });
-      if (allFlaggedInOneOreMoreSeries && !allFlaggedInCurrentSerie) {
-        allFlaggedInOneOreMoreSeries = false;
+      if (serie.data.every((dataPoint) => !(typeof dataPoint.y.valueOf() === 'number'))) {
+        allDataInOneSerieFlagged = true;
       }
     });
-    return allFlaggedInOneOreMoreSeries;
+    return allDataInOneSerieFlagged;
   }
 
   /**
