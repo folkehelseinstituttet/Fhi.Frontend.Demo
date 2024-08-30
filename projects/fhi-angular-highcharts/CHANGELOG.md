@@ -53,7 +53,6 @@
 * :tada: **Enhancement** Add support for one unit at the time on yAxis
 * :tada: **Enhancement** Add support for unit i tooltip
 * :tada: **Enhancement** Diagram navigation with split button on chart selector
-* :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Alert on disabled diagram type changed to warning type
 
 ## 3.0.0
