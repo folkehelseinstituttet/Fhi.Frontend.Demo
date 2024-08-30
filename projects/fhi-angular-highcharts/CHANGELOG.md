@@ -1,6 +1,6 @@
 # Unreleased
 
-> Aug 27, 2024
+> Aug 30, 2024
 
 * :tada: **Enhancement** Add console warning if a diagram type can't be rendered.
 * :tada: **Enhancement** Enable line diagram with only one data point pr series.
