@@ -1,7 +1,8 @@
 # Unreleased
 
-> Aug 29, 2024
+> Jun 30, 2024
 
+* :tada: **Enhancement** Add support for opening `fhi-modal` by a method call from the parent
 * :bug: **Bugfix** Make placeholders visible in `FhiAutosuggestComponent` and `FhiMultiselectComponent` by adding correct z-index
 * :tada: **Enhancement** Add search filter to `FhiTreeViewCheckbox` and `FhiTreeViewRadio`
 

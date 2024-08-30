@@ -8,6 +8,8 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { cloneDeep } from 'lodash-es';
@@ -26,12 +28,15 @@ export class FhiModalComponent implements OnChanges {
   @Input() actionButtons: FhiModalActionButton[];
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
+  @Input() openModalFromParent = false;
   @Input() scrollable = true;
   @Input() size = 'md';
 
   @Output() dismissModal = new EventEmitter();
   @Output() modalAction = new EventEmitter<string | undefined>();
   @Output() openModal = new EventEmitter();
+
+  @ViewChild('modalContent') modalContentRef: ElementRef;
 
   buttons!: FhiModalActionButton[];
 
@@ -42,10 +47,23 @@ export class FhiModalComponent implements OnChanges {
       this.buttons = cloneDeep(this.actionButtons);
       this.buttons[this.buttons.length - 1].primary = true;
     }
+    if (changes['openModalFromParent']?.currentValue === true) {
+      this.modalOpen(this.modalContentRef);
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClickOpenModal(modalContent: any) {
+    this.modalOpen(modalContent);
+  }
+
+  onModalAction(button: FhiModalActionButton) {
+    this.modalAction.emit(button.name);
+    this.modal.dismissAll();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private modalOpen(modalContent: any) {
     this.openModal.emit();
     this.modal.open(modalContent, {
       backdropClass: 'fhi-modal-backdrop',
@@ -57,17 +75,5 @@ export class FhiModalComponent implements OnChanges {
         return true;
       },
     });
-  }
-
-  onModalAction(button: FhiModalActionButton) {
-    // TODO: should we use [disabled]="button.disabled" in the
-    //       template as currently implemented
-    //       OR should we emit undefined (code blow)?
-    // if (button.disabled) {
-    //   this.modalAction.emit();
-    //   return;
-    // }
-    this.modalAction.emit(button.name);
-    this.modal.dismissAll();
   }
 }
