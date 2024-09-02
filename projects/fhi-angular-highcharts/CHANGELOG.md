@@ -1,4 +1,4 @@
-# Unreleased
+# 4.2.0
 
 > Sep 2, 2024
 
