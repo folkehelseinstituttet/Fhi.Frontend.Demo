@@ -1,6 +1,6 @@
 # Unreleased
 
-> Aug 27, 2024
+> Sep 2, 2024
 
 * :tada: **Enhancement** Add console warning if a diagram type can't be rendered.
 * :tada: **Enhancement** Enable line diagram with only one data point pr series.
@@ -52,7 +52,6 @@
 * :tada: **Enhancement** Better support for decimals, both in table and in tooltip
 * :tada: **Enhancement** Add support for one unit at the time on yAxis
 * :tada: **Enhancement** Add support for unit i tooltip
-* :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Alert on disabled diagram type changed to warning type
 
