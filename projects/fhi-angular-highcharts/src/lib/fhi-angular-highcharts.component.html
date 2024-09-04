@@ -38,7 +38,7 @@
   </ng-container>
 </ng-template>
 
-<ng-template #diagramControls let-controlsInModal="controlsInModal">
+<ng-template #diagramControls>
   <div class="d-flex fhi-diagram-controls">
     <div class="d-flex flex-wrap me-3">
       <div class="fhi-diagram-controls__navigation" *ngIf="showDiagramTypeNav">
@@ -50,20 +50,20 @@
       <div class="mb-3">
         <button
           class="btn fhi-btn-icon fhi-diagram-controls__metadata"
-          *ngIf="showMetadataButton && !controlsInModal"
+          *ngIf="showMetadataButton"
           (click)="onMetadataButtonClick()"
         >
           <i class="icon-info-circle"></i>
           <span class="btn__text">Om dataene</span>
         </button>
-        <ng-container *ngIf="showFullScreenButton && !controlsInModal && !showDiagramTypeDisabledWarning">
+        <ng-container *ngIf="showFullScreenButton && !showDiagramTypeDisabledWarning">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
       </div>
     </div>
     <div class="ms-auto">
       <fhi-popover-menu
-        *ngIf="showDownloadButton && !controlsInModal"
+        *ngIf="showDownloadButton"
         [items]="[{ name: 'Last ned SVG', action: 'downloadSvg', icon: 'download' }]"
         (actionEvent)="onControlsPopoverMenuAction($event)"
       ></fhi-popover-menu>
@@ -82,7 +82,6 @@
       <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
-      <ng-container *ngTemplateOutlet="diagramControls; context: { controlsInModal: true }"></ng-container>
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
   </fhi-modal>
