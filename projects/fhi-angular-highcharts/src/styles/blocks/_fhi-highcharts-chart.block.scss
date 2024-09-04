@@ -37,9 +37,6 @@ $square: 1;
             aspect-ratio: $golden-ratio;
         }
     }
-}
-
-@container (width > 650px) {
     .fhi-highcharts-chart--map {
         highcharts-chart {
             max-height: 50vh;
