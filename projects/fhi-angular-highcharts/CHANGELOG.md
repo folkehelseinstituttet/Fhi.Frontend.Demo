@@ -2,7 +2,8 @@
 
 > Sep 4, 2024
 
-:bug: **Bugfix** Remove diagram type navigation from fullscreen view since the navigation fails if diagram type is disabled, and since it doesn't add that much value for the end user.
+* :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths
+* :bug: **Bugfix** Remove diagram type navigation from fullscreen view since the navigation fails if diagram type is disabled, and since it doesn't add that much value for the end user.
 
 ## 4.2.0
 

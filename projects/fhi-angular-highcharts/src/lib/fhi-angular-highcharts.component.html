@@ -98,7 +98,7 @@
 </ng-template>
 
 <ng-template #map>
-  <div class="fhi-highcharts-map">
+  <div class="fhi-highcharts-chart fhi-highcharts-chart--map">
     <highcharts-chart
       [Highcharts]="highmaps"
       [constructorType]="'mapChart'"
@@ -124,7 +124,6 @@
               <ng-template #tableHeaderCell>
                 <th
                   class="text-center"
-                  [attr.style]="'width: calc(100% /' + (headerRow.length - 1) + ');'"
                   [attr.colspan]="tableCell.colspan ? tableCell.colspan : null"
                   scope="col"
                   *ngIf="tableCell.isHeading && tableCell.name !== undefined"

@@ -57,7 +57,5 @@
 @import "../theme/line-chart";
 
 // Blocks: all custom css for the FHI AngularHighcharts
-@import "../blocks/mixins";
 @import "../blocks/fhi-highcharts-chart.block";
-@import "../blocks/fhi-highcharts-map.block";
 @import "../blocks/fhi-highcharts-nav.block";
