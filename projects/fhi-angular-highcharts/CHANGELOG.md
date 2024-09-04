@@ -1,4 +1,10 @@
-# 4.2.0
+# Unreleased
+
+> Sep 4, 2024
+
+* :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths
+
+## 4.2.0
 
 > Sep 3, 2024
 
