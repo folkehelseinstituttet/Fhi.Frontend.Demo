@@ -1,6 +1,7 @@
 <div class="fhi-ng-select-wrapper fhi-autosuggest">
   <label class="form-label" for="{{ labelForId }}">{{ label }}</label>
-  <p *ngIf="description !== undefined">{{ description }}</p>
+  <p class="form-text" *ngIf="description !== undefined">{{ description }}</p>
+
   <ng-select
     [items]="items"
     [editableSearchTerm]="true"
