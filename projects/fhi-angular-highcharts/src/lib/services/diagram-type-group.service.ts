@@ -3,11 +3,14 @@ import { cloneDeep } from 'lodash-es';
 
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
-import { DiagramTypeGroups } from '../constants-and-enums/diagram-type-groups';
+import {
+  DiagramTypeGroupNames,
+  DiagramTypeGroups,
+} from '../constants-and-enums/diagram-type-groups';
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
-import { DiagramTypes } from '../constants-and-enums/fhi-diagram-types';
+import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
 
 @Injectable()
@@ -33,8 +36,11 @@ export class DiagramTypeGroupService {
   getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
     let activeGroup: DiagramTypeGroup;
     groups.forEach((group) => {
-      if (group.diagramType.active) {
+      if (group.diagramType?.active) {
         activeGroup = group;
+      } else {
+        activeGroup = DiagramTypeGroups[0];
+        activeGroup.diagramType.active = true;
       }
     });
     return activeGroup;
@@ -43,21 +49,14 @@ export class DiagramTypeGroupService {
   getDiagramTypeGroups(
     diagramOptions: FhiDiagramOptions,
     flaggedSeries: FlaggedSerie[],
-    diagramTypeGroups: DiagramTypeGroup[],
+    previousDiagramTypeGroups: DiagramTypeGroup[],
   ): DiagramTypeGroup[] {
     this.diagramOptions = diagramOptions;
-    this.series = this.diagramOptions.series;
+    this.series = diagramOptions.series;
     this.flaggedSeries = flaggedSeries;
     this.activeDiagramType = undefined;
 
-    let groups = diagramTypeGroups ? cloneDeep(diagramTypeGroups) : cloneDeep(DiagramTypeGroups);
-
-    groups = this.updateDiagramTypes(groups);
-    groups = this.removeEmptyGroups(groups);
-    groups = this.updateInactiveGroup(groups);
-    groups = this.updateActiveGroup(groups);
-
-    return groups;
+    return this.createGroups(previousDiagramTypeGroups);
   }
 
   diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
@@ -75,12 +74,18 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private updateDiagramTypes(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
-    const diagramTypeSubset = this.getDiagramTypeSubset();
+  private createGroups(previousGroups: DiagramTypeGroup[]): DiagramTypeGroup[] {
+    const groups: DiagramTypeGroup[] = [];
+    cloneDeep(DiagramTypeGroups).forEach((group) => {
+      groups.push(this.removeOrAddDiagramTypes(group));
+    });
+    this.updateChildrenDiagramTypeStates(groups);
+    this.updateGroupDiagramTypeStates(groups, previousGroups);
+    return groups.filter((group) => group.children?.length > 0);
+  }
+
+  private updateChildrenDiagramTypeStates(groups: DiagramTypeGroup[]) {
     groups.forEach((group) => {
-      if (diagramTypeSubset !== undefined && group.diagramType?.id !== DiagramTypeIdValues.table) {
-        this.removeDiagramTypesNotInSubset(group, diagramTypeSubset);
-      }
       group.children.forEach((diagramType) => {
         if (this.series.length === 0 || this.series[0].data.length === 0) {
           diagramType.disabled = true;
@@ -89,66 +94,71 @@ export class DiagramTypeGroupService {
         } else {
           this.disableDiagramType(diagramType);
         }
-        this.setDiagramTypeToActive(diagramType, this.diagramOptions.activeDiagramType);
+        this.setDiagramTypeToActive(diagramType);
       });
     });
-    return groups;
   }
 
-  private getDiagramTypeSubset(): string[] {
-    const chartTypeSubset: string[] | undefined =
-      this.diagramOptions.controls?.navigation?.items?.chartTypes;
-    const mapTypeSubset: string[] | undefined =
-      this.diagramOptions.controls?.navigation?.items?.mapTypes;
-    return chartTypeSubset?.concat(mapTypeSubset);
-  }
+  private updateGroupDiagramTypeStates(
+    groups: DiagramTypeGroup[],
+    previousGroups: DiagramTypeGroup[],
+  ) {
+    groups.forEach((group, index) => {
+      const groupDiagramTypeActiveOutOfSync =
+        group.children.find((type) => type.active)?.id === this.activeDiagramType.id;
 
-  private removeEmptyGroups(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
-    return groups.filter((group) => group.children?.length > 0);
-  }
-
-  private updateInactiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
-    groups.forEach((group) => {
-      if (group.children.find((diagramType) => diagramType === group.diagramType) === undefined) {
+      if (groupDiagramTypeActiveOutOfSync) {
+        group.diagramType = this.activeDiagramType;
+      } else if (previousGroups !== undefined) {
+        group.diagramType = group.children.find(
+          (type) => type.id === previousGroups[index].diagramType.id,
+        );
+      } else {
         group.diagramType = group.children[0];
       }
     });
-    return groups;
   }
 
-  private updateActiveGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup[] {
-    let activeDiagramType: DiagramType;
-
-    if (this.activeDiagramType) {
-      activeDiagramType = this.activeDiagramType;
-    } else {
-      activeDiagramType = { ...DiagramTypes.table, active: true, disabled: false };
+  private removeOrAddDiagramTypes(group: DiagramTypeGroup): DiagramTypeGroup {
+    if (group.name === DiagramTypeGroupNames.table) {
+      return group;
     }
-    groups.forEach((group) => {
-      if (
-        group.children.find((diagramType) => diagramType.id === activeDiagramType.id) !== undefined
-      ) {
-        if (group.diagramType.id === DiagramTypes.table.id) {
-          group.children[0] = activeDiagramType;
-        }
-        group.diagramType = activeDiagramType;
-      } else {
-        group.diagramType.active = false;
-      }
-    });
-    return groups;
+
+    const items = this.diagramOptions.controls?.navigation?.items;
+    const isChart = group.name === DiagramTypeGroupNames.chart;
+    const isMap = group.name === DiagramTypeGroupNames.map;
+
+    group.children = [];
+
+    if (isChart && items?.chartTypes !== undefined) {
+      items.chartTypes.forEach((id) => {
+        group.children.push(ChartTypes.find((type) => type.id === id));
+      });
+    } else if (isChart) {
+      group.children = ChartTypes;
+    } else if (isMap && items?.mapTypes !== undefined) {
+      items.mapTypes.forEach((id) => {
+        group.children.push(MapTypes.find((type) => type.id === id));
+      });
+    } else if (isMap) {
+      group.children = MapTypes;
+    }
+    return group;
   }
 
-  private removeDiagramTypesNotInSubset(group: DiagramTypeGroup, diagramTypeSubset: string[]) {
-    group.children = group.children.filter((type) => diagramTypeSubset.includes(type.id));
-  }
+  private setDiagramTypeToActive(diagramType: DiagramType) {
+    const fallbackToTable =
+      diagramType.id === DiagramTypes.table.id &&
+      this.diagramOptions.activeDiagramType === undefined;
 
-  private setDiagramTypeToActive(diagramType: DiagramType, diagramTypeId: string) {
-    if (diagramType.id === diagramTypeId) {
+    if (diagramType.id === this.diagramOptions.activeDiagramType || fallbackToTable) {
       diagramType.active = true;
-      this.activeDiagramType = diagramType;
     } else {
       diagramType.active = false;
+    }
+
+    if (diagramType.active) {
+      this.activeDiagramType = diagramType;
     }
   }
 
