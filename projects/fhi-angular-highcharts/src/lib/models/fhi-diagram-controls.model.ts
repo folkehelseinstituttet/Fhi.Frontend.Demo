@@ -2,6 +2,9 @@ import { DiagramTypeNavIds } from '../constants-and-enums/diagram-type-nav-ids';
 import { ChartTypeIds, MapTypeIds } from '../constants-and-enums/diagram-type-ids';
 
 export interface FhiDiagramControls {
+  downloadButton?: {
+    show: boolean;
+  };
   fullScreenButton?: {
     show: boolean;
   };

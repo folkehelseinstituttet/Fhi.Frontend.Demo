@@ -4,14 +4,13 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsWithMenu.id">
-  <span class="small fst-italic">Dummy-filter:</span>
-  <div class="row ds-ui-documentation__item-container mb-7 pb-4">
-    <div class="col-sm-7 col-md-6">
-      <label for="dummy-filter" class="form-label">Filter dataene</label>
+  <div class="row mb-7">
+    <div class="col-auto">
+      <label for="dummy-filter" class="form-label">Velg datasett</label>
       <select class="form-select" id="dummy-filter" (change)="onSelectMockData($event.target['value'])">
-        <option value="filter:aarsak_2017_2021">2017 - 2021</option>
-        <option value="filter:aarsak_2017">2017</option>
-        <option value="filter:hjerteinfarkt_mann">Hjerteinfarkt | Mann</option>
+        <option value="2a">{{ titles.title_2a }}</option>
+        <option value="2b">{{ titles.title_2b }}</option>
+        <option value="2c">{{ titles.title_2c }}</option>
       </select>
     </div>
   </div>
@@ -21,21 +20,15 @@
 </ng-container>
 
 <ng-container *ngIf="itemId === items.HighchartsAllInclusive.id">
-  <span class="small fst-italic">Dummy-datasettvelger/ -måltallsvelger:</span>
-  <div class="row ds-ui-documentation__item-container mb-7 pb-4">
-    <div class="col-sm-auto col-md-6 mb-3 mb-md-0">
+  <div class="row mb-7">
+    <div class="col-auto">
       <label for="dummy-filter" class="form-label">Velg datasett</label>
       <select class="form-select" id="dummy-dataset" (change)="onSelectMockData($event.target['value'])">
-        <option value="befolkning_antall">Datasett som kan vises med to måltall</option>
-        <option value="agens">Datasett som kan vises med to y-akser</option>
-        <option value="kart">Datasett som kan vises som kart</option>
-      </select>
-    </div>
-    <div class="col-sm-auto col-md-6" *ngIf="showUnitSelect">
-      <label for="dummy-filter" class="form-label">Velg måltall</label>
-      <select class="form-select" id="dummy-unit" (change)="onSelectMockData($event.target['value'])">
-        <option value="unit:befolkning_antall">Antall</option>
-        <option value="unit:befolkning_andel">Andel i prosent</option>
+        <option value="3a">{{ titles.title_3a }}</option>
+        <option value="3b">{{ titles.title_3b }}</option>
+        <option value="3c">{{ titles.title_3c }}</option>
+        <option value="3d">{{ titles.title_3d }}</option>
+        <!-- <option value="3e">{{ titles.title_3e }}</option> -->
       </select>
     </div>
   </div>

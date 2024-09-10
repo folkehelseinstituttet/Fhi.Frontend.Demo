@@ -1,4 +1,18 @@
-# 4.3.0
+# 4.4.1
+
+> Sep 9, 2024
+
+* :bug: **Bugfix** Add missing Bootstrap classes to `FhiAutosuggestComponent` and `FhiMultiselectComponent`
+
+## 4.4.0
+
+> Sep 2, 2024
+
+* :tada: **Enhancement** Add support for opening `fhi-modal` by a method call from the parent
+* :bug: **Bugfix** Make placeholders visible in `FhiAutosuggestComponent` and `FhiMultiselectComponent` by adding correct z-index
+* :tada: **Enhancement** Add search filter to `FhiTreeViewCheckbox` and `FhiTreeViewRadio`
+
+## 4.3.0
 
 > Jun 13, 2024
 

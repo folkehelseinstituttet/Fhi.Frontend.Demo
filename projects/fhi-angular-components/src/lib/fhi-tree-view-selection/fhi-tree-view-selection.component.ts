@@ -6,9 +6,11 @@ import {
   OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
@@ -18,28 +20,52 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   standalone: true,
   templateUrl: './fhi-tree-view-selection.component.html',
   encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  @Input() enableCheckAll = false;
-  @Input() singleSelection = false;
+  @Input() enableCheckAll: boolean = false;
+  @Input() filterLabel: string = 'Filtrer listen';
+  @Input() singleSelection: boolean = false;
   @Input() items: Item[];
   @Input() name: string;
+  @Input() enableFilter: boolean = false;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
+
+  filteredItems: Item[];
+  filterString = '';
+  minimumFilterLength: number = 3;
+  searchMode: boolean = false;
+  instanceID = crypto.randomUUID();
 
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
+    this.filteredItems = [...this.items];
   }
 
-  ngOnChanges() {
-    if (this.items !== undefined) {
-      this.createIds(this.items, 1);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'].currentValue !== undefined) {
+      this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
+  }
+
+  onFilterNgModelChange(filterValue: string) {
+    if (filterValue.length === 0) {
+      this.filterString = filterValue;
+      this.filterTree();
+    }
+  }
+
+  onFilterKeydownEnter() {
+    this.filterTree();
+  }
+
+  onFilterButtonClick() {
+    this.filterTree();
   }
 
   toggleExpanded(item: Item) {
@@ -70,6 +96,48 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
+  }
+
+  filterTree() {
+    if (this.filterString.length >= this.minimumFilterLength) {
+      this.searchMode = true;
+      this.filteredItems = this.filterTreeData(this.items, this.filterString);
+    } else {
+      this.searchMode = false;
+      this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
+      this.filteredItems = [...this.items]; // show all
+    }
+  }
+
+  private filterTreeData(treeData: Item[], filterString: string): Item[] {
+    const lowerCaseFilter = filterString.toLowerCase();
+
+    const filterItems = (items: Item[]): Item[] => {
+      return items.reduce((filteredItems: Item[], item: Item) => {
+        item.name = item.name.replace(/<[^>]*>/g, ''); // remove <mark> tag that was added for highlighting
+        const lowerCaseName = item.name.toLowerCase();
+
+        if (lowerCaseName.includes(lowerCaseFilter)) {
+          if (lowerCaseFilter !== '') {
+            item.name = item.name.replace(
+              RegExp(filterString, 'gi'), // find filter string to highlight
+              '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
+            );
+          }
+          const filteredChildren = item.children ? filterItems(item.children) : [];
+          filteredItems.push({ ...item, children: filteredChildren });
+        } else if (item.children) {
+          const filteredChildren = filterItems(item.children);
+          if (filteredChildren.length > 0) {
+            filteredItems.push({ ...item, children: filteredChildren });
+          }
+        }
+
+        return filteredItems;
+      }, []);
+    };
+
+    return filterItems(treeData);
   }
 
   private updateCheckedState(
@@ -133,7 +201,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         // Compute  EXPANDED states
         // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
         if (expandCheckedItems && item.isChecked) {
-            itemsState.hasExpandedDescendant = true;
+          itemsState.hasExpandedDescendant = true;
         }
         itemsState.hasExpandedDescendant =
           itemsState.hasExpandedDescendant || childrenState.hasExpandedDescendant;
@@ -143,13 +211,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[], id: number) {
+  private createIds(items: Item[], id?: number) {
+    let itemID = id ? id : 0;
     items.forEach((item) => {
       if (item.id === undefined) {
-        item.id = id++;
+        item.id = this.instanceID + '-' + itemID++;
       }
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, (id - 1) * 10 + 1);
+        this.createIds(item.children, itemID * 10);
       }
     });
   }

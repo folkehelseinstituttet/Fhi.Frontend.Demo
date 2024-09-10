@@ -34,4 +34,14 @@
             text-decoration: none;
         }
     }
+
+    &__search {
+        max-width: 25rem;
+    }
+
+    &__mark {
+        background-color: transparent;
+        font-weight: bold;
+        padding: 0;
+    }
 }

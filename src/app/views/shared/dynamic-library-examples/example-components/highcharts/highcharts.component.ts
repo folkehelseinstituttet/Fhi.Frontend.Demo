@@ -17,10 +17,6 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
   templateUrl: './highcharts.component.html',
 })
 export class HighchartsComponent implements OnInit {
-  private diagramOptions_INIT = {
-    series: undefined,
-  };
-
   @Input() itemId!: string;
   @Input() items!: LibraryItemsShared;
 
@@ -29,6 +25,18 @@ export class HighchartsComponent implements OnInit {
   diagramOptions!: FhiDiagramOptions;
   showUnitSelect = false;
 
+  titles = {
+    title_1: 'Dødsfall etter årsak, 2008 - 2018',
+    title_2a: 'Dødsfall etter årsak, 2017 - 2021',
+    title_2b: 'Dødsfall etter årsak, 2017',
+    title_2c: 'Dødsfall etter årsak, 2017 - 2021, Hjerteinfarkt | Mann',
+    title_3a: 'Befolkning - inndeling per 1.1.2024 (antall)',
+    title_3b: 'Befolkning - inndeling per 1.1.2024 (andel)',
+    title_3c: 'Dødsfall hjerte og kar, fordelt på fylke',
+    title_3d: 'Dobbel akse, linje og søyle',
+    title_3e: 'Prikkede data med to serier',
+  };
+
   constructor(
     private highchartsDataService: MockDataService,
     private viewportScroller: ViewportScroller,
@@ -36,23 +44,23 @@ export class HighchartsComponent implements OnInit {
 
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
-      this.selectMockData('aarsak_2008_2018');
+      this.getExampleData('1');
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
-      this.selectMockData('aarsak_2017_2021');
+      this.getExampleData('2a');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.selectMockData('befolkning_antall');
+      this.getExampleData('3a');
     }
   }
 
-  onDiagramTypeNavigation(diagramTypeId: FhiDiagramTypeIds) {
+  onDiagramTypeNavigation(id: FhiDiagramTypeIds) {
     this.diagramOptions = {
       ...this.diagramOptions,
-      diagramTypeId: diagramTypeId,
+      activeDiagramType: id,
     };
   }
 
   onSelectMockData(value: string) {
-    this.selectMockData(value);
+    this.getExampleData(value);
   }
 
   onMetadataButtonClick() {
@@ -81,140 +89,84 @@ export class HighchartsComponent implements OnInit {
     });
   }
 
-  private selectMockData(value: string) {
-    // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-    switch (value) {
-      // dataset (init)
-      case 'aarsak_2008_2018':
-        this.getDodsfallEtterAarsak_2008_2018();
+  private getExampleData(example: string) {
+    switch (example) {
+      case '1':
+        this.getData__example_1();
         break;
-      case 'aarsak_2017_2021':
-        this.getDodsfallEtterAarsak_2017_2021();
+      case '2a':
+        this.getData__example_2a();
         break;
-      case 'befolkning_antall':
-        this.getBefolkningInndelingPr2024_antall();
-        this.showUnitSelect = true;
+      case '2b':
+        this.getData__example_2b();
         break;
-      case 'agens':
-        this.getAgensAntallOgAndel();
-        this.showUnitSelect = false;
+      case '2c':
+        this.getData__example_2c();
         break;
-      case 'kart':
-        this.getDodsfallHjerteOgKarEtterFylke();
-        this.showUnitSelect = false;
+      case '3a':
+        this.getData__example_3a();
         break;
-
-      // select option filter
-      case 'filter:aarsak_2017_2021':
-        this.getDodsfallEtterAarsak_2017_2021_FILTER();
+      case '3b':
+        this.getData__example_3b();
         break;
-      case 'filter:aarsak_2017':
-        this.getDodsfallEtterAarsak_2017_FILTER();
+      case '3c':
+        this.getData__example_3c();
         break;
-      case 'filter:hjerteinfarkt_mann':
-        this.getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_FILTER();
+      case '3d':
+        this.getData__example_3d();
         break;
-
-      // select option unit
-      case 'unit:befolkning_antall':
-        this.getBefolkningInndelingPr2024_antall_UNIT();
+      case '3e':
+        this.getData__example_3e();
         break;
-      case 'unit:befolkning_andel':
-        this.getBefolkningInndelingPr2024_andel_UNIT();
-        break;
+      // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     }
   }
 
-  private getDodsfallEtterAarsak_2008_2018() {
+  private getData__example_1() {
     this.getData(MockData.DodsfallEtterAarsak_2008_2018, {
-      ...this.diagramOptions_INIT,
-      diagramTypeId: 'line',
-      title: 'Dødsfall etter årsak, 2008 - 2018',
+      series: undefined,
+      activeDiagramType: 'line',
+      title: this.titles.title_1,
     });
   }
 
-  private getDodsfallEtterAarsak_2017_2021() {
+  private getData__example_2a() {
+    const activeDiagramType = this.diagramOptions?.activeDiagramType;
     this.getData(MockData.DodsfallEtterAarsak_2017_2021, {
-      ...this.diagramOptions_INIT,
-      title: 'Dødsfall etter årsak, 2017 - 2021',
-      diagramTypeNavId: 'default',
-      diagramTypeSubset: ['bar', 'column', 'line', 'map', 'pie'],
-      decimals: 2,
-      mapTypeId: 'mapFylker',
+      series: undefined,
+      activeDiagramType: activeDiagramType ? activeDiagramType : undefined,
+      title: this.titles.title_2a,
+      controls: {
+        navigation: {
+          show: true,
+        },
+      },
     });
   }
 
-  private getAgensAntallOgAndel() {
-    this.getData(MockData.AgensAntallOgAndel, {
-      ...this.getDiagramOptions_Agens(),
-    });
-  }
-
-  private getDodsfallHjerteOgKarEtterFylke() {
-    this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
-      ...this.getDiagramOptions_AllInclusive(),
-      title: 'Dødsfall hjerte og kar, fordelt på fylke',
-    });
-  }
-
-  private getBefolkningInndelingPr2024_antall() {
-    this.getData(MockData.BefolkningInndelingPr2024_antall, {
-      ...this.getDiagramOptions_AllInclusive(),
-      title: 'Befolkning - inndeling per 1.1.2024 (antall)',
-      diagramTypeId: 'column',
-      units: [{ label: 'Antall' }],
-    });
-  }
-
-  private getDodsfallEtterAarsak_2017_2021_FILTER() {
-    this.getData(MockData.DodsfallEtterAarsak_2017_2021, {
-      ...this.diagramOptions,
-      title: 'Dødsfall etter årsak, 2017 - 2021',
-    });
-  }
-
-  private getDodsfallEtterAarsak_2017_FILTER() {
+  private getData__example_2b() {
     this.getData(MockData.DodsfallEtterAarsak_2017, {
       ...this.diagramOptions,
-      title: 'Dødsfall etter årsak, 2017',
+      title: this.titles.title_2b,
     });
   }
 
-  private getDodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann_FILTER() {
+  private getData__example_2c() {
     this.getData(MockData.DodsfallEtterAarsak_2017_2021_Hjerteinfarkt_Mann, {
       ...this.diagramOptions,
-      title: 'Dødsfall etter årsak, 2017 - 2021, Hjerteinfarkt | Mann',
+      title: this.titles.title_2c,
     });
   }
 
-  private getBefolkningInndelingPr2024_antall_UNIT() {
+  private getData__example_3a() {
     this.getData(MockData.BefolkningInndelingPr2024_antall, {
-      ...this.diagramOptions,
-      title: 'Befolkning - inndeling per 1.1.2024 (antall)',
-      units: [{ label: 'Antall' }],
-    });
-  }
-
-  private getBefolkningInndelingPr2024_andel_UNIT() {
-    this.getData(MockData.BefolkningInndelingPr2024_andel, {
-      ...this.diagramOptions,
-      title: 'Befolkning - inndeling per 1.1.2024 (andel)',
-      units: [
-        {
-          decimals: 1,
-          label: 'Prosent',
-          symbol: '%',
-          position: 'end',
-        },
-      ],
-    });
-  }
-
-  private getDiagramOptions_AllInclusive(): FhiDiagramOptions {
-    return {
-      ...this.diagramOptions_INIT,
-      activeDiagramType: 'mapFylker2023',
+      series: undefined,
+      activeDiagramType: 'column',
+      title: this.titles.title_3a,
       controls: {
+        downloadButton: {
+          show: true,
+        },
         fullScreenButton: {
           show: true,
         },
@@ -223,11 +175,10 @@ export class HighchartsComponent implements OnInit {
         },
         navigation: {
           items: {
-            chartTypes: ['bar', 'column', 'pie'],
+            chartTypes: ['bar', 'column', 'columnAndLine', 'line', 'pie'],
             mapTypes: ['mapFylker2023'],
           },
           show: true,
-          type: 'default', // this has no effect (currently only one nav type)
         },
       },
       footer: {
@@ -245,21 +196,42 @@ export class HighchartsComponent implements OnInit {
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
-      title: '',
       units: [{ label: 'Antall' }],
-    };
+    });
   }
 
-  private getDiagramOptions_Agens(): FhiDiagramOptions {
-    const diagramOptions: FhiDiagramOptions = {
-      ...this.getDiagramOptions_AllInclusive(),
-    };
-    diagramOptions.controls.navigation.items.chartTypes = ['columnAndLine', 'pie'];
-    diagramOptions.controls.navigation.items.mapTypes = ['mapFylker'];
-    return {
-      ...diagramOptions,
+  private getData__example_3b() {
+    this.getData(MockData.BefolkningInndelingPr2024_andel, {
+      ...this.diagramOptions,
+      activeDiagramType: 'line',
+      title: this.titles.title_3b,
+      units: [
+        {
+          decimals: 1,
+          label: 'Prosent',
+          symbol: '%',
+          position: 'end',
+          yAxisMax: 20,
+          yAxisMin: 10,
+        },
+      ],
+    });
+  }
+
+  private getData__example_3c() {
+    this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
+      ...this.diagramOptions,
+      activeDiagramType: 'mapFylker2023',
+      title: this.titles.title_3c,
+      units: undefined,
+    });
+  }
+
+  private getData__example_3d() {
+    this.getData(MockData.AgensAntallOgAndel, {
+      ...this.diagramOptions,
       activeDiagramType: 'columnAndLine',
-      title: 'Dobbel akse, linje og søyle',
+      title: this.titles.title_3d,
       units: [
         {
           id: 'antall',
@@ -273,13 +245,21 @@ export class HighchartsComponent implements OnInit {
           position: 'end',
         },
       ],
-    };
+    });
+  }
+
+  private getData__example_3e() {
+    this.getData(MockData.PrikkedeDataMedToSerier, {
+      ...this.diagramOptions,
+      activeDiagramType: 'line',
+      title: this.titles.title_3e,
+      units: undefined,
+    });
   }
 
   private getTestData() {
     this.getData(MockData.TestData, {
-      ...this.diagramOptions_INIT,
-
+      series: undefined,
       activeDiagramType: 'columnAndLine',
       controls: {
         navigation: {
@@ -295,8 +275,7 @@ export class HighchartsComponent implements OnInit {
         ],
       },
       openSource: false,
-      // series -> is set in this.getData()
-      // tableOrientation: 'seriesAsColumns',
+      tableOrientation: 'seriesAsColumns',
       title: 'Dobbel akse, linje og søyle',
       units: [
         {
@@ -313,10 +292,10 @@ export class HighchartsComponent implements OnInit {
       ],
 
       // The following will be deprecated in v5
-
+      // --------------------------------------
       // diagramTypeId: 'map',
       // diagramTypeNavId: 'default',
-      decimals: 2,
+      // decimals: 2,
       // flags: [
       //   { symbol: '..', label: 'Manglende data' },
       //   { symbol: '.', label: 'Lar seg ikke beregne' },
