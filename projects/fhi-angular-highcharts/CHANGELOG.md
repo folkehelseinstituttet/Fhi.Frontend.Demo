@@ -1,6 +1,6 @@
-# Unreleased
+# 4.3.0
 
-> Sep 4, 2024
+> Sep 9, 2024
 
 * :bug: **Bugfix** Make it possible to dynamically add diagram types to the diagram type navigation.
 * :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths.

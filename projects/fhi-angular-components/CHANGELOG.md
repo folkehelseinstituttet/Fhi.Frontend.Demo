@@ -1,6 +1,6 @@
-# Unreleased
+# 4.4.1
 
-> Sep 4, 2024
+> Sep 9, 2024
 
 * :bug: **Bugfix** Add missing Bootstrap classes to `FhiAutosuggestComponent` and `FhiMultiselectComponent`
 
