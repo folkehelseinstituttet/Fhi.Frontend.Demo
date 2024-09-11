@@ -34,16 +34,11 @@ export class DiagramTypeGroupService {
   }
 
   getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
-    let activeGroup: DiagramTypeGroup;
-    groups.forEach((group) => {
-      if (group.diagramType?.active) {
-        activeGroup = group;
-      } else {
-        activeGroup = DiagramTypeGroups[0];
-        activeGroup.diagramType.active = true;
-      }
-    });
-    return activeGroup;
+    return groups.find((group) => group.diagramType.active);
+  }
+
+  getActiveDiagramTypeGroupName(groups: DiagramTypeGroup[]): string {
+    return groups.find((group) => group.diagramType.active).name;
   }
 
   getDiagramTypeGroups(
@@ -59,6 +54,7 @@ export class DiagramTypeGroupService {
     return this.createGroups(previousDiagramTypeGroups);
   }
 
+  // TODO: improve this one and rename to getDiagramTypeIsDisabled()
   diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
     let disabled = false;
     groups.forEach((group) => {
@@ -80,6 +76,7 @@ export class DiagramTypeGroupService {
       groups.push(this.removeOrAddDiagramTypes(group));
     });
     this.updateChildrenDiagramTypeStates(groups);
+    this.updateActiveDiagramType(groups);
     this.updateGroupDiagramTypeStates(groups, previousGroups);
     return groups.filter((group) => group.children?.length > 0);
   }
@@ -92,31 +89,60 @@ export class DiagramTypeGroupService {
           this.diagramTypeDisabledWarnings[diagramType.id] =
             this.diagramTypeDisabledWarningsText.noSeriesOrNoData;
         } else {
-          this.disableDiagramType(diagramType);
+          diagramType.disabled = this.getDisabledState(diagramType);
         }
-        this.setDiagramTypeToActive(diagramType);
+        diagramType.active = this.getActiveState(diagramType);
       });
     });
+  }
+
+  private updateActiveDiagramType(groups: DiagramTypeGroup[]) {
+    let activeDiagramType: DiagramType;
+
+    groups.forEach((group) => {
+      activeDiagramType = group.children.find((diagramType) => diagramType.active);
+    });
+
+    if (activeDiagramType !== undefined) {
+      this.activeDiagramType = activeDiagramType;
+    } else {
+      this.activeDiagramType = {
+        ...groups.find((group) => group.diagramType.id === DiagramTypeIdValues.table).diagramType,
+        active: true,
+      };
+      console.log('1. this.activeDiagramType', this.activeDiagramType);
+    }
   }
 
   private updateGroupDiagramTypeStates(
     groups: DiagramTypeGroup[],
     previousGroups: DiagramTypeGroup[],
   ) {
-    groups.forEach((group, index) => {
-      const groupDiagramTypeActiveOutOfSync =
-        group.children.find((type) => type.active)?.id === this.activeDiagramType.id;
+    // console.log('groups', groups);
+    // console.log('2. this.activeDiagramType', this.activeDiagramType);
 
-      if (groupDiagramTypeActiveOutOfSync) {
-        group.diagramType = this.activeDiagramType;
-      } else if (previousGroups !== undefined) {
+    groups.forEach((group, index) => {
+      if (previousGroups !== undefined && previousGroups[index] !== undefined) {
+        // console.log('previousGroups !== undefined');
+        // console.log('this.activeDiagramType.id', this.activeDiagramType.id);
         group.diagramType = group.children.find(
-          (type) => type.id === previousGroups[index].diagramType.id,
+          (diagramType) => diagramType.id === previousGroups[index].diagramType.id,
         );
+        // console.log('group.diagramType.id', group.diagramType.id);
       } else {
+        // console.log('else');
         group.diagramType = group.children[0];
       }
     });
+    // TODO: make sure one group always is active
+    // const updateActiveDiagramTypeCurrentGroup =
+    //   !group.diagramType.active &&
+    //   group.children.find((diagramType) => diagramType.active)?.id === this.activeDiagramType.id;
+
+    // if (updateActiveDiagramTypeCurrentGroup) {
+    //   console.log('updateActiveDiagramTypeCurrentGroup');
+    //   group.diagramType = this.activeDiagramType;
+    // } else
   }
 
   private removeOrAddDiagramTypes(group: DiagramTypeGroup): DiagramTypeGroup {
@@ -146,60 +172,44 @@ export class DiagramTypeGroupService {
     return group;
   }
 
-  private setDiagramTypeToActive(diagramType: DiagramType) {
+  private getActiveState(diagramType: DiagramType) {
     const fallbackToTable =
       diagramType.id === DiagramTypes.table.id &&
       this.diagramOptions.activeDiagramType === undefined;
 
-    if (diagramType.id === this.diagramOptions.activeDiagramType || fallbackToTable) {
-      diagramType.active = true;
-    } else {
-      diagramType.active = false;
-    }
-
-    if (diagramType.active) {
-      this.activeDiagramType = diagramType;
-    }
+    return diagramType.id === this.diagramOptions.activeDiagramType || fallbackToTable;
   }
 
-  private disableDiagramType(diagramType: DiagramType) {
+  private getDisabledState(diagramType: DiagramType) {
     switch (diagramType.id) {
       case DiagramTypeIdValues.bar:
-        diagramType.disabled = this.disableBar();
-        break;
+        return this.disableBar();
 
       case DiagramTypeIdValues.barStacked:
-        diagramType.disabled = this.disableBarStacked();
-        break;
+        return this.disableBarStacked();
 
       case DiagramTypeIdValues.column:
-        diagramType.disabled = this.disableColumn();
-        break;
+        return this.disableColumn();
 
       case DiagramTypeIdValues.columnAndLine:
-        diagramType.disabled = this.disableColumnAndLine();
-        break;
+        return this.disableColumnAndLine();
 
       case DiagramTypeIdValues.columnStacked:
-        diagramType.disabled = this.disableColumnStacked();
-        break;
+        return this.disableColumnStacked();
 
       case DiagramTypeIdValues.line:
-        diagramType.disabled = this.disableLine();
-        break;
+        return this.disableLine();
 
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
       case DiagramTypeIdValues.mapFylker2023:
-        diagramType.disabled = this.disableMap();
-        break;
+        return this.disableMap();
 
       case DiagramTypeIdValues.pie:
-        diagramType.disabled = this.disablePie();
-        break;
+        return this.disablePie();
 
       default:
-        diagramType.disabled = false;
+        return false;
     }
   }
 
@@ -259,7 +269,7 @@ export class DiagramTypeGroupService {
   }
 
   private disableMap(): boolean {
-    let disable: boolean;
+    let disable = false;
     let message: string;
 
     if (this.series.length > 1) {

@@ -101,20 +101,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    try {
-      this.resetDiagramState();
-      this.diagramOptions.series.forEach((serie) => {
-        serie.name = this.formatSerieName(serie.name);
-        this.findDuplicateSerieNames(serie.name);
-        this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-        this.updateMetadataForSeries(serie);
-      });
-      this.updateDiagramTypeGroups();
-      this.updateDiagramOptions();
-      this.updateDiagramState();
-    } catch (error) {
-      console.error(this.getErrorMsg(error));
-    }
+    // try {
+    this.resetDiagramState();
+    this.diagramOptions.series.forEach((serie) => {
+      serie.name = this.formatSerieName(serie.name);
+      this.findDuplicateSerieNames(serie.name);
+      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+      this.updateMetadataForSeries(serie);
+    });
+    this.updateDiagramTypeGroups();
+    this.updateDiagramOptions();
+    this.updateDiagramState();
+    // } catch (error) {
+    //   console.error(this.getErrorMsg(error));
+    // }
   }
 
   onChartInstance(chartInstance: Chart) {
@@ -272,21 +272,22 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.flaggedSeries,
       this.diagramTypeGroups,
     );
+    // console.log('this.diagramOptions.activeDiagramType', this.diagramOptions.activeDiagramType);
+    // console.log('this.diagramTypeGroups', this.diagramTypeGroups);
+
     this.activeDiagramTypeGroup = this.diagramTypeGroupService.getActiveDiagramTypeGroup(
       this.diagramTypeGroups,
     );
+    // console.log('this.activeDiagramTypeGroup', this.activeDiagramTypeGroup);
   }
 
   private updateDiagramOptions() {
-    const activeDiagramType = this.diagramOptions.activeDiagramType;
     const footer = this.diagramOptions.footer;
     const openSource = this.diagramOptions.openSource;
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      activeDiagramType: activeDiagramType
-        ? activeDiagramType
-        : (DiagramTypeIds.table as FhiDiagramTypeIds),
+      activeDiagramType: this.activeDiagramTypeGroup.diagramType.id as FhiDiagramTypeIds,
       footer: footer ? footer : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
