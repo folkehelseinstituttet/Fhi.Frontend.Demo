@@ -254,6 +254,15 @@ export class HighchartsComponent implements OnInit {
       activeDiagramType: 'line',
       title: this.titles.title_3e,
       units: undefined,
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
     });
   }
 
