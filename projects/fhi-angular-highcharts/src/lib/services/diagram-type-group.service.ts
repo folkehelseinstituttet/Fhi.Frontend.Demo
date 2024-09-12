@@ -12,7 +12,6 @@ import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
-import { group } from 'console';
 
 @Injectable()
 export class DiagramTypeGroupService {

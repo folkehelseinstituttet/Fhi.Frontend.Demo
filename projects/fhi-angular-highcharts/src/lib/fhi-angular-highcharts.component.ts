@@ -101,20 +101,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ngOnChanges() {
     this.tmpAdapterForDeprecatedDiagramOptions();
 
-    // try {
-    this.resetDiagramState();
-    this.diagramOptions.series.forEach((serie) => {
-      serie.name = this.formatSerieName(serie.name);
-      this.findDuplicateSerieNames(serie.name);
-      this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-      this.updateMetadataForSeries(serie);
-    });
-    this.updateDiagramTypeGroups();
-    this.updateDiagramOptions();
-    this.updateDiagramState();
-    // } catch (error) {
-    //   console.error(this.getErrorMsg(error));
-    // }
+    try {
+      this.resetDiagramState();
+      this.diagramOptions.series.forEach((serie) => {
+        serie.name = this.formatSerieName(serie.name);
+        this.findDuplicateSerieNames(serie.name);
+        this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
+        this.updateMetadataForSeries(serie);
+      });
+      this.updateDiagramTypeGroups();
+      this.updateDiagramOptions();
+      this.updateDiagramState();
+    } catch (error) {
+      console.error(this.getErrorMsg(error));
+    }
   }
 
   onChartInstance(chartInstance: Chart) {
