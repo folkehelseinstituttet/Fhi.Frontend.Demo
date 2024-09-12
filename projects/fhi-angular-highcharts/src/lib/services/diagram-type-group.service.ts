@@ -12,6 +12,7 @@ import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
+import { group } from 'console';
 
 @Injectable()
 export class DiagramTypeGroupService {
@@ -91,58 +92,39 @@ export class DiagramTypeGroupService {
         } else {
           diagramType.disabled = this.getDisabledState(diagramType);
         }
-        diagramType.active = this.getActiveState(diagramType);
+        diagramType.active = this.getActiveState(diagramType, groups);
       });
     });
   }
 
   private updateActiveDiagramType(groups: DiagramTypeGroup[]) {
-    let activeDiagramType: DiagramType;
-
     groups.forEach((group) => {
-      activeDiagramType = group.children.find((diagramType) => diagramType.active);
+      const activeChild = group.children.find((diagramType) => diagramType.active);
+      if (activeChild !== undefined) {
+        this.activeDiagramType = activeChild;
+      }
     });
-
-    if (activeDiagramType !== undefined) {
-      this.activeDiagramType = activeDiagramType;
-    } else {
-      this.activeDiagramType = {
-        ...groups.find((group) => group.diagramType.id === DiagramTypeIdValues.table).diagramType,
-        active: true,
-      };
-      console.log('1. this.activeDiagramType', this.activeDiagramType);
-    }
   }
 
   private updateGroupDiagramTypeStates(
     groups: DiagramTypeGroup[],
     previousGroups: DiagramTypeGroup[],
   ) {
-    // console.log('groups', groups);
-    // console.log('2. this.activeDiagramType', this.activeDiagramType);
-
     groups.forEach((group, index) => {
-      if (previousGroups !== undefined && previousGroups[index] !== undefined) {
-        // console.log('previousGroups !== undefined');
-        // console.log('this.activeDiagramType.id', this.activeDiagramType.id);
+      const activeChild = group.children.find(
+        (diagramType) => diagramType.id === this.activeDiagramType.id,
+      );
+
+      if (activeChild !== undefined) {
+        group.diagramType = activeChild;
+      } else if (previousGroups !== undefined && previousGroups[index] !== undefined) {
         group.diagramType = group.children.find(
           (diagramType) => diagramType.id === previousGroups[index].diagramType.id,
         );
-        // console.log('group.diagramType.id', group.diagramType.id);
       } else {
-        // console.log('else');
         group.diagramType = group.children[0];
       }
     });
-    // TODO: make sure one group always is active
-    // const updateActiveDiagramTypeCurrentGroup =
-    //   !group.diagramType.active &&
-    //   group.children.find((diagramType) => diagramType.active)?.id === this.activeDiagramType.id;
-
-    // if (updateActiveDiagramTypeCurrentGroup) {
-    //   console.log('updateActiveDiagramTypeCurrentGroup');
-    //   group.diagramType = this.activeDiagramType;
-    // } else
   }
 
   private removeOrAddDiagramTypes(group: DiagramTypeGroup): DiagramTypeGroup {
@@ -172,10 +154,17 @@ export class DiagramTypeGroupService {
     return group;
   }
 
-  private getActiveState(diagramType: DiagramType) {
+  private getActiveState(diagramType: DiagramType, groups: DiagramTypeGroup[]) {
+    const activeFromOptionsNotFoundInGrops = (() =>
+      groups.every(
+        (group) =>
+          group.children.find(
+            (diagramType) => diagramType.id === this.diagramOptions.activeDiagramType,
+          ) === undefined,
+      ))();
+
     const fallbackToTable =
-      diagramType.id === DiagramTypes.table.id &&
-      this.diagramOptions.activeDiagramType === undefined;
+      diagramType.id === DiagramTypes.table.id && activeFromOptionsNotFoundInGrops;
 
     return diagramType.id === this.diagramOptions.activeDiagramType || fallbackToTable;
   }
