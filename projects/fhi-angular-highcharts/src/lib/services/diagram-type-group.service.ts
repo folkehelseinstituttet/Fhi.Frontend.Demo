@@ -180,9 +180,6 @@ export class DiagramTypeGroupService {
       case DiagramTypeIdValues.columnStacked:
         return this.disableColumnStacked();
 
-      case DiagramTypeIdValues.line:
-        return this.disableLine();
-
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
       case DiagramTypeIdValues.mapFylker2023:
@@ -238,14 +235,6 @@ export class DiagramTypeGroupService {
     if (this.disableBar()) {
       this.diagramTypeDisabledWarnings.columnStacked =
         this.diagramTypeDisabledWarningsText.flaggedData;
-      return true;
-    }
-    return false;
-  }
-
-  private disableLine(): boolean {
-    if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.line = this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
     return false;

@@ -1,9 +1,15 @@
-# 4.3.0
+# Unreleased
+
+> Sep 12, 2024
+
+* :bug: **Bugfix** Make it possible to dynamically add diagram types to the diagram type navigation.
+* :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged. This will also affect diagram type line with single series: data points will no longer be removed, instead the line will be broken.
+  
+## 4.3.0
 
 > Sep 9, 2024
 
-* :bug: **Bugfix** Make it possible to dynamically add diagram types to the diagram type navigation.
-* :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths.
+* :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths
 * :bug: **Bugfix** Remove diagram type navigation from fullscreen view since the navigation fails if diagram type is disabled, and since it doesn't add that much value for the end user.
 
 ## 4.2.0
