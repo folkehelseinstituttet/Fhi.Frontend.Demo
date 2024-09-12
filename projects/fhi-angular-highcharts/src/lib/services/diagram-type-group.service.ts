@@ -174,9 +174,9 @@ export class DiagramTypeGroupService {
         diagramType.disabled = this.disableColumnStacked();
         break;
 
-      case DiagramTypeIdValues.line:
-        diagramType.disabled = this.disableLine();
-        break;
+      // case DiagramTypeIdValues.line:
+      //   diagramType.disabled = this.disableLine();
+      //   break;
 
       case DiagramTypeIdValues.mapFylker:
       case DiagramTypeIdValues.mapFylker2019:
@@ -241,7 +241,8 @@ export class DiagramTypeGroupService {
   }
 
   private disableLine(): boolean {
-    if (this.disableBar()) {
+    console.log('this.flaggedSeries', this.flaggedSeries);
+    if (this.flaggedSeries?.length !== 0) {
       this.diagramTypeDisabledWarnings.line = this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
     }
