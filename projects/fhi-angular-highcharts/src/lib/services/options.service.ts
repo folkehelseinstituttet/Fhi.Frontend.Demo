@@ -159,7 +159,7 @@ export class OptionsService {
     const newSeries = cloneDeep(series);
     newSeries.forEach((serie) => {
       serie.data.forEach((dataPoint) => {
-        if (typeof dataPoint.y === 'string' && this.diagramOptions.activeDiagramType === 'line') {
+        if (typeof dataPoint.y === 'string') {
           dataPoint.y = null;
         }
       });
