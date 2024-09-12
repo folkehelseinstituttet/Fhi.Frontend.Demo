@@ -38,10 +38,6 @@ export class DiagramTypeGroupService {
     return groups.find((group) => group.diagramType.active);
   }
 
-  getActiveDiagramTypeGroupName(groups: DiagramTypeGroup[]): string {
-    return groups.find((group) => group.diagramType.active).name;
-  }
-
   getDiagramTypeGroups(
     diagramOptions: FhiDiagramOptions,
     flaggedSeries: FlaggedSerie[],
@@ -55,7 +51,6 @@ export class DiagramTypeGroupService {
     return this.createGroups(previousDiagramTypeGroups);
   }
 
-  // TODO: improve this one and rename to getDiagramTypeIsDisabled()
   diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
     let disabled = false;
     groups.forEach((group) => {
