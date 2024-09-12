@@ -111,7 +111,7 @@ export class DiagramTypeGroupService {
 
       if (activeChild !== undefined) {
         group.diagramType = activeChild;
-      } else if (previousGroups !== undefined && previousGroups[index] !== undefined) {
+      } else if (previousGroups !== undefined && previousGroups[index]?.diagramType !== undefined) {
         group.diagramType = group.children.find(
           (diagramType) => diagramType.id === previousGroups[index].diagramType.id,
         );
