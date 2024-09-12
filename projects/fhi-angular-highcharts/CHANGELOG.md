@@ -1,4 +1,10 @@
-# 4.3.0
+# Unreleased
+
+> Sep 12, 2024
+
+* :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged
+  
+## 4.3.0
 
 > Sep 9, 2024
 
