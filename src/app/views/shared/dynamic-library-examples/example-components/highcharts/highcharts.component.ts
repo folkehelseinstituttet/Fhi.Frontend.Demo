@@ -260,7 +260,7 @@ export class HighchartsComponent implements OnInit {
           text: 'Folkehelseinstituttet',
         },
         disclaimer: 'Disse dataene kan inneholde feil.',
-        flags: [{ symbol: '.', label: 'Lar seg ikke beregne pga. ingen observasjoner' }],
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
       },
     });
