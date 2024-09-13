@@ -4,6 +4,7 @@ $square: 1;
 
 .fhi-highcharts-chart {
     width: 100%;
+    max-width: 1500px;
     container-type: inline-size;
 
     highcharts-chart {
@@ -23,6 +24,10 @@ $square: 1;
     }
 }
 
+.fhi-highcharts-chart--map {
+    max-width: 1100px;
+}
+
 @container (width > 350px) {
     .fhi-highcharts-chart--map {
         highcharts-chart {
@@ -35,19 +40,6 @@ $square: 1;
     .fhi-highcharts-chart {
         highcharts-chart {
             aspect-ratio: $golden-ratio;
-        }
-    }
-    .fhi-highcharts-chart--map {
-        highcharts-chart {
-            max-height: 50vh;
-        }
-    }
-}
-
-@container (width > 1200px) {
-    .fhi-highcharts-chart {
-        highcharts-chart {
-            max-height: 50vh;
         }
     }
 }
