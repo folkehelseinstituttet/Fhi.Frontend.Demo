@@ -2,6 +2,7 @@
 
 > Sep 13, 2024
 
+* :bug: **Bugfix** Don't remove decimals if they end with zero (only applies to diagram type table)
 * :bug: **Bugfix** Add null check for unit.decimals
 * :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged. This will also affect diagram type line with single series: data points will no longer be removed, instead the line will be broken.
   
