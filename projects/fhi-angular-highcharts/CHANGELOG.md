@@ -2,7 +2,10 @@
 
 > Sep 13, 2024
 
-* :tada: **Enhancement**  Update documentation for Interface FhiDiagramUnit (about decimal count limited to 9 etc.)
+* :tada: **Enhancement** Update documentation for Interface FhiDiagramUnit (about decimal count limited to 9 etc.)
+* :bug: **Bugfix** Reduce max decimal places to 9 (because Highcharts tooltips fails if 10 decimals or more)
+* :bug: **Bugfix** Don't remove decimals if they end with zero (only applies to diagram type table)
+* :bug: **Bugfix** Add null check for unit.decimals
 * :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged. This will also affect diagram type line with single series: data points will no longer be removed, instead the line will be broken.
   
 ## 4.3.0

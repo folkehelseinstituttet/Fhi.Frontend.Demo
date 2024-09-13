@@ -73,10 +73,14 @@ export class TableService {
           };
         } else {
           // Table row data
+          const decimals = this.decimalsCount(series[j - 1].data[i].y as number);
           tbodyRows[i][j] = {
             isHeading: false,
             data: series[j - 1].data[i].y,
-            decimals: metadataForSeries[j - 1].decimals,
+            decimals:
+              decimals < metadataForSeries[j - 1].decimals
+                ? decimals
+                : metadataForSeries[j - 1].decimals,
           };
         }
       }
@@ -137,10 +141,12 @@ export class TableService {
           };
         } else {
           // Table row data
+          const decimals = this.decimalsCount(series[i].data[j - dimentionsCount].y as number);
           tbodyRows[i][j] = {
             isHeading: false,
             data: series[i].data[j - dimentionsCount].y,
-            decimals: metadataForSeries[i].decimals,
+            decimals:
+              decimals < metadataForSeries[i].decimals ? decimals : metadataForSeries[i].decimals,
           };
         }
       }
@@ -200,5 +206,10 @@ export class TableService {
       previousCount = count;
     }
     return counts;
+  }
+
+  private decimalsCount(value: number) {
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
   }
 }
