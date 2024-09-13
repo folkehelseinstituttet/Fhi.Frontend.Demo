@@ -74,6 +74,49 @@ export class OptionsService {
   }
 
   private updateMapOptions(options: Options): Options {
+    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+    const hasPositiveData = !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
+    const colorAxis = options.colorAxis;
+    const stopsPositive: Array<[number, string]> = [
+      [0, '#ffffff'],
+      [0.17, '#c8e1ec'], // B2-90
+      [0.33, '#8fc5dc'], // B2-80
+      [0.5, '#65a9c5'], // B2-70
+      [0.67, '#4089a7'], // B2-60
+      [0.83, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    const stopsNegative: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.17, '#a93c38'], // R1-50
+      [0.33, '#d74b46'], // R1-60
+      [0.5, '#ec7c73'], // R1-70
+      [0.67, '#fda49b'], // R1-80
+      [0.83, '#ffd2cc'], // R1-90
+      [1, '#ffffff'],
+    ];
+    const stopsNegativeAndPositive: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.08, '#a93c38'], // R1-50
+      [0.17, '#d74b46'], // R1-60
+      [0.25, '#ec7c73'], // R1-70
+      [0.33, '#fda49b'], // R1-80
+      [0.42, '#ffd2cc'], // R1-90
+      [0.5, '#ffffff'],
+      [0.58, '#c8e1ec'], // B2-90
+      [0.67, '#8fc5dc'], // B2-80
+      [0.75, '#65a9c5'], // B2-70
+      [0.83, '#4089a7'], // B2-60
+      [0.92, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    if (hasNegativeData && hasPositiveData) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
+    } else if (hasNegativeData) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegative };
+    } else {
+      options.colorAxis = { ...colorAxis, stops: stopsPositive };
+    }
     options.chart.map = this.diagramOptions.activeDiagramType;
     options.series = [
       this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
@@ -157,31 +200,42 @@ export class OptionsService {
           format: '{value}',
         };
       }
+      if (unit.yAxisMax !== undefined) {
+        yAxis.max = unit.yAxisMax;
+      }
+      if (unit.yAxisMin !== undefined) {
+        yAxis.min = unit.yAxisMin;
+      }
     }
     return yAxis;
   }
 
   private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+    const units = this.diagramOptions.units;
     this.diagramOptions.series.forEach((serie, i) => {
-      if (serie.unitId === this.diagramOptions.units[0].id) {
-        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[0]);
-        options.series[i].type = 'column';
-        options.series[i].yAxis = 0;
-      } else if (serie.unitId === this.diagramOptions.units[1].id) {
-        options.series[i]['tooltip'] = this.getTooltip({}, this.diagramOptions.units[1]);
-        options.series[i].type = 'line';
-        options.series[i].yAxis = 1;
+      if (units[0].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip({}, units[0]),
+          yAxis: 0,
+          type: 'column',
+        } as SeriesOptionsType;
+      } else if (units[1].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip({}, units[1]),
+          yAxis: 1,
+          type: 'line',
+        } as SeriesOptionsType;
       }
     });
-    options.yAxis = this.getTwoYAxis(options.yAxis as YAxisOptions[], this.diagramOptions.units);
-  }
-
-  private getTwoYAxis(yAxis: YAxisOptions[], units: FhiDiagramUnit[]): YAxisOptions[] {
-    yAxis = [];
-    yAxis[0] = this.getYAxis({}, units[0]);
-    yAxis[1] = this.getYAxis({}, units[1]);
-    yAxis[1].opposite = true;
-    return yAxis;
+    options.yAxis = [
+      this.getYAxis({}, units[0]),
+      {
+        ...this.getYAxis({}, units[1]),
+        opposite: true,
+      },
+    ];
   }
 
   /**

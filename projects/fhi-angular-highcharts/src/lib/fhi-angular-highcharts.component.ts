@@ -11,8 +11,10 @@ import {
 import { first } from 'rxjs';
 import * as Highcharts from 'highcharts';
 import * as Highmaps from 'highcharts/highmaps';
-import { Options } from 'highcharts';
+import { Chart, Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
+import HighchartsExporting from 'highcharts/modules/exporting';
+import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 
 import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
@@ -36,6 +38,11 @@ import { TableData } from './models/table-data.model';
 import { DiagramTypeGroup } from './models/diagram-type-group.model';
 import { MetadataForSerie } from './models/metadata-for-serie.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
+import { DownloadService } from './services/download.service';
+
+enum ControlsPopoverMenuActions {
+  downloadSvg = 'downloadSvg',
+}
 
 @Component({
   selector: 'fhi-angular-highcharts',
@@ -44,6 +51,7 @@ import { FlaggedSerie } from './models/flagged-serie.model';
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
+  private chartInstance!: Chart;
 
   @Input() diagramOptions!: FhiDiagramOptions;
 
@@ -64,6 +72,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
   showDiagramTypeNav: boolean;
+  showDownloadButton: boolean;
   showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showFullScreenButton: boolean;
@@ -72,6 +81,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
+    private downloadService: DownloadService,
     private optionsService: OptionsService,
     private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
@@ -79,6 +89,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsAccessibility(Highmaps);
+    HighchartsExporting(Highcharts);
+    HighchartsOfflineExporting(Highcharts);
     this.highcharts.setOptions({
       lang: {
         decimalPoint: ',',
@@ -102,6 +114,20 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateDiagramState();
     } catch (error) {
       console.error(this.getErrorMsg(error));
+    }
+  }
+
+  onChartInstance(chartInstance: Chart) {
+    this.chartInstance = chartInstance;
+  }
+
+  onControlsPopoverMenuAction(actionName: string) {
+    if (actionName === ControlsPopoverMenuActions.downloadSvg) {
+      this.downloadService.downloadImage(
+        this.chartInstance,
+        'image/svg+xml',
+        this.diagramOptions.title,
+      );
     }
   }
 
@@ -200,6 +226,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       decimals: this.getVerifiedMaxDecimalCount(serie),
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
+      hasPositiveData: this.serieHasPositiveDataPoints(serie),
     });
   }
 
@@ -222,20 +249,21 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     const decimalData = serie.data.filter(
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
     );
-    if (decimalData.length !== 0) {
-      return true;
-    }
-    return false;
+    return decimalData.length !== 0;
   }
 
   private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
     const negativeData = serie.data.filter(
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
     );
-    if (negativeData.length !== 0) {
-      return true;
-    }
-    return false;
+    return negativeData.length > 0;
+  }
+
+  private serieHasPositiveDataPoints(serie: FhiDiagramSerie): boolean {
+    const positiveData = serie.data.filter(
+      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
+    );
+    return positiveData.length > 0;
   }
 
   private updateDiagramTypeGroups() {
@@ -269,7 +297,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.diagramTypeGroups,
       this.diagramOptions.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled ? true : false;
+    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
+    this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
     this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
@@ -277,6 +306,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     if (!diagramTypeIsDisabled) {
       this.updateDiagram();
+    } else {
+      console.warn(
+        `Kan ikke vise diagramtype "${this.diagramOptions.activeDiagramType}" fordi "${this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
+          this.diagramOptions.activeDiagramType,
+        )}"`,
+      );
     }
   }
 
@@ -342,6 +377,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
           console.error('TopoJson map loading error:', error);
         },
       });
+  }
+
+  private canShowDownloadButton(): boolean {
+    return (
+      !!this.diagramOptions.controls?.downloadButton?.show &&
+      this.diagramOptions.activeDiagramType !== 'table'
+    );
   }
 
   private canShowFooter(): boolean {

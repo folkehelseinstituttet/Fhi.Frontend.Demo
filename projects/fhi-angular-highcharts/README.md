@@ -27,7 +27,8 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| >3.1                   | 4.0                   | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
+| >4.1                   | 4                     | 6.3       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
+| >=3.1 <=4.1            | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
 | 2                      | 3.1                   | 5.9       | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
 | 1                      | -                     | 5         | 5         | 15          | 11.1       | 4.0                | 16      | 18/9 *   |
@@ -184,6 +185,7 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `data`   | `FhiDiagramSerieData[]` | -       | yes      | The individual data points in a serie. See [FhiDiagramSerieData](#interface-fhidiagramseriedata) for details. |
 | `name`   | `string \| string[]`    | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependency on a given separator, use an array of category names instead. NB! `series` can not contain duplicate `serie.name` |
 | `stack`  | `string`                | -       | yes      | This option allows for grouping series in a stacked chart. Only applies to diagramTypeId `barStacked` and `columnStacked`. |
+| `unitId` | `number \| string`      | -       | no       | Used to associate the serie with a unit. This only works if `unit.id` ([FhiDiagramUnit](#interface-fhidiagramunit)) is set, and value is equal to `serie.unitId`. |
 
 ### Interface FhiDiagramSerieData
 
@@ -203,16 +205,19 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 ### Interface FhiDiagramUnit
 
-| Property   | Type     | Default | Required | Description |
-| ---------- | -------- | ------- | -------- | ----------- |
-| `decimals` | `number` | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
-| `label`    | `string` | -       | yes      | The vertical y-axis label, showing next to the axis line. |
-| `symbol`   | `string` | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
-| `position` | `string` | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
+| Property   | Type               | Default | Required | Description |
+| ---------- | ------------------ | ------- | -------- | ----------- |
+| `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
+| `decimals` | `number`           | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
+| `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
+| `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
+| `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
+| `yAxisMax` | `number`           | -       | no       | The maximum value of the y-axis. If not set, the max value is automatically calculated. NB! Highcharts may override the value in some edge cases. |
+| `yAxisMin` | `number`           | -       | no       | The minimum value of the y-axis. If not set, the min value is automatically calculated. NB! Highcharts may override the value in some edge cases. |
 
 ## Changelog
 
-You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/fhi-angular-highcharts/latest/projects/fhi-angular-highcharts/CHANGELOG.md).
+You find the [changelog here](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/CHANGELOG.md).
 
 ## Contribute
 

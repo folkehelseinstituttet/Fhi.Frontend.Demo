@@ -25,8 +25,4 @@ export const OptionsMaps = {
       verticalAlign: buttonOptionsVerticalAlignValue,
     },
   },
-  colorAxis: {
-    maxColor: '#32345C',
-    minColor: '#95e8ff',
-  },
 };

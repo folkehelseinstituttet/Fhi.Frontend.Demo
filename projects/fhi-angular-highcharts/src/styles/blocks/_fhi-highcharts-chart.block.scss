@@ -1,14 +1,53 @@
+$golden-ratio: 1.618;
+$golden-ratio-conjugate: 0.618;
+$square: 1;
+
 .fhi-highcharts-chart {
-    @include diagram-container;
-    @include chart-in-fullscreen-modal;
+    width: 100%;
+    container-type: inline-size;
 
     highcharts-chart {
-        @include fill-container;
+        display: block;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: 90vh;
+        aspect-ratio: $square;
+    }
+    &--map {
+        highcharts-chart {
+            aspect-ratio: $golden-ratio-conjugate;
+        }
     }
 }
 
-@media (orientation: landscape) {
+@container (width > 350px) {
+    .fhi-highcharts-chart--map {
+        highcharts-chart {
+            aspect-ratio: $square;
+        }
+    }
+}
+
+@container (width > 650px) {
     .fhi-highcharts-chart {
-        padding-bottom: calc(100% / 4 * 3);
+        highcharts-chart {
+            aspect-ratio: $golden-ratio;
+        }
+    }
+    .fhi-highcharts-chart--map {
+        highcharts-chart {
+            max-height: 50vh;
+        }
+    }
+}
+
+@container (width > 1200px) {
+    .fhi-highcharts-chart {
+        highcharts-chart {
+            max-height: 50vh;
+        }
     }
 }

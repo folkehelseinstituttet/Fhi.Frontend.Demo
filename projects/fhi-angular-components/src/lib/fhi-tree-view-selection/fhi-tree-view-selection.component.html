@@ -1,15 +1,40 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
-  <ng-container *ngTemplateOutlet="checkboxItems; context: { items: items, itemId: null }"></ng-container>
+  <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
+    <label [for]="'search-input-' + instanceID" class="form-label" [id]="'search-input-label-' + instanceID">
+      {{ filterLabel }}
+    </label>
+    <div class="d-flex">
+      <div class="w-100 position-relative">
+        <input
+          [id]="'search-input-' + instanceID"
+          type="search"
+          class="form-control fhi-search__form-control"
+          placeholder="Søk med minimum 3 tegn"
+          (keydown.enter)="onFilterKeydownEnter()"
+          (ngModelChange)="onFilterNgModelChange($event)"
+          [(ngModel)]="filterString"
+          [attr.aria-controls]="'list-' + instanceID"
+        />
+      </div>
+      <button class="btn fhi-search__btn" (click)="onFilterButtonClick()">
+        <i class="fhi-search__btn-icon"></i>
+        <span class="fhi-search__btn__text">Søk</span>
+      </button>
+    </div>
+  </div>
+  <ng-container
+    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, listID: enableFilter ? instanceID : null }"
+  ></ng-container>
 </div>
 
-<ng-template #checkboxItems let-items="items" let-itemId="itemId">
+<ng-template #checkboxItems let-items="items" let-listID="listID">
   <ul
     class="fhi-tree-view-checkbox__list"
     role="tree"
-    [attr.id]="itemId !== null ? 'list' + itemId : null"
-    [attr.aria-labelledby]="itemId !== null ? 'label' + itemId : null"
+    [attr.id]="listID !== null ? 'list-' + listID : null"
+    aria-live="polite"
   >
-    <ng-container *ngIf="enableCheckAll">
+    <ng-container *ngIf="enableCheckAll && !searchMode">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
     </ng-container>
 
@@ -25,10 +50,10 @@
         <ng-container *ngTemplateOutlet="radioItem; context: { item: item }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="item.isExpanded && item.children">
+      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && searchMode)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
-            *ngTemplateOutlet="checkboxItems; context: { items: item.children, itemId: item.id }"
+            *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.id }"
           ></ng-container>
         </div>
       </ng-container>
@@ -59,17 +84,17 @@
   <button
     class="fhi-tree-view-checkbox__toggler"
     [attr.aria-label]="'Toggle ' + item.name"
-    [attr.aria-controls]="'list' + item.id"
+    [attr.aria-controls]="'list-' + item.id"
     [attr.aria-haspopup]="'tree'"
     [attr.aria-expanded]="item.isExpanded"
     (click)="toggleExpanded(item)"
   >
     <i
       [ngClass]="{
-        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant,
-        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant,
-        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant,
-        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant
+        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !searchMode,
+        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !searchMode,
+        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !searchMode,
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !searchMode
       }"
     >
     </i>
@@ -82,13 +107,16 @@
       class="form-check-input"
       type="checkbox"
       value=""
-      [id]="'check-input' + item.id"
+      [id]="'check-input-' + item.id"
       [checked]="item.isChecked"
       (click)="toggleChecked(item.id)"
     />
-    <label class="form-check-label" [for]="'check-input' + item.id" [id]="'label' + item.id">
-      {{ item.name }}
-    </label>
+    <label
+      class="form-check-label"
+      [for]="'check-input-' + item.id"
+      [id]="'label-' + item.id"
+      [innerHTML]="item.name"
+    ></label>
   </div>
 </ng-template>
 
@@ -102,8 +130,11 @@
       [checked]="item.isChecked"
       (change)="toggleChecked(item.id, false, false)"
     />
-    <label class="form-check-label" [for]="name + '-' + item.id" [id]="'label' + item.id">
-      {{ item.name }}
-    </label>
+    <label
+      class="form-check-label"
+      [for]="name + '-' + item.id"
+      [id]="'label-' + item.id"
+      [innerHTML]="item.name"
+    ></label>
   </div>
 </ng-template>

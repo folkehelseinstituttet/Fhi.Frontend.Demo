@@ -1,4 +1,27 @@
-# 4.0.0
+# 4.3.0
+
+> Sep 9, 2024
+
+* :tada: **Enhancement** Give the diagrams better aspect ratios on differnt screen widths
+* :bug: **Bugfix** Remove diagram type navigation from fullscreen view since the navigation fails if diagram type is disabled, and since it doesn't add that much value for the end user.
+
+## 4.2.0
+
+> Sep 3, 2024
+
+* :tada: **Enhancement** Add console warning if a diagram type can't be rendered.
+* :tada: **Enhancement** Enable line diagram with only one data point pr series.
+* :tada: **Enhancement** Remove 0 as default value on y-axis in diagram type line when no unit is defined.
+* :tada: **Enhancement** Add new color palette, extend the color count to 20, and add support for negative values in map gradient (red to blue)
+* :tada: **Enhancement** Add support for SVG export
+
+## 4.1.0
+
+> Jun 27, 2024
+
+* :tada: **Enhancement** Add support for user defined max/min y-axis value
+
+## 4.0.0
 
 > Jun 13, 2024
 
@@ -36,7 +59,6 @@
 * :tada: **Enhancement** Better support for decimals, both in table and in tooltip
 * :tada: **Enhancement** Add support for one unit at the time on yAxis
 * :tada: **Enhancement** Add support for unit i tooltip
-* :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Diagram navigation with split button on chart selector
 * :tada: **Enhancement** Alert on disabled diagram type changed to warning type
 
