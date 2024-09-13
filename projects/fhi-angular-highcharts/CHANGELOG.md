@@ -2,6 +2,7 @@
 
 > Sep 13, 2024
 
+* :tada: **Enhancement** Update documentation for Interface FhiDiagramUnit (about decimal count limited to 9 etc.)
 * :bug: **Bugfix** Reduce max decimal places to 9 (because Highcharts tooltips fails if 10 decimals or more)
 * :bug: **Bugfix** Don't remove decimals if they end with zero (only applies to diagram type table)
 * :bug: **Bugfix** Add null check for unit.decimals
