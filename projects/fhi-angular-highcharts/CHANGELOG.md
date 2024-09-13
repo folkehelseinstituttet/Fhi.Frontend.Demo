@@ -2,6 +2,7 @@
 
 > Sep 13, 2024
 
+* :bug: **Bugfix** Make it possible to dynamically add diagram types to the diagram type navigation.
 * :tada: **Enhancement** Add support for showing a description below the title.
 * :bug: **Bugfix** Adjust allowed max widths on the Highcharts container element
 * :tada: **Enhancement** Update documentation for Interface FhiDiagramUnit (about decimal count limited to 9 etc.)

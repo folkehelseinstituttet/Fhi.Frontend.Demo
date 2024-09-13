@@ -280,15 +280,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramOptions() {
-    const activeDiagramType = this.diagramOptions.activeDiagramType;
     const footer = this.diagramOptions.footer;
     const openSource = this.diagramOptions.openSource;
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      activeDiagramType: activeDiagramType
-        ? activeDiagramType
-        : (DiagramTypeIds.table as FhiDiagramTypeIds),
+      activeDiagramType: this.activeDiagramTypeGroup.diagramType.id as FhiDiagramTypeIds,
       footer: footer ? footer : undefined,
       openSource: openSource === undefined || openSource ? true : false,
     };
