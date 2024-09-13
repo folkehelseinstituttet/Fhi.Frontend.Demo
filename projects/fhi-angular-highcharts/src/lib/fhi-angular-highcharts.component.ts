@@ -236,13 +236,15 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (!unit && this.diagramOptions.units?.length === 1) {
       unit = this.diagramOptions.units[0];
     }
-    if (unit?.decimals >= 0 && unit?.decimals <= 12) {
+    if (unit?.decimals !== null && unit?.decimals >= 0 && unit?.decimals <= 12) {
       return unit.decimals;
     }
-    if (unit?.decimals > 12) {
-      console.warn('Max decimal places is 12 due to loss of precision at runtime!');
+    if (unit?.decimals > 9) {
+      console.warn(
+        'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
+      );
     }
-    return 12;
+    return 9;
   }
 
   private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
