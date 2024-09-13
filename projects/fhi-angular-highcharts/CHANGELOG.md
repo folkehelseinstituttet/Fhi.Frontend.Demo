@@ -1,7 +1,8 @@
 # Unreleased
 
-> Sep 12, 2024
+> Sep 13, 2024
 
+* :bug: **Bugfix** Reduce max decimal places to 9 (because Highcharts tooltips fails if 10 decimals or more)
 * :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged. This will also affect diagram type line with single series: data points will no longer be removed, instead the line will be broken.
   
 ## 4.3.0
