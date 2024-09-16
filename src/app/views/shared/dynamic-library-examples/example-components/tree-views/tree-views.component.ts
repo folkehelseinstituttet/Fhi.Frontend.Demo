@@ -32,12 +32,18 @@ export class TreeViewsComponent implements OnInit {
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
+    console.log('onCheckboxChange', items);
     this.itemsCheck = items;
   }
 
   onRadioChange(items: FhiTreeViewSelectionItem[]) {
     this.itemsRadio = items;
   }
+
+  // Just for testing
+  // onUpdateTreeViewData() {
+  //   this.itemsCheck = this.getTreeViewSelectionItems2();
+  // }
 
   private getTreeviewNavigationItems(): FhiTreeViewNavigationItem[] {
     return [
@@ -123,4 +129,17 @@ export class TreeViewsComponent implements OnInit {
       },
     ];
   }
+
+  // Just for testing
+  // private getTreeViewSelectionItems2(): FhiTreeViewSelectionItem[] {
+  //   return [
+  //     {
+  //       name: 'For me',
+  //     },
+  //     {
+  //       name: 'For you',
+  //       id: 'for-designere',
+  //     },
+  //   ];
+  // }
 }
