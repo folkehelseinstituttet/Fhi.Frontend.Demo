@@ -1,4 +1,10 @@
-# 4.4.1
+# Unreleased
+
+> Sep 16, 2024
+
+* :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items.
+
+## 4.4.1
 
 > Sep 9, 2024
 
