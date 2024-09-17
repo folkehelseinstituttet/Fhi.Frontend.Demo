@@ -1,8 +1,14 @@
-# 4.4.1
+# Unreleased
+
+> Sep 16, 2024
+
+* :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items.
+* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`.
+
+## 4.4.1
 
 > Sep 9, 2024
 
-* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`.
 * :bug: **Bugfix** Add missing Bootstrap classes to `FhiAutosuggestComponent` and `FhiMultiselectComponent`
 
 ## 4.4.0
