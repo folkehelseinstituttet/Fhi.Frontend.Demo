@@ -1,9 +1,9 @@
-# Unreleased
+# 4.4.2
 
-> Sep 16, 2024
+> Sep 17, 2024
 
-* :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items.
-* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`.
+* :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items. [(#679)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/679)
+* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`. [(#680)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/680)
 
 ## 4.4.1
 
