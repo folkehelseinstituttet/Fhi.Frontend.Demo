@@ -3,6 +3,7 @@
 > Sep 16, 2024
 
 * :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items.
+* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`.
 
 ## 4.4.1
 
