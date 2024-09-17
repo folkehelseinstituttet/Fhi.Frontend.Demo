@@ -2,6 +2,7 @@
 
 > Sep 9, 2024
 
+* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`.
 * :bug: **Bugfix** Add missing Bootstrap classes to `FhiAutosuggestComponent` and `FhiMultiselectComponent`
 
 ## 4.4.0
