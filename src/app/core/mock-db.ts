@@ -1,20 +1,3 @@
-import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-
-// All item ids
-import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids';
-
-// All items for debuggings page
-import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
-
-// Items
-
-// -----------------------------------------
-//
-// New id and title implementation!
-//
-// -----------------------------------------
-
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
@@ -48,53 +31,38 @@ import { TooltipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popov
 import { TreeViewsData } from 'src/MOCK_DB_DATA/library-items/tree-views/_tree-views.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
-// TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
-// const AllLibraryItemsData: LibraryItem[] = [
-//   ...HighchartsData.libraryItems,
-// ];
+export function getMockDbBody(url: string): unknown {
+  const urlSegment = url.slice(4);
 
-@Injectable({
-  providedIn: 'root',
-})
-export class MockDbService implements InMemoryDbService {
-  createDb(): object {
-    return {
-      LibraryItemsSharedData,
-      LibraryItemGroupsSharedData,
-
-      // Items
-      AccordionsData,
-      AlertsData,
-      BadgesData,
-      BreadcrumbsData,
-      ButtonsData,
-      CardsData,
-      ColorsData,
-      DrawersData,
-      ErrorPagesData,
-      FormControlsData,
-      GlobalFootersData,
-      GlobalHeadersData,
-      HighchartsData,
-      IconsData,
-      LayoutTemplatesData,
-      ModalsData,
-      NavsData,
-      PaginationsData,
-      ProgressIndicatorsData,
-      PrototypeFormsData,
-      PrototypeTablesData,
-      SearchData,
-      TablesData,
-      TagsData,
-      TimeSelectorsData,
-      ToastsData,
-      TooltipPopoverData,
-      TreeViewsData,
-      TypographyData,
-
-      LibraryItemIds, // TODO: deprecate when all items use new system
-      AllData, // TODO: deprecate when all items use new system
-    };
-  }
+  if (urlSegment === 'LibraryItemsSharedData') return LibraryItemsSharedData;
+  if (urlSegment === 'LibraryItemGroupsSharedData') return LibraryItemGroupsSharedData;
+  if (urlSegment === 'AccordionsData') return AccordionsData;
+  if (urlSegment === 'AlertsData') return AlertsData;
+  if (urlSegment === 'BadgesData') return BadgesData;
+  if (urlSegment === 'BreadcrumbsData') return BreadcrumbsData;
+  if (urlSegment === 'ButtonsData') return ButtonsData;
+  if (urlSegment === 'CardsData') return CardsData;
+  if (urlSegment === 'ColorsData') return ColorsData;
+  if (urlSegment === 'DrawersData') return DrawersData;
+  if (urlSegment === 'ErrorPagesData') return ErrorPagesData;
+  if (urlSegment === 'FormControlsData') return FormControlsData;
+  if (urlSegment === 'GlobalFootersData') return GlobalFootersData;
+  if (urlSegment === 'GlobalHeadersData') return GlobalHeadersData;
+  if (urlSegment === 'HighchartsData') return HighchartsData;
+  if (urlSegment === 'IconsData') return IconsData;
+  if (urlSegment === 'LayoutTemplatesData') return LayoutTemplatesData;
+  if (urlSegment === 'ModalsData') return ModalsData;
+  if (urlSegment === 'NavsData') return NavsData;
+  if (urlSegment === 'PaginationsData') return PaginationsData;
+  if (urlSegment === 'ProgressIndicatorsData') return ProgressIndicatorsData;
+  if (urlSegment === 'PrototypeFormsData') return PrototypeFormsData;
+  if (urlSegment === 'PrototypeTablesData') return PrototypeTablesData;
+  if (urlSegment === 'SearchData') return SearchData;
+  if (urlSegment === 'TablesData') return TablesData;
+  if (urlSegment === 'TagsData') return TagsData;
+  if (urlSegment === 'TimeSelectorsData') return TimeSelectorsData;
+  if (urlSegment === 'ToastsData') return ToastsData;
+  if (urlSegment === 'TooltipPopoverData') return TooltipPopoverData;
+  if (urlSegment === 'TreeViewsData') return TreeViewsData;
+  if (urlSegment === 'TypographyData') return TypographyData;
 }

@@ -14,6 +14,7 @@ export type FhiTableOrientations = keyof typeof TableOrientations;
 export interface FhiDiagramOptions {
   activeDiagramType?: FhiDiagramTypeIds;
   controls?: FhiDiagramControls;
+  description?: string;
   footer?: FhiDiagramFooter;
   openSource?: boolean;
   series: FhiDiagramSerie[];

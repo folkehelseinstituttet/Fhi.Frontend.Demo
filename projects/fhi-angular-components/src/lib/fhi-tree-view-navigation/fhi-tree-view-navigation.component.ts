@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-item.model';
 
@@ -8,11 +15,13 @@ import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-it
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FhiTreeViewNavigationComponent {
+export class FhiTreeViewNavigationComponent implements OnChanges {
   @Input() items: Item[] = [];
 
-  ngOnChanges() {
-    this.createIds(this.items, 1);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['items'].currentValue !== undefined) {
+      this.createIds(this.items, 1);
+    }
   }
 
   toggleExpanded(item: Item) {

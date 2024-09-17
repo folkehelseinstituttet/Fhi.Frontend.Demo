@@ -136,6 +136,10 @@ export class OptionsService {
 
   private updateOptionsForCurrentDiagramType(options: Options): Options {
     switch (this.diagramOptions.activeDiagramType) {
+      case DiagramTypeIdValues.line:
+        options.series = this.setStringToNull(this.diagramOptions.series);
+        break;
+
       case DiagramTypeIdValues.pie:
         if (options.legend && options.legend.title) {
           options.legend.title.text = options.series[0].name;
@@ -149,6 +153,18 @@ export class OptionsService {
         break;
     }
     return options;
+  }
+
+  private setStringToNull(series: FhiDiagramSerie[]): SeriesOptionsType[] {
+    const newSeries = cloneDeep(series);
+    newSeries.forEach((serie) => {
+      serie.data.forEach((dataPoint) => {
+        if (typeof dataPoint.y === 'string') {
+          dataPoint.y = null;
+        }
+      });
+    });
+    return newSeries as SeriesOptionsType[];
   }
 
   private getSeriesWithoutFlaggedDataPoints() {

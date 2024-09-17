@@ -1,17 +1,17 @@
-<div class="container" *ngIf="!isDebugging; else debugView">
-  <app-library-top-level-menu [menuItems]="topLevelMenuItems"></app-library-top-level-menu>
-  <div class="row">
-    <div class="col-xl-2">
-      <app-library-second-level-menu [menuItems]="secondLevelMenuItems"></app-library-second-level-menu>
-    </div>
-    <div class="col-xl-10">
-      <router-outlet></router-outlet>
+@if (dataIsLoaded && !isDebugging) {
+  <div class="container">
+    <app-library-top-level-menu [menuItems]="topLevelMenuItems"></app-library-top-level-menu>
+    <div class="row">
+      <div class="col-xl-2">
+        <app-library-second-level-menu [menuItems]="secondLevelMenuItems"></app-library-second-level-menu>
+      </div>
+      <div class="col-xl-10">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
-</div>
-
-<ng-template #debugView>
-  <div class="container">
+} @else if (dataIsLoaded) {
+  <div class="container" *ngIf="dataIsLoaded">
     <router-outlet></router-outlet>
   </div>
-</ng-template>
+}

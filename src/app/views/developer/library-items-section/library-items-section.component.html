@@ -1,43 +1,45 @@
-<div class="row">
-  <div class="col-xl-9 col-xxl-8">
-    <section class="ds-library-items">
-      <header class="mb-7" *ngIf="sectionTitle">
-        <h1 [attr.lang]="sectionTitleLang === lang_NO ? null : lang_EN">{{ sectionTitle }}</h1>
-        <div
-          class="ds-library-items__section-intro"
-          *ngIf="sectionIntro"
-          [innerHtml]="sectionIntro | safe: 'html'"
-        ></div>
-        <hr />
-      </header>
+@if (dataIsLoaded) {
+  <div class="row">
+    <div class="col-xl-9 col-xxl-8">
+      <section class="ds-library-items">
+        <header class="mb-7" *ngIf="sectionTitle">
+          <h1 [attr.lang]="sectionTitleLang === lang_NO ? null : lang_EN">{{ sectionTitle }}</h1>
+          <div
+            class="ds-library-items__section-intro"
+            *ngIf="sectionIntro"
+            [innerHtml]="sectionIntro | safe: 'html'"
+          ></div>
+          <hr />
+        </header>
 
-      <app-library-item
-        [groupId]="groupId"
-        [libraryItem]="libraryItem"
-        [isDebugging]="isDebugging"
-        *ngFor="let libraryItem of libraryItems"
-      >
-      </app-library-item>
-    </section>
-  </div>
+        <app-library-item
+          *ngFor="let libraryItem of libraryItems"
+          [group]="group"
+          [libraryItem]="libraryItem"
+          [isDebugging]="isDebugging"
+        >
+        </app-library-item>
+      </section>
+    </div>
 
-  <div class="d-none d-xl-block col-xl-3 ms-auto" *ngIf="libraryItems.length > 1">
-    <div class="position-sticky top-0 pt-4">
-      <div class="fhi-tree-view-navigation">
-        <ul class="fhi-tree-view-navigation__list">
-          <li class="fhi-tree-view-navigation__item" *ngFor="let item of libraryItems">
-            <a
-              class="fhi-tree-view-navigation__link"
-              href="javascript:void(0)"
-              role="button"
-              [ngClass]="{ active: currentAnchor === item.id }"
-              (click)="scrollToLibraryItem(item.id)"
-            >
-              {{ item.title }}
-            </a>
-          </li>
-        </ul>
+    <div class="d-none d-xl-block col-xl-3 ms-auto" *ngIf="libraryItems?.length > 1">
+      <div class="position-sticky top-0 pt-4">
+        <div class="fhi-tree-view-navigation">
+          <ul class="fhi-tree-view-navigation__list">
+            <li class="fhi-tree-view-navigation__item" *ngFor="let item of libraryItems">
+              <a
+                class="fhi-tree-view-navigation__link"
+                href="javascript:void(0)"
+                role="button"
+                [ngClass]="{ active: currentAnchor === item.id }"
+                (click)="scrollToLibraryItem(item.id)"
+              >
+                {{ item.title }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

@@ -1,4 +1,17 @@
-# 4.3.0
+# 4.4.0
+
+> Sep 13, 2024
+
+* :bug: **Bugfix** Make it possible to dynamically add diagram types to the diagram type navigation. [(#665)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/665)
+* :tada: **Enhancement** Add support for showing a description below the title. [(#673)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/673)
+* :bug: **Bugfix** Adjust allowed max widths on the Highcharts container element. [(#672)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/672)
+* :tada: **Enhancement** Update documentation for Interface FhiDiagramUnit (about decimal count limited to 9 etc.). [(#670)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/670)
+* :bug: **Bugfix** Reduce max decimal places to 9 (because Highcharts tooltips fails if 10 decimals or more). [(#669)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/669)
+* :bug: **Bugfix** Don't remove decimals if they end with zero (only applies to diagram type table). [(#668)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/668)
+* :bug: **Bugfix** Add null check for unit.decimals. [(#667)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/667)
+* :tada: **Enhancement**  Add support for showing diagram type line with multiple series even if flagged. This will also affect diagram type line with single series: data points will no longer be removed, instead the line will be broken. [(#664)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/664)
+  
+## 4.3.0
 
 > Sep 9, 2024
 

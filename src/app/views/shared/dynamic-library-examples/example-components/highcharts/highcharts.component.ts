@@ -43,6 +43,8 @@ export class HighchartsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log('this.items', this.items);
+
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
       this.getExampleData('1');
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
@@ -175,7 +177,7 @@ export class HighchartsComponent implements OnInit {
         },
         navigation: {
           items: {
-            chartTypes: ['bar', 'column', 'columnAndLine', 'line', 'pie'],
+            chartTypes: ['bar', 'column', 'line', 'pie'],
             mapTypes: ['mapFylker2023'],
           },
           show: true,
@@ -201,6 +203,7 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3b() {
+    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
@@ -219,6 +222,7 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3c() {
+    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.diagramOptions,
       activeDiagramType: 'mapFylker2023',
@@ -228,6 +232,13 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3d() {
+    this.diagramOptions.controls.navigation.items.chartTypes = [
+      'bar',
+      'column',
+      'columnAndLine',
+      'line',
+      'pie',
+    ];
     this.getData(MockData.AgensAntallOgAndel, {
       ...this.diagramOptions,
       activeDiagramType: 'columnAndLine',
@@ -254,6 +265,15 @@ export class HighchartsComponent implements OnInit {
       activeDiagramType: 'line',
       title: this.titles.title_3e,
       units: undefined,
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
     });
   }
 
