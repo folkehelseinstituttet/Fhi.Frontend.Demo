@@ -43,8 +43,6 @@ export class HighchartsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('this.items', this.items);
-
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
       this.getExampleData('1');
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
