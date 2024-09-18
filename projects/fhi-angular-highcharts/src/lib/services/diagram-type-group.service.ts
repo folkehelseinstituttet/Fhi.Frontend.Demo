@@ -132,19 +132,22 @@ export class DiagramTypeGroupService {
 
     group.children = [];
 
-    if (isChart && items?.chartTypes !== undefined) {
+    if ((isChart && !items?.chartTypes) || (isMap && !items?.mapTypes)) {
+      console.log('group', group);
+      return group;
+    }
+
+    if (isChart) {
       items.chartTypes.forEach((id) => {
         group.children.push(ChartTypes.find((type) => type.id === id));
       });
-    } else if (isChart) {
-      group.children = ChartTypes;
-    } else if (isMap && items?.mapTypes !== undefined) {
+    }
+    if (isMap) {
       items.mapTypes.forEach((id) => {
         group.children.push(MapTypes.find((type) => type.id === id));
       });
-    } else if (isMap) {
-      group.children = MapTypes;
     }
+
     return group;
   }
 
