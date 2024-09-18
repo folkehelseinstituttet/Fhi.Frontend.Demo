@@ -126,14 +126,18 @@ export class DiagramTypeGroupService {
       return group;
     }
 
-    const items = this.diagramOptions.controls?.navigation?.items;
+    const navigation = this.diagramOptions.controls?.navigation;
+    const items = navigation?.items;
     const isChart = group.name === DiagramTypeGroupNames.chart;
     const isMap = group.name === DiagramTypeGroupNames.map;
+
+    if (!navigation || !navigation.show) {
+      return group;
+    }
 
     group.children = [];
 
     if ((isChart && !items?.chartTypes) || (isMap && !items?.mapTypes)) {
-      console.log('group', group);
       return group;
     }
 
