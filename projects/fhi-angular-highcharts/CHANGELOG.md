@@ -1,4 +1,10 @@
-# 5.0.0
+# 5.0.1
+
+> Sep 20, 2024
+
+* :bug: **Bugfix** Bump peerDependency @folkehelseinstituttet/angular-components to v5
+
+## 5.0.0
 
 > Sep 20, 2024
 
