@@ -138,6 +138,18 @@ export class HighchartsComponent implements OnInit {
       title: this.titles.title_2a,
       controls: {
         navigation: {
+          items: {
+            chartTypes: [
+              'line',
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'pie',
+              'columnAndLine',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
           show: true,
         },
       },
