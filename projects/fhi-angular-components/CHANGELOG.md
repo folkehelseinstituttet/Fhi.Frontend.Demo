@@ -1,4 +1,10 @@
-# 5.0.0
+# 5.0.1
+
+> Sep 20, 2024
+
+* :bug: **Bugfix** Less specific version for @angular
+
+## 5.0.0
 
 > Sep 19, 2024
 
