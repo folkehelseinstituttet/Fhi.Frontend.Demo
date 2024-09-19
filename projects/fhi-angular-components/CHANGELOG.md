@@ -1,4 +1,10 @@
-# 4.4.2
+# 5.0.0
+
+> Sep 19, 2024
+
+* :boom: **Breaking** Update to Angular 18. [(#689)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/689)
+
+## 4.4.2
 
 > Sep 17, 2024
 
