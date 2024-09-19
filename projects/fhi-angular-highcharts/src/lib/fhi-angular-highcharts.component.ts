@@ -22,11 +22,7 @@ import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
 import { DiagramType } from './models/diagram-type.model';
 
-import {
-  ChartTypeIds,
-  DiagramTypeIdValues as DiagramTypeIds,
-  MapTypeIds,
-} from './constants-and-enums/diagram-type-ids';
+import { DiagramTypeIdValues as DiagramTypeIds } from './constants-and-enums/diagram-type-ids';
 import { DiagramSerieNameSeperator as Seperator } from './constants-and-enums/diagram-serie-name-seperator';
 import { DiagramTypeGroupNames } from './constants-and-enums/diagram-type-groups';
 
@@ -99,8 +95,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    this.tmpAdapterForDeprecatedDiagramOptions();
-
     try {
       this.resetDiagramState();
       this.diagramOptions.series.forEach((serie) => {
@@ -417,157 +411,5 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     API documentation:
     https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/projects/fhi-angular-highcharts/README.md#api`;
-  }
-
-  // -----------------------------------------------------------------------------------------------
-  // Tmp adapter for converting deprecated API properties to avoid breaking change in PR for issue:
-  // https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/540
-  //
-  // This adapter will be removed in v5
-  //
-  private tmpAdapterForDeprecatedDiagramOptions() {
-    const opt = this.diagramOptions;
-    // console.log('this.diagramOptions 1', this.diagramOptions);
-    // debugger;
-
-    // diagramTypeId & mapTypeId
-    if (opt.diagramTypeId) {
-      if (opt.diagramTypeId === 'map') {
-        opt.activeDiagramType = opt.mapTypeId;
-      } else {
-        opt.activeDiagramType = opt.diagramTypeId;
-      }
-    }
-    if (opt.activeDiagramType === 'map') {
-      opt.activeDiagramType = 'mapFylker';
-    }
-    delete opt.diagramTypeId;
-    delete opt.mapTypeId;
-
-    // diagramTypeNavId
-    if (opt.diagramTypeNavId && !opt.controls?.navigation) {
-      if (!opt.controls) {
-        opt.controls = {};
-      }
-      if (!opt.controls.navigation) {
-        opt.controls.navigation = {
-          show: !!opt.diagramTypeNavId,
-          type: opt.diagramTypeNavId,
-        };
-      }
-    }
-    delete opt.diagramTypeNavId;
-
-    // diagramTypeSubset
-    if (opt.diagramTypeSubset && !opt.controls?.navigation?.items) {
-      if (opt.diagramTypeSubset.find((type) => type === 'map')) {
-        opt.diagramTypeSubset.push('mapFylker');
-        opt.diagramTypeSubset = opt.diagramTypeSubset.filter((type) => type !== 'map');
-      }
-      opt.controls.navigation.items = {};
-
-      if (!opt.controls.navigation.items.mapTypes) {
-        opt.controls.navigation.items.mapTypes = opt.diagramTypeSubset.filter(
-          (type) => type.slice(0, 3) === 'map',
-        ) as (keyof typeof MapTypeIds)[];
-      }
-      if (!opt.controls.navigation.items.chartTypes) {
-        opt.controls.navigation.items.chartTypes = opt.diagramTypeSubset.filter(
-          (type) => type.slice(0, 3) !== 'map',
-        ) as (keyof typeof ChartTypeIds)[];
-      }
-    }
-    delete opt.diagramTypeSubset;
-
-    // showFullScreenButton
-    if (
-      opt.showFullScreenButton !== undefined &&
-      opt.controls?.fullScreenButton?.show === undefined
-    ) {
-      if (!opt.controls) {
-        opt.controls = {};
-      }
-      if (!opt.controls.fullScreenButton) {
-        opt.controls.fullScreenButton = {
-          show: opt.showFullScreenButton,
-        };
-      }
-    }
-    delete opt.showFullScreenButton;
-
-    // metadataButton
-    if (opt.metadataButton !== undefined && opt.controls?.metadataButton?.show === undefined) {
-      if (!opt.controls) {
-        opt.controls = {};
-      }
-      if (!opt.controls.metadataButton) {
-        opt.controls.metadataButton = {
-          show: opt.metadataButton,
-        };
-      }
-    }
-    delete opt.metadataButton;
-
-    // creditsHref & creditsText
-    if ((opt.creditsHref || opt.creditsText) && !opt.footer?.credits) {
-      if (!opt.footer) {
-        opt.footer = {};
-      }
-      if (!opt.footer.credits) {
-        opt.footer.credits = {
-          href: opt.creditsHref,
-          text: opt.creditsText,
-        };
-      }
-    }
-    delete opt.creditsHref;
-    delete opt.creditsText;
-
-    // disclaimer
-    if (opt.disclaimer && !opt.footer?.disclaimer) {
-      if (!opt.footer) {
-        opt.footer = {};
-      }
-      if (!opt.footer.disclaimer) {
-        opt.footer.disclaimer = opt.disclaimer;
-      }
-    }
-    delete opt.disclaimer;
-
-    // flags
-    if (opt.flags && !opt.footer?.flags) {
-      if (!opt.footer) {
-        opt.footer = {};
-      }
-      if (!opt.footer.flags) {
-        opt.footer.flags = opt.flags;
-      }
-    }
-    delete opt.flags;
-
-    // lastUpdated
-    if (opt.lastUpdated && !opt.footer?.lastUpdated) {
-      if (!opt.footer) {
-        opt.footer = {};
-      }
-      if (!opt.footer.lastUpdated) {
-        opt.footer.lastUpdated = opt.lastUpdated;
-      }
-    }
-    delete opt.lastUpdated;
-
-    // decimals
-    if (opt.decimals && (!opt.units || opt.units?.length === 1)) {
-      if (!opt.units) {
-        opt.units = [{ label: undefined }];
-      }
-      if (!opt.units[0].decimals) {
-        opt.units[0].decimals = opt.decimals;
-      }
-    }
-    delete opt.decimals;
-
-    this.diagramOptions = opt;
-    // console.log('this.diagramOptions 2', this.diagramOptions);
   }
 }
