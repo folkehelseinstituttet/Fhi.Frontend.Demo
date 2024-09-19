@@ -1,4 +1,8 @@
-# 4.4.2
+# Unreleased
+
+* :boom: **Breaking** Update to Angular 18
+
+## 4.4.2
 
 > Sep 17, 2024
 
