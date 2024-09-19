@@ -55,33 +55,17 @@ const EXAMPLE_COMPONENTS = [
   TreeViewsComponent,
 ];
 
-const NGB_EXAMPLES = [];
+const EXAMPLE_COMPONENTS_STANDALONE = [ButtonsComponent, FormControlsComponent];
 
 @NgModule({
-  declarations: [
-    DynamicLibraryExampleComponent,
-    ...EXAMPLE_COMPONENTS,
-
-    // TODO: remove
-    ...NGB_EXAMPLES,
-  ],
+  declarations: [DynamicLibraryExampleComponent, ...EXAMPLE_COMPONENTS],
   imports: [
     NgbAccordionModule,
     NgbTooltipModule,
     NgSelectModule,
     SharedModule,
-
-    // Standalone components
-    ButtonsComponent,
-    FormControlsComponent,
+    ...EXAMPLE_COMPONENTS_STANDALONE,
   ],
-  exports: [
-    NgSelectModule,
-    DynamicLibraryExampleComponent,
-    ...EXAMPLE_COMPONENTS,
-
-    // TODO: remove
-    ...NGB_EXAMPLES,
-  ],
+  exports: [NgSelectModule, DynamicLibraryExampleComponent, ...EXAMPLE_COMPONENTS],
 })
 export class DynamicLibraryExamplesModule {}
