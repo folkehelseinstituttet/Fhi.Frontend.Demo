@@ -320,23 +320,6 @@ export class HighchartsComponent implements OnInit {
           position: 'end',
         },
       ],
-
-      // The following will be deprecated in v5
-      // --------------------------------------
-      // diagramTypeId: 'map',
-      // diagramTypeNavId: 'default',
-      // decimals: 2,
-      // flags: [
-      //   { symbol: '..', label: 'Manglende data' },
-      //   { symbol: '.', label: 'Lar seg ikke beregne' },
-      //   { symbol: ':', label: 'Anonymisert' },
-      // ],
-      // creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
-      // creditsText: 'Nøkkeltall for folkehelse',
-      // disclaimer: 'Disse dataene kan inneholde feil.',
-      // lastUpdated: '06.06.2023',
-      // mapTypeId: 'mapFylker',
-      // showFullScreenButton: true,
     });
   }
 }

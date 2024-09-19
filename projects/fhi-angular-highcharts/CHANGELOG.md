@@ -1,5 +1,6 @@
 # Unreleased
 
+* :boom: **Breaking** Update to Angular 18, and remove deprecated properties from `FhiDiagramOptions`.
 * :boom: **Breaking** Only populate the the `fhi-diagram-type-nav-default` with diagram type `table` if no diagram types defined options (`navigation.items.chartTypes` or `navigation.items.mapTypes`).
 
 ## 4.4.0
@@ -14,7 +15,7 @@
 * :bug: **Bugfix** Reduce max decimal places to 9 (because Highcharts tooltips fails if 10 decimals or more). [(#669)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/669)
 * :bug: **Bugfix** Don't remove decimals if they end with zero (only applies to diagram type table). [(#668)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/668)
 * :bug: **Bugfix** Add null check for unit.decimals. [(#667)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/667)
-  
+
 ## 4.3.0
 
 > Sep 9, 2024
