@@ -1,6 +1,7 @@
 # Unreleased
 
 * :boom: **Breaking** Update to Angular 18, and remove deprecated properties from `FhiDiagramOptions`.
+* :boom: **Breaking** Only populate the the `fhi-diagram-type-nav-default` with diagram type `table` if no diagram types defined options (`navigation.items.chartTypes` or `navigation.items.mapTypes`).
 
 ## 4.4.0
 
