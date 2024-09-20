@@ -34,35 +34,39 @@ import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typog
 export function getMockDbBody(url: string): unknown {
   const urlSegment = url.slice(4);
 
-  if (urlSegment === 'LibraryItemsSharedData') return LibraryItemsSharedData;
-  if (urlSegment === 'LibraryItemGroupsSharedData') return LibraryItemGroupsSharedData;
-  if (urlSegment === 'AccordionsData') return AccordionsData;
-  if (urlSegment === 'AlertsData') return AlertsData;
-  if (urlSegment === 'BadgesData') return BadgesData;
-  if (urlSegment === 'BreadcrumbsData') return BreadcrumbsData;
-  if (urlSegment === 'ButtonsData') return ButtonsData;
-  if (urlSegment === 'CardsData') return CardsData;
-  if (urlSegment === 'ColorsData') return ColorsData;
-  if (urlSegment === 'DrawersData') return DrawersData;
-  if (urlSegment === 'ErrorPagesData') return ErrorPagesData;
-  if (urlSegment === 'FormControlsData') return FormControlsData;
-  if (urlSegment === 'GlobalFootersData') return GlobalFootersData;
-  if (urlSegment === 'GlobalHeadersData') return GlobalHeadersData;
-  if (urlSegment === 'HighchartsData') return HighchartsData;
-  if (urlSegment === 'IconsData') return IconsData;
-  if (urlSegment === 'LayoutTemplatesData') return LayoutTemplatesData;
-  if (urlSegment === 'ModalsData') return ModalsData;
-  if (urlSegment === 'NavsData') return NavsData;
-  if (urlSegment === 'PaginationsData') return PaginationsData;
-  if (urlSegment === 'ProgressIndicatorsData') return ProgressIndicatorsData;
-  if (urlSegment === 'PrototypeFormsData') return PrototypeFormsData;
-  if (urlSegment === 'PrototypeTablesData') return PrototypeTablesData;
-  if (urlSegment === 'SearchData') return SearchData;
-  if (urlSegment === 'TablesData') return TablesData;
-  if (urlSegment === 'TagsData') return TagsData;
-  if (urlSegment === 'TimeSelectorsData') return TimeSelectorsData;
-  if (urlSegment === 'ToastsData') return ToastsData;
-  if (urlSegment === 'TooltipPopoverData') return TooltipPopoverData;
-  if (urlSegment === 'TreeViewsData') return TreeViewsData;
-  if (urlSegment === 'TypographyData') return TypographyData;
+  const dataMapping = {
+    LibraryItemsSharedData: LibraryItemsSharedData,
+    LibraryItemGroupsSharedData: LibraryItemGroupsSharedData,
+    AccordionsData: AccordionsData,
+    AlertsData: AlertsData,
+    BadgesData: BadgesData,
+    BreadcrumbsData: BreadcrumbsData,
+    ButtonsData: ButtonsData,
+    CardsData: CardsData,
+    ColorsData: ColorsData,
+    DrawersData: DrawersData,
+    ErrorPagesData: ErrorPagesData,
+    FormControlsData: FormControlsData,
+    GlobalFootersData: GlobalFootersData,
+    GlobalHeadersData: GlobalHeadersData,
+    HighchartsData: HighchartsData,
+    IconsData: IconsData,
+    LayoutTemplatesData: LayoutTemplatesData,
+    ModalsData: ModalsData,
+    NavsData: NavsData,
+    PaginationsData: PaginationsData,
+    ProgressIndicatorsData: ProgressIndicatorsData,
+    PrototypeFormsData: PrototypeFormsData,
+    PrototypeTablesData: PrototypeTablesData,
+    SearchData: SearchData,
+    TablesData: TablesData,
+    TagsData: TagsData,
+    TimeSelectorsData: TimeSelectorsData,
+    ToastsData: ToastsData,
+    TooltipPopoverData: TooltipPopoverData,
+    TreeViewsData: TreeViewsData,
+    TypographyData: TypographyData,
+  };
+
+  return dataMapping[urlSegment] || null;
 }
