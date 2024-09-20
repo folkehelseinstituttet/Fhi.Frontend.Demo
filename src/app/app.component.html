@@ -42,7 +42,9 @@
 
   <div class="ds-scroll-to-top">
     <a [routerLink] [fragment]="'top'">
-      <!-- <fa-icon class="ds-scroll-to-top__icon" [icon]="faArrowCircleUp"></fa-icon> -->
+      <button type="button" class="btn fhi-btn-icon fhi-btn-icon--circular" (click)="scrollToTop('top')">
+        <i class="icon-arrow-up"></i>
+      </button>
     </a>
   </div>
 
