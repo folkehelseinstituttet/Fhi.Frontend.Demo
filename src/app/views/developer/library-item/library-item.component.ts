@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
-import { LibraryItem, LibraryItemType } from '../../shared/models/library-item.model';
+import {
+  LibraryItem,
+  LibraryItemGroup,
+  LibraryItemType,
+} from '../../shared/models/library-item.model';
 import { MenuItem } from 'src/app/models/menu-item.model';
 import { SharedConstants as CONST } from '../../shared/shared.constants';
 
@@ -15,8 +19,8 @@ const MenuItemName = {
   selector: 'app-library-item',
   templateUrl: './library-item.component.html',
 })
-export class LibraryItemComponent implements OnInit {
-  @Input() groupId: string;
+export class LibraryItemComponent implements OnInit, AfterViewInit {
+  @Input() group: LibraryItemGroup;
   @Input() isDebugging: boolean;
   @Input() libraryItem: LibraryItem;
 

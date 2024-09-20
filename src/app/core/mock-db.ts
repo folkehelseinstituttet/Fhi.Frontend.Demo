@@ -1,20 +1,3 @@
-import { Injectable } from '@angular/core';
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-
-// All item ids
-import { LibraryItemIds } from 'src/MOCK_DB_DATA/library-items/library-item-ids';
-
-// All items for debuggings page
-import { AllData } from 'src/MOCK_DB_DATA/library-items/library-items.data';
-
-// Items
-
-// -----------------------------------------
-//
-// New id and title implementation!
-//
-// -----------------------------------------
-
 import { LibraryItemsSharedData } from 'src/MOCK_DB_DATA/library-items/library-items-shared-data';
 import { LibraryItemGroupsSharedData } from 'src/MOCK_DB_DATA/library-items/library-item-groups-shared-data';
 
@@ -48,53 +31,42 @@ import { TooltipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popov
 import { TreeViewsData } from 'src/MOCK_DB_DATA/library-items/tree-views/_tree-views.data';
 import { TypographyData } from 'src/MOCK_DB_DATA/library-items/typography/_typography.data';
 
-// TODO: make logic for reading developer/debug/all in LibraryItemGroupsDataService
-// const AllLibraryItemsData: LibraryItem[] = [
-//   ...HighchartsData.libraryItems,
-// ];
+export function getMockDbBody(url: string): unknown {
+  const urlSegment = url.slice(4);
 
-@Injectable({
-  providedIn: 'root',
-})
-export class MockDbService implements InMemoryDbService {
-  createDb(): object {
-    return {
-      LibraryItemsSharedData,
-      LibraryItemGroupsSharedData,
+  const dataMapping = {
+    LibraryItemsSharedData: LibraryItemsSharedData,
+    LibraryItemGroupsSharedData: LibraryItemGroupsSharedData,
+    AccordionsData: AccordionsData,
+    AlertsData: AlertsData,
+    BadgesData: BadgesData,
+    BreadcrumbsData: BreadcrumbsData,
+    ButtonsData: ButtonsData,
+    CardsData: CardsData,
+    ColorsData: ColorsData,
+    DrawersData: DrawersData,
+    ErrorPagesData: ErrorPagesData,
+    FormControlsData: FormControlsData,
+    GlobalFootersData: GlobalFootersData,
+    GlobalHeadersData: GlobalHeadersData,
+    HighchartsData: HighchartsData,
+    IconsData: IconsData,
+    LayoutTemplatesData: LayoutTemplatesData,
+    ModalsData: ModalsData,
+    NavsData: NavsData,
+    PaginationsData: PaginationsData,
+    ProgressIndicatorsData: ProgressIndicatorsData,
+    PrototypeFormsData: PrototypeFormsData,
+    PrototypeTablesData: PrototypeTablesData,
+    SearchData: SearchData,
+    TablesData: TablesData,
+    TagsData: TagsData,
+    TimeSelectorsData: TimeSelectorsData,
+    ToastsData: ToastsData,
+    TooltipPopoverData: TooltipPopoverData,
+    TreeViewsData: TreeViewsData,
+    TypographyData: TypographyData,
+  };
 
-      // Items
-      AccordionsData,
-      AlertsData,
-      BadgesData,
-      BreadcrumbsData,
-      ButtonsData,
-      CardsData,
-      ColorsData,
-      DrawersData,
-      ErrorPagesData,
-      FormControlsData,
-      GlobalFootersData,
-      GlobalHeadersData,
-      HighchartsData,
-      IconsData,
-      LayoutTemplatesData,
-      ModalsData,
-      NavsData,
-      PaginationsData,
-      ProgressIndicatorsData,
-      PrototypeFormsData,
-      PrototypeTablesData,
-      SearchData,
-      TablesData,
-      TagsData,
-      TimeSelectorsData,
-      ToastsData,
-      TooltipPopoverData,
-      TreeViewsData,
-      TypographyData,
-
-      LibraryItemIds, // TODO: deprecate when all items use new system
-      AllData, // TODO: deprecate when all items use new system
-    };
-  }
+  return dataMapping[urlSegment] || null;
 }
