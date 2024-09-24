@@ -12,7 +12,6 @@ import { UrlService } from './services/url.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  adminView = false;
   projectName = 'Designsystem';
   projectDescription = null;
 
@@ -44,15 +43,6 @@ export class AppComponent implements OnInit {
       .subscribe(() => {
         this.browserViewportService.updateResponsiveProperties();
       });
-
-    if (localStorage.getItem('adminView') === 'true') {
-      this.adminView = true;
-    }
-  }
-
-  toggleAdminView() {
-    this.adminView = !this.adminView;
-    localStorage.setItem('adminView', this.adminView.toString());
   }
 
   scrollToTop(fragment: string) {
