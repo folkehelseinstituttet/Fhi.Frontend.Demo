@@ -158,7 +158,7 @@ _A library project is an Angular concept for organising code that are going to b
 >
 >- Check that all peerDependencies are updated
 >- Check that `@folkehelseinstituttet/*` is already released if listed in peerDependencies
->- Check that the dependency matrix is updated, and has "Unreleased" as latest version.
+>- Check that the dependency matrix still is correct, and if it's updated since last release, that it has "Unreleased" as latest version.
 >- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
 >
 > If one or more of the checks above is not OK; create a branch, fix, and create a new pull request.
@@ -169,13 +169,16 @@ _A library project is an Angular concept for organising code that are going to b
 
 1. Create a new branch from `dev`.
 2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Update the following and commit:
-   1. text `# Unreleased` to `# x.x.x` in the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
-   2. text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
-   3. version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
-      >_It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future._
-4. Create PR into `dev` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
-   >_NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library._
+3. Update CHANGELOG
+    1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
+    2. Change the date below the version number to today.
+    3. Check that all descriptions have a link to the PR at the end of the line.
+4. Update text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
+5. Update version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
+    >*It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future.*
+6. Create PR into `dev` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
+
+>*NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library.*
 
 ##### Release a patch to older version in a library project
 
