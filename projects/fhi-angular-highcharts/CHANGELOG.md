@@ -1,4 +1,10 @@
-# 4.4.0
+# 4.4.1
+
+> Sep 24, 2024
+
+* :bug: **Bugfix** Fix so that table don't break if flagged data in the data set. [(#702)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/702)
+
+## 4.4.0
 
 > Sep 13, 2024
 
