@@ -143,11 +143,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.diagramTypeNavigation.emit(DiagramTypeIds.table as FhiDiagramTypeIds);
   }
 
-  tableCellDataOK(data: number | string): boolean {
-    if (typeof data === 'number') {
-      return true;
-    }
-    return false;
+  isNumber(data: number | string): boolean {
+    return typeof data === 'number';
   }
 
   getFlaggedDataPoints(): Array<string> {
