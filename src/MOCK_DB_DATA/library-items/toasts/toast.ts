@@ -26,7 +26,7 @@ function getExampleHtml(): string {
  */
 function getCodeHtml(): string | null {
   return `
-<div class="toast-container">
+<div class="toast-container position-fixed top-0 p-3">
   <ngb-toast *ngIf="show" header="Toast title" [autohide]="true" (hidden)="show=false">
     Standard toast.
   </ngb-toast>

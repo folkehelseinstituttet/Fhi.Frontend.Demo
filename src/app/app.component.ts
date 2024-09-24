@@ -54,4 +54,9 @@ export class AppComponent implements OnInit {
     this.adminView = !this.adminView;
     localStorage.setItem('adminView', this.adminView.toString());
   }
+
+  scrollToTop(fragment: string) {
+    this.viewportScroller.scrollToAnchor(fragment);
+    window.location.hash = fragment;
+  }
 }
