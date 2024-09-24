@@ -212,14 +212,21 @@ Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant change
 
 ##### Deploy branches for the documentation site
 
-There is no need for a release branch, since the branch `dev` represents the "truth". Therefore we do not create a pull request with main as base either, we just:
+>**Before creating a deploy branch**
+>
+>- Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`.
+>
+>   *PS. The angular-packages are not listet in `package.json` since they are always latest, buildt from source, not downloaded from npm registry unless you run script `build-prod`*
+>
+> If not; create a branch, fix, and create a new pull request.
+>
+> **If everything is OK; create a release branch**
+>
+>- When creating a release branch, follow the instructions below to the letter!
 
-1. Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`
-   - If not: create a feature branch named `enhancement/update-dependencies`, and fix it.
-   - Create PR, and merge `enhancement/update-dependencies` to `dev` when approved.
-2. Merge `main` into `dev` and fix merge conflicts if any.
-3. Merge `dev` into `main`
-4. Push to origin (which will trigger the release)
+1. Create a new branch from `main`, and call it `deploy/documentation-[yyy-mm-dd]`.
+2. Merge `dev` into `deploy/documentation-[yyy-mm-dd]` and fix merge conflicts if any.
+3. Create PR into `main` from `deploy/documentation-[yyy-mm-dd]`, and when approved, merge (ie. deploy).
 
 ## Coding conventions
 
