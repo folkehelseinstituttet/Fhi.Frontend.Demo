@@ -21,7 +21,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
       - [Feature branches](#feature-branches-1)
       - [Release branches for library projects](#release-branches-for-library-projects)
       - [Release a patch to older version in a library project](#release-a-patch-to-older-version-in-a-library-project)
-      - [Release branches for the Fhi.Frontend.Demo app](#release-branches-for-the-fhifrontenddemo-app)
+      - [Deploy branches for the documentation site](#deploy-branches-for-the-documentation-site)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
     - [CSS architecture](#css-architecture)
@@ -122,12 +122,25 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum 
 
 ##### Release branches
 
+>**Before creating a release branch**
+>
+>- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
+>
+> If not; create a branch, fix, and create a new pull request.
+>
+>**If everything is OK; create a release branch**
+>
+>- When creating a release branch, follow the instructions below to the letter!
+
 1. Create a new branch from `main`.
 2. Name it `release/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Change text `# Unreleased` to `# x.x.x` i `CHANGELOG.md`
+3. Update CHANGELOG
+   1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
+   2. Change the date below the version number to today.
+   3. Check that all descriptions have a link to the PR at the end of the line.
 4. Run `npm version [patch, minor, major]` to upgrade `package.json` and automatically create a new commit.
-5. Push release branch and create pull request from release branch into `main`
-6. After approved review, squash and merge to `main` (deploy), delete the release branch for the previous release, but keep the latest release branch.
+5. Push release branch and create pull request from release branch into main.
+6. After approved review, squash and merge to main (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
 #### Fhi.Frontend.Demo, including library projects
 
@@ -182,7 +195,7 @@ Almost same procedure as described under [Release branches for library projects]
    >3. **NEVER** merge any changes to `publishConfig.tag` in `./projects/fhi-[project]/package.json`
    >4. Remember correct git submodule ref.
 
-##### Release branches for the Fhi.Frontend.Demo app
+##### Deploy branches for the documentation site
 
 There is no need for a release branch, since the branch `dev` represents the "truth". Therefore we do not create a pull request with main as base either, we just:
 
