@@ -21,6 +21,7 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
       - [Feature branches](#feature-branches-1)
       - [Release branches for library projects](#release-branches-for-library-projects)
       - [Release a patch to older version in a library project](#release-a-patch-to-older-version-in-a-library-project)
+        - [After release is done](#after-release-is-done)
       - [Deploy branches for the documentation site](#deploy-branches-for-the-documentation-site)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
@@ -184,19 +185,30 @@ _A library project is an Angular concept for organising code that are going to b
 
 Almost same procedure as described under [Release branches for library projects](#release-branches-for-library-projects), but there are some minor differences:
 
-1. Create a new branch from `fhi-[project]/vx`, where `X` is the major version you're patching (remember ref. to correct git submodule).
-2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Update the following and commit:
-   1. Add `# x.x.x` in beginning of the CHANGELOG for the project: `./projects/fhi-[project]/CHANGELOG.md`
-   2. Add and extra `#` to the previous version number.
-   3. **NB!** when updating version in `./projects/fhi-[project]/package.json` to `x.x.x`, ALSO update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.
-4. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge (ie. deploy).
-5. Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is _Release/fhi-[project]/x.x.x_, and then merge AND delte branch `release`.
-   >_NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:_
-   >1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version)
-   >2. Sometimes merge changes to the code
-   >3. **NEVER** merge any changes to `publishConfig.tag` in `./projects/fhi-[project]/package.json`
-   >4. Remember correct git submodule ref.
+1. If it doesn't already exist, create a branch from `dev` called `fhi-[project]/vx`, where `X` is the major version you're patching.
+2. Create a new branch from `fhi-[project]/vx`, and fix bug (remember ref. to correct git submodule).
+3. Merge bugfix back to `fhi-[project]/vx`
+4. Create a new branch from `fhi-[project]/vx`.
+5. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
+6. Update CHANGELOG
+   1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
+   2. Change the date below the version number to today.
+   3. Check that all descriptions have a link to the PR at the end of the line.
+7. Update text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
+8. Update version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
+9. **NB! Also update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.**
+10. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
+
+###### After release is done
+
+Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is *Changes from patch @folkehelseinstituttet/angular-[project]/v/x.x.x*, and then merge and delete branch `release`.
+
+>*NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:*
+>
+>1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version), but change `# x.x.x` to `Unreleased`.
+>2. Merge relevant changes to the code.
+>3. **NEVER** merge any changes to `./projects/fhi-[project]/package.json`.
+>4. Remember correct git submodule ref.
 
 ##### Deploy branches for the documentation site
 
