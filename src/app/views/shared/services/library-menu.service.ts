@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { LibraryItemSegmentPaths } from 'src/MOCK_DB_DATA/library-items/library-item-segment-paths';
+import { FhiTreeViewNavigationItem } from '@folkehelseinstituttet/angular-components';
 
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from 'src/app/models/menu-item.model';
 import { LibraryItemGroupsShared } from '../models/library-item.model';
-import { FhiTreeViewNavigationItem } from '@folkehelseinstituttet/angular-components';
 
 const TopLevelMenuItemNames = {
   visualIdentity: 'Visuell identitet',
@@ -19,15 +18,11 @@ const TopLevelMenuItemNames = {
   providedIn: 'root',
 })
 export class LibraryMenuService {
-  // TODO: try to remove this two properties when all item groups uses the new getSecondLevelMenuItems()
-  private currentTopLevelMenuItem!: MenuItem;
-  topLevelMenuItems!: MenuItem[];
-
   constructor(private urlService: UrlService) {}
 
   getTopLevelMenuItems(): MenuItem[] {
     const currentSegmentPath0 = this.urlService.getSegmentPath(0);
-    this.topLevelMenuItems = [
+    return [
       {
         name: TopLevelMenuItemNames.visualIdentity,
         link: `/${currentSegmentPath0}/${UrlSegment.visualIdentity}`,
@@ -45,7 +40,6 @@ export class LibraryMenuService {
         link: `/${currentSegmentPath0}/${UrlSegment.prototypes}`,
       },
     ];
-    return this.topLevelMenuItems;
   }
 
   updateSecondLevelMenu(): boolean {
@@ -58,7 +52,6 @@ export class LibraryMenuService {
       previousSegmentPath0 !== currentSegmentPath0 ||
       previousSegmentPath1 !== currentSegmentPath1
     ) {
-      this.currentTopLevelMenuItem = this.getCurrentTopLevelMenuItem();
       return true;
     }
     return false;
@@ -76,52 +69,5 @@ export class LibraryMenuService {
       }
     });
     return menu;
-  }
-
-  // TODO: all methods below can be removed when all item groups uses the new getSecondLevelMenuItems()
-
-  getSecondLevelMenuItems_OLD(): MenuItem[] {
-    if (this.currentTopLevelMenuItem === undefined) {
-      return;
-    }
-    switch (this.currentTopLevelMenuItem.name) {
-      case TopLevelMenuItemNames.visualIdentity:
-        return this.getVisualIdentityMenu();
-
-      case TopLevelMenuItemNames.components:
-        return this.getComponentsMenu();
-
-      case TopLevelMenuItemNames.layoutAndPageTemplates:
-        return this.getLayoutAndPageTemplatesMenu();
-
-      case TopLevelMenuItemNames.prototypes:
-        return this.getPrototypesMenu();
-    }
-  }
-
-  private getCurrentTopLevelMenuItem(): MenuItem {
-    const topLevelMenuItem = this.topLevelMenuItems.find((item) => {
-      return item.link.split('/')[2] === this.urlService.getSegmentPath(1);
-    });
-    if (topLevelMenuItem !== undefined) {
-      return topLevelMenuItem;
-    }
-    console.error('Current path is not matching any menu items.');
-  }
-
-  private getVisualIdentityMenu(): MenuItem[] {
-    return [];
-  }
-
-  private getComponentsMenu(): MenuItem[] {
-    return [];
-  }
-
-  private getLayoutAndPageTemplatesMenu(): MenuItem[] {
-    return [];
-  }
-
-  private getPrototypesMenu(): MenuItem[] {
-    return [];
   }
 }

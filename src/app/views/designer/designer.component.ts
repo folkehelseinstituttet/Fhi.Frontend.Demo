@@ -10,10 +10,10 @@ import { MenuItem } from '../../models/menu-item.model';
   templateUrl: './designer.component.html',
 })
 export class DesignerComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
   topLevelMenuItems!: MenuItem[];
   secondLevelMenuItems!: MenuItem[];
-
-  private subscription: Subscription = new Subscription();
 
   constructor(
     private urlService: UrlService,
