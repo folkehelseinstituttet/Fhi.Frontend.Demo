@@ -74,8 +74,8 @@ It is also a good idea to add a comment to an issue that you are working on to l
 
 ### Workflows
 
-_These are just examples. Feel free to find workflows that suites you._
-_For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)_
+*These are just examples. Feel free to find workflows that suites you.*
+*For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)*
 
 #### How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo
 
@@ -145,7 +145,7 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum 
 
 #### Fhi.Frontend.Demo, including library projects
 
-_A library project is an Angular concept for organising code that are going to be made into a npm package. A library project is defined in `./angular.json`, and the files are located in `./projects/fhi-[project]`_
+*A library project is an Angular concept for organising code that are going to be made into a npm package. A library project is defined in `./angular.json`, and the files are located in `./projects/fhi-[project]`*
 
 ##### Feature branches
 
