@@ -73,10 +73,11 @@ export class TableService {
           };
         } else {
           // Table row data
-          const decimals = this.decimalsCount(series[j - 1].data[i].y as number);
+          const data = series[j - 1].data[i].y;
+          const decimals = this.decimalCount(data);
           tbodyRows[i][j] = {
             isHeading: false,
-            data: series[j - 1].data[i].y,
+            data: data,
             decimals:
               decimals < metadataForSeries[j - 1].decimals
                 ? decimals
@@ -141,10 +142,11 @@ export class TableService {
           };
         } else {
           // Table row data
-          const decimals = this.decimalsCount(series[i].data[j - dimentionsCount].y as number);
+          const data = series[i].data[j - dimentionsCount].y;
+          const decimals = this.decimalCount(data);
           tbodyRows[i][j] = {
             isHeading: false,
-            data: series[i].data[j - dimentionsCount].y,
+            data: data,
             decimals:
               decimals < metadataForSeries[i].decimals ? decimals : metadataForSeries[i].decimals,
           };
@@ -208,7 +210,8 @@ export class TableService {
     return counts;
   }
 
-  private decimalsCount(value: number) {
+  private decimalCount(value: number | string): number {
+    if (typeof value !== 'number') return 0;
     if (Math.floor(value) === value) return 0;
     return value.toString().split('.')[1].length || 0;
   }
