@@ -7,7 +7,7 @@ export const Accordion: LibraryItem[] = [
   {
     id: ITEMS.Accordion.id,
     title: ITEMS.Accordion.title,
-    type: LibraryItemType.angular,
+    type: LibraryItemType.ngBootstrap,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),

@@ -104,7 +104,7 @@
                 {{ item.title }}
               </a>
             </td>
-            <td>{{ item.type === 0 ? 'CSS' : 'Angular' }}</td>
+            <td>{{ getLibraryItemType(item.type) }}</td>
             <td>
               <pre class="d-inline code">{{ item.parent?.id }}</pre>
             </td>

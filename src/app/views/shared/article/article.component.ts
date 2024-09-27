@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { LibraryItemsDataService } from '../services/library-items-data.service';
-import { LibraryItem } from '../models/library-item.model';
+import { LibraryItem, LibraryItemType } from '../models/library-item.model';
 
 @Component({
   selector: 'app-article',
@@ -20,6 +20,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   items: LibraryItem[] = [];
   itemsFiltered: LibraryItem[] = [];
   rootLink!: string;
+  LibraryItemType = LibraryItemType;
 
   constructor(
     private urlService: UrlService,
@@ -30,7 +31,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.urlService.URL$.subscribe(() => {
         this.currentSegment = this.urlService.getSegmentPath(1);
-        this.rootLink = `/developer/${this.currentSegment}/`;
+        this.rootLink = `/${UrlSegment.developer}/${this.currentSegment}/`;
         this.getCurrentArticleTitle();
       }),
     );
@@ -47,6 +48,15 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  getLibraryItemType(itemType: number) {
+    const type = {
+      [LibraryItemType.css]: 'CSS',
+      [LibraryItemType.ngBootstrap]: 'NgBootstrap',
+      [LibraryItemType.fhiAngular]: 'FhiAngular',
+    };
+    return type[itemType];
   }
 
   filterItems(value: string) {

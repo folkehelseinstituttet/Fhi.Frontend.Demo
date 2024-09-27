@@ -7,7 +7,7 @@ export const AccordionFlushDark: LibraryItem[] = [
   {
     id: ITEMS.AccordionFlushDark.id,
     title: ITEMS.AccordionFlushDark.title,
-    type: LibraryItemType.angular,
+    type: LibraryItemType.ngBootstrap,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
