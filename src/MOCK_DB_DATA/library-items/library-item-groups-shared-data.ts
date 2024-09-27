@@ -61,7 +61,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
   },
   Breadcrumbs: {
     id: 'breadcrumbs',
-    title: 'Breadcrumb',
+    title: 'Breadcrumbs',
     apiEndPoint: 'BreadcrumbsData',
     parentUrlSegment: UrlSegment.components,
   },

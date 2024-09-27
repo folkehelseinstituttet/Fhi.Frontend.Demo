@@ -2,11 +2,23 @@
   <h1 class="mb-5">{{ title }}</h1>
 
   @if (currentSegment === urlSegment.visualIdentity) {
-    <ng-container *ngTemplateOutlet="visualIdentityText"></ng-container>
+    <div class="row">
+      <div class="col-lg-6">
+        <ng-container *ngTemplateOutlet="visualIdentityText"></ng-container>
+      </div>
+    </div>
   }
   @if (currentSegment === urlSegment.components) {
-    <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
-    <ng-container *ngTemplateOutlet="componentsText"></ng-container>
+    <div class="row">
+      <div class="col-lg-6 order-lg-2">
+        <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsText"></ng-container>
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <ng-container *ngTemplateOutlet="componentsFilter"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsList"></ng-container>
+      </div>
+    </div>
   }
 </article>
 
@@ -56,5 +68,49 @@
         (Angular-komponenter)
       </p>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #componentsFilter>
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="fhi-search">
+        <label for="typeahead-basic" class="form-label">Alle komponenter</label>
+        <div class="d-flex">
+          <div class="w-100 position-relative">
+            <input
+              id="filter"
+              type="search"
+              class="form-control fhi-search__form-control"
+              placeholder="Søk"
+              #filter
+              (keyup)="itemsFiltered = filterItems(filter.value)"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #componentsList>
+  <div class="table-responsive">
+    <table class="table w-100">
+      <tbody>
+        @for (item of itemsFiltered; track $index) {
+          <tr>
+            <td>
+              <a routerLink="{{ rootLink + item.parent?.id }}" fragment="{{ item.id }}">
+                {{ item.title }}
+              </a>
+            </td>
+            <td>{{ item.type === 0 ? 'CSS' : 'Angular' }}</td>
+            <td>
+              <pre class="d-inline code">{{ item.parent?.id }}</pre>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </ng-template>

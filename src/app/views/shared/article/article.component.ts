@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
+import { LibraryItemsDataService } from '../services/library-items-data.service';
 import { LibraryItem } from '../models/library-item.model';
 
 @Component({
@@ -20,7 +21,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
   itemsFiltered: LibraryItem[] = [];
   rootLink!: string;
 
-  constructor(private urlService: UrlService) {}
+  constructor(
+    private urlService: UrlService,
+    private libraryItemsDataService: LibraryItemsDataService,
+  ) {}
 
   ngOnInit() {
     this.subscription.add(
@@ -30,10 +34,25 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.getCurrentArticleTitle();
       }),
     );
+    this.subscription.add(
+      this.libraryItemsDataService.getAllComponents().subscribe({
+        next: (items) => {
+          console.log(items);
+          this.items = this.itemsFiltered = items;
+        },
+        error: (error) => error,
+      }),
+    );
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  filterItems(value: string) {
+    return this.items.filter((item) => {
+      return this.fuzzySearch(value, item.title);
+    });
   }
 
   private getCurrentArticleTitle() {
@@ -42,5 +61,31 @@ export class ArticleComponent implements OnInit, OnDestroy {
     } else {
       this.title = 'Komponenter';
     }
+  }
+
+  private fuzzySearch(needle: string, haystack: string) {
+    const haystackLC = haystack.toLowerCase();
+    const needleLC = needle.toLowerCase();
+
+    const hlen = haystack.length;
+    const nlen = needleLC.length;
+
+    if (nlen > hlen) {
+      return false;
+    }
+    if (nlen === hlen) {
+      return needleLC === haystackLC;
+    }
+    outer: for (let i = 0, j = 0; i < nlen; i++) {
+      const nch = needleLC.charCodeAt(i);
+
+      while (j < hlen) {
+        if (haystackLC.charCodeAt(j++) === nch) {
+          continue outer;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 }

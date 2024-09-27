@@ -25,6 +25,7 @@ export interface LibraryItem extends LibraryItemBase {
   codeHtml: string | null;
   documentationHtml: string | null;
   fullScreenEnabled?: boolean;
+  parent?: LibraryGroupExtended;
 }
 
 // Groups

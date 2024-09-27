@@ -50,7 +50,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Breadcrumb: {
     id: 'breadcrumb',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Breadcrumb',
   },
 
   ButtonPrimary: {
@@ -161,11 +161,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   GlobalHeaderWithMenu: {
     id: 'global-header-with-menu',
-    title: 'Global header with menu',
+    title: 'Global header (menu)',
   },
   GlobalHeaderWithMenuAndUtils: {
     id: 'global-header-with-menu-and-utils',
-    title: 'Global header with menu and utilities section',
+    title: 'Global header (utilities)',
   },
 
   HighchartsWithoutMenu: {
@@ -196,7 +196,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Modal: {
     id: 'modal',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Modal',
   },
 
   NavTiles: {
@@ -270,7 +270,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Search: {
     id: 'search',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Search',
   },
 
   Table: {
@@ -362,7 +362,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Toast: {
     id: 'toast',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Toast',
   },
 
   Tooltip: {
