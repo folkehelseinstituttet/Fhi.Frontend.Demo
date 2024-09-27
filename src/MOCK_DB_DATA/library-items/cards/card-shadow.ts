@@ -1,14 +1,16 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 
 export const CardShadow: LibraryItem[] = [
   {
     id: ITEMS.CardShadow.id,
     title: ITEMS.CardShadow.title,
-    type: LibraryItemType.html,
+    type: LibraryItemType.css,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Cards,
   },
 ];
 

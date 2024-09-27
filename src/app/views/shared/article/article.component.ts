@@ -38,7 +38,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.libraryItemsDataService.getAllComponents().subscribe({
         next: (items) => {
-          console.log(items);
           this.items = this.itemsFiltered = items;
         },
         error: (error) => error,

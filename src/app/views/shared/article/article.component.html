@@ -100,13 +100,15 @@
         @for (item of itemsFiltered; track $index) {
           <tr>
             <td>
+              {{ item.parent?.title }}
+            </td>
+            <td>
               <a routerLink="{{ rootLink + item.parent?.id }}" fragment="{{ item.id }}">
                 {{ item.title }}
               </a>
             </td>
-            <td>{{ getLibraryItemType(item.type) }}</td>
             <td>
-              <pre class="d-inline code">{{ item.parent?.id }}</pre>
+              <pre class="d-inline code">{{ getLibraryItemType(item.type) }}</pre>
             </td>
           </tr>
         }

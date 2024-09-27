@@ -1,5 +1,6 @@
 import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 
 export const FontColors: LibraryItem[] = [
@@ -7,10 +8,11 @@ export const FontColors: LibraryItem[] = [
     id: ITEMS.VisualIdentityFontColors.id,
     title: ITEMS.VisualIdentityFontColors.title,
     titleLang: CONST.languageLocaleId_NO,
-    type: LibraryItemType.html,
+    type: LibraryItemType.css,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Colors,
   },
 ];
 
