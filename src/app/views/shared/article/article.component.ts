@@ -4,7 +4,11 @@ import { Subscription } from 'rxjs';
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { LibraryItemsDataService } from '../services/library-items-data.service';
-import { LibraryItem, LibraryItemType } from '../models/library-item.model';
+import {
+  LibraryItem,
+  LibraryItemDependencyType,
+  LibraryItemType,
+} from '../models/library-item.model';
 
 @Component({
   selector: 'app-article',
@@ -51,9 +55,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   getLibraryItemType(itemType: number) {
     const type = {
-      [LibraryItemType.css]: 'CSS',
-      [LibraryItemType.ngBootstrap]: 'NgBootstrap',
-      [LibraryItemType.fhiAngular]: 'FhiAngular',
+      [LibraryItemDependencyType.css]: 'CSS',
+      [LibraryItemDependencyType.ngBootstrap]: 'NgBootstrap',
+      [LibraryItemDependencyType.fhiAngular]: 'FhiAngular',
     };
     return type[itemType];
   }

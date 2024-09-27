@@ -87,23 +87,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Card deactive',
   },
 
-  Drawer: {
-    id: 'drawer',
-    title: 'Drawer',
-  },
-
-  ErrorPage404: {
-    id: 'error-page-404',
-    title: 'Error page - 404',
-  },
-  ErrorPage500: {
-    id: 'error-page-500',
-    title: 'Error page - 500',
-  },
-
   FormControlInput: {
     id: 'form-control-input',
-    title: 'Text input',
+    title: 'Textfield',
   },
   FormControlTextarea: {
     id: 'form-control-textarea',
@@ -145,6 +131,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'form-control-validation',
     title: 'Validation',
   },
+  FormControlInputWithTooltip: {
+    id: 'form-control-input-with-tooltip',
+    title: 'Textfield with tooltip',
+  },
 
   GlobalFooter: {
     id: 'global-footer',
@@ -179,19 +169,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   HighchartsAllInclusive: {
     id: 'highcharts-all-inclusive',
     title: 'Highcharts all inclusive',
-  },
-
-  LayoutTemplateBasic: {
-    id: 'layout-template-basic',
-    title: 'Basic layout',
-  },
-  LayoutTemplateExpandableFirstCol: {
-    id: 'layout-template-expandable-first-col',
-    title: 'Layout med ekspanderbart innhold i første kolonne',
-  },
-  LayoutTemplateTwoCols1: {
-    id: 'layout-template-two-cols-1',
-    title: 'Layout med venstrekolonne',
   },
 
   Modal: {
@@ -256,16 +233,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   ProgressSpinnerSmall: {
     id: 'spinner-small',
     title: 'Spinner - small',
-  },
-
-  PrototypeForm: {
-    id: 'prototype-form',
-    title: 'Form - left aligned labels',
-  },
-
-  PrototypeTableWithExpandableContent: {
-    id: 'prototype-table-with-expandable-content',
-    title: 'Table with expandable content',
   },
 
   Search: {

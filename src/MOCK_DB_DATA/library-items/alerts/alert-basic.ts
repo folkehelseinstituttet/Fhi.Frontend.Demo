@@ -1,17 +1,19 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
 import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
 export const AlertBasic: LibraryItem[] = [
   {
     id: ITEMS.AlertBasic.id,
     title: ITEMS.AlertBasic.title,
-    type: LibraryItemType.css,
+    type: ItemType.html,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
     parent: GROUPS.Alerts,
+    dependencyType: ItemDependencyType.css,
   },
 ];
 

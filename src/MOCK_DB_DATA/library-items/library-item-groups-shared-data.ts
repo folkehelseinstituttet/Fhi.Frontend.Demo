@@ -77,12 +77,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'CardsData',
     parentUrlSegment: UrlSegment.components,
   },
-  Drawers: {
-    id: 'drawers',
-    title: 'Drawers',
-    apiEndPoint: 'DrawersData',
-    parentUrlSegment: null,
-  },
+
   FormControls: {
     id: 'form-controls',
     title: 'Form controls',
@@ -172,35 +167,5 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Tree views',
     apiEndPoint: 'TreeViewsData',
     parentUrlSegment: UrlSegment.components,
-  },
-
-  // Layout og sidemaler
-
-  ErrorPages: {
-    id: 'error-pages',
-    title: 'Error pages',
-    apiEndPoint: 'ErrorPagesData',
-    parentUrlSegment: UrlSegment.layoutAndPageTemplates,
-  },
-  LayoutTemplates: {
-    id: 'layout-templates',
-    title: 'Layout og sidemaler',
-    apiEndPoint: 'LayoutTemplatesData',
-    parentUrlSegment: UrlSegment.layoutAndPageTemplates,
-  },
-
-  // Prototypes (Eksempler på bruk)
-
-  PrototypeForms: {
-    id: 'prototype-forms',
-    title: 'Forms',
-    apiEndPoint: 'PrototypeFormsData',
-    parentUrlSegment: UrlSegment.prototypes,
-  },
-  PrototypeTables: {
-    id: 'prototype-tables',
-    title: 'Tables',
-    apiEndPoint: 'PrototypeTablesData',
-    parentUrlSegment: UrlSegment.prototypes,
   },
 };
