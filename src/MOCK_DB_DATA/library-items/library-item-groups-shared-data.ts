@@ -15,30 +15,6 @@ import { LibraryItemConstants } from './library-item-constants';
  *  },
  */
 export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
-  // Visuell identitet
-
-  Colors: {
-    id: 'colors',
-    title: 'Farger',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'ColorsData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-  Icons: {
-    id: 'icons',
-    title: 'Ikoner',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'IconsData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-  Typography: {
-    id: 'typography',
-    title: 'Typografi',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'TypographyData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-
   // Components
 
   Accordions: {
@@ -126,10 +102,10 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ProgressIndicatorsData',
     parentUrlSegment: UrlSegment.components,
   },
-  Search: {
-    id: 'search',
-    title: 'Search',
-    apiEndPoint: 'SearchData',
+  SearchFields: {
+    id: 'search-fields',
+    title: 'Search fields',
+    apiEndPoint: 'SearchFieldsData',
     parentUrlSegment: UrlSegment.components,
   },
   Tables: {
@@ -167,5 +143,29 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     title: 'Tree views',
     apiEndPoint: 'TreeViewsData',
     parentUrlSegment: UrlSegment.components,
+  },
+
+  // Visuell identitet
+
+  Colors: {
+    id: 'colors',
+    title: 'Farger',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'ColorsData',
+    parentUrlSegment: UrlSegment.visualIdentity,
+  },
+  Icons: {
+    id: 'icons',
+    title: 'Ikoner',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'IconsData',
+    parentUrlSegment: UrlSegment.visualIdentity,
+  },
+  Typography: {
+    id: 'typography',
+    title: 'Typografi',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'TypographyData',
+    parentUrlSegment: UrlSegment.visualIdentity,
   },
 };

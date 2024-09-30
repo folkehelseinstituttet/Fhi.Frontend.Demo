@@ -236,8 +236,12 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
 
   Search: {
-    id: 'search',
+    id: 'search-default',
     title: 'Search',
+  },
+  SearchAutocomplete: {
+    id: 'search-autocomplete',
+    title: 'Search with autocomplete',
   },
 
   Table: {
@@ -249,8 +253,8 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Table - compact',
   },
   TableEditable: {
-    id: 'table-editable',
-    title: 'Table - inline editable',
+    id: 'table-edit',
+    title: 'Table - inline edit',
   },
   TableSelectableRow: {
     id: 'table-selectable-row',
@@ -340,6 +344,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'popover',
     title: 'Popover',
   },
+
   TreeViewCheckbox: {
     id: 'tree-view-checkbox',
     title: 'Tree view checkbox',
@@ -351,10 +356,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   TreeViewRadio: {
     id: 'tree-view-radio',
     title: 'Tree view radio',
-  },
-  TreeViewSelectionSwitch: {
-    id: 'tree-view-selection-switch',
-    title: 'Tree view selection type switch',
   },
 
   VisualIdentityColors: {

@@ -24,7 +24,7 @@ import { ModalsData } from 'src/MOCK_DB_DATA/library-items/modals/_modals.data';
 import { NavsData } from 'src/MOCK_DB_DATA/library-items/navs/_navs.data';
 import { PaginationsData } from 'src/MOCK_DB_DATA/library-items/paginations/_paginations.data';
 import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-indicators/_progress-indicators.data';
-import { SearchData } from 'src/MOCK_DB_DATA/library-items/search/_search.data';
+import { SearchFieldsData } from 'src/MOCK_DB_DATA/library-items/searches/_searches.data';
 import { TablesData } from 'src/MOCK_DB_DATA/library-items/tables/_tables.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
 import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
@@ -48,7 +48,7 @@ const AllComponentsData: LibraryItem[] = [
   ...NavsData.libraryItems,
   ...PaginationsData.libraryItems,
   ...ProgressIndicatorsData.libraryItems,
-  ...SearchData.libraryItems,
+  ...SearchFieldsData.libraryItems,
   ...TablesData.libraryItems,
   ...TagsData.libraryItems,
   ...TimeSelectorsData.libraryItems,
@@ -96,7 +96,7 @@ export function getMockDbBody(url: string): unknown {
     NavsData: NavsData,
     PaginationsData: PaginationsData,
     ProgressIndicatorsData: ProgressIndicatorsData,
-    SearchData: SearchData,
+    SearchFieldsData: SearchFieldsData,
     TablesData: TablesData,
     TagsData: TagsData,
     TimeSelectorsData: TimeSelectorsData,
