@@ -1,16 +1,19 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
 export const GlobalHeaderWithMenuAndUtils: LibraryItem[] = [
   {
     id: ITEMS.GlobalHeaderWithMenuAndUtils.id,
     title: ITEMS.GlobalHeaderWithMenuAndUtils.title,
-    type: LibraryItemType.angular,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
     fullScreenEnabled: true,
+    parent: GROUPS.GlobalHeaders,
+    dependencyType: ItemDependencyType.ngBootstrap,
   },
 ];
 
