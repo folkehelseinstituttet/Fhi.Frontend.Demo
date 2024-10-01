@@ -9,6 +9,7 @@ import {
   LibraryItemDependencyType,
   LibraryItemType,
 } from '../models/library-item.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-article',
@@ -25,11 +26,36 @@ export class ArticleComponent implements OnInit, OnDestroy {
   itemsFiltered: LibraryItem[] = [];
   rootLink!: string;
   LibraryItemType = LibraryItemType;
+  dependencyTypes = [
+    {
+      id: LibraryItemDependencyType.css,
+      name: 'CSS',
+      selected: true,
+    },
+    {
+      id: LibraryItemDependencyType.ngBootstrap,
+      name: 'NgBootstrap',
+      selected: true,
+    },
+    {
+      id: LibraryItemDependencyType.fhiAngular,
+      name: 'FhiAngular',
+      selected: true,
+    },
+  ];
+  form: FormGroup;
 
   constructor(
     private urlService: UrlService,
     private libraryItemsDataService: LibraryItemsDataService,
-  ) {}
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group({
+      search: this.fb.control(''),
+      types: this.buildTypes(),
+    });
+    console.log('this.form', this.form);
+  }
 
   ngOnInit() {
     this.subscription.add(
@@ -54,18 +80,32 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   getLibraryItemType(itemType: number) {
-    const type = {
-      [LibraryItemDependencyType.css]: 'CSS',
-      [LibraryItemDependencyType.ngBootstrap]: 'NgBootstrap',
-      [LibraryItemDependencyType.fhiAngular]: 'FhiAngular',
-    };
-    return type[itemType];
+    return this.dependencyTypes[itemType].name;
   }
 
-  filterItems(value: string) {
-    return this.items.filter((item) => {
-      return this.fuzzySearch(value, item.title);
+  filterItems() {
+    const searchValue = this.form.get('search').value;
+    const typesSelected = this.form.get('types').value;
+    let filtered: LibraryItem[] = [];
+    filtered = this.items;
+
+    if (!typesSelected[LibraryItemDependencyType.css]) {
+      filtered = filtered.filter((item) => item.dependencyType !== LibraryItemDependencyType.css);
+    }
+    if (!typesSelected[LibraryItemDependencyType.ngBootstrap]) {
+      filtered = filtered.filter(
+        (item) => item.dependencyType !== LibraryItemDependencyType.ngBootstrap,
+      );
+    }
+    if (!typesSelected[LibraryItemDependencyType.fhiAngular]) {
+      filtered = filtered.filter(
+        (item) => item.dependencyType !== LibraryItemDependencyType.fhiAngular,
+      );
+    }
+    filtered = filtered.filter((item) => {
+      return this.fuzzySearch(searchValue, item.title);
     });
+    this.itemsFiltered = filtered;
   }
 
   private getCurrentArticleTitle() {
@@ -74,6 +114,13 @@ export class ArticleComponent implements OnInit, OnDestroy {
     } else {
       this.title = 'Komponenter';
     }
+  }
+
+  private buildTypes() {
+    const array = this.dependencyTypes.map((type) => {
+      return this.fb.control(type.selected);
+    });
+    return this.fb.array(array);
   }
 
   private fuzzySearch(needle: string, haystack: string) {
