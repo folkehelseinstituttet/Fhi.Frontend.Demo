@@ -1,4 +1,10 @@
-# 5.0.2
+# Unreleased
+
+> Sep 24, 2024
+
+* :bug: **Bugfix** Remove deprecated property DiagramTypeIds.map which should have been removed in [(#693)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/693)
+
+## 5.0.2
 
 > Sep 20, 2024
 
