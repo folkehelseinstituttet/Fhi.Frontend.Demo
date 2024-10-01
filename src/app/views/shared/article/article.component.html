@@ -10,11 +10,11 @@
   }
   @if (currentSegment === urlSegment.components) {
     <div class="row">
-      <div class="col-lg-6 order-lg-2">
+      <div class="col-lg-5 order-lg-2">
         <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
         <ng-container *ngTemplateOutlet="componentsText"></ng-container>
       </div>
-      <div class="col-lg-6 order-lg-1">
+      <div class="col-lg-7 order-lg-1">
         <ng-container *ngTemplateOutlet="componentsFilter"></ng-container>
         <ng-container *ngTemplateOutlet="componentsList"></ng-container>
       </div>
@@ -73,25 +73,8 @@
 
 <ng-template #componentsFilter>
   <form [formGroup]="form">
-    <div class="mb-4">
-      <!--  -->
-      @for (control of form.controls['types']['controls']; track $index) {
-        <div class="form-check form-check-inline">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="{{ dependencyTypes[$index].id }}"
-            [formControl]="control"
-            (change)="filterItems()"
-          />
-          <label class="form-check-label" for="{{ dependencyTypes[$index].id }}">
-            {{ dependencyTypes[$index].name }}
-          </label>
-        </div>
-      }
-    </div>
     <div class="row mb-4">
-      <div class="col-md-6">
+      <div class="col-12 col-md-6">
         <label for="search" class="form-label">Alle komponenter</label>
         <div class="d-flex">
           <div class="w-100 position-relative">
@@ -105,6 +88,23 @@
             />
           </div>
         </div>
+      </div>
+      <div class="col-12 col-xxl-6">
+        <!--  -->
+        @for (control of form.controls['types']['controls']; track $index) {
+          <div class="form-check form-check-inline mt-4 mt-xxl-6">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="{{ dependencyTypes[$index].id }}"
+              [formControl]="control"
+              (change)="filterItems()"
+            />
+            <label class="form-check-label" for="{{ dependencyTypes[$index].id }}">
+              {{ dependencyTypes[$index].name }}
+            </label>
+          </div>
+        }
       </div>
     </div>
   </form>

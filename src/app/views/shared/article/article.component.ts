@@ -17,12 +17,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
+  private items: LibraryItem[] = [];
 
   title: string;
   articleHtml: string;
   currentSegment: string;
   urlSegment = UrlSegment;
-  items: LibraryItem[] = [];
   itemsFiltered: LibraryItem[] = [];
   rootLink!: string;
   LibraryItemType = LibraryItemType;
@@ -54,7 +54,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
       search: this.fb.control(''),
       types: this.buildTypes(),
     });
-    console.log('this.form', this.form);
   }
 
   ngOnInit() {
