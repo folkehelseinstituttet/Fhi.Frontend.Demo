@@ -1,10 +1,17 @@
-export enum LibraryItemType {
-  html = 0,
-  angular = 1,
+export enum LibraryItemDependencyType {
+  css = 0,
+  ngBootstrap = 1,
+  fhiAngular = 2,
+}
 
-  // TODO: deprecated
-  ngBootstrap = 2,
-  fhiAngular = 3,
+export enum LibraryItemType {
+  angular = 0,
+  html = 1,
+
+  // TODO: remove
+  css = 2,
+  ngBootstrap = 3,
+  fhiAngular = 4,
 }
 
 // Items
@@ -25,6 +32,8 @@ export interface LibraryItem extends LibraryItemBase {
   codeHtml: string | null;
   documentationHtml: string | null;
   fullScreenEnabled?: boolean;
+  parent?: LibraryGroupExtended;
+  dependencyType?: number;
 }
 
 // Groups

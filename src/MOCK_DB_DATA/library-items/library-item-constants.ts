@@ -13,6 +13,7 @@ export class LibraryItemConstants {
   static BootstrapFormsBaseUrl = `${bootstrapDocBaseUrl}/forms`;
   static BootstrapUtilitiesBaseUrl = `${bootstrapDocBaseUrl}/utilities`;
 
+  static FhiStyleNpmUrl = `${npmBaseUrl}/style`;
   static FhiAngularComponentsNpmUrl = `${npmBaseUrl}/angular-components`;
   static FhiAngularComponentsGithubUrl = `${githubFrontendDemoUrl}/projects/fhi-angular-components`;
   static FhiAngularComponentsGithubLibUrl = `${this.FhiAngularComponentsGithubUrl}/src/lib`;

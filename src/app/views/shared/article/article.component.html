@@ -2,11 +2,23 @@
   <h1 class="mb-5">{{ title }}</h1>
 
   @if (currentSegment === urlSegment.visualIdentity) {
-    <ng-container *ngTemplateOutlet="visualIdentityText"></ng-container>
+    <div class="row">
+      <div class="col-lg-6">
+        <ng-container *ngTemplateOutlet="visualIdentityText"></ng-container>
+      </div>
+    </div>
   }
   @if (currentSegment === urlSegment.components) {
-    <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
-    <ng-container *ngTemplateOutlet="componentsText"></ng-container>
+    <div class="row">
+      <div class="col-lg-9">
+        <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsText"></ng-container>
+      </div>
+      <div class="col-l2">
+        <ng-container *ngTemplateOutlet="componentsFilter"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsList"></ng-container>
+      </div>
+    </div>
   }
 </article>
 
@@ -18,27 +30,29 @@
 </ng-template>
 
 <ng-template #componentsText>
-  <p>
-    Komponentbiblioteket i FHI Designsystem baserer seg på
-    <a href="https://getbootstrap.com/docs/5.3">Bootstrap 5</a>. Interaktive komponenter benytter
-    <a href="https://ng-bootstrap.github.io" class="text-nowrap">ng-bootstrap</a>
-    og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av
-    FHI.
-  </p>
-  <p>
-    Alle løsninger kan konsumere stilsettet uavhengig av hvilket rammeverk som er benyttet. Legg til CSS fra FHI
-    Designsystem:
-    <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">&#64;folkehelseinstituttet/style</a>.
-  </p>
-  <p>
-    FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere
-    riktig markup slik at utseendet blir korrekt.
-  </p>
-  <p>
-    <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md"
-      >Se changelog for stilsettet her.</a
-    >
-  </p>
+  <div class="mb-5">
+    <p>
+      Komponentbiblioteket i FHI Designsystem baserer seg på
+      <a href="https://getbootstrap.com/docs/5.3">Bootstrap 5</a>. Interaktive komponenter benytter
+      <a href="https://ng-bootstrap.github.io" class="text-nowrap">ng-bootstrap</a>
+      og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av
+      FHI.
+    </p>
+    <p>
+      Alle løsninger kan konsumere stilsettet uavhengig av hvilket rammeverk som er benyttet. Legg til CSS fra FHI
+      Designsystem:
+      <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">&#64;folkehelseinstituttet/style</a>.
+    </p>
+    <p>
+      FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere
+      riktig markup slik at utseendet blir korrekt.
+    </p>
+    <p>
+      <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md"
+        >Se changelog for stilsettet her.</a
+      >
+    </p>
+  </div>
 </ng-template>
 
 <ng-template #componentsAlert>
@@ -56,5 +70,74 @@
         (Angular-komponenter)
       </p>
     </div>
+  </div>
+</ng-template>
+
+<ng-template #componentsFilter>
+  <form [formGroup]="form">
+    <div class="row mb-4">
+      <div class="col-12 col-md-6">
+        <label for="search" class="form-label">Alle komponenter</label>
+        <div class="d-flex">
+          <div class="w-100 position-relative">
+            <input
+              id="filter"
+              type="text"
+              class="form-control"
+              placeholder="Søk"
+              formControlName="search"
+              (keyup)="filterItems()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        @for (control of form.controls['types']['controls']; track $index) {
+          <div class="form-check form-check-inline mt-4 mt-lg-6">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="{{ dependencyTypes[$index].id }}"
+              [formControl]="control"
+              (change)="filterItems()"
+            />
+            <label class="form-check-label" for="{{ dependencyTypes[$index].id }}">
+              {{ dependencyTypes[$index].name }}
+            </label>
+          </div>
+        }
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #componentsList>
+  <div class="table-responsive">
+    <table class="table w-100">
+      <thead>
+        <tr>
+          <th>Kategori</th>
+          <th>Komponent</th>
+          <th>Basert på</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of itemsFiltered; track $index) {
+          <tr>
+            <td>
+              {{ item.parent?.title }}
+            </td>
+            <td>
+              <a routerLink="{{ rootLink + item.parent?.id }}" fragment="{{ item.id }}">
+                {{ item.title }}
+              </a>
+            </td>
+            <td>
+              {{ getLibraryItemType(item.dependencyType) }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </ng-template>
