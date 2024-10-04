@@ -1,9 +1,12 @@
+<!-- Eks. 1  -->
+
 <fhi-modal>
   <ng-container fhi-modal.button>Åpne modal</ng-container>
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
 </fhi-modal>
 <br />
 
+<!-- Eks. 2 -->
 <fhi-modal
   [modalTitle]="'Overskrift'"
   [size]="'sm'"
@@ -14,6 +17,8 @@
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
 </fhi-modal>
 <br /><br />
+
+<!-- Eks. 3 -->
 
 <fhi-modal
   [modalTitle]="'Overskrift'"
@@ -32,11 +37,123 @@
 </fhi-modal>
 <br /><br />
 
+<!-- Eks. 4 -->
+
 <fhi-popover-menu
   [items]="[{ name: 'Åpne modal fra foreldrekomponent', action: 'openModal' }]"
   (actionEvent)="onPopoverActionOpenModalFromParent($event)"
 ></fhi-popover-menu>
-
 <fhi-modal [openModalFromParent]="openModal" (dismissModal)="onDismissModal()">
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
+</fhi-modal>
+<br /><br />
+
+<!-- Eks. 5 -->
+
+<fhi-modal
+  [modalTitle]="'Overskrift'"
+  [size]="'sm'"
+  [actionButtons]="example5.buttons"
+  [closeModalFromParent]="example5.closeModal"
+  [disableCloseOnAction]="true"
+  (modalAction)="onModalActionExample5($event)"
+>
+  <ng-container fhi-modal.button>Åpne modeal med skjema</ng-container>
+  <ng-container fhi-modal.body>
+    <div class="alert alert-info" role="alert">
+      <i class="icon-info-circle"></i>
+      Et litt mer komplekst eksempel som viser hvordan en kan trigge en handling via Enter i input-felt, samt sørge for
+      at modal ikke lukker seg før foreldrekomponenten gir klarsignal.
+    </div>
+
+    <form class="mb-1" autocomplete="off" [formGroup]="example5.form">
+      <div class="mb-4">
+        <label for="firstName" class="form-label">Fornavn *</label>
+        <p class="form-text">Fornavn FHIs direktør</p>
+        <input
+          type="text"
+          id="firstName"
+          class="form-control"
+          required
+          ngbAutofocus
+          formControlName="firstName"
+          [ngClass]="{ 'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) }"
+          placeholder="Fornavn"
+          (keydown.enter)="onEnterExample5()"
+        />
+        <p class="invalid-feedback">
+          @if (firstName.hasError('required')) {
+            Dette feltet er påkrevd.
+          } @else if (firstName.hasError('minlength') || firstName.hasError('maxlength')) {
+            "{{ firstName.value }}" er ikke riktig antall tegn, prøv igjen.
+          } @else if (firstName.hasError('nameError')) {
+            "{{ firstName.value }}" er ikke fornavnet på FHIs direktør, prøv igjen.
+          }
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <label for="lastName" class="form-label">Etternavn</label>
+        <input
+          type="text"
+          id="lastName"
+          class="form-control"
+          formControlName="lastName"
+          [ngClass]="{ 'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched) }"
+          placeholder="Etternavn"
+        />
+        <p class="invalid-feedback">
+          @if (lastName.hasError('minlength') || lastName.hasError('maxlength')) {
+            "{{ lastName.value }}" er ikke riktig antall tegn, prøv igjen.
+          } @else if (lastName.hasError('nameError')) {
+            "{{ lastName.value }}" er ikke etternavnet på FHIs direktør, prøv igjen.
+          }
+        </p>
+      </div>
+
+      <label class="form-label">Server respons</label>
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="serverResponsOk"
+          name="serverRespons"
+          formControlName="serverRespons"
+          [value]="'OK'"
+        />
+        <label class="form-check-label" for="serverResponsOk">OK</label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="serverResponsError"
+          name="serverRespons"
+          formControlName="serverRespons"
+          [value]="'error'"
+        />
+        <label class="form-check-label" for="serverResponsError">Error</label>
+      </div>
+    </form>
+
+    <div *ngIf="example5.waitingForServer || example5.waitingForAsyncValidation">
+      <div class="alert alert-warning mt-3" role="alert">
+        <i class="icon-bell"></i>
+        @if (example5.waitingForServer) {
+          Venter på server...
+        }
+        @if (example5.waitingForAsyncValidation) {
+          Venter på validering...
+        }
+        <div class="spinner-border spinner-border-sm ms-3" role="status"></div>
+      </div>
+    </div>
+
+    <div *ngIf="example5.serverError">
+      <div class="alert alert-error mt-3" role="alert">
+        <i class="icon-exclamation-circle"></i>
+        Velg server respons OK og prøv igjen.
+      </div>
+    </div>
+  </ng-container>
 </fhi-modal>

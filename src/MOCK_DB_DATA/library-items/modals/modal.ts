@@ -71,6 +71,10 @@ function getCodeHtml(): string | null {
 <fhi-modal [openModalFromParent]="openModal" (dismissModal)="onDismissModal()">
   <ng-container fhi-modal.body><p>Modalvindu innhold.</p></ng-container>
 </fhi-modal>
+
+<!-- Eks. 5
+  For å se koden til skjemaeksemplet, gå til demokoden som det lenkes til under "Nyttige lenker" over eksempelfanen.</p>
+-->
 `;
 }
 
