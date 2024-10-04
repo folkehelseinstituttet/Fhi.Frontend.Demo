@@ -38,7 +38,6 @@ export class ModalsComponent {
     waitingForServer: false,
     serverError: false,
     waitingForAsyncValidation: false,
-    buttons: [{ name: 'Send', disabled: false }],
     form: undefined as FormGroup,
   };
 
@@ -84,27 +83,22 @@ export class ModalsComponent {
 
   onModalActionExample5(action: string) {
     if (action === 'Send') {
-      this.example5MockApiCall();
+      this.submit();
     }
   }
 
   onEnterExample5() {
-    this.example5MockApiCall();
+    this.submit();
   }
 
-  private example5MockApiCall() {
-    const controls = this.example5.form.controls;
+  private submit() {
     const value = this.example5.form.value;
 
     if (this.example5.form.pending) {
       this.example5.waitingForAsyncValidation = true;
       return;
     }
-    if (
-      controls.firstName.errors !== null ||
-      controls.lastName.errors !== null ||
-      controls.serverRespons.errors !== null
-    ) {
+    if (this.example5.form.invalid) {
       return;
     }
 
@@ -113,8 +107,8 @@ export class ModalsComponent {
     this.example5.closeModal = false;
 
     handleFormMockApiCall(value).subscribe({
-      next: (v) => {
-        console.log(v);
+      next: (value) => {
+        console.log(value);
         this.example5.closeModal = true;
         this.example5.waitingForServer = false;
       },

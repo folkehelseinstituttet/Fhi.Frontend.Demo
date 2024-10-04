@@ -53,7 +53,7 @@
 <fhi-modal
   [modalTitle]="'Overskrift'"
   [size]="'sm'"
-  [actionButtons]="example5.buttons"
+  [actionButtons]="[{ name: 'Send' }]"
   [closeModalFromParent]="example5.closeModal"
   [disableCloseOnAction]="true"
   (modalAction)="onModalActionExample5($event)"
