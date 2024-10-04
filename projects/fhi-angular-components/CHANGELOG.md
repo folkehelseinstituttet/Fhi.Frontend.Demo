@@ -1,4 +1,10 @@
-# 5.0.1
+# Unreleased
+
+> Oct 4, 2024
+
+* :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent
+
+## 5.0.1
 
 > Sep 20, 2024
 

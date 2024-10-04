@@ -29,6 +29,8 @@ export class FhiModalComponent implements OnChanges {
   @Input() modalTitle!: string;
   @Input() openModalButtonClass = 'fhi-btn-link';
   @Input() openModalFromParent = false;
+  @Input() closeModalFromParent = false;
+  @Input() disableCloseOnAction = false;
   @Input() scrollable = true;
   @Input() size = 'md';
 
@@ -50,6 +52,9 @@ export class FhiModalComponent implements OnChanges {
     if (changes['openModalFromParent']?.currentValue === true) {
       this.modalOpen(this.modalContentRef);
     }
+    if (changes['closeModalFromParent']?.currentValue === true) {
+      this.modal.dismissAll();
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,7 +64,9 @@ export class FhiModalComponent implements OnChanges {
 
   onModalAction(button: FhiModalActionButton) {
     this.modalAction.emit(button.name);
-    this.modal.dismissAll();
+    if (!this.disableCloseOnAction) {
+      this.modal.dismissAll();
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
