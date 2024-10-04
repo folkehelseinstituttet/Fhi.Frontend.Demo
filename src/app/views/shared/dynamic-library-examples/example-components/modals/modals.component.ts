@@ -12,6 +12,12 @@ import { catchError, delay, map, Observable, of, tap } from 'rxjs';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import { FhiModalActionButton } from '@folkehelseinstituttet/angular-components';
 
+interface FormValues {
+  firstName: string | null;
+  lastName: string | null;
+  serverRespons: string | null;
+}
+
 @Component({
   selector: 'app-modals',
   templateUrl: './modals.component.html',
@@ -77,7 +83,6 @@ export class ModalsComponent {
   }
 
   onModalActionExample5(action: string) {
-    console.log('action', action);
     if (action === 'Send') {
       this.example5MockApiCall();
     }
@@ -100,9 +105,6 @@ export class ModalsComponent {
       controls.lastName.errors !== null ||
       controls.serverRespons.errors !== null
     ) {
-      // console.error('firstName', controls.firstName.errors);
-      // console.error('lastName', controls.lastName.errors);
-      // console.error('serverRespons', controls.serverRespons.errors);
       return;
     }
 
@@ -110,56 +112,62 @@ export class ModalsComponent {
     this.example5.serverError = false;
     this.example5.closeModal = false;
 
-    of(value)
-      .pipe(
-        delay(2000),
-        map((value) => {
-          if (value.serverRespons === 'error') {
-            throw value;
-          }
-          return value;
-        }),
-        catchError((error) => {
-          throw `Server respons: ${error}`;
-        }),
-      )
-      .subscribe({
-        next: (v) => {
-          console.log(v);
-          this.example5.closeModal = true;
-          this.example5.waitingForServer = false;
-        },
-        error: (error) => {
-          console.error(error);
-          this.example5.waitingForServer = false;
-          this.example5.serverError = true;
-        },
-      });
+    handleFormMockApiCall(value).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.example5.closeModal = true;
+        this.example5.waitingForServer = false;
+      },
+      error: (error) => {
+        console.error(error);
+        this.example5.waitingForServer = false;
+        this.example5.serverError = true;
+      },
+    });
   }
 
   private nameValidator(nameType: string): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.isNameValid(control.value, nameType).pipe(
-        delay(1000),
+      return isNameValidMockAsyncValidation(control.value, nameType).pipe(
         map((valid) => (!valid ? { nameError: { value: control.value } } : null)),
         tap(() => (this.example5.waitingForAsyncValidation = false)),
         catchError(() => of(null)),
       );
     };
   }
+}
 
-  private isNameValid(value: string, nameType: string): Observable<boolean> {
-    return of(value).pipe(
-      map((value) => {
-        let valid = false;
+//
+// The following functions will typically be methods in services.
+//
 
-        if (nameType === 'first') {
-          valid = value === 'Guri';
-        } else if (nameType === 'last') {
-          valid = !value ? true : value === 'Rørtveit';
-        }
-        return valid;
-      }),
-    );
-  }
+function isNameValidMockAsyncValidation(value: string, nameType: string): Observable<boolean> {
+  return of(value).pipe(
+    delay(2000),
+    map((value) => {
+      let valid = false;
+
+      if (nameType === 'first') {
+        valid = value === 'Guri';
+      } else if (nameType === 'last') {
+        valid = !value ? true : value === 'Rørtveit';
+      }
+      return valid;
+    }),
+  );
+}
+
+function handleFormMockApiCall(value: FormValues): Observable<FormValues> {
+  return of(value).pipe(
+    delay(2000),
+    map((value) => {
+      if (value.serverRespons === 'error') {
+        throw '"Error!"';
+      }
+      return value;
+    }),
+    catchError((error) => {
+      throw `Server respons: ${error}`;
+    }),
+  );
 }

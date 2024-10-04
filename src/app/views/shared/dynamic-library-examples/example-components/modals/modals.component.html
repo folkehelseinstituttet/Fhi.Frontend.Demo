@@ -60,12 +60,6 @@
 >
   <ng-container fhi-modal.button>Åpne modeal med skjema</ng-container>
   <ng-container fhi-modal.body>
-    <div class="alert alert-info" role="alert">
-      <i class="icon-info-circle"></i>
-      Et litt mer komplekst eksempel som viser hvordan en kan trigge en handling via Enter i input-felt, samt sørge for
-      at modal ikke lukker seg før foreldrekomponenten gir klarsignal.
-    </div>
-
     <form class="mb-1" autocomplete="off" [formGroup]="example5.form">
       <div class="mb-4">
         <label for="firstName" class="form-label">Fornavn *</label>
@@ -157,3 +151,16 @@
     </div>
   </ng-container>
 </fhi-modal>
+
+<p class="mt-3">
+  <strong>Åpne modeal med skjema</strong> er et litt mer komplekst eksempel som viser hvordan en kan trigge en handling
+  ved å klikke på <em>Enter</em> i input-felt, samt sørge for at modal ikke lukker seg før foreldrekomponenten gir
+  klarsignal. Eksemplet viser noe av mulighetsrommet for validering og error-håndtering, men må ikke sees på som noen
+  fasit, en må i hver løsning finne ut hva som fungerer best på ulike skjema.
+</p>
+<div class="alert alert-warning mt-3" role="alert">
+  <i class="icon-bell"></i>
+  For å få skjema til å fungere stabilt sammen med modal kan en ikke bruke Angulars innebygde output-event (ngSubmit),
+  validering og innsending må gjøres "manuelt" av foreldrekomponenten. Dette er ikke optimalt, men vi har vurdert det
+  som "godt nok".
+</div>
