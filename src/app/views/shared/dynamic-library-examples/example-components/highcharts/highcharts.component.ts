@@ -273,6 +273,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.PrikkedeDataMedToSerier, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
+      description: 'Her kan en legge til en beskrivelse av dataene.',
       title: this.titles.title_3e,
       units: undefined,
       footer: {

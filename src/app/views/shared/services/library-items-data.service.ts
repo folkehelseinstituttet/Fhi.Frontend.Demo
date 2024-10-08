@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import {
+  LibraryItem,
   LibraryItemGroup,
   LibraryItemGroupsShared,
   LibraryItemsShared,
@@ -16,9 +17,11 @@ import { catchError, tap } from 'rxjs/operators';
 export class LibraryItemsDataService {
   private LibraryItemGroupsSharedData_URL = `${environment.apiBaseUrl}/LibraryItemGroupsSharedData`;
   private LibraryItemsSharedData__URL = `${environment.apiBaseUrl}/LibraryItemsSharedData`;
+  private AllComponentsData__URL = `${environment.apiBaseUrl}/AllComponentsData`;
 
   private _libraryItemGroupsShared!: LibraryItemGroupsShared;
   private _libraryItemsShared!: LibraryItemsShared;
+  private _allComponents!: LibraryItem[];
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +30,9 @@ export class LibraryItemsDataService {
   }
   get libraryItemsShared(): LibraryItemsShared {
     return this._libraryItemsShared;
+  }
+  get allComponents(): LibraryItem[] {
+    return this._allComponents;
   }
 
   getLibraryItemGroupsShared(): Observable<LibraryItemGroupsShared> {
@@ -67,5 +73,17 @@ export class LibraryItemsDataService {
     });
     const serverUrl = `${environment.apiBaseUrl}/${mockDataSetName}`;
     return this.http.get<LibraryItemGroup>(serverUrl);
+  }
+
+  getAllComponents(): Observable<LibraryItem[]> {
+    if (this._allComponents !== undefined) {
+      return of(this._allComponents);
+    }
+    return this.http.get<LibraryItem[]>(this.AllComponentsData__URL).pipe(
+      tap((allComponents) => (this._allComponents = allComponents)),
+      catchError((error) => {
+        throw error;
+      }),
+    );
   }
 }

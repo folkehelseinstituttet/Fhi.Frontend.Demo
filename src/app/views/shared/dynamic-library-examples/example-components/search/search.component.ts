@@ -264,15 +264,4 @@ export class SearchComponent {
           : countries.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 7),
       ),
     );
-
-  search2: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map((term) =>
-        term.length < 2
-          ? []
-          : countries.filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 7),
-      ),
-    );
 }

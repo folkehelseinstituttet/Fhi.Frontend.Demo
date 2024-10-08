@@ -64,18 +64,20 @@ export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
     lastSegmentPath: string,
     libraryItemGroupsShared: LibraryItemGroupsShared,
   ) {
-    this.libraryItemsDataService
-      .getLibraryItemGroup(lastSegmentPath, libraryItemGroupsShared)
-      .subscribe({
-        next: (libraryItemGroup) => {
-          this.group = libraryItemGroup;
-          this.sectionTitle = libraryItemGroup.title;
-          this.sectionTitleLang = libraryItemGroup.titleLang;
-          this.sectionIntro = libraryItemGroup.intro;
-          this.libraryItems = libraryItemGroup.libraryItems;
-          this.dataIsLoaded = true;
-        },
-        error: (error) => error,
-      });
+    this.subscription.add(
+      this.libraryItemsDataService
+        .getLibraryItemGroup(lastSegmentPath, libraryItemGroupsShared)
+        .subscribe({
+          next: (libraryItemGroup) => {
+            this.group = libraryItemGroup;
+            this.sectionTitle = libraryItemGroup.title;
+            this.sectionTitleLang = libraryItemGroup.titleLang;
+            this.sectionIntro = libraryItemGroup.intro;
+            this.libraryItems = libraryItemGroup.libraryItems;
+            this.dataIsLoaded = true;
+          },
+          error: (error) => error,
+        }),
+    );
   }
 }

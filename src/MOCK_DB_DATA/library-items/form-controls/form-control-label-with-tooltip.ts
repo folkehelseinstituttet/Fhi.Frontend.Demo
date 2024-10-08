@@ -4,16 +4,16 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 import { LibraryItemConstants as CONST } from '../library-item-constants';
 import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
-export const ProgressSpinner: LibraryItem[] = [
+export const FormControlInputWithTooltip: LibraryItem[] = [
   {
-    id: ITEMS.ProgressSpinner.id,
-    title: ITEMS.ProgressSpinner.title,
-    type: ItemType.html,
+    id: ITEMS.FormControlInputWithTooltip.id,
+    title: ITEMS.FormControlInputWithTooltip.title,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
-    parent: GROUPS.ProgressIndicators,
-    dependencyType: ItemDependencyType.css,
+    parent: GROUPS.FormControls,
+    dependencyType: ItemDependencyType.ngBootstrap,
   },
 ];
 
@@ -22,9 +22,12 @@ export const ProgressSpinner: LibraryItem[] = [
  */
 function getExampleHtml(): string {
   return `
-<div class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>`;
+<label for="FormInput" class="form-label" aria-describedby="hjelpeTekst">
+  Hjelpetekst
+  <i class="icon-question-circle icon-sm ms-1" ngbTooltip="Tooltip-tekst"></i>
+</label>
+<p class="form-text" id="hjelpeTekst">Hjelpetekst, f.eks "Valgfritt felt"</p>
+<input type="text" id="FormInput" class="form-control" placeholder="Standard tekstfelt" />`;
 }
 
 /*
@@ -40,11 +43,13 @@ function getCodeHtml(): string | null {
  */
 function getDocumentationHtml(): string | null {
   return `
-<p>
-  Bootstrap-dokumentasjon for
-  <a href="${CONST.BootstrapComponentsBaseUrl}/spinners/#border-spinner">Spinner</a>.
-</p>
-<p>
-  OBS! Vi bruker kun <i>Border spinner</i>, og den brukes kun med den fargen som vises her.
-</p>`;
+<h5>Nyttige lenker</h5>
+<ul>
+    <li>
+        <a href="${CONST.NgBootstrapComponentsBaseUrl}/tooltip/api">API-dokumentasjon for Tooltip-komponent</a>
+    </li>
+    <li>
+        <a href="${CONST.NgBootstrapComponentsBaseUrl}/tooltip/examples">Eksempler for Tooltip-komponent</a>
+    </li>
+</ul>`;
 }
