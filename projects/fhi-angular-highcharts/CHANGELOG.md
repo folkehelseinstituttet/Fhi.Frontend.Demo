@@ -1,6 +1,6 @@
 # Unreleased
 
-> Okt 8, 2024
+> Oct 9, 2024
 
 * :bug: **Bugfix** Remove deprecated property DiagramTypeIds.map which should have been removed in [(#693)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/693)
 * :tada: **Enhancement** Add a custom version of the diagram type class and expose it in the public API Surface
