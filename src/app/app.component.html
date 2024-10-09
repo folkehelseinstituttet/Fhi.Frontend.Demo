@@ -1,4 +1,4 @@
-<div class="fhi-app" id="top" [ngClass]="{ 'fhi-admin-view': adminView }">
+<div class="fhi-app" id="top">
   <header class="fhi-header">
     <div class="fhi-header__brand">
       <div class="container fhi-header__brand-container d-flex">
@@ -12,19 +12,6 @@
               &nbsp;&ndash;&nbsp;{{ projectDescription }}
             </span>
           </div>
-        </div>
-
-        <div class="fhi-utility-section d-none d-xl-flex ms-auto me-lg-7 pe-lg-4 me-xl-0 pe-xl-0">
-          <p class="fhi-utility-section__group">
-            <button type="button" class="btn fhi-btn-icon" (click)="toggleAdminView()">
-              <span class="icon-eye ms-2 me-2"></span>
-              <span class="btn__text"
-                >Viser:
-                <ng-container *ngIf="adminView">Admingrensesnitt</ng-container>
-                <ng-container *ngIf="!adminView">Publikumsgrensesnitt</ng-container>
-              </span>
-            </button>
-          </p>
         </div>
       </div>
     </div>
@@ -42,7 +29,9 @@
 
   <div class="ds-scroll-to-top">
     <a [routerLink] [fragment]="'top'">
-      <!-- <fa-icon class="ds-scroll-to-top__icon" [icon]="faArrowCircleUp"></fa-icon> -->
+      <button type="button" class="btn fhi-btn-icon fhi-btn-icon--circular" (click)="scrollToTop('top')">
+        <i class="icon-arrow-up"></i>
+      </button>
     </a>
   </div>
 
@@ -51,19 +40,19 @@
       <div class="row">
         <div class="col-12 col-md-6 mb-2">
           <p>
-            Har du spørsmål eller savner du noe i FHI Designsystem?<br />
-            Ta kontakt med
-            <a href="https://www.fhi.no/om/organisasjon/nettportaler-og-samhandling/anne-lise-rabben/"
-              >Anne-Lise Rabben</a
-            >.
+            Spørsmål og nye ønsker opprettes i Github, i enten
+            <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/new/choose">repo for CSS</a>
+            eller
+            <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/new/choose">repo for Angular</a>,
+            avhengig av hva det gjelder.
           </p>
         </div>
         <div class="col-12 col-md-6">
           <p class="text-md-end">
             <span class="d-none d-md-inline">&nbsp;<br /></span>
-            <a href="https://uustatus.no/nb/erklaringer/publisert/04dcc51e-e740-40cb-97f5-48d1f654f85c"
-              >Tilgjengelighetserklæring</a
-            >
+            <a href="https://uustatus.no/nb/erklaringer/publisert/04dcc51e-e740-40cb-97f5-48d1f654f85c">
+              Tilgjengelighetserklæring
+            </a>
           </p>
         </div>
       </div>

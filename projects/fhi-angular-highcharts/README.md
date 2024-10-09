@@ -12,7 +12,6 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Inputs](#inputs)
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
-    - [(TO BE DEPRECATED IN v5) Interface FhiDiagramOptions](#to-be-deprecated-in-v5-interface-fhidiagramoptions)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -27,6 +26,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
+| 5                      | 5                     | 6.3       | 5.3.2     | 17          | 11.4       | 4.0                | 18      | 20/10 *  |
 | >4.1                   | 4                     | 6.3       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | >=3.1 <=4.1            | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
@@ -134,23 +134,6 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
 | `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. |
 
-### (TO BE DEPRECATED IN v5) Interface FhiDiagramOptions
-
-| Property               | Type                     | Default   | Required | Description |
-| ---------------------- | ------------------------ | --------- | -------- | ----------- |
-| `creditsHref`          | `string`                 | -         | no       | Link to source ref. in footer. |
-| `creditsText`          | `string`                 | -         | no       | Text to source ref. in footer. |
-| `decimals`             | `number`                 | -         | no       | How many decimals to show (max) |
-| `diagramTypeId`        | `string`                 | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
-| `diagramTypeNavId`     | `string`                 | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Values defined by enum `DiagramTypeNavIds` |
-| `[diagramTypeSubset]`  | `Array<string>`          | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
-| `disclaimer`           | `string`                 | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
-| `[flags]`              | `Array<FhiDiagramFlag>`  | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
-| `lastUpdated`          | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
-| `mapTypeId`            | `MapTypeIds`             | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. |
-| `metadataButton`       | `boolean`                | `false`   | no       | Whether to show a button with an event for custom navigation to your metadata. |
-| `showFullScreenButton` | `boolean`                | `false`   | no       | Whether to show a button which opens the diagram in full screen. |
-
 ### Interface FhiDiagramControls
 
 | Property                      | Type       | Default | Required | Description |
@@ -208,7 +191,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | Property   | Type               | Default | Required | Description |
 | ---------- | ------------------ | ------- | -------- | ----------- |
 | `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
-| `decimals` | `number`           | -       | no       | The decimal count. If not set the decimal count same as in data. Count is **limited to 14** decimals due to loss of precision at runtime above 14. A warning will be given in the consol if more than 14 decimals. |
+| `decimals` | `number`           | -       | no       | The decimal count. If not set the decimal count is same as in the source data. Count is **limited to 9** decimals because Highcharts tooltips fails if 10 decimals or more. A warning will be given in the consol if more than 14 decimals. |
 | `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
 | `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |

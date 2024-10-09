@@ -1,14 +1,18 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
 export const Modal: LibraryItem[] = [
   {
     id: ITEMS.Modal.id,
     title: ITEMS.Modal.title,
-    type: LibraryItemType.angular,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Modals,
+    dependencyType: ItemDependencyType.fhiAngular,
   },
 ];
 

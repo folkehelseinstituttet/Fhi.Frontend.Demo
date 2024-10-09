@@ -50,7 +50,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Breadcrumb: {
     id: 'breadcrumb',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Breadcrumb',
   },
 
   ButtonPrimary: {
@@ -87,23 +87,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Card deactive',
   },
 
-  Drawer: {
-    id: 'drawer',
-    title: 'Drawer',
-  },
-
-  ErrorPage404: {
-    id: 'error-page-404',
-    title: 'Error page - 404',
-  },
-  ErrorPage500: {
-    id: 'error-page-500',
-    title: 'Error page - 500',
-  },
-
   FormControlInput: {
     id: 'form-control-input',
-    title: 'Text input',
+    title: 'Textfield',
   },
   FormControlTextarea: {
     id: 'form-control-textarea',
@@ -145,6 +131,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'form-control-validation',
     title: 'Validation',
   },
+  FormControlInputWithTooltip: {
+    id: 'form-control-input-with-tooltip',
+    title: 'Textfield with tooltip',
+  },
 
   GlobalFooter: {
     id: 'global-footer',
@@ -161,11 +151,11 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   },
   GlobalHeaderWithMenu: {
     id: 'global-header-with-menu',
-    title: 'Global header with menu',
+    title: 'Global header (menu)',
   },
   GlobalHeaderWithMenuAndUtils: {
     id: 'global-header-with-menu-and-utils',
-    title: 'Global header with menu and utilities section',
+    title: 'Global header (utilities)',
   },
 
   HighchartsWithoutMenu: {
@@ -181,22 +171,9 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Highcharts all inclusive',
   },
 
-  LayoutTemplateBasic: {
-    id: 'layout-template-basic',
-    title: 'Basic layout',
-  },
-  LayoutTemplateExpandableFirstCol: {
-    id: 'layout-template-expandable-first-col',
-    title: 'Layout med ekspanderbart innhold i første kolonne',
-  },
-  LayoutTemplateTwoCols1: {
-    id: 'layout-template-two-cols-1',
-    title: 'Layout med venstrekolonne',
-  },
-
   Modal: {
     id: 'modal',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Modal',
   },
 
   NavTiles: {
@@ -258,19 +235,13 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Spinner - small',
   },
 
-  PrototypeForm: {
-    id: 'prototype-form',
-    title: 'Form - left aligned labels',
-  },
-
-  PrototypeTableWithExpandableContent: {
-    id: 'prototype-table-with-expandable-content',
-    title: 'Table with expandable content',
-  },
-
   Search: {
-    id: 'search',
-    title: '', // Only one item, so we use group title is enough
+    id: 'search-default',
+    title: 'Search',
+  },
+  SearchAutocomplete: {
+    id: 'search-autocomplete',
+    title: 'Search with autocomplete',
   },
 
   Table: {
@@ -282,8 +253,8 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Table - compact',
   },
   TableEditable: {
-    id: 'table-editable',
-    title: 'Table - inline editable',
+    id: 'table-edit',
+    title: 'Table - inline edit',
   },
   TableSelectableRow: {
     id: 'table-selectable-row',
@@ -362,7 +333,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
 
   Toast: {
     id: 'toast',
-    title: '', // Only one item, so we use group title is enough
+    title: 'Toast',
   },
 
   Tooltip: {
@@ -373,6 +344,7 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'popover',
     title: 'Popover',
   },
+
   TreeViewCheckbox: {
     id: 'tree-view-checkbox',
     title: 'Tree view checkbox',
@@ -384,10 +356,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
   TreeViewRadio: {
     id: 'tree-view-radio',
     title: 'Tree view radio',
-  },
-  TreeViewSelectionSwitch: {
-    id: 'tree-view-selection-switch',
-    title: 'Tree view selection type switch',
   },
 
   VisualIdentityColors: {

@@ -138,6 +138,18 @@ export class HighchartsComponent implements OnInit {
       title: this.titles.title_2a,
       controls: {
         navigation: {
+          items: {
+            chartTypes: [
+              'line',
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'pie',
+              'columnAndLine',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
           show: true,
         },
       },
@@ -175,7 +187,7 @@ export class HighchartsComponent implements OnInit {
         },
         navigation: {
           items: {
-            chartTypes: ['bar', 'column', 'columnAndLine', 'line', 'pie'],
+            chartTypes: ['bar', 'column', 'line', 'pie'],
             mapTypes: ['mapFylker2023'],
           },
           show: true,
@@ -201,6 +213,7 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3b() {
+    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
@@ -219,6 +232,7 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3c() {
+    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.diagramOptions,
       activeDiagramType: 'mapFylker2023',
@@ -228,6 +242,13 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3d() {
+    this.diagramOptions.controls.navigation.items.chartTypes = [
+      'bar',
+      'column',
+      'columnAndLine',
+      'line',
+      'pie',
+    ];
     this.getData(MockData.AgensAntallOgAndel, {
       ...this.diagramOptions,
       activeDiagramType: 'columnAndLine',
@@ -252,8 +273,18 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.PrikkedeDataMedToSerier, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
+      description: 'Her kan en legge til en beskrivelse av dataene.',
       title: this.titles.title_3e,
       units: undefined,
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
     });
   }
 
@@ -290,23 +321,6 @@ export class HighchartsComponent implements OnInit {
           position: 'end',
         },
       ],
-
-      // The following will be deprecated in v5
-      // --------------------------------------
-      // diagramTypeId: 'map',
-      // diagramTypeNavId: 'default',
-      // decimals: 2,
-      // flags: [
-      //   { symbol: '..', label: 'Manglende data' },
-      //   { symbol: '.', label: 'Lar seg ikke beregne' },
-      //   { symbol: ':', label: 'Anonymisert' },
-      // ],
-      // creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
-      // creditsText: 'Nøkkeltall for folkehelse',
-      // disclaimer: 'Disse dataene kan inneholde feil.',
-      // lastUpdated: '06.06.2023',
-      // mapTypeId: 'mapFylker',
-      // showFullScreenButton: true,
     });
   }
 }

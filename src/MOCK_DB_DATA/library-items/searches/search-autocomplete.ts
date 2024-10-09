@@ -1,15 +1,19 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
-export const Search: LibraryItem[] = [
+export const SearchAutocomplete: LibraryItem[] = [
   {
-    id: ITEMS.Search.id,
-    title: ITEMS.Search.title,
-    type: LibraryItemType.angular,
+    id: ITEMS.SearchAutocomplete.id,
+    title: ITEMS.SearchAutocomplete.title,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.SearchFields,
+    dependencyType: ItemDependencyType.ngBootstrap,
   },
 ];
 
@@ -34,7 +38,7 @@ function getCodeHtml(): string | null {
         id="typeahead-basic"
         type="search"
         class="form-control fhi-search__form-control"
-        placeholder="Søk her..."
+        placeholder="Søk"
         [ngbTypeahead]="search"/>
     </div>
     <button type="button" class="btn fhi-search__btn">

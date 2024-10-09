@@ -126,6 +126,5 @@ export const AllDiagramTypes = [
   table,
 ];
 
-// This is the order used in diagram-type-navs
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
 export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023];
