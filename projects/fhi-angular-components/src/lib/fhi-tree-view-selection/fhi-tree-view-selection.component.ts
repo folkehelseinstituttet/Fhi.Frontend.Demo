@@ -50,7 +50,24 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
+      this.filteredItems = [...this.items];
     }
+    this.itemsChange.emit(this.items);
+  }
+
+  onFilterNgModelChange(filterValue: string) {
+    if (filterValue.length === 0) {
+      this.filterString = filterValue;
+      this.filterTree();
+    }
+  }
+
+  onFilterKeydownEnter() {
+    this.filterTree();
+  }
+
+  onFilterButtonClick() {
+    this.filterTree();
   }
 
   onFilterNgModelChange(filterValue: string) {

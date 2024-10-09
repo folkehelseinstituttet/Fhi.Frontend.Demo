@@ -5,7 +5,6 @@ export enum DiagramTypeIds {
   columnAndLine,
   columnStacked,
   line,
-  map, // TODO: remove in v5
   mapFylker,
   mapFylker2019,
   mapFylker2023,

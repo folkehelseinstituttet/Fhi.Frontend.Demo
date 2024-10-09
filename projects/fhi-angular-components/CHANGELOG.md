@@ -1,4 +1,23 @@
-# 4.4.1
+# 5.0.1
+
+> Sep 20, 2024
+
+* :bug: **Bugfix** Less specific version for @angular
+
+## 5.0.0
+
+> Sep 19, 2024
+
+* :boom: **Breaking** Update to Angular 18. [(#689)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/689)
+
+## 4.4.2
+
+> Sep 17, 2024
+
+* :bug: **Bugfix** Make `FhiTreeViewCheckbox` and `FhiTreeViewRadio` rerender items when it receives new items. [(#679)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/679)
+* :bug: **Bugfix** Add test for `undefined` in `FhiTreeViewNavigationComponent`. [(#680)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/680)
+
+## 4.4.1
 
 > Sep 9, 2024
 

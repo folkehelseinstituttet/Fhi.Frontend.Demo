@@ -15,30 +15,6 @@ import { LibraryItemConstants } from './library-item-constants';
  *  },
  */
 export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
-  // Visuell identitet
-
-  Colors: {
-    id: 'colors',
-    title: 'Farger',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'ColorsData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-  Icons: {
-    id: 'icons',
-    title: 'Ikoner',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'IconsData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-  Typography: {
-    id: 'typography',
-    title: 'Typografi',
-    titleLang: LibraryItemConstants.languageLocaleId_NO,
-    apiEndPoint: 'TypographyData',
-    parentUrlSegment: UrlSegment.visualIdentity,
-  },
-
   // Components
 
   Accordions: {
@@ -61,7 +37,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
   },
   Breadcrumbs: {
     id: 'breadcrumbs',
-    title: 'Breadcrumb',
+    title: 'Breadcrumbs',
     apiEndPoint: 'BreadcrumbsData',
     parentUrlSegment: UrlSegment.components,
   },
@@ -77,12 +53,7 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'CardsData',
     parentUrlSegment: UrlSegment.components,
   },
-  Drawers: {
-    id: 'drawers',
-    title: 'Drawers',
-    apiEndPoint: 'DrawersData',
-    parentUrlSegment: null,
-  },
+
   FormControls: {
     id: 'form-controls',
     title: 'Form controls',
@@ -131,10 +102,10 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'ProgressIndicatorsData',
     parentUrlSegment: UrlSegment.components,
   },
-  Search: {
-    id: 'search',
-    title: 'Search',
-    apiEndPoint: 'SearchData',
+  SearchFields: {
+    id: 'search-fields',
+    title: 'Search fields',
+    apiEndPoint: 'SearchFieldsData',
     parentUrlSegment: UrlSegment.components,
   },
   Tables: {
@@ -174,33 +145,27 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     parentUrlSegment: UrlSegment.components,
   },
 
-  // Layout og sidemaler
+  // Visuell identitet
 
-  ErrorPages: {
-    id: 'error-pages',
-    title: 'Error pages',
-    apiEndPoint: 'ErrorPagesData',
-    parentUrlSegment: UrlSegment.layoutAndPageTemplates,
+  Colors: {
+    id: 'colors',
+    title: 'Farger',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'ColorsData',
+    parentUrlSegment: UrlSegment.visualIdentity,
   },
-  LayoutTemplates: {
-    id: 'layout-templates',
-    title: 'Layout og sidemaler',
-    apiEndPoint: 'LayoutTemplatesData',
-    parentUrlSegment: UrlSegment.layoutAndPageTemplates,
+  Icons: {
+    id: 'icons',
+    title: 'Ikoner',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'IconsData',
+    parentUrlSegment: UrlSegment.visualIdentity,
   },
-
-  // Prototypes (Eksempler på bruk)
-
-  PrototypeForms: {
-    id: 'prototype-forms',
-    title: 'Forms',
-    apiEndPoint: 'PrototypeFormsData',
-    parentUrlSegment: UrlSegment.prototypes,
-  },
-  PrototypeTables: {
-    id: 'prototype-tables',
-    title: 'Tables',
-    apiEndPoint: 'PrototypeTablesData',
-    parentUrlSegment: UrlSegment.prototypes,
+  Typography: {
+    id: 'typography',
+    title: 'Typografi',
+    titleLang: LibraryItemConstants.languageLocaleId_NO,
+    apiEndPoint: 'TypographyData',
+    parentUrlSegment: UrlSegment.visualIdentity,
   },
 };
