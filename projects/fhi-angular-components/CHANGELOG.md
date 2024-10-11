@@ -2,7 +2,8 @@
 
 > Oct 11, 2024
 
-* :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent
+* :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent.
+* :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page.
 
 ## 4.4.2
 
