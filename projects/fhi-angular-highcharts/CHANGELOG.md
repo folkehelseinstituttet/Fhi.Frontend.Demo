@@ -1,20 +1,21 @@
 # Unreleased
 
-> Sep 24, 2024
+> Oct 11, 2024
 
 * :bug: **Bugfix** Remove deprecated property DiagramTypeIds.map which should have been removed in [(#693)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/693)
+* :bug: **Bugfix** Fix so that table don't break if flagged data in the data set. [(#702)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/702)
 
 ## 5.0.2
 
 > Sep 20, 2024
 
-* :bug: **Bugfix** Less specific version for @angular
+* :bug: **Bugfix** Less specific version for @angular [(#697)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/697)
 
 ## 5.0.1
 
 > Sep 20, 2024
 
-* :bug: **Bugfix** Bump peerDependency @folkehelseinstituttet/angular-components to v5
+* :bug: **Bugfix** Bump peerDependency @folkehelseinstituttet/angular-components to v5 [(#695)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/695)
 
 ## 5.0.0
 
