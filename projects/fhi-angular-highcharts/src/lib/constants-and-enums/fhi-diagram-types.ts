@@ -129,3 +129,51 @@ export const AllDiagramTypes = [
 // Diagram types used in diagram-type-navs by default. Overwritten if defined in diagramOptions.
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
 export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023];
+
+// For the public API Surface
+export class FhiDiagramTypes {
+  static bar = {
+    id: bar.id,
+    name: bar.name,
+  };
+  static barStacked = {
+    id: barStacked.id,
+    name: barStacked.name,
+  };
+  static column = {
+    id: column.id,
+    name: column.name,
+  };
+  static columnAndLine = {
+    id: columnAndLine.id,
+    name: columnAndLine.name,
+  };
+  static columnStacked = {
+    id: columnStacked.id,
+    name: columnStacked.name,
+  };
+  static line = {
+    id: line.id,
+    name: line.name,
+  };
+  static mapFylker = {
+    id: mapFylker.id,
+    name: mapFylker.name,
+  };
+  static mapFylker2019 = {
+    id: mapFylker2019.id,
+    name: mapFylker2019.name,
+  };
+  static mapFylker2023 = {
+    id: mapFylker2023.id,
+    name: mapFylker2023.name,
+  };
+  static pie = {
+    id: pie.id,
+    name: pie.name,
+  };
+  static table = {
+    id: table.id,
+    name: table.name,
+  };
+}

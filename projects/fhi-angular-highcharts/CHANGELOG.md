@@ -1,4 +1,10 @@
-# 4.4.1
+# Unreleased
+
+> Oct 11, 2024
+
+* :tada: **Enhancement** Add a custom version of the diagram type class and expose it in the public API Surface
+
+## 4.4.1
 
 > Sep 24, 2024
 
