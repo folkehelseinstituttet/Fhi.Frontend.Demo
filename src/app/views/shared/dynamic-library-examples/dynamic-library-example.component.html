@@ -1,42 +1,49 @@
 @if (dataIsLoaded) {
   <div [ngSwitch]="group.id">
     <app-accordions *ngSwitchCase="groups.Accordions.id" [itemId]="itemId" [items]="items"></app-accordions>
+
     <app-alerts *ngSwitchCase="groups.Alerts.id" [itemId]="itemId" [items]="items"></app-alerts>
+
     <app-buttons *ngSwitchCase="groups.Buttons.id" [itemId]="itemId" [items]="items"></app-buttons>
+
     <app-form-controls *ngSwitchCase="groups.FormControls.id" [itemId]="itemId" [items]="items"></app-form-controls>
+
     <app-icon-list *ngSwitchCase="groups.Icons.id" [itemId]="itemId" [items]="items"></app-icon-list>
+
     <app-global-headers *ngSwitchCase="groups.GlobalHeaders.id" [itemId]="itemId" [items]="items"></app-global-headers>
+
     <app-highcharts *ngSwitchCase="groups.Highcharts.id" [itemId]="itemId" [items]="items"></app-highcharts>
-    <app-layout-templates
-      *ngSwitchCase="groups.LayoutTemplates.id"
-      [itemId]="itemId"
-      [items]="items"
-    ></app-layout-templates>
+
     <app-modals *ngSwitchCase="groups.Modals.id" [itemId]="itemId" [items]="items"></app-modals>
+
     <app-navs *ngSwitchCase="groups.Navs.id" [itemId]="itemId" [items]="items"></app-navs>
+
     <app-paginations *ngSwitchCase="groups.Paginations.id" [itemId]="itemId" [items]="items"></app-paginations>
+
     <app-progress-indicators
       *ngSwitchCase="groups.ProgressIndicators.id"
       [itemId]="itemId"
       [items]="items"
     ></app-progress-indicators>
-    <app-forms *ngSwitchCase="groups.PrototypeForms.id" [itemId]="itemId" [items]="items"></app-forms>
-    <app-search *ngSwitchCase="groups.Search.id" [itemId]="itemId" [items]="items"></app-search>
-    <app-table-expandable-content
-      *ngSwitchCase="groups.PrototypeTables.id"
-      [itemId]="itemId"
-      [items]="items"
-    ></app-table-expandable-content>
+
+    <app-search *ngSwitchCase="groups.SearchFields.id" [itemId]="itemId" [items]="items"></app-search>
+
     <app-tables *ngSwitchCase="groups.Tables.id" [itemId]="itemId" [items]="items"></app-tables>
+
     <app-tags *ngSwitchCase="groups.Tags.id" [itemId]="itemId" [items]="items"></app-tags>
+
     <app-time-selectors *ngSwitchCase="groups.TimeSelectors.id" [itemId]="itemId" [items]="items"></app-time-selectors>
+
     <app-toasts *ngSwitchCase="groups.Toasts.id" [itemId]="itemId" [items]="items"></app-toasts>
+
     <app-tooltip-and-popover
       *ngSwitchCase="groups.TooltipPopovers.id"
       [itemId]="itemId"
       [items]="items"
     ></app-tooltip-and-popover>
+
     <app-tree-views *ngSwitchCase="groups.TreeViews.id" [itemId]="itemId" [items]="items"></app-tree-views>
+
     <div *ngSwitchDefault>No item group matches given id...</div>
   </div>
 }
