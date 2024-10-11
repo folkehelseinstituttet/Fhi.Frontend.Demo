@@ -217,6 +217,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     items.forEach((item) => {
       if (item.id === undefined) {
         item.id = this.instanceID + '-' + itemID++;
+      } else {
+        item.id = this.instanceID + '-' + item.id;
       }
       if (item.children && item.children.length > 0) {
         this.createIds(item.children, itemID * 10);

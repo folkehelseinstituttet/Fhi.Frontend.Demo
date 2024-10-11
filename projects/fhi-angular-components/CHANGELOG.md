@@ -1,4 +1,10 @@
-# 4.4.2
+# Unreleased
+
+> Oct 11, 2024
+
+* :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page.
+
+## 4.4.2
 
 > Sep 17, 2024
 
