@@ -3,11 +3,6 @@
 > Oct 11, 2024
 
 * :bug: **Bugfix** Remove deprecated property DiagramTypeIds.map which should have been removed in [(#693)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/693)
-
-## 4.4.1
-
-> Sep 24, 2024
-
 * :bug: **Bugfix** Fix so that table don't break if flagged data in the data set. [(#702)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/702)
 
 ## 5.0.2
