@@ -44,7 +44,7 @@ export class ModalsComponent {
   constructor() {
     this.example5.form = new FormGroup({
       firstName: new FormControl(null, {
-        validators: [Validators.required, Validators.minLength(4), Validators.maxLength(4)],
+        validators: [Validators.minLength(4), Validators.maxLength(4)],
         asyncValidators: [this.nameValidator('first')],
       }),
       lastName: new FormControl(null, {
@@ -139,14 +139,15 @@ function isNameValidMockAsyncValidation(value: string, nameType: string): Observ
   return of(value).pipe(
     delay(2000),
     map((value) => {
-      let valid = false;
-
-      if (nameType === 'first') {
-        valid = value === 'Guri';
-      } else if (nameType === 'last') {
-        valid = !value ? true : value === 'Rørtveit';
+      if (value.length === 0) {
+        return true;
       }
-      return valid;
+      if (nameType === 'first') {
+        return value === 'Guri';
+      }
+      if (nameType === 'last') {
+        return value === 'Rørtveit';
+      }
     }),
   );
 }

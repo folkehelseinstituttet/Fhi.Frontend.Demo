@@ -68,7 +68,6 @@
           type="text"
           id="firstName"
           class="form-control"
-          required
           ngbAutofocus
           formControlName="firstName"
           [ngClass]="{ 'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) }"
@@ -76,12 +75,10 @@
           (keydown.enter)="onEnterExample5()"
         />
         <p class="invalid-feedback">
-          @if (firstName.hasError('required')) {
-            Dette feltet er påkrevd.
-          } @else if (firstName.hasError('minlength') || firstName.hasError('maxlength')) {
-            "{{ firstName.value }}" er ikke riktig antall tegn, prøv igjen.
+          @if (firstName.hasError('minlength') || firstName.hasError('maxlength')) {
+            "{{ firstName.value }}" er ikke riktig antall tegn.
           } @else if (firstName.hasError('nameError')) {
-            "{{ firstName.value }}" er ikke fornavnet på FHIs direktør, prøv igjen.
+            "{{ firstName.value }}" er ikke fornavnet på FHIs direktør.
           }
         </p>
       </div>
@@ -98,9 +95,9 @@
         />
         <p class="invalid-feedback">
           @if (lastName.hasError('minlength') || lastName.hasError('maxlength')) {
-            "{{ lastName.value }}" er ikke riktig antall tegn, prøv igjen.
+            "{{ lastName.value }}" er ikke riktig antall tegn.
           } @else if (lastName.hasError('nameError')) {
-            "{{ lastName.value }}" er ikke etternavnet på FHIs direktør, prøv igjen.
+            "{{ lastName.value }}" er ikke etternavnet på FHIs direktør.
           }
         </p>
       </div>
