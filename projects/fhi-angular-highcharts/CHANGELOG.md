@@ -1,8 +1,8 @@
-# Unreleased
+# 4.4.2
 
-> Oct 11, 2024
+> Oct 14, 2024
 
-* :tada: **Enhancement** Add a custom version of the diagram type class and expose it in the public API Surface
+* :tada: **Enhancement** Add a custom version of the diagram type class and expose it in the public API Surface [(#720)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/720)
 
 ## 4.4.1
 
