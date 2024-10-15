@@ -81,6 +81,10 @@ export class ModalsComponent {
     return this.example5.form.get('lastName');
   }
 
+  onDismissModalExample5() {
+    this.example5.form.reset({ serverRespons: 'OK' });
+  }
+
   onModalActionExample5(action: string) {
     if (action === 'Send') {
       this.submit();
