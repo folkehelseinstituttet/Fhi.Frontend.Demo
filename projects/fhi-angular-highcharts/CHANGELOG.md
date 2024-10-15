@@ -1,7 +1,8 @@
 # Unreleased
 
-> Oct 11, 2024
+> Oct 15, 2024
 
+* :tada: **Enhancement** Add a custom version of the diagram type class and expose it in the public API Surface
 * :bug: **Bugfix** Remove deprecated property DiagramTypeIds.map which should have been removed in [(#693)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/693)
 * :bug: **Bugfix** Fix so that table don't break if flagged data in the data set. [(#702)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/702)
 
