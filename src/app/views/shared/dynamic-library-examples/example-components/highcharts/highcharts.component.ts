@@ -257,7 +257,13 @@ export class HighchartsComponent implements OnInit {
       // ],
 
       title: 'Test',
+      openSource: false,
       footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
         flags: [
           {
             symbol: '..',
@@ -276,16 +282,16 @@ export class HighchartsComponent implements OnInit {
       tableOrientation: 'seriesAsRows',
       units: [
         {
-          id: 'Andel2',
-          decimals: 2,
-          label: 'Andel',
+          id: 'Antall1',
+          decimals: 1,
+          label: 'Antall',
           symbol: null,
           position: null,
         },
         {
-          id: 'Antall1',
-          decimals: 1,
-          label: 'Antall',
+          id: 'Andel2',
+          decimals: 2,
+          label: 'Andel',
           symbol: null,
           position: null,
         },
