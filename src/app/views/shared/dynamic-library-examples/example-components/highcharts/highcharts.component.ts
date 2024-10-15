@@ -48,7 +48,7 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.getExampleData('2a');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.getExampleData('3a');
+      this.getExampleData('3d');
     }
   }
 
@@ -230,30 +230,86 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3d() {
-    this.diagramOptions.controls.navigation.items.chartTypes = [
-      'bar',
-      'column',
-      'columnAndLine',
-      'line',
-      'pie',
-    ];
-    this.getData(MockData.AgensAntallOgAndel, {
+    // this.diagramOptions.controls.navigation.items.chartTypes = [
+    //   'bar',
+    //   'column',
+    //   'columnAndLine',
+    //   'line',
+    //   'pie',
+    // ];
+    this.getData(MockData.TestData, {
+      // this.getData(MockData.AgensAntallOgAndel, {
       ...this.diagramOptions,
       activeDiagramType: 'columnAndLine',
-      title: this.titles.title_3d,
+      // title: this.titles.title_3d,
+      // units: [
+      //   {
+      //     id: 'antall',
+      //     label: 'Antall',
+      //   },
+      //   {
+      //     id: 'prosent',
+      //     decimals: 1,
+      //     label: 'Prosent',
+      //     symbol: '%',
+      //     position: 'end',
+      //   },
+      // ],
+
+      title: 'Test',
+      footer: {
+        flags: [
+          {
+            symbol: '..',
+            label: 'Manglende data',
+          },
+          {
+            symbol: '.',
+            label: 'Lar seg ikke beregne',
+          },
+          {
+            symbol: ':',
+            label: 'Anonymisert eller skjult av andre årsaker',
+          },
+        ],
+      },
+      tableOrientation: 'seriesAsRows',
       units: [
         {
-          id: 'antall',
-          label: 'Antall',
+          id: 'Andel2',
+          decimals: 2,
+          label: 'Andel',
+          symbol: null,
+          position: null,
         },
         {
-          id: 'prosent',
+          id: 'Antall1',
           decimals: 1,
-          label: 'Prosent',
-          symbol: '%',
-          position: 'end',
+          label: 'Antall',
+          symbol: null,
+          position: null,
         },
       ],
+      controls: {
+        fullScreenButton: {
+          show: false,
+        },
+        navigation: {
+          items: {
+            chartTypes: [
+              'columnAndLine',
+              'pie',
+              'line',
+              'columnStacked',
+              'column',
+              'barStacked',
+              'bar',
+            ],
+            mapTypes: [],
+          },
+          show: true,
+        },
+      },
     });
   }
 
