@@ -1,15 +1,19 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
+import { getAngularInfo } from './_angular-info';
 
 export const TableEditable: LibraryItem[] = [
   {
     id: ITEMS.TableEditable.id,
     title: ITEMS.TableEditable.title,
-    type: LibraryItemType.angular,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Tables,
+    dependencyType: ItemDependencyType.css,
   },
 ];
 
@@ -32,11 +36,5 @@ function getCodeHtml(): string | null {
  * Return null to remove Documentation from library-item.
  */
 function getDocumentationHtml(): string | null {
-  return `
-<div class="alert alert-info" role="alert">
-  <i class="icon-info-circle"></i>
-  <p class="mb-0">FHI Angular Components vil på sikt inkludere en tabellkomponent.</p>
-</div>
-
-<p>Se <a href="${CONST.ExampleComponentsGithubUrl}/tables">kode på Github for disse eksemplene</a>.</p>`;
+  return getAngularInfo(ITEMS.TableEditable.title);
 }

@@ -43,14 +43,15 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
-    this.filteredItems = [...this.items];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
+      this.filteredItems = [...this.items];
     }
+    this.itemsChange.emit(this.items);
   }
 
   onFilterNgModelChange(filterValue: string) {
@@ -216,6 +217,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     items.forEach((item) => {
       if (item.id === undefined) {
         item.id = this.instanceID + '-' + itemID++;
+      } else {
+        item.id = this.instanceID + '-' + item.id;
       }
       if (item.children && item.children.length > 0) {
         this.createIds(item.children, itemID * 10);

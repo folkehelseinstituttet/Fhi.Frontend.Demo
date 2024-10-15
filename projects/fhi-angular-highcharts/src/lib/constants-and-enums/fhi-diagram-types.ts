@@ -126,7 +126,6 @@ export const AllDiagramTypes = [
   table,
 ];
 
-// Diagram types used in diagram-type-navs by default. Overwritten if defined in diagramOptions.
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
 export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023];
 

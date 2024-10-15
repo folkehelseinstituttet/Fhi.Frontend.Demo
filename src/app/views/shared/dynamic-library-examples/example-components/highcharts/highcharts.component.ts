@@ -138,6 +138,18 @@ export class HighchartsComponent implements OnInit {
       title: this.titles.title_2a,
       controls: {
         navigation: {
+          items: {
+            chartTypes: [
+              'line',
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'pie',
+              'columnAndLine',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
           show: true,
         },
       },
@@ -261,6 +273,7 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.PrikkedeDataMedToSerier, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
+      description: 'Her kan en legge til en beskrivelse av dataene.',
       title: this.titles.title_3e,
       units: undefined,
       footer: {
@@ -308,23 +321,6 @@ export class HighchartsComponent implements OnInit {
           position: 'end',
         },
       ],
-
-      // The following will be deprecated in v5
-      // --------------------------------------
-      // diagramTypeId: 'map',
-      // diagramTypeNavId: 'default',
-      // decimals: 2,
-      // flags: [
-      //   { symbol: '..', label: 'Manglende data' },
-      //   { symbol: '.', label: 'Lar seg ikke beregne' },
-      //   { symbol: ':', label: 'Anonymisert' },
-      // ],
-      // creditsHref: 'https://www.fhi.no/hn/folkehelse/artikler/oppdateringer',
-      // creditsText: 'Nøkkeltall for folkehelse',
-      // disclaimer: 'Disse dataene kan inneholde feil.',
-      // lastUpdated: '06.06.2023',
-      // mapTypeId: 'mapFylker',
-      // showFullScreenButton: true,
     });
   }
 }

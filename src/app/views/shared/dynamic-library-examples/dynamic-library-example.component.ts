@@ -1,58 +1,47 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { mergeMap, Subscription, tap } from 'rxjs';
 
-import { LibraryItemGroupsDataService } from '../services/library-item-groups-data.service';
-import { LibraryItemGroupsSharedDataService } from '../services/library-item-groups-shared-data.service';
-import { LibraryItemGroupsShared, LibraryItemsShared } from '../models/library-item.model';
-import { LibraryItemsSharedDataService } from '../services/library-items-shared-data.service';
+import {
+  LibraryItemGroup,
+  LibraryItemGroupsShared,
+  LibraryItemsShared,
+} from '../models/library-item.model';
+import { LibraryItemsDataService } from '../services/library-items-data.service';
+import { UrlService } from 'src/app/services/url.service';
 
 @Component({
   selector: 'app-dynamic-library-example',
   templateUrl: './dynamic-library-example.component.html',
 })
-export class DynamicLibraryExampleComponent {
-  @Input() groupId: string;
+export class DynamicLibraryExampleComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
+
+  @Input() group: LibraryItemGroup;
   @Input() itemId: string;
 
   groups!: LibraryItemGroupsShared;
-  itemIds: any;
-  itemIdsLoaded = false;
-  items!: LibraryItemsShared;
+  items: LibraryItemsShared;
+  dataIsLoaded = false;
 
   constructor(
-    private itemsDataService: LibraryItemGroupsDataService,
-    private libraryItemGroupsSharedDataService: LibraryItemGroupsSharedDataService,
-    private libraryItemsSharedDataService: LibraryItemsSharedDataService,
+    private libraryItemsDataService: LibraryItemsDataService,
+    private urlService: UrlService,
   ) {}
 
   ngOnInit() {
-    this.groups = this.libraryItemGroupsSharedDataService.libraryItemGroupsShared;
-    this.getLibraryItemIds();
-
-    // Testing new id and titel implementation!
-    this.getLibraryItemsShared();
-  }
-
-  private getLibraryItemIds() {
-    this.itemIdsLoaded = false;
-    this.itemsDataService.getLibraryItemIds().subscribe(
-      (libraryItemIds) => {
-        this.itemIds = libraryItemIds;
-        this.itemIdsLoaded = true;
-      },
-      (error) => this.getErrorMessage(error),
+    this.groups = this.libraryItemsDataService.libraryItemGroupsShared;
+    this.subscription.add(
+      this.urlService.URL$.pipe(
+        tap(() => (this.dataIsLoaded = false)),
+        mergeMap(() => this.libraryItemsDataService.getLibraryItemsShared()),
+      ).subscribe((libraryItemsShared) => {
+        this.items = libraryItemsShared;
+        this.dataIsLoaded = true;
+      }),
     );
   }
 
-  private getLibraryItemsShared() {
-    this.libraryItemsSharedDataService.getLibraryItemsShared().subscribe({
-      next: (libraryItemsShared) => {
-        this.items = libraryItemsShared;
-      },
-      error: (error) => this.getErrorMessage(error),
-    });
-  }
-
-  private getErrorMessage(error: object) {
-    console.log(error);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

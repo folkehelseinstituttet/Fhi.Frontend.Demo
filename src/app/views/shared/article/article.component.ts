@@ -3,7 +3,13 @@ import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
 import { UrlSegment } from 'src/app/url-segment.constants';
-import { LibraryItemConstants as CONST } from 'src/MOCK_DB_DATA/library-items/library-item-constants';
+import { LibraryItemsDataService } from '../services/library-items-data.service';
+import {
+  LibraryItem,
+  LibraryItemDependencyType,
+  LibraryItemType,
+} from '../models/library-item.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-article',
@@ -11,16 +17,59 @@ import { LibraryItemConstants as CONST } from 'src/MOCK_DB_DATA/library-items/li
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
+  private items: LibraryItem[] = [];
 
   title: string;
   articleHtml: string;
+  currentSegment: string;
+  urlSegment = UrlSegment;
+  itemsFiltered: LibraryItem[] = [];
+  rootLink!: string;
+  LibraryItemType = LibraryItemType;
+  dependencyTypes = [
+    {
+      id: LibraryItemDependencyType.css,
+      name: 'CSS',
+      selected: true,
+    },
+    {
+      id: LibraryItemDependencyType.ngBootstrap,
+      name: 'NgBootstrap',
+      selected: true,
+    },
+    {
+      id: LibraryItemDependencyType.fhiAngular,
+      name: 'FhiAngular',
+      selected: true,
+    },
+  ];
+  form: FormGroup;
 
-  constructor(private urlService: UrlService) {}
+  constructor(
+    private urlService: UrlService,
+    private libraryItemsDataService: LibraryItemsDataService,
+    private fb: FormBuilder,
+  ) {
+    this.form = this.fb.group({
+      search: this.fb.control(''),
+      types: this.buildTypes(),
+    });
+  }
 
   ngOnInit() {
     this.subscription.add(
       this.urlService.URL$.subscribe(() => {
-        this.findTopLevel();
+        this.currentSegment = this.urlService.getSegmentPath(1);
+        this.rootLink = `/${UrlSegment.developer}/${this.currentSegment}/`;
+        this.getCurrentArticleTitle();
+      }),
+    );
+    this.subscription.add(
+      this.libraryItemsDataService.getAllComponents().subscribe({
+        next: (items) => {
+          this.items = this.itemsFiltered = items;
+        },
+        error: (error) => error,
       }),
     );
   }
@@ -29,66 +78,73 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  private findTopLevel() {
-    switch (this.urlService.getSegmentPath(0)) {
-      case UrlSegment.developer:
-        this.findSecondLevelDeveloper();
-        break;
+  getLibraryItemType(itemType: number) {
+    return this.dependencyTypes[itemType].name;
+  }
 
-      case UrlSegment.designer:
-        this.findSecondLevelDesigner();
+  filterItems() {
+    const searchValue = this.form.get('search').value;
+    const typesSelected = this.form.get('types').value;
+    let filtered: LibraryItem[] = [];
+    filtered = this.items;
+
+    if (!typesSelected[LibraryItemDependencyType.css]) {
+      filtered = filtered.filter((item) => item.dependencyType !== LibraryItemDependencyType.css);
+    }
+    if (!typesSelected[LibraryItemDependencyType.ngBootstrap]) {
+      filtered = filtered.filter(
+        (item) => item.dependencyType !== LibraryItemDependencyType.ngBootstrap,
+      );
+    }
+    if (!typesSelected[LibraryItemDependencyType.fhiAngular]) {
+      filtered = filtered.filter(
+        (item) => item.dependencyType !== LibraryItemDependencyType.fhiAngular,
+      );
+    }
+    filtered = filtered.filter((item) => {
+      return this.fuzzySearch(searchValue, item.title);
+    });
+    this.itemsFiltered = filtered;
+  }
+
+  private getCurrentArticleTitle() {
+    if (this.urlService.getSegmentPath(1) === UrlSegment.visualIdentity) {
+      this.title = 'Visuell identitet i FHI';
+    } else {
+      this.title = 'Komponenter';
     }
   }
-  private findSecondLevelDeveloper() {
-    switch (this.urlService.getSegmentPath(1)) {
-      case UrlSegment.visualIdentity:
-        this.title = 'Visuell identitet i FHI';
-        this.articleHtml = this.getArticleHtmlForDeveloperVisualIdentity();
-        break;
 
-      case UrlSegment.components:
-        this.title = 'Komponenter';
-        this.articleHtml = this.getArticleHtmlForDeveloperComponents();
-        break;
+  private buildTypes() {
+    const array = this.dependencyTypes.map((type) => {
+      return this.fb.control(type.selected);
+    });
+    return this.fb.array(array);
+  }
 
-      case UrlSegment.layoutAndPageTemplates:
-        this.title = 'Layout og sidemaler';
-        this.articleHtml = this.getArticleHtmlForDeveloperLayoutAndPageTemplates();
-        break;
+  private fuzzySearch(needle: string, haystack: string) {
+    const haystackLC = haystack.toLowerCase();
+    const needleLC = needle.toLowerCase();
 
-      case UrlSegment.prototypes:
-        this.title = 'Eksempler på bruk';
-        this.articleHtml = this.getArticleHtmlForDeveloperPrototypes();
-        break;
+    const hlen = haystack.length;
+    const nlen = needleLC.length;
+
+    if (nlen > hlen) {
+      return false;
     }
-  }
-  private findSecondLevelDesigner() {
-    console.log('findSecondLevelDesigner() not implemented...');
-  }
+    if (nlen === hlen) {
+      return needleLC === haystackLC;
+    }
+    outer: for (let i = 0, j = 0; i < nlen; i++) {
+      const nch = needleLC.charCodeAt(i);
 
-  private getArticleHtmlForDeveloperVisualIdentity(): string {
-    return `
-<p>For at alle våre produkter skal ha en tydelig og gjenkjennbar profil må farger, ikonbruk, typografi, logo og illustrasjoner henge sammen og brukes konsistent.</p>`;
-  }
-
-  private getArticleHtmlForDeveloperComponents(): string {
-    return `
-<p>Komponentbiblioteket i FHI Designsystem baserer seg på <a href="${CONST.BootstrapBaseUrl}">Bootstrap 5</a>. Interaktive komponenter benytter <a href="${CONST.NgBootstrapBaseUrl}" class="text-nowrap">ng-bootstrap</a> og andre tredjepartskomponenter der disse finnes. I tillegg er noen skreddersydde Angularkomponenter produsert av FHI.</p>
-
-<p>Alle løsninger kan konsumere stilsettet uavhengig av hvilket rammeverk som er benyttet. Legg til CSS fra FHI Designsystem: <a href="https://www.npmjs.com/package/@folkehelseinstituttet/style">@folkehelseinstituttet/style</a>.</p>
-
-<p>FHI Designsystem bygges i Angular og løsninger som benytter annet frontendrammeverk er ansvarlige for å generere riktig markup slik at utseendet blir korrekt.</p>
-
-<p><a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/blob/main/CHANGELOG.md">Se changelog for stilsettet her.</a></p>`;
-  }
-
-  private getArticleHtmlForDeveloperLayoutAndPageTemplates(): string {
-    return `
-<p>Her finner du eksempler på hvordan man plasserer innholdet på en side.</p>`;
-  }
-
-  private getArticleHtmlForDeveloperPrototypes(): string {
-    return `
-<p>Her finner du eksempler på større enheter og klikkbare prototyper ofte produsert for spesifikke prosjekter.</p>`;
+      while (j < hlen) {
+        if (haystackLC.charCodeAt(j++) === nch) {
+          continue outer;
+        }
+      }
+      return false;
+    }
+    return true;
   }
 }

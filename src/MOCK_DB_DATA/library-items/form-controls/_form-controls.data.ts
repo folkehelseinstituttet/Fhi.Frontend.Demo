@@ -14,6 +14,7 @@ import { FormControlSelect } from './form-control-select';
 import { FormControlMultiselect } from './form-control-multiselect';
 import { FormControlAutosuggest } from './form-control-autosuggest';
 import { FormControlSwitch } from './form-control-switch';
+import { FormControlInputWithTooltip } from './form-control-label-with-tooltip';
 
 const FormControls: LibraryItem[] = [
   ...FormControlInput,
@@ -27,6 +28,7 @@ const FormControls: LibraryItem[] = [
   ...FormControlAutosuggest,
   ...FormControlSwitch,
   ...FormControlValidation,
+  ...FormControlInputWithTooltip,
 ];
 
 export const FormControlsData: LibraryItemGroup = {
