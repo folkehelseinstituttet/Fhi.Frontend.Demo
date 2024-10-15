@@ -12,6 +12,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Inputs](#inputs)
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
+      - [Using two units](#using-two-units)
     - [(TO BE DEPRECATED IN v5) Interface FhiDiagramOptions](#to-be-deprecated-in-v5-interface-fhidiagramoptions)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
@@ -94,7 +95,7 @@ From one of the comments:
 
 _Highcharts uses the UMD pattern which includes AMD, and it is probably detected by angular. On the other hand, I don't think that using an ES6 module pattern will change anything in the performance matters, you would have to import the entire highcharts core anyway, so technically it will be the same package - I would suggest ignoring the warning by adding Highcharts to the allowedCommonJsDependencies property in the angular.json file._
 
-This is where `allowedCommonJsDependencies` i located in `angular.json`
+This is where `allowedCommonJsDependencies` is located in `angular.json`
 
 ```js
 ...
@@ -132,7 +133,19 @@ This is where `allowedCommonJsDependencies` i located in `angular.json`
 | `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. |
+| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `columnAndLine` supports two units, all other diagram types supports max 1 unit. See below this table for more info about using two units. |
+
+#### Using two units
+
+Only diagram type `columnAndLine` supports two units, and to make it work
+
+- both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id)
+- at least two series must have `unitId` (with two unique values), and those ids must be present in the units array
+
+Also nice to know
+
+- the first "unit" in "units" will always represent the left y-axis
+- and series associated with the first "unit" in "units" will always become columns
 
 ### (TO BE DEPRECATED IN v5) Interface FhiDiagramOptions
 
