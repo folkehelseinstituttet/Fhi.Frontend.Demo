@@ -237,9 +237,9 @@ export class DiagramTypeGroupService {
   }
 
   private uniqueUnitIdCountInSeries() {
-    const ids = [];
-    this.series.filter((serie) => serie.unitId).forEach((serie) => ids.push(serie.unitId));
-    return new Set(ids).size;
+    const uniqueIds = new Set<string | number>();
+    this.series.filter((serie) => serie.unitId).forEach((serie) => uniqueIds.add(serie.unitId));
+    return uniqueIds.size;
   }
 
   private disableColumnStacked(): boolean {
