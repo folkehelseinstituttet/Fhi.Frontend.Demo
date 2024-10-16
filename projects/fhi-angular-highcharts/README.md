@@ -13,7 +13,6 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
       - [Using two units](#using-two-units)
-    - [(TO BE DEPRECATED IN v5) Interface FhiDiagramOptions](#to-be-deprecated-in-v5-interface-fhidiagramoptions)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -28,6 +27,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
 | ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
+| 5                      | 5                     | 6.3       | 5.3.2     | 17          | 11.4       | 4.0                | 18      | 20/10 *  |
 | >4.1                   | 4                     | 6.3       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | >=3.1 <=4.1            | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
 | 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
@@ -146,23 +146,6 @@ Also nice to know
 
 - the first "unit" in "units" will always represent the left y-axis
 - and series associated with the first "unit" in "units" will always become columns
-
-### (TO BE DEPRECATED IN v5) Interface FhiDiagramOptions
-
-| Property               | Type                     | Default   | Required | Description |
-| ---------------------- | ------------------------ | --------- | -------- | ----------- |
-| `creditsHref`          | `string`                 | -         | no       | Link to source ref. in footer. |
-| `creditsText`          | `string`                 | -         | no       | Text to source ref. in footer. |
-| `decimals`             | `number`                 | -         | no       | How many decimals to show (max) |
-| `diagramTypeId`        | `string`                 | `table`   | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
-| `diagramTypeNavId`     | `string`                 | -         | no       | ID to specify which type of navigation to use. If omitted, no navigation will be rendered. Values defined by enum `DiagramTypeNavIds` |
-| `[diagramTypeSubset]`  | `Array<string>`          | -         | no       | ID's for diagram types available in navigation, in addition to `table`. If omitted, all diagram types that are possible for the given series will show in the navigation. Values for each array item defined by enum `FhiDiagramTypeIds` |
-| `disclaimer`           | `string`                 | -         | no       | Text at the bootom of the footer used to say something about uncertainty in the data shown in a diagram. |
-| `[flags]`              | `Array<FhiDiagramFlag>`  | -         | no       | List of all flags used in `FhiDiagramSerie[]`. |
-| `lastUpdated`          | `string`                 | -         | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
-| `mapTypeId`            | `MapTypeIds`             | -         | no       | ID to specify map type. If omitted, map will not be available in the diagram navigation. |
-| `metadataButton`       | `boolean`                | `false`   | no       | Whether to show a button with an event for custom navigation to your metadata. |
-| `showFullScreenButton` | `boolean`                | `false`   | no       | Whether to show a button which opens the diagram in full screen. |
 
 ### Interface FhiDiagramControls
 

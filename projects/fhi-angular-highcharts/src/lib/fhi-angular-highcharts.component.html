@@ -86,6 +86,9 @@
       <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
+      @if (diagramOptions.description) {
+        <p>{{ diagramOptions.description }}</p>
+      }
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
   </fhi-modal>

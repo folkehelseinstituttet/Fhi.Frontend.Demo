@@ -1,16 +1,20 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
 import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
 export const IconSet: LibraryItem[] = [
   {
     id: ITEMS.VisualIdentityIcons.id,
     title: ITEMS.VisualIdentityIcons.title,
     titleLang: CONST.languageLocaleId_NO,
-    type: LibraryItemType.angular,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Icons,
+    dependencyType: ItemDependencyType.css,
   },
 ];
 
