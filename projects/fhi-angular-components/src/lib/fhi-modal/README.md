@@ -55,4 +55,4 @@ If the modal should be kept open while waiting for a server response, the input 
 
 ### Destroy services or reset forms when closing modal
 
-If the template content inside `<ng-container fhi-modal.body></ng-container>` contains component, a form or some service logic, and it's necessary to destroy component, reset form or do some other clean up when the modal is closed, this is the responsibility of the parent component. In example 5 this is demonstrated by a form reset (see method `onDismissModalExample5()`).
+If the template content inside `<ng-container fhi-modal.body></ng-container>` contains a child component, a form or some service logic, and it's necessary to destroy component, reset form or do some other clean up when the modal is closed, this is the responsibility of the parent component. In example 5 this is demonstrated by a form reset (see method `onDismissModalExample5()`).
