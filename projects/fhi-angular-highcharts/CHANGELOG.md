@@ -1,8 +1,8 @@
-# Unreleased
+# 4.6.0
 
-> Oct 15, 2024
+> Oct 16, 2024
 
-* :tada: **Enhancement** Add zIndex to series if diagram type is `columnAndLine`, add a better test for disabling diagram type `columnAndLine`, and add better documentation for using two units.
+* :tada: **Enhancement** Add zIndex to series if diagram type is `columnAndLine`, add a better test for disabling diagram type `columnAndLine`, and add better documentation for using two units [(#727)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/727)
 
 ## 4.5.0
 
