@@ -1,4 +1,10 @@
-# 4.5.0
+# Unreleased
+
+> Oct 15, 2024
+
+* :tada: **Enhancement** Add zIndex to series if diagram type is `columnAndLine`, add a better test for disabling diagram type `columnAndLine`, and add better documentation for using two units.
+
+## 4.5.0
 
 > Oct 14, 2024
 
