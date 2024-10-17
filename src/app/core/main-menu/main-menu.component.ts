@@ -14,11 +14,12 @@ export class MainMenuComponent {
 
   mainMenuItems: MenuItem[] = [
     {
-      name: 'For utviklere',
-      link: `/${UrlSegment.developer}`,
-      // }, {
-      //   name: 'For designere',
-      //   link: `/${UrlSegment.designer}`
+      name: 'Komponenter',
+      link: `/${UrlSegment.developer}/${UrlSegment.components}`,
+    },
+    {
+      name: 'Visuell identitet',
+      link: `/${UrlSegment.developer}/${UrlSegment.visualIdentity}`,
     },
   ];
 

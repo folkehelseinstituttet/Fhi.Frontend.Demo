@@ -24,6 +24,7 @@ export class DiagramTypeGroupService {
     flaggedData: 'series.length > 1 && flaggedSeries?.length !== 0',
     moreThanOneSeries: 'series.length > 1',
     notTwoUnits: 'diagramOptions.units?.length !== 2',
+    notMinTwoUnitsInSeries: 'this.uniqueUnitIdCountInSeries() < 2',
     notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
     noSeriesOrNoData: 'this.series.length === 0 || this.series[0].data.length === 0',
     allDataInOneOrMoreSeriesAreFlagged: 'allDataInOneOrMoreSeriesAreFlagged',
@@ -126,25 +127,32 @@ export class DiagramTypeGroupService {
       return group;
     }
 
-    const items = this.diagramOptions.controls?.navigation?.items;
+    const navigation = this.diagramOptions.controls?.navigation;
+    const items = navigation?.items;
     const isChart = group.name === DiagramTypeGroupNames.chart;
     const isMap = group.name === DiagramTypeGroupNames.map;
 
+    if (!navigation || !navigation.show) {
+      return group;
+    }
+
     group.children = [];
 
-    if (isChart && items?.chartTypes !== undefined) {
+    if ((isChart && !items?.chartTypes) || (isMap && !items?.mapTypes)) {
+      return group;
+    }
+
+    if (isChart) {
       items.chartTypes.forEach((id) => {
         group.children.push(ChartTypes.find((type) => type.id === id));
       });
-    } else if (isChart) {
-      group.children = ChartTypes;
-    } else if (isMap && items?.mapTypes !== undefined) {
+    }
+    if (isMap) {
       items.mapTypes.forEach((id) => {
         group.children.push(MapTypes.find((type) => type.id === id));
       });
-    } else if (isMap) {
-      group.children = MapTypes;
     }
+
     return group;
   }
 
@@ -227,8 +235,18 @@ export class DiagramTypeGroupService {
       this.diagramTypeDisabledWarnings.columnAndLine =
         this.diagramTypeDisabledWarningsText.notTwoUnits;
       return true;
+    } else if (this.uniqueUnitIdCountInSeries() < 2) {
+      this.diagramTypeDisabledWarnings.columnAndLine =
+        this.diagramTypeDisabledWarningsText.notMinTwoUnitsInSeries;
+      return true;
     }
     return false;
+  }
+
+  private uniqueUnitIdCountInSeries() {
+    const uniqueIds = new Set<string | number>();
+    this.series.filter((serie) => serie.unitId).forEach((serie) => uniqueIds.add(serie.unitId));
+    return uniqueIds.size;
   }
 
   private disableColumnStacked(): boolean {

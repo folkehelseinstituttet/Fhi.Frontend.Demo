@@ -1,15 +1,18 @@
-import { LibraryItem, LibraryItemType } from 'src/app/views/shared/models/library-item.model';
+import { LibraryItem } from 'src/app/views/shared/models/library-item.model';
 import { LibraryItemsSharedData as ITEMS } from '../library-items-shared-data';
-import { LibraryItemConstants as CONST } from '../library-item-constants';
+import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-shared-data';
+import { ItemDependencyType, ItemType } from 'src/app/views/shared/item-type.enums';
 
 export const TableStriped: LibraryItem[] = [
   {
     id: ITEMS.TableStriped.id,
     title: ITEMS.TableStriped.title,
-    type: LibraryItemType.angular,
+    type: ItemType.angular,
     exampleHtml: getExampleHtml(),
     codeHtml: getCodeHtml(),
     documentationHtml: getDocumentationHtml(),
+    parent: GROUPS.Tables,
+    dependencyType: ItemDependencyType.css,
   },
 ];
 

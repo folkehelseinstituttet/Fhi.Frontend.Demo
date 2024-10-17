@@ -1,8 +1,8 @@
 {
   "name": "@folkehelseinstituttet/angular-components",
-  "version": "4.5.0",
+  "version": "5.0.1",
   "publishConfig": {
-    "tag": "v4"
+    "tag": "latest"
   },
   "repository": {
     "type": "git",
@@ -10,11 +10,11 @@
     "directory": "projects/fhi-angular-components"
   },
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
     "@folkehelseinstituttet/style": "^6.0.0",
-    "@ng-bootstrap/ng-bootstrap": "^16.0.0",
-    "@ng-select/ng-select": "^12.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^17.0.1",
+    "@ng-select/ng-select": "^13.7.1",
     "bootstrap": "^5.3.2",
     "date-fns": ">=3.3.1"
   },

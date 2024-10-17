@@ -4,21 +4,19 @@ import { LibraryItemGroupsSharedData as GROUPS } from '../library-item-groups-sh
 import { TimeSelectorsIntro } from './_time-selectors.intro';
 
 import { TimeSelectorDatepicker } from './time-selector-datepicker';
-import { TimeSelectorDateRange } from './time-selector-date-range';
 import { TimeSelectorDateTime } from './time-selector-date-time';
 import { TimeSelectorWeekpicker } from './time-selector-weekpicker';
-import { TimeSelectorWeekRange } from './time-selector-week-range';
 import { TimeSelectorYearMonth } from './time-selector-year-month';
 import { TimeSelectorYearMonthRange } from './time-selector-year-month-range';
 import { TimeSelectorYears } from './time-selector-years';
 import { TimeSelectorYearRange } from './time-selector-year-range';
+// import { TimeSelectorDateRange } from './time-selector-date-range';
+// import { TimeSelectorWeekRange } from './time-selector-week-range';
 
 const TimeSelectors: LibraryItem[] = [
   ...TimeSelectorDatepicker,
-  // ...TimeSelectorDateRange,
   ...TimeSelectorDateTime,
   ...TimeSelectorWeekpicker,
-  // ...TimeSelectorWeekRange,
   ...TimeSelectorYearMonth,
   ...TimeSelectorYearMonthRange,
   ...TimeSelectorYears,
