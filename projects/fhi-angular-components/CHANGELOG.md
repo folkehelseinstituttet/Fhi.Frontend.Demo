@@ -1,9 +1,9 @@
-# Unreleased
+# 4.5.0
 
-> Oct 11, 2024
+> Oct 17, 2024
 
-* :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent.
-* :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page.
+* :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent [(#721)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/721)
+* :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page [(#719)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/719)
 
 ## 4.4.2
 
