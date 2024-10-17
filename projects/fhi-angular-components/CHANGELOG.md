@@ -1,8 +1,8 @@
-# Unreleased
+# 5.1.0
 
 > Oct 17, 2024
 
-* :tada: **Enhancement** Changes from @folkehelseinstituttet/angular-components/4.5.0
+* :tada: **Enhancement** Changes from @folkehelseinstituttet/angular-components/4.5.0 [(#731)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/731)
 * :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page [(#717)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/717)
 
 ## 4.5.0
