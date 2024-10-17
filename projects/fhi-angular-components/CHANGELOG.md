@@ -1,4 +1,12 @@
-# 4.5.0
+# Unreleased
+
+> Oct 17, 2024
+
+* Changes from @folkehelseinstituttet/angular-components/4.5.0
+  * :tada: **Enhancement** Add support for disable closing, and closing `fhi-modal` by a method call from the parent
+  * :bug: **Bugfix** Make sure there is no duplicate IDs on checkboxes (or radios) if more than one instance of `FhiTreeViewCheckboxComponent` or `FhiTreeViewRadioComponent` on the same page
+
+## 4.5.0
 
 > Oct 17, 2024
 
