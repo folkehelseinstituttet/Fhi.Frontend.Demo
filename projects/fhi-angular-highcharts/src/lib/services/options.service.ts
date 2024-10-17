@@ -235,6 +235,7 @@ export class OptionsService {
           tooltip: this.getTooltip({}, units[0]),
           yAxis: 0,
           type: 'column',
+          zIndex: 0,
         } as SeriesOptionsType;
       } else if (units[1].id === serie.unitId) {
         options.series[i] = {
@@ -242,6 +243,7 @@ export class OptionsService {
           tooltip: this.getTooltip({}, units[1]),
           yAxis: 1,
           type: 'line',
+          zIndex: 1,
         } as SeriesOptionsType;
       }
     });
