@@ -1,8 +1,8 @@
-# Unreleased
+# 5.1.0
 
-> Oct 16, 2024
+> Oct 17, 2024
 
-* :tada: **Enhancement** Changes from @folkehelseinstituttet/angular-highcharts/v/4.6.0
+* :tada: **Enhancement** Changes from @folkehelseinstituttet/angular-highcharts/v/4.6.0 [(#729)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/729)
 * :tada: **Enhancement** Changes from @folkehelseinstituttet/angular-highcharts/v/4.5.0 [(#726)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/726)
 * :tada: **Enhancement** Add description also in full screen view [(#710)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/710)
 * :bug: **Bugfix** Changes from @folkehelseinstituttet/angular-highcharts/v/4.4.1 [(#704)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/704)
