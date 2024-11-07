@@ -227,7 +227,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (!unit && this.diagramOptions.units?.length === 1) {
       unit = this.diagramOptions.units[0];
     }
-    if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 12) {
+    if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
       return unit.decimals;
     }
     if (unit?.decimals > 9) {
