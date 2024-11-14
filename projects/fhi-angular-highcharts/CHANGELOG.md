@@ -1,4 +1,10 @@
-# 5.1.0
+# Unreleased
+
+> Nov 14, 2024
+
+* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals.
+
+## 5.1.0
 
 > Oct 17, 2024
 
