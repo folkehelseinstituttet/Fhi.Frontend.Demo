@@ -10,6 +10,7 @@ import {
 import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-item.model';
 
 @Component({
+  standalone: true,
   selector: 'fhi-tree-view-navigation',
   templateUrl: './fhi-tree-view-navigation.component.html',
   encapsulation: ViewEncapsulation.None,
