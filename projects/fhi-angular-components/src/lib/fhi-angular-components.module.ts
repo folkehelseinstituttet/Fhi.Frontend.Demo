@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FhiAutosuggestModule } from './fhi-autosuggest/fhi-autosuggest.module';
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
-import { FhiTreeViewNavigationModule } from './fhi-tree-view-navigation/fhi-tree-view-navigation.module';
 
 import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection/fhi-tree-view-selection.component';
 import { FhiTreeViewRadioComponent } from './fhi-tree-view-selection/fhi-tree-view-radio/fhi-tree-view-radio.component';
@@ -25,7 +24,6 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiAutosuggestModule,
   FhiMultiselectModule,
   FhiTableModule,
-  FhiTreeViewNavigationModule,
 
   FhiTreeViewSelectionComponent,
   FhiTreeViewCheckboxComponent,
