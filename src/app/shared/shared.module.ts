@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MarkdownModule } from 'ngx-markdown';
 import { FhiAngularComponentsModule } from '@folkehelseinstituttet/angular-components';
+import { FhiTreeViewNavigationComponent } from '@folkehelseinstituttet/angular-components';
 import { FhiAngularHighchartsModule } from '@folkehelseinstituttet/angular-highcharts';
 
 import { SafePipe } from './pipes/safe.pipe';
@@ -21,6 +22,7 @@ import { SafePipe } from './pipes/safe.pipe';
     NgbModule,
     MarkdownModule.forRoot(),
     FhiAngularComponentsModule,
+    FhiTreeViewNavigationComponent,
     FhiAngularHighchartsModule,
   ],
   exports: [
@@ -32,6 +34,7 @@ import { SafePipe } from './pipes/safe.pipe';
     NgbModule,
     MarkdownModule,
     FhiAngularComponentsModule,
+    FhiTreeViewNavigationComponent,
     FhiAngularHighchartsModule,
   ],
 })
