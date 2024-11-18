@@ -1,4 +1,10 @@
-# 5.1.0
+# Unreleased
+
+> Nov 18, 2024
+
+* :tada: **Enhancement** Make tree view navigation standalone [(#747)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/747)
+
+## 5.1.0
 
 > Oct 17, 2024
 
