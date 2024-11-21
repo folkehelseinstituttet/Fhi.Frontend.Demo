@@ -4,6 +4,7 @@ import { FhiAutosuggestComponent } from './fhi-autosuggest/fhi-autosuggest.compo
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 
+import { FhiTreeViewNavigationComponent } from './fhi-tree-view-navigation/fhi-tree-view-navigation.component';
 import { FhiTreeViewSelectionComponent } from './fhi-tree-view-selection/fhi-tree-view-selection.component';
 import { FhiTreeViewRadioComponent } from './fhi-tree-view-selection/fhi-tree-view-radio/fhi-tree-view-radio.component';
 import { FhiTreeViewCheckboxComponent } from './fhi-tree-view-selection/fhi-tree-view-checkbox/fhi-tree-view-checkbox.component';
@@ -25,6 +26,7 @@ const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
   FhiMultiselectModule,
   FhiTableModule,
 
+  FhiTreeViewNavigationComponent,
   FhiTreeViewSelectionComponent,
   FhiTreeViewCheckboxComponent,
   FhiTreeViewRadioComponent,
