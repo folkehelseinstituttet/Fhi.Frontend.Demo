@@ -1,9 +1,14 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
 @Component({
   selector: 'fhi-autosuggest',
+  imports: [CommonModule, NgSelectModule, FormsModule],
+  standalone: true,
   templateUrl: './fhi-autosuggest.component.html',
   encapsulation: ViewEncapsulation.None,
 })

@@ -9,7 +9,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
+import { FhiAutosuggestComponent } from '../../fhi-autosuggest/fhi-autosuggest.component';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 
 import { TimeConstants } from '../shared/time.constants';
@@ -20,7 +20,7 @@ import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
   templateUrl: './fhi-years.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [FhiAutosuggestModule],
+  imports: [FhiAutosuggestComponent],
   providers: [FhiTimeUtilityService],
 })
 export class FhiYearsComponent implements OnInit, OnChanges {
