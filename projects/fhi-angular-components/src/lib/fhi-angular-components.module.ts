@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { FhiAutosuggestModule } from './fhi-autosuggest/fhi-autosuggest.module';
+import { FhiAutosuggestComponent } from './fhi-autosuggest/fhi-autosuggest.component';
 import { FhiMultiselectModule } from './fhi-multiselect/fhi-multiselect.module';
 import { FhiTableModule } from './fhi-table/fhi-table.module';
 
@@ -21,7 +21,7 @@ import { FhiModalComponent } from './fhi-modal/fhi-modal.component';
 import { FhiPopoverMenuComponent } from './fhi-popover-menu/fhi-popover-menu.component';
 
 const FHI_ANGULAR_MODULES_AND_COMPONENTS = [
-  FhiAutosuggestModule,
+  FhiAutosuggestComponent,
   FhiMultiselectModule,
   FhiTableModule,
 
