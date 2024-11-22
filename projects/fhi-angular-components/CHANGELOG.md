@@ -1,8 +1,9 @@
 # Unreleased
 
-> Nov 21, 2024
+> Nov 22, 2024
 
-* :tada: **Enhancement** Make `FhiAutosuggestComponent` standalone
+* :tada: **Enhancement** Make `FhiMultiselectComponent` standalone [(#755)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/755)
+* :tada: **Enhancement** Make `FhiAutosuggestComponent` standalone [(#751)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/751)
 * :tada: **Enhancement** Make `FhiTreeViewNavigationComponent` standalone [(#747)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/747)
 
 ## 5.1.0

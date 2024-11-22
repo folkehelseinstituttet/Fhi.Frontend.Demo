@@ -1,9 +1,14 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { FhiMultiselectItem } from './fhi-multiselect.model';
 
 @Component({
   selector: 'fhi-multiselect',
+  imports: [CommonModule, FormsModule, NgSelectModule],
+  standalone: true,
   templateUrl: './fhi-multiselect.component.html',
   encapsulation: ViewEncapsulation.None,
 })
