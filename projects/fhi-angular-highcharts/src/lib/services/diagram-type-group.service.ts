@@ -24,6 +24,7 @@ export class DiagramTypeGroupService {
     flaggedData: 'series.length > 1 && flaggedSeries?.length !== 0',
     moreThanOneSeries: 'series.length > 1',
     notTwoUnits: 'diagramOptions.units?.length !== 2',
+    notMaxOneUnitsInSeries: 'this.uniqueUnitIdCountInSeries() > 1',
     notMinTwoUnitsInSeries: 'this.uniqueUnitIdCountInSeries() < 2',
     notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
     noSeriesOrNoData: 'this.series.length === 0 || this.series[0].data.length === 0',
