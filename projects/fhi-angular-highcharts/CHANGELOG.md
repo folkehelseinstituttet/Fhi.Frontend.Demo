@@ -1,8 +1,9 @@
 # Unreleased
 
-> Nov 14, 2024
+> Nov 25, 2024
 
-* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals.
+* :tada: **Enhancement** Add test for disabling all other diagram types except `columnAndLine` (and `table`) if 2 units or more are defined in the diagram options [(#756)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/756)
+* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals [(#744)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/744)
 
 ## 5.1.0
 
