@@ -239,11 +239,13 @@ export class DiagramTypeGroupService {
       this.diagramTypeDisabledWarnings.columnAndLine =
         this.diagramTypeDisabledWarningsText.flaggedData;
       return true;
-    } else if (this.diagramOptions.units?.length !== 2) {
+    }
+    if (this.diagramOptions.units?.length !== 2) {
       this.diagramTypeDisabledWarnings.columnAndLine =
         this.diagramTypeDisabledWarningsText.notTwoUnits;
       return true;
-    } else if (this.uniqueUnitIdCountInSeries() < 2) {
+    }
+    if (this.uniqueUnitIdCountInSeries() < 2) {
       this.diagramTypeDisabledWarnings.columnAndLine =
         this.diagramTypeDisabledWarningsText.notMinTwoUnitsInSeries;
       return true;
