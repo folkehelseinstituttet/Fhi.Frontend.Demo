@@ -85,6 +85,13 @@ export class DiagramTypeGroupService {
           diagramType.disabled = true;
           this.diagramTypeDisabledWarnings[diagramType.id] =
             this.diagramTypeDisabledWarningsText.noSeriesOrNoData;
+        } else if (
+          this.uniqueUnitIdCountInSeries() > 1 &&
+          diagramType !== DiagramTypes.columnAndLine
+        ) {
+          diagramType.disabled = true;
+          this.diagramTypeDisabledWarnings[diagramType.id] =
+            this.diagramTypeDisabledWarningsText.notMaxOneUnitsInSeries;
         } else {
           diagramType.disabled = this.getDisabledState(diagramType);
         }
