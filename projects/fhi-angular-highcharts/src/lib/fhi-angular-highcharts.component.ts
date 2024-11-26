@@ -283,7 +283,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramState() {
-    const diagramTypeIsDisabled = this.diagramTypeGroupService.diagramTypeIsDisabled(
+    const diagramTypeIsDisabled = this.diagramTypeGroupService.getDiagramTypeIsDisabled(
       this.diagramTypeGroups,
       this.diagramOptions.activeDiagramType,
     );
