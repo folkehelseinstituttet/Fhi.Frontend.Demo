@@ -1,7 +1,8 @@
-# Unreleased
+# 5.2.0
 
-> Nov 14, 2024
+> Nov 27, 2024
 
+* :tada: **Enhancement** Add test for disabling all other diagram types except `columnAndLine` (and `table`) if 2 units or more are defined in the diagram options. Also clean up existing tests for disabling diagram types [(#761)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/761)
 * :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals.
 
 ## 5.1.0
