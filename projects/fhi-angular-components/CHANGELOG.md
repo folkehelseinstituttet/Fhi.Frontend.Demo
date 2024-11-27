@@ -1,4 +1,10 @@
-# 5.2.0
+# Unreleased
+
+> Nov 27, 2024
+
+* :bug: **Bugfix** Make selected value visible before ng-select is touched (in `FhiAutosuggestComponent`) [(#762)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/762)
+
+## 5.2.0
 
 > Nov 25, 2024
 
