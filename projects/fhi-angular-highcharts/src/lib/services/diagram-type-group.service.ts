@@ -30,7 +30,7 @@ export class DiagramTypeGroupService {
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
   private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
-  private diagramTypeDisabledWarningMessages = {
+  private diagramTypeDisabledWarningMessages: Record<msgId, string> = {
     [msgId.hasFlaggedData]: 'series.length > 1 && flaggedSeries?.length !== 0',
     [msgId.moreThanOneSeries]: 'series.length > 1',
     [msgId.notAllUnitsFoundInSeries]: 'notAllUnitsFoundInSeries',
@@ -250,13 +250,9 @@ export class DiagramTypeGroupService {
   }
 
   private notAllUnitsFoundInSeries(diagramType: DiagramType): boolean {
-    const allUnitsFoundInSeries = (() => {
-      const notFoundInstances = [];
-      this.diagramOptions.units.forEach((unit, index) => {
-        notFoundInstances[index] = this.series.every((serie) => serie.unitId !== unit.id);
-      });
-      return notFoundInstances.every((notFound) => notFound === false);
-    })();
+    const allUnitsFoundInSeries = this.diagramOptions.units.every((unit) =>
+      this.series.some((serie) => serie.unitId === unit.id),
+    );
 
     if (!allUnitsFoundInSeries) {
       this.updateDisabledWarnings(diagramType.id, msgId.notAllUnitsFoundInSeries);
