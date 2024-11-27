@@ -197,10 +197,7 @@ export class OptionsService {
 
   private getXAxis(xAxis: XAxisOptions, diagramOptions: FhiDiagramOptions): XAxisOptions {
     xAxis = xAxis ? xAxis : {};
-    xAxis.title.text = diagramOptions.title;
-
-    console.log('diagramOptions', diagramOptions);
-
+    xAxis.title.text = diagramOptions.categoryAxis?.title;
     return xAxis;
   }
 

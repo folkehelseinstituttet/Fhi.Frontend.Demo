@@ -175,6 +175,9 @@ export class HighchartsComponent implements OnInit {
       series: undefined,
       activeDiagramType: 'column',
       title: this.titles.title_3a,
+      categoryAxis: {
+        title: 'Uke',
+      },
       controls: {
         downloadButton: {
           show: true,
