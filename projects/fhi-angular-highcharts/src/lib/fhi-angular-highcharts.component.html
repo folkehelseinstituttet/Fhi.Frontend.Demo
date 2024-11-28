@@ -1,8 +1,8 @@
-<article *ngIf="diagramOptions !== undefined">
-  <h1 class="h3 mb-3">{{ diagramOptions.title }}</h1>
+<article *ngIf="diagramOptionsInternal !== undefined">
+  <h1 class="h3 mb-3">{{ diagramOptionsInternal.title }}</h1>
 
-  @if (diagramOptions.description) {
-    <p class="mb-4">{{ diagramOptions.description }}</p>
+  @if (diagramOptionsInternal.description) {
+    <p class="mb-4">{{ diagramOptionsInternal.description }}</p>
   }
 
   @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
@@ -78,7 +78,7 @@
 <ng-template #diagramModal>
   <fhi-modal
     [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
-    [modalTitle]="diagramOptions.title"
+    [modalTitle]="diagramOptionsInternal.title"
     [size]="'fullscreen'"
   >
     <ng-container fhi-modal.button>
@@ -86,8 +86,8 @@
       <span class="visually-hidden">Fullskjerm </span>
     </ng-container>
     <ng-container fhi-modal.body>
-      @if (diagramOptions.description) {
-        <p>{{ diagramOptions.description }}</p>
+      @if (diagramOptionsInternal.description) {
+        <p>{{ diagramOptionsInternal.description }}</p>
       }
       <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
     </ng-container>
@@ -170,30 +170,32 @@
 
 <ng-template #diagramFooter>
   <footer class="mt-3">
-    <p *ngIf="diagramOptions.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table">
+    <p
+      *ngIf="diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
+    >
       <strong>Måltall </strong>
       <span>
-        @for (unit of diagramOptions.units; track unit; let i = $index) {
+        @for (unit of diagramOptionsInternal.units; track unit; let i = $index) {
           <ng-container *ngIf="i === 0">{{ unit.label }}</ng-container>
           <ng-container *ngIf="i > 0">, {{ unit.label }}</ng-container>
         }
       </span>
     </p>
-    <p *ngIf="diagramOptions.footer?.lastUpdated">
-      <strong>Sist oppdatert </strong>{{ diagramOptions.footer?.lastUpdated }}
+    <p *ngIf="diagramOptionsInternal.footer?.lastUpdated">
+      <strong>Sist oppdatert </strong>{{ diagramOptionsInternal.footer?.lastUpdated }}
     </p>
-    <p *ngIf="diagramOptions.footer?.credits">
+    <p *ngIf="diagramOptionsInternal.footer?.credits">
       <strong>Kilde </strong>
-      <a href="{{ diagramOptions.footer.credits.href }}">{{ diagramOptions.footer.credits.text }}</a>
+      <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{ diagramOptionsInternal.footer.credits.text }}</a>
     </p>
     <div
       class="mb-3"
-      *ngIf="diagramOptions.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
+      *ngIf="diagramOptionsInternal.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
     >
       <strong>Tegnforklaringer</strong><br />
       <table>
         <tbody>
-          <tr *ngFor="let flag of diagramOptions.footer?.flags">
+          <tr *ngFor="let flag of diagramOptionsInternal.footer?.flags">
             <td class="pe-2">{{ flag.symbol }}</td>
             <td>{{ flag.label }}</td>
           </tr>
@@ -204,7 +206,7 @@
       class="mb-3"
       *ngIf="
         flaggedSeries.length > 0 &&
-        diagramOptions.footer?.flags &&
+        diagramOptionsInternal.footer?.flags &&
         activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
       "
     >
@@ -232,11 +234,14 @@
       <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
       for å se flere detaljer.
     </div>
-    <p class="fst-italic small" *ngIf="diagramOptions.footer?.disclaimer">
-      {{ diagramOptions.footer?.disclaimer }}
+    <p class="fst-italic small" *ngIf="diagramOptionsInternal.footer?.disclaimer">
+      {{ diagramOptionsInternal.footer?.disclaimer }}
     </p>
     <p>
-      <a class="highcharts-credits" href="{{ getMapCopyright()['url'] }}" *ngIf="!diagramOptions.openSource && showMap"
+      <a
+        class="highcharts-credits"
+        href="{{ getMapCopyright()['url'] }}"
+        *ngIf="!diagramOptionsInternal.openSource && showMap"
         >Kartdata fra &#169; {{ getMapCopyright()['text'] }}</a
       >
     </p>
