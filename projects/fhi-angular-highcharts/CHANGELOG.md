@@ -1,4 +1,10 @@
-# 5.2.0
+# Unreleased
+
+> Nov 28, 2024
+
+* :tada: **Enhancement** Use cloneDeep() to make diagramOptions immutable [(#765)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/765)
+
+## 5.2.0
 
 > Nov 27, 2024
 
