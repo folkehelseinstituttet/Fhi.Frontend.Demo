@@ -24,19 +24,20 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  @Input() enableCheckAll: boolean = false;
-  @Input() filterLabel: string = 'Filtrer listen';
-  @Input() singleSelection: boolean = false;
-  @Input() items: Item[];
-  @Input() name: string;
-  @Input() enableFilter: boolean = false;
+  @Input() enableCheckAll = false;
+  @Input() filterLabel!: string;
+  @Input() singleSelection = false;
+  @Input() items!: Item[];
+  @Input() name!: string;
+  @Input() enableFilter = false;
+  @Input() placeholderFilter = 'Søk';
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
   filteredItems: Item[];
   filterString = '';
-  minimumFilterLength: number = 3;
-  searchMode: boolean = false;
+  minimumFilterLength = 1;
+  searchMode = false;
   instanceID = crypto.randomUUID();
 
   ngOnInit() {
@@ -61,11 +62,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  onFilterKeydownEnter() {
-    this.filterTree();
-  }
-
-  onFilterButtonClick() {
+  onKeyup() {
     this.filterTree();
   }
 

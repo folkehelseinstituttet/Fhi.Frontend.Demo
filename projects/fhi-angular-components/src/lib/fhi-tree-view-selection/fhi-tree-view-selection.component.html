@@ -9,17 +9,13 @@
           [id]="'search-input-' + instanceID"
           type="search"
           class="form-control fhi-search__form-control"
-          placeholder="Søk med minimum 3 tegn"
-          (keydown.enter)="onFilterKeydownEnter()"
+          placeholder="{{ placeholderFilter }}"
+          (keyup)="onKeyup()"
           (ngModelChange)="onFilterNgModelChange($event)"
           [(ngModel)]="filterString"
           [attr.aria-controls]="'list-' + instanceID"
         />
       </div>
-      <button class="btn fhi-search__btn" (click)="onFilterButtonClick()">
-        <i class="fhi-search__btn-icon"></i>
-        <span class="fhi-search__btn__text">Søk</span>
-      </button>
     </div>
   </div>
   <ng-container
@@ -94,7 +90,7 @@
         'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !searchMode,
         'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !searchMode,
         'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !searchMode,
-        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !searchMode
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !searchMode,
       }"
     >
     </i>
