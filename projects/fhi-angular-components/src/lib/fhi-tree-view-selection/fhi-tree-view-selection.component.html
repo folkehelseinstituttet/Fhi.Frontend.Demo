@@ -9,7 +9,7 @@
           [id]="'search-input-' + instanceID"
           type="search"
           class="form-control fhi-search__form-control"
-          placeholder="{{ placeholderFilter }}"
+          placeholder="{{ placeholder }}"
           (keyup)="onKeyup()"
           (ngModelChange)="onFilterNgModelChange($event)"
           [(ngModel)]="filterString"
@@ -30,7 +30,7 @@
     [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
-    <ng-container *ngIf="enableCheckAll && !searchMode">
+    <ng-container *ngIf="enableCheckAll && !listIsFiltered">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
     </ng-container>
 
@@ -46,7 +46,7 @@
         <ng-container *ngTemplateOutlet="radioItem; context: { item: item }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && searchMode)">
+      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && listIsFiltered)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
             *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.id }"
@@ -87,10 +87,10 @@
   >
     <i
       [ngClass]="{
-        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !searchMode,
-        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !searchMode,
-        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !searchMode,
-        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !searchMode,
+        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !listIsFiltered,
+        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !listIsFiltered,
+        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !listIsFiltered,
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !listIsFiltered,
       }"
     >
     </i>

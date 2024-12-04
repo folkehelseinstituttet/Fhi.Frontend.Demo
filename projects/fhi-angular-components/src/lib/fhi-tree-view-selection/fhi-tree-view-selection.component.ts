@@ -24,20 +24,21 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
+  private minimumFilterStringLength = 1;
+
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
   @Input() items!: Item[];
   @Input() name!: string;
   @Input() enableFilter = false;
-  @Input() placeholderFilter = 'Søk';
+  @Input() placeholder = 'Søk';
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
   filteredItems: Item[];
   filterString = '';
-  minimumFilterLength = 1;
-  searchMode = false;
+  listIsFiltered = false;
   instanceID = crypto.randomUUID();
 
   ngOnInit() {
@@ -97,11 +98,11 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   filterTree() {
-    if (this.filterString.length >= this.minimumFilterLength) {
-      this.searchMode = true;
+    if (this.filterString.length >= this.minimumFilterStringLength) {
+      this.listIsFiltered = true;
       this.filteredItems = this.filterTreeData(this.items, this.filterString);
     } else {
-      this.searchMode = false;
+      this.listIsFiltered = false;
       this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
       this.filteredItems = [...this.items]; // show all
     }
