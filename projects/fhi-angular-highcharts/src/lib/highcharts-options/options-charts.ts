@@ -13,11 +13,14 @@ export const OptionsCharts = {
   xAxis: {
     allowDecimals: false,
     type: 'category',
+    title: {
+      text: undefined,
+    },
   },
   yAxis: {
     allowDecimals: false,
     title: {
-      text: null,
+      text: undefined,
     },
   },
 };

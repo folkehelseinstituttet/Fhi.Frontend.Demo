@@ -1,9 +1,15 @@
-# 5.2.0
+# Unreleased
+
+> Nov 27, 2024
+
+* :tada: **Enhancement** Add option `categoryAxis` to `FhiDiagramOptions`, and add support for setting the category axis title [(#763)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/763)
+
+## 5.2.0
 
 > Nov 27, 2024
 
 * :tada: **Enhancement** Add test for disabling all other diagram types except `columnAndLine` (and `table`) if 2 units or more are defined in the diagram options. Also clean up existing tests for disabling diagram types [(#761)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/761)
-* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals.
+* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals [(#744)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/744)
 
 ## 5.1.0
 
