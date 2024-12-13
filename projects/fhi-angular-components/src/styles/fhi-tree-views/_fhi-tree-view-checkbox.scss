@@ -1,4 +1,10 @@
 .fhi-tree-view-checkbox {
+    &__result-list {
+        max-height: 500px;
+        overflow: auto;
+        padding-top: $fhi-core-space-2;
+    }
+
     &__list {
         list-style-type: none;
     }

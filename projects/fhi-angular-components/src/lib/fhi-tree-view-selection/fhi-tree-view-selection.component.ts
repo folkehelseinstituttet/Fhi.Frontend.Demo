@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -14,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
+import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'fhi-tree-view-selection',
@@ -24,8 +27,6 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  private minimumFilterStringLength = 1;
-
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
@@ -36,14 +37,33 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
-  filteredItems: Item[];
-  filterString = '';
-  listIsFiltered = false;
   instanceID = crypto.randomUUID();
+  itemsCount!: number;
+  itemsFilteredCount!: number;
+  itemsFiltered!: Item[];
+  itemsFilteredIsLoading = false;
+  itemsFilteredIsLoaded = false;
+  searchTerm = '';
+  $searchTerm = new Subject<string>();
+
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
+    }
+    if (this.enableFilter) {
+      this.getFilteredItems(this.$searchTerm).subscribe((resultItems) => {
+        if (this.itemsFilteredIsLoading) {
+          this.itemsFilteredIsLoaded = true;
+          this.itemsFilteredIsLoading = false;
+          this.itemsFiltered = resultItems;
+          this.changeDetector.detectChanges();
+          // console.log('resultItems', resultItems);
+          // console.log('this.itemsCount', this.itemsCount);
+          // console.log('this.itemsFilteredCount', this.itemsFilteredCount);
+        }
+      });
     }
   }
 
@@ -51,20 +71,26 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
-      this.filteredItems = [...this.items];
     }
     this.itemsChange.emit(this.items);
   }
 
-  onFilterNgModelChange(filterValue: string) {
-    if (filterValue.length === 0) {
-      this.filterString = filterValue;
-      this.filterTree();
-    }
-  }
+  onSearchTermChange(searchTerm: string) {
+    this.itemsCount = 0;
+    this.itemsFilteredCount = 0;
+    this.itemsFilteredIsLoaded = false;
 
-  onKeyup() {
-    this.filterTree();
+    if (searchTerm.length === 0) {
+      this.itemsFilteredIsLoading = false;
+    } else {
+      // TODO: how to not set this.itemsFilteredIsLoading if less than 400 ms between
+      //       new value and back to the previous value (ie. prevent starting spinner
+      //       without starting new search, and by that make spinner run indefinitley)?
+      this.itemsFilteredIsLoading = true;
+    }
+
+    // console.log('searchTerm');
+    this.$searchTerm.next(searchTerm);
   }
 
   toggleExpanded(item: Item) {
@@ -97,46 +123,46 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree() {
-    if (this.filterString.length >= this.minimumFilterStringLength) {
-      this.listIsFiltered = true;
-      this.filteredItems = this.filterTreeData(this.items, this.filterString);
-    } else {
-      this.listIsFiltered = false;
-      this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
-      this.filteredItems = [...this.items]; // show all
-    }
+  private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
+    return $searchTerm.pipe(
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap((searchTerm) => this.getItemsFilteredBySearchTerm(searchTerm)),
+    );
   }
 
-  private filterTreeData(treeData: Item[], filterString: string): Item[] {
-    const lowerCaseFilter = filterString.toLowerCase();
+  private getItemsFilteredBySearchTerm(searchTerm: string): Observable<Item[]> {
+    // console.log('getItemsFilteredBySearchTerm()->searchTerm', searchTerm);
+    if (searchTerm === '') {
+      return of(undefined);
+    }
+    return of(this.filterItemsRecursively(cloneDeep(this.items), searchTerm));
+  }
 
-    const filterItems = (items: Item[]): Item[] => {
-      return items.reduce((filteredItems: Item[], item: Item) => {
-        item.name = item.name.replace(/<[^>]*>/g, ''); // remove <mark> tag that was added for highlighting
-        const lowerCaseName = item.name.toLowerCase();
+  private filterItemsRecursively(items: Item[], searchTerm: string): Item[] {
+    return items.reduce((itemsFiltered: Item[], item: Item) => {
+      let filteredChildren: Item[];
+      const partialMatch = item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
 
-        if (lowerCaseName.includes(lowerCaseFilter)) {
-          if (lowerCaseFilter !== '') {
-            item.name = item.name.replace(
-              RegExp(filterString, 'gi'), // find filter string to highlight
-              '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
-            );
-          }
-          const filteredChildren = item.children ? filterItems(item.children) : [];
-          filteredItems.push({ ...item, children: filteredChildren });
-        } else if (item.children) {
-          const filteredChildren = filterItems(item.children);
-          if (filteredChildren.length > 0) {
-            filteredItems.push({ ...item, children: filteredChildren });
-          }
-        }
+      if (item.children?.length > 0) {
+        filteredChildren = this.filterItemsRecursively(item.children, searchTerm);
+      }
 
-        return filteredItems;
-      }, []);
-    };
+      if (partialMatch) {
+        item.name = item.name.replace(
+          RegExp(searchTerm, 'gi'),
+          '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
+        );
+        itemsFiltered.push({ ...item, children: filteredChildren });
+        this.itemsFilteredCount++;
+      }
+      if (!partialMatch && item.children && filteredChildren?.length > 0) {
+        itemsFiltered.push({ ...item, children: filteredChildren });
+      }
+      this.itemsCount++;
 
-    return filterItems(treeData);
+      return itemsFiltered;
+    }, []);
   }
 
   private updateCheckedState(

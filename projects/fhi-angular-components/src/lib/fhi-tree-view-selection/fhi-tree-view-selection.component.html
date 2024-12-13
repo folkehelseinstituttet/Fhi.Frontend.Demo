@@ -1,8 +1,34 @@
 <div class="fhi-tree-view-checkbox" *ngIf="items">
-  <div class="fhi-tree-view-checkbox__search fhi-search mb-5" *ngIf="enableFilter">
+  <ng-container *ngIf="enableFilter; else defaultList">
+    <ng-container *ngTemplateOutlet="searchInput"></ng-container>
+
+    <ng-container *ngIf="itemsFilteredIsLoaded || itemsFilteredIsLoading; else defaultList">
+      <div [ngClass]="{ 'fhi-tree-view-checkbox__result-list': itemsFilteredIsLoaded }">
+        <ng-container *ngIf="!itemsFilteredIsLoading; else loadingIndicator">
+          <p *ngIf="itemsFiltered?.length === 0">Ingen treff</p>
+          <ng-container
+            *ngTemplateOutlet="checkboxItems; context: { items: itemsFiltered, listID: instanceID }"
+          ></ng-container>
+        </ng-container>
+        <ng-template #loadingIndicator>
+          <div class="spinner-border ms-5" role="status"></div>
+        </ng-template>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #defaultList>
+    <ng-container *ngTemplateOutlet="checkboxItems; context: { items: items, listID: null }"></ng-container>
+  </ng-template>
+</div>
+
+<ng-template #searchInput>
+  <div class="fhi-tree-view-checkbox__search fhi-search mb-5">
     <label [for]="'search-input-' + instanceID" class="form-label" [id]="'search-input-label-' + instanceID">
       {{ filterLabel }}
+      ({{ itemsFilteredIsLoaded ? 'itemsFiltered' : 'items' }})
     </label>
+
     <div class="d-flex">
       <div class="w-100 position-relative">
         <input
@@ -10,18 +36,14 @@
           type="search"
           class="form-control fhi-search__form-control"
           placeholder="{{ placeholder }}"
-          (keyup)="onKeyup()"
-          (ngModelChange)="onFilterNgModelChange($event)"
-          [(ngModel)]="filterString"
+          (ngModelChange)="onSearchTermChange($event)"
+          [ngModel]="searchTerm"
           [attr.aria-controls]="'list-' + instanceID"
         />
       </div>
     </div>
   </div>
-  <ng-container
-    *ngTemplateOutlet="checkboxItems; context: { items: filteredItems, listID: enableFilter ? instanceID : null }"
-  ></ng-container>
-</div>
+</ng-template>
 
 <ng-template #checkboxItems let-items="items" let-listID="listID">
   <ul
@@ -30,12 +52,12 @@
     [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
-    <ng-container *ngIf="enableCheckAll && !listIsFiltered">
+    <ng-container *ngIf="enableCheckAll && !itemsFilteredIsLoaded">
       <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
     </ng-container>
 
     <li class="fhi-tree-view-checkbox__item" *ngFor="let item of items" role="treeitem">
-      <ng-container *ngIf="item.children">
+      <ng-container *ngIf="item.children && !itemsFilteredIsLoaded">
         <ng-container *ngTemplateOutlet="expandButton; context: { item: item }"></ng-container>
       </ng-container>
 
@@ -46,7 +68,7 @@
         <ng-container *ngTemplateOutlet="radioItem; context: { item: item }"></ng-container>
       </ng-container>
 
-      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && listIsFiltered)">
+      <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && itemsFilteredIsLoaded)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
             *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.id }"
@@ -61,7 +83,7 @@
   <button
     type="button"
     class="btn fhi-tree-view-checkbox__check-all"
-    *ngIf="items.length > 1 && !allItemsChecked(items)"
+    *ngIf="items?.length > 1 && !allItemsChecked(items)"
     (click)="checkAll(items)"
   >
     Velg alle
@@ -69,7 +91,7 @@
   <button
     type="button"
     class="btn fhi-tree-view-checkbox__check-all"
-    *ngIf="items.length > 1 && allItemsChecked(items)"
+    *ngIf="items?.length > 1 && allItemsChecked(items)"
     (click)="uncheckAll(items)"
   >
     Fjern alle
@@ -87,10 +109,10 @@
   >
     <i
       [ngClass]="{
-        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant && !listIsFiltered,
-        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant && !listIsFiltered,
-        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant && !listIsFiltered,
-        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant && !listIsFiltered,
+        'icon-dash-circle': item.isExpanded && !item.hasCheckedDescendant,
+        'icon-plus-circle': !item.isExpanded && !item.hasCheckedDescendant,
+        'icon-dash-circle-fill': item.isExpanded && item.hasCheckedDescendant,
+        'icon-plus-circle-fill': !item.isExpanded && item.hasCheckedDescendant,
       }"
     >
     </i>
