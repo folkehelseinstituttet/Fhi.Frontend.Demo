@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
-import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
@@ -45,6 +45,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   itemsFilteredIsLoaded = false;
   searchTerm = '';
   $searchTerm = new Subject<string>();
+  searchTermPrevious!: string;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
@@ -80,12 +81,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.itemsFilteredCount = 0;
     this.itemsFilteredIsLoaded = false;
 
-    if (searchTerm.length === 0) {
+    if (searchTerm.length === 0 || searchTerm === this.searchTermPrevious) {
       this.itemsFilteredIsLoading = false;
     } else {
-      // TODO: how to not set this.itemsFilteredIsLoading if less than 400 ms between
-      //       new value and back to the previous value (ie. prevent starting spinner
-      //       without starting new search, and by that make spinner run indefinitley)?
       this.itemsFilteredIsLoading = true;
     }
 
@@ -127,6 +125,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return $searchTerm.pipe(
       debounceTime(400),
       distinctUntilChanged(),
+      tap((searchTerm) => (this.searchTermPrevious = searchTerm)),
       switchMap((searchTerm) => this.getItemsFilteredBySearchTerm(searchTerm)),
     );
   }
