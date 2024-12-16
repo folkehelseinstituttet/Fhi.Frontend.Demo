@@ -8,9 +8,9 @@
 |-------------------|-----------------------------------|------------------|----------|-------------|
 | `enableCheckAll`  | `boolean`                         | false            | no       | Trigger to select/deselect all siblings, only if `singleSelection === false`. |
 | `enableFilter`    | `boolean`                         | false            | no       | Enable a text input for filtering the selection tree. |
-| `filterLabel`     | `string`                          | -                | no       | Enable a text input for filtering the selection tree. If `filterLabel` not set, label will be removed. |
+| `filterLabel`     | `string`                          | -                | no       | Label for the checkbox tree filter. If `filterLabel` not set, label will be removed. |
 | `items`           | `Array<FhiTreeViewSelectionItem>` | -                | yes      | Array of all items in selection tree. |
-| `name`            | `string`                          | -                | no/yes   | Naming the radio button group. Required if `singleSelection === true`. |
+| `name`            | `string`                          | -                | no       | Naming the radio button group. |
 | `placeholder`     | `string`                          | `Søk`            | no       | Placeholder text for filter input. |
 | `singleSelection` | `boolean`                         | false            | no       | Radio buttons or checkboxes. |
 

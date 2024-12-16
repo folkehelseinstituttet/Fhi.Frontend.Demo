@@ -24,7 +24,12 @@
 
 <ng-template #searchInput>
   <div class="fhi-tree-view-checkbox__search fhi-search mb-5">
-    <label [for]="'search-input-' + instanceID" class="form-label" [id]="'search-input-label-' + instanceID">
+    <label
+      *ngIf="filterLabel"
+      [for]="'search-input-' + instanceID"
+      class="form-label"
+      [id]="'search-input-label-' + instanceID"
+    >
       {{ filterLabel }}
       ({{ itemsFilteredIsLoaded ? 'itemsFiltered' : 'items' }})
     </label>

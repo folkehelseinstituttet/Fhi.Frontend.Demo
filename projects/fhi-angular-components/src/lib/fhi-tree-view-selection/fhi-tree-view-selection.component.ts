@@ -30,7 +30,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
-  @Input() items!: Item[];
+  @Input({ required: true }) items!: Item[];
   @Input() name!: string;
   @Input() enableFilter = false;
   @Input() placeholder = 'Søk';
