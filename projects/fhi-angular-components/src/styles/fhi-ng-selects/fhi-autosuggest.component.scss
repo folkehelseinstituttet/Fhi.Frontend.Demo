@@ -1,11 +1,11 @@
 .fhi-autosuggest {
-
     .ng-select {
         .ng-select-container {
             .ng-value-container {
                 .ng-value,
                 .ng-placeholder {
-                    padding: $fhi-core-space-2 .75rem; // OBS! Is dependeant on default .form-control padding
+                    padding: $fhi-core-space-2 0.75rem; // OBS! Is dependeant on default .form-control padding
+                    z-index: 1;
                 }
             }
         }
