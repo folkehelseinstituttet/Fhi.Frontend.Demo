@@ -3,7 +3,11 @@
     <ng-container *ngTemplateOutlet="searchInput"></ng-container>
 
     <ng-container *ngIf="itemsFilteredIsLoaded || itemsFilteredIsLoading; else defaultList">
-      <div [ngClass]="{ 'fhi-tree-view-checkbox__result-list': itemsFilteredIsLoaded }">
+      <div
+        [ngClass]="{ 'fhi-tree-view-checkbox__result-list': itemsFilteredIsLoading || itemsFilteredIsLoaded }"
+        [ngStyle]="{ height: resultListHeight, 'max-height': resultListMaxHeight }"
+        #resultListWrapper
+      >
         <ng-container *ngIf="!itemsFilteredIsLoading; else loadingIndicator">
           <p *ngIf="itemsFiltered?.length === 0">Ingen treff</p>
           <ng-container
@@ -52,6 +56,7 @@
 
 <ng-template #checkboxItems let-items="items" let-listID="listID">
   <ul
+    #checkboxList
     class="fhi-tree-view-checkbox__list"
     role="tree"
     [attr.id]="listID !== null ? 'list-' + listID : null"

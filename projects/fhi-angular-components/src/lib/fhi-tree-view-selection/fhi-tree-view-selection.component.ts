@@ -2,12 +2,14 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -37,6 +39,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
+  @ViewChild('checkboxList') checkboxListRef: ElementRef;
+  @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
+
   instanceID = crypto.randomUUID();
   itemsCount!: number;
   itemsFilteredCount!: number;
@@ -46,6 +51,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   searchTerm = '';
   $searchTerm = new Subject<string>();
   searchTermPrevious!: string;
+  resultListHeight = 'auto';
+  resultListMaxHeight!: string;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
@@ -55,6 +62,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
     if (this.enableFilter) {
       this.getFilteredItems(this.$searchTerm).subscribe((resultItems) => {
+        // debugger;
         if (this.itemsFilteredIsLoading) {
           this.itemsFilteredIsLoaded = true;
           this.itemsFilteredIsLoading = false;
@@ -64,6 +72,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           // console.log('this.itemsCount', this.itemsCount);
           // console.log('this.itemsFilteredCount', this.itemsFilteredCount);
         }
+        this.resultListHeight = 'auto';
+        this.changeDetector.detectChanges();
       });
     }
   }
@@ -85,6 +95,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       this.itemsFilteredIsLoading = false;
     } else {
       this.itemsFilteredIsLoading = true;
+      this.updateResultListHeighWhileLoading();
     }
 
     // console.log('searchTerm');
@@ -119,6 +130,22 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
+  }
+
+  private updateResultListHeighWhileLoading() {
+    const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
+    const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
+    console.log('1a. heightList', heightList);
+    console.log('1a. heightWrapper', heightWrapper);
+
+    if (heightList && !heightWrapper) {
+      this.resultListHeight = heightList + 'px';
+      this.resultListMaxHeight = heightList > 500 ? heightList + 'px' : '500px';
+      console.log('1b. this.resultListHeight', this.resultListHeight);
+    } else {
+      this.resultListHeight = heightWrapper + 'px';
+      console.log('1c. this.resultListHeight', this.resultListHeight);
+    }
   }
 
   private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
