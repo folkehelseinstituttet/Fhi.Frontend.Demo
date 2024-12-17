@@ -87,18 +87,17 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   onSearchTermChange(searchTerm: string) {
-    this.itemsCount = 0;
-    this.itemsFilteredCount = 0;
-    this.itemsFilteredIsLoaded = false;
+    // console.log('searchTerm', searchTerm);
+    // console.log('searchTermPrevious', this.searchTermPrevious);
 
     if (searchTerm.length === 0 || searchTerm === this.searchTermPrevious) {
+      this.resetFilter();
       this.itemsFilteredIsLoading = false;
     } else {
       this.itemsFilteredIsLoading = true;
       this.updateResultListHeighWhileLoading();
     }
 
-    // console.log('searchTerm');
     this.$searchTerm.next(searchTerm);
   }
 
@@ -135,17 +134,23 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   private updateResultListHeighWhileLoading() {
     const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
     const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
-    console.log('1a. heightList', heightList);
-    console.log('1a. heightWrapper', heightWrapper);
+    // console.log('1a. heightList', heightList);
+    // console.log('1a. heightWrapper', heightWrapper);
 
     if (heightList && !heightWrapper) {
       this.resultListHeight = heightList + 'px';
       this.resultListMaxHeight = heightList > 500 ? heightList + 'px' : '500px';
-      console.log('1b. this.resultListHeight', this.resultListHeight);
+      // console.log('1b. this.resultListHeight', this.resultListHeight);
     } else {
       this.resultListHeight = heightWrapper + 'px';
-      console.log('1c. this.resultListHeight', this.resultListHeight);
+      // console.log('1c. this.resultListHeight', this.resultListHeight);
     }
+  }
+
+  private resetFilter() {
+    this.itemsCount = 0;
+    this.itemsFilteredCount = 0;
+    this.itemsFilteredIsLoaded = false;
   }
 
   private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
@@ -159,6 +164,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   private getItemsFilteredBySearchTerm(searchTerm: string): Observable<Item[]> {
     // console.log('getItemsFilteredBySearchTerm()->searchTerm', searchTerm);
+    this.resetFilter();
+
     if (searchTerm === '') {
       return of(undefined);
     }
