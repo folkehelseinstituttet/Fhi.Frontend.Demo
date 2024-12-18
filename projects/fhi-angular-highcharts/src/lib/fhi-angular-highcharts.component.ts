@@ -9,6 +9,8 @@ import {
 } from '@angular/core';
 
 import { first } from 'rxjs';
+import { cloneDeep } from 'lodash-es';
+
 import * as Highcharts from 'highcharts';
 import * as Highmaps from 'highcharts/highmaps';
 import { Chart, Options } from 'highcharts';
@@ -58,6 +60,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   highmaps: typeof Highmaps = Highmaps;
   highchartsOptions!: Options;
 
+  diagramOptionsInternal!: FhiDiagramOptions;
   activeDiagramTypeGroup!: DiagramTypeGroup;
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
@@ -95,9 +98,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.diagramOptionsInternal = cloneDeep(this.diagramOptions);
+    this.resetDiagramState();
+
     try {
-      this.resetDiagramState();
-      this.diagramOptions.series.forEach((serie) => {
+      this.diagramOptionsInternal.series.forEach((serie) => {
         serie.name = this.formatSerieName(serie.name);
         this.findDuplicateSerieNames(serie.name);
         this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
@@ -120,7 +125,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.downloadService.downloadImage(
         this.chartInstance,
         'image/svg+xml',
-        this.diagramOptions.title,
+        this.diagramOptionsInternal.title,
       );
     }
   }
@@ -222,10 +227,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
-    let unit = this.diagramOptions.units?.find((unit) => unit.id === serie.unitId);
+    let unit = this.diagramOptionsInternal.units?.find((unit) => unit.id === serie.unitId);
 
-    if (!unit && this.diagramOptions.units?.length === 1) {
-      unit = this.diagramOptions.units[0];
+    if (!unit && this.diagramOptionsInternal.units?.length === 1) {
+      unit = this.diagramOptionsInternal.units[0];
     }
     if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
       return unit.decimals;
@@ -261,7 +266,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateDiagramTypeGroups() {
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups(
-      this.diagramOptions,
+      this.diagramOptionsInternal,
       this.flaggedSeries,
       this.diagramTypeGroups,
     );
@@ -271,11 +276,11 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private updateDiagramOptions() {
-    const footer = this.diagramOptions.footer;
-    const openSource = this.diagramOptions.openSource;
+    const footer = this.diagramOptionsInternal.footer;
+    const openSource = this.diagramOptionsInternal.openSource;
 
-    this.diagramOptions = {
-      ...this.diagramOptions,
+    this.diagramOptionsInternal = {
+      ...this.diagramOptionsInternal,
       activeDiagramType: this.activeDiagramTypeGroup.diagramType.id as FhiDiagramTypeIds,
       footer: footer ? footer : undefined,
       openSource: openSource === undefined || openSource ? true : false,
@@ -285,23 +290,23 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private updateDiagramState() {
     const diagramTypeIsDisabled = this.diagramTypeGroupService.getDiagramTypeIsDisabled(
       this.diagramTypeGroups,
-      this.diagramOptions.activeDiagramType,
+      this.diagramOptionsInternal.activeDiagramType,
     );
     this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
-    this.showFullScreenButton = !!this.diagramOptions.controls?.fullScreenButton?.show;
-    this.showMetadataButton = !!this.diagramOptions.controls?.metadataButton?.show;
-    this.showDiagramTypeNav = !!this.diagramOptions.controls?.navigation?.show;
+    this.showFullScreenButton = !!this.diagramOptionsInternal.controls?.fullScreenButton?.show;
+    this.showMetadataButton = !!this.diagramOptionsInternal.controls?.metadataButton?.show;
+    this.showDiagramTypeNav = !!this.diagramOptionsInternal.controls?.navigation?.show;
 
     if (!diagramTypeIsDisabled) {
       this.updateDiagram();
     } else {
-      console.warn(
-        `Kan ikke vise diagramtype "${this.diagramOptions.activeDiagramType}" fordi "${this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
-          this.diagramOptions.activeDiagramType,
-        )}"`,
+      const activeDiagramType = this.diagramOptionsInternal.activeDiagramType;
+      const msg = this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
+        this.diagramOptionsInternal.activeDiagramType,
       );
+      console.warn(`Kan ikke vise diagramtype "${activeDiagramType}" fordi "${msg}"`);
     }
   }
 
@@ -318,27 +323,27 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private updateChart() {
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
     this.highchartsOptions = this.optionsService.updateOptions(
-      this.diagramOptions,
+      this.diagramOptionsInternal,
       this.metadataForSeries,
     );
   }
 
   private updateTable() {
-    const series: FhiDiagramSerie[] = this.diagramOptions.series;
+    const series: FhiDiagramSerie[] = this.diagramOptionsInternal.series;
     this.tableData = this.tableService.getTable(
       series,
-      this.diagramOptions.tableOrientation,
+      this.diagramOptionsInternal.tableOrientation,
       this.metadataForSeries,
     );
   }
 
   private updateMap() {
-    const mapTypeId = this.diagramOptions.activeDiagramType;
+    const mapTypeId = this.diagramOptionsInternal.activeDiagramType;
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       this.highchartsOptions = this.optionsService.updateOptions(
-        this.diagramOptions,
+        this.diagramOptionsInternal,
         this.metadataForSeries,
       );
       this.showMap = true;
@@ -371,25 +376,25 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private canShowDownloadButton(): boolean {
     return (
-      !!this.diagramOptions.controls?.downloadButton?.show &&
-      this.diagramOptions.activeDiagramType !== 'table'
+      !!this.diagramOptionsInternal.controls?.downloadButton?.show &&
+      this.diagramOptionsInternal.activeDiagramType !== 'table'
     );
   }
 
   private canShowFooter(): boolean {
-    if (this.showMap && !this.diagramOptions.openSource) {
+    if (this.showMap && !this.diagramOptionsInternal.openSource) {
       return true;
     }
-    if (this.diagramOptions.footer?.flags && this.flaggedSeries.length !== 0) {
+    if (this.diagramOptionsInternal.footer?.flags && this.flaggedSeries.length !== 0) {
       return true;
     }
-    if (this.diagramOptions.footer?.lastUpdated) {
+    if (this.diagramOptionsInternal.footer?.lastUpdated) {
       return true;
     }
-    if (this.diagramOptions.footer?.disclaimer) {
+    if (this.diagramOptionsInternal.footer?.disclaimer) {
       return true;
     }
-    if (this.diagramOptions.footer?.credits) {
+    if (this.diagramOptionsInternal.footer?.credits) {
       return true;
     }
     return false;
