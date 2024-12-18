@@ -4,6 +4,7 @@
 
 * :tada: **Enhancement** Add option `categoryAxis` to `FhiDiagramOptions`, and add support for setting the category axis title [(#763)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/763)
 * :tada: **Enhancement** Update qualitative color series [(#771)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/771)
+* :tada: **Enhancement** Use cloneDeep() to make diagramOptions immutable [(#765)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/765)
 
 ## 5.2.0
 
