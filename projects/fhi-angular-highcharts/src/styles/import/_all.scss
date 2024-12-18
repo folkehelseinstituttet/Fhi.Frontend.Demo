@@ -4,29 +4,27 @@
     // Data series and points (extends default FHI color palette)
     // NB! OptionsCharts.chart.colorCount must match number of different colors here.
 
-    // Qualitative A (Main Series)
+    // Qualitative Series
     --highcharts-color-0: #ec7c73; // R1-70
     --highcharts-color-1: #40436d; // B1-40
     --highcharts-color-2: #61d2b2; // GR1-80
     --highcharts-color-3: #a93c38; // R1-50
     --highcharts-color-4: #f9dc8c; // GU1-90
     --highcharts-color-5: #7176c9; // B1-60
-    --highcharts-color-6: #e0f0f7; // B2-95
-    --highcharts-color-7: #09181f; // B2-20
-
-    // Qualitative B (Additional/Extras)
-    --highcharts-color-8: #65a9c5; // B2-70
-    --highcharts-color-9: #f0af5e; // GU1-50
-    --highcharts-color-10: #2a6a82; // B2-80
-    --highcharts-color-11: #fee9e6; // R1-95
-    --highcharts-color-12: #179463; // GR1-60
-    --highcharts-color-13: #c8e1ec; // B2-90
-    --highcharts-color-14: #65a9c5; // B2-70
-    --highcharts-color-15: #f0af5e; // GU1-50
-    --highcharts-color-16: #2a6a82; // B2-80
-    --highcharts-color-17: #fee9e6; // R1-95
-    --highcharts-color-18: #179463; // GR1-60
-    --highcharts-color-19: #c8e1ec; // B2-90
+    --highcharts-color-6: #09181f; // B2-20
+    --highcharts-color-7: #65a9c5; // B2-70
+    --highcharts-color-8: #2a6a82; // B2-50
+    --highcharts-color-9: #179463; // GR1-60
+    --highcharts-color-10: #f0af5e; // GU1-80
+    --highcharts-color-11: #c8e1ec; // B2-90
+    --highcharts-color-12: #d74b46; // R1-60
+    --highcharts-color-13: #00b782; // GR1-70
+    --highcharts-color-14: #fda49b; // R2-80
+    --highcharts-color-15: #4089a7; // B2-60
+    --highcharts-color-16: #83592d; // GU1-40
+    --highcharts-color-17: #b0b8fa; // B1-80
+    --highcharts-color-18: #4f1a17; // R1-30
+    --highcharts-color-19: #8fc5dc; // B2-80
 
     // Neutral color variations
     // https://www.highcharts.com/samples/highcharts/css/palette-helper
