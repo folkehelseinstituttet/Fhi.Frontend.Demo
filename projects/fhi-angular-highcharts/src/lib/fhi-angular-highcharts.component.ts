@@ -107,6 +107,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.findDuplicateSerieNames(serie.name);
         this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
         this.updateMetadataForSeries(serie);
+        this.updateDecimalCountBasedOnUnits(serie);
       });
       this.updateDiagramTypeGroups();
       this.updateDiagramOptions();

@@ -104,8 +104,8 @@ export class HighchartsComponent implements OnInit {
         this.getData__example_2c();
         break;
       case '3a':
-        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
-        this.getData__example_3a();
+        this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+        // this.getData__example_3a();
         break;
       case '3b':
         this.getData__example_3b();
@@ -145,8 +145,8 @@ export class HighchartsComponent implements OnInit {
               'barStacked',
               'column',
               'columnStacked',
-              'pie',
-              'columnAndLine',
+              // 'pie',
+              // 'columnAndLine',
             ],
             mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
           },
