@@ -155,7 +155,7 @@
             </th>
             <td class="text-end" *ngIf="!tableCell.isHeading">
               <ng-container *ngIf="isNumber(tableCell.data); else tableCellDataIsString">
-                {{ tableCell.data | number: '1.' + tableCell.decimals + '-' + tableCell.decimals }}
+                {{ tableCell.data }}
               </ng-container>
               <ng-template #tableCellDataIsString>
                 {{ tableCell.data }}
