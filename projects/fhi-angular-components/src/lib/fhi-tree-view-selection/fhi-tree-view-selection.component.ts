@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
-import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap, tap } from 'rxjs';
+import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
@@ -43,14 +43,11 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
 
   instanceID = crypto.randomUUID();
-  itemsCount!: number;
-  itemsFilteredCount!: number;
   itemsFiltered!: Item[];
   itemsFilteredIsLoading = false;
   itemsFilteredIsLoaded = false;
   searchTerm = '';
   $searchTerm = new Subject<string>();
-  searchTermPrevious!: string;
   resultListHeight = 'auto';
   resultListMaxHeight!: string;
 
@@ -62,15 +59,11 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
     if (this.enableFilter) {
       this.getFilteredItems(this.$searchTerm).subscribe((resultItems) => {
-        // debugger;
         if (this.itemsFilteredIsLoading) {
           this.itemsFilteredIsLoaded = true;
           this.itemsFilteredIsLoading = false;
           this.itemsFiltered = resultItems;
           this.changeDetector.detectChanges();
-          // console.log('resultItems', resultItems);
-          // console.log('this.itemsCount', this.itemsCount);
-          // console.log('this.itemsFilteredCount', this.itemsFilteredCount);
         }
         this.resultListHeight = 'auto';
         this.changeDetector.detectChanges();
@@ -87,17 +80,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   onSearchTermChange(searchTerm: string) {
-    // console.log('searchTerm', searchTerm);
-    // console.log('searchTermPrevious', this.searchTermPrevious);
-
-    if (searchTerm.length === 0 || searchTerm === this.searchTermPrevious) {
-      this.resetFilter();
+    if (searchTerm.length === 0) {
+      this.itemsFilteredIsLoaded = false;
       this.itemsFilteredIsLoading = false;
     } else {
       this.itemsFilteredIsLoading = true;
       this.updateResultListHeighWhileLoading();
     }
-
     this.$searchTerm.next(searchTerm);
   }
 
@@ -134,37 +123,24 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   private updateResultListHeighWhileLoading() {
     const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
     const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
-    // console.log('1a. heightList', heightList);
-    // console.log('1a. heightWrapper', heightWrapper);
 
     if (heightList && !heightWrapper) {
       this.resultListHeight = heightList + 'px';
       this.resultListMaxHeight = heightList > 500 ? heightList + 'px' : '500px';
-      // console.log('1b. this.resultListHeight', this.resultListHeight);
     } else {
       this.resultListHeight = heightWrapper + 'px';
-      // console.log('1c. this.resultListHeight', this.resultListHeight);
     }
-  }
-
-  private resetFilter() {
-    this.itemsCount = 0;
-    this.itemsFilteredCount = 0;
-    this.itemsFilteredIsLoaded = false;
   }
 
   private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
     return $searchTerm.pipe(
       debounceTime(400),
-      distinctUntilChanged(),
-      tap((searchTerm) => (this.searchTermPrevious = searchTerm)),
       switchMap((searchTerm) => this.getItemsFilteredBySearchTerm(searchTerm)),
     );
   }
 
   private getItemsFilteredBySearchTerm(searchTerm: string): Observable<Item[]> {
-    // console.log('getItemsFilteredBySearchTerm()->searchTerm', searchTerm);
-    this.resetFilter();
+    this.itemsFilteredIsLoaded = false;
 
     if (searchTerm === '') {
       return of(undefined);
@@ -187,13 +163,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
         );
         itemsFiltered.push({ ...item, children: filteredChildren });
-        this.itemsFilteredCount++;
       }
       if (!partialMatch && item.children && filteredChildren?.length > 0) {
         itemsFiltered.push({ ...item, children: filteredChildren });
       }
-      this.itemsCount++;
-
       return itemsFiltered;
     }, []);
   }
