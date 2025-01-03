@@ -107,6 +107,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.findDuplicateSerieNames(serie.name);
         this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
         this.updateMetadataForSeries(serie);
+        this.updateDecimalCountBasedOnUnits(serie);
       });
       this.updateDiagramTypeGroups();
       this.updateDiagramOptions();
@@ -219,10 +220,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateMetadataForSeries(serie: FhiDiagramSerie) {
     this.metadataForSeries.push({
-      decimals: this.getVerifiedMaxDecimalCount(serie),
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
+    });
+  }
+
+  private updateDecimalCountBasedOnUnits(serie: FhiDiagramSerie) {
+    if (!this.metadataForSeries.find((serie) => serie.hasDecimalData)) {
+      return;
+    }
+
+    console.log('serie.name', serie.name);
+
+    const maxDecimals = this.getVerifiedMaxDecimalCount(serie);
+    serie.data.forEach((dataPoint) => {
+      console.log('dataPoint', dataPoint);
+
+      if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
+        dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
+      }
     });
   }
 
@@ -244,10 +261,18 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   }
 
   private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
-    const decimalData = serie.data.filter(
-      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y % 1 != 0,
-    );
+    const decimalData = serie.data.filter((dataPoint) => this.isDecimalNumber(dataPoint.y));
     return decimalData.length !== 0;
+  }
+
+  private decimalCount(value: number | string): number {
+    if (typeof value !== 'number') return 0;
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
+  }
+
+  private isDecimalNumber(value: number | string): boolean {
+    return typeof value === 'number' && !Number.isInteger(value);
   }
 
   private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
@@ -333,7 +358,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.tableData = this.tableService.getTable(
       series,
       this.diagramOptionsInternal.tableOrientation,
-      this.metadataForSeries,
     );
   }
 

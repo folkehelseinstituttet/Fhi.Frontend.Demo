@@ -181,10 +181,6 @@ export class OptionsService {
   private getTooltip(tooltip: TooltipOptions, unit: FhiDiagramUnit): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
 
-    if (unit.decimals !== undefined) {
-      tooltip.valueDecimals = unit.decimals;
-    }
-
     if (unit.symbol) {
       if (unit.position === 'start') {
         tooltip.valuePrefix = unit.symbol + ' ';
