@@ -12,15 +12,6 @@
     filterLabel="Label"
     (itemsChange)="onCheckboxChange($event)"
   ></fhi-tree-view-checkbox>
-  <br /><br />
-
-  <!-- TODO: remove when done testing -->
-  <fhi-tree-view-checkbox
-    [items]="itemsCheck2"
-    [enableCheckAll]="true"
-    [enableFilter]="true"
-    (itemsChange)="onCheckbox2Change($event)"
-  ></fhi-tree-view-checkbox>
 </ng-container>
 
 <ng-container *ngIf="itemId === items.TreeViewRadio.id">

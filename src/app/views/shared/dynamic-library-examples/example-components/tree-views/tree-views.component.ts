@@ -6,7 +6,7 @@ import {
   FhiTreeViewSelectionItem,
 } from '@folkehelseinstituttet/angular-components';
 
-import { alleAtcKoderSomItems } from './alle_atckoder_som_items'; // use this for stress testing fhi-tree-view-checkbox or fhi-tree-view-radio with large dataset
+// import { alleAtcKoderSomItems } from './alle_atckoder_som_items'; // use this for stress testing fhi-tree-view-checkbox or fhi-tree-view-radio with large dataset
 
 @Component({
   selector: 'app-tree-views',
@@ -25,24 +25,15 @@ export class TreeViewsComponent implements OnInit {
 
   ngOnInit() {
     this.itemsCheck = this.getTreeViewSelectionItems();
-    this.itemsCheck2 = alleAtcKoderSomItems;
-
     this.itemsRadio = this.getTreeViewSelectionItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
-    // console.log('onCheckboxChange(items)', items);
     this.itemsCheck = items;
   }
 
-  onCheckbox2Change(items: FhiTreeViewSelectionItem[]) {
-    // console.log('onCheckbox2Change(items)', items);
-    this.itemsCheck2 = items;
-  }
-
   onRadioChange(items: FhiTreeViewSelectionItem[]) {
-    // console.log('onRadioChange(items)', items);
     this.itemsRadio = items;
   }
 
