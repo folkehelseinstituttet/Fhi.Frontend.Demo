@@ -1,4 +1,10 @@
 .fhi-tree-view-checkbox {
+    &__result-list {
+        overflow: auto;
+        margin-bottom: $fhi-core-space-3;
+        padding-top: $fhi-core-space-2;
+    }
+
     &__list {
         list-style-type: none;
     }

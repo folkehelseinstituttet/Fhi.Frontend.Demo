@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import {
@@ -18,17 +18,15 @@ export class TreeViewsComponent implements OnInit {
 
   treeNavItems: FhiTreeViewNavigationItem[];
   itemsCheck!: FhiTreeViewSelectionItem[];
+  itemsCheck2!: FhiTreeViewSelectionItem[];
   itemsRadio!: FhiTreeViewSelectionItem[];
   checkAll: boolean = true;
   hasRadioButtons: boolean = true;
-
-  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.itemsCheck = this.getTreeViewSelectionItems();
     this.itemsRadio = this.getTreeViewSelectionItems();
     this.treeNavItems = this.getTreeviewNavigationItems();
-    this.changeDetector.detectChanges();
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
