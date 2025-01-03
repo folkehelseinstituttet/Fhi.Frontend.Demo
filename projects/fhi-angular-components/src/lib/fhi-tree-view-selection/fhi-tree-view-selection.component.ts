@@ -1,12 +1,15 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
+import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'fhi-tree-view-selection',
@@ -24,24 +29,45 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  @Input() enableCheckAll: boolean = false;
-  @Input() filterLabel: string = 'Filtrer listen';
-  @Input() singleSelection: boolean = false;
-  @Input() items: Item[];
-  @Input() name: string;
-  @Input() enableFilter: boolean = false;
+  @Input() enableCheckAll = false;
+  @Input() filterLabel!: string;
+  @Input() singleSelection = false;
+  @Input({ required: true }) items!: Item[];
+  @Input() name!: string;
+  @Input() enableFilter = false;
+  @Input() placeholder = 'Søk';
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
-  filteredItems: Item[];
-  filterString = '';
-  minimumFilterLength: number = 3;
-  searchMode: boolean = false;
+  @ViewChild('checkboxList') checkboxListRef: ElementRef;
+  @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
+
   instanceID = crypto.randomUUID();
+  itemsFiltered!: Item[];
+  itemsFilteredIsLoading = false;
+  itemsFilteredIsLoaded = false;
+  searchTerm = '';
+  $searchTerm = new Subject<string>();
+  resultListHeight = 'auto';
+  resultListMaxHeight!: string;
+
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
+    }
+    if (this.enableFilter) {
+      this.getFilteredItems(this.$searchTerm).subscribe((resultItems) => {
+        if (this.itemsFilteredIsLoading) {
+          this.itemsFilteredIsLoaded = true;
+          this.itemsFilteredIsLoading = false;
+          this.itemsFiltered = resultItems;
+          this.changeDetector.detectChanges();
+        }
+        this.resultListHeight = 'auto';
+        this.changeDetector.detectChanges();
+      });
     }
   }
 
@@ -49,24 +75,19 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
-      this.filteredItems = [...this.items];
     }
     this.itemsChange.emit(this.items);
   }
 
-  onFilterNgModelChange(filterValue: string) {
-    if (filterValue.length === 0) {
-      this.filterString = filterValue;
-      this.filterTree();
+  onSearchTermChange(searchTerm: string) {
+    if (searchTerm.length === 0) {
+      this.itemsFilteredIsLoaded = false;
+      this.itemsFilteredIsLoading = false;
+    } else {
+      this.itemsFilteredIsLoading = true;
+      this.updateResultListHeighWhileLoading();
     }
-  }
-
-  onFilterKeydownEnter() {
-    this.filterTree();
-  }
-
-  onFilterButtonClick() {
-    this.filterTree();
+    this.$searchTerm.next(searchTerm);
   }
 
   toggleExpanded(item: Item) {
@@ -99,46 +120,55 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree() {
-    if (this.filterString.length >= this.minimumFilterLength) {
-      this.searchMode = true;
-      this.filteredItems = this.filterTreeData(this.items, this.filterString);
+  private updateResultListHeighWhileLoading() {
+    const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
+    const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
+
+    if (heightList && !heightWrapper) {
+      this.resultListHeight = heightList + 'px';
+      this.resultListMaxHeight = heightList > 500 ? heightList + 'px' : '500px';
     } else {
-      this.searchMode = false;
-      this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
-      this.filteredItems = [...this.items]; // show all
+      this.resultListHeight = heightWrapper + 'px';
     }
   }
 
-  private filterTreeData(treeData: Item[], filterString: string): Item[] {
-    const lowerCaseFilter = filterString.toLowerCase();
+  private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
+    return $searchTerm.pipe(
+      debounceTime(400),
+      switchMap((searchTerm) => this.getItemsFilteredBySearchTerm(searchTerm)),
+    );
+  }
 
-    const filterItems = (items: Item[]): Item[] => {
-      return items.reduce((filteredItems: Item[], item: Item) => {
-        item.name = item.name.replace(/<[^>]*>/g, ''); // remove <mark> tag that was added for highlighting
-        const lowerCaseName = item.name.toLowerCase();
+  private getItemsFilteredBySearchTerm(searchTerm: string): Observable<Item[]> {
+    this.itemsFilteredIsLoaded = false;
 
-        if (lowerCaseName.includes(lowerCaseFilter)) {
-          if (lowerCaseFilter !== '') {
-            item.name = item.name.replace(
-              RegExp(filterString, 'gi'), // find filter string to highlight
-              '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
-            );
-          }
-          const filteredChildren = item.children ? filterItems(item.children) : [];
-          filteredItems.push({ ...item, children: filteredChildren });
-        } else if (item.children) {
-          const filteredChildren = filterItems(item.children);
-          if (filteredChildren.length > 0) {
-            filteredItems.push({ ...item, children: filteredChildren });
-          }
-        }
+    if (searchTerm === '') {
+      return of(undefined);
+    }
+    return of(this.filterItemsRecursively(cloneDeep(this.items), searchTerm));
+  }
 
-        return filteredItems;
-      }, []);
-    };
+  private filterItemsRecursively(items: Item[], searchTerm: string): Item[] {
+    return items.reduce((itemsFiltered: Item[], item: Item) => {
+      let filteredChildren: Item[];
+      const partialMatch = item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
 
-    return filterItems(treeData);
+      if (item.children?.length > 0) {
+        filteredChildren = this.filterItemsRecursively(item.children, searchTerm);
+      }
+
+      if (partialMatch) {
+        item.name = item.name.replace(
+          RegExp(searchTerm, 'gi'),
+          '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
+        );
+        itemsFiltered.push({ ...item, children: filteredChildren });
+      }
+      if (!partialMatch && item.children && filteredChildren?.length > 0) {
+        itemsFiltered.push({ ...item, children: filteredChildren });
+      }
+      return itemsFiltered;
+    }, []);
   }
 
   private updateCheckedState(

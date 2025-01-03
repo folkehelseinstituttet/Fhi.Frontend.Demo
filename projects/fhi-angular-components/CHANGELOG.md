@@ -1,8 +1,9 @@
 # Unreleased
 
-> Nov 27, 2024
+> Dec 18, 2024
 
 * :bug: **Bugfix** Make selected value visible before ng-select is touched (in `FhiAutosuggestComponent`) [(#762)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/762)
+* :tada: **Enhancement** Start search while typing, and at first character, in `FhiTreeViewSelectionComponent` [(#769)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/769)
 
 ## 5.2.0
 

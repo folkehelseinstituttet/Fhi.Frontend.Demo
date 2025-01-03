@@ -10,10 +10,10 @@ import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-ite
   templateUrl: './fhi-tree-view-radio.component.html',
 })
 export class FhiTreeViewRadioComponent {
-  @Input() enableFilter: boolean = false;
-  @Input() filterLabel: string = 'Filtrer listen';
-  @Input() items: Item[];
-  @Input({ required: true }) name: string;
+  @Input() enableFilter = false;
+  @Input() filterLabel!: string;
+  @Input({ required: true }) items!: Item[];
+  @Input({ required: true }) name!: string;
 
   @Output() itemsChange = new EventEmitter<Item[]>();
 
