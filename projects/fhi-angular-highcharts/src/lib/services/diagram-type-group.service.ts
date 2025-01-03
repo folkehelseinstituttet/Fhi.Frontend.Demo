@@ -149,16 +149,34 @@ export class DiagramTypeGroupService {
 
     if (isChart) {
       items.chartTypes.forEach((id) => {
-        group.children.push(ChartTypes.find((type) => type.id === id));
+        this.updateDiagramTypeGroup(id, group, ChartTypes, 'Chart');
       });
     }
     if (isMap) {
       items.mapTypes.forEach((id) => {
-        group.children.push(MapTypes.find((type) => type.id === id));
+        this.updateDiagramTypeGroup(id, group, MapTypes, 'Map');
       });
     }
 
     return group;
+  }
+
+  private updateDiagramTypeGroup(
+    id: string,
+    group: DiagramTypeGroup,
+    Types: DiagramType[],
+    typeName: string,
+  ) {
+    const type = Types.find((type) => type.id === id);
+    const typeExist = group.children.find((type) => type.id === id);
+
+    if (type !== undefined && typeExist === undefined) {
+      group.children.push(type);
+    } else if (typeExist) {
+      console.warn(typeName + ' type id: "' + id + '" is listed more than once.');
+    } else {
+      console.warn(typeName + ' type id: "' + id + '" is not valid.');
+    }
   }
 
   private diagramTypeIsActive(diagramType: DiagramType, groups: DiagramTypeGroup[]): boolean {
