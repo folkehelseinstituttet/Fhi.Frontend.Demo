@@ -230,13 +230,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (!this.metadataForSeries.find((serie) => serie.hasDecimalData)) {
       return;
     }
-
-    console.log('serie.name', serie.name);
-
     const maxDecimals = this.getVerifiedMaxDecimalCount(serie);
     serie.data.forEach((dataPoint) => {
-      console.log('dataPoint', dataPoint);
-
       if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
         dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
       }
