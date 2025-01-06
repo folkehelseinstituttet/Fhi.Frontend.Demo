@@ -15,7 +15,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -245,11 +245,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   private createIds(items: Item[], id?: number) {
     let itemID = id ? id : 0;
     items.forEach((item) => {
-      if (item.id === undefined) {
-        item.id = this.instanceID + '-' + itemID++;
-      } else {
-        item.id = this.instanceID + '-' + item.id;
-      }
+      item.itemID = this.instanceID + '-' + itemID++;
+
       if (item.children && item.children.length > 0) {
         this.createIds(item.children, itemID * 10);
       }
