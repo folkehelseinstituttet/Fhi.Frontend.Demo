@@ -94,7 +94,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: number | string, multiToggle = false, checkAll = false) {
+  toggleChecked(id: string, multiToggle = false, checkAll = false) {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
     if (!multiToggle) {
@@ -104,14 +104,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   checkAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true, true);
+      this.toggleChecked(item.itemID, true, true);
     });
     this.itemsChange.emit(this.items);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true);
+      this.toggleChecked(item.itemID, true);
     });
     this.itemsChange.emit(this.items);
   }
@@ -171,14 +171,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }, []);
   }
 
-  private updateCheckedState(
-    id: number | string,
-    items: Item[],
-    multiToggle: boolean,
-    checkAll: boolean,
-  ) {
+  private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
     items.forEach((item) => {
-      if (item.id === id) {
+      if (item.itemID === id) {
         if (multiToggle) {
           checkAll ? (item.isChecked = true) : (item.isChecked = false);
         } else if (!this.singleSelection) {
@@ -187,7 +182,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           item.isChecked = true;
         }
       }
-      if (this.singleSelection && item.id !== id) {
+      if (this.singleSelection && item.itemID !== id) {
         item.isChecked = null;
       }
       if (item.children && item.children.length > 0) {
@@ -243,12 +238,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   private createIds(items: Item[], id?: number) {
-    let itemID = id ? id : 0;
+    id = id ? id : 0;
+
     items.forEach((item) => {
-      item.itemID = this.instanceID + '-' + itemID++;
+      item.itemID = this.instanceID + '-' + ++id;
 
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, itemID * 10);
+        this.createIds(item.children, id * 10);
       }
     });
   }
