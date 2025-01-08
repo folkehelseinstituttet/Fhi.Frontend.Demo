@@ -416,6 +416,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.diagramOptionsInternal.footer?.credits) {
       return true;
     }
+    if (this.diagramOptionsInternal.units?.length > 0) {
+      return true;
+    }
     return false;
   }
 
