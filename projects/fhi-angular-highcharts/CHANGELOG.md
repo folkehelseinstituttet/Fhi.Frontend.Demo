@@ -6,6 +6,7 @@
 * :tada: **Enhancement** Update qualitative color series [(#771)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/771)
 * :tada: **Enhancement** Use cloneDeep() to make diagramOptions immutable [(#765)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/765)
 * :tada: **Enhancement** Rewrite decimals once instead of formatting decimals in table template and tooltip [(#773)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/773)
+* :tada: **Enhancement** Show footer if only units are set, and also show footer if flags, but no flagged data [(#780)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/780)
 
 ## 5.2.0
 
