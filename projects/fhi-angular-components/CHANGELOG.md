@@ -3,7 +3,7 @@
 > Jan 8, 2025
 
 * :bug: **Bugfix** Make selected value visible before ng-select is touched (in `FhiAutosuggestComponent`) [(#762)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/762)
-* :bug: **Bugfix** In `FhiTreeViewSelectionComponent`, add property internal, and make sure custom properties set by consumer (eg. `FhiTreeViewSelectionItem.id`)  are treated as immutable [(#778)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/778)
+* :bug: **Bugfix** In `FhiTreeViewSelectionComponent`, add property internal, and make sure custom properties set by consumer (e.g. `FhiTreeViewSelectionItem.id`)  are treated as immutable [(#778)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/778)
 * :tada: **Enhancement** In `FhiTreeViewSelectionComponent`, start search while typing, and at first character [(#769)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/769)
 
 ## 5.2.0

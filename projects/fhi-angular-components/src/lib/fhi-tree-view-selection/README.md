@@ -29,5 +29,5 @@
 | `isExpanded`               | `boolean`                    | -       | no       | Whether the item is expanded or not. |
 | `hasCheckedDescendant`     | `boolean`                    | -       | no       | Whether the item has checked descendant or not. |
 | `name`                     | `string`                     | -       | yes      | Used as value in the form check label. |
-| `[key: string]`            | `unknown`                    | -       | no       | Custom properties (eg. id). All custom properties are treated as immutable. |
+| `[key: string]`            | `unknown`                    | -       | no       | Custom properties (e.g. id). All custom properties are treated as immutable. |
 | `internal`                 | NA                           | -       | no       | Properties used internally by the component. If property `internal` is set it will always be overwritten. |
