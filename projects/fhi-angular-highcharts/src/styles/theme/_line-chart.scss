@@ -10,16 +10,6 @@
 .highcharts-line-series.highcharts-markers.highcharts-tracker {
     .highcharts-point {
         stroke-width: 4;
-        display: none;
-    }
-    .highcharts-point:first-child,
-    .highcharts-halo + .highcharts-point:nth-child(2),
-    .highcharts-point:last-child {
-        display: inline;
-    }
-    .highcharts-point-hover,
-    .highcharts-point-hover {
-        display: inline;
     }
 }
 
