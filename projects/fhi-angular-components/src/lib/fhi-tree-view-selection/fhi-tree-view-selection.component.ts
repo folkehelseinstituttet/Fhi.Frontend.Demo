@@ -15,7 +15,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
+import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -104,14 +104,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   checkAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.itemID, true, true);
+      this.toggleChecked(item.internal.id, true, true);
     });
     this.itemsChange.emit(this.items);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.itemID, true);
+      this.toggleChecked(item.internal.id, true);
     });
     this.itemsChange.emit(this.items);
   }
@@ -173,7 +173,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
     items.forEach((item) => {
-      if (item.itemID === id) {
+      if (item.internal.id === id) {
         if (multiToggle) {
           checkAll ? (item.isChecked = true) : (item.isChecked = false);
         } else if (!this.singleSelection) {
@@ -182,7 +182,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           item.isChecked = true;
         }
       }
-      if (this.singleSelection && item.itemID !== id) {
+      if (this.singleSelection && item.internal.id !== id) {
         item.isChecked = null;
       }
       if (item.children && item.children.length > 0) {
@@ -241,8 +241,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     id = id ? id : 0;
 
     items.forEach((item) => {
-      item.itemID = this.instanceID + '-' + ++id;
-
+      item.internal = {
+        id: this.instanceID + '-' + ++id,
+      };
       if (item.children && item.children.length > 0) {
         this.createIds(item.children, id * 10);
       }

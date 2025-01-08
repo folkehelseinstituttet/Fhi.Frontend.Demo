@@ -80,7 +80,7 @@
       <ng-container *ngIf="(item.isExpanded && item.children) || (item.children && itemsFilteredIsLoaded)">
         <div class="fhi-tree-view-checkbox__nested-group">
           <ng-container
-            *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.itemID }"
+            *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.internal?.id }"
           ></ng-container>
         </div>
       </ng-container>
@@ -111,7 +111,7 @@
   <button
     class="fhi-tree-view-checkbox__toggler"
     [attr.aria-label]="'Toggle ' + item.name"
-    [attr.aria-controls]="'list-' + item.itemID"
+    [attr.aria-controls]="'list-' + item.internal?.id"
     [attr.aria-haspopup]="'tree'"
     [attr.aria-expanded]="item.isExpanded"
     (click)="toggleExpanded(item)"
@@ -134,14 +134,14 @@
       class="form-check-input"
       type="checkbox"
       value=""
-      [id]="'check-input-' + item.itemID"
+      [id]="'check-input-' + item.internal?.id"
       [checked]="item.isChecked"
-      (click)="toggleChecked(item.itemID)"
+      (click)="toggleChecked(item.internal?.id)"
     />
     <label
       class="form-check-label"
-      [for]="'check-input-' + item.itemID"
-      [id]="'label-' + item.itemID"
+      [for]="'check-input-' + item.internal?.id"
+      [id]="'label-' + item.internal?.id"
       [innerHTML]="item.name"
     ></label>
   </div>
@@ -153,14 +153,14 @@
       class="form-check-input"
       type="radio"
       [name]="name"
-      [id]="name + '-' + item.itemID"
+      [id]="name + '-' + item.internal?.id"
       [checked]="item.isChecked"
-      (change)="toggleChecked(item.itemID, false, false)"
+      (change)="toggleChecked(item.internal?.id, false, false)"
     />
     <label
       class="form-check-label"
-      [for]="name + '-' + item.itemID"
-      [id]="'label-' + item.itemID"
+      [for]="name + '-' + item.internal?.id"
+      [id]="'label-' + item.internal?.id"
       [innerHTML]="item.name"
     ></label>
   </div>

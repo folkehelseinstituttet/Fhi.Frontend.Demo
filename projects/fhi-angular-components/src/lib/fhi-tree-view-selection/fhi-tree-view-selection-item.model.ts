@@ -1,8 +1,13 @@
+interface InternalItemProps {
+  id: string;
+}
+
 export interface FhiTreeViewSelectionItem {
   children?: FhiTreeViewSelectionItem[];
-  id?: number | string;
+  internal?: InternalItemProps;
   isChecked?: boolean;
   isExpanded?: boolean;
   hasCheckedDescendant?: boolean;
   name: string;
+  [key: string]: unknown;
 }
