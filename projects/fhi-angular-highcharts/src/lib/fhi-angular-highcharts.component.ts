@@ -404,7 +404,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.showMap && !this.diagramOptionsInternal.openSource) {
       return true;
     }
-    if (this.diagramOptionsInternal.footer?.flags && this.flaggedSeries.length !== 0) {
+    if (this.diagramOptionsInternal.footer?.flags) {
       return true;
     }
     if (this.diagramOptionsInternal.footer?.lastUpdated) {
