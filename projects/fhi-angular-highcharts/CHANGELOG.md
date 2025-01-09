@@ -1,11 +1,12 @@
 # Unreleased
 
-> Dec 18, 2024
+> Jan 9, 2025
 
 * :tada: **Enhancement** Add option `categoryAxis` to `FhiDiagramOptions`, and add support for setting the category axis title [(#763)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/763)
 * :tada: **Enhancement** Update qualitative color series [(#771)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/771)
 * :tada: **Enhancement** Use cloneDeep() to make diagramOptions immutable [(#765)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/765)
 * :tada: **Enhancement** Rewrite decimals once instead of formatting decimals in table template and tooltip [(#773)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/773)
+* :tada: **Enhancement** Update styling of `fhi-diagram-controls` to make diagram type navigation horizontal on most mobile phones [(#781)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/781)
 
 ## 5.2.0
 
