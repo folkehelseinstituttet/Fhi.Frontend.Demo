@@ -1,65 +1,69 @@
 <div class="btn-group fhi-btn-group" role="group">
-  <ng-container *ngFor="let diagramTypeGroup of diagramTypeGroups">
-    <ng-container *ngIf="diagramTypeGroup.children.length === 1">
+  @for (group of diagramTypeGroups; track group.diagramType) {
+    @if (group.children.length === 1) {
       <button
         type="button"
         class="btn fhi-btn-group__btn"
-        [ngClass]="{ active: diagramTypeGroup.diagramType?.active }"
-        (click)="navigate(diagramTypeGroup.diagramType)"
+        [ngClass]="{ active: group.diagramType?.active }"
+        (click)="navigate(group.diagramType)"
       >
-        <i
-          [class]="'icon-' + diagramTypeGroup.diagramType?.icon"
-          [ngClass]="{ 'icon-white': diagramTypeGroup.diagramType?.active }"
-          *ngIf="diagramTypeGroup.diagramType?.icon"
-        ></i>
-        {{ diagramTypeGroup.name }}
+        <ng-container
+          [ngTemplateOutlet]="icon"
+          [ngTemplateOutletContext]="{ icon: group.diagramType?.icon, active: group.diagramType?.active }"
+        />
+        {{ group.name }}
       </button>
-    </ng-container>
-
-    <ng-container *ngIf="diagramTypeGroup.children.length > 1">
+    } @else {
       <div class="btn-group" role="group">
         <button
           type="button"
           class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
-          [ngClass]="{ active: diagramTypeGroup.diagramType?.active }"
-          (click)="navigate(diagramTypeGroup.diagramType)"
+          [ngClass]="{ active: group.diagramType?.active }"
+          (click)="navigate(group.diagramType)"
         >
           <span>
-            <i
-              [class]="'icon-' + diagramTypeGroup.diagramType?.icon"
-              [ngClass]="{ 'icon-white': diagramTypeGroup.diagramType?.active }"
-              *ngIf="diagramTypeGroup.diagramType?.icon"
-            ></i>
-            {{ diagramTypeGroup.name }}
+            <ng-container
+              [ngTemplateOutlet]="icon"
+              [ngTemplateOutletContext]="{ icon: group.diagramType?.icon, active: group.diagramType?.active }"
+            />
+            {{ group.name }}
           </span>
         </button>
         <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
           <button
             type="button"
             class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
-            [ngClass]="{ active: diagramTypeGroup.diagramType?.active }"
+            [ngClass]="{ active: group.diagramType?.active }"
             aria-label="Velg noe..."
             ngbDropdownToggle
           ></button>
           <div class="dropdown-menu" ngbDropdownMenu>
-            <ng-container *ngFor="let diagramType of diagramTypeGroup.children">
+            @for (diagramType of group.children; track diagramType.id) {
               <button
                 class="text-nowrap"
                 [ngClass]="{ active: diagramType?.active }"
                 ngbDropdownItem
                 (click)="navigate(diagramType)"
               >
-                <i [class]="'icon-' + diagramType?.icon" *ngIf="diagramType?.icon"></i>
+                <ng-container
+                  [ngTemplateOutlet]="icon"
+                  [ngTemplateOutletContext]="{ icon: diagramType.icon, active: false }"
+                />
                 {{ diagramType?.name }}
               </button>
-            </ng-container>
+            }
           </div>
         </div>
       </div>
-    </ng-container>
-  </ng-container>
+    }
+  }
 </div>
 
+<ng-template #icon let-icon="icon" let-active="active">
+  @if (icon) {
+    <i [class]="'icon-' + icon" [ngClass]="{ 'icon-white': active }"></i>
+  }
+</ng-template>
 <!-- <ul>
   <li *ngFor="let group2 of diagramTypeGroups">
     {{ group2.name }}
