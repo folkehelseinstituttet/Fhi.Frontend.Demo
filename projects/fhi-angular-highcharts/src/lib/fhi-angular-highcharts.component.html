@@ -161,83 +161,90 @@
 
   <ng-template #diagramFooter>
     <footer class="mt-3">
-      <p
-        *ngIf="
-          diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table
-        "
-      >
-        <strong>Måltall </strong>
-        <span>
-          @for (unit of diagramOptionsInternal.units; track unit; let i = $index) {
-            <ng-container *ngIf="i === 0">{{ unit.label }}</ng-container>
-            <ng-container *ngIf="i > 0">, {{ unit.label }}</ng-container>
-          }
-        </span>
-      </p>
-      <p *ngIf="diagramOptionsInternal.footer?.lastUpdated">
-        <strong>Sist oppdatert </strong>{{ diagramOptionsInternal.footer?.lastUpdated }}
-      </p>
-      <p *ngIf="diagramOptionsInternal.footer?.credits">
-        <strong>Kilde </strong>
-        <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{ diagramOptionsInternal.footer.credits.text }}</a>
-      </p>
-      <div
-        class="mb-3"
-        *ngIf="diagramOptionsInternal.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table"
-      >
-        <strong>Tegnforklaringer</strong><br />
-        <table>
-          <tbody>
-            <tr *ngFor="let flag of diagramOptionsInternal.footer?.flags">
-              <td class="pe-2">{{ flag.symbol }}</td>
-              <td>{{ flag.label }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div
-        class="mb-3"
-        *ngIf="
-          flaggedSeries.length > 0 &&
-          diagramOptionsInternal.footer?.flags &&
-          activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
-        "
-      >
+      @if (diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
         <p>
-          <a
-            role="button"
-            class="fhi-popover-trigger"
-            tabindex="0"
-            triggers="manual"
-            #p="ngbPopover"
-            aria-haspopup="true"
-            (click)="p.toggle()"
-            (keydown.enter)="p.toggle()"
-            [autoClose]="'outside'"
-            [ngbPopover]="popContent"
-            >Diagrammet inneholder data som ikke kan vises</a
-          >
+          <strong>Måltall </strong>
+          <span>
+            @for (unit of diagramOptionsInternal.units; track $index) {
+              <!-- Need *ngIf here, see https://github.com/prettier/prettier/issues/16577 -->
+              <ng-container *ngIf="$index === 0">{{ unit.label }}</ng-container>
+              <ng-container *ngIf="$index > 0">, {{ unit.label }}</ng-container>
+            }
+          </span>
         </p>
-        <ng-template #popContent>
-          <p>Følgende data vises ikke i diagrammet</p>
-          <ul>
-            <li *ngFor="let dataPoint of getFlaggedDataPoints()">{{ dataPoint }} <br /></li>
-          </ul>
-        </ng-template>
-        <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
-        for å se flere detaljer.
-      </div>
-      <p class="fst-italic small" *ngIf="diagramOptionsInternal.footer?.disclaimer">
-        {{ diagramOptionsInternal.footer?.disclaimer }}
-      </p>
-      <p>
-        <a
-          class="highcharts-credits"
-          href="{{ getMapCopyright()['url'] }}"
-          *ngIf="!diagramOptionsInternal.openSource && showMap"
-          >Kartdata fra &#169; {{ getMapCopyright()['text'] }}</a
-        >
-      </p>
+      }
+      @if (diagramOptionsInternal.footer?.lastUpdated) {
+        <p><strong>Sist oppdatert </strong>{{ diagramOptionsInternal.footer?.lastUpdated }}</p>
+      }
+      @if (diagramOptionsInternal.footer?.credits) {
+        <p>
+          <strong>Kilde </strong>
+          <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{
+            diagramOptionsInternal.footer.credits.text
+          }}</a>
+        </p>
+      }
+      @if (diagramOptionsInternal.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
+        <div class="mb-3">
+          <strong>Tegnforklaringer</strong><br />
+          <table>
+            <tbody>
+              @for (flag of diagramOptionsInternal.footer?.flags; track $index) {
+                <tr>
+                  <td class="pe-2">{{ flag.symbol }}</td>
+                  <td>{{ flag.label }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+      @if (
+        flaggedSeries.length > 0 &&
+        diagramOptionsInternal.footer?.flags &&
+        activeDiagramTypeGroup?.name !== diagramTypeGroupNames?.table
+      ) {
+        <div class="mb-3">
+          <p>
+            <a
+              role="button"
+              class="fhi-popover-trigger"
+              tabindex="0"
+              triggers="manual"
+              #p="ngbPopover"
+              aria-haspopup="true"
+              (click)="p.toggle()"
+              (keydown.enter)="p.toggle()"
+              [autoClose]="'outside'"
+              [ngbPopover]="popContent"
+            >
+              Diagrammet inneholder data som ikke kan vises
+            </a>
+          </p>
+          <ng-template #popContent>
+            <p>Følgende data vises ikke i diagrammet</p>
+            <ul>
+              @for (dataPoint of getFlaggedDataPoints(); track $index) {
+                <li>{{ dataPoint }} <br /></li>
+              }
+            </ul>
+          </ng-template>
+          <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
+          for å se flere detaljer.
+        </div>
+      }
+      @if (diagramOptionsInternal.footer?.disclaimer) {
+        <p class="fst-italic small">
+          {{ diagramOptionsInternal.footer?.disclaimer }}
+        </p>
+      }
+      @if (!diagramOptionsInternal.openSource && showMap) {
+        <p>
+          <a class="highcharts-credits" href="{{ getMapCopyright()['url'] }}">
+            Kartdata fra &#169; {{ getMapCopyright()['text'] }}
+          </a>
+        </p>
+      }
     </footer>
   </ng-template>
 
