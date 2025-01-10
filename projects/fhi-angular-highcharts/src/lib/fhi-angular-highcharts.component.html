@@ -122,46 +122,36 @@
         <thead>
           <tr *ngFor="let headerRow of tableData.theadRows">
             <ng-container *ngFor="let tableCell of headerRow; let i = index">
-              <ng-container *ngIf="tableCell">
+              @if (tableCell?.isHeading && tableCell?.name !== undefined) {
+                <th class="text-center" [attr.colspan]="tableCell.colspan ? tableCell.colspan : null" scope="col">
+                  {{ tableCell.name }}
+                </th>
+              } @else if (tableCell && !tableCell.isHeading) {
                 <td
                   class="text-center"
                   [attr.colspan]="tableCell.colspan ? tableCell.colspan : null"
                   [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
-                  *ngIf="!tableCell.isHeading; else tableHeaderCell"
                 ></td>
-                <ng-template #tableHeaderCell>
-                  <th
-                    class="text-center"
-                    [attr.colspan]="tableCell.colspan ? tableCell.colspan : null"
-                    scope="col"
-                    *ngIf="tableCell.isHeading && tableCell.name !== undefined"
-                  >
-                    {{ tableCell.name }}
-                  </th>
-                </ng-template>
-              </ng-container>
+              }
             </ng-container>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let tableRow of tableData.tbodyRows">
             <ng-container *ngFor="let tableCell of tableRow; let i = index">
-              <th
-                class="text-nowrap text-start"
-                [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
-                scope="row"
-                *ngIf="tableCell.isHeading && tableCell.name !== undefined"
-              >
-                {{ tableCell.name }}
-              </th>
-              <td class="text-end" *ngIf="!tableCell.isHeading">
-                <ng-container *ngIf="isNumber(tableCell.data); else tableCellDataIsString">
+              @if (tableCell?.isHeading && tableCell?.name !== undefined) {
+                <th
+                  class="text-nowrap text-start"
+                  [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
+                  scope="row"
+                >
+                  {{ tableCell.name }}
+                </th>
+              } @else if (tableCell && !tableCell.isHeading) {
+                <td class="text-end">
                   {{ tableCell.data }}
-                </ng-container>
-                <ng-template #tableCellDataIsString>
-                  {{ tableCell.data }}
-                </ng-template>
-              </td>
+                </td>
+              }
             </ng-container>
           </tr>
         </tbody>
