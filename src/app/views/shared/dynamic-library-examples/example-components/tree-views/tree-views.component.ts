@@ -30,6 +30,8 @@ export class TreeViewsComponent implements OnInit {
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
+    console.log('items', items[0]);
+
     this.itemsCheck = items;
   }
 
@@ -83,6 +85,7 @@ export class TreeViewsComponent implements OnInit {
   private getTreeViewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [
       {
+        internal: 'this will be overwritten...',
         name: 'For utviklere',
         children: [
           {

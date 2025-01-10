@@ -15,7 +15,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -32,12 +33,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
-  @Input({ required: true }) items!: Item[];
+  @Input({ required: true }) items!: FhiTreeViewSelectionItem[];
   @Input() name!: string;
   @Input() enableFilter = false;
   @Input() placeholder = 'Søk';
 
-  @Output() itemsChange = new EventEmitter<Item[]>();
+  @Output() itemsChange = new EventEmitter<FhiTreeViewSelectionItem[]>();
 
   @ViewChild('checkboxList') checkboxListRef: ElementRef;
   @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
@@ -76,7 +77,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   onSearchTermChange(searchTerm: string) {
@@ -98,7 +99,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
     if (!multiToggle) {
-      this.itemsChange.emit(this.items);
+      this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
     }
   }
 
@@ -106,14 +107,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     items.forEach((item) => {
       this.toggleChecked(item.internal.id, true, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
       this.toggleChecked(item.internal.id, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   allItemsChecked(items: Item[]): boolean {

@@ -1,13 +1,8 @@
-interface InternalItemProps {
-  id: string;
-}
+import { FhiTreeViewSelectionItemInternal } from './fhi-tree-view-selection-item-internal.model';
 
-export interface FhiTreeViewSelectionItem {
+export interface FhiTreeViewSelectionItem
+  extends Omit<FhiTreeViewSelectionItemInternal, 'internal'> {
   children?: FhiTreeViewSelectionItem[];
-  internal?: InternalItemProps;
-  isChecked?: boolean;
-  isExpanded?: boolean;
-  hasCheckedDescendant?: boolean;
-  name: string;
+  id?: number | string;
   [key: string]: unknown;
 }
