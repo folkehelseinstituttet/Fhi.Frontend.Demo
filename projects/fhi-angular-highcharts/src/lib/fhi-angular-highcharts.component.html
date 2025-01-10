@@ -7,38 +7,38 @@
     }
 
     @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
-      <ng-container *ngTemplateOutlet="diagramControls"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramControls" />
     }
     @if (showDiagramTypeDisabledWarning) {
-      <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning" />
     } @else if (showDuplicateSerieNameError) {
-      <ng-container *ngTemplateOutlet="duplicateSerieNameError"></ng-container>
+      <ng-container *ngTemplateOutlet="duplicateSerieNameError" />
     } @else {
-      <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramAndFooter" />
     }
   </article>
 
   <ng-template #diagramAndFooter>
     @switch (activeDiagramTypeGroup?.name) {
       @case (diagramTypeGroupNames?.table) {
-        <ng-container *ngTemplateOutlet="table"></ng-container>
+        <ng-container *ngTemplateOutlet="table" />
       }
       @case (diagramTypeGroupNames?.map) {
         @if (showMap) {
-          <ng-container *ngTemplateOutlet="map"></ng-container>
+          <ng-container *ngTemplateOutlet="map" />
         }
       }
       @case (diagramTypeGroupNames?.chart) {
         @if (showDefaultChartTemplate) {
-          <ng-container *ngTemplateOutlet="chart"></ng-container>
+          <ng-container *ngTemplateOutlet="chart" />
         } @else {
           <!-- chartAnimationHack: to get correct chart animation when switching from one chart type to another -->
-          <ng-container *ngTemplateOutlet="chart"></ng-container>
+          <ng-container *ngTemplateOutlet="chart" />
         }
       }
     }
     @if (showFooter) {
-      <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
+      <ng-container *ngTemplateOutlet="diagramFooter" />
     }
   </ng-template>
 
@@ -61,7 +61,7 @@
             </button>
           }
           @if (showFullScreenButton && !showDiagramTypeDisabledWarning) {
-            <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
+            <ng-container *ngTemplateOutlet="diagramModal" />
           }
         </div>
       </div>
@@ -90,7 +90,7 @@
         @if (diagramOptionsInternal.description) {
           <p>{{ diagramOptionsInternal.description }}</p>
         }
-        <ng-container *ngTemplateOutlet="diagramAndFooter"></ng-container>
+        <ng-container *ngTemplateOutlet="diagramAndFooter" />
       </ng-container>
     </fhi-modal>
   </ng-template>
