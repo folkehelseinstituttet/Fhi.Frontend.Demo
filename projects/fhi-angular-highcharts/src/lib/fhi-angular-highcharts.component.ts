@@ -404,7 +404,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     if (this.showMap && !this.diagramOptionsInternal.openSource) {
       return true;
     }
-    if (this.diagramOptionsInternal.footer?.flags && this.flaggedSeries.length !== 0) {
+    if (this.diagramOptionsInternal.footer?.flags) {
       return true;
     }
     if (this.diagramOptionsInternal.footer?.lastUpdated) {
@@ -414,6 +414,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       return true;
     }
     if (this.diagramOptionsInternal.footer?.credits) {
+      return true;
+    }
+    if (this.diagramOptionsInternal.units?.length > 0) {
       return true;
     }
     return false;

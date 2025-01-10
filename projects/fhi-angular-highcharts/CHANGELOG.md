@@ -8,6 +8,7 @@
 * :tada: **Enhancement** Rewrite decimals once instead of formatting decimals in table template and tooltip [(#773)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/773)
 * :tada: **Enhancement** Add test for illegal diagram type, and for multiple equal diagram types [(#776)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/776)
 * :tada: **Enhancement** Update styling of diagram type line to mark all line points [(#779)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/779)
+* :tada: **Enhancement** Show footer if only units are set, and also show footer if flags, but no flagged data [(#780)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/780)
 
 ## 5.2.0
 
