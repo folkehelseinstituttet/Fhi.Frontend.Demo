@@ -19,24 +19,24 @@
   </article>
 
   <ng-template #diagramAndFooter>
-    <ng-container [ngSwitch]="activeDiagramTypeGroup?.name">
-      <ng-container *ngSwitchCase="diagramTypeGroupNames?.table">
+    @switch (activeDiagramTypeGroup?.name) {
+      @case (diagramTypeGroupNames?.table) {
         <ng-container *ngTemplateOutlet="table"></ng-container>
-      </ng-container>
-      <ng-container *ngSwitchCase="diagramTypeGroupNames?.map">
+      }
+      @case (diagramTypeGroupNames?.map) {
         @if (showMap) {
           <ng-container *ngTemplateOutlet="map"></ng-container>
         }
-      </ng-container>
-      <ng-container *ngSwitchCase="diagramTypeGroupNames?.chart">
+      }
+      @case (diagramTypeGroupNames?.chart) {
         @if (showDefaultChartTemplate) {
           <ng-container *ngTemplateOutlet="chart"></ng-container>
         } @else {
           <!-- chartAnimationHack: to get correct chart animation when switching from one chart type to another -->
           <ng-container *ngTemplateOutlet="chart"></ng-container>
         }
-      </ng-container>
-    </ng-container>
+      }
+    }
     @if (showFooter) {
       <ng-container *ngTemplateOutlet="diagramFooter"></ng-container>
     }
