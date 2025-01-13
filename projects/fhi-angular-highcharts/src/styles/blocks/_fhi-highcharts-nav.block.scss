@@ -11,30 +11,38 @@
     }
 }
 
-@container diagramControls (max-width: #{$fhi-core-px * 449}) {
-    .fhi-btn-group {
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
+@container diagramControls (max-width: #{$fhi-core-px * 334}) {
+    .fhi-diagram-controls {
+        .fhi-btn-group {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
 
-        &__btn {
-            width: 100%;
+            &__btn {
+                width: 100%;
+            }
+
+            &__split-btn {
+                min-width: $fhi-core-px * 99;
+            }
         }
 
-        &__split-btn {
-            min-width: $fhi-core-px * 99;
+        .dropdown-menu {
+            left: calc(#{$fhi-core-px} * -97) !important;
         }
-    }
-
-    .dropdown-menu {
-        left: calc(#{$fhi-core-px} * -97) !important;
     }
 }
 
-@container diagramControls (min-width: #{$fhi-core-px * 288}) {
+@container diagramControls (max-width: #{$fhi-core-px * 449}) {
     .fhi-diagram-controls {
-        &__metadata {
-            margin-bottom: 0;
+        .btn {
+            font-size: $fhi-core-font-size-2;
+        }
+        .fhi-btn-group {
+            &__btn {
+                padding-left: $fhi-core-px * 13;
+                padding-right: $fhi-core-px * 13;
+            }
         }
     }
 }
