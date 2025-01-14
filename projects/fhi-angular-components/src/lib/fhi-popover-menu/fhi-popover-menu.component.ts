@@ -14,7 +14,7 @@ import { FhiPopoverItem } from './fhi-popover-menu.model';
   templateUrl: './fhi-popover-menu.component.html',
 })
 export class FhiPopoverMenuComponent {
-  @Input() items: Array<FhiPopoverItem>;
+  @Input({ required: true }) items: Array<FhiPopoverItem>;
   @Input() triggerIcon = 'three-dots-vertical';
   @Output() actionEvent = new EventEmitter<string>();
 
