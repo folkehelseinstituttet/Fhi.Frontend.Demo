@@ -25,9 +25,8 @@
 | Property                   | Type                         | Default | Required | Description |
 | -------------------------- | ---------------------------- | ------- | -------- | ----------- |
 | `children`                 | `FhiTreeViewSelectionItem[]` | -       | no       | Recursively add items to the tree. |
+| `id`                       | `number \| string`           | -       | no       | Optional item id, not used by the component (kept in the interface for backwards compatibility). |
 | `isChecked`                | `boolean`                    | -       | no       | Whether the item is checked or not. |
 | `isExpanded`               | `boolean`                    | -       | no       | Whether the item is expanded or not. |
 | `hasCheckedDescendant`     | `boolean`                    | -       | no       | Whether the item has checked descendant or not. |
 | `name`                     | `string`                     | -       | yes      | Used as value in the form check label. |
-| `[key: string]`            | `unknown`                    | -       | no       | Custom properties (e.g. id). All custom properties are treated as immutable. |
-| `internal`                 | NA                           | -       | no       | Properties used internally by the component. If property `internal` is set it will always be overwritten. |
