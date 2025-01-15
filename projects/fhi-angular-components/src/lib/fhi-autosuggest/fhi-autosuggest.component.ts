@@ -13,12 +13,12 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class FhiAutosuggestComponent {
-  @Input({ required: true }) items: Array<FhiAutosuggestItem> = [];
-  @Input() labelForId: string = undefined;
-  @Input() placeholder = '';
-  @Input() description: string = undefined;
+  @Input({ required: true }) items!: Array<FhiAutosuggestItem>;
+  @Input() labelForId!: string;
+  @Input() placeholder!: string;
+  @Input() description!: string;
   @Input({ required: true }) label!: string;
-  @Input({ required: true }) selectedItem: number = null;
+  @Input({ required: true }) selectedItem!: number;
   @Input() notFoundText = 'Ingen elementer funnet';
 
   @Output() selectedItemChange = new EventEmitter<number>();
