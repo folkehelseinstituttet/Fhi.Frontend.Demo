@@ -4,5 +4,4 @@ export interface FhiTreeViewSelectionItem
   extends Omit<FhiTreeViewSelectionItemInternal, 'internal'> {
   children?: FhiTreeViewSelectionItem[];
   id?: number | string;
-  [key: string]: unknown;
 }

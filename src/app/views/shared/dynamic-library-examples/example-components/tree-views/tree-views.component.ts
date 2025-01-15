@@ -30,9 +30,6 @@ export class TreeViewsComponent implements OnInit {
   }
 
   onCheckboxChange(items: FhiTreeViewSelectionItem[]) {
-    console.log('Property "foo" is kept:', items[0]['foo']);
-    console.log('Property "internal" is overwritten:', items[0]['internal']);
-
     this.itemsCheck = items;
   }
 
@@ -86,8 +83,6 @@ export class TreeViewsComponent implements OnInit {
   private getTreeViewSelectionItems(): FhiTreeViewSelectionItem[] {
     return [
       {
-        foo: 'bar',
-        internal: 'baz',
         name: 'For utviklere',
         children: [
           {
