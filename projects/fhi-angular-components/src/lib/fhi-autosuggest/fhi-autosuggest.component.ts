@@ -14,9 +14,9 @@ import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 })
 export class FhiAutosuggestComponent {
   @Input({ required: true }) items!: Array<FhiAutosuggestItem>;
-  @Input() labelForId!: string;
-  @Input() placeholder!: string;
-  @Input() description!: string;
+  @Input() labelForId: string | undefined;
+  @Input() placeholder: string | undefined;
+  @Input() description: string | undefined;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) selectedItem!: number;
   @Input() notFoundText = 'Ingen elementer funnet';

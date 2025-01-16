@@ -14,10 +14,10 @@ import { FhiMultiselectItem } from './fhi-multiselect.model';
 })
 export class FhiMultiselectComponent {
   @Input({ required: true }) items!: Array<FhiMultiselectItem>;
-  @Input() labelForId!: string;
-  @Input() placeholder!: string;
-  @Input() disableTags!: boolean;
-  @Input() description!: string;
+  @Input() labelForId: string | undefined;
+  @Input() placeholder: string | undefined;
+  @Input() disableTags: boolean | undefined;
+  @Input() description: string | undefined;
   @Input({ required: true }) label!: string;
   @Input() notFoundText = 'Ingen elementer funnet';
   @Input({ required: true }) selectedItems!: Array<any>;
