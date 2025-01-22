@@ -8,8 +8,9 @@ import { IncludedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/ico
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-icon-list',
-  templateUrl: './icon-list.component.html',
+    selector: 'app-icon-list',
+    templateUrl: './icon-list.component.html',
+    standalone: false
 })
 export class IconListComponent {
   @Input() itemId!: string;

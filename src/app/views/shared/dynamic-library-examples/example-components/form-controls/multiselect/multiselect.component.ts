@@ -5,10 +5,9 @@ import { MultiselectDataService, Person } from './multiselect-data.service';
 import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-multiselect',
-  standalone: true,
-  imports: [SharedModule],
-  templateUrl: './multiselect.component.html',
+    selector: 'app-multiselect',
+    imports: [SharedModule],
+    templateUrl: './multiselect.component.html'
 })
 export class MultiselectComponent {
   constructor(private multiselectDataService: MultiselectDataService) {}

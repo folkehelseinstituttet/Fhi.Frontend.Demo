@@ -4,8 +4,9 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 import { FhiDate, FhiDateTime, FhiWeek, FhiMonth } from '@folkehelseinstituttet/angular-components';
 
 @Component({
-  selector: 'app-time-selectors',
-  templateUrl: './time-selectors.component.html',
+    selector: 'app-time-selectors',
+    templateUrl: './time-selectors.component.html',
+    standalone: false
 })
 export class TimeSelectorsComponent {
   @Input() itemId!: string;

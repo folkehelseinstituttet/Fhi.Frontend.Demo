@@ -3,10 +3,10 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 import { TableExpandableContentDataService } from './table-expandable-content-data.service';
 
 @Component({
-  selector: 'app-table-expandable-content',
-  templateUrl: './table-expandable-content.component.html',
-  styles: [
-    `
+    selector: 'app-table-expandable-content',
+    templateUrl: './table-expandable-content.component.html',
+    styles: [
+        `
       .fhi-tablerow-expanded th,
       .fhi-tablerow-expanded td {
         border-bottom: 0;
@@ -40,8 +40,9 @@ import { TableExpandableContentDataService } from './table-expandable-content-da
         background-position: center center;
       }
     `,
-  ],
-  providers: [TableExpandableContentDataService],
+    ],
+    providers: [TableExpandableContentDataService],
+    standalone: false
 })
 export class TableExpandableContentComponent {
   @Input() itemId!: string;

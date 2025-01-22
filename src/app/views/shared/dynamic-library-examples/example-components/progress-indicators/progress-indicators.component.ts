@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-progress-indicators',
-  templateUrl: './progress-indicators.component.html',
+    selector: 'app-progress-indicators',
+    templateUrl: './progress-indicators.component.html',
+    standalone: false
 })
 export class ProgressIndicatorsComponent {
   @Input() itemId!: string;

@@ -4,8 +4,9 @@ import { ToggleExpandableRowService } from '../toggle-expandable-row.service';
 import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
-  selector: '[fhi-table-row-expander]',
-  templateUrl: './fhi-table-row-expander.component.html',
+    selector: '[fhi-table-row-expander]',
+    templateUrl: './fhi-table-row-expander.component.html',
+    standalone: false
 })
 export class FhiTableRowExpanderComponent {
   @Input() index!: number;

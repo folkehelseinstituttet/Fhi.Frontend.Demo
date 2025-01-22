@@ -43,9 +43,10 @@ enum ControlsPopoverMenuActions {
 }
 
 @Component({
-  selector: 'fhi-angular-highcharts',
-  templateUrl: './fhi-angular-highcharts.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fhi-angular-highcharts',
+    templateUrl: './fhi-angular-highcharts.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
