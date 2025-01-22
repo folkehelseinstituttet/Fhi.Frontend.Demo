@@ -12,17 +12,11 @@ So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submo
     - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
       - [Icon set updates](#icon-set-updates)
     - [How to work on ./projects/fhi-\[project\] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
-      - [How to do code scaffolding in an Angular library project](#how-to-do-code-scaffolding-in-an-angular-library-project)
   - [Pull request guidelines](#pull-request-guidelines)
     - [Fhi.Frontend.Style](#fhifrontendstyle)
       - [Feature branches](#feature-branches)
-      - [Release branches](#release-branches)
     - [Fhi.Frontend.Demo, including library projects](#fhifrontenddemo-including-library-projects)
       - [Feature branches](#feature-branches-1)
-      - [Release branches for library projects](#release-branches-for-library-projects)
-      - [Release a patch to older version in a library project](#release-a-patch-to-older-version-in-a-library-project)
-        - [After release is done](#after-release-is-done)
-      - [Deploy branches for the documentation site](#deploy-branches-for-the-documentation-site)
 - [Coding conventions](#coding-conventions)
   - [CSS/SASS](#csssass)
     - [CSS architecture](#css-architecture)
@@ -98,17 +92,6 @@ When making changes to the icon file set, run `npm run generate-icon-list`.
 4. Work on both library and app code simultanously
 5. When ready, run `git push` and follow the [pull request guidelines](#pull-request-guidelines)
 
-##### How to do code scaffolding in an Angular library project
-
-1. Run `ng generate module fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new module
-2. Add new module to `FhiAngularComponentsModule`
-3. Run `ng generate component fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new component
-4. Add new component to `exports` in new module
-5. Add both the new module and the new component to the public API Surface of fhi-angular-components
-
-You can also use `ng generate directive|pipe|service|class|guard|interface|enum --project @folkehelseinstituttet/[project]`.
-> Note: Don't forget to add option `--project` or else it will be added to the default project in your `angular.json` file.
-
 ### Pull request guidelines
 
 #### Fhi.Frontend.Style
@@ -121,28 +104,6 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum 
 4. Push feature branch, create pull request with a good name, and a comment if necessary
 5. After approved review, squash and merge to `main`, and delete your feature branch.
 
-##### Release branches
-
->**Before creating a release branch**
->
->- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
->
-> If not; create a branch, fix, and create a new pull request.
->
->**If everything is OK; create a release branch**
->
->- When creating a release branch, follow the instructions below to the letter!
-
-1. Create a new branch from `main`.
-2. Name it `release/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Update CHANGELOG
-   1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
-   2. Change the date below the version number to today.
-   3. Check that all descriptions have a link to the PR at the end of the line.
-4. Run `npm version [patch, minor, major]` to upgrade `package.json` and automatically create a new commit.
-5. Push release branch and create pull request from release branch into main.
-6. After approved review, squash and merge to main (deploy), delete the release branch for the previous release, but keep the latest release branch.
-
 #### Fhi.Frontend.Demo, including library projects
 
 *A library project is an Angular concept for organising code that are going to be made into a npm package. A library project is defined in `./angular.json`, and the files are located in `./projects/fhi-[project]`*
@@ -152,81 +113,6 @@ You can also use `ng generate directive|pipe|service|class|guard|interface|enum 
 1. Create a new branch from `dev`.
 2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
 3. Before pull request, remember to also push any changes made to the submodule `Fhi.Frontend.Style` so that the branch with changes are available to the reviewer.
-
-##### Release branches for library projects
-
->**Before creating a release branch**
->
->- Check that all peerDependencies are updated
->- Check that `@folkehelseinstituttet/*` is already released if listed in peerDependencies
->- Check that the dependency matrix still is correct, and if it's updated since last release, that it has "Unreleased" as latest version.
->- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
->
-> If one or more of the checks above is not OK; create a branch, fix, and create a new pull request.
->
->**If everything is OK; create a release branch**
->
->- When creating a release branch, follow the instructions below to the letter!
-
-1. Create a new branch from `dev`.
-2. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-3. Update CHANGELOG
-    1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
-    2. Change the date below the version number to today.
-    3. Check that all descriptions have a link to the PR at the end of the line.
-4. Update text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
-5. Update version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
-    >*It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future.*
-6. Create PR into `dev` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
-
->*NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library.*
-
-##### Release a patch to older version in a library project
-
-Almost same procedure as described under [Release branches for library projects](#release-branches-for-library-projects), but there are some minor differences:
-
-1. If it doesn't already exist, create a branch from `dev` called `fhi-[project]/vx`, where `X` is the major version you're patching.
-2. Create a new branch from `fhi-[project]/vx`, and fix bug (remember ref. to correct git submodule).
-3. Merge bugfix back to `fhi-[project]/vx`
-4. Create a new branch from `fhi-[project]/vx`.
-5. Name it `release/fhi-[project]/x.x.x`, where `x.x.x` is the version you're releasing.
-6. Update CHANGELOG
-   1. Change text `# Unreleased` to `# x.x.x` i CHANGELOG.md.
-   2. Change the date below the version number to today.
-   3. Check that all descriptions have a link to the PR at the end of the line.
-7. Update text `Unreleased` to `x.x.x` in the dependency matrix for the project: `./projects/fhi-[project]/README.md` (if a new line was added).
-8. Update version in `./projects/fhi-[project]/package.json` to `x.x.x` manually.
-9. **NB! Also update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.**
-10. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
-
-###### After release is done
-
-Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is *Changes from patch @folkehelseinstituttet/angular-[project]/v/x.x.x*, and then merge and delete branch `release`.
-
->*NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:*
->
->1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version), but change `# x.x.x` to `Unreleased`.
->2. Merge relevant changes to the code.
->3. **NEVER** merge any changes to `./projects/fhi-[project]/package.json`.
->4. Remember correct git submodule ref.
-
-##### Deploy branches for the documentation site
-
->**Before creating a deploy branch**
->
->- Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`.
->
->   *PS. The angular-packages are not listet in `package.json` since they are always latest, buildt from source, not downloaded from npm registry unless you run script `build-prod`*
->
-> If not; create a branch, fix, and create a new pull request.
->
-> **If everything is OK; create a release branch**
->
->- When creating a release branch, follow the instructions below to the letter!
-
-1. Create a new branch from `main`, and call it `deploy/documentation-[yyy-mm-dd]`.
-2. Merge `dev` into `deploy/documentation-[yyy-mm-dd]` and fix merge conflicts if any.
-3. Create PR into `main` from `deploy/documentation-[yyy-mm-dd]`, and when approved, merge (ie. deploy).
 
 ## Coding conventions
 
