@@ -1,6 +1,6 @@
-# Unreleased
+# 5.3.0
 
-> Jan 13, 2025
+> Jan 22, 2025
 
 * :tada: **Enhancement** Add option `categoryAxis` to `FhiDiagramOptions`, and add support for setting the category axis title [(#763)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/763)
 * :tada: **Enhancement** Update qualitative color series [(#771)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/771)
