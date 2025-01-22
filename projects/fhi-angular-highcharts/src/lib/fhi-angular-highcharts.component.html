@@ -43,15 +43,15 @@
 </ng-template>
 
 <ng-template #diagramControls>
-  <div class="d-flex fhi-diagram-controls">
-    <div class="d-flex flex-wrap me-3">
+  <div class="fhi-diagram-controls">
+    <div class="d-flex flex-wrap">
       <div class="fhi-diagram-controls__navigation" *ngIf="showDiagramTypeNav">
         <fhi-diagram-type-nav-default
           [diagramTypeGroups]="diagramTypeGroups"
           (diagramTypeNavigation)="onDiagramTypeNavigation($event)"
         ></fhi-diagram-type-nav-default>
       </div>
-      <div class="mb-3">
+      <div class="flex-fill mb-3 d-flex">
         <button
           class="btn fhi-btn-icon fhi-diagram-controls__metadata"
           *ngIf="showMetadataButton"
@@ -63,14 +63,14 @@
         <ng-container *ngIf="showFullScreenButton && !showDiagramTypeDisabledWarning">
           <ng-container *ngTemplateOutlet="diagramModal"></ng-container>
         </ng-container>
+        <div class="ms-auto">
+          <fhi-popover-menu
+            *ngIf="showDownloadButton"
+            [items]="[{ name: 'Last ned SVG', action: 'downloadSvg', icon: 'download' }]"
+            (actionEvent)="onControlsPopoverMenuAction($event)"
+          ></fhi-popover-menu>
+        </div>
       </div>
-    </div>
-    <div class="ms-auto">
-      <fhi-popover-menu
-        *ngIf="showDownloadButton"
-        [items]="[{ name: 'Last ned SVG', action: 'downloadSvg', icon: 'download' }]"
-        (actionEvent)="onControlsPopoverMenuAction($event)"
-      ></fhi-popover-menu>
     </div>
   </div>
 </ng-template>

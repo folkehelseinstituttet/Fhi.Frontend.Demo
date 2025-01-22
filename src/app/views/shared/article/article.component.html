@@ -11,7 +11,8 @@
   @if (currentSegment === urlSegment.components) {
     <div class="row">
       <div class="col-lg-9">
-        <ng-container *ngTemplateOutlet="componentsAlert"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsInfo"></ng-container>
+        <ng-container *ngTemplateOutlet="componentsWarning"></ng-container>
         <ng-container *ngTemplateOutlet="componentsText"></ng-container>
       </div>
       <div class="col-l2">
@@ -55,14 +56,22 @@
   </div>
 </ng-template>
 
-<ng-template #componentsAlert>
-  <div class="mb-5">
+<ng-template #componentsInfo>
+  <div class="mb-3">
     <div class="alert alert-info" role="alert">
       <i class="icon-info-circle"></i>
+      <a href="https://designsystem.fhi.no">FHI Designsystems gjeldende dokumentasjon (Storybook)</a>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #componentsWarning>
+  <div class="mb-5">
+    <div class="alert alert-warning" role="alert">
+      <i class="icon-info-circle"></i>
       <p>
-        Disse sidene handler om CSS-biblioteket til FHI, samt et lite utvalg Angular-komponenter. Både CSS-bibliotek og
-        Angular-komponenter vil erstattes av et nytt designsystem med rammeverksagnostiske komponenter. Innmeldte feil i
-        Github rettes fortløpende.
+        Disse sidene dokumenterer det gamle designsystemet til FHI, med fokus på Angular. Vedlikehold er begrenset til
+        feilrettinger.
         <br /><br />
         <a href="https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues/new/choose">Opprett issue</a>
         (CSS-biblioteket)<br />

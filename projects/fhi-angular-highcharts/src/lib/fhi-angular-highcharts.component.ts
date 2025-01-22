@@ -51,7 +51,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
   private chartInstance!: Chart;
 
-  @Input() diagramOptions!: FhiDiagramOptions;
+  @Input({ required: true }) diagramOptions!: FhiDiagramOptions;
 
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
   @Output() metadataButtonClick = new EventEmitter<void>();
