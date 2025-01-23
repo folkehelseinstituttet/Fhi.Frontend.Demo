@@ -25,25 +25,24 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 ## Dependencies
 
-| FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
-| ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 5                      | 5                     | 6.3       | 5.3.2     | 17          | 11.4       | 4.0                | 18      | 20/10 *  |
-| >4.1                   | 4                     | 6.3       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
-| >=3.1 <=4.1            | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
-| 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
-| 2                      | 3.1                   | 5.9       | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
-| 1                      | -                     | 5         | 5         | 15          | 11.1       | 4.0                | 16      | 18/9 *   |
-| 0.7                    | -                     | 5         | 5         | 14          | 11.1       | 3.1.2              | 15      | 18/9 *   |
-| 0.6                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.5                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.4                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.3                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.2                    | -                     | 4         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.1                    | -                     | 4         | 5         |             | 10.3       | 3                  | 14      | 16/8 *   |
+| FHI Angular Highcharts | FHI Angular Componets | Highcharts | Highcharts Angular |
+| ---------------------- | --------------------- | ---------- | ------------------ |
+| Unreleased             | 6                     | 11.4       | 4.0                |
+| 5                      | 5                     | 11.4       | 4.0                |
+| >4.1                   | 4                     | 11.4       | 4.0                |
+| >=3.1 <=4.1            | 4                     | 11.4       | 4.0                |
+| 3                      | 4.0                   | 11.1       | 4.0                |
+| 2                      | 3.1                   | 11.1       | 4.0                |
+| 1                      | -                     | 11.1       | 4.0                |
+| 0.7                    | -                     | 11.1       | 3.1.2              |
+| 0.6                    | -                     | 10.3.3     | 3.1                |
+| 0.5                    | -                     | 10.3.3     | 3.1                |
+| 0.4                    | -                     | 10.3.3     | 3.1                |
+| 0.3                    | -                     | 10.3.3     | 3.1                |
+| 0.2                    | -                     | 10.3.3     | 3.1                |
+| 0.1                    | -                     | 10.3       | 3                  |
 
-For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
-
-_* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
+For more dependencies see `peerDependencies` in [fhi-angular-components/package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
 
 ## Get started
 
