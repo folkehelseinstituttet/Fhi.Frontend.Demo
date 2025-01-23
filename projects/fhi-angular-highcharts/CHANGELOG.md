@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Jan 23, 2025
+
+* :tada: **Enhancement** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+
+## 5.3.0
 
 > Jan 22, 2025
 
