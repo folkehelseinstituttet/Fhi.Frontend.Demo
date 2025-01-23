@@ -1,153 +1,42 @@
-# How to contribute <!-- omit from toc -->
+# Hvordan hjelpe til <!-- omit from toc -->
 
-So you're thinking about contributing to **Fhi.Frontend.Demo**, and or its submodule? Great! Maintaining and enhancing **Fhi.Frontend.Demo** (and submodule) is a big job, so **the community's help is really appreciated.** Helping out isn't just writing code, it also includes submitting issues, helping confirm issues and improving the documentation.
+- [Spørsmål eller problemer](#spørsmål-eller-problemer)
+  - [Før du oppretter et issue](#før-du-oppretter-et-issue)
+  - [Issue listene](#issue-listene)
+  - [Hvordan opprette et godt beskrevet issue](#hvordan-opprette-et-godt-beskrevet-issue)
+  - [Godkjenning av issues](#godkjenning-av-issues)
+- [Hvordan opprette en "pull request"](#hvordan-opprette-en-pull-request)
+- [Kodestandard](#kodestandard)
 
-- [Git submodule](#git-submodule)
-- [Submitting Issues](#submitting-issues)
-  - [Before you submit an issue](#before-you-submit-an-issue)
-  - [Submitting a good issue](#submitting-a-good-issue)
-  - [Confirming Issues](#confirming-issues)
-- [Fixing Bugs and Adding Features](#fixing-bugs-and-adding-features)
-  - [Workflows](#workflows)
-    - [How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo](#how-to-work-on-fhifrontendstyle-and-fhifrontenddemo)
-      - [Icon set updates](#icon-set-updates)
-    - [How to work on ./projects/fhi-\[project\] and Fhi.Frontend.Demo](#how-to-work-on-projectsfhi-project-and-fhifrontenddemo)
-  - [Pull request guidelines](#pull-request-guidelines)
-    - [Fhi.Frontend.Style](#fhifrontendstyle)
-      - [Feature branches](#feature-branches)
-    - [Fhi.Frontend.Demo, including library projects](#fhifrontenddemo-including-library-projects)
-      - [Feature branches](#feature-branches-1)
-- [Coding conventions](#coding-conventions)
-  - [CSS/SASS](#csssass)
-    - [CSS architecture](#css-architecture)
-  - [HTML (Angular templates)](#html-angular-templates)
-  - [TypeScript](#typescript)
-- [Documentation](#documentation)
-- [License](#license)
+## Spørsmål eller problemer
 
-## Git submodule
+Er du ansatt i Folkehelseinstituttet og har generelle spørsmål, eller tilbakemeldinger kan du [kontakte oss på Teams](https://teams.microsoft.com/l/channel/19%3Aa0d23e5a6954497d9e378d3367e7f458%40thread.skype/General?groupId=571dd359-777d-4c02-85ea-d56854d03ef7).
 
-There is a submodule in this repo:
+### Før du oppretter et issue
 
-- `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
+- **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger.
+- Søk i issue-listene for de ulike pakkene for å forsikre deg om at det ikke alt finnes et issue som omhandler samme problem.
+- Sjekk hvilken versjon versjonen av aktuell pakke som brukes i din applikasjon.
 
-The information in this file refers to this repo but also the submodule.
+### Issue listene
 
-## Submitting Issues
+- [@folkehelseinstituttet/style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
+- [@folkehelseinstituttet/angular-components & @folkehelseinstituttet/angular-highcharts](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
 
-Requests for new features and bug reports keep the project moving forward.
+### Hvordan opprette et godt beskrevet issue
 
-### Before you submit an issue
+Vi har opprettet issue-templates, og bruker du den template-en som passer din forespørsel så finner du alt du trenger av informasjon for å opprette et et godt beskrevet issue.
 
-- Ensure you are running the latest version of Fhi.Frontend.Demo and its submodule.
-- **Search** the issue lists (including closed issues) to make sure it hasn't already been reported.
-  - [Issue list Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
-  - [Issue list Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
+### Godkjenning av issues
 
-### Submitting a good issue
+Når et issue opprettes vil det få taggen "Status: Unconfirmed". Denne blir byttet ut med taggen "Status: Confirmed" av en i designsystemteamet hvis issuet blir vurdert til at det skal løses. For å gjøre denne prosessen så enkel som mulig er det viktig at alle issue-er som opprettes er godt beskrevet!
 
-- Give the issue a short, clear title that describes the bug or feature request
-- Include steps to reproduce the issue
-- If possible, include a short code example that reproduces the issue
-- Use [markdown formatting](https://guides.github.com/features/mastering-markdown/) as appropriate to make the issue and code more readable.
+## Hvordan opprette en "pull request"
 
-### Confirming Issues
+1. Før du oppretter en PR, sørg for at det finnes et issue som omhandler det du skal jobbe med.
+2. I høyrekolonnen på issuet, under *Development*, klikk på lenken *Create a branch*. På denne måten vil vår branch-navnestandard automatisk bli fulgt.
+3. Opprett PR mot `dev` med en god beskrivelse av koden du ønsker å få med.
 
-Before we work on issues, we must confirm them and be able to reproduce them. Confirming issues takes up a great deal of the team's time, so making that job easier is **really appreciated**.
+## Kodestandard
 
-Issues that need confirmation will have the **confirm** label or be unlabeled and have **no milestone**. You can help us to confirm issues by;
-
-- Add steps to reproduce the issue
-- Test issues and provide feedback
-
-## Fixing Bugs and Adding Features
-
-We love pull requests, but would prefer that new contributors start with smaller issues and let us know before you contribute to prevent duplication of work.
-
-It is also a good idea to add a comment to an issue that you are working on to let everyone know. If you stop working on it, also please let us know.
-
-### Workflows
-
-*These are just examples. Feel free to find workflows that suites you.*
-*For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)*
-
-#### How to work on Fhi.Frontend.Style and Fhi.Frontend.Demo
-
-1. Create a new branch in this repo (from `dev`), and a new branch with the same name in the git submodule `./Fhi.Frontend.Style` (from `main`).
-2. Run `npm start`
-3. Work on both parent and submodule code, and commit changes in both repos.
-4. When ready
-   1. Run `git push` in this repo
-   2. Run `git push --recurse-submodules=check` in the submodule repo
-
-##### Icon set updates
-
-When making changes to the icon file set, run `npm run generate-icon-list`.
-
-#### How to work on ./projects/fhi-[project] and Fhi.Frontend.Demo
-
-1. Create a new branch in this repo (from `dev`)
-2. Run `ng build @folkehelseinstituttet/[project] --watch`
-3. In a new consol, run `npm start`
-4. Work on both library and app code simultanously
-5. When ready, run `git push` and follow the [pull request guidelines](#pull-request-guidelines)
-
-### Pull request guidelines
-
-#### Fhi.Frontend.Style
-
-##### Feature branches
-
-1. Create a new branch from `main`.
-2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to update `CHANGELOG.md`, and if this is the first pull request after a release, add an extra hash to the existing "version number heading", add a new heading called `# Unreleased`, a date, and then list your changes.
-4. Push feature branch, create pull request with a good name, and a comment if necessary
-5. After approved review, squash and merge to `main`, and delete your feature branch.
-
-#### Fhi.Frontend.Demo, including library projects
-
-*A library project is an Angular concept for organising code that are going to be made into a npm package. A library project is defined in `./angular.json`, and the files are located in `./projects/fhi-[project]`*
-
-##### Feature branches
-
-1. Create a new branch from `dev`.
-2. Prefix your branch name with either `new/`, `enhancement/` or `bugfix/`.
-3. Before pull request, remember to also push any changes made to the submodule `Fhi.Frontend.Style` so that the branch with changes are available to the reviewer.
-
-## Coding conventions
-
-### CSS/SASS
-
-The project is using
-
-1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
-2. [BEM](./doc/bem-in-a-nutshell.md), but only in the folder `fhi/blocks`
-3. And some custom rules
-
-[SCSS example file](./doc/scss-example.md)
-
-#### CSS architecture
-
-[Read more about](./doc/css-architecture/css-architecture.md) how we (try to) organize the CSS code.
-
-### HTML (Angular templates)
-
-The project has also some custom rules for how we write markup:
-[HTML example file](./doc/html-example.md)
-
-### TypeScript
-
-When it comes to TypeScript we adhere to [Angular coding style guide]([https://angular.io/guide/styleguide)
-[TypeScript example file](./doc/typescript-example.md)
-
-## Documentation
-
-Great documentation is essential for any open source project and Fhi.Frontend.Demo is no exception. In addition to READMEs in the repos, [https://designsystem.fhi.no](https://designsystem.fhi.no/) is where we document our frontend library, but often we lag behind the features that have been implemented or would benefit from better examples, so help is really appreciated!
-
-## License
-
-Fhi.Frontend.Demo is under the [MIT license](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/main/LICENSE). By contributing to Fhi.Frontend.Demo, you assert that:
-
-- The contribution is your own original work.
-- You have the right to assign the copyright for the work (it is not owned by your employer, or
-  you have been given copyright assignment in writing).
+Linting og prettier tar hånd om det meste, men en ting er viktig å merke seg: all kode skal være på engelsk, bortsett fra domene-ord. For mer informasjon, se [Kodestandard Systemutvikling FHI](https://fhi.visualstudio.com/Fhi.Felles/_wiki/wikis/Fhi.Guidelines.Wiki/4892/kodestandard)  (krever tilgang til FHIs Azure DevOps).

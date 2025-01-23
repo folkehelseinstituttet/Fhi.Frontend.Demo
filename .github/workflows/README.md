@@ -97,6 +97,11 @@ Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant change
 2. Merge `dev` into `deploy/documentation-[yyy-mm-dd]` and fix merge conflicts if any.
 3. Create PR into `main` from `deploy/documentation-[yyy-mm-dd]`, and when approved, merge (ie. deploy).
 
+<!-- ##### Icon set updates
+
+When making changes to the icon file set, run `npm run generate-icon-list`.
+ -->
+
 <!-- ##### How to do code scaffolding in an Angular library project
 
 1. Run `ng generate module fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new module
@@ -108,3 +113,33 @@ Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant change
 You can also use `ng generate directive|pipe|service|class|guard|interface|enum --project @folkehelseinstituttet/[project]`.
 > Note: Don't forget to add option `--project` or else it will be added to the default project in your `angular.json` file.
  -->
+
+<!-- ## Coding conventions
+
+### CSS/SASS
+
+The project is using
+
+1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
+2. [BEM](./doc/bem-in-a-nutshell.md), but only in the folder `fhi/blocks`
+3. And some custom rules
+
+[SCSS example file](./doc/scss-example.md)
+
+#### CSS architecture
+
+[Read more about](./doc/css-architecture/css-architecture.md) how we (try to) organize the CSS code.
+
+### HTML (Angular templates)
+
+The project has also some custom rules for how we write markup:
+[HTML example file](./doc/html-example.md)
+
+### TypeScript
+
+When it comes to TypeScript we adhere to [Angular coding style guide]([https://angular.io/guide/styleguide)
+[TypeScript example file](./doc/typescript-example.md)
+
+## Documentation
+
+Great documentation is essential for any open source project and Fhi.Frontend.Demo is no exception. In addition to READMEs in the repos, [https://designsystem.fhi.no](https://designsystem.fhi.no/) is where we document our frontend library, but often we lag behind the features that have been implemented or would benefit from better examples, so help is really appreciated! -->
