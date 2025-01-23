@@ -12,7 +12,7 @@ import { UrlService } from './services/url.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  projectName = 'Designsystem';
+  projectName = 'Designsystem-old (deprecated)';
   projectDescription = null;
 
   constructor(

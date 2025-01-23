@@ -37,7 +37,7 @@
       {{ getSelectedName(selected) }}
       <i class="icon-x"></i>
     </button>
-    <button type="button" class="btn fhi-btn-link" *ngIf="selectedItems.length > 1" (click)="unselectAll()">
+    <button type="button" class="btn fhi-btn-link" *ngIf="selectedItems?.length > 1" (click)="unselectAll()">
       Fjern valgte
     </button>
   </div>

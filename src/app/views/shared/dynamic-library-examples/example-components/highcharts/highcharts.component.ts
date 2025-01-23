@@ -104,6 +104,7 @@ export class HighchartsComponent implements OnInit {
         this.getData__example_2c();
         break;
       case '3a':
+        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
         this.getData__example_3a();
         break;
       case '3b':
@@ -118,7 +119,6 @@ export class HighchartsComponent implements OnInit {
       case '3e':
         this.getData__example_3e();
         break;
-      // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     }
   }
 
@@ -175,6 +175,9 @@ export class HighchartsComponent implements OnInit {
       series: undefined,
       activeDiagramType: 'column',
       title: this.titles.title_3a,
+      categoryAxis: {
+        title: 'Uke',
+      },
       controls: {
         downloadButton: {
           show: true,
@@ -291,9 +294,20 @@ export class HighchartsComponent implements OnInit {
   private getTestData() {
     this.getData(MockData.TestData, {
       series: undefined,
-      activeDiagramType: 'columnAndLine',
       controls: {
         navigation: {
+          items: {
+            chartTypes: [
+              'bar',
+              'barStacked',
+              'column',
+              'columnAndLine',
+              'columnStacked',
+              'line',
+              'pie',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
           show: true,
         },
       },
@@ -307,14 +321,15 @@ export class HighchartsComponent implements OnInit {
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
-      title: 'Dobbel akse, linje og søyle',
+      title: 'Testdata',
       units: [
         {
-          id: 'antall',
+          id: 'Antall1',
+          decimals: 1,
           label: 'Antall',
         },
         {
-          id: 'prosent',
+          id: 'Andel2',
           decimals: 1,
           label: 'Prosent',
           symbol: '%',

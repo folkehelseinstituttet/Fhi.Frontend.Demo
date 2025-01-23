@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -6,10 +7,13 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { FhiTreeViewNavigationItem as Item } from './fhi-tree-view-navigation-item.model';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   selector: 'fhi-tree-view-navigation',
   templateUrl: './fhi-tree-view-navigation.component.html',
   encapsulation: ViewEncapsulation.None,

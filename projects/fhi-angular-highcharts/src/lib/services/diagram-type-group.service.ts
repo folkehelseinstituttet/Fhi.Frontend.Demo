@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash-es';
 
-import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import { DiagramTypeGroup } from '../models/diagram-type-group.model';
 import {
   DiagramTypeGroupNames,
@@ -13,6 +12,17 @@ import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
 
+enum msgId {
+  hasFlaggedData,
+  moreThanOneSeries,
+  notAllUnitsFoundInSeries,
+  notGeo,
+  notMaxOneUnitInSeries,
+  notTwoUnitsInSeries,
+  notTwoUnits,
+  onlyOneSerieAndAllDataAreFlagged,
+}
+
 @Injectable()
 export class DiagramTypeGroupService {
   private activeDiagramType: DiagramType;
@@ -20,14 +30,15 @@ export class DiagramTypeGroupService {
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
   private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
-  private diagramTypeDisabledWarningsText = {
-    flaggedData: 'series.length > 1 && flaggedSeries?.length !== 0',
-    moreThanOneSeries: 'series.length > 1',
-    notTwoUnits: 'diagramOptions.units?.length !== 2',
-    notMinTwoUnitsInSeries: 'this.uniqueUnitIdCountInSeries() < 2',
-    notGeo: 'series.length === 1 && isNotGeo(this.series[0])',
-    noSeriesOrNoData: 'this.series.length === 0 || this.series[0].data.length === 0',
-    allDataInOneOrMoreSeriesAreFlagged: 'allDataInOneOrMoreSeriesAreFlagged',
+  private diagramTypeDisabledWarningMessages: Record<msgId, string> = {
+    [msgId.hasFlaggedData]: 'series.length > 1 && flaggedSeries?.length !== 0',
+    [msgId.moreThanOneSeries]: 'series.length > 1',
+    [msgId.notAllUnitsFoundInSeries]: 'notAllUnitsFoundInSeries',
+    [msgId.notGeo]: 'series.length === 1 && serieNotGeo(this.series[0])',
+    [msgId.notMaxOneUnitInSeries]: 'this.uniqueUnitIdCountInSeries() > 1',
+    [msgId.notTwoUnitsInSeries]: 'this.uniqueUnitIdCountInSeries() !== 2',
+    [msgId.notTwoUnits]: 'diagramOptions.units?.length !== 2',
+    [msgId.onlyOneSerieAndAllDataAreFlagged]: 'onlyOneSerieAndAllDataAreFlagged',
   };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
@@ -51,7 +62,7 @@ export class DiagramTypeGroupService {
     return this.createGroups(previousDiagramTypeGroups);
   }
 
-  diagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
+  getDiagramTypeIsDisabled(groups: DiagramTypeGroup[], diagramTypeId: string): boolean {
     let disabled = false;
     groups.forEach((group) => {
       group.children.forEach((diagramType) => {
@@ -80,14 +91,8 @@ export class DiagramTypeGroupService {
   private updateChildrenDiagramTypeStates(groups: DiagramTypeGroup[]) {
     groups.forEach((group) => {
       group.children.forEach((diagramType) => {
-        if (this.series.length === 0 || this.series[0].data.length === 0) {
-          diagramType.disabled = true;
-          this.diagramTypeDisabledWarnings[diagramType.id] =
-            this.diagramTypeDisabledWarningsText.noSeriesOrNoData;
-        } else {
-          diagramType.disabled = this.getDisabledState(diagramType);
-        }
-        diagramType.active = this.getActiveState(diagramType, groups);
+        diagramType.disabled = this.diagramTypeIsDisabled(diagramType);
+        diagramType.active = this.diagramTypeIsActive(diagramType, groups);
       });
     });
   }
@@ -144,19 +149,37 @@ export class DiagramTypeGroupService {
 
     if (isChart) {
       items.chartTypes.forEach((id) => {
-        group.children.push(ChartTypes.find((type) => type.id === id));
+        this.updateDiagramTypeGroup(id, group, ChartTypes, 'Chart');
       });
     }
     if (isMap) {
       items.mapTypes.forEach((id) => {
-        group.children.push(MapTypes.find((type) => type.id === id));
+        this.updateDiagramTypeGroup(id, group, MapTypes, 'Map');
       });
     }
 
     return group;
   }
 
-  private getActiveState(diagramType: DiagramType, groups: DiagramTypeGroup[]) {
+  private updateDiagramTypeGroup(
+    id: string,
+    group: DiagramTypeGroup,
+    Types: DiagramType[],
+    typeName: string,
+  ) {
+    const type = Types.find((type) => type.id === id);
+    const typeExist = group.children.find((type) => type.id === id);
+
+    if (type !== undefined && typeExist === undefined) {
+      group.children.push(type);
+    } else if (typeExist) {
+      console.warn(typeName + ' type id: "' + id + '" is listed more than once.');
+    } else {
+      console.warn(typeName + ' type id: "' + id + '" is not valid.');
+    }
+  }
+
+  private diagramTypeIsActive(diagramType: DiagramType, groups: DiagramTypeGroup[]): boolean {
     const activeFromOptionsNotFoundInGrops = (() =>
       groups.every(
         (group) =>
@@ -171,123 +194,140 @@ export class DiagramTypeGroupService {
     return diagramType.id === this.diagramOptions.activeDiagramType || fallbackToTable;
   }
 
-  private getDisabledState(diagramType: DiagramType) {
-    switch (diagramType.id) {
-      case DiagramTypeIdValues.bar:
-        return this.disableBar();
-
-      case DiagramTypeIdValues.barStacked:
-        return this.disableBarStacked();
-
-      case DiagramTypeIdValues.column:
-        return this.disableColumn();
-
-      case DiagramTypeIdValues.columnAndLine:
-        return this.disableColumnAndLine();
-
-      case DiagramTypeIdValues.columnStacked:
-        return this.disableColumnStacked();
-
-      case DiagramTypeIdValues.mapFylker:
-      case DiagramTypeIdValues.mapFylker2019:
-      case DiagramTypeIdValues.mapFylker2023:
-        return this.disableMap();
-
-      case DiagramTypeIdValues.pie:
-        return this.disablePie();
-
-      default:
-        return false;
+  private diagramTypeIsDisabled(diagramType: DiagramType): boolean {
+    if (this.isAnyTypeButTable(diagramType)) {
+      if (this.onlyOneSerieAndAllDataAreFlagged(diagramType)) return true;
     }
+    if (this.isAnyTypeButTableOrColumnAndLine(diagramType)) {
+      if (this.notMaxOneUnitInSeries(diagramType)) return true;
+    }
+    if (this.isBarOrColumnType(diagramType)) {
+      if (this.hasFlaggedData(diagramType)) return true;
+    }
+    if (this.isMapOrPieType(diagramType)) {
+      if (this.moreThanOneSeries(diagramType)) return true;
+    }
+    if (this.isMapType(diagramType)) {
+      if (this.notGeo(diagramType)) return true;
+    }
+    if (diagramType.id === DiagramTypes.columnAndLine.id) {
+      if (this.notTwoUnits(diagramType)) return true;
+      if (this.notTwoUnitsInSeries(diagramType)) return true;
+      if (this.notAllUnitsFoundInSeries(diagramType)) return true;
+    }
+
+    return false;
   }
 
-  private disableBar(): boolean {
+  private isBarOrColumnType(diagramType: DiagramType): boolean {
+    return (
+      diagramType.id === DiagramTypes.bar.id ||
+      diagramType.id === DiagramTypes.barStacked.id ||
+      diagramType.id === DiagramTypes.column.id ||
+      diagramType.id === DiagramTypes.columnAndLine.id ||
+      diagramType.id === DiagramTypes.columnStacked.id
+    );
+  }
+
+  private isMapType(diagramType: DiagramType): boolean {
+    return (
+      diagramType.id === DiagramTypes.mapFylker.id ||
+      diagramType.id === DiagramTypes.mapFylker2019.id ||
+      diagramType.id === DiagramTypes.mapFylker2023.id
+    );
+  }
+
+  private isMapOrPieType(diagramType: DiagramType): boolean {
+    return this.isMapType(diagramType) || diagramType === DiagramTypes.pie;
+  }
+
+  private isAnyTypeButTable(diagramType: DiagramType): boolean {
+    return diagramType.id !== DiagramTypes.table.id;
+  }
+
+  private isAnyTypeButTableOrColumnAndLine(diagramType: DiagramType): boolean {
+    return !(
+      diagramType.id === DiagramTypes.table.id || diagramType.id === DiagramTypes.columnAndLine.id
+    );
+  }
+
+  private hasFlaggedData(diagramType: DiagramType): boolean {
     if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
-      this.diagramTypeDisabledWarnings.bar = this.diagramTypeDisabledWarningsText.flaggedData;
+      this.updateDisabledWarnings(diagramType.id, msgId.hasFlaggedData);
       return true;
     }
     return false;
   }
 
-  private disableBarStacked(): boolean {
-    if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.barStacked =
-        this.diagramTypeDisabledWarningsText.flaggedData;
-      return true;
-    }
-    return false;
-  }
-
-  private disableColumn(): boolean {
-    if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.column = this.diagramTypeDisabledWarningsText.flaggedData;
-      return true;
-    }
-    return false;
-  }
-
-  private disableColumnAndLine(): boolean {
-    if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnAndLine =
-        this.diagramTypeDisabledWarningsText.flaggedData;
-      return true;
-    } else if (this.diagramOptions.units?.length !== 2) {
-      this.diagramTypeDisabledWarnings.columnAndLine =
-        this.diagramTypeDisabledWarningsText.notTwoUnits;
-      return true;
-    } else if (this.uniqueUnitIdCountInSeries() < 2) {
-      this.diagramTypeDisabledWarnings.columnAndLine =
-        this.diagramTypeDisabledWarningsText.notMinTwoUnitsInSeries;
-      return true;
-    }
-    return false;
-  }
-
-  private uniqueUnitIdCountInSeries() {
-    const uniqueIds = new Set<string | number>();
-    this.series.filter((serie) => serie.unitId).forEach((serie) => uniqueIds.add(serie.unitId));
-    return uniqueIds.size;
-  }
-
-  private disableColumnStacked(): boolean {
-    if (this.disableBar()) {
-      this.diagramTypeDisabledWarnings.columnStacked =
-        this.diagramTypeDisabledWarningsText.flaggedData;
-      return true;
-    }
-    return false;
-  }
-
-  private disableMap(): boolean {
-    let disable = false;
-    let message: string;
-
+  private moreThanOneSeries(diagramType: DiagramType): boolean {
     if (this.series.length > 1) {
-      disable = true;
-      message = this.diagramTypeDisabledWarningsText.moreThanOneSeries;
-    } else if (this.series.length === 1 && this.isNotGeo(this.series[0])) {
-      disable = true;
-      message = this.diagramTypeDisabledWarningsText.notGeo;
-    } else if (this.allDataInOneOrMoreSeriesAreFlagged(this.series)) {
-      disable = true;
-      message = this.diagramTypeDisabledWarningsText.allDataInOneOrMoreSeriesAreFlagged;
-    }
-    this.diagramTypeDisabledWarnings.mapFylker =
-      this.diagramTypeDisabledWarnings.mapFylker2019 =
-      this.diagramTypeDisabledWarnings.mapFylker2023 =
-        message;
-    return disable;
-  }
-
-  private disablePie(): boolean {
-    if (this.series.length > 1) {
-      this.diagramTypeDisabledWarnings.pie = this.diagramTypeDisabledWarningsText.moreThanOneSeries;
+      this.updateDisabledWarnings(diagramType.id, msgId.moreThanOneSeries);
       return true;
     }
     return false;
   }
 
-  private isNotGeo(serie: FhiDiagramSerie): boolean {
+  private notAllUnitsFoundInSeries(diagramType: DiagramType): boolean {
+    const allUnitsFoundInSeries = this.diagramOptions.units.every((unit) =>
+      this.series.some((serie) => serie.unitId === unit.id),
+    );
+
+    if (!allUnitsFoundInSeries) {
+      this.updateDisabledWarnings(diagramType.id, msgId.notAllUnitsFoundInSeries);
+      return true;
+    }
+    return false;
+  }
+
+  private notGeo(diagramType: DiagramType): boolean {
+    if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
+      this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+      return true;
+    }
+    return false;
+  }
+
+  private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
+    if (this.uniqueUnitIdCountInSeries() > 1) {
+      this.updateDisabledWarnings(diagramType.id, msgId.notMaxOneUnitInSeries);
+      return true;
+    }
+    return false;
+  }
+
+  private notTwoUnitsInSeries(diagramType: DiagramType): boolean {
+    if (this.uniqueUnitIdCountInSeries() !== 2) {
+      this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnitsInSeries);
+      return true;
+    }
+    return false;
+  }
+
+  private notTwoUnits(diagramType: DiagramType): boolean {
+    if (this.diagramOptions.units?.length !== 2) {
+      this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnits);
+      return true;
+    }
+    return false;
+  }
+
+  private onlyOneSerieAndAllDataAreFlagged(diagramType: DiagramType): boolean {
+    if (
+      this.series.length === 1 &&
+      this.series[0].data.every((dataPoint) => !(typeof dataPoint.y.valueOf() === 'number'))
+    ) {
+      this.updateDisabledWarnings(diagramType.id, msgId.onlyOneSerieAndAllDataAreFlagged);
+      return true;
+    }
+    return false;
+  }
+
+  private updateDisabledWarnings(diagramTypeId: string, messageId: number) {
+    const messages = this.diagramTypeDisabledWarningMessages;
+    this.diagramTypeDisabledWarnings[diagramTypeId] = messages[messageId];
+  }
+
+  private serieNotGeo(serie: FhiDiagramSerie): boolean {
     const validGeoNames = this.getValidGeoNames();
 
     // Only testing first data point in serie since all data points should be valid geo
@@ -297,14 +337,10 @@ export class DiagramTypeGroupService {
     return false;
   }
 
-  private allDataInOneOrMoreSeriesAreFlagged(series: FhiDiagramSerie[]): boolean {
-    let allDataInOneSerieFlagged = false;
-    series.forEach((serie) => {
-      if (serie.data.every((dataPoint) => !(typeof dataPoint.y.valueOf() === 'number'))) {
-        allDataInOneSerieFlagged = true;
-      }
-    });
-    return allDataInOneSerieFlagged;
+  private uniqueUnitIdCountInSeries(): number {
+    const uniqueIds = new Set<string | number>();
+    this.series.filter((serie) => serie.unitId).forEach((serie) => uniqueIds.add(serie.unitId));
+    return uniqueIds.size;
   }
 
   /**

@@ -4,24 +4,19 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 import { TableCell, TableData } from '../models/table-data.model';
-import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 @Injectable()
 export class TableService {
-  getTable(
-    series: FhiDiagramSerie[],
-    orientation: string,
-    metadataForSeries: MetadataForSerie[],
-  ): TableData {
+  getTable(series: FhiDiagramSerie[], orientation: string): TableData {
     if (orientation === TableOrientationValues.seriesAsColumns) {
       return {
         theadRows: this.getTableHeaderRows_OrientationColumns(series),
-        tbodyRows: this.getTableBodyRows_OrientationColumns(series, metadataForSeries),
+        tbodyRows: this.getTableBodyRows_OrientationColumns(series),
       };
     }
     return {
       theadRows: [this.getTableHeaderRow_OrientationRows(series)],
-      tbodyRows: this.getTableBodyRows_OrientationRows(series, metadataForSeries),
+      tbodyRows: this.getTableBodyRows_OrientationRows(series),
     };
   }
 
@@ -54,10 +49,7 @@ export class TableService {
     return tableHeaderRows;
   }
 
-  private getTableBodyRows_OrientationColumns(
-    series: FhiDiagramSerie[],
-    metadataForSeries: MetadataForSerie[],
-  ): TableCell[][] {
+  private getTableBodyRows_OrientationColumns(series: FhiDiagramSerie[]): TableCell[][] {
     const tbodyRows = new Array<Array<TableCell>>(series[0].data.length);
 
     for (let i = 0; i < tbodyRows.length; i++) {
@@ -73,15 +65,9 @@ export class TableService {
           };
         } else {
           // Table row data
-          const data = series[j - 1].data[i].y;
-          const decimals = this.decimalCount(data);
           tbodyRows[i][j] = {
             isHeading: false,
-            data: data,
-            decimals:
-              decimals < metadataForSeries[j - 1].decimals
-                ? decimals
-                : metadataForSeries[j - 1].decimals,
+            data: series[j - 1].data[i].y,
           };
         }
       }
@@ -119,10 +105,7 @@ export class TableService {
     return tableHeaderRow;
   }
 
-  private getTableBodyRows_OrientationRows(
-    series: FhiDiagramSerie[],
-    metadataForSeries: MetadataForSerie[],
-  ): TableCell[][] {
+  private getTableBodyRows_OrientationRows(series: FhiDiagramSerie[]): TableCell[][] {
     const dimentionsCount = this.getSerieNameDimentionsCount(series[0].name);
     const rowspanCounts = this.getColspanOrRowspanCounts(dimentionsCount, series);
     const tbodyRows = new Array<Array<TableCell>>(series.length);
@@ -142,13 +125,9 @@ export class TableService {
           };
         } else {
           // Table row data
-          const data = series[i].data[j - dimentionsCount].y;
-          const decimals = this.decimalCount(data);
           tbodyRows[i][j] = {
             isHeading: false,
-            data: data,
-            decimals:
-              decimals < metadataForSeries[i].decimals ? decimals : metadataForSeries[i].decimals,
+            data: series[i].data[j - dimentionsCount].y,
           };
         }
       }
@@ -208,11 +187,5 @@ export class TableService {
       previousCount = count;
     }
     return counts;
-  }
-
-  private decimalCount(value: number | string): number {
-    if (typeof value !== 'number') return 0;
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split('.')[1].length || 0;
   }
 }
