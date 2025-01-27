@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Jan 27, 2025
+
+* :bug: **Bugfix** Make sure navigation group id can't become undefined [(#804)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/804)
+
+## 5.3.0
 
 > Jan 22, 2025
 
