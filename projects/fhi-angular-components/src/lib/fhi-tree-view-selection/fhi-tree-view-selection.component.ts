@@ -1,19 +1,25 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
   SimpleChanges,
+  ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
+import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
+import { cloneDeep } from 'lodash-es';
 
 @Component({
   selector: 'fhi-tree-view-selection',
@@ -24,147 +30,151 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
-  @Input() enableCheckAll: boolean = false;
-  @Input() filterLabel: string = 'Filtrer listen';
-  @Input() singleSelection: boolean = false;
-  @Input() items: Item[];
-  @Input() name: string;
-  @Input() enableFilter: boolean = false;
+  @Input() enableCheckAll = false;
+  @Input() filterLabel!: string;
+  @Input() singleSelection = false;
+  @Input({ required: true }) items!: FhiTreeViewSelectionItem[];
+  @Input() name!: string;
+  @Input() enableFilter = false;
+  @Input() placeholder = 'Søk';
 
-  @Output() itemsChange = new EventEmitter<Item[]>();
+  @Output() itemsChange = new EventEmitter<FhiTreeViewSelectionItem[]>();
 
-  filteredItems: Item[];
-  filterString = '';
-  minimumFilterLength: number = 3;
-  searchMode: boolean = false;
+  @ViewChild('checkboxList') checkboxListRef: ElementRef;
+  @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
+
   instanceID = crypto.randomUUID();
+  itemsFiltered!: Item[];
+  itemsFilteredIsLoading = false;
+  itemsFilteredIsLoaded = false;
+  searchTerm = '';
+  $searchTerm = new Subject<string>();
+  resultListHeight = 'auto';
+  resultListMaxHeight!: string;
+
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
     if (this.enableCheckAll) {
       this.singleSelection = false;
     }
-    this.filteredItems = [...this.items];
+    if (this.enableFilter) {
+      this.getFilteredItems(this.$searchTerm).subscribe((resultItems) => {
+        if (this.itemsFilteredIsLoading) {
+          this.itemsFilteredIsLoaded = true;
+          this.itemsFilteredIsLoading = false;
+          this.itemsFiltered = resultItems;
+          this.changeDetector.detectChanges();
+        }
+        this.resultListHeight = 'auto';
+        this.changeDetector.detectChanges();
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
-      this.filteredItems = [...this.items];
     }
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
-  onFilterNgModelChange(filterValue: string) {
-    if (filterValue.length === 0) {
-      this.filterString = filterValue;
-      this.filterTree();
+  onSearchTermChange(searchTerm: string) {
+    if (searchTerm.length === 0) {
+      this.itemsFilteredIsLoaded = false;
+      this.itemsFilteredIsLoading = false;
+    } else {
+      this.itemsFilteredIsLoading = true;
+      this.updateResultListHeighWhileLoading();
     }
-  }
-
-  onFilterKeydownEnter() {
-    this.filterTree();
-  }
-
-  onFilterButtonClick() {
-    this.filterTree();
-  }
-
-  onFilterNgModelChange(filterValue: string) {
-    if (filterValue.length === 0) {
-      this.filterString = filterValue;
-      this.filterTree();
-    }
-  }
-
-  onFilterKeydownEnter() {
-    this.filterTree();
-  }
-
-  onFilterButtonClick() {
-    this.filterTree();
+    this.$searchTerm.next(searchTerm);
   }
 
   toggleExpanded(item: Item) {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: number | string, multiToggle = false, checkAll = false) {
+  toggleChecked(id: string, multiToggle = false, checkAll = false) {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
     if (!multiToggle) {
-      this.itemsChange.emit(this.items);
+      this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
     }
   }
 
   checkAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true, true);
+      this.toggleChecked(item.internal.id, true, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true);
+      this.toggleChecked(item.internal.id, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
   }
 
-  filterTree() {
-    if (this.filterString.length >= this.minimumFilterLength) {
-      this.searchMode = true;
-      this.filteredItems = this.filterTreeData(this.items, this.filterString);
+  private updateResultListHeighWhileLoading() {
+    const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
+    const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
+
+    if (heightList && !heightWrapper) {
+      this.resultListHeight = heightList + 'px';
+      this.resultListMaxHeight = heightList > 500 ? heightList + 'px' : '500px';
     } else {
-      this.searchMode = false;
-      this.filteredItems = this.filterTreeData(this.items, ''); // reset filter
-      this.filteredItems = [...this.items]; // show all
+      this.resultListHeight = heightWrapper + 'px';
     }
   }
 
-  private filterTreeData(treeData: Item[], filterString: string): Item[] {
-    const lowerCaseFilter = filterString.toLowerCase();
-
-    const filterItems = (items: Item[]): Item[] => {
-      return items.reduce((filteredItems: Item[], item: Item) => {
-        item.name = item.name.replace(/<[^>]*>/g, ''); // remove <mark> tag that was added for highlighting
-        const lowerCaseName = item.name.toLowerCase();
-
-        if (lowerCaseName.includes(lowerCaseFilter)) {
-          if (lowerCaseFilter !== '') {
-            item.name = item.name.replace(
-              RegExp(filterString, 'gi'), // find filter string to highlight
-              '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
-            );
-          }
-          const filteredChildren = item.children ? filterItems(item.children) : [];
-          filteredItems.push({ ...item, children: filteredChildren });
-        } else if (item.children) {
-          const filteredChildren = filterItems(item.children);
-          if (filteredChildren.length > 0) {
-            filteredItems.push({ ...item, children: filteredChildren });
-          }
-        }
-
-        return filteredItems;
-      }, []);
-    };
-
-    return filterItems(treeData);
+  private getFilteredItems($searchTerm: Observable<string>): Observable<Item[]> {
+    return $searchTerm.pipe(
+      debounceTime(400),
+      switchMap((searchTerm) => this.getItemsFilteredBySearchTerm(searchTerm)),
+    );
   }
 
-  private updateCheckedState(
-    id: number | string,
-    items: Item[],
-    multiToggle: boolean,
-    checkAll: boolean,
-  ) {
+  private getItemsFilteredBySearchTerm(searchTerm: string): Observable<Item[]> {
+    this.itemsFilteredIsLoaded = false;
+
+    if (searchTerm === '') {
+      return of(undefined);
+    }
+    return of(this.filterItemsRecursively(cloneDeep(this.items), searchTerm));
+  }
+
+  private filterItemsRecursively(items: Item[], searchTerm: string): Item[] {
+    return items.reduce((itemsFiltered: Item[], item: Item) => {
+      let filteredChildren: Item[];
+      const partialMatch = item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
+
+      if (item.children?.length > 0) {
+        filteredChildren = this.filterItemsRecursively(item.children, searchTerm);
+      }
+
+      if (partialMatch) {
+        item.name = item.name.replace(
+          RegExp(searchTerm, 'gi'),
+          '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
+        );
+        itemsFiltered.push({ ...item, children: filteredChildren });
+      }
+      if (!partialMatch && item.children && filteredChildren?.length > 0) {
+        itemsFiltered.push({ ...item, children: filteredChildren });
+      }
+      return itemsFiltered;
+    }, []);
+  }
+
+  private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
     items.forEach((item) => {
-      if (item.id === id) {
+      if (item.internal.id === id) {
         if (multiToggle) {
           checkAll ? (item.isChecked = true) : (item.isChecked = false);
         } else if (!this.singleSelection) {
@@ -173,7 +183,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           item.isChecked = true;
         }
       }
-      if (this.singleSelection && item.id !== id) {
+      if (this.singleSelection && item.internal.id !== id) {
         item.isChecked = null;
       }
       if (item.children && item.children.length > 0) {
@@ -229,15 +239,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   private createIds(items: Item[], id?: number) {
-    let itemID = id ? id : 0;
+    id = id ? id : 0;
+
     items.forEach((item) => {
-      if (item.id === undefined) {
-        item.id = this.instanceID + '-' + itemID++;
-      } else {
-        item.id = this.instanceID + '-' + item.id;
-      }
+      item.internal = {
+        id: this.instanceID + '-' + ++id,
+      };
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, itemID * 10);
+        this.createIds(item.children, id * 10);
       }
     });
   }

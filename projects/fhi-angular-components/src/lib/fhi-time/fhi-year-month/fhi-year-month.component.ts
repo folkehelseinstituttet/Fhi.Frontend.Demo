@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { getYear } from 'date-fns';
 
-import { FhiAutosuggestModule } from '../../fhi-autosuggest/fhi-autosuggest.module';
+import { FhiAutosuggestComponent } from '../../fhi-autosuggest/fhi-autosuggest.component';
 import { FhiAutosuggestItem } from '../../fhi-autosuggest/fhi-autosuggest.model';
 import { FhiYearsComponent } from '../fhi-years/fhi-years.component';
 import { FhiMonth } from '../shared/models/fhi-month.model';
@@ -13,7 +13,7 @@ import { LocaleValues } from '../shared/i18n/locale-values.model';
 @Component({
   selector: 'fhi-year-month',
   standalone: true,
-  imports: [CommonModule, FhiAutosuggestModule, FhiYearsComponent],
+  imports: [CommonModule, FhiAutosuggestComponent, FhiYearsComponent],
   templateUrl: './fhi-year-month.component.html',
   providers: [I18nService],
 })

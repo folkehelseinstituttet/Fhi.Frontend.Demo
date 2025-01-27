@@ -1,4 +1,24 @@
-# 5.1.0
+# 5.3.0
+
+> Jan 22, 2025
+
+* :tada: **Enhancement** Add option `categoryAxis` to `FhiDiagramOptions`, and add support for setting the category axis title [(#763)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/763)
+* :tada: **Enhancement** Update qualitative color series [(#771)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/771)
+* :tada: **Enhancement** Use cloneDeep() to make diagramOptions immutable [(#765)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/765)
+* :tada: **Enhancement** Rewrite decimals once instead of formatting decimals in table template and tooltip [(#773)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/773)
+* :tada: **Enhancement** Add test for illegal diagram type, and for multiple equal diagram types [(#776)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/776)
+* :tada: **Enhancement** Update styling of diagram type line to mark all line points [(#779)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/779)
+* :tada: **Enhancement** Show footer if only units are set, and also show footer if flags, but no flagged data [(#780)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/780)
+* :tada: **Enhancement** Update styling of `fhi-diagram-controls` to make diagram type navigation horizontal on most mobile phones [(#781)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/781)
+
+## 5.2.0
+
+> Nov 27, 2024
+
+* :tada: **Enhancement** Add test for disabling all other diagram types except `columnAndLine` (and `table`) if 2 units or more are defined in the diagram options. Also clean up existing tests for disabling diagram types [(#761)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/761)
+* :bug: **Bugfix** Make tooltip show zero decimals when `unit.decimals` set to `0`. Also fix inconsisten values for max decimals [(#744)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/744)
+
+## 5.1.0
 
 > Oct 17, 2024
 

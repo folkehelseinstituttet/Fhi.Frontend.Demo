@@ -8,6 +8,7 @@ import {
   SeriesOptionsType,
   TooltipOptions,
   XAxisLabelsOptions,
+  XAxisOptions,
   YAxisOptions,
 } from 'highcharts';
 
@@ -126,6 +127,8 @@ export class OptionsService {
 
   private updateChartOptions(options: Options): Options {
     options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
+    options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, this.diagramOptions);
+
     if (this.diagramOptions.units?.length === 1) {
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions, this.diagramOptions.units[0]);
     } else {
@@ -178,9 +181,6 @@ export class OptionsService {
   private getTooltip(tooltip: TooltipOptions, unit: FhiDiagramUnit): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
 
-    if (unit.decimals) {
-      tooltip.valueDecimals = unit.decimals;
-    }
     if (unit.symbol) {
       if (unit.position === 'start') {
         tooltip.valuePrefix = unit.symbol + ' ';
@@ -189,6 +189,12 @@ export class OptionsService {
       }
     }
     return tooltip;
+  }
+
+  private getXAxis(xAxis: XAxisOptions, diagramOptions: FhiDiagramOptions): XAxisOptions {
+    xAxis = xAxis ? xAxis : {};
+    xAxis.title.text = diagramOptions.categoryAxis?.title;
+    return xAxis;
   }
 
   private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {

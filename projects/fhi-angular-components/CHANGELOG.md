@@ -1,4 +1,21 @@
-# 5.1.0
+# 5.3.0
+
+> Jan 22, 2025
+
+* :bug: **Bugfix** Make selected value visible before ng-select is touched (in `FhiAutosuggestComponent`) [(#762)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/762)
+* :bug: **Bugfix** In `FhiTreeViewSelectionComponent`, add property internal, and make sure property `FhiTreeViewSelectionItem.id` set by consumer is treated as immutable [(#778)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/778)
+* :tada: **Enhancement** Start search while typing, and at first character, in `FhiTreeViewSelectionComponent` [(#769)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/769)
+* :tada: **Enhancement** Mark inputs that are required, and remove some redundant initializations [(#784)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/784)
+
+## 5.2.0
+
+> Nov 25, 2024
+
+* :tada: **Enhancement** Make `FhiMultiselectComponent` standalone [(#755)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/755)
+* :tada: **Enhancement** Make `FhiAutosuggestComponent` standalone [(#751)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/751)
+* :tada: **Enhancement** Make `FhiTreeViewNavigationComponent` standalone [(#747)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/747)
+
+## 5.1.0
 
 > Oct 17, 2024
 
