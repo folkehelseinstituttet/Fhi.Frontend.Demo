@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Jan 27, 2025
+
+* :bug: **Bugfix** Make SVG-download work also for maps [(#803)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/803)
+
+## 5.3.0
 
 > Jan 22, 2025
 
