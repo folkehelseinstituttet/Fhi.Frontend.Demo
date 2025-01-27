@@ -87,9 +87,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private topoJsonService: TopoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
-    HighchartsAccessibility(Highmaps);
     HighchartsExporting(Highcharts);
     HighchartsOfflineExporting(Highcharts);
+
+    HighchartsAccessibility(Highmaps);
+    HighchartsExporting(Highmaps);
+    HighchartsOfflineExporting(Highmaps);
+
     this.highcharts.setOptions({
       lang: {
         decimalPoint: ',',
