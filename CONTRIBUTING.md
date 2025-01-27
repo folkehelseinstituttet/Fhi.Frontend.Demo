@@ -16,12 +16,12 @@ Er du ansatt i Folkehelseinstituttet og har generelle spørsmål, eller tilbakem
 
 - **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger.
 - Søk i issue-listene for de ulike pakkene for å forsikre deg om at det ikke alt finnes et issue som omhandler samme problem.
-- Sjekk hvilken versjon versjonen av aktuell pakke som brukes i din applikasjon.
+- Sjekk hvilken versjon av aktuell pakke som brukes i din applikasjon.
 
 ### Issue listene
 
 - [@folkehelseinstituttet/style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
-- [@folkehelseinstituttet/angular-components & @folkehelseinstituttet/angular-highcharts](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
+- [@folkehelseinstituttet/angular-components og @folkehelseinstituttet/angular-highcharts](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
 
 ### Hvordan opprette et godt beskrevet issue
 

@@ -1,11 +1,37 @@
-# Release guide
+# Release guides <!-- omit from toc -->
 
-## @folkehelseinstituttet/style
+- [Deploy branch for the documentation site](#deploy-branch-for-the-documentation-site)
+- [@folkehelseinstituttet/style](#folkehelseinstituttetstyle)
+- [@folkehelseinstituttet/angular-components](#folkehelseinstituttetangular-components)
+  - [Release a patch to older version](#release-a-patch-to-older-version)
+  - [After patch is released](#after-patch-is-released)
+- [@folkehelseinstituttet/angular-highcharts](#folkehelseinstituttetangular-highcharts)
 
+## Deploy branch for the documentation site
+
+> [!WARNING]
+>**Before creating a deploy branch**
+>
+>- Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`.
+>
+>   *PS. The angular-packages are not listet in `package.json` since they are always latest, buildt from source, not downloaded from npm registry unless you run script `build-prod`*
+>
+> If not; create a branch, fix, and create a new pull request.
+>
+> **If everything is OK; create a release branch**
+>
+>- When creating a release branch, follow the instructions below to the letter!
+
+1. Create a new branch from `main`, and call it `deploy/documentation-[yyy-mm-dd]`.
+2. Merge `dev` into `deploy/documentation-[yyy-mm-dd]` and fix merge conflicts if any.
+3. Create PR into `main` from `deploy/documentation-[yyy-mm-dd]`, and when approved, merge (ie. deploy).
+
+## [@folkehelseinstituttet/style](https://www.npmjs.com/package/@folkehelseinstituttet/style)
+
+> [!WARNING]
 >**Before creating a release branch**
 >
->- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.
->
+>- Check that the CHANGELOG.md is updated, and has "Unreleased" as latest version.  
 > If not; create a branch, fix, and create a new pull request.
 >
 >**If everything is OK; create a release branch**
@@ -22,8 +48,9 @@
 5. Push release branch and create pull request from release branch into main.
 6. After approved review, squash and merge to main (deploy), delete the release branch for the previous release, but keep the latest release branch.
 
-##### Release branches for library projects
+## [@folkehelseinstituttet/angular-components](https://www.npmjs.com/package/@folkehelseinstituttet/angular-components)
 
+> [!WARNING]
 >**Before creating a release branch**
 >
 >- Check that all peerDependencies are updated
@@ -48,11 +75,12 @@
     >*It's cumbersome to use `npm version` since `package.json` is in another directory than the git directory. And since there is no `package-lock.json`, and no need for a tag in the current workflow, doing it manually is faster. A better, and more automated, solution may come in the future.*
 6. Create PR into `dev` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
 
->*NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library.*
+> [!NOTE]
+>NB! Automated release job only runs if `Release/fhi-[project]/` is present in commit message since this isn't a release for everything in the repo, just a particular library.
 
-##### Release a patch to older version in a library project
+### Release a patch to older version
 
-Almost same procedure as described under [Release branches for library projects](#release-branches-for-library-projects), but there are some minor differences:
+Almost same procedure as described under [@folkehelseinstituttet/angular-components](#folkehelseinstituttetangular-components), but there are some minor differences:
 
 1. If it doesn't already exist, create a branch from `dev` called `fhi-[project]/vx`, where `X` is the major version you're patching.
 2. Create a new branch from `fhi-[project]/vx`, and fix bug (remember ref. to correct git submodule).
@@ -68,78 +96,18 @@ Almost same procedure as described under [Release branches for library projects]
 9. **NB! Also update `publishConfig.tag` to `v[x]` where `[x]` is the major version you're patching.**
 10. Create PR into `fhi-[project]/vx` from `release/fhi-[project]/x.x.x`, and when approved, make sure commit message is *Release/fhi-[project]/x.x.x*, and then merge (ie. deploy).
 
-###### After release is done
+### After patch is released
 
-Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is *Changes from patch @folkehelseinstituttet/angular-[project]/v/x.x.x*, and then merge and delete branch `release`.
+Create PR into `dev` from `release/fhi-[project]/x.x.x` to merge relevant changes from the patch back into `dev`, and when approved, make sure commit message is `Changes from patch @folkehelseinstituttet/angular-[project]/v/x.x.x`, and then merge and delete branch `release`.
 
->*NB! This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:*
+> [!WARNING]
+> This PR will probably have conflicts, so just merge `dev` into `release` before creating PR, and fix conflicts. Ask someone if in doubt about any conflicts, but here are a few things to remember when merging:
 >
->1. **ALWAYS** merge changes to CHANGELOG (in chronological order based on date, not version), but change `# x.x.x` to `Unreleased`.
+>1. **ALWAYS** merge changes to CHANGELOG, in chronological order based on date, not version, but change `# x.x.x` to `Unreleased`.
 >2. Merge relevant changes to the code.
 >3. **NEVER** merge any changes to `./projects/fhi-[project]/package.json`.
 >4. Remember correct git submodule ref.
 
-##### Deploy branches for the documentation site
+## [@folkehelseinstituttet/angular-highcharts](https://www.npmjs.com/package/@folkehelseinstituttet/angular-highcharts)
 
->**Before creating a deploy branch**
->
->- Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`.
->
->   *PS. The angular-packages are not listet in `package.json` since they are always latest, buildt from source, not downloaded from npm registry unless you run script `build-prod`*
->
-> If not; create a branch, fix, and create a new pull request.
->
-> **If everything is OK; create a release branch**
->
->- When creating a release branch, follow the instructions below to the letter!
-
-1. Create a new branch from `main`, and call it `deploy/documentation-[yyy-mm-dd]`.
-2. Merge `dev` into `deploy/documentation-[yyy-mm-dd]` and fix merge conflicts if any.
-3. Create PR into `main` from `deploy/documentation-[yyy-mm-dd]`, and when approved, merge (ie. deploy).
-
-<!-- ##### Icon set updates
-
-When making changes to the icon file set, run `npm run generate-icon-list`.
- -->
-
-<!-- ##### How to do code scaffolding in an Angular library project
-
-1. Run `ng generate module fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new module
-2. Add new module to `FhiAngularComponentsModule`
-3. Run `ng generate component fhi-[name] --project @folkehelseinstituttet/[project]` to generate a new component
-4. Add new component to `exports` in new module
-5. Add both the new module and the new component to the public API Surface of fhi-angular-components
-
-You can also use `ng generate directive|pipe|service|class|guard|interface|enum --project @folkehelseinstituttet/[project]`.
-> Note: Don't forget to add option `--project` or else it will be added to the default project in your `angular.json` file.
- -->
-
-<!-- ## Coding conventions
-
-### CSS/SASS
-
-The project is using
-
-1. SASS with the [SCSS syntax](https://sass-lang.com/documentation/syntax)
-2. [BEM](./doc/bem-in-a-nutshell.md), but only in the folder `fhi/blocks`
-3. And some custom rules
-
-[SCSS example file](./doc/scss-example.md)
-
-#### CSS architecture
-
-[Read more about](./doc/css-architecture/css-architecture.md) how we (try to) organize the CSS code.
-
-### HTML (Angular templates)
-
-The project has also some custom rules for how we write markup:
-[HTML example file](./doc/html-example.md)
-
-### TypeScript
-
-When it comes to TypeScript we adhere to [Angular coding style guide]([https://angular.io/guide/styleguide)
-[TypeScript example file](./doc/typescript-example.md)
-
-## Documentation
-
-Great documentation is essential for any open source project and Fhi.Frontend.Demo is no exception. In addition to READMEs in the repos, [https://designsystem.fhi.no](https://designsystem.fhi.no/) is where we document our frontend library, but often we lag behind the features that have been implemented or would benefit from better examples, so help is really appreciated! -->
+Same as: [@folkehelseinstituttet/angular-components](#folkehelseinstituttetangular-components)
