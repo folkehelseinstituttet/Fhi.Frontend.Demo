@@ -14,7 +14,8 @@ Ansatte i Folkehelseinstituttet kan [kontakte oss på Teams](https://teams.micro
 
 ### Før du oppretter et issue
 
-- **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger. Har du ønsker eller inspill til ny funksjonalitet [gå til det nye repo-et](https://github.com/FHIDev/Fhi.Designsystem/blob/main/CONTRIBUTING.md#f%C3%B8r-du-oppretter-et-issue)!
+- **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger.  
+   Har du ønsker eller inspill til ny funksjonalitet; **[gå til det nye repo-et](https://github.com/FHIDev/Fhi.Designsystem/blob/main/CONTRIBUTING.md#f%C3%B8r-du-oppretter-et-issue)!**
 - Søk i [issue-listene](#issue-listene) for de ulike pakkene for å forsikre deg om at det ikke alt finnes et issue som omhandler samme problem.
 - Sjekk hvilken versjon av aktuell pakke som brukes i din applikasjon.
 
