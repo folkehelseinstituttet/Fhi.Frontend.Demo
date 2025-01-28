@@ -14,9 +14,9 @@
 >
 >- Check that `package.json` is up to date with the latest versions of `@folkehelseinstituttet/style`.
 >
->   *PS. The angular-packages are not listet in `package.json` since they are always latest, buildt from source, not downloaded from npm registry unless you run script `build-prod`*
->
-> If not; create a branch, fix, and create a new pull request.
+>   *PS. The Angular-packages are not listet in `package.json` because they are always buildt from source, and therefore always either latest version or "Unreleased". They are not downloaded from the NPM registry unless you run script `build-prod`*  
+>  
+>   If not; create a branch, fix, and create a new pull request.
 >
 > **If everything is OK; create a release branch**
 >

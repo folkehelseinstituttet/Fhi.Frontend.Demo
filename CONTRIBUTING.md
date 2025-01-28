@@ -1,8 +1,8 @@
-# Hvordan hjelpe til <!-- omit from toc -->
+# Slik bidrar du <!-- omit from toc -->
 
 - [Spørsmål eller problemer](#spørsmål-eller-problemer)
   - [Før du oppretter et issue](#før-du-oppretter-et-issue)
-  - [Issue listene](#issue-listene)
+  - [Issue-listene](#issue-listene)
   - [Hvordan opprette et godt beskrevet issue](#hvordan-opprette-et-godt-beskrevet-issue)
   - [Godkjenning av issues](#godkjenning-av-issues)
 - [Hvordan opprette en "pull request"](#hvordan-opprette-en-pull-request)
@@ -10,22 +10,22 @@
 
 ## Spørsmål eller problemer
 
-Er du ansatt i Folkehelseinstituttet og har generelle spørsmål, eller tilbakemeldinger kan du [kontakte oss på Teams](https://teams.microsoft.com/l/channel/19%3Aa0d23e5a6954497d9e378d3367e7f458%40thread.skype/General?groupId=571dd359-777d-4c02-85ea-d56854d03ef7).
+Ansatte i Folkehelseinstituttet kan [kontakte oss på Teams](https://teams.microsoft.com/l/channel/19%3Aa0d23e5a6954497d9e378d3367e7f458%40thread.skype/General?groupId=571dd359-777d-4c02-85ea-d56854d03ef7). Alle kan opprette en issue i en av [Issue-listene](#issue-listene).
 
 ### Før du oppretter et issue
 
-- **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger.
-- Søk i issue-listene for de ulike pakkene for å forsikre deg om at det ikke alt finnes et issue som omhandler samme problem.
+- **NB!** Dette er det gamle designsystemet til FHI. Vedlikehold er begrenset til feilrettinger. Har du ønsker eller inspill til ny funksjonalitet [gå til det nye repo-et](https://github.com/FHIDev/Fhi.Designsystem/blob/main/CONTRIBUTING.md#f%C3%B8r-du-oppretter-et-issue)!
+- Søk i [issue-listene](#issue-listene) for de ulike pakkene for å forsikre deg om at det ikke alt finnes et issue som omhandler samme problem.
 - Sjekk hvilken versjon av aktuell pakke som brukes i din applikasjon.
 
-### Issue listene
+### Issue-listene
 
 - [@folkehelseinstituttet/style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/issues?utf8=✓&q=is%3Aissue)
 - [@folkehelseinstituttet/angular-components og @folkehelseinstituttet/angular-highcharts](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues?utf8=✓&q=is%3Aissue)
 
 ### Hvordan opprette et godt beskrevet issue
 
-Vi har opprettet issue-templates, og bruker du den template-en som passer din forespørsel så finner du alt du trenger av informasjon for å opprette et et godt beskrevet issue.
+Vi har opprettet issue-templates. Bruk den template-en som passer din forespørsel best, så får vi den informasjonen vi trenger for å raskere forstå og ev. gi deg det du trenger.
 
 ### Godkjenning av issues
 
