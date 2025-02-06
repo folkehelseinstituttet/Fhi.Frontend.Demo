@@ -238,7 +238,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[], id?: number) {
+  private createIds(items: Item[], id?: number): number {
     id = id ? id : 0;
 
     items.forEach((item) => {
@@ -246,8 +246,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         id: this.instanceID + '-' + ++id,
       };
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, id * 10);
+        id = this.createIds(item.children, id);
       }
     });
+    return id;
   }
 }

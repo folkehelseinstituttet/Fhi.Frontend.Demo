@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Feb 6, 2025
+
+* :bug: **Bugfix** Make sure item ids always unique independent of the item count at any level in the tree  [(#808)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/808)
+
+## 5.3.0
 
 > Jan 22, 2025
 
