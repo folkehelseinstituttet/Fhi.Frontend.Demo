@@ -1,8 +1,8 @@
 # Unreleased
 
-> Feb 5, 2025
+> Feb 6, 2025
 
-* :bug: **Bugfix** Increase maximum item count pr. level in the tree to 1000, and update README [(#808)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/808)
+* :bug: **Bugfix** Make sure item ids always unique independent of the item count at any level in the tree  [(#808)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/808)
 
 ## 5.3.0
 
