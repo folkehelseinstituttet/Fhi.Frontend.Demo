@@ -15,7 +15,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { FhiTreeViewSelectionItem as Item } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
+import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -32,12 +33,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
-  @Input({ required: true }) items!: Item[];
+  @Input({ required: true }) items!: FhiTreeViewSelectionItem[];
   @Input() name!: string;
   @Input() enableFilter = false;
   @Input() placeholder = 'Søk';
 
-  @Output() itemsChange = new EventEmitter<Item[]>();
+  @Output() itemsChange = new EventEmitter<FhiTreeViewSelectionItem[]>();
 
   @ViewChild('checkboxList') checkboxListRef: ElementRef;
   @ViewChild('resultListWrapper') resultListWrapperRef: ElementRef;
@@ -76,7 +77,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       this.createIds(this.items);
       this.updateDecendantState(this.items, true);
     }
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   onSearchTermChange(searchTerm: string) {
@@ -94,26 +95,26 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: number | string, multiToggle = false, checkAll = false) {
+  toggleChecked(id: string, multiToggle = false, checkAll = false) {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
     if (!multiToggle) {
-      this.itemsChange.emit(this.items);
+      this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
     }
   }
 
   checkAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true, true);
+      this.toggleChecked(item.internal.id, true, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
-      this.toggleChecked(item.id, true);
+      this.toggleChecked(item.internal.id, true);
     });
-    this.itemsChange.emit(this.items);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   allItemsChecked(items: Item[]): boolean {
@@ -171,14 +172,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }, []);
   }
 
-  private updateCheckedState(
-    id: number | string,
-    items: Item[],
-    multiToggle: boolean,
-    checkAll: boolean,
-  ) {
+  private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
     items.forEach((item) => {
-      if (item.id === id) {
+      if (item.internal.id === id) {
         if (multiToggle) {
           checkAll ? (item.isChecked = true) : (item.isChecked = false);
         } else if (!this.singleSelection) {
@@ -187,7 +183,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           item.isChecked = true;
         }
       }
-      if (this.singleSelection && item.id !== id) {
+      if (this.singleSelection && item.internal.id !== id) {
         item.isChecked = null;
       }
       if (item.children && item.children.length > 0) {
@@ -242,17 +238,17 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return itemsState;
   }
 
-  private createIds(items: Item[], id?: number) {
-    let itemID = id ? id : 0;
+  private createIds(items: Item[], id?: number): number {
+    id = id ? id : 0;
+
     items.forEach((item) => {
-      if (item.id === undefined) {
-        item.id = this.instanceID + '-' + itemID++;
-      } else {
-        item.id = this.instanceID + '-' + item.id;
-      }
+      item.internal = {
+        id: this.instanceID + '-' + ++id,
+      };
       if (item.children && item.children.length > 0) {
-        this.createIds(item.children, itemID * 10);
+        id = this.createIds(item.children, id);
       }
     });
+    return id;
   }
 }

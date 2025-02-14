@@ -13,14 +13,14 @@ import { FhiMultiselectItem } from './fhi-multiselect.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class FhiMultiselectComponent {
-  @Input() items: Array<FhiMultiselectItem> = [];
-  @Input() labelForId: string = undefined;
-  @Input() placeholder = '';
-  @Input() disableTags: boolean;
-  @Input() description: string = undefined;
-  @Input() label = 'Label';
+  @Input({ required: true }) items!: Array<FhiMultiselectItem>;
+  @Input() labelForId: string | undefined;
+  @Input() placeholder: string | undefined;
+  @Input() disableTags: boolean | undefined;
+  @Input() description: string | undefined;
+  @Input({ required: true }) label!: string;
   @Input() notFoundText = 'Ingen elementer funnet';
-  @Input() selectedItems: Array<any> = [];
+  @Input({ required: true }) selectedItems!: Array<any>;
 
   @Output() selectedItemsChange = new EventEmitter<Array<any>>();
 
@@ -38,7 +38,7 @@ export class FhiMultiselectComponent {
   }
 
   getSelectedName(selected: string) {
-    return this.items.find((x) => x.id === selected).name;
+    return this.items?.find((x) => x.id === selected)?.name;
   }
 
   onChange() {
