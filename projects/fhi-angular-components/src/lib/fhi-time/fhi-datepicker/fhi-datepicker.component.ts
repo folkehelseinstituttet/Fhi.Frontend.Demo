@@ -32,30 +32,29 @@ import { DateValidationService } from './services/date-validation.service';
 import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
-  selector: 'fhi-datepicker',
-  templateUrl: './fhi-datepicker.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [FormsModule, CommonModule, NgbDatepickerModule],
-  providers: [
-    I18nService,
-    DateUtilityService,
-    FhiTimeUtilityService,
-    DateValidationService,
-    {
-      provide: NgbDatepickerI18n,
-      useClass: DatepickerI18nService,
-    },
-    {
-      provide: NgbDateAdapter,
-      useClass: DateAdapterService,
-    },
-    {
-      provide: NgbDateParserFormatter,
-      useClass: DateParserFormatterService,
-    },
-    { provide: NgbCalendar, useClass: NgbCalendarGregorian },
-  ],
+    selector: 'fhi-datepicker',
+    templateUrl: './fhi-datepicker.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormsModule, CommonModule, NgbDatepickerModule],
+    providers: [
+        I18nService,
+        DateUtilityService,
+        FhiTimeUtilityService,
+        DateValidationService,
+        {
+            provide: NgbDatepickerI18n,
+            useClass: DatepickerI18nService,
+        },
+        {
+            provide: NgbDateAdapter,
+            useClass: DateAdapterService,
+        },
+        {
+            provide: NgbDateParserFormatter,
+            useClass: DateParserFormatterService,
+        },
+        { provide: NgbCalendar, useClass: NgbCalendarGregorian },
+    ]
 })
 export class FhiDatepickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;

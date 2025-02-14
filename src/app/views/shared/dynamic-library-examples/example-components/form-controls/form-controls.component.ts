@@ -5,10 +5,9 @@ import { LibraryItemsShared } from '../../../models/library-item.model';
 import { MultiselectComponent } from './multiselect/multiselect.component';
 
 @Component({
-  selector: 'app-form-controls',
-  standalone: true,
-  imports: [MultiselectComponent, SharedModule],
-  templateUrl: './form-controls.component.html',
+    selector: 'app-form-controls',
+    imports: [MultiselectComponent, SharedModule],
+    templateUrl: './form-controls.component.html'
 })
 export class FormControlsComponent {
   @Input() itemId!: string;

@@ -12,8 +12,9 @@ import { SharedConstants as CONST } from '../../shared/shared.constants';
 import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
 
 @Component({
-  selector: 'app-library-items-section',
-  templateUrl: './library-items-section.component.html',
+    selector: 'app-library-items-section',
+    templateUrl: './library-items-section.component.html',
+    standalone: false
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

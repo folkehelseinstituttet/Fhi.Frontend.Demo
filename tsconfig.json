@@ -12,6 +12,7 @@
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
 
     // TODO: uncomment to get a stricter build
     // "forceConsistentCasingInFileNames": true,
@@ -23,7 +24,6 @@
 
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,

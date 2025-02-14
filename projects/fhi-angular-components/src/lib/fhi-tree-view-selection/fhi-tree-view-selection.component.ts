@@ -22,12 +22,11 @@ import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
-  selector: 'fhi-tree-view-selection',
-  standalone: true,
-  templateUrl: './fhi-tree-view-selection.component.html',
-  encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule, FormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fhi-tree-view-selection',
+    templateUrl: './fhi-tree-view-selection.component.html',
+    encapsulation: ViewEncapsulation.None,
+    imports: [CommonModule, FormsModule],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;

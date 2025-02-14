@@ -7,10 +7,9 @@ import { RangeContext } from '../shared/range-context.enum';
 import { TimeConstants } from '../shared/time.constants';
 
 @Component({
-  selector: 'fhi-year-range',
-  standalone: true,
-  templateUrl: './fhi-year-range.component.html',
-  imports: [FhiYearsComponent],
+    selector: 'fhi-year-range',
+    templateUrl: './fhi-year-range.component.html',
+    imports: [FhiYearsComponent]
 })
 export class FhiYearRangeComponent {
   @Input() minYear: number = TimeConstants.minYear;

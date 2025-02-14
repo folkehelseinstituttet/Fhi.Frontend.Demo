@@ -11,11 +11,10 @@ import { I18nService } from '../shared/i18n/i18n.service';
 import { LocaleValues } from '../shared/i18n/locale-values.model';
 
 @Component({
-  selector: 'fhi-year-month',
-  standalone: true,
-  imports: [CommonModule, FhiAutosuggestComponent, FhiYearsComponent],
-  templateUrl: './fhi-year-month.component.html',
-  providers: [I18nService],
+    selector: 'fhi-year-month',
+    imports: [CommonModule, FhiAutosuggestComponent, FhiYearsComponent],
+    templateUrl: './fhi-year-month.component.html',
+    providers: [I18nService]
 })
 export class FhiYearMonthComponent implements OnInit {
   private i18n: LocaleValues;

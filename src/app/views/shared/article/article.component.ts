@@ -12,8 +12,9 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
+    selector: 'app-article',
+    templateUrl: './article.component.html',
+    standalone: false
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

@@ -9,8 +9,9 @@ import {
 // import { alleAtcKoderSomItems } from './alle_atckoder_som_items'; // use this for stress testing fhi-tree-view-checkbox or fhi-tree-view-radio with large dataset
 
 @Component({
-  selector: 'app-tree-views',
-  templateUrl: './tree-views.component.html',
+    selector: 'app-tree-views',
+    templateUrl: './tree-views.component.html',
+    standalone: false
 })
 export class TreeViewsComponent implements OnInit {
   @Input() itemId!: string;

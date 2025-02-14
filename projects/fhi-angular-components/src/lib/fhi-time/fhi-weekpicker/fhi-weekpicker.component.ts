@@ -30,29 +30,28 @@ import { WeekUtilityService } from './services/week-utility.service';
 import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
-  selector: 'fhi-weekpicker',
-  templateUrl: './fhi-weekpicker.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, FormsModule, NgbDatepickerModule],
-  providers: [
-    I18nService,
-    WeekValidationService,
-    FhiTimeUtilityService,
-    WeekUtilityService,
-    {
-      provide: NgbDatepickerI18n,
-      useClass: DatepickerI18nService,
-    },
-    {
-      provide: NgbDateParserFormatter,
-      useClass: WeekParserFormatterService,
-    },
-    {
-      provide: NgbDateAdapter,
-      useClass: WeekAdapterService,
-    },
-  ],
+    selector: 'fhi-weekpicker',
+    templateUrl: './fhi-weekpicker.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, FormsModule, NgbDatepickerModule],
+    providers: [
+        I18nService,
+        WeekValidationService,
+        FhiTimeUtilityService,
+        WeekUtilityService,
+        {
+            provide: NgbDatepickerI18n,
+            useClass: DatepickerI18nService,
+        },
+        {
+            provide: NgbDateParserFormatter,
+            useClass: WeekParserFormatterService,
+        },
+        {
+            provide: NgbDateAdapter,
+            useClass: WeekAdapterService,
+        },
+    ]
 })
 export class FhiWeekpickerComponent implements OnInit, OnChanges {
   private i18n: LocaleValues;

@@ -11,8 +11,9 @@ import { LibraryItemGroupsShared } from '../shared/models/library-item.model';
 import { LibraryItemsDataService } from '../shared/services/library-items-data.service';
 
 @Component({
-  selector: 'app-developer',
-  templateUrl: './developer.component.html',
+    selector: 'app-developer',
+    templateUrl: './developer.component.html',
+    standalone: false
 })
 export class DeveloperComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

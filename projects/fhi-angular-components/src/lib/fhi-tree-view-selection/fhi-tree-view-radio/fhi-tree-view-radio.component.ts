@@ -4,10 +4,9 @@ import { FhiTreeViewSelectionComponent } from '../fhi-tree-view-selection.compon
 import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-item.model';
 
 @Component({
-  selector: 'fhi-tree-view-radio',
-  standalone: true,
-  imports: [FhiTreeViewSelectionComponent],
-  templateUrl: './fhi-tree-view-radio.component.html',
+    selector: 'fhi-tree-view-radio',
+    imports: [FhiTreeViewSelectionComponent],
+    templateUrl: './fhi-tree-view-radio.component.html'
 })
 export class FhiTreeViewRadioComponent {
   @Input() enableFilter = false;

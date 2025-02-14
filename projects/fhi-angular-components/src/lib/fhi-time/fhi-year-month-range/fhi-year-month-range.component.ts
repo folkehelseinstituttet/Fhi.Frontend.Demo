@@ -13,11 +13,10 @@ import { I18nService } from '../shared/i18n/i18n.service';
 import { LocaleValues } from '../shared/i18n/locale-values.model';
 
 @Component({
-  selector: 'fhi-year-month-range',
-  standalone: true,
-  imports: [CommonModule, FhiAutosuggestComponent, FhiYearsComponent],
-  templateUrl: './fhi-year-month-range.component.html',
-  providers: [I18nService],
+    selector: 'fhi-year-month-range',
+    imports: [CommonModule, FhiAutosuggestComponent, FhiYearsComponent],
+    templateUrl: './fhi-year-month-range.component.html',
+    providers: [I18nService]
 })
 export class FhiYearMonthRangeComponent implements OnInit {
   private i18n: LocaleValues;

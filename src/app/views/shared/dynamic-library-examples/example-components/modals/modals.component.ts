@@ -19,8 +19,9 @@ interface FormValues {
 }
 
 @Component({
-  selector: 'app-modals',
-  templateUrl: './modals.component.html',
+    selector: 'app-modals',
+    templateUrl: './modals.component.html',
+    standalone: false
 })
 export class ModalsComponent {
   @Input() itemId!: string;
