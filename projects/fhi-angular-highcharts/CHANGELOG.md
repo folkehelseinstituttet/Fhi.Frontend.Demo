@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Feb 14, 2025
+
+* :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
+
+## 5.3.0
 
 > Jan 22, 2025
 
@@ -10,7 +16,6 @@
 * :tada: **Enhancement** Update styling of diagram type line to mark all line points [(#779)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/779)
 * :tada: **Enhancement** Show footer if only units are set, and also show footer if flags, but no flagged data [(#780)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/780)
 * :tada: **Enhancement** Update styling of `fhi-diagram-controls` to make diagram type navigation horizontal on most mobile phones [(#781)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/781)
-* :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
 
 ## 5.2.0
 
