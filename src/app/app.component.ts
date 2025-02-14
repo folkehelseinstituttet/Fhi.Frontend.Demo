@@ -8,8 +8,9 @@ import { BrowserViewportService } from './services/browser-viewport.service';
 import { UrlService } from './services/url.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit {
   projectName = 'Designsystem-old (deprecated)';

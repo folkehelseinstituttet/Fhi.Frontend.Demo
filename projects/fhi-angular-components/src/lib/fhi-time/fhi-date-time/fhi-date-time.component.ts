@@ -10,11 +10,10 @@ import { FhiTime } from '../shared/models/fhi-time.model';
 import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
-  standalone: true,
-  selector: 'fhi-date-time',
-  templateUrl: './fhi-date-time.component.html',
-  imports: [CommonModule, FhiDatepickerComponent, FormsModule],
-  providers: [FhiTimeUtilityService],
+    selector: 'fhi-date-time',
+    templateUrl: './fhi-date-time.component.html',
+    imports: [CommonModule, FhiDatepickerComponent, FormsModule],
+    providers: [FhiTimeUtilityService]
 })
 export class FhiDateTimeComponent implements OnInit {
   @Input() label = 'Velg dato og tidspunkt';

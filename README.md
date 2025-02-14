@@ -12,4 +12,11 @@ An Angular app with demos and documentation of CSS and Angular components with F
 3. `npm run build-libs`
 4. `npm start`
 
+## Git submodule
+
+There is a submodule in this repo:
+
+- `./Fhi.Frontend.Style`, [Github repo Fhi.Frontend.Style](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style)
+- *For more info about git submodules see: [https://git-scm.com/book/en/v2/Git-Tools-Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)*
+
 You find more info about working on this project in [CONTRIBUTING.md](CONTRIBUTING.md)

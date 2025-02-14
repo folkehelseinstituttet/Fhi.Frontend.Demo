@@ -3,8 +3,9 @@ import { Table, TableEditable } from './table.consts';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
+    selector: 'app-tables',
+    templateUrl: './tables.component.html',
+    standalone: false
 })
 export class TablesComponent implements OnInit {
   @Input() itemId!: string;

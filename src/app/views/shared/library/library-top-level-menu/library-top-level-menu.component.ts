@@ -5,8 +5,9 @@ import { BrowserViewportService } from 'src/app/services/browser-viewport.servic
 import { MenuItem } from 'src/app/models/menu-item.model';
 
 @Component({
-  selector: 'app-library-top-level-menu',
-  templateUrl: './library-top-level-menu.component.html',
+    selector: 'app-library-top-level-menu',
+    templateUrl: './library-top-level-menu.component.html',
+    standalone: false
 })
 export class LibraryTopLevelMenuComponent implements OnInit, OnDestroy {
   @Input() menuItems: MenuItem[];

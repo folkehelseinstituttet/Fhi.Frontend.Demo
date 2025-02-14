@@ -10,8 +10,9 @@ import { LibraryItemsDataService } from '../services/library-items-data.service'
 import { UrlService } from 'src/app/services/url.service';
 
 @Component({
-  selector: 'app-dynamic-library-example',
-  templateUrl: './dynamic-library-example.component.html',
+    selector: 'app-dynamic-library-example',
+    templateUrl: './dynamic-library-example.component.html',
+    standalone: false
 })
 export class DynamicLibraryExampleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

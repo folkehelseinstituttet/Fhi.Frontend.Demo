@@ -10,10 +10,9 @@ import { I18nService } from '../shared/i18n/i18n.service';
 import { TimeConstants } from '../shared/time.constants';
 
 @Component({
-  selector: 'fhi-week-range',
-  standalone: true,
-  templateUrl: './fhi-week-range.component.html',
-  imports: [CommonModule, FhiWeekpickerComponent],
+    selector: 'fhi-week-range',
+    templateUrl: './fhi-week-range.component.html',
+    imports: [CommonModule, FhiWeekpickerComponent]
 })
 export class FhiWeekRangeComponent implements OnInit {
   private i18n: LocaleValues;

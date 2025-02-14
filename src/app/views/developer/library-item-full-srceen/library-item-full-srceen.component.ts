@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-library-item-full-srceen',
-  templateUrl: './library-item-full-srceen.component.html',
+    selector: 'app-library-item-full-srceen',
+    templateUrl: './library-item-full-srceen.component.html',
+    standalone: false
 })
 export class LibraryItemFullSrceenComponent {
   constructor(private modal: NgbModal) {}

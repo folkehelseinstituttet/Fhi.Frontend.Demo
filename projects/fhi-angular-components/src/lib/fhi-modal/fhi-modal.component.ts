@@ -16,13 +16,12 @@ import { cloneDeep } from 'lodash-es';
 import { FhiModalActionButton } from './fhi-modal-action-button.model';
 
 @Component({
-  selector: 'fhi-modal',
-  templateUrl: './fhi-modal.component.html',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  imports: [CommonModule],
-  providers: [NgbModal],
+    selector: 'fhi-modal',
+    templateUrl: './fhi-modal.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
+    imports: [CommonModule],
+    providers: [NgbModal]
 })
 export class FhiModalComponent implements OnChanges {
   @Input() actionButtons: FhiModalActionButton[];

@@ -4,8 +4,9 @@ import { ToggleExpandableRowService } from '../toggle-expandable-row.service';
 import { FhiTableConstants } from '../../fhi-table.constants';
 
 @Component({
-  selector: '[fhi-table-row-expandable]',
-  templateUrl: './fhi-table-row-expandable.component.html',
+    selector: '[fhi-table-row-expandable]',
+    templateUrl: './fhi-table-row-expandable.component.html',
+    standalone: false
 })
 export class FhiTableRowExpandableComponent {
   @Input() colspan!: number;

@@ -13,8 +13,9 @@ import {
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-highcharts',
-  templateUrl: './highcharts.component.html',
+    selector: 'app-highcharts',
+    templateUrl: './highcharts.component.html',
+    standalone: false
 })
 export class HighchartsComponent implements OnInit {
   @Input() itemId!: string;

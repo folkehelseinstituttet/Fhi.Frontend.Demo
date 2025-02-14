@@ -43,9 +43,10 @@ enum ControlsPopoverMenuActions {
 }
 
 @Component({
-  selector: 'fhi-angular-highcharts',
-  templateUrl: './fhi-angular-highcharts.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fhi-angular-highcharts',
+    templateUrl: './fhi-angular-highcharts.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
@@ -87,9 +88,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private topoJsonService: TopoJsonService,
   ) {
     HighchartsAccessibility(Highcharts);
-    HighchartsAccessibility(Highmaps);
     HighchartsExporting(Highcharts);
     HighchartsOfflineExporting(Highcharts);
+
+    HighchartsAccessibility(Highmaps);
+    HighchartsExporting(Highmaps);
+    HighchartsOfflineExporting(Highmaps);
+
     this.highcharts.setOptions({
       lang: {
         decimalPoint: ',',

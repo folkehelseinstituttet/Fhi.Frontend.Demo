@@ -16,12 +16,11 @@ import { TimeConstants } from '../shared/time.constants';
 import { FhiTimeUtilityService } from '../shared/fhi-time-utility.service';
 
 @Component({
-  selector: 'fhi-years',
-  templateUrl: './fhi-years.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [FhiAutosuggestComponent],
-  providers: [FhiTimeUtilityService],
+    selector: 'fhi-years',
+    templateUrl: './fhi-years.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FhiAutosuggestComponent],
+    providers: [FhiTimeUtilityService]
 })
 export class FhiYearsComponent implements OnInit, OnChanges {
   @Input() label = 'Velg år';
