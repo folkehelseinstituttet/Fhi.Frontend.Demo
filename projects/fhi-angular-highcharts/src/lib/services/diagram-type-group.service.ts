@@ -114,13 +114,16 @@ export class DiagramTypeGroupService {
       const activeChild = group.children.find(
         (diagramType) => diagramType.id === this.activeDiagramType.id,
       );
+      const previousActiveChild = group.children.find((diagramType) => {
+        if (previousGroups !== undefined) {
+          return diagramType.id === previousGroups[index]?.diagramType.id;
+        }
+      });
 
       if (activeChild !== undefined) {
         group.diagramType = activeChild;
-      } else if (previousGroups !== undefined && previousGroups[index]?.diagramType !== undefined) {
-        group.diagramType = group.children.find(
-          (diagramType) => diagramType.id === previousGroups[index].diagramType.id,
-        );
+      } else if (previousActiveChild !== undefined) {
+        group.diagramType = previousActiveChild;
       } else {
         group.diagramType = group.children[0];
       }
