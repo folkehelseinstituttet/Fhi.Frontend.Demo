@@ -26,7 +26,6 @@ import { TableExpandableContentComponent } from './example-components/table-expa
 import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TagsComponent } from './example-components/tags/tags.component';
-import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 import { ToastsComponent } from './example-components/toasts/toasts.component';
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 import { TreeViewsComponent } from './example-components/tree-views/tree-views.component';
@@ -49,7 +48,6 @@ const EXAMPLE_COMPONENTS = [
   TablesComponent,
   TabsExampleComponent,
   TagsComponent,
-  TimeSelectorsComponent,
   ToastsComponent,
   TooltipAndPopoverComponent,
   TreeViewsComponent,
