@@ -1,4 +1,10 @@
-# 5.3.0
+# Unreleased
+
+> Feb 14, 2025
+
+* :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
+
+## 5.3.0
 
 > Jan 22, 2025
 
