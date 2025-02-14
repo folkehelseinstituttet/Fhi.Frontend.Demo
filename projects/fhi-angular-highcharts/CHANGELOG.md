@@ -3,6 +3,7 @@
 > Feb 14, 2025
 
 * :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
+* :bug: **Bugfix** Make SVG-download work also for maps [(#803)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/803)
 
 ## 5.3.0
 
