@@ -1,7 +1,8 @@
-# Unreleased
+# 5.3.1
 
-> Jan 23, 2025
+> Feb 6, 2025
 
+* :bug: **Bugfix** Make sure item ids always unique independent of the item count at any level in the tree  [(#808)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/808)
 * :tada: **Enhancement** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
 
 ## 5.3.0
