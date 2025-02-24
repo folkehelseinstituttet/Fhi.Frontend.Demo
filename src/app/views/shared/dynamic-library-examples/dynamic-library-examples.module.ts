@@ -22,7 +22,6 @@ import { PaginationsComponent } from './example-components/paginations/paginatio
 import { ProgressIndicatorsComponent } from './example-components/progress-indicators/progress-indicators.component';
 import { PrototypeFormsComponent } from './example-components/forms/forms.component';
 import { SearchComponent } from './example-components/search/search.component';
-import { TableExpandableContentComponent } from './example-components/table-expandable-content/table-expandable-content.component';
 import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TagsComponent } from './example-components/tags/tags.component';
@@ -44,7 +43,6 @@ const EXAMPLE_COMPONENTS = [
   ProgressIndicatorsComponent,
   PrototypeFormsComponent,
   SearchComponent,
-  TableExpandableContentComponent,
   TablesComponent,
   TabsExampleComponent,
   TagsComponent,
