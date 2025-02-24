@@ -43,10 +43,10 @@ enum ControlsPopoverMenuActions {
 }
 
 @Component({
-    selector: 'fhi-angular-highcharts',
-    templateUrl: './fhi-angular-highcharts.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'fhi-angular-highcharts',
+  templateUrl: './fhi-angular-highcharts.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
@@ -240,6 +240,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
         dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
       }
+
+      // TODO: need only decimals from dataPoint.y, then padEnd
+      console.log('dataPoint.y', dataPoint.y.toString().padEnd(10, '0'));
     });
   }
 
