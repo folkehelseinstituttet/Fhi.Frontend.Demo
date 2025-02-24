@@ -1,8 +1,9 @@
 # Unreleased
 
-> Feb 14, 2025
+> Feb 24, 2025
 
-* :tada: **Enhancement** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+* :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+* :boom: **Breaking** Remove all "Time selector"-components [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)
 
 ## 5.3.1
 
