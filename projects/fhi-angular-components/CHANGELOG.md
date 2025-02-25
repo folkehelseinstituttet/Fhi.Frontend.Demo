@@ -3,7 +3,8 @@
 > Feb 24, 2025
 
 * :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
-* :boom: **Breaking** Remove all "Time selector"-components [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)
+* :boom: **Breaking** Remove all "Time selector"-components [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)  
+  For more information about time and date selectors, see also this [issue comment](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/790#issuecomment-2680985992).
 
 ## 5.3.1
 
