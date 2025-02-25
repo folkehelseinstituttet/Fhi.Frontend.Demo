@@ -14,12 +14,12 @@ import {
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
-import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 import { TopoJsonService } from './topo-json.service';
+import { MetadataForSeriesService } from './metadata-for-series.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
@@ -29,20 +29,18 @@ import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 export class OptionsService {
   private allStaticOptions = new Map();
   private diagramOptions: FhiDiagramOptions;
-  private metadataForSeries: MetadataForSerie[];
 
-  constructor(private topoJsonService: TopoJsonService) {
+  constructor(
+    private topoJsonService: TopoJsonService,
+    private metadataForSeriesService: MetadataForSeriesService,
+  ) {
     this.setAllStaticOptions();
   }
 
-  updateOptions(diagramOptions: FhiDiagramOptions, metadataForSeries: MetadataForSerie[]): Options {
+  updateOptions(diagramOptions: FhiDiagramOptions): Options {
     let options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
     const isMap = options.chart && 'map' in options.chart;
     this.diagramOptions = diagramOptions;
-    this.metadataForSeries = metadataForSeries;
-
-    // console.log('this.metadataForSeries', this.metadataForSeries);
-
     options = this.updateGenericOptions(options);
     options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
     return this.updateOptionsForCurrentDiagramType(options);
@@ -79,8 +77,6 @@ export class OptionsService {
   }
 
   private updateMapOptions(options: Options): Options {
-    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
-    const hasPositiveData = !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
     const colorAxis = options.colorAxis;
     const stopsPositive: Array<[number, string]> = [
       [0, '#ffffff'],
@@ -115,9 +111,12 @@ export class OptionsService {
       [0.92, '#2a6a82'], // B2-50
       [1, '#234e5f'], // B2-40
     ];
-    if (hasNegativeData && hasPositiveData) {
+    if (
+      this.metadataForSeriesService.hasNegativeData() &&
+      this.metadataForSeriesService.hasPositiveData()
+    ) {
       options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
-    } else if (hasNegativeData) {
+    } else if (this.metadataForSeriesService.hasNegativeData()) {
       options.colorAxis = { ...colorAxis, stops: stopsNegative };
     } else {
       options.colorAxis = { ...colorAxis, stops: stopsPositive };
@@ -189,7 +188,7 @@ export class OptionsService {
   ): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
     // console.log('serieIndex', serieIndex);
-    const maxDecimals = this.metadataForSeries[serieIndex].maxDecimals;
+    const maxDecimals = this.metadataForSeriesService.getMetadataForSerie(serieIndex).maxDecimals;
 
     if (unit.decimals !== undefined) {
       tooltip.formatter = function (tooltip) {
@@ -226,14 +225,12 @@ export class OptionsService {
   }
 
   private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {
-    const hasDecimalData = !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
-    const hasNegativeData = !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
     yAxis = yAxis ? yAxis : {};
 
-    if (hasDecimalData) {
+    if (this.metadataForSeriesService.hasDecimalData()) {
       yAxis.allowDecimals = true;
     }
-    if (hasNegativeData) {
+    if (this.metadataForSeriesService.hasNegativeData()) {
       yAxis.min = undefined;
     }
 

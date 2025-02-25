@@ -1,0 +1,89 @@
+import { Injectable } from '@angular/core';
+
+import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
+import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
+import { MetadataForSerie } from '../models/metadata-for-serie.model';
+
+@Injectable()
+export class MetadataForSeriesService {
+  private metadataForSeries: MetadataForSerie[];
+
+  getMetadataForSeries(): MetadataForSerie[] {
+    return this.metadataForSeries;
+  }
+
+  getMetadataForSerie(index: number): MetadataForSerie {
+    return this.metadataForSeries[index];
+  }
+
+  resetMetadataForSeries() {
+    this.metadataForSeries = [];
+  }
+
+  hasDecimalData(): boolean {
+    return !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
+  }
+
+  hasPositiveData(): boolean {
+    return !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
+  }
+
+  hasNegativeData(): boolean {
+    return !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
+  }
+
+  updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
+    this.metadataForSeries.push({
+      hasDecimalData: this.serieHasDecimalDataPoints(serie),
+      hasNegativeData: this.serieHasNegativeDataPoints(serie),
+      hasPositiveData: this.serieHasPositiveDataPoints(serie),
+      maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
+    });
+  }
+
+  decimalCount(value: number | string): number {
+    if (typeof value !== 'number') return 0;
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
+  }
+
+  isDecimalNumber(value: number | string): boolean {
+    return typeof value === 'number' && !Number.isInteger(value);
+  }
+
+  private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): number {
+    let unit = units?.find((unit) => unit.id === serie.unitId);
+
+    if (!unit && units?.length === 1) {
+      unit = units[0];
+    }
+    if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
+      return unit.decimals;
+    }
+    if (unit?.decimals > 9) {
+      console.warn(
+        'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
+      );
+    }
+    return 9;
+  }
+
+  private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
+    const decimalData = serie.data.filter((dataPoint) => this.isDecimalNumber(dataPoint.y));
+    return decimalData.length !== 0;
+  }
+
+  private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
+    const negativeData = serie.data.filter(
+      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
+    );
+    return negativeData.length > 0;
+  }
+
+  private serieHasPositiveDataPoints(serie: FhiDiagramSerie): boolean {
+    const positiveData = serie.data.filter(
+      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
+    );
+    return positiveData.length > 0;
+  }
+}

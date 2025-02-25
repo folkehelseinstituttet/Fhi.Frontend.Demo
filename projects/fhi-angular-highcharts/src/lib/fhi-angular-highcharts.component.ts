@@ -34,9 +34,10 @@ import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
 import { TableData } from './models/table-data.model';
 import { DiagramTypeGroup } from './models/diagram-type-group.model';
-import { MetadataForSerie } from './models/metadata-for-serie.model';
+// import { MetadataForSerie } from './models/metadata-for-serie.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
 import { DownloadService } from './services/download.service';
+import { MetadataForSeriesService } from './services/metadata-for-series.service';
 
 enum ControlsPopoverMenuActions {
   downloadSvg = 'downloadSvg',
@@ -52,6 +53,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
   private chartInstance!: Chart;
 
+  // private metadataForSeries: MetadataForSerie[];
+
   @Input({ required: true }) diagramOptions!: FhiDiagramOptions;
 
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
@@ -66,7 +69,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   diagramTypeGroups!: DiagramTypeGroup[];
   diagramTypeGroupNames = DiagramTypeGroupNames;
   flaggedSeries: FlaggedSerie[];
-  metadataForSeries: MetadataForSerie[];
   tableData: TableData;
 
   showDefaultChartTemplate: boolean;
@@ -86,6 +88,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     private diagramTypeGroupService: DiagramTypeGroupService,
     private tableService: TableService,
     private topoJsonService: TopoJsonService,
+    private metadataForSeriesService: MetadataForSeriesService,
   ) {
     HighchartsAccessibility(Highcharts);
     HighchartsExporting(Highcharts);
@@ -111,8 +114,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         serie.name = this.formatSerieName(serie.name);
         this.findDuplicateSerieNames(serie.name);
         this.testForFlaggedDataAndUpdateFlaggedSeries(serie);
-        this.updateMetadataForSeries(serie);
-        this.updateDecimalCountBasedOnUnits(serie);
+
+        // this.updateMetadataForSeries(serie);
+        this.metadataForSeriesService.updateMetadataForSeries(
+          serie,
+          this.diagramOptionsInternal.units,
+        );
+
+        // this.updateDecimalCountBasedOnUnits(serie);
       });
       this.updateDiagramTypeGroups();
       this.updateDiagramOptions();
@@ -177,7 +186,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.showMetadataButton = false;
     this.allSerieNames = [];
     this.flaggedSeries = [];
-    this.metadataForSeries = [];
+
+    // this.metadataForSeries = [];
+    this.metadataForSeriesService.resetMetadataForSeries();
   }
 
   private formatSerieName(name: string | Array<string>): string {
@@ -223,80 +234,80 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return flaggedDataPoints;
   }
 
-  private updateMetadataForSeries(serie: FhiDiagramSerie) {
-    this.metadataForSeries.push({
-      hasDecimalData: this.serieHasDecimalDataPoints(serie),
-      hasNegativeData: this.serieHasNegativeDataPoints(serie),
-      hasPositiveData: this.serieHasPositiveDataPoints(serie),
-      maxDecimals: this.getVerifiedMaxDecimalCount(serie),
-    });
-  }
+  // private updateMetadataForSeries(serie: FhiDiagramSerie) {
+  //   this.metadataForSeries.push({
+  //     hasDecimalData: this.serieHasDecimalDataPoints(serie),
+  //     hasNegativeData: this.serieHasNegativeDataPoints(serie),
+  //     hasPositiveData: this.serieHasPositiveDataPoints(serie),
+  //     maxDecimals: this.getVerifiedMaxDecimalCount(serie),
+  //   });
+  // }
 
   // TODO: This methode is redundant
-  private updateDecimalCountBasedOnUnits(serie: FhiDiagramSerie) {
-    if (!this.metadataForSeries.find((serie) => serie.hasDecimalData)) {
-      return;
-    }
-    const maxDecimals = this.getVerifiedMaxDecimalCount(serie);
+  // private updateDecimalCountBasedOnUnits(serie: FhiDiagramSerie) {
+  //   if (!this.metadataForSeries.find((serie) => serie.hasDecimalData)) {
+  //     return;
+  //   }
+  //   const maxDecimals = this.getVerifiedMaxDecimalCount(serie);
 
-    serie.data.forEach((dataPoint) => {
-      if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
-        // This solution is redundant: solved by tooltip.formatter in OptionsService
-        // dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
-        // This is the solution for table
-        // dataPoint.y = (dataPoint.y as number).toFixed(maxDecimals);
-        // console.log('dataPoint.y', dataPoint.y);
-      }
-    });
-  }
+  //   serie.data.forEach((dataPoint) => {
+  //     if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
+  //       // This solution is redundant: solved by tooltip.formatter in OptionsService
+  //       // dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
+  //       // This is the solution for table
+  //       // dataPoint.y = (dataPoint.y as number).toFixed(maxDecimals);
+  //       // console.log('dataPoint.y', dataPoint.y);
+  //     }
+  //   });
+  // }
 
   // NB! getVerifiedMaxDecimalCount ForCurrentSerie!
-  private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
-    let unit = this.diagramOptionsInternal.units?.find((unit) => unit.id === serie.unitId);
+  // private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
+  //   let unit = this.diagramOptionsInternal.units?.find((unit) => unit.id === serie.unitId);
 
-    if (!unit && this.diagramOptionsInternal.units?.length === 1) {
-      unit = this.diagramOptionsInternal.units[0];
-    }
-    if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
-      return unit.decimals;
-    }
-    if (unit?.decimals > 9) {
-      console.warn(
-        'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
-      );
-    }
-    return 9;
-  }
+  //   if (!unit && this.diagramOptionsInternal.units?.length === 1) {
+  //     unit = this.diagramOptionsInternal.units[0];
+  //   }
+  //   if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
+  //     return unit.decimals;
+  //   }
+  //   if (unit?.decimals > 9) {
+  //     console.warn(
+  //       'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
+  //     );
+  //   }
+  //   return 9;
+  // }
 
-  private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
-    const decimalData = serie.data.filter((dataPoint) => this.isDecimalNumber(dataPoint.y));
-    return decimalData.length !== 0;
-  }
+  // private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
+  //   const decimalData = serie.data.filter((dataPoint) => this.isDecimalNumber(dataPoint.y));
+  //   return decimalData.length !== 0;
+  // }
 
-  private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
-    const negativeData = serie.data.filter(
-      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
-    );
-    return negativeData.length > 0;
-  }
+  // private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
+  //   const negativeData = serie.data.filter(
+  //     (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
+  //   );
+  //   return negativeData.length > 0;
+  // }
 
-  private serieHasPositiveDataPoints(serie: FhiDiagramSerie): boolean {
-    const positiveData = serie.data.filter(
-      (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
-    );
-    return positiveData.length > 0;
-  }
+  // private serieHasPositiveDataPoints(serie: FhiDiagramSerie): boolean {
+  //   const positiveData = serie.data.filter(
+  //     (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
+  //   );
+  //   return positiveData.length > 0;
+  // }
 
   // TODO: decimalService?
-  private decimalCount(value: number | string): number {
-    if (typeof value !== 'number') return 0;
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split('.')[1].length || 0;
-  }
+  // private decimalCount(value: number | string): number {
+  //   if (typeof value !== 'number') return 0;
+  //   if (Math.floor(value) === value) return 0;
+  //   return value.toString().split('.')[1].length || 0;
+  // }
 
-  private isDecimalNumber(value: number | string): boolean {
-    return typeof value === 'number' && !Number.isInteger(value);
-  }
+  // private isDecimalNumber(value: number | string): boolean {
+  //   return typeof value === 'number' && !Number.isInteger(value);
+  // }
 
   private updateDiagramTypeGroups() {
     this.diagramTypeGroups = this.diagramTypeGroupService.getDiagramTypeGroups(
@@ -356,10 +367,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   private updateChart() {
     this.showDefaultChartTemplate = !this.showDefaultChartTemplate;
-    this.highchartsOptions = this.optionsService.updateOptions(
-      this.diagramOptionsInternal,
-      this.metadataForSeries,
-    );
+    this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptionsInternal);
   }
 
   private updateTable() {
@@ -375,10 +383,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
-      this.highchartsOptions = this.optionsService.updateOptions(
-        this.diagramOptionsInternal,
-        this.metadataForSeries,
-      );
+      this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptionsInternal);
       this.showMap = true;
       this.changeDetector.detectChanges();
     } else {
