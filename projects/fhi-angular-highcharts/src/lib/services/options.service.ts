@@ -181,6 +181,20 @@ export class OptionsService {
   private getTooltip(tooltip: TooltipOptions, unit: FhiDiagramUnit): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
 
+    if (unit.decimals !== undefined) {
+      tooltip.formatter = function (tooltip) {
+        // console.log('this', this);
+        // console.log('this.point', this.point);
+
+        if (this.point.y === 12.15) {
+          this.point.series['tooltipOptions'].valueDecimals = 2;
+        } else {
+          this.point.series['tooltipOptions'].valueDecimals = 3;
+        }
+        return tooltip.defaultFormatter.call(this, tooltip);
+      };
+    }
+
     if (unit.symbol) {
       if (unit.position === 'start') {
         tooltip.valuePrefix = unit.symbol + ' ';
@@ -189,6 +203,12 @@ export class OptionsService {
       }
     }
     return tooltip;
+  }
+  // TODO: utilService?
+  private decimalCount(value: number | string): number {
+    if (typeof value !== 'number') return 0;
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
   }
 
   private getXAxis(xAxis: XAxisOptions, diagramOptions: FhiDiagramOptions): XAxisOptions {

@@ -228,6 +228,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
+      maxDecimalCount: this.getVerifiedMaxDecimalCount(serie),
     });
   }
 
@@ -239,10 +240,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     serie.data.forEach((dataPoint) => {
       if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
         dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
-      }
+        // dataPoint.y = (dataPoint.y as number).toFixed(maxDecimals);
+        console.log('dataPoint.y', dataPoint.y);
 
-      // TODO: need only decimals from dataPoint.y, then padEnd
-      console.log('dataPoint.y', dataPoint.y.toString().padEnd(10, '0'));
+        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[0]);
+        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[1]);
+        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[1].padEnd(10, '0'));
+      }
     });
   }
 

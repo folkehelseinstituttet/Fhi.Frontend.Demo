@@ -13,9 +13,9 @@ import {
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-highcharts',
-    templateUrl: './highcharts.component.html',
-    standalone: false
+  selector: 'app-highcharts',
+  templateUrl: './highcharts.component.html',
+  standalone: false,
 })
 export class HighchartsComponent implements OnInit {
   @Input() itemId!: string;
@@ -50,6 +50,10 @@ export class HighchartsComponent implements OnInit {
       this.getExampleData('2a');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.getExampleData('3a');
+
+      setTimeout(() => {
+        this.getExampleData('3b');
+      }, 100);
     }
   }
 
