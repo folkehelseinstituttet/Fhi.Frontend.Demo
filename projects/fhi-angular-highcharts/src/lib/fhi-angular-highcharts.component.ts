@@ -232,24 +232,26 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     });
   }
 
+  // TODO: This methode is redundant
   private updateDecimalCountBasedOnUnits(serie: FhiDiagramSerie) {
     if (!this.metadataForSeries.find((serie) => serie.hasDecimalData)) {
       return;
     }
     const maxDecimals = this.getVerifiedMaxDecimalCount(serie);
+
     serie.data.forEach((dataPoint) => {
       if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
-        dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
+        // This solution is redundant: solved by tooltip.formatter in OptionsService
+        // dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
+
+        // This is the solution for table
         // dataPoint.y = (dataPoint.y as number).toFixed(maxDecimals);
         console.log('dataPoint.y', dataPoint.y);
-
-        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[0]);
-        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[1]);
-        // console.log('dataPoint.y', dataPoint.y.toString().split('.')[1].padEnd(10, '0'));
       }
     });
   }
 
+  // NB! getVerifiedMaxDecimalCount ForCurrentSerie!
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie): number {
     let unit = this.diagramOptionsInternal.units?.find((unit) => unit.id === serie.unitId);
 

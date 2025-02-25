@@ -41,6 +41,8 @@ export class OptionsService {
     this.diagramOptions = diagramOptions;
     this.metadataForSeries = metadataForSeries;
 
+    // console.log('this.metadataForSeries', this.metadataForSeries);
+
     options = this.updateGenericOptions(options);
     options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
     return this.updateOptionsForCurrentDiagramType(options);
@@ -66,10 +68,12 @@ export class OptionsService {
       options.credits = { enabled: false };
     }
     if (this.diagramOptions.units?.length === 1) {
-      options.tooltip = this.getTooltip(
-        options.tooltip as TooltipOptions,
-        this.diagramOptions.units[0],
-      );
+      this.diagramOptions.series.forEach((serie, i) => {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip({}, this.diagramOptions.units[0], serie),
+        } as SeriesOptionsType;
+      });
     }
     return options;
   }
@@ -178,19 +182,26 @@ export class OptionsService {
     return seriesWithoutFlags;
   }
 
-  private getTooltip(tooltip: TooltipOptions, unit: FhiDiagramUnit): TooltipOptions {
+  private getTooltip(
+    tooltip: TooltipOptions,
+    unit: FhiDiagramUnit,
+    serie?: FhiDiagramSerie,
+  ): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
+
+    console.log('serie', serie);
 
     if (unit.decimals !== undefined) {
       tooltip.formatter = function (tooltip) {
-        // console.log('this', this);
+        console.log('this', this);
         // console.log('this.point', this.point);
-
+        let valueDecimals: number;
         if (this.point.y === 12.15) {
-          this.point.series['tooltipOptions'].valueDecimals = 2;
+          valueDecimals = 2;
         } else {
-          this.point.series['tooltipOptions'].valueDecimals = 3;
+          valueDecimals = 3;
         }
+        this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
         return tooltip.defaultFormatter.call(this, tooltip);
       };
     }
