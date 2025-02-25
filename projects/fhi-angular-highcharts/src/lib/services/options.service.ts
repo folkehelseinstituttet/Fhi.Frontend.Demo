@@ -71,7 +71,7 @@ export class OptionsService {
       this.diagramOptions.series.forEach((serie, i) => {
         options.series[i] = {
           ...options.series[i],
-          tooltip: this.getTooltip({}, this.diagramOptions.units[0], serie),
+          tooltip: this.getTooltip({}, this.diagramOptions.units[0], i),
         } as SeriesOptionsType;
       });
     }
@@ -185,21 +185,24 @@ export class OptionsService {
   private getTooltip(
     tooltip: TooltipOptions,
     unit: FhiDiagramUnit,
-    serie?: FhiDiagramSerie,
+    serieIndex: number,
   ): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
-
-    console.log('serie', serie);
+    // console.log('serieIndex', serieIndex);
+    const maxDecimals = this.metadataForSeries[serieIndex].maxDecimals;
 
     if (unit.decimals !== undefined) {
       tooltip.formatter = function (tooltip) {
-        console.log('this', this);
+        // console.log('this', this);
         // console.log('this.point', this.point);
+        const isDecimalNumber = true; // service.isDecimalNumber(this.point.y)
+        const decimalCount = 0; // service.decimalCount(this.point.y)
         let valueDecimals: number;
-        if (this.point.y === 12.15) {
-          valueDecimals = 2;
+
+        if (isDecimalNumber && decimalCount > maxDecimals) {
+          valueDecimals = maxDecimals;
         } else {
-          valueDecimals = 3;
+          valueDecimals = decimalCount;
         }
         this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
         return tooltip.defaultFormatter.call(this, tooltip);
@@ -214,12 +217,6 @@ export class OptionsService {
       }
     }
     return tooltip;
-  }
-  // TODO: utilService?
-  private decimalCount(value: number | string): number {
-    if (typeof value !== 'number') return 0;
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split('.')[1].length || 0;
   }
 
   private getXAxis(xAxis: XAxisOptions, diagramOptions: FhiDiagramOptions): XAxisOptions {
@@ -269,7 +266,7 @@ export class OptionsService {
       if (units[0].id === serie.unitId) {
         options.series[i] = {
           ...options.series[i],
-          tooltip: this.getTooltip({}, units[0]),
+          tooltip: this.getTooltip({}, units[0], i),
           yAxis: 0,
           type: 'column',
           zIndex: 0,
@@ -277,7 +274,7 @@ export class OptionsService {
       } else if (units[1].id === serie.unitId) {
         options.series[i] = {
           ...options.series[i],
-          tooltip: this.getTooltip({}, units[1]),
+          tooltip: this.getTooltip({}, units[1], i),
           yAxis: 1,
           type: 'line',
           zIndex: 1,

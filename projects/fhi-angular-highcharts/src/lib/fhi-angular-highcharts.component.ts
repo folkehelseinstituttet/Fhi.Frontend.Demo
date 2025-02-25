@@ -228,7 +228,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
-      maxDecimalCount: this.getVerifiedMaxDecimalCount(serie),
+      maxDecimals: this.getVerifiedMaxDecimalCount(serie),
     });
   }
 
@@ -243,10 +243,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       if (this.isDecimalNumber(dataPoint.y) && this.decimalCount(dataPoint.y) > maxDecimals) {
         // This solution is redundant: solved by tooltip.formatter in OptionsService
         // dataPoint.y = Number.parseFloat((dataPoint.y as number).toFixed(maxDecimals));
-
         // This is the solution for table
         // dataPoint.y = (dataPoint.y as number).toFixed(maxDecimals);
-        console.log('dataPoint.y', dataPoint.y);
+        // console.log('dataPoint.y', dataPoint.y);
       }
     });
   }
@@ -274,16 +273,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return decimalData.length !== 0;
   }
 
-  private decimalCount(value: number | string): number {
-    if (typeof value !== 'number') return 0;
-    if (Math.floor(value) === value) return 0;
-    return value.toString().split('.')[1].length || 0;
-  }
-
-  private isDecimalNumber(value: number | string): boolean {
-    return typeof value === 'number' && !Number.isInteger(value);
-  }
-
   private serieHasNegativeDataPoints(serie: FhiDiagramSerie): boolean {
     const negativeData = serie.data.filter(
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y < 0,
@@ -296,6 +285,17 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
     );
     return positiveData.length > 0;
+  }
+
+  // TODO: decimalService?
+  private decimalCount(value: number | string): number {
+    if (typeof value !== 'number') return 0;
+    if (Math.floor(value) === value) return 0;
+    return value.toString().split('.')[1].length || 0;
+  }
+
+  private isDecimalNumber(value: number | string): boolean {
+    return typeof value === 'number' && !Number.isInteger(value);
   }
 
   private updateDiagramTypeGroups() {
