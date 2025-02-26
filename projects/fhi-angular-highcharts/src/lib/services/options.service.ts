@@ -280,10 +280,7 @@ export class OptionsService {
     }
     options.chart.map = this.diagramOptions.activeDiagramType;
 
-    // TODO: don't nuke series!
-    // options.series = [
-    //   this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
-    // ];
+    options.series = [this.topoJsonService.getHighmapsSerie(options.series[0] as FhiDiagramSerie)];
     return options;
   }
 
