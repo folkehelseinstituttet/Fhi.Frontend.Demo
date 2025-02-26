@@ -72,13 +72,23 @@ export class OptionsService {
   }
 
   private updateSerieData(data: FhiDiagramSerieData[]): FhiDiagramSerieData[] {
-    if (this.diagramOptions.activeDiagramType !== DiagramTypeIdValues.line) {
-      return this.getDataWithoutFlaggedDataPoints(data);
+    if (this.diagramOptions.activeDiagramType === DiagramTypeIdValues.line) {
+      return this.getDataWithoutStringDataPoints(data);
     }
-    return data;
+    return this.getDataWithoutFlaggedDataPoints(data);
   }
 
-  private getDataWithoutFlaggedDataPoints(data: FhiDiagramSerieData[]) {
+  private getDataWithoutStringDataPoints(data: FhiDiagramSerieData[]): FhiDiagramSerieData[] {
+    const dataWithoutStrings = cloneDeep(data);
+    dataWithoutStrings.forEach((dataPoint) => {
+      if (typeof dataPoint.y === 'string') {
+        dataPoint.y = null;
+      }
+    });
+    return dataWithoutStrings;
+  }
+
+  private getDataWithoutFlaggedDataPoints(data: FhiDiagramSerieData[]): FhiDiagramSerieData[] {
     return cloneDeep(data).filter((dataPoint) => typeof dataPoint.y !== 'string');
   }
 
@@ -107,6 +117,57 @@ export class OptionsService {
     return options;
   }
 
+  private updateMapOptions(options: Options): Options {
+    const colorAxis = options.colorAxis;
+    const stopsPositive: Array<[number, string]> = [
+      [0, '#ffffff'],
+      [0.17, '#c8e1ec'], // B2-90
+      [0.33, '#8fc5dc'], // B2-80
+      [0.5, '#65a9c5'], // B2-70
+      [0.67, '#4089a7'], // B2-60
+      [0.83, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    const stopsNegative: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.17, '#a93c38'], // R1-50
+      [0.33, '#d74b46'], // R1-60
+      [0.5, '#ec7c73'], // R1-70
+      [0.67, '#fda49b'], // R1-80
+      [0.83, '#ffd2cc'], // R1-90
+      [1, '#ffffff'],
+    ];
+    const stopsNegativeAndPositive: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.08, '#a93c38'], // R1-50
+      [0.17, '#d74b46'], // R1-60
+      [0.25, '#ec7c73'], // R1-70
+      [0.33, '#fda49b'], // R1-80
+      [0.42, '#ffd2cc'], // R1-90
+      [0.5, '#ffffff'],
+      [0.58, '#c8e1ec'], // B2-90
+      [0.67, '#8fc5dc'], // B2-80
+      [0.75, '#65a9c5'], // B2-70
+      [0.83, '#4089a7'], // B2-60
+      [0.92, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    if (
+      this.metadataForSeriesService.getHasNegativeData() &&
+      this.metadataForSeriesService.getHasPositiveData()
+    ) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
+    } else if (this.metadataForSeriesService.getHasNegativeData()) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegative };
+    } else {
+      options.colorAxis = { ...colorAxis, stops: stopsPositive };
+    }
+    options.chart.map = this.diagramOptions.activeDiagramType;
+
+    options.series = [this.topoJsonService.getHighmapsSerie(options.series[0] as FhiDiagramSerie)];
+    return options;
+  }
+
   private updateOptionsForCurrentDiagramType(options: Options): Options {
     switch (this.diagramOptions.activeDiagramType) {
       case DiagramTypeIdValues.pie:
@@ -117,14 +178,14 @@ export class OptionsService {
 
       case DiagramTypeIdValues.columnAndLine:
         if (this.diagramOptions.units?.length === 2) {
-          this.updateOptionsForDiagramTypeColumnAndLine(options);
+          options = this.updateOptionsForDiagramTypeColumnAndLine(options);
         }
         break;
     }
     return options;
   }
 
-  private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+  private updateOptionsForDiagramTypeColumnAndLine(options: Options): Options {
     const units = this.diagramOptions.units;
     this.diagramOptions.series.forEach((serie, i) => {
       if (units[0].id === serie.unitId) {
@@ -152,6 +213,7 @@ export class OptionsService {
         opposite: true,
       },
     ];
+    return options;
   }
 
   private getTooltipFormatterCallbackFunction(): TooltipFormatterCallbackFunction {
@@ -231,57 +293,6 @@ export class OptionsService {
       }
     }
     return yAxis;
-  }
-
-  private updateMapOptions(options: Options): Options {
-    const colorAxis = options.colorAxis;
-    const stopsPositive: Array<[number, string]> = [
-      [0, '#ffffff'],
-      [0.17, '#c8e1ec'], // B2-90
-      [0.33, '#8fc5dc'], // B2-80
-      [0.5, '#65a9c5'], // B2-70
-      [0.67, '#4089a7'], // B2-60
-      [0.83, '#2a6a82'], // B2-50
-      [1, '#234e5f'], // B2-40
-    ];
-    const stopsNegative: Array<[number, string]> = [
-      [0, '#7b2623'], // R1-40
-      [0.17, '#a93c38'], // R1-50
-      [0.33, '#d74b46'], // R1-60
-      [0.5, '#ec7c73'], // R1-70
-      [0.67, '#fda49b'], // R1-80
-      [0.83, '#ffd2cc'], // R1-90
-      [1, '#ffffff'],
-    ];
-    const stopsNegativeAndPositive: Array<[number, string]> = [
-      [0, '#7b2623'], // R1-40
-      [0.08, '#a93c38'], // R1-50
-      [0.17, '#d74b46'], // R1-60
-      [0.25, '#ec7c73'], // R1-70
-      [0.33, '#fda49b'], // R1-80
-      [0.42, '#ffd2cc'], // R1-90
-      [0.5, '#ffffff'],
-      [0.58, '#c8e1ec'], // B2-90
-      [0.67, '#8fc5dc'], // B2-80
-      [0.75, '#65a9c5'], // B2-70
-      [0.83, '#4089a7'], // B2-60
-      [0.92, '#2a6a82'], // B2-50
-      [1, '#234e5f'], // B2-40
-    ];
-    if (
-      this.metadataForSeriesService.getHasNegativeData() &&
-      this.metadataForSeriesService.getHasPositiveData()
-    ) {
-      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
-    } else if (this.metadataForSeriesService.getHasNegativeData()) {
-      options.colorAxis = { ...colorAxis, stops: stopsNegative };
-    } else {
-      options.colorAxis = { ...colorAxis, stops: stopsPositive };
-    }
-    options.chart.map = this.diagramOptions.activeDiagramType;
-
-    options.series = [this.topoJsonService.getHighmapsSerie(options.series[0] as FhiDiagramSerie)];
-    return options;
   }
 
   /**
