@@ -43,6 +43,14 @@ export class OptionsService {
     let options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
     const isMap = options.chart && 'map' in options.chart;
     this.diagramOptions = diagramOptions;
+
+    diagramOptions.series.forEach((serie, i) => {
+      options.series[i] = {
+        name: serie.name,
+        data: this.updateSerieData(serie.data),
+      } as SeriesOptionsType;
+    });
+
     options = this.updateGenericOptions(options);
     options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
     return this.updateOptionsForCurrentDiagramType(options);
@@ -63,6 +71,17 @@ export class OptionsService {
     return merge(chartsAndMaps, current, options);
   }
 
+  private updateSerieData(data: FhiDiagramSerieData[]): FhiDiagramSerieData[] {
+    if (this.diagramOptions.activeDiagramType !== DiagramTypeIdValues.line) {
+      return this.getDataWithoutFlaggedDataPoints(data);
+    }
+    return data;
+  }
+
+  private getDataWithoutFlaggedDataPoints(data: FhiDiagramSerieData[]) {
+    return cloneDeep(data).filter((dataPoint) => typeof dataPoint.y !== 'string');
+  }
+
   private updateGenericOptions(options: Options): Options {
     if (!this.diagramOptions.openSource) {
       options.credits = { enabled: false };
@@ -77,28 +96,7 @@ export class OptionsService {
     return options;
   }
 
-  private getDataWithoutFlaggedDataPoints(data: FhiDiagramSerieData[]) {
-    return cloneDeep(data).filter((dataPoint) => typeof dataPoint.y !== 'string');
-  }
-  // private getSeriesWithoutFlaggedDataPoints() {
-  //   const seriesWithoutFlags = cloneDeep(this.diagramOptions.series);
-  //   seriesWithoutFlags.forEach((serie) => {
-  //     serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
-  //   });
-  //   return seriesWithoutFlags;
-  // }
-
   private updateChartOptions(options: Options): Options {
-    // TODO: don't nuke series!
-    // options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
-    // TODO: only run this.diagramOptions.series.forEach() once for map and once for chart
-    this.diagramOptions.series.forEach((serie, i) => {
-      options.series[i] = {
-        name: serie.name,
-        data: this.getDataWithoutFlaggedDataPoints(serie.data),
-      } as SeriesOptionsType;
-    });
-
     options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, this.diagramOptions);
 
     if (this.diagramOptions.units?.length === 1) {
@@ -111,11 +109,6 @@ export class OptionsService {
 
   private updateOptionsForCurrentDiagramType(options: Options): Options {
     switch (this.diagramOptions.activeDiagramType) {
-      case DiagramTypeIdValues.line:
-        // TODO: don't nuke series!
-        // options.series = this.setStringToNull(this.diagramOptions.series);
-        break;
-
       case DiagramTypeIdValues.pie:
         if (options.legend && options.legend.title) {
           options.legend.title.text = options.series[0].name;
@@ -131,16 +124,34 @@ export class OptionsService {
     return options;
   }
 
-  private setStringToNull(series: FhiDiagramSerie[]): SeriesOptionsType[] {
-    const newSeries = cloneDeep(series);
-    newSeries.forEach((serie) => {
-      serie.data.forEach((dataPoint) => {
-        if (typeof dataPoint.y === 'string') {
-          dataPoint.y = null;
-        }
-      });
+  private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
+    const units = this.diagramOptions.units;
+    this.diagramOptions.series.forEach((serie, i) => {
+      if (units[0].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip(units[0]),
+          yAxis: 0,
+          type: 'column',
+          zIndex: 0,
+        } as SeriesOptionsType;
+      } else if (units[1].id === serie.unitId) {
+        options.series[i] = {
+          ...options.series[i],
+          tooltip: this.getTooltip(units[1]),
+          yAxis: 1,
+          type: 'line',
+          zIndex: 1,
+        } as SeriesOptionsType;
+      }
     });
-    return newSeries as SeriesOptionsType[];
+    options.yAxis = [
+      this.getYAxis({}, units[0]),
+      {
+        ...this.getYAxis({}, units[1]),
+        opposite: true,
+      },
+    ];
   }
 
   private getTooltipFormatterCallbackFunction(): TooltipFormatterCallbackFunction {
@@ -170,16 +181,9 @@ export class OptionsService {
     };
   }
 
-  private getTooltip(
-    tooltip: TooltipOptions,
-    unit: FhiDiagramUnit,
-    serieIndex: number,
-  ): TooltipOptions {
-    tooltip = tooltip ? tooltip : {};
-    tooltip.pointFormatter = function () {
-      // console.log('this', this);
-      return 'Hello';
-    };
+  private getTooltip(unit: FhiDiagramUnit): TooltipOptions {
+    const tooltip: TooltipOptions = {};
+
     if (unit.symbol) {
       if (unit.position === 'start') {
         tooltip.valuePrefix = unit.symbol + ' ';
@@ -227,39 +231,6 @@ export class OptionsService {
       }
     }
     return yAxis;
-  }
-
-  private updateOptionsForDiagramTypeColumnAndLine(options: Options) {
-    const units = this.diagramOptions.units;
-    this.diagramOptions.series.forEach((serie, i) => {
-      if (units[0].id === serie.unitId) {
-        options.series[i] = {
-          ...options.series[i],
-          tooltip: this.getTooltip({}, units[0], i),
-          yAxis: 0,
-          type: 'column',
-          zIndex: 0,
-        } as SeriesOptionsType;
-      } else if (units[1].id === serie.unitId) {
-        options.series[i] = {
-          ...options.series[i],
-          tooltip: this.getTooltip({}, units[1], i),
-          yAxis: 1,
-          type: 'line',
-          zIndex: 1,
-        } as SeriesOptionsType;
-
-        // console.log('options.series[i]', options.series[i]);
-        //
-      }
-    });
-    options.yAxis = [
-      this.getYAxis({}, units[0]),
-      {
-        ...this.getYAxis({}, units[1]),
-        opposite: true,
-      },
-    ];
   }
 
   private updateMapOptions(options: Options): Options {
