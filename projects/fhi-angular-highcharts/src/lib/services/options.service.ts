@@ -6,6 +6,7 @@ import { isValid, parseISO } from 'date-fns';
 import {
   Options,
   SeriesOptionsType,
+  TooltipFormatterCallbackFunction,
   TooltipOptions,
   XAxisLabelsOptions,
   XAxisOptions,
@@ -24,6 +25,7 @@ import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-m
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 
 @Injectable()
 export class OptionsService {
@@ -65,71 +67,38 @@ export class OptionsService {
     if (!this.diagramOptions.openSource) {
       options.credits = { enabled: false };
     }
-    if (this.diagramOptions.units?.length === 1) {
-      this.diagramOptions.series.forEach((serie, i) => {
-        options.series[i] = {
-          ...options.series[i],
-          tooltip: this.getTooltip({}, this.diagramOptions.units[0], i),
-        } as SeriesOptionsType;
-      });
+
+    if (this.diagramOptions.units?.length > 0) {
+      options.tooltip = {
+        formatter: this.getTooltipFormatterCallbackFunction(),
+      } as TooltipOptions;
     }
+
     return options;
   }
 
-  private updateMapOptions(options: Options): Options {
-    const colorAxis = options.colorAxis;
-    const stopsPositive: Array<[number, string]> = [
-      [0, '#ffffff'],
-      [0.17, '#c8e1ec'], // B2-90
-      [0.33, '#8fc5dc'], // B2-80
-      [0.5, '#65a9c5'], // B2-70
-      [0.67, '#4089a7'], // B2-60
-      [0.83, '#2a6a82'], // B2-50
-      [1, '#234e5f'], // B2-40
-    ];
-    const stopsNegative: Array<[number, string]> = [
-      [0, '#7b2623'], // R1-40
-      [0.17, '#a93c38'], // R1-50
-      [0.33, '#d74b46'], // R1-60
-      [0.5, '#ec7c73'], // R1-70
-      [0.67, '#fda49b'], // R1-80
-      [0.83, '#ffd2cc'], // R1-90
-      [1, '#ffffff'],
-    ];
-    const stopsNegativeAndPositive: Array<[number, string]> = [
-      [0, '#7b2623'], // R1-40
-      [0.08, '#a93c38'], // R1-50
-      [0.17, '#d74b46'], // R1-60
-      [0.25, '#ec7c73'], // R1-70
-      [0.33, '#fda49b'], // R1-80
-      [0.42, '#ffd2cc'], // R1-90
-      [0.5, '#ffffff'],
-      [0.58, '#c8e1ec'], // B2-90
-      [0.67, '#8fc5dc'], // B2-80
-      [0.75, '#65a9c5'], // B2-70
-      [0.83, '#4089a7'], // B2-60
-      [0.92, '#2a6a82'], // B2-50
-      [1, '#234e5f'], // B2-40
-    ];
-    if (
-      this.metadataForSeriesService.hasNegativeData() &&
-      this.metadataForSeriesService.hasPositiveData()
-    ) {
-      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
-    } else if (this.metadataForSeriesService.hasNegativeData()) {
-      options.colorAxis = { ...colorAxis, stops: stopsNegative };
-    } else {
-      options.colorAxis = { ...colorAxis, stops: stopsPositive };
-    }
-    options.chart.map = this.diagramOptions.activeDiagramType;
-    options.series = [
-      this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
-    ];
-    return options;
+  private getDataWithoutFlaggedDataPoints(data: FhiDiagramSerieData[]) {
+    return cloneDeep(data).filter((dataPoint) => typeof dataPoint.y !== 'string');
   }
+  // private getSeriesWithoutFlaggedDataPoints() {
+  //   const seriesWithoutFlags = cloneDeep(this.diagramOptions.series);
+  //   seriesWithoutFlags.forEach((serie) => {
+  //     serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
+  //   });
+  //   return seriesWithoutFlags;
+  // }
 
   private updateChartOptions(options: Options): Options {
-    options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
+    // TODO: don't nuke series!
+    // options.series = this.getSeriesWithoutFlaggedDataPoints() as SeriesOptionsType[];
+    // TODO: only run this.diagramOptions.series.forEach() once for map and once for chart
+    this.diagramOptions.series.forEach((serie, i) => {
+      options.series[i] = {
+        name: serie.name,
+        data: this.getDataWithoutFlaggedDataPoints(serie.data),
+      } as SeriesOptionsType;
+    });
+
     options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, this.diagramOptions);
 
     if (this.diagramOptions.units?.length === 1) {
@@ -143,7 +112,8 @@ export class OptionsService {
   private updateOptionsForCurrentDiagramType(options: Options): Options {
     switch (this.diagramOptions.activeDiagramType) {
       case DiagramTypeIdValues.line:
-        options.series = this.setStringToNull(this.diagramOptions.series);
+        // TODO: don't nuke series!
+        // options.series = this.setStringToNull(this.diagramOptions.series);
         break;
 
       case DiagramTypeIdValues.pie:
@@ -173,12 +143,31 @@ export class OptionsService {
     return newSeries as SeriesOptionsType[];
   }
 
-  private getSeriesWithoutFlaggedDataPoints() {
-    const seriesWithoutFlags = cloneDeep(this.diagramOptions.series);
-    seriesWithoutFlags.forEach((serie) => {
-      serie.data = serie.data.filter((dataPoint) => typeof dataPoint.y !== 'string');
-    });
-    return seriesWithoutFlags;
+  private getTooltipFormatterCallbackFunction(): TooltipFormatterCallbackFunction {
+    const service = this.metadataForSeriesService;
+
+    return function (tooltip) {
+      const maxDecimals = service.getMaxDecimals(this.series.name);
+      const isDecimalNumber = service.getIsDecimalNumber(this.point.y);
+      const decimalCount = service.getDecimalCount(this.point.y);
+      let valueDecimals: number;
+
+      // console.log('this', this);
+      // console.log('name', this.series.name);
+      // console.log('this.point', this.point);
+
+      // console.log('maxDecimals', maxDecimals);
+      // console.log('isDecimalNumber', isDecimalNumber);
+      // console.log('decimalCount', decimalCount);
+
+      if (isDecimalNumber && decimalCount > maxDecimals) {
+        valueDecimals = maxDecimals;
+      } else {
+        valueDecimals = decimalCount;
+      }
+      this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
+      return tooltip.defaultFormatter.call(this, tooltip);
+    };
   }
 
   private getTooltip(
@@ -187,27 +176,10 @@ export class OptionsService {
     serieIndex: number,
   ): TooltipOptions {
     tooltip = tooltip ? tooltip : {};
-    // console.log('serieIndex', serieIndex);
-    const maxDecimals = this.metadataForSeriesService.getMetadataForSerie(serieIndex).maxDecimals;
-
-    if (unit.decimals !== undefined) {
-      tooltip.formatter = function (tooltip) {
-        // console.log('this', this);
-        // console.log('this.point', this.point);
-        const isDecimalNumber = true; // service.isDecimalNumber(this.point.y)
-        const decimalCount = 0; // service.decimalCount(this.point.y)
-        let valueDecimals: number;
-
-        if (isDecimalNumber && decimalCount > maxDecimals) {
-          valueDecimals = maxDecimals;
-        } else {
-          valueDecimals = decimalCount;
-        }
-        this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
-        return tooltip.defaultFormatter.call(this, tooltip);
-      };
-    }
-
+    tooltip.pointFormatter = function () {
+      // console.log('this', this);
+      return 'Hello';
+    };
     if (unit.symbol) {
       if (unit.position === 'start') {
         tooltip.valuePrefix = unit.symbol + ' ';
@@ -227,10 +199,10 @@ export class OptionsService {
   private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {
     yAxis = yAxis ? yAxis : {};
 
-    if (this.metadataForSeriesService.hasDecimalData()) {
+    if (this.metadataForSeriesService.getHasDecimalData()) {
       yAxis.allowDecimals = true;
     }
-    if (this.metadataForSeriesService.hasNegativeData()) {
+    if (this.metadataForSeriesService.getHasNegativeData()) {
       yAxis.min = undefined;
     }
 
@@ -276,6 +248,9 @@ export class OptionsService {
           type: 'line',
           zIndex: 1,
         } as SeriesOptionsType;
+
+        // console.log('options.series[i]', options.series[i]);
+        //
       }
     });
     options.yAxis = [
@@ -285,6 +260,60 @@ export class OptionsService {
         opposite: true,
       },
     ];
+  }
+
+  private updateMapOptions(options: Options): Options {
+    const colorAxis = options.colorAxis;
+    const stopsPositive: Array<[number, string]> = [
+      [0, '#ffffff'],
+      [0.17, '#c8e1ec'], // B2-90
+      [0.33, '#8fc5dc'], // B2-80
+      [0.5, '#65a9c5'], // B2-70
+      [0.67, '#4089a7'], // B2-60
+      [0.83, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    const stopsNegative: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.17, '#a93c38'], // R1-50
+      [0.33, '#d74b46'], // R1-60
+      [0.5, '#ec7c73'], // R1-70
+      [0.67, '#fda49b'], // R1-80
+      [0.83, '#ffd2cc'], // R1-90
+      [1, '#ffffff'],
+    ];
+    const stopsNegativeAndPositive: Array<[number, string]> = [
+      [0, '#7b2623'], // R1-40
+      [0.08, '#a93c38'], // R1-50
+      [0.17, '#d74b46'], // R1-60
+      [0.25, '#ec7c73'], // R1-70
+      [0.33, '#fda49b'], // R1-80
+      [0.42, '#ffd2cc'], // R1-90
+      [0.5, '#ffffff'],
+      [0.58, '#c8e1ec'], // B2-90
+      [0.67, '#8fc5dc'], // B2-80
+      [0.75, '#65a9c5'], // B2-70
+      [0.83, '#4089a7'], // B2-60
+      [0.92, '#2a6a82'], // B2-50
+      [1, '#234e5f'], // B2-40
+    ];
+    if (
+      this.metadataForSeriesService.getHasNegativeData() &&
+      this.metadataForSeriesService.getHasPositiveData()
+    ) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
+    } else if (this.metadataForSeriesService.getHasNegativeData()) {
+      options.colorAxis = { ...colorAxis, stops: stopsNegative };
+    } else {
+      options.colorAxis = { ...colorAxis, stops: stopsPositive };
+    }
+    options.chart.map = this.diagramOptions.activeDiagramType;
+
+    // TODO: don't nuke series!
+    // options.series = [
+    //   this.topoJsonService.getHighmapsSerie(this.getSeriesWithoutFlaggedDataPoints()[0]),
+    // ];
+    return options;
   }
 
   /**

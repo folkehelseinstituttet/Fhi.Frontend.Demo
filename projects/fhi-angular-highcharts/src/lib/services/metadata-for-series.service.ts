@@ -8,47 +8,45 @@ import { MetadataForSerie } from '../models/metadata-for-serie.model';
 export class MetadataForSeriesService {
   private metadataForSeries: MetadataForSerie[];
 
-  getMetadataForSeries(): MetadataForSerie[] {
-    return this.metadataForSeries;
-  }
-
-  getMetadataForSerie(index: number): MetadataForSerie {
-    return this.metadataForSeries[index];
-  }
-
   resetMetadataForSeries() {
     this.metadataForSeries = [];
   }
 
-  hasDecimalData(): boolean {
-    return !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
-  }
-
-  hasPositiveData(): boolean {
+  getHasPositiveData(): boolean {
     return !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
   }
 
-  hasNegativeData(): boolean {
+  getHasNegativeData(): boolean {
     return !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
   }
 
-  updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
-    this.metadataForSeries.push({
-      hasDecimalData: this.serieHasDecimalDataPoints(serie),
-      hasNegativeData: this.serieHasNegativeDataPoints(serie),
-      hasPositiveData: this.serieHasPositiveDataPoints(serie),
-      maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
-    });
+  getHasDecimalData(): boolean {
+    return !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
   }
 
-  decimalCount(value: number | string): number {
+  getMaxDecimals(serieName: string): number {
+    const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
+    return metadataForSerie.maxDecimals;
+  }
+
+  getDecimalCount(value: number | string): number {
     if (typeof value !== 'number') return 0;
     if (Math.floor(value) === value) return 0;
     return value.toString().split('.')[1].length || 0;
   }
 
-  isDecimalNumber(value: number | string): boolean {
+  getIsDecimalNumber(value: number | string): boolean {
     return typeof value === 'number' && !Number.isInteger(value);
+  }
+
+  updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
+    this.metadataForSeries.push({
+      name: serie.name,
+      hasDecimalData: this.serieHasDecimalDataPoints(serie),
+      hasNegativeData: this.serieHasNegativeDataPoints(serie),
+      hasPositiveData: this.serieHasPositiveDataPoints(serie),
+      maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
+    });
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): number {
@@ -69,7 +67,7 @@ export class MetadataForSeriesService {
   }
 
   private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
-    const decimalData = serie.data.filter((dataPoint) => this.isDecimalNumber(dataPoint.y));
+    const decimalData = serie.data.filter((dataPoint) => this.getIsDecimalNumber(dataPoint.y));
     return decimalData.length !== 0;
   }
 

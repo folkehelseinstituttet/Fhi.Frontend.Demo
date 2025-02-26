@@ -4,7 +4,8 @@ export const BefolkningInndelingPr2024_andel = [
     data: [
       { name: '1', y: 12.15 },
       { name: '2', y: 13.15039 },
-      { name: '3', y: 14.1506 },
+      { name: '3', y: ':' },
+      // { name: '3', y: 14.1506 },
       { name: '4', y: 15.7158 },
     ],
   },
