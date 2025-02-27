@@ -203,7 +203,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | Property   | Type               | Default | Required | Description |
 | ---------- | ------------------ | ------- | -------- | ----------- |
 | `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
-| `decimals` | `number`           | -       | no       | The decimal count. If `undefined` the decimal count is same as in the source data. If `null`, same as `0`, ie. no decimals. Count is **limited to 9** decimals because Highcharts tooltips fails if 10 decimals or more. A warning will be given in the consol if more than 9 decimals. |
+| `decimals` | `number`           | -       | no       | The decimal count. If `undefined`: the decimal count is same as in the source data (**limited** to 9 decimals because Highcharts tooltips fails if 10 decimals or more. A warning will be given in the consol if more than 9 decimals). If `null` or `0`: no decimals. If `[1..9]`: max decimal count, but limited to the decimal count in the source data. |
 | `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
 | `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
