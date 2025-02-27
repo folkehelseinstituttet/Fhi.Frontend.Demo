@@ -15,7 +15,7 @@ import { AgensAntallOgAndel } from './mock-data/8.agens-antall-og-andel';
 import { PrikkedeDataMedToSerier } from './mock-data/9.prikkede-data-med-to-serier';
 
 // Data for testing/debugging while developing locally, do not show in dev or prod.
-import { TestData } from './mock-data/test-data-9';
+import { TestData } from './mock-data/test-data-10';
 
 @Injectable({
   providedIn: 'root',

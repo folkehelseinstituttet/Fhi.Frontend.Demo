@@ -31,6 +31,7 @@ import { MetadataForSeriesService } from './metadata-for-series.service';
 export class OptionsService {
   private allStaticOptions = new Map();
   private diagramOptions: FhiDiagramOptions;
+  private isMap: boolean;
 
   constructor(
     private topoJsonService: TopoJsonService,
@@ -41,34 +42,49 @@ export class OptionsService {
 
   updateOptions(diagramOptions: FhiDiagramOptions): Options {
     let options: Options = cloneDeep(this.allStaticOptions.get(diagramOptions.activeDiagramType));
-    const isMap = options.chart && 'map' in options.chart;
     this.diagramOptions = diagramOptions;
+    this.isMap = this.getIsMap(options);
 
-    diagramOptions.series.forEach((serie, i) => {
+    options = this.updateChartAndMapOptions(options);
+    options = this.isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
+    return this.updateOptionsForCurrentDiagramType(options);
+  }
+
+  private getIsMap(options: Options | undefined): boolean {
+    return !!(options?.chart && 'map' in options.chart);
+  }
+
+  private setAllStaticOptions() {
+    AllDiagramTypes.forEach((FhiDiagramType) => {
+      const options = FhiDiagramType.options;
+      const staticOptions = this.setStaticOptions(options);
+      this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
+    });
+  }
+
+  private setStaticOptions(options: Options | undefined): Options {
+    const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
+    const current = this.getIsMap(options) ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
+    return merge(chartsAndMaps, current, options);
+  }
+
+  private updateChartAndMapOptions(options: Options): Options {
+    this.diagramOptions.series.forEach((serie, i) => {
       options.series[i] = {
         name: serie.name,
         data: this.updateSerieData(serie.data),
       } as SeriesOptionsType;
     });
 
-    options = this.updateGenericOptions(options);
-    options = isMap ? this.updateMapOptions(options) : this.updateChartOptions(options);
-    return this.updateOptionsForCurrentDiagramType(options);
-  }
+    if (!this.diagramOptions.openSource) {
+      options.credits = { enabled: false };
+    }
 
-  private setAllStaticOptions() {
-    AllDiagramTypes.forEach((FhiDiagramType) => {
-      const options = FhiDiagramType.options;
-      const isMap = options?.chart && 'map' in options.chart;
-      const staticOptions = this.setStaticOptions(options, isMap);
-      this.allStaticOptions.set(FhiDiagramType.id, staticOptions);
-    });
-  }
+    options.tooltip = {
+      formatter: this.getTooltipFormatterCallbackFunction(),
+    } as TooltipOptions;
 
-  private setStaticOptions(options: Options | undefined, isMap: boolean | undefined): Options {
-    const chartsAndMaps = cloneDeep(OptionsChartsAndMaps);
-    const current = isMap ? cloneDeep(OptionsMaps) : cloneDeep(OptionsCharts);
-    return merge(chartsAndMaps, current, options);
+    return options;
   }
 
   private updateSerieData(data: FhiDiagramSerieData[]): FhiDiagramSerieData[] {
@@ -92,20 +108,6 @@ export class OptionsService {
     return cloneDeep(data).filter((dataPoint) => typeof dataPoint.y !== 'string');
   }
 
-  private updateGenericOptions(options: Options): Options {
-    if (!this.diagramOptions.openSource) {
-      options.credits = { enabled: false };
-    }
-
-    if (this.diagramOptions.units?.length > 0) {
-      options.tooltip = {
-        formatter: this.getTooltipFormatterCallbackFunction(),
-      } as TooltipOptions;
-    }
-
-    return options;
-  }
-
   private updateChartOptions(options: Options): Options {
     options.xAxis = this.getXAxis(options.xAxis as XAxisOptions, this.diagramOptions);
 
@@ -114,6 +116,7 @@ export class OptionsService {
     } else {
       options.yAxis = this.getYAxis(options.yAxis as YAxisOptions);
     }
+
     return options;
   }
 
@@ -218,18 +221,30 @@ export class OptionsService {
 
   private getTooltipFormatterCallbackFunction(): TooltipFormatterCallbackFunction {
     const service = this.metadataForSeriesService;
+    const isMap = this.isMap;
 
     return function (tooltip) {
+      const value = isMap ? this.point.value : this.point.y;
       const maxDecimals = service.getMaxDecimals(this.series.name);
-      const isDecimalNumber = service.getIsDecimalNumber(this.point.y);
-      const decimalCount = service.getDecimalCount(this.point.y);
+      const isDecimalNumber = service.getIsDecimalNumber(value);
+      const decimalCount = service.getDecimalCount(value);
       let valueDecimals: number;
+
+      // console.log('this', this);
+
+      // console.log('isMap', isMap);
+      // console.log('maxDecimals', maxDecimals);
+      // console.log('isDecimalNumber', isDecimalNumber);
+      // console.log('decimalCount', decimalCount);
 
       if (isDecimalNumber && decimalCount > maxDecimals) {
         valueDecimals = maxDecimals;
       } else {
         valueDecimals = decimalCount;
       }
+
+      // console.log('valueDecimals', valueDecimals);
+
       this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
       return tooltip.defaultFormatter.call(this, tooltip);
     };

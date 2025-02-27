@@ -55,14 +55,17 @@ export class MetadataForSeriesService {
     if (!unit && units?.length === 1) {
       unit = units[0];
     }
+
     if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
       return unit.decimals;
     }
+
     if (unit?.decimals > 9) {
       console.warn(
         'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
       );
     }
+
     return 9;
   }
 

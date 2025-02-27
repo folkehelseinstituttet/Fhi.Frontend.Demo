@@ -49,7 +49,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.getExampleData('2a');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      this.getExampleData('3a');
+      // this.getExampleData('3a');
+      this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     }
   }
 
@@ -105,7 +106,6 @@ export class HighchartsComponent implements OnInit {
         this.getData__example_2c();
         break;
       case '3a':
-        // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
         this.getData__example_3a();
         break;
       case '3b':
@@ -307,7 +307,8 @@ export class HighchartsComponent implements OnInit {
               'line',
               'pie',
             ],
-            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+            mapTypes: ['mapFylker2023'],
+            // mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
           },
           show: true,
         },
@@ -326,16 +327,16 @@ export class HighchartsComponent implements OnInit {
       units: [
         {
           id: 'Antall1',
-          decimals: 1,
+          decimals: 3,
           label: 'Antall',
         },
-        {
-          id: 'Andel2',
-          decimals: 1,
-          label: 'Prosent',
-          symbol: '%',
-          position: 'end',
-        },
+        // {
+        //   id: 'Andel2',
+        //   decimals: 1,
+        //   label: 'Prosent',
+        //   symbol: '%',
+        //   position: 'end',
+        // },
       ],
     });
   }
