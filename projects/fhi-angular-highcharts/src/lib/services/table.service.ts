@@ -196,8 +196,14 @@ export class TableService {
     const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
     const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
 
-    return typeof data === 'number' && decimalCount > maxDecimals
-      ? data.toFixed(maxDecimals)
-      : data;
+    if (typeof data === 'number' && decimalCount > maxDecimals) {
+      // Fix for rounding errors in toFixed()
+      const split = data.toString().split('.');
+      data = +(split.join('.') + '1');
+
+      return data.toFixed(maxDecimals);
+    } else {
+      return data;
+    }
   }
 }
