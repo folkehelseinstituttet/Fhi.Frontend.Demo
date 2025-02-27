@@ -224,7 +224,7 @@ export class HighchartsComponent implements OnInit {
       title: this.titles.title_3b,
       units: [
         {
-          decimals: 3,
+          decimals: 1,
           label: 'Prosent',
           symbol: '%',
           position: 'end',

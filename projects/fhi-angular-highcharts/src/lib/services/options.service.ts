@@ -20,12 +20,12 @@ import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
 import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 import { TopoJsonService } from './topo-json.service';
-import { MetadataForSeriesService } from './metadata-for-series.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
 import { OptionsCharts } from '../highcharts-options/options-charts';
 import { OptionsMaps } from '../highcharts-options/options-maps';
 import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
+import { MetadataForSeriesService } from './metadata-for-series.service';
 
 @Injectable()
 export class OptionsService {
