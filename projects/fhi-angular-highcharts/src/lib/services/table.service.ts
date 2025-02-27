@@ -4,9 +4,12 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/diagram-serie-name-seperator';
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 import { TableCell, TableData } from '../models/table-data.model';
+import { MetadataForSeriesService } from './metadata-for-series.service';
 
 @Injectable()
 export class TableService {
+  constructor(private metadataForSeriesService: MetadataForSeriesService) {}
+
   getTable(series: FhiDiagramSerie[], orientation: string): TableData {
     if (orientation === TableOrientationValues.seriesAsColumns) {
       return {
@@ -67,7 +70,7 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: series[j - 1].data[i].y,
+            data: this.getRoundedData(series[j - 1].name, series[j - 1].data[i].y),
           };
         }
       }
@@ -127,7 +130,7 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: series[i].data[j - dimentionsCount].y,
+            data: this.getRoundedData(series[i].name, series[i].data[j - dimentionsCount].y),
           };
         }
       }
@@ -187,5 +190,14 @@ export class TableService {
       previousCount = count;
     }
     return counts;
+  }
+
+  private getRoundedData(serieName: string | string[], data: number | string): number | string {
+    const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
+    const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
+
+    return typeof data === 'number' && decimalCount > maxDecimals
+      ? data.toFixed(maxDecimals)
+      : data;
   }
 }
