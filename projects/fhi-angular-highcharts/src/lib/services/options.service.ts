@@ -225,14 +225,6 @@ export class OptionsService {
       const decimalCount = service.getDecimalCount(this.point.y);
       let valueDecimals: number;
 
-      // console.log('this', this);
-      // console.log('name', this.series.name);
-      // console.log('this.point', this.point);
-
-      // console.log('maxDecimals', maxDecimals);
-      // console.log('isDecimalNumber', isDecimalNumber);
-      // console.log('decimalCount', decimalCount);
-
       if (isDecimalNumber && decimalCount > maxDecimals) {
         valueDecimals = maxDecimals;
       } else {
