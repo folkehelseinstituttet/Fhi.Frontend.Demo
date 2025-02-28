@@ -137,21 +137,21 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 
 #### Using two units
 
-Only diagram type `table` and `columnAndLine` supports two units, and to make it work
+Only diagram type `table` and `columnAndLine` supports two units, and to make it work:
 
 1. Both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
 2. At least two series must have `unitId` (with two unique values), and those ids must be present in the units array.
 
 If not both criteria is met, both units will be ignored.
 
-Also nice to know
+Also nice to know:
 
 - the first "unit" in "units" will always represent the left y-axis in the `columnAndLine`-chart
 - and series associated with the first "unit" in "units" will always become columns in the `columnAndLine`-chart
 
 #### Using more than two units
 
-Only diagram type `table` supports two units, and to make it work
+Only diagram type `table` supports two units, and to make it work:
 
 1. All units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
 2. If `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array.
