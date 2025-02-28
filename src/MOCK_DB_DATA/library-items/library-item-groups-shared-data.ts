@@ -120,12 +120,6 @@ export const LibraryItemGroupsSharedData: LibraryItemGroupsShared = {
     apiEndPoint: 'TagsData',
     parentUrlSegment: UrlSegment.components,
   },
-  TimeSelectors: {
-    id: 'time-selectors',
-    title: 'Time selectors',
-    apiEndPoint: 'TimeSelectorsData',
-    parentUrlSegment: UrlSegment.components,
-  },
   Toasts: {
     id: 'toasts',
     title: 'Toasts',
