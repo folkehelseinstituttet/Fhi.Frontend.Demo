@@ -153,8 +153,8 @@ Also nice to know
 
 Only diagram type `table` supports two units, and to make it work
 
-- all units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id)
-- if `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array
+1. All units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
+2. If `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array.
 
 If not all criteria is met, all units will be ignored.
 
