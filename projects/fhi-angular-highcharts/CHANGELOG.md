@@ -1,12 +1,12 @@
 # Unreleased
 
-> Feb 27, 2025
+> Feb 28, 2025
 
 * :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
 * :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
 * :bug: **Bugfix** Make SVG-download work also for maps [(#803)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/803)
 * :bug: **Bugfix** Make sure navigation group id can't become undefined [(#804)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/804)
-* :tada: **Enhancement** Improve decimal handling [(#814)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/814)
+* :boom: **Breaking** Improve decimal handling [(#814)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/814)
 
 ## 5.3.0
 
