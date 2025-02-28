@@ -198,6 +198,7 @@ export class TableService {
 
     if (typeof data === 'number' && decimalCount > maxDecimals) {
       // Fix for rounding errors in toFixed()
+      // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
       const split = data.toString().split('.');
       data = +(split.join('.') + '1');
 
