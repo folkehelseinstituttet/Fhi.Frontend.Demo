@@ -327,7 +327,7 @@ export class HighchartsComponent implements OnInit {
       units: [
         {
           id: 'Antall1',
-          decimals: 3,
+          decimals: null,
           label: 'Antall',
         },
         {

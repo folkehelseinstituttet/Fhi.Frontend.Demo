@@ -56,7 +56,7 @@ export class MetadataForSeriesService {
       unit = units[0];
     }
 
-    if (unit?.decimals !== undefined && unit?.decimals >= 0 && unit?.decimals <= 9) {
+    if (unit?.decimals && unit?.decimals >= 0 && unit?.decimals <= 9) {
       return unit.decimals;
     }
 
