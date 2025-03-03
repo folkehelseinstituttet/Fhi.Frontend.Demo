@@ -1,6 +1,6 @@
-# Unreleased
+# 6.0.0
 
-> Feb 27, 2025
+> Feb 28, 2025
 
 * :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
 * :boom: **Breaking** Remove all "Time selector"-components (and `FhiTableComponent`) [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)  
