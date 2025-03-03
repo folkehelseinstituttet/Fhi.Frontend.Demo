@@ -12,15 +12,15 @@ export class MetadataForSeriesService {
     this.metadataForSeries = [];
   }
 
-  getHasPositiveData(): boolean {
+  get hasPositiveData(): boolean {
     return !!this.metadataForSeries.find((serie) => serie.hasPositiveData);
   }
 
-  getHasNegativeData(): boolean {
+  get hasNegativeData(): boolean {
     return !!this.metadataForSeries.find((serie) => serie.hasNegativeData);
   }
 
-  getHasDecimalData(): boolean {
+  get hasDecimalData(): boolean {
     return !!this.metadataForSeries.find((serie) => serie.hasDecimalData);
   }
 

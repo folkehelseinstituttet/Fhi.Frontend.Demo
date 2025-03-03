@@ -156,11 +156,11 @@ export class OptionsService {
       [1, '#234e5f'], // B2-40
     ];
     if (
-      this.metadataForSeriesService.getHasNegativeData() &&
-      this.metadataForSeriesService.getHasPositiveData()
+      this.metadataForSeriesService.hasNegativeData &&
+      this.metadataForSeriesService.hasPositiveData
     ) {
       options.colorAxis = { ...colorAxis, stops: stopsNegativeAndPositive };
-    } else if (this.metadataForSeriesService.getHasNegativeData()) {
+    } else if (this.metadataForSeriesService.hasNegativeData) {
       options.colorAxis = { ...colorAxis, stops: stopsNegative };
     } else {
       options.colorAxis = { ...colorAxis, stops: stopsPositive };
@@ -262,10 +262,10 @@ export class OptionsService {
   private getYAxis(yAxis: YAxisOptions, unit?: FhiDiagramUnit): YAxisOptions {
     yAxis = yAxis ? yAxis : {};
 
-    if (this.metadataForSeriesService.getHasDecimalData()) {
+    if (this.metadataForSeriesService.hasDecimalData) {
       yAxis.allowDecimals = true;
     }
-    if (this.metadataForSeriesService.getHasNegativeData()) {
+    if (this.metadataForSeriesService.hasNegativeData) {
       yAxis.min = undefined;
     }
 
