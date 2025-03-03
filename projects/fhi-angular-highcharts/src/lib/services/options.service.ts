@@ -230,21 +230,11 @@ export class OptionsService {
       const decimalCount = service.getDecimalCount(value);
       let valueDecimals: number;
 
-      // console.log('this', this);
-
-      // console.log('isMap', isMap);
-      // console.log('maxDecimals', maxDecimals);
-      // console.log('isDecimalNumber', isDecimalNumber);
-      // console.log('decimalCount', decimalCount);
-
       if (isDecimalNumber && decimalCount > maxDecimals) {
         valueDecimals = maxDecimals;
       } else {
         valueDecimals = decimalCount;
       }
-
-      // console.log('valueDecimals', valueDecimals);
-
       this.point.series['tooltipOptions'].valueDecimals = valueDecimals;
       return tooltip.defaultFormatter.call(this, tooltip);
     };
