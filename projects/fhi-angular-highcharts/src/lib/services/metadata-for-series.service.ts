@@ -56,7 +56,12 @@ export class MetadataForSeriesService {
       unit = units[0];
     }
 
-    if (unit?.decimals && unit?.decimals >= 0 && unit?.decimals <= 9) {
+    if (
+      unit?.decimals !== undefined &&
+      unit?.decimals !== null &&
+      unit?.decimals >= 0 &&
+      unit?.decimals <= 9
+    ) {
       return unit.decimals;
     }
 
@@ -64,6 +69,10 @@ export class MetadataForSeriesService {
       console.warn(
         'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
       );
+    }
+
+    if (unit?.decimals === null) {
+      throw new Error('"null" is not a supported type for "unit.decimals"');
     }
 
     return 9;
