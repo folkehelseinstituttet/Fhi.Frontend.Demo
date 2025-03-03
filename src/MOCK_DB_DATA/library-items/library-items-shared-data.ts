@@ -294,43 +294,6 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     title: 'Tag - state, dot',
   },
 
-  TimeSelectorDateAndTime: {
-    id: 'time-selector-date-and-time',
-    title: 'Date and time',
-  },
-  TimeSelectorDatepicker: {
-    id: 'time-selector-datepicker',
-    title: 'Datepicker',
-  },
-  TimeSelectorDateRange: {
-    id: 'time-selector-date-range',
-    title: 'Date range',
-  },
-  TimeSelectorWeekpicker: {
-    id: 'time-selector-weekpicker',
-    title: 'Weekpicker',
-  },
-  TimeSelectorWeekRange: {
-    id: 'time-selector-week-range',
-    title: 'Week range',
-  },
-  TimeSelectorYearMonth: {
-    id: 'time-selector-year-month',
-    title: 'Year month',
-  },
-  TimeSelectorYearMonthRange: {
-    id: 'time-selector-month-range',
-    title: 'Month range',
-  },
-  TimeSelectorYears: {
-    id: 'time-selector-years',
-    title: 'Years',
-  },
-  TimeSelectorYearRange: {
-    id: 'time-selector-year-range',
-    title: 'Year range',
-  },
-
   Toast: {
     id: 'toast',
     title: 'Toast',

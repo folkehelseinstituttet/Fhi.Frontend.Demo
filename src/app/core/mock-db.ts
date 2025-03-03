@@ -27,7 +27,6 @@ import { ProgressIndicatorsData } from 'src/MOCK_DB_DATA/library-items/progress-
 import { SearchFieldsData } from 'src/MOCK_DB_DATA/library-items/searches/_searches.data';
 import { TablesData } from 'src/MOCK_DB_DATA/library-items/tables/_tables.data';
 import { TagsData } from 'src/MOCK_DB_DATA/library-items/tags/_tags.data';
-import { TimeSelectorsData } from 'src/MOCK_DB_DATA/library-items/time-selectors/_time-selectors.data';
 import { ToastsData } from 'src/MOCK_DB_DATA/library-items/toasts/_toasts.data';
 import { TooltipPopoverData } from 'src/MOCK_DB_DATA/library-items/tooltip-popover/_tooltip-popover.data';
 import { TreeViewsData } from 'src/MOCK_DB_DATA/library-items/tree-views/_tree-views.data';
@@ -51,7 +50,6 @@ const AllComponentsData: LibraryItem[] = [
   ...SearchFieldsData.libraryItems,
   ...TablesData.libraryItems,
   ...TagsData.libraryItems,
-  ...TimeSelectorsData.libraryItems,
   ...ToastsData.libraryItems,
   ...TooltipPopoverData.libraryItems,
   ...TreeViewsData.libraryItems,
@@ -99,7 +97,6 @@ export function getMockDbBody(url: string): unknown {
     SearchFieldsData: SearchFieldsData,
     TablesData: TablesData,
     TagsData: TagsData,
-    TimeSelectorsData: TimeSelectorsData,
     ToastsData: ToastsData,
     TooltipPopoverData: TooltipPopoverData,
     TreeViewsData: TreeViewsData,

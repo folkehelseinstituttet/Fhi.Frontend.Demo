@@ -1,8 +1,10 @@
-# Unreleased
+# 6.0.0
 
-> Feb 14, 2025
+> Feb 28, 2025
 
-* :tada: **Enhancement** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+* :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+* :boom: **Breaking** Remove all "Time selector"-components (and `FhiTableComponent`) [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)  
+  For more information about time and date selectors, see also this [issue comment](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/790#issuecomment-2680985992). Same logic described there applies to `FhiTableComponent`.
 
 ## 5.3.1
 

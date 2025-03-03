@@ -22,11 +22,9 @@ import { PaginationsComponent } from './example-components/paginations/paginatio
 import { ProgressIndicatorsComponent } from './example-components/progress-indicators/progress-indicators.component';
 import { PrototypeFormsComponent } from './example-components/forms/forms.component';
 import { SearchComponent } from './example-components/search/search.component';
-import { TableExpandableContentComponent } from './example-components/table-expandable-content/table-expandable-content.component';
 import { TablesComponent } from './example-components/tables/tables.component';
 import { TabsExampleComponent } from './example-components/navs/tabs-example/tabs-example.component';
 import { TagsComponent } from './example-components/tags/tags.component';
-import { TimeSelectorsComponent } from './example-components/time-selectors/time-selectors.component';
 import { ToastsComponent } from './example-components/toasts/toasts.component';
 import { TooltipAndPopoverComponent } from './example-components/tooltip-and-popover/tooltip-and-popover.component';
 import { TreeViewsComponent } from './example-components/tree-views/tree-views.component';
@@ -45,11 +43,9 @@ const EXAMPLE_COMPONENTS = [
   ProgressIndicatorsComponent,
   PrototypeFormsComponent,
   SearchComponent,
-  TableExpandableContentComponent,
   TablesComponent,
   TabsExampleComponent,
   TagsComponent,
-  TimeSelectorsComponent,
   ToastsComponent,
   TooltipAndPopoverComponent,
   TreeViewsComponent,
