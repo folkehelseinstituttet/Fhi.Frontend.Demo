@@ -13,6 +13,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
       - [Using two units](#using-two-units)
+    - [Interface FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -123,16 +124,17 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 
 ### Interface FhiDiagramOptions
 
-| Property            | Type                 | Default   | Required | Description |
-| ------------------- | -------------------- | --------- | -------- | ----------- |
-| `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
-| `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
-| `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
-| `[openSource]`      | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
-| `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
-| `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `columnAndLine` supports two units, all other diagram types supports max 1 unit. See below this table for more info about using two units. |
+| Property            | Type                     | Default   | Required | Description |
+| ------------------- | ------------------------ | --------- | -------- | ----------- |
+| `activeDiagramType` | `string`                 | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
+| `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
+| `controls`          | `FhiDiagramControls`     | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
+| `footer`            | `FhiDiagramFooter`       | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
+| `[openSource]`      | `boolean`                | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
+| `[series]`          | `FhiDiagramSerie[]`      | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
+| `tableOrientation`  | `string`                 | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
+| `title`             | `string`                 | -         | yes      | The title above the diagram. |
+| `units`             | `FhiDiagramUnit[]`       | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `columnAndLine` supports two units, all other diagram types supports max 1 unit. See below this table for more info about using two units. |
 
 #### Using two units
 
@@ -145,6 +147,12 @@ Also nice to know
 
 - the first "unit" in "units" will always represent the left y-axis
 - and series associated with the first "unit" in "units" will always become columns
+
+### Interface FhiDiagramCategoryAxis
+
+| Property | Type     | Default | Required | Description |
+| -------- | -------- | ------- | -------- | ----------- |
+| `title`  | `string` | -       | no       | custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
 
 ### Interface FhiDiagramControls
 
