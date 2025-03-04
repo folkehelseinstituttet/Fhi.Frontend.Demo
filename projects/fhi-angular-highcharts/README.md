@@ -152,7 +152,7 @@ Also nice to know
 
 | Property | Type     | Default | Required | Description |
 | -------- | -------- | ------- | -------- | ----------- |
-| `title`  | `string` | -       | no       | custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
+| `title`  | `string` | -       | no       | Custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
 
 ### Interface FhiDiagramControls
 
