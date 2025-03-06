@@ -1,6 +1,6 @@
-# Unreleased
+# 6.0.0
 
-> Mar 03, 2025
+> Mar 06, 2025
 
 * :tada: **Enhancement** Update to new control flow syntax in templates [(#782)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/782)
 * :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
