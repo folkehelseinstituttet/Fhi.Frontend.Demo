@@ -14,6 +14,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
       - [Using two units](#using-two-units)
       - [Using more than two units](#using-more-than-two-units)
+    - [Interface FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -127,6 +128,7 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 | Property            | Type                 | Default   | Required | Description |
 | ------------------- | -------------------- | --------- | -------- | ----------- |
 | `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
+| `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
 | `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
 | `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
 | `[openSource]`      | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
@@ -157,6 +159,12 @@ Only diagram type `table` supports two units, and to make it work:
 2. If `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array.
 
 If not all criteria is met, all units will be ignored.
+
+### Interface FhiDiagramCategoryAxis
+
+| Property | Type     | Default | Required | Description |
+| -------- | -------- | ------- | -------- | ----------- |
+| `title`  | `string` | -       | no       | Custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
 
 ### Interface FhiDiagramControls
 
