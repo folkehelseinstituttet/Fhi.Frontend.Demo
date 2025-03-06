@@ -13,6 +13,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
       - [Using two units](#using-two-units)
+      - [Using more than two units](#using-more-than-two-units)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -132,19 +133,30 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 | `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `columnAndLine` supports two units, all other diagram types supports max 1 unit. See below this table for more info about using two units. |
+| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
 
 #### Using two units
 
-Only diagram type `columnAndLine` supports two units, and to make it work
+Only diagram type `table` and `columnAndLine` supports two units, and to make it work:
 
-- both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id)
-- at least two series must have `unitId` (with two unique values), and those ids must be present in the units array
+1. Both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
+2. At least two series must have `unitId` (with two unique values), and those ids must be present in the units array.
 
-Also nice to know
+If not both criteria is met, both units will be ignored.
 
-- the first "unit" in "units" will always represent the left y-axis
-- and series associated with the first "unit" in "units" will always become columns
+Also nice to know:
+
+- the first "unit" in "units" will always represent the left y-axis in the `columnAndLine`-chart
+- and series associated with the first "unit" in "units" will always become columns in the `columnAndLine`-chart
+
+#### Using more than two units
+
+Only diagram type `table` supports two units, and to make it work:
+
+1. All units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
+2. If `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array.
+
+If not all criteria is met, all units will be ignored.
 
 ### Interface FhiDiagramControls
 
@@ -203,7 +215,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | Property   | Type               | Default | Required | Description |
 | ---------- | ------------------ | ------- | -------- | ----------- |
 | `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
-| `decimals` | `number`           | -       | no       | The decimal count. If `undefined` the decimal count is same as in the source data. If `null`, same as `0`, ie. no decimals. Count is **limited to 9** decimals because Highcharts tooltips fails if 10 decimals or more. A warning will be given in the consol if more than 9 decimals. |
+| `decimals` | `number`           | -       | no       | The decimal count. If `undefined`: the decimal count is same as in the source data (**limited** to 9 decimals because Highcharts tooltips fails if 10 decimals or more). If `0`: no decimals. If `[1..9]`: max decimal count, but limited to the decimal count in the source data. If `10` or more, a warning will be given in the console, and `9` decimals will be used. |
 | `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
 | `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
