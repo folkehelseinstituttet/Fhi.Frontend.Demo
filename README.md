@@ -1,7 +1,7 @@
 # Fhi.Frontend.Demo
 
 An Angular app with demos and documentation of CSS and Angular components with FHI-design. Visit
-[https://designsystem.fhi.no](https://designsystem.fhi.no) to see it in action.
+[https://old.designsystem.fhi.no](https://old.designsystem.fhi.no) to see it in action.
 
 ## Get started
 

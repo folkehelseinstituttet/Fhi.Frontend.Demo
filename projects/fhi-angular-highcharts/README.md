@@ -240,5 +240,5 @@ Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi
 
 ## Demo
 
-- Live example in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no/developer/modules/Highcharts)
+- Live example in our demo app: [https://old.designsystem.fhi.no](https://old.designsystem.fhi.no/developer/modules/Highcharts)
 - Repo for demo app: [https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)
