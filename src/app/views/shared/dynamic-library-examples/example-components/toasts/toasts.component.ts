@@ -2,8 +2,9 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-  selector: 'app-toasts',
-  templateUrl: './toasts.component.html',
+    selector: 'app-toasts',
+    templateUrl: './toasts.component.html',
+    standalone: false
 })
 export class ToastsComponent {
   @Input() itemId!: string;

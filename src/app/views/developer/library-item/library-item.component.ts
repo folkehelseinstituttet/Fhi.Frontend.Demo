@@ -16,8 +16,9 @@ const MenuItemName = {
 };
 
 @Component({
-  selector: 'app-library-item',
-  templateUrl: './library-item.component.html',
+    selector: 'app-library-item',
+    templateUrl: './library-item.component.html',
+    standalone: false
 })
 export class LibraryItemComponent implements OnInit, AfterViewInit {
   @Input() group: LibraryItemGroup;

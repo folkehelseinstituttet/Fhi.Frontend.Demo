@@ -6,11 +6,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
 @Component({
-  selector: 'fhi-autosuggest',
-  imports: [CommonModule, NgSelectModule, FormsModule],
-  standalone: true,
-  templateUrl: './fhi-autosuggest.component.html',
-  encapsulation: ViewEncapsulation.None,
+    selector: 'fhi-autosuggest',
+    imports: [CommonModule, NgSelectModule, FormsModule],
+    templateUrl: './fhi-autosuggest.component.html',
+    encapsulation: ViewEncapsulation.None
 })
 export class FhiAutosuggestComponent {
   @Input({ required: true }) items!: Array<FhiAutosuggestItem>;

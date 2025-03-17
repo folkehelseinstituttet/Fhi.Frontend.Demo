@@ -14,6 +14,7 @@ import { OptionsService } from './services/options.service';
 import { TableService } from './services/table.service';
 import { DiagramTypeGroupService } from './services/diagram-type-group.service';
 import { TopoJsonService } from './services/topo-json.service';
+import { MetadataForSeriesService } from './services/metadata-for-series.service';
 
 import { FhiAngularHighchartsComponent } from './fhi-angular-highcharts.component';
 import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-diagram-type-nav-default/fhi-diagram-type-nav-default.component';
@@ -36,6 +37,7 @@ import { FhiDiagramTypeNavDefaultComponent } from './fhi-diagram-type-navs/fhi-d
     DownloadService,
     OptionsService,
     TableService,
+    MetadataForSeriesService,
   ],
 })
 export class FhiAngularHighchartsModule {}

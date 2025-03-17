@@ -6,10 +6,9 @@ import { DiagramTypeGroup } from '../../models/diagram-type-group.model';
 import { DiagramType } from '../../models/diagram-type.model';
 
 @Component({
-  selector: 'fhi-diagram-type-nav-default',
-  standalone: true,
-  imports: [CommonModule, NgbDropdownModule],
-  templateUrl: './fhi-diagram-type-nav-default.component.html',
+    selector: 'fhi-diagram-type-nav-default',
+    imports: [CommonModule, NgbDropdownModule],
+    templateUrl: './fhi-diagram-type-nav-default.component.html'
 })
 export class FhiDiagramTypeNavDefaultComponent {
   @Input() diagramTypeGroups!: DiagramTypeGroup[];

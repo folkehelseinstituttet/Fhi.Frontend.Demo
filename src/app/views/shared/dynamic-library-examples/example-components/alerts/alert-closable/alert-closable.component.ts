@@ -55,8 +55,9 @@ const ALERTS: Alert[] = [
 ];
 
 @Component({
-  selector: 'app-alert-closable',
-  templateUrl: './alert-closable.component.html',
+    selector: 'app-alert-closable',
+    templateUrl: './alert-closable.component.html',
+    standalone: false
 })
 export class AlertClosableComponent {
   alerts: Alert[];

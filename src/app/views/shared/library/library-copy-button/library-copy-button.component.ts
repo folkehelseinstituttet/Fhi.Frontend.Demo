@@ -4,8 +4,9 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-library-copy-button',
-  templateUrl: './library-copy-button.component.html',
+    selector: 'app-library-copy-button',
+    templateUrl: './library-copy-button.component.html',
+    standalone: false
 })
 export class LibraryCopyButtonComponent {
   @Input() contentToCopy: string;

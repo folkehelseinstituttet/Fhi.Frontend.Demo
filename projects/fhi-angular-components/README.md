@@ -15,6 +15,7 @@ _Contains Angular components used by Folkehelseinstituttet, which are based on [
 
 | FHI Angular Components | FHI Style | Bootstrap | NgSelect | NgBootstrap | Angular | Node/NPM |
 | ---------------------- | --------- | --------- | -------- | ----------- | ------- | -------- |
+| 6                      | 6         | 5.3.2     | 14       | 18          | 19      | 20/10 *  |
 | 5                      | 6         | 5.3.2     | 13       | 17          | 18      | 20/10 *  |
 | 4                      | 6         | 5.3.2     | 12       | 16          | 17      | 18/9 *   |
 | 3                      | 5.9       | 5.3.2     | 12       | 16          | 17      | 18/9 *   |
@@ -26,7 +27,7 @@ _Contains Angular components used by Folkehelseinstituttet, which are based on [
 | 0.2.0                  | 4         | 5         | 9        | 13          | 14      | 16/8 *   |
 
 For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
-_* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
+_* [old.designsystem.fhi.no](https://old.designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
 
 ## Get started
 
@@ -67,5 +68,5 @@ Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi
 
 ## Demo
 
-- Live examples in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no)
+- Live examples in our demo app: [https://old.designsystem.fhi.no](https://old.designsystem.fhi.no)
 - Repo for demo app: [https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)

@@ -8,10 +8,9 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FhiPopoverItem } from './fhi-popover-menu.model';
 
 @Component({
-  selector: 'fhi-popover-menu',
-  standalone: true,
-  imports: [CommonModule, NgbPopoverModule, RouterModule],
-  templateUrl: './fhi-popover-menu.component.html',
+    selector: 'fhi-popover-menu',
+    imports: [CommonModule, NgbPopoverModule, RouterModule],
+    templateUrl: './fhi-popover-menu.component.html'
 })
 export class FhiPopoverMenuComponent {
   @Input({ required: true }) items!: Array<FhiPopoverItem>;

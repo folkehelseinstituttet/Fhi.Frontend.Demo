@@ -4,8 +4,9 @@ import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
-  selector: 'app-main-menu',
-  templateUrl: './main-menu.component.html',
+    selector: 'app-main-menu',
+    templateUrl: './main-menu.component.html',
+    standalone: false
 })
 export class MainMenuComponent {
   @Input() projectName: string;

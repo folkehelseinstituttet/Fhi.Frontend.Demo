@@ -1,4 +1,18 @@
-# 5.3.0
+# 6.0.0
+
+> Feb 28, 2025
+
+* :boom: **Breaking** Update to Angular v19 [(#800)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/800)
+* :boom: **Breaking** Remove all "Time selector"-components (and `FhiTableComponent`) [(#813)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/813)  
+  For more information about time and date selectors, see also this [issue comment](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/790#issuecomment-2680985992). Same logic described there applies to `FhiTableComponent`.
+
+## 5.3.1
+
+> Feb 6, 2025
+
+* :bug: **Bugfix** Make sure item ids always unique independent of the item count at any level in the tree  [(#808)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/808)
+
+## 5.3.0
 
 > Jan 22, 2025
 

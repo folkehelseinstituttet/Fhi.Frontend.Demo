@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tabs-example',
-  templateUrl: './tabs-example.component.html',
+    selector: 'app-tabs-example',
+    templateUrl: './tabs-example.component.html',
+    standalone: false
 })
 export class TabsExampleComponent {
   mainMenuIsOpen = false;

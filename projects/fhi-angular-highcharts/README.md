@@ -13,6 +13,8 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Outputs](#outputs)
     - [Interface FhiDiagramOptions](#interface-fhidiagramoptions)
       - [Using two units](#using-two-units)
+      - [Using more than two units](#using-more-than-two-units)
+    - [Interface FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis)
     - [Interface FhiDiagramControls](#interface-fhidiagramcontrols)
     - [Interface FhiDiagramFooter](#interface-fhidiagramfooter)
     - [Interface FhiDiagramSerie](#interface-fhidiagramserie)
@@ -25,25 +27,24 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 ## Dependencies
 
-| FHI Angular Highcharts | FHI Angular Componets | FHI Style | Bootstrap | NgBootstrap | Highcharts | Highcharts Angular | Angular | Node/NPM |
-| ---------------------- | --------------------- | --------- | --------- | ----------- | ---------- | ------------------ | ------- | -------- |
-| 5                      | 5                     | 6.3       | 5.3.2     | 17          | 11.4       | 4.0                | 18      | 20/10 *  |
-| >4.1                   | 4                     | 6.3       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
-| >=3.1 <=4.1            | 4                     | 6.2       | 5.3.2     | 16          | 11.4       | 4.0                | 17      | 18/10 *  |
-| 3                      | 4.0                   | 6         | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
-| 2                      | 3.1                   | 5.9       | 5.3.2     | 16          | 11.1       | 4.0                | 17      | 18/10 *  |
-| 1                      | -                     | 5         | 5         | 15          | 11.1       | 4.0                | 16      | 18/9 *   |
-| 0.7                    | -                     | 5         | 5         | 14          | 11.1       | 3.1.2              | 15      | 18/9 *   |
-| 0.6                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.5                    | -                     | 5         | 5         | 14          | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.4                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.3                    | -                     | 5         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.2                    | -                     | 4         | 5         |             | 10.3.3     | 3.1                | 15      | 18/9 *   |
-| 0.1                    | -                     | 4         | 5         |             | 10.3       | 3                  | 14      | 16/8 *   |
+| FHI Angular Highcharts | FHI Angular Componets | Highcharts | Highcharts Angular |
+| ---------------------- | --------------------- | ---------- | ------------------ |
+| 6                      | 6                     | 11.4       | 4.0                |
+| 5                      | 5                     | 11.4       | 4.0                |
+| >4.1                   | 4                     | 11.4       | 4.0                |
+| >=3.1 <=4.1            | 4                     | 11.4       | 4.0                |
+| 3                      | 4.0                   | 11.1       | 4.0                |
+| 2                      | 3.1                   | 11.1       | 4.0                |
+| 1                      | -                     | 11.1       | 4.0                |
+| 0.7                    | -                     | 11.1       | 3.1.2              |
+| 0.6                    | -                     | 10.3.3     | 3.1                |
+| 0.5                    | -                     | 10.3.3     | 3.1                |
+| 0.4                    | -                     | 10.3.3     | 3.1                |
+| 0.3                    | -                     | 10.3.3     | 3.1                |
+| 0.2                    | -                     | 10.3.3     | 3.1                |
+| 0.1                    | -                     | 10.3       | 3                  |
 
-For more dependencies see `peerDependencies` in [package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-highcharts/package.json)
-
-_* [designsystem.fhi.no](https://designsystem.fhi.no) uses these Node/NPM versions, older versions may work, but then you're on your own_ :wink:
+For more dependencies see `peerDependencies` in [fhi-angular-components/package.json](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/blob/dev/projects/fhi-angular-components/package.json)
 
 ## Get started
 
@@ -127,25 +128,43 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 | Property            | Type                 | Default   | Required | Description |
 | ------------------- | -------------------- | --------- | -------- | ----------- |
 | `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
+| `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
 | `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
 | `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
 | `[openSource]`      | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
 | `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `columnAndLine` supports two units, all other diagram types supports max 1 unit. See below this table for more info about using two units. |
+| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
 
 #### Using two units
 
-Only diagram type `columnAndLine` supports two units, and to make it work
+Only diagram type `table` and `columnAndLine` supports two units, and to make it work:
 
-- both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id)
-- at least two series must have `unitId` (with two unique values), and those ids must be present in the units array
+1. Both units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
+2. At least two series must have `unitId` (with two unique values), and those ids must be present in the units array.
 
-Also nice to know
+If not both criteria is met, both units will be ignored.
 
-- the first "unit" in "units" will always represent the left y-axis
-- and series associated with the first "unit" in "units" will always become columns
+Also nice to know:
+
+- the first "unit" in "units" will always represent the left y-axis in the `columnAndLine`-chart
+- and series associated with the first "unit" in "units" will always become columns in the `columnAndLine`-chart
+
+#### Using more than two units
+
+Only diagram type `table` supports two units, and to make it work:
+
+1. All units must have an id (see [FhiDiagramUnit](#interface-fhidiagramunit) for more info about unit id).
+2. If `n` units, at least `n` series must have `unitId` (with `n` unique values), and those ids must be present in the units array.
+
+If not all criteria is met, all units will be ignored.
+
+### Interface FhiDiagramCategoryAxis
+
+| Property | Type     | Default | Required | Description |
+| -------- | -------- | ------- | -------- | ----------- |
+| `title`  | `string` | -       | no       | Custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
 
 ### Interface FhiDiagramControls
 
@@ -204,7 +223,7 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | Property   | Type               | Default | Required | Description |
 | ---------- | ------------------ | ------- | -------- | ----------- |
 | `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
-| `decimals` | `number`           | -       | no       | The decimal count. If `undefined` the decimal count is same as in the source data. If `null`, same as `0`, ie. no decimals. Count is **limited to 9** decimals because Highcharts tooltips fails if 10 decimals or more. A warning will be given in the consol if more than 9 decimals. |
+| `decimals` | `number`           | -       | no       | The decimal count. If `undefined`: the decimal count is same as in the source data (**limited** to 9 decimals because Highcharts tooltips fails if 10 decimals or more). If `0`: no decimals. If `[1..9]`: max decimal count, but limited to the decimal count in the source data. If `10` or more, a warning will be given in the console, and `9` decimals will be used. |
 | `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
 | `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
@@ -221,5 +240,5 @@ Read about how to contribute [here](https://github.com/folkehelseinstituttet/Fhi
 
 ## Demo
 
-- Live example in our demo app: [https://designsystem.fhi.no](https://designsystem.fhi.no/developer/modules/Highcharts)
+- Live example in our demo app: [https://old.designsystem.fhi.no](https://old.designsystem.fhi.no/developer/modules/Highcharts)
 - Repo for demo app: [https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo)

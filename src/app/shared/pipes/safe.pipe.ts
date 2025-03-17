@@ -8,7 +8,10 @@ import {
   SafeResourceUrl,
 } from '@angular/platform-browser';
 
-@Pipe({ name: 'safe' })
+@Pipe({
+    name: 'safe',
+    standalone: false
+})
 export class SafePipe implements PipeTransform {
   constructor(protected sanitizer: DomSanitizer) {}
   public transform(
