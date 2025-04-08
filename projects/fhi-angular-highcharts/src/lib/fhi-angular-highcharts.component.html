@@ -55,7 +55,7 @@
         }
         <div class="flex-fill mb-3 d-flex">
           @if (showMetadataButton) {
-            <button class="btn fhi-btn-icon fhi-diagram-controls__metadata" click="onMetadataButtonClick()">
+            <button class="btn fhi-btn-icon fhi-diagram-controls__metadata" (click)="onMetadataButtonClick()">
               <i class="icon-info-circle"></i>
               <span class="btn__text">Om dataene</span>
             </button>
