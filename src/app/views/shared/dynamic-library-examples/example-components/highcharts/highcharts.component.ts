@@ -66,8 +66,6 @@ export class HighchartsComponent implements OnInit {
   }
 
   onMetadataButtonClick() {
-    console.log('onMetadataButtonClick()');
-
     this.viewportScroller.scrollToAnchor('om-dataene');
   }
 
