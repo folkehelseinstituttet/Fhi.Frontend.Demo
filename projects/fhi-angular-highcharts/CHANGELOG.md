@@ -3,6 +3,7 @@
 > Apr 08, 2025
 
 * :bug: **Bugfix** Reset a click event in a template which had been nuked by mistake [(#826)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/826)
+* :bug: **Bugfix** Fix link to designsystem.fhi.no [(#827)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/827)
 
 ## 6.0.0
 
