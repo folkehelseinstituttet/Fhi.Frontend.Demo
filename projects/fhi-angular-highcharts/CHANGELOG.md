@@ -1,4 +1,10 @@
-# 6.0.0
+# Unreleased
+
+> Apr 08, 2025
+
+* :bug: **Bugfix** Reset a click event in a template which had been nuked by mistake [(#826)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/826)
+
+## 6.0.0
 
 > Mar 06, 2025
 
