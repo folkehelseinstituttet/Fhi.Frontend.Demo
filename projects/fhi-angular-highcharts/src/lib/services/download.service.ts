@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { formatDate } from '@angular/common';
-import { Chart, ExportingMimeTypeValue, ExportingOptions, Options } from 'highcharts';
+import {
+  Chart,
+  CreditsOptions,
+  ExportingMimeTypeValue,
+  ExportingOptions,
+  Options,
+  SubtitleOptions,
+  TitleOptions,
+} from 'highcharts';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
@@ -21,37 +29,10 @@ export class DownloadService {
       filename: this.getFilename(diagramOptions.title),
     };
     const chartOptions: Options = {
-      title: (() => {
-        if (diagramOptions.title) {
-          return {
-            align: 'left',
-            text: diagramOptions.title,
-          };
-        }
-        return null;
-      })(),
-
-      subtitle: (() => {
-        if (diagramOptions.description) {
-          return {
-            align: 'left',
-            text: diagramOptions.description,
-          };
-        }
-        return null;
-      })(),
-
-      credits: (() => {
-        if (diagramOptions.footer.credits.text) {
-          return {
-            enabled: true,
-            text: diagramOptions.footer.credits.text,
-          };
-        }
-        return null;
-      })(),
+      title: this.getTitle(diagramOptions),
+      subtitle: this.getSubtitle(diagramOptions),
+      credits: this.getCredits(diagramOptions),
     };
-
     chartInstance.exportChartLocal(exportingOptions, chartOptions);
   }
 
@@ -60,5 +41,46 @@ export class DownloadService {
     const today = formatDate(new Date(), 'yyyy-MM-dd', 'nb-NO');
     const filename = today.concat('.', formattedTitle.toLowerCase());
     return filename;
+  }
+
+  private getTitle(diagramOptions: FhiDiagramOptions): TitleOptions {
+    if (diagramOptions.title) {
+      return {
+        align: 'left',
+        text: diagramOptions.title,
+      };
+    }
+    return null;
+  }
+
+  private getSubtitle(diagramOptions: FhiDiagramOptions): SubtitleOptions {
+    if (diagramOptions.description) {
+      return {
+        align: 'left',
+        text: diagramOptions.description,
+      };
+    }
+    return null;
+  }
+
+  private getCredits(diagramOptions: FhiDiagramOptions): CreditsOptions {
+    if (
+      diagramOptions.footer.credits.text &&
+      (diagramOptions.activeDiagramType === 'mapFylker' ||
+        diagramOptions.activeDiagramType === 'mapFylker2019' ||
+        diagramOptions.activeDiagramType === 'mapFylker2023')
+    ) {
+      return {
+        enabled: true,
+        text: 'Kilde: ' + diagramOptions.footer.credits.text + ', kartdata fra',
+      };
+    }
+    if (diagramOptions.footer.credits.text) {
+      return {
+        enabled: true,
+        text: 'Kilde: ' + diagramOptions.footer.credits.text,
+      };
+    }
+    return null;
   }
 }
