@@ -72,7 +72,7 @@ export class DownloadService {
     ) {
       return {
         enabled: true,
-        text: 'Kilde: ' + diagramOptions.footer.credits.text + ', kartdata fra',
+        text: 'Kilde: ' + diagramOptions.footer.credits.text + ', kartdata fra', // Highcharts adds " © [map provider]" automagically at the end
       };
     }
     if (diagramOptions.footer.credits.text) {
