@@ -1,4 +1,10 @@
-# 6.0.1
+# Unreleased
+
+> Apr 28, 2025
+
+* :tada: **Enhancement** Add support for title, description and credits in svg download [(#831)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/831)
+
+## 6.0.1
 
 > Apr 10, 2025
 
