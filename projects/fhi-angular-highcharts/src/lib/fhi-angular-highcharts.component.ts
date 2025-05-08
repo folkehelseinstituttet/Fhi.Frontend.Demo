@@ -133,7 +133,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.downloadService.downloadImage(
         this.chartInstance,
         'image/svg+xml',
-        this.diagramOptionsInternal.title,
+        this.diagramOptionsInternal,
       );
     }
   }
