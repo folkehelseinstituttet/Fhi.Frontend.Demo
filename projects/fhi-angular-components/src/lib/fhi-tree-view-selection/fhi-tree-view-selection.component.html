@@ -62,7 +62,7 @@
     aria-live="polite"
   >
     <ng-container *ngIf="enableCheckAll && !itemsFilteredIsLoaded">
-      <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items }"></ng-container>
+      <ng-container *ngTemplateOutlet="checkAndUncheckAll; context: { items: items, listID: listID }"></ng-container>
     </ng-container>
 
     <li class="fhi-tree-view-checkbox__item" *ngFor="let item of items" role="treeitem">
@@ -88,23 +88,16 @@
   </ul>
 </ng-template>
 
-<ng-template #checkAndUncheckAll let-items="items">
-  <button
-    type="button"
-    class="btn fhi-tree-view-checkbox__check-all"
-    *ngIf="items?.length > 1 && !allItemsChecked(items)"
-    (click)="checkAll(items)"
-  >
-    Velg alle
-  </button>
-  <button
-    type="button"
-    class="btn fhi-tree-view-checkbox__check-all"
-    *ngIf="items?.length > 1 && allItemsChecked(items)"
-    (click)="uncheckAll(items)"
-  >
-    Fjern alle
-  </button>
+<ng-template #checkAndUncheckAll let-items="items" let-listID="listID">
+  @if (items?.length > 1) {
+    <button
+      type="button"
+      class="btn fhi-tree-view-checkbox__check-all"
+      (click)="listID ? handleLevelSelection(items) : handleRecursiveSelection(items)"
+    >
+      {{ getButtonText(items, listID) }}
+    </button>
+  }
 </ng-template>
 
 <ng-template #expandButton let-item="item">
