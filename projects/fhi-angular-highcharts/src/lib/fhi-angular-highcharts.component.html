@@ -183,9 +183,13 @@
       @if (diagramOptionsInternal.footer?.credits) {
         <p>
           <strong>Kilde </strong>
-          <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{
-            diagramOptionsInternal.footer.credits.text
-          }}</a>
+          @if (diagramOptionsInternal.footer.credits.href) {
+            <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{
+              diagramOptionsInternal.footer.credits.text
+            }}</a>
+          } @else {
+            <strong>{{ diagramOptionsInternal.footer.credits.text }}</strong>
+          }
         </p>
       }
       @if (diagramOptionsInternal.footer?.flags && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
