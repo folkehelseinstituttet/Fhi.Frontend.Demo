@@ -2,7 +2,7 @@ import { FhiDiagramFlag } from './fhi-diagram-flag.model';
 
 export interface FhiDiagramFooter {
   credits?: {
-    href: string;
+    href?: string;
     text: string;
   };
   disclaimer?: string;
