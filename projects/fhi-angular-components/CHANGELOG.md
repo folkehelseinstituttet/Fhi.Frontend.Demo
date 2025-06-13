@@ -1,3 +1,9 @@
+# Unreleased
+
+> Jun 11, 2025
+
+* :tada: **Enhancement** The top-most "Select all"-button in `FhiTreeViewSelectionComponent` now checks/unchecks all sub-nodes recursively. [(#845)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/845)
+
 # 6.0.0
 
 > Feb 28, 2025

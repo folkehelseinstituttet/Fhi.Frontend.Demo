@@ -22,11 +22,11 @@ import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 
 @Component({
-    selector: 'fhi-tree-view-selection',
-    templateUrl: './fhi-tree-view-selection.component.html',
-    encapsulation: ViewEncapsulation.None,
-    imports: [CommonModule, FormsModule],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'fhi-tree-view-selection',
+  templateUrl: './fhi-tree-view-selection.component.html',
+  encapsulation: ViewEncapsulation.None,
+  imports: [CommonModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   @Input() enableCheckAll = false;
@@ -109,6 +109,16 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
+  checkAllRecursive(items: Item[]) {
+    for (const item of items) {
+      this.toggleChecked(item.internal.id, true, true);
+      if (item.children?.length) {
+        this.checkAllRecursive(item.children);
+      }
+    }
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
+  }
+
   uncheckAll(items: Item[]) {
     items.forEach((item) => {
       this.toggleChecked(item.internal.id, true);
@@ -116,8 +126,40 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
+  uncheckAllRecursive(items: Item[]) {
+    for (const item of items) {
+      this.toggleChecked(item.internal.id, true);
+      if (item.children?.length) {
+        this.uncheckAllRecursive(item.children);
+      }
+    }
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
+  }
+
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => item.isChecked);
+  }
+
+  handleLevelSelection(items: Item[]): void {
+    if (this.allItemsChecked(items)) {
+      this.uncheckAll(items);
+    } else {
+      this.checkAll(items);
+    }
+  }
+
+  handleRecursiveSelection(items: Item[]): void {
+    if (this.allItemsChecked(items)) {
+      this.uncheckAllRecursive(items);
+    } else {
+      this.checkAllRecursive(items);
+    }
+  }
+
+  getButtonText(items: Item[], listID: string): string {
+    const isChecked = this.allItemsChecked(items);
+    const levelText = listID ? 'på dette nivået' : '';
+    return `${isChecked ? 'Fjern' : 'Velg'} alle ${levelText}`.trim();
   }
 
   private updateResultListHeighWhileLoading() {
