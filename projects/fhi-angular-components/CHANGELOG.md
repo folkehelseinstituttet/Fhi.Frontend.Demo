@@ -1,10 +1,11 @@
 # Unreleased
 
-> Jun 11, 2025
+> Jun 13, 2025
 
+* :tada: **Enhancement** Add support for disabled button/link in `FhiPopoverMenuComponent`. [(#847)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/847)
 * :tada: **Enhancement** The top-most "Select all"-button in `FhiTreeViewSelectionComponent` now checks/unchecks all sub-nodes recursively. [(#845)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/845)
 
-# 6.0.0
+## 6.0.0
 
 > Feb 28, 2025
 
