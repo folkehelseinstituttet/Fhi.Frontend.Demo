@@ -65,7 +65,7 @@ export class DownloadService {
 
   private getCredits(diagramOptions: FhiDiagramOptions): CreditsOptions {
     if (
-      diagramOptions.footer.credits.text &&
+      diagramOptions.footer?.credits?.text &&
       (diagramOptions.activeDiagramType === 'mapFylker' ||
         diagramOptions.activeDiagramType === 'mapFylker2019' ||
         diagramOptions.activeDiagramType === 'mapFylker2023')
@@ -75,12 +75,14 @@ export class DownloadService {
         text: 'Kilde: ' + diagramOptions.footer.credits.text + ', kartdata fra', // Highcharts adds " © [map provider]" automagically at the end
       };
     }
-    if (diagramOptions.footer.credits.text) {
+    if (diagramOptions.footer?.credits?.text) {
       return {
         enabled: true,
         text: 'Kilde: ' + diagramOptions.footer.credits.text,
       };
     }
-    return null;
+    return {
+      enabled: false,
+    };
   }
 }
