@@ -14,7 +14,6 @@ export class NavsComponent {
   popoverMenuItems = [
     {
       icon: 'download',
-      disabled: true,
       link: {
         download: true,
         href: '/tomt-dokument.doc',
@@ -22,6 +21,7 @@ export class NavsComponent {
       name: 'Last ned',
     },
     {
+      disabled: true,
       icon: 'pencil',
       name: 'Rediger',
       routerLink: '/developer/components/navs',

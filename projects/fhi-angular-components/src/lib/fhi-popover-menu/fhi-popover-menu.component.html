@@ -15,29 +15,36 @@
   <ul class="fhi-popover-menu__list">
     @for (item of items; track $index) {
       <li class="fhi-popover-menu__item">
-        @if (item.routerLink) {
-          <a class="fhi-popover-menu__action" [routerLink]="item.routerLink">
+        @if (item.disabled) {
+          <span>
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </span>
+        } @else if (item.routerLink) {
+          <a [routerLink]="item.routerLink">
             @if (item.icon) {
               <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
             }
             {{ item.name }}
           </a>
         } @else if (item.link && item.link.download) {
-          <a class="fhi-popover-menu__action" [href]="item.link.href" download>
+          <a [href]="item.link.href" download>
             @if (item.icon) {
               <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
             }
             {{ item.name }}
           </a>
         } @else if (item.link) {
-          <a class="fhi-popover-menu__action" [href]="item.link.href">
+          <a [href]="item.link.href">
             @if (item.icon) {
               <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
             }
             {{ item.name }}
           </a>
         } @else if (item.action) {
-          <button class="fhi-popover-menu__action" type="button" (click)="buttonAction(item.action)">
+          <button type="button" (click)="buttonAction(item.action)">
             @if (item.icon) {
               <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
             }
