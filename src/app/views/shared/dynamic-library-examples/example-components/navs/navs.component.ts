@@ -3,9 +3,9 @@ import { Component, Input } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-navs',
-    templateUrl: './navs.component.html',
-    standalone: false
+  selector: 'app-navs',
+  templateUrl: './navs.component.html',
+  standalone: false,
 })
 export class NavsComponent {
   @Input() itemId!: string;
@@ -14,6 +14,7 @@ export class NavsComponent {
   popoverMenuItems = [
     {
       icon: 'download',
+      disabled: true,
       link: {
         download: true,
         href: '/tomt-dokument.doc',
