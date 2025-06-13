@@ -130,9 +130,10 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 | `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
 | `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
 | `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
+| `description`       | `string`             | -         | no       | A description of the diagram below the `title`. |
 | `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
-| `[openSource]`      | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
+| `openSource`        | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
+| `series`            | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
 | `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
