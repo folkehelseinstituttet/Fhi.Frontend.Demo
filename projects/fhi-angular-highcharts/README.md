@@ -170,6 +170,8 @@ If not all criteria is met, all units will be ignored.
 
 | Property                      | Type       | Default | Required | Description |
 | ----------------------------- | ---------- | ------- | -------- | ----------- |
+| `downloadButton`              | `object`   | -       | no       | Properties related to downloadButton. |
+| `downloadButton.show`         | `boolean`  | `false` | yes      | Whether to show a popover menu which shows menuitems for all download formats. |
 | `fullScreenButton`            | `object`   | -       | no       | Properties related to fullScreenButton. |
 | `fullScreenButton.show`       | `boolean`  | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
 | `metadataButton`              | `object`   | -       | no       | Properties related to metadata button. |
