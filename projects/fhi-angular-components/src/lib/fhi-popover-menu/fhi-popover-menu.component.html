@@ -13,23 +13,49 @@
 
 <ng-template #popContent>
   <ul class="fhi-popover-menu__list">
-    <li class="fhi-popover-menu__item" *ngFor="let item of items">
-      <a class="fhi-popover-menu__action" [routerLink]="item.routerLink" *ngIf="item.routerLink">
-        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
-        {{ item.name }}
-      </a>
-      <a class="fhi-popover-menu__action" [href]="item.link.href" *ngIf="item.link && !item.link.download">
-        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
-        {{ item.name }}
-      </a>
-      <a class="fhi-popover-menu__action" [href]="item.link.href" download *ngIf="item.link && item.link.download">
-        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
-        {{ item.name }}
-      </a>
-      <button class="fhi-popover-menu__action" type="button" (click)="buttonAction(item.action)" *ngIf="item.action">
-        <i [class]="'icon-' + item.icon + ' icon-sm me-2'" *ngIf="item.icon"></i>
-        {{ item.name }}
-      </button>
-    </li>
+    @for (item of items; track $index) {
+      <li class="fhi-popover-menu__item">
+        @if (item.disabled) {
+          <span class="fhi-popover-menu__action fhi-popover-menu__action--disabled">
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </span>
+        } @else if (item.routerLink) {
+          <a class="fhi-popover-menu__action" [routerLink]="item.routerLink">
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </a>
+        } @else if (item.link && item.link.download) {
+          <a class="fhi-popover-menu__action" [href]="item.link.href" download>
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </a>
+        } @else if (item.link) {
+          <a class="fhi-popover-menu__action" [href]="item.link.href">
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </a>
+        } @else if (item.action) {
+          <button class="fhi-popover-menu__action" type="button" (click)="buttonAction(item.action)">
+            @if (item.icon) {
+              <ng-container *ngTemplateOutlet="icon; context: { item: item }"></ng-container>
+            }
+            {{ item.name }}
+          </button>
+        }
+      </li>
+    }
   </ul>
+</ng-template>
+
+<ng-template #icon let-item="item">
+  <i [class]="'icon-' + item.icon + ' icon-sm me-2'"></i>
 </ng-template>

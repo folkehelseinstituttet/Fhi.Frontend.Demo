@@ -40,6 +40,15 @@
         }
     }
 
+    &__action--disabled {
+        cursor: default;
+        opacity: 0.5;
+
+        &:hover {
+            background-color: inherit;
+        }
+    }
+
     .popover-body {
         padding: 0;
     }
