@@ -10,44 +10,42 @@
 
     &__item {
         padding: 0;
+    }
 
-        a,
-        button,
-        span {
-            background: transparent;
-            border: 0;
-            color: inherit;
-            display: block;
-            font-family: inherit;
-            font-weight: 400;
-            padding: $fhi-core-space-2 $fhi-core-space-3;
-            text-align: left;
-            text-decoration: none;
-            width: 100%;
+    &__action {
+        background: transparent;
+        border: 0;
+        color: inherit;
+        display: block;
+        font-family: inherit;
+        font-weight: 400;
+        padding: $fhi-core-space-2 $fhi-core-space-3;
+        text-align: left;
+        text-decoration: none;
+        width: 100%;
 
-            [class*="icon-"] {
-                margin-top: $fhi-core-px * 2;
-                vertical-align: top;
-            }
-
-            &:focus-visible {
-                box-shadow: $input-focus-box-shadow inset !important;
-            }
-
-            &:focus,
-            &:hover {
-                background-color: $fhi-core-grey-light-2;
-                color: inherit;
-            }
+        [class*="icon-"] {
+            margin-top: $fhi-core-px * 2;
+            vertical-align: top;
         }
 
-        span {
-            cursor: default;
-            opacity: 0.5;
+        &:focus-visible {
+            box-shadow: $input-focus-box-shadow inset !important;
+        }
 
-            &:hover {
-                background-color: inherit;
-            }
+        &:focus,
+        &:hover {
+            background-color: $fhi-core-grey-light-2;
+            color: inherit;
+        }
+    }
+
+    &__action--disabled {
+        cursor: default;
+        opacity: 0.5;
+
+        &:hover {
+            background-color: inherit;
         }
     }
 
