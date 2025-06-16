@@ -1,4 +1,10 @@
-# 6.1.0
+# Unreleased
+
+> Jun 13, 2025
+
+* :tada: **Enhancement** Make `FhiDiagramFooter.credits.href` optional [(#831)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/831)
+
+## 6.1.0
 
 > Mai 8, 2025
 

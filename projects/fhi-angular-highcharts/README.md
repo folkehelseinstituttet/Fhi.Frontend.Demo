@@ -130,9 +130,10 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 | `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
 | `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
 | `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
+| `description`       | `string`             | -         | no       | A description of the diagram below the `title`. |
 | `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
-| `[openSource]`      | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `[series]`          | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
+| `openSource`        | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
+| `series`            | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
 | `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
 | `title`             | `string`             | -         | yes      | The title above the diagram. |
 | `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
@@ -170,6 +171,8 @@ If not all criteria is met, all units will be ignored.
 
 | Property                      | Type       | Default | Required | Description |
 | ----------------------------- | ---------- | ------- | -------- | ----------- |
+| `downloadButton`              | `object`   | -       | no       | Properties related to downloadButton. |
+| `downloadButton.show`         | `boolean`  | `false` | yes      | Whether to show a popover menu which shows menuitems for all download formats. |
 | `fullScreenButton`            | `object`   | -       | no       | Properties related to fullScreenButton. |
 | `fullScreenButton.show`       | `boolean`  | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
 | `metadataButton`              | `object`   | -       | no       | Properties related to metadata button. |
@@ -187,10 +190,10 @@ If not all criteria is met, all units will be ignored.
 | Property       | Type               | Default | Required | Description |
 | -------------- | ------------------ | ------- | -------- | ----------- |
 | `credits`      | `object`           | -       | no       | Properties related to source ref. |
-| `credits.href` | `string`           | -       | yes      | Link to source ref. |
+| `credits.href` | `string`           | -       | no       | Link to source ref. |
 | `credits.text` | `string`           | -       | yes      | Text to source ref. |
 | `disclaimer`   | `string`           | -       | no       | Text at the bottom of the footer used to say something about uncertainty in the data shown in a diagram. |
-| `[flags]`      | `FhiDiagramFlag[]` | -       | no       | List of all flags used in `FhiDiagramSerie[]`. See [FhiDiagramFlag](#interface-fhidiagramflag) for details. |
+| `flags`        | `FhiDiagramFlag[]` | -       | no       | List of all flags used in `FhiDiagramSerie[]`. See [FhiDiagramFlag](#interface-fhidiagramflag) for details. |
 | `lastUpdated`  | `string`           | -       | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
 
 ### Interface FhiDiagramSerie
