@@ -18,8 +18,16 @@ import { FormsModule } from '@angular/forms';
 import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
 import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
-import { debounceTime, Observable, of, Subject, switchMap } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable, of, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
+
+enum SelectionButtonText {
+  SELECT_ALL = 'Velg alle',
+  REMOVE_ALL = 'Fjern alle',
+  SELECT = 'Velg',
+  REMOVE = 'Fjern',
+  LEVEL_SUFFIX = 'på dette nivået',
+}
 
 @Component({
   selector: 'fhi-tree-view-selection',
@@ -47,7 +55,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   itemsFilteredIsLoading = false;
   itemsFilteredIsLoaded = false;
   searchTerm = '';
-  $searchTerm = new Subject<string>();
+  $searchTerm = new BehaviorSubject<string>('');
   resultListHeight = 'auto';
   resultListMaxHeight!: string;
 
@@ -97,6 +105,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   toggleChecked(id: string, multiToggle = false, checkAll = false) {
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
+
+    if (this.itemsFiltered && this.itemsFiltered.length > 0) {
+      this.updateCheckedState(id, this.itemsFiltered, multiToggle, checkAll);
+      this.updateDecendantState(this.itemsFiltered, false);
+    }
+
     if (!multiToggle) {
       this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
     }
@@ -156,10 +170,16 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  getButtonText(items: Item[], listID: string): string {
+  getButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
+    if (topLevel) {
+      return this.allItemsChecked(items)
+        ? SelectionButtonText.REMOVE_ALL
+        : SelectionButtonText.SELECT_ALL;
+    }
+
     const isChecked = this.allItemsChecked(items);
-    const levelText = listID ? 'på dette nivået' : '';
-    return `${isChecked ? 'Fjern' : 'Velg'} alle ${levelText}`.trim();
+    const levelText = listID ? SelectionButtonText.LEVEL_SUFFIX : '';
+    return `${isChecked ? SelectionButtonText.REMOVE : SelectionButtonText.SELECT} alle ${levelText}`.trim();
   }
 
   private updateResultListHeighWhileLoading() {

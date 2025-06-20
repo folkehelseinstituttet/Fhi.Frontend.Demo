@@ -19,6 +19,8 @@
             context: {
               items: itemsFilteredIsLoaded ? itemsFiltered : items,
               listID: itemsFilteredIsLoaded ? instanceID : null,
+              searched: ($searchTerm | async) !== '',
+              toplevel: true,
             }
           "
         ></ng-container>
@@ -50,8 +52,7 @@
     </div>
   </div>
 </ng-template>
-
-<ng-template #checkboxItems let-items="items" let-listID="listID">
+<ng-template #checkboxItems let-items="items" let-listID="listID" let-searched="searched" let-toplevel="toplevel">
   <ul
     #checkboxList
     class="fhi-tree-view-checkbox__list"
@@ -59,13 +60,13 @@
     [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
-    @if (enableCheckAll && !itemsFilteredIsLoaded && items?.length > 1) {
+    @if (enableCheckAll && (!searched || toplevel)) {
       <button
         type="button"
         class="btn fhi-tree-view-checkbox__check-all"
-        (click)="listID ? handleLevelSelection(items) : handleRecursiveSelection(items)"
+        (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
       >
-        {{ getButtonText(items, listID) }}
+        {{ getButtonText(items, listID, toplevel) }}
       </button>
     }
 
@@ -131,7 +132,10 @@
         @if ((item.isExpanded && item.children) || (item.children && itemsFilteredIsLoaded)) {
           <div class="fhi-tree-view-checkbox__nested-group">
             <ng-container
-              *ngTemplateOutlet="checkboxItems; context: { items: item.children, listID: item.internal?.id }"
+              *ngTemplateOutlet="
+                checkboxItems;
+                context: { items: item.children, listID: item.internal?.id, searched: !!searched, toplevel: false }
+              "
             ></ng-container>
           </div>
         }
