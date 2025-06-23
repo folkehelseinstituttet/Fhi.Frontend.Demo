@@ -117,7 +117,7 @@
   </ng-template>
 
   <ng-template #table>
-    <div class="table-responsive pt-3">
+    <div class="fhi-highcharts-table table-responsive pt-3">
       <table class="table table-striped table-sm">
         <thead>
           @for (headerRow of tableData.theadRows; track $index) {
@@ -143,11 +143,7 @@
             <tr>
               @for (tableCell of bodyRow; track $index) {
                 @if (tableCell?.isHeading && tableCell?.name !== undefined) {
-                  <th
-                    class="text-nowrap text-start"
-                    [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null"
-                    scope="row"
-                  >
+                  <th class="text-start" [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null" scope="row">
                     {{ tableCell.name }}
                   </th>
                 } @else if (tableCell && !tableCell.isHeading) {
