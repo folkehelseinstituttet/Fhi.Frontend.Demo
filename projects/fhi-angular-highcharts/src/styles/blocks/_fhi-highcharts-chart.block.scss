@@ -2,6 +2,12 @@ $golden-ratio: 1.618;
 $golden-ratio-conjugate: 0.618;
 $square: 1;
 
+.fhi-highcharts-table {
+    tbody th {
+        white-space: nowrap;
+    }
+}
+
 .fhi-highcharts-chart {
     width: 100%;
     max-width: 1500px;
