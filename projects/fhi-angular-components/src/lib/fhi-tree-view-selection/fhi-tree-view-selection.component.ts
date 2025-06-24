@@ -125,27 +125,26 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   checkAll(items: Item[]) {
-    this.batchProcess(true);
-    this.updateDecendantState(items, false);
+    this.batchUpdateCheckedState(true, items);
+    this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAllRecursive(items: Item[]) {
-    this.batchUpdateCheckedState(true);
-    this.updateDecendantState(items, false);
+    this.batchUpdateCheckedState(true, items);
+    this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
-    items.forEach((item) => {
-      this.toggleChecked(item.internal.id, true);
-    });
+    this.batchUpdateCheckedState(false, items);
+    this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAllRecursive(items: Item[]) {
-    this.batchUpdateCheckedState(false);
-    this.updateDecendantState(items, false);
+    this.batchUpdateCheckedState(false, items);
+    this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -181,10 +180,25 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return `${isChecked ? SelectionButtonText.REMOVE : SelectionButtonText.SELECT} alle ${levelText}`.trim();
   }
 
-  private batchUpdateCheckedState(checkAll: boolean) {
-    this.itemsMap.forEach((item) => {
-      item.isChecked = checkAll;
-    });
+  private batchUpdateCheckedState(checkAll: boolean, items?: Item[]) {
+    if (items) {
+      // Process only the provided subset of items
+      const stack = [...items];
+      while (stack.length > 0) {
+        const item = stack.pop()!;
+        if (this.itemsMap.has(item.internal.id)) {
+          this.itemsMap.get(item.internal.id)!.isChecked = checkAll;
+        }
+        if (item.children?.length) {
+          stack.push(...item.children);
+        }
+      }
+    } else {
+      // Process all items in the map
+      this.itemsMap.forEach((item) => {
+        item.isChecked = checkAll;
+      });
+    }
   }
 
   private batchProcess(checkAll: boolean) {
