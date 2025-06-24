@@ -37,6 +37,8 @@ enum SelectionButtonText {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
+  private itemsMap = new Map<string, Item>();
+
   @Input() enableCheckAll = false;
   @Input() filterLabel!: string;
   @Input() singleSelection = false;
@@ -77,11 +79,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         this.changeDetector.detectChanges();
       });
     }
+    this.buildItemsIndex(this.items);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
+      this.buildItemsIndex(this.items);
       this.updateDecendantState(this.items, true);
     }
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
@@ -103,13 +107,17 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   toggleChecked(id: string, multiToggle = false, checkAll = false) {
+    // Special fast path for bulk operations
+    if (multiToggle) {
+      this.batchUpdateCheckedState(checkAll);
+      this.updateDecendantState(this.items, false);
+      this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
+      return;
+    }
+
+    // Regular single item toggle
     this.updateCheckedState(id, this.items, multiToggle, checkAll);
     this.updateDecendantState(this.items, false);
-
-    if (this.itemsFiltered && this.itemsFiltered.length > 0) {
-      this.updateCheckedState(id, this.itemsFiltered, multiToggle, checkAll);
-      this.updateDecendantState(this.itemsFiltered, false);
-    }
 
     if (!multiToggle) {
       this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
@@ -117,19 +125,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   checkAll(items: Item[]) {
-    items.forEach((item) => {
-      this.toggleChecked(item.internal.id, true, true);
-    });
+    this.batchProcess(true);
+    this.updateDecendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAllRecursive(items: Item[]) {
-    for (const item of items) {
-      this.toggleChecked(item.internal.id, true, true);
-      if (item.children?.length) {
-        this.checkAllRecursive(item.children);
-      }
-    }
+    this.batchUpdateCheckedState(true);
+    this.updateDecendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -141,12 +144,8 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   uncheckAllRecursive(items: Item[]) {
-    for (const item of items) {
-      this.toggleChecked(item.internal.id, true);
-      if (item.children?.length) {
-        this.uncheckAllRecursive(item.children);
-      }
-    }
+    this.batchUpdateCheckedState(false);
+    this.updateDecendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -180,6 +179,31 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     const isChecked = this.allItemsChecked(items);
     const levelText = listID ? SelectionButtonText.LEVEL_SUFFIX : '';
     return `${isChecked ? SelectionButtonText.REMOVE : SelectionButtonText.SELECT} alle ${levelText}`.trim();
+  }
+
+  private batchUpdateCheckedState(checkAll: boolean) {
+    this.itemsMap.forEach((item) => {
+      item.isChecked = checkAll;
+    });
+  }
+
+  private batchProcess(checkAll: boolean) {
+    this.itemsMap.forEach((item) => {
+      item.isChecked = checkAll;
+    });
+  }
+
+  private buildItemsIndex(items: Item[]) {
+    this.itemsMap.clear();
+    const stack = [...items];
+
+    while (stack.length > 0) {
+      const item = stack.pop()!;
+      this.itemsMap.set(item.internal.id, item);
+      if (item.children?.length) {
+        stack.push(...item.children);
+      }
+    }
   }
 
   private updateResultListHeighWhileLoading() {
@@ -234,23 +258,26 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
-    items.forEach((item) => {
-      if (item.internal.id === id) {
-        if (multiToggle) {
-          checkAll ? (item.isChecked = true) : (item.isChecked = false);
-        } else if (!this.singleSelection) {
-          item.isChecked = !item.isChecked;
-        } else if (this.singleSelection) {
-          item.isChecked = true;
-        }
+    const targetItem = this.itemsMap.get(id);
+    if (!targetItem) return;
+
+    if (multiToggle) {
+      targetItem.isChecked = checkAll;
+    } else if (!this.singleSelection) {
+      targetItem.isChecked = !targetItem.isChecked;
+    } else {
+      // Handle single selection
+      targetItem.isChecked = true;
+
+      if (this.singleSelection) {
+        // Clear all other selections
+        this.itemsMap.forEach((item, itemId) => {
+          if (itemId !== id) {
+            item.isChecked = null;
+          }
+        });
       }
-      if (this.singleSelection && item.internal.id !== id) {
-        item.isChecked = null;
-      }
-      if (item.children && item.children.length > 0) {
-        this.updateCheckedState(id, item.children, multiToggle, checkAll);
-      }
-    });
+    }
   }
 
   private updateDecendantState(
