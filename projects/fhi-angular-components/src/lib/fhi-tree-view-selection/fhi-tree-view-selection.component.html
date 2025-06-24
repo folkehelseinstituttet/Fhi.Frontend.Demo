@@ -10,21 +10,27 @@
     }
 
     @if (!itemsFilteredIsLoading) {
-      @if (itemsFilteredIsLoaded && itemsFiltered?.length === 0) {
-        <p>Ingen treff</p>
-      } @else {
-        <ng-container
-          *ngTemplateOutlet="
-            checkboxItems;
-            context: {
-              items: itemsFilteredIsLoaded ? itemsFiltered : items,
-              listID: itemsFilteredIsLoaded ? instanceID : null,
-              searched: ($searchTerm | async) !== '',
-              toplevel: true,
-            }
-          "
-        ></ng-container>
-      }
+      <div
+        [ngClass]="{ 'fhi-tree-view-checkbox__result-list': itemsFilteredIsLoaded }"
+        [ngStyle]="{ height: resultListHeight, 'max-height': resultListMaxHeight }"
+        #resultListWrapper
+      >
+        @if (itemsFilteredIsLoaded && itemsFiltered?.length === 0) {
+          <p>Ingen treff</p>
+        } @else {
+          <ng-container
+            *ngTemplateOutlet="
+              checkboxItems;
+              context: {
+                items: itemsFilteredIsLoaded ? itemsFiltered : items,
+                listID: itemsFilteredIsLoaded ? instanceID : null,
+                searched: ($searchTerm | async) !== '',
+                toplevel: true,
+              }
+            "
+          ></ng-container>
+        }
+      </div>
     }
   </div>
 }
