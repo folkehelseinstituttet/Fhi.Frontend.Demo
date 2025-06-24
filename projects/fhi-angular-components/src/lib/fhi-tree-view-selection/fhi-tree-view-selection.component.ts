@@ -97,7 +97,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
       this.itemsFilteredIsLoading = false;
     } else {
       this.itemsFilteredIsLoading = true;
-      this.updateResultListHeighWhileLoading();
+      this.updateResultListHeightWhileLoading();
     }
     this.$searchTerm.next(searchTerm);
   }
@@ -116,35 +116,32 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
 
     // Regular single item toggle
-    this.updateCheckedState(id, this.items, multiToggle, checkAll);
+    this.updateCheckedState(id, this.items, false, checkAll);
     this.updateDecendantState(this.items, false);
-
-    if (!multiToggle) {
-      this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
-    }
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAll(items: Item[]) {
-    this.batchUpdateCheckedState(true, items);
+    this.batchUpdateCurrentLevel(true, items);
     this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(true, items);
-    this.updateDecendantState(this.items, false);
+    this.updateDecendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
-    this.batchUpdateCheckedState(false, items);
+    this.batchUpdateCurrentLevel(false, items);
     this.updateDecendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(false, items);
-    this.updateDecendantState(this.items, false);
+    this.updateDecendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -180,31 +177,51 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return `${isChecked ? SelectionButtonText.REMOVE : SelectionButtonText.SELECT} alle ${levelText}`.trim();
   }
 
+  private batchUpdateCurrentLevel(checkAll: boolean, items: Item[]) {
+    for (const item of items) {
+      if (this.itemsMap.has(item.internal.id)) {
+        this.itemsMap.get(item.internal.id)!.isChecked = checkAll;
+      }
+    }
+  }
+
   private batchUpdateCheckedState(checkAll: boolean, items?: Item[]) {
+    // Special handling for filtered items - check ALL items in the filtered list including children
+    if (this.itemsFiltered?.length > 0 && items === this.itemsFiltered) {
+      const stack = [...this.itemsFiltered];
+      while (stack.length > 0) {
+        const item = stack.pop()!;
+        const itemId = item.internal.id;
+
+        // Update both the map and the filtered item
+        this.itemsMap.get(itemId)!.isChecked = checkAll;
+        item.isChecked = checkAll;
+
+        // Add all children to the stack
+        if (item.children?.length) {
+          stack.push(...item.children);
+        }
+      }
+      return;
+    }
+
+    // Regular tree processing for non-filtered operations
     if (items) {
-      // Process only the provided subset of items
       const stack = [...items];
       while (stack.length > 0) {
         const item = stack.pop()!;
-        if (this.itemsMap.has(item.internal.id)) {
-          this.itemsMap.get(item.internal.id)!.isChecked = checkAll;
-        }
+        const itemId = item.internal.id;
+        this.itemsMap.get(itemId)!.isChecked = checkAll;
+
         if (item.children?.length) {
           stack.push(...item.children);
         }
       }
     } else {
-      // Process all items in the map
       this.itemsMap.forEach((item) => {
         item.isChecked = checkAll;
       });
     }
-  }
-
-  private batchProcess(checkAll: boolean) {
-    this.itemsMap.forEach((item) => {
-      item.isChecked = checkAll;
-    });
   }
 
   private buildItemsIndex(items: Item[]) {
@@ -220,7 +237,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  private updateResultListHeighWhileLoading() {
+  private updateResultListHeightWhileLoading() {
     const heightList = this.checkboxListRef?.nativeElement.offsetHeight;
     const heightWrapper = this.resultListWrapperRef?.nativeElement.offsetHeight;
 
