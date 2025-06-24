@@ -86,7 +86,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     if (changes['items'].currentValue !== undefined) {
       this.createIds(this.items);
       this.buildItemsIndex(this.items);
-      this.updateDecendantState(this.items, true);
+      this.updateDescendantState(this.items, true);
     }
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
@@ -110,38 +110,38 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     // Special fast path for bulk operations
     if (multiToggle) {
       this.batchUpdateCheckedState(checkAll);
-      this.updateDecendantState(this.items, false);
+      this.updateDescendantState(this.items, false);
       this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
       return;
     }
 
     // Regular single item toggle
-    this.updateCheckedState(id, this.items, false, checkAll);
-    this.updateDecendantState(this.items, false);
+    this.updateCheckedState(id, false, checkAll);
+    this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAll(items: Item[]) {
     this.batchUpdateCurrentLevel(true, items);
-    this.updateDecendantState(this.items, false);
+    this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   checkAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(true, items);
-    this.updateDecendantState(items, false);
+    this.updateDescendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAll(items: Item[]) {
     this.batchUpdateCurrentLevel(false, items);
-    this.updateDecendantState(this.items, false);
+    this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   uncheckAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(false, items);
-    this.updateDecendantState(items, false);
+    this.updateDescendantState(items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -288,7 +288,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }, []);
   }
 
-  private updateCheckedState(id: string, items: Item[], multiToggle: boolean, checkAll: boolean) {
+  private updateCheckedState(id: string, multiToggle: boolean, checkAll: boolean) {
     const targetItem = this.itemsMap.get(id);
     if (!targetItem) return;
 
@@ -311,7 +311,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
-  private updateDecendantState(
+  private updateDescendantState(
     items: Item[],
     expandCheckedItems: boolean,
   ): FhiTreeViewSelectionItemState {
@@ -329,7 +329,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           hasCheckedDescendant: false,
         };
         if (item.children && item.children.length > 0) {
-          childrenState = this.updateDecendantState(item.children, expandCheckedItems);
+          childrenState = this.updateDescendantState(item.children, expandCheckedItems);
         }
 
         // Compute  CHECKED states
@@ -345,7 +345,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         }
 
         // Compute  EXPANDED states
-        // Update this items expanded and the overall hasExpandedDecendant for all items in this loop
+        // Update this items expanded and the overall hasExpandedDescendant for all items in this loop
         if (expandCheckedItems && item.isChecked) {
           itemsState.hasExpandedDescendant = true;
         }
