@@ -16,7 +16,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
-import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
+import {
+  FhiTreeViewSelectionItemInternal,
+  FhiTreeViewSelectionItemInternal as Item,
+} from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { BehaviorSubject, debounceTime, Observable, of, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -106,7 +109,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(id: string, multiToggle = false, checkAll = false) {
+  toggleChecked(item: FhiTreeViewSelectionItemInternal, multiToggle = false, checkAll = false) {
     // Special fast path for bulk operations
     if (multiToggle) {
       this.batchUpdateCheckedState(checkAll);
@@ -116,7 +119,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
 
     // Regular single item toggle
-    this.updateCheckedState(id, false, checkAll);
+    const updatedItem = this.updateCheckedState(item.internal?.id, false, checkAll);
+    if (updatedItem) {
+      item.isChecked = updatedItem.isChecked;
+    }
     this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
@@ -146,7 +152,15 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   allItemsChecked(items: Item[]): boolean {
-    return items.every((item) => item.isChecked);
+    return items.every((item) => {
+      // If item has children, recursively check them
+      if (item.children && item.children.length > 0) {
+        return item.isChecked && this.allItemsChecked(item.children);
+      }
+
+      // If no children, just return current item's checked status
+      return item.isChecked;
+    });
   }
 
   handleLevelSelection(items: Item[]): void {
@@ -288,7 +302,11 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }, []);
   }
 
-  private updateCheckedState(id: string, multiToggle: boolean, checkAll: boolean) {
+  private updateCheckedState(
+    id: string,
+    multiToggle: boolean,
+    checkAll: boolean,
+  ): FhiTreeViewSelectionItemInternal | void {
     const targetItem = this.itemsMap.get(id);
     if (!targetItem) return;
 
@@ -309,6 +327,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
         });
       }
     }
+    return targetItem;
   }
 
   private updateDescendantState(
