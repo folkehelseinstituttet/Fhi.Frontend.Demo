@@ -1,5 +1,9 @@
 # Unreleased
 
+> Aug 18, 2025
+
+* :tada: **Enhancement** Add functionality to check/uncheck list items from a filtered list. [(#849)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/849)
+
 > Jun 13, 2025
 
 * :tada: **Enhancement** Add support for disabled button/link in `FhiPopoverMenuComponent`. [(#847)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/847)
