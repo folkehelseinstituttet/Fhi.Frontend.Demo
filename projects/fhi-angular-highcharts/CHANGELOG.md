@@ -1,7 +1,8 @@
-# Unreleased
+# 6.2.0
 
-> Jun 13, 2025
+> Jun 24, 2025
 
+* :tada: **Enhancement** Remove `!important` from `white-space: nowrap` on `tbody th`, so that consumers can overwrite this property [(#850)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/850)
 * :tada: **Enhancement** Make `FhiDiagramFooter.credits.href` optional [(#831)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/831)
 
 ## 6.1.0
