@@ -152,6 +152,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     const filteredItems = this.filterItemsRecursively(cloneDeep(items), this.$searchTerm.value);
     const searchedItems = this.getFilteredItemsTest(filteredItems);
     this.updateItemsCheckedState(searchedItems, true);
+    this.updateDescendantState(this.items, false);
   }
 
   getButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
