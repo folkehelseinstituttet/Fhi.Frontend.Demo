@@ -76,6 +76,12 @@
       </button>
     }
 
+    @if (enableCheckAll && searched && toplevel) {
+      <button type="button" class="btn fhi-tree-view-checkbox__check-all ms-1" (click)="handleSpecificSelection(items)">
+        Velg kun direkte treff
+      </button>
+    }
+
     @for (item of items; track item) {
       <li class="fhi-tree-view-checkbox__item" role="treeitem">
         @if (item.children && !itemsFilteredIsLoaded) {

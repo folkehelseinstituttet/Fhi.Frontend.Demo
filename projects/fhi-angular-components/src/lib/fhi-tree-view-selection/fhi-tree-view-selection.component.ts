@@ -16,10 +16,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FhiTreeViewSelectionItem } from './fhi-tree-view-selection-item.model';
-import {
-  FhiTreeViewSelectionItemInternal,
-  FhiTreeViewSelectionItemInternal as Item,
-} from './fhi-tree-view-selection-item-internal.model';
+import { FhiTreeViewSelectionItemInternal as Item } from './fhi-tree-view-selection-item-internal.model';
 import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-state.model';
 import { BehaviorSubject, debounceTime, Observable, of, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
@@ -30,6 +27,11 @@ enum SelectionButtonText {
   SELECT = 'Velg',
   REMOVE = 'Fjern',
   LEVEL_SUFFIX = 'på dette nivået',
+}
+
+interface ItemSearchable extends Item {
+  searched: boolean;
+  children?: ItemSearchable[];
 }
 
 @Component({
@@ -109,7 +111,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     item.isExpanded = !item.isExpanded;
   }
 
-  toggleChecked(item: FhiTreeViewSelectionItemInternal, multiToggle = false, checkAll = false) {
+  toggleChecked(item: Item, multiToggle = false, checkAll = false) {
     // Special fast path for bulk operations
     if (multiToggle) {
       this.batchUpdateCheckedState(checkAll);
@@ -153,12 +155,10 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   allItemsChecked(items: Item[]): boolean {
     return items.every((item) => {
-      // If item has children, recursively check them
       if (item.children && item.children.length > 0) {
         return item.isChecked && this.allItemsChecked(item.children);
       }
 
-      // If no children, just return current item's checked status
       return item.isChecked;
     });
   }
@@ -177,6 +177,12 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     } else {
       this.checkAllRecursive(items);
     }
+  }
+
+  handleSpecificSelection(items: Item[]): void {
+    const filteredItems = this.filterItemsRecursively(cloneDeep(items), this.$searchTerm.value);
+    const searchedItems = this.getFilteredItemsTest(filteredItems);
+    this.updateItemsCheckedState(searchedItems, true);
   }
 
   getButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
@@ -199,9 +205,35 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     }
   }
 
+  private updateItemsCheckedState(items: Item[], checkState: boolean): void {
+    for (const item of items) {
+      const itemId = item.internal.id;
+      const mapItem = this.itemsMap.get(itemId);
+      if (mapItem) {
+        mapItem.isChecked = checkState;
+      }
+    }
+
+    // If we're in filtered mode, also update the filtered view items
+    if (this.$searchTerm.value.trim().length > 0) {
+      const itemIds = new Set(items.map((item) => item.internal.id));
+      const stack = [...this.itemsFiltered];
+
+      while (stack.length > 0) {
+        const currentItem = stack.pop()!;
+        if (itemIds.has(currentItem.internal.id)) {
+          currentItem.isChecked = checkState;
+        }
+        if (currentItem.children?.length) {
+          stack.push(...currentItem.children);
+        }
+      }
+    }
+  }
+
   private batchUpdateCheckedState(checkAll: boolean, items?: Item[]) {
     // Special handling for filtered items - check ALL items in the filtered list including children
-    if (this.itemsFiltered?.length > 0 && items === this.itemsFiltered) {
+    if (this.$searchTerm.value.trim().length > 0) {
       const stack = [...this.itemsFiltered];
       while (stack.length > 0) {
         const item = stack.pop()!;
@@ -279,9 +311,9 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return of(this.filterItemsRecursively(cloneDeep(this.items), searchTerm));
   }
 
-  private filterItemsRecursively(items: Item[], searchTerm: string): Item[] {
-    return items.reduce((itemsFiltered: Item[], item: Item) => {
-      let filteredChildren: Item[];
+  private filterItemsRecursively(items: Item[], searchTerm: string): ItemSearchable[] {
+    return items.reduce((itemsFiltered: ItemSearchable[], item: Item) => {
+      let filteredChildren: ItemSearchable[];
       const partialMatch = item.name.toLowerCase().includes(searchTerm.toLocaleLowerCase());
 
       if (item.children?.length > 0) {
@@ -293,20 +325,34 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           RegExp(searchTerm, 'gi'),
           '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
         );
-        itemsFiltered.push({ ...item, children: filteredChildren });
+        itemsFiltered.push({ ...item, children: filteredChildren, searched: true });
       }
       if (!partialMatch && item.children && filteredChildren?.length > 0) {
-        itemsFiltered.push({ ...item, children: filteredChildren });
+        itemsFiltered.push({ ...item, children: filteredChildren, searched: false });
       }
       return itemsFiltered;
     }, []);
   }
 
-  private updateCheckedState(
-    id: string,
-    multiToggle: boolean,
-    checkAll: boolean,
-  ): FhiTreeViewSelectionItemInternal | void {
+  private getFilteredItemsTest(items: ItemSearchable[]): ItemSearchable[] {
+    const result: ItemSearchable[] = [];
+
+    for (const item of items) {
+      // Add this item if it's searched
+      if (item.searched) {
+        result.push(item);
+      }
+
+      // Recursively process children if they exist
+      if (item.children && item.children.length > 0) {
+        result.push(...this.getFilteredItemsTest(item.children));
+      }
+    }
+
+    return result;
+  }
+
+  private updateCheckedState(id: string, multiToggle: boolean, checkAll: boolean): Item | void {
     const targetItem = this.itemsMap.get(id);
     if (!targetItem) return;
 
