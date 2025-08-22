@@ -30,8 +30,11 @@ enum SelectionButtonText {
 }
 
 interface ItemSearchable extends Item {
-  searched: boolean;
   children?: ItemSearchable[];
+  internal?: {
+    id: string;
+    searched: boolean;
+  };
 }
 
 @Component({
@@ -325,10 +328,19 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
           RegExp(searchTerm, 'gi'),
           '<mark class="fhi-tree-view-checkbox__mark">$&</mark>',
         );
-        itemsFiltered.push({ ...item, children: filteredChildren, searched: true });
+        itemsFiltered.push({
+          ...item,
+          children: filteredChildren,
+          internal: { ...item.internal, searched: true },
+        });
       }
+
       if (!partialMatch && item.children && filteredChildren?.length > 0) {
-        itemsFiltered.push({ ...item, children: filteredChildren, searched: false });
+        itemsFiltered.push({
+          ...item,
+          children: filteredChildren,
+          internal: { ...item.internal, searched: false },
+        });
       }
       return itemsFiltered;
     }, []);
@@ -339,7 +351,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
     for (const item of items) {
       // Add this item if it's searched
-      if (item.searched) {
+      if (item.internal?.searched) {
         result.push(item);
       }
 
