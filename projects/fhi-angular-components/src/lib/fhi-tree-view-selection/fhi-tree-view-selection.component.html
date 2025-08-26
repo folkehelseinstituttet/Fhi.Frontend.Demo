@@ -82,7 +82,7 @@
       </button>
     }
 
-    @for (item of items; track item) {
+    @for (item of items; track item.internal?.id) {
       <li class="fhi-tree-view-checkbox__item" role="treeitem">
         @if (item.children && !itemsFilteredIsLoaded) {
           <button
