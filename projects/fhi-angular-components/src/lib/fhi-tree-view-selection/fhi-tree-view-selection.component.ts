@@ -141,7 +141,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   handleRecursiveSelection(items: Item[]): void {
-    if (this.allItemsChecked(items)) {
+    if (this.allItemsCheckedRecursive(items)) {
       this.uncheckAllRecursive(items);
     } else {
       this.checkAllRecursive(items);
@@ -157,7 +157,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   getButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
     if (topLevel) {
-      return this.allItemsChecked(items)
+      return this.allItemsCheckedRecursive(items)
         ? SelectionButtonText.REMOVE_ALL
         : SelectionButtonText.SELECT_ALL;
     }
@@ -192,9 +192,13 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   }
 
   private allItemsChecked(items: Item[]): boolean {
+    return items.every((item) => item.isChecked);
+  }
+
+  private allItemsCheckedRecursive(items: Item[]): boolean {
     return items.every((item) => {
       if (item.children && item.children.length > 0) {
-        return item.isChecked && this.allItemsChecked(item.children);
+        return item.isChecked && this.allItemsCheckedRecursive(item.children);
       }
 
       return item.isChecked;
