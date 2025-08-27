@@ -85,13 +85,13 @@
         class="btn fhi-tree-view-checkbox__check-all"
         (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
       >
-        {{ getButtonText(items, listID, toplevel) }}
+        {{ getGenericButtonText(items, listID, toplevel) }}
       </button>
     }
 
     @if (enableCheckAll && searched && toplevel) {
       <button type="button" class="btn fhi-tree-view-checkbox__check-all ms-1" (click)="handleSpecificSelection(items)">
-        Velg kun direkte treff
+        {{ getSpecificSelectionButtonText(items) }}
       </button>
     }
 

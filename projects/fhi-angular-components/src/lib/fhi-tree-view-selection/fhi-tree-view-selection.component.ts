@@ -21,12 +21,17 @@ import { FhiTreeViewSelectionItemState } from './fhi-tree-view-selection-item-st
 import { BehaviorSubject, debounceTime, Observable, of, switchMap } from 'rxjs';
 import { cloneDeep } from 'lodash-es';
 
-enum SelectionButtonText {
+enum GenericButtonText {
   SELECT_ALL = 'Velg alle',
   REMOVE_ALL = 'Fjern alle',
   SELECT = 'Velg',
   REMOVE = 'Fjern',
   LEVEL_SUFFIX = 'på dette nivået',
+}
+
+enum SpecificButtonText {
+  SELECT_ALL = 'Velg kun direkte treff',
+  REMOVE_ALL = 'Fjern alle direkte treff',
 }
 
 interface ItemSearchable extends Item {
@@ -151,20 +156,27 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   handleSpecificSelection(items: Item[]): void {
     const filteredItems = this.filterItemsRecursively(cloneDeep(items), this.$searchTerm.value);
     const searchedItems = this.getFilteredItemsTest(filteredItems);
-    this.updateItemsCheckedState(searchedItems, true);
+    const allSelected = this.allItemsChecked(searchedItems);
+    this.updateItemsCheckedState(searchedItems, !allSelected);
     this.updateDescendantState(this.items, false);
   }
 
-  getButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
+  getGenericButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
     if (topLevel) {
       return this.allItemsCheckedRecursive(items)
-        ? SelectionButtonText.REMOVE_ALL
-        : SelectionButtonText.SELECT_ALL;
+        ? GenericButtonText.REMOVE_ALL
+        : GenericButtonText.SELECT_ALL;
     }
 
     const isChecked = this.allItemsChecked(items);
-    const levelText = listID ? SelectionButtonText.LEVEL_SUFFIX : '';
-    return `${isChecked ? SelectionButtonText.REMOVE : SelectionButtonText.SELECT} alle ${levelText}`.trim();
+    const levelText = listID ? GenericButtonText.LEVEL_SUFFIX : '';
+    return `${isChecked ? GenericButtonText.REMOVE : GenericButtonText.SELECT} alle ${levelText}`.trim();
+  }
+
+  getSpecificSelectionButtonText(items: ItemSearchable[]) {
+    const searchedItems = this.getFilteredItemsTest(items);
+    const allSelected = this.allItemsChecked(searchedItems);
+    return allSelected ? SpecificButtonText.REMOVE_ALL : SpecificButtonText.SELECT_ALL;
   }
 
   private checkAll(items: Item[]) {
