@@ -2,35 +2,48 @@
   <div class="fhi-tree-view-checkbox">
     @if (enableFilter) {
       <ng-container *ngTemplateOutlet="searchInput"></ng-container>
-      @if (itemsFilteredIsLoading) {
-        <div class="fhi-tree-view-checkbox__result-list">
-          <div class="spinner-border ms-5" role="status"></div>
-        </div>
-      }
     }
 
-    @if (!itemsFilteredIsLoading) {
+    @if (itemsFilteredIsLoaded || itemsFilteredIsLoading) {
       <div
         [ngClass]="{ 'fhi-tree-view-checkbox__result-list': itemsFilteredIsLoaded }"
         [ngStyle]="{ height: resultListHeight, 'max-height': resultListMaxHeight }"
         #resultListWrapper
       >
-        @if (itemsFilteredIsLoaded && itemsFiltered?.length === 0) {
-          <p>Ingen treff</p>
+        @if (!itemsFilteredIsLoading) {
+          @if (itemsFilteredIsLoaded && itemsFiltered?.length === 0) {
+            <p>Ingen treff</p>
+          } @else {
+            <ng-container
+              *ngTemplateOutlet="
+                checkboxItems;
+                context: {
+                  items: itemsFiltered,
+                  listID: instanceID,
+                  searched: ($searchTerm | async) !== '',
+                  toplevel: true,
+                }
+              "
+            ></ng-container>
+          }
         } @else {
-          <ng-container
-            *ngTemplateOutlet="
-              checkboxItems;
-              context: {
-                items: itemsFilteredIsLoaded ? itemsFiltered : items,
-                listID: itemsFilteredIsLoaded ? instanceID : null,
-                searched: ($searchTerm | async) !== '',
-                toplevel: true,
-              }
-            "
-          ></ng-container>
+          <div class="fhi-tree-view-checkbox__result-list">
+            <div class="spinner-border ms-5" role="status"></div>
+          </div>
         }
       </div>
+    } @else {
+      <ng-container
+        *ngTemplateOutlet="
+          checkboxItems;
+          context: {
+            items: items,
+            listID: null,
+            searched: ($searchTerm | async) !== '',
+            toplevel: true,
+          }
+        "
+      ></ng-container>
     }
   </div>
 }
@@ -72,11 +85,17 @@
         class="btn fhi-tree-view-checkbox__check-all"
         (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
       >
-        {{ getButtonText(items, listID, toplevel) }}
+        {{ getGenericButtonText(items, listID, toplevel) }}
       </button>
     }
 
-    @for (item of items; track item) {
+    @if (enableCheckAll && searched && toplevel) {
+      <button type="button" class="btn fhi-tree-view-checkbox__check-all ms-1" (click)="handleSpecificSelection(items)">
+        {{ getSpecificSelectionButtonText(items) }}
+      </button>
+    }
+
+    @for (item of items; track item.internal?.id) {
       <li class="fhi-tree-view-checkbox__item" role="treeitem">
         @if (item.children && !itemsFilteredIsLoaded) {
           <button
