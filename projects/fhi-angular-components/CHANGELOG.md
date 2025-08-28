@@ -1,5 +1,9 @@
 # Unreleased
 
+> Aug 28, 2025
+
+* :tada: **Enhancement** Add functionality to check/uncheck list items that are a direct match of search term. [(#860)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/860)
+
 > Aug 18, 2025
 
 * :tada: **Enhancement** Add functionality to check/uncheck list items from a filtered list. [(#849)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/849)
