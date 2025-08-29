@@ -1,15 +1,9 @@
-# Unreleased
+# 6.1.0
 
 > Aug 28, 2025
 
 * :tada: **Enhancement** Add functionality to check/uncheck list items that are a direct match of search term. [(#860)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/860)
-
-> Aug 18, 2025
-
 * :tada: **Enhancement** Add functionality to check/uncheck list items from a filtered list. [(#849)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/849)
-
-> Jun 13, 2025
-
 * :tada: **Enhancement** Add support for disabled button/link in `FhiPopoverMenuComponent`. [(#847)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/847)
 * :tada: **Enhancement** The top-most "Select all"-button in `FhiTreeViewSelectionComponent` now checks/unchecks all sub-nodes recursively. [(#845)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/845)
 
