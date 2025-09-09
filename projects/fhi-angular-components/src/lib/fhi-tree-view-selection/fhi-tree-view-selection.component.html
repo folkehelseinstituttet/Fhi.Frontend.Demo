@@ -74,25 +74,41 @@
 <ng-template #checkboxItems let-items="items" let-listID="listID" let-searched="searched" let-toplevel="toplevel">
   <ul
     #checkboxList
-    class="fhi-tree-view-checkbox__list"
+    class="fhi-tree-view-checkbox__list gap-2"
     role="tree"
     [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
-    @if (enableCheckAll && (!searched || toplevel)) {
-      <button
-        type="button"
-        class="btn fhi-tree-view-checkbox__check-all"
-        (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
-      >
-        {{ getGenericButtonText(items, listID, toplevel) }}
-      </button>
-    }
+    @if (enableCheckAll) {
+      @if (!searched || toplevel) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all"
+          (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
+        >
+          {{ getGenericButtonText(items, listID, toplevel) }}
+        </button>
+      }
 
-    @if (enableCheckAll && searched && toplevel) {
-      <button type="button" class="btn fhi-tree-view-checkbox__check-all ms-1" (click)="handleSpecificSelection(items)">
-        {{ getSpecificSelectionButtonText(items) }}
-      </button>
+      @if (searched && toplevel) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all d-block"
+          (click)="handleSpecificSelection(items)"
+        >
+          {{ getSpecificSelectionButtonText(items) }}
+        </button>
+      }
+
+      @if (toplevel && items.length > 1) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all d-block"
+          (click)="handleLevelSelection(items)"
+        >
+          {{ getGenericButtonText(items, 'top', false) }}
+        </button>
+      }
     }
 
     @for (item of items; track item.internal?.id) {
