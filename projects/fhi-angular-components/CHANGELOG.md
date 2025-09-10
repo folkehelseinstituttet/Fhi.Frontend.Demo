@@ -1,3 +1,8 @@
+# Unreleased
+
+> Sep 10, 2025
+* :tada: **Enhancement** `fhi-tree-view-checkbox` now has a "Select all" and a "Select all on this level"-button. "Select all" is on top-level only, while "Select all on this level" is shown on all levels. [(#865)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/865)
+
 # 6.1.0
 
 > Aug 28, 2025
