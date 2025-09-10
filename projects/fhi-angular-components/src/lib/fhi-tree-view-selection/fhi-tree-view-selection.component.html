@@ -100,7 +100,7 @@
         </button>
       }
 
-      @if (toplevel && items.length > 1) {
+      @if (toplevel && items.length > 1 && !searched) {
         <button
           type="button"
           class="btn fhi-tree-view-checkbox__check-all d-block"
