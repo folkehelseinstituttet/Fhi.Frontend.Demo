@@ -1,4 +1,10 @@
-# 6.2.0
+# 6.3.0
+
+> Sep 11, 2025
+
+* :tada: **Enhancement** Update text in generic warning when unable to show a diagamtype [(#866)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/866)
+
+## 6.2.0
 
 > Jun 24, 2025
 
