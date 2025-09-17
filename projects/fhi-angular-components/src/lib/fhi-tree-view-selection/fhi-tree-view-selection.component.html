@@ -86,7 +86,7 @@
           class="btn fhi-tree-view-checkbox__check-all"
           (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
         >
-          {{ getGenericButtonText(items, listID, toplevel) }}
+          {{ getGenericButtonText(items, listID, toplevel, searched) }}
         </button>
       }
 
@@ -106,7 +106,7 @@
           class="btn fhi-tree-view-checkbox__check-all d-block"
           (click)="handleLevelSelection(items)"
         >
-          {{ getGenericButtonText(items, 'top', false) }}
+          {{ getGenericButtonText(items, 'top', false, false) }}
         </button>
       }
     }

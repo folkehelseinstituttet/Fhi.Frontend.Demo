@@ -27,6 +27,8 @@ enum GenericButtonText {
   SELECT = 'Velg',
   REMOVE = 'Fjern',
   LEVEL_SUFFIX = 'på dette nivået',
+  SELECT_ALL_MATCHES = 'Velg alle treff',
+  REMOVE_ALL_MATCHES = 'Fjern alle treff',
 }
 
 enum SpecificButtonText {
@@ -161,8 +163,24 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     this.updateDescendantState(this.items, false);
   }
 
-  getGenericButtonText(items: Item[], listID: string | null, topLevel: boolean): string {
+  getGenericButtonText(
+    items: Item[],
+    listID: string | null,
+    topLevel: boolean,
+    searched: boolean,
+  ): string {
+    /*
+    Top level: searched ? "Velg/Fjern alle treff" : "Velg/Fjern alle" (recursive state).
+    Nested: "Velg/Fjern alle" + "på dette nivået" when listID exists (current level state).
+    */
+
     if (topLevel) {
+      if (searched) {
+        const allChecked = this.allItemsCheckedRecursive(items);
+        return allChecked
+          ? GenericButtonText.REMOVE_ALL_MATCHES
+          : GenericButtonText.SELECT_ALL_MATCHES;
+      }
       return this.allItemsCheckedRecursive(items)
         ? GenericButtonText.REMOVE_ALL
         : GenericButtonText.SELECT_ALL;
