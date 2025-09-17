@@ -205,7 +205,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   private checkAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(true, items);
-    this.updateDescendantState(items, false);
+    this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
@@ -217,7 +217,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
 
   private uncheckAllRecursive(items: Item[]) {
     this.batchUpdateCheckedState(false, items);
-    this.updateDescendantState(items, false);
+    this.updateDescendantState(this.items, false);
     this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
