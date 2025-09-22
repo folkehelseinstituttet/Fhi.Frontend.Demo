@@ -79,20 +79,36 @@
     [attr.id]="listID !== null ? 'list-' + listID : null"
     aria-live="polite"
   >
-    @if (enableCheckAll && (!searched || toplevel)) {
-      <button
-        type="button"
-        class="btn fhi-tree-view-checkbox__check-all"
-        (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
-      >
-        {{ getGenericButtonText(items, listID, toplevel) }}
-      </button>
-    }
+    @if (enableCheckAll) {
+      @if (!searched || toplevel) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all"
+          (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
+        >
+          {{ getGenericButtonText(items, listID, toplevel, searched) }}
+        </button>
+      }
 
-    @if (enableCheckAll && searched && toplevel) {
-      <button type="button" class="btn fhi-tree-view-checkbox__check-all ms-1" (click)="handleSpecificSelection(items)">
-        {{ getSpecificSelectionButtonText(items) }}
-      </button>
+      @if (searched && toplevel) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all d-block"
+          (click)="handleSpecificSelection(items)"
+        >
+          {{ getSpecificSelectionButtonText(items) }}
+        </button>
+      }
+
+      @if (toplevel && items.length > 1 && !searched) {
+        <button
+          type="button"
+          class="btn fhi-tree-view-checkbox__check-all d-block"
+          (click)="handleLevelSelection(items)"
+        >
+          {{ getGenericButtonText(items, 'top', false, false) }}
+        </button>
+      }
     }
 
     @for (item of items; track item.internal?.id) {
@@ -143,7 +159,7 @@
               [name]="name"
               [id]="name + '-' + item.internal?.id"
               [checked]="item.isChecked"
-              (change)="toggleChecked(item.internal?.id, false, false)"
+              (change)="toggleChecked(item, false, false)"
             />
             <label
               class="form-check-label"
