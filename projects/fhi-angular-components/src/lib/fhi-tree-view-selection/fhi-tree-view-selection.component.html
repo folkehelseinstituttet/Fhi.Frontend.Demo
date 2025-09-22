@@ -159,7 +159,7 @@
               [name]="name"
               [id]="name + '-' + item.internal?.id"
               [checked]="item.isChecked"
-              (change)="toggleChecked(item.internal?.id, false, false)"
+              (change)="toggleChecked(item, false, false)"
             />
             <label
               class="form-check-label"
