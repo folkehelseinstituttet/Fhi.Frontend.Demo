@@ -80,34 +80,43 @@
     aria-live="polite"
   >
     @if (enableCheckAll) {
-      @if (!searched || toplevel) {
-        <button
-          type="button"
-          class="btn fhi-tree-view-checkbox__check-all"
-          (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
-        >
-          {{ getGenericButtonText(items, listID, toplevel, searched) }}
-        </button>
-      }
+      @let hasManyItems = this.hasAtLeastThree(items);
+      @let hasHierarchy = this.itemHasHierarchy(items);
+      @let hasMinimumItems = items.length >= 3;
 
-      @if (searched && toplevel) {
-        <button
-          type="button"
-          class="btn fhi-tree-view-checkbox__check-all d-block"
-          (click)="handleSpecificSelection(items)"
-        >
-          {{ getSpecificSelectionButtonText(items) }}
-        </button>
-      }
+      @if (hasManyItems) {
+        @if (toplevel) {
+          <!-- Velg alle / Velg alle på dette nivået -->
+          <button
+            type="button"
+            class="btn fhi-tree-view-checkbox__check-all"
+            (click)="toplevel || (listID && searched) ? handleRecursiveSelection(items) : handleLevelSelection(items)"
+          >
+            {{ getGenericButtonText(items, listID, toplevel, searched) }}
+          </button>
 
-      @if (toplevel && items.length > 1 && !searched) {
-        <button
-          type="button"
-          class="btn fhi-tree-view-checkbox__check-all d-block"
-          (click)="handleLevelSelection(items)"
-        >
-          {{ getGenericButtonText(items, 'top', false, false) }}
-        </button>
+          @if (searched) {
+            <!-- Velg kun direkte treff -->
+            <button
+              type="button"
+              class="btn fhi-tree-view-checkbox__check-all d-block"
+              (click)="handleSpecificSelection(items)"
+            >
+              {{ getSpecificSelectionButtonText(items) }}
+            </button>
+          }
+        }
+
+        @if (!searched && (hasMinimumItems || hasHierarchy)) {
+          <!-- Velg alle på dette nivået -->
+          <button
+            type="button"
+            class="btn fhi-tree-view-checkbox__check-all d-block"
+            (click)="handleLevelSelection(items)"
+          >
+            {{ getGenericButtonText(items, 'top', false, false) }}
+          </button>
+        }
       }
     }
 
