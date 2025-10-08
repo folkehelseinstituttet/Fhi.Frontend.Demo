@@ -161,6 +161,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     const allSelected = this.allItemsChecked(searchedItems);
     this.updateItemsCheckedState(searchedItems, !allSelected);
     this.updateDescendantState(this.items, false);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   getGenericButtonText(
