@@ -1,4 +1,10 @@
-# 6.2.0
+# Unreleased
+
+> Okt 8, 2025
+
+* :tada: **Enhancement** Removed visual button clutter from `FhiTreeViewCheckboxComponent`. [(#872)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/872)
+
+## 6.2.0
 
 > Sep 25, 2025
 
