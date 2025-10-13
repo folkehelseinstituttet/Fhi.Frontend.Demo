@@ -81,8 +81,8 @@
   >
     @if (enableCheckAll) {
       @if (hasManyItems(items)) {
-        @if (toplevel) {
-          <!-- Velg alle / Velg alle på dette nivået -->
+        @if (toplevel && itemHasHierarchy(items)) {
+          <!-- Velg alle / Velg alle treff -->
           <button
             type="button"
             class="btn fhi-tree-view-checkbox__check-all"
@@ -103,14 +103,14 @@
           }
         }
 
-        @if (!searched && items.length >= 4) {
+        @if (!searched && items.length >= maxItemThreshhold) {
           <!-- Velg alle på dette nivået -->
           <button
             type="button"
             class="btn fhi-tree-view-checkbox__check-all d-block"
             (click)="handleLevelSelection(items)"
           >
-            {{ getGenericButtonText(items, 'top', false, false) }} 1
+            {{ getGenericButtonText(items, 'top', false, false) }}
           </button>
         }
       }

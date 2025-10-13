@@ -75,6 +75,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   $searchTerm = new BehaviorSubject<string>('');
   resultListHeight = 'auto';
   resultListMaxHeight!: string;
+  readonly maxItemThreshhold = 4;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
@@ -209,7 +210,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     while (stack.length) {
       const node = stack.pop()!;
       count++;
-      if (count >= 4) return true;
+      if (count >= this.maxItemThreshhold) return true;
 
       if (node.children?.length) {
         for (const child of node.children) {
