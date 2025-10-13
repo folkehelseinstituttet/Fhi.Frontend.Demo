@@ -33,7 +33,7 @@ enum GenericButtonText {
 
 enum SpecificButtonText {
   SELECT_ALL = 'Velg kun direkte treff',
-  REMOVE_ALL = 'Fjern alle direkte treff',
+  REMOVE_ALL = 'Fjern kun direkte treff',
 }
 
 interface ItemSearchable extends Item {
@@ -75,6 +75,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
   $searchTerm = new BehaviorSubject<string>('');
   resultListHeight = 'auto';
   resultListMaxHeight!: string;
+  readonly maxItemThreshhold = 4;
 
   constructor(private changeDetector: ChangeDetectorRef) {}
 
@@ -161,6 +162,7 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     const allSelected = this.allItemsChecked(searchedItems);
     this.updateItemsCheckedState(searchedItems, !allSelected);
     this.updateDescendantState(this.items, false);
+    this.itemsChange.emit(this.items as FhiTreeViewSelectionItem[]);
   }
 
   getGenericButtonText(
@@ -195,6 +197,29 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     const searchedItems = this.getFilteredItemsTest(items);
     const allSelected = this.allItemsChecked(searchedItems);
     return allSelected ? SpecificButtonText.REMOVE_ALL : SpecificButtonText.SELECT_ALL;
+  }
+
+  itemHasHierarchy(items: Item[]): boolean {
+    return items.some((item) => item.children?.length > 0);
+  }
+
+  hasManyItems(items: Item[]): boolean {
+    let count = 0;
+    const stack: Item[] = [...items];
+
+    while (stack.length) {
+      const node = stack.pop()!;
+      count++;
+      if (count >= this.maxItemThreshhold) return true;
+
+      if (node.children?.length) {
+        for (const child of node.children) {
+          stack.push(child);
+        }
+      }
+    }
+
+    return false;
   }
 
   private checkAll(items: Item[]) {
