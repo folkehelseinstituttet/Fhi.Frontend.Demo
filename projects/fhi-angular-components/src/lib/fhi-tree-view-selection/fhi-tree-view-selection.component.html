@@ -80,8 +80,8 @@
     aria-live="polite"
   >
     @if (enableCheckAll) {
-      @let hasManyItems = this.hasAtLeastThree(items);
-      @let hasHierarchy = this.itemHasHierarchy(items);
+      @let hasManyItems = hasAtLeastThree(items);
+      @let hasHierarchy = itemHasHierarchy(items);
       @let hasMinimumItems = items.length >= 3;
 
       @if (hasManyItems) {
