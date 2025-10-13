@@ -202,14 +202,14 @@ export class FhiTreeViewSelectionComponent implements OnInit, OnChanges {
     return items.some((item) => item.children?.length > 0);
   }
 
-  hasAtLeastThree(items: Item[]): boolean {
+  hasManyItems(items: Item[]): boolean {
     let count = 0;
     const stack: Item[] = [...items];
 
     while (stack.length) {
       const node = stack.pop()!;
       count++;
-      if (count >= 3) return true;
+      if (count >= 4) return true;
 
       if (node.children?.length) {
         for (const child of node.children) {

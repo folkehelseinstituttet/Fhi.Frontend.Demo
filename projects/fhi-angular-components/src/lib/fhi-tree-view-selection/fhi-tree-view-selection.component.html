@@ -80,11 +80,7 @@
     aria-live="polite"
   >
     @if (enableCheckAll) {
-      @let hasManyItems = hasAtLeastThree(items);
-      @let hasHierarchy = itemHasHierarchy(items);
-      @let hasMinimumItems = items.length >= 3;
-
-      @if (hasManyItems) {
+      @if (hasManyItems(items)) {
         @if (toplevel) {
           <!-- Velg alle / Velg alle på dette nivået -->
           <button
@@ -107,14 +103,14 @@
           }
         }
 
-        @if (!searched && (hasMinimumItems || hasHierarchy)) {
+        @if (!searched && items.length >= 4) {
           <!-- Velg alle på dette nivået -->
           <button
             type="button"
             class="btn fhi-tree-view-checkbox__check-all d-block"
             (click)="handleLevelSelection(items)"
           >
-            {{ getGenericButtonText(items, 'top', false, false) }}
+            {{ getGenericButtonText(items, 'top', false, false) }} 1
           </button>
         }
       }
