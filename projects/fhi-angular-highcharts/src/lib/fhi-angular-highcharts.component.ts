@@ -18,7 +18,7 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 
-import { FhiDiagramOptions, FhiDiagramTypeIds } from './models/fhi-diagram-options.model';
+import { FhiDiagramOptions, FhiDiagramTypeIds, FhiTableOrientations } from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
@@ -40,6 +40,8 @@ import { MetadataForSeriesService } from './services/metadata-for-series.service
 
 enum ControlsPopoverMenuActions {
   downloadSvg = 'downloadSvg',
+  setSeriesAsRows = 'setSeriesAsRows',
+  setSeriesAsColumns = 'setSeriesAsColumns',
 }
 
 @Component({
@@ -56,6 +58,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   @Output() diagramTypeNavigation = new EventEmitter<FhiDiagramTypeIds>();
   @Output() metadataButtonClick = new EventEmitter<void>();
+  @Output() tableOrientationChange = new EventEmitter<FhiTableOrientations>();
 
   highcharts: typeof Highcharts = Highcharts;
   highmaps: typeof Highmaps = Highmaps;
@@ -72,6 +75,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   showDiagramTypeDisabledWarning: boolean;
   showDiagramTypeNav: boolean;
   showDownloadButton: boolean;
+  showTableOrientationButton: boolean;
   showDuplicateSerieNameError: boolean;
   showFooter: boolean;
   showFullScreenButton: boolean;
@@ -135,6 +139,14 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         'image/svg+xml',
         this.diagramOptionsInternal,
       );
+    }
+    if (actionName === ControlsPopoverMenuActions.setSeriesAsRows) {
+      this.tableOrientationChange.emit('seriesAsRows');
+      this.setDiagramTypeGroupToTable();
+    }
+    if (actionName === ControlsPopoverMenuActions.setSeriesAsColumns) {
+      this.tableOrientationChange.emit('seriesAsColumns');
+      this.setDiagramTypeGroupToTable();
     }
   }
 
@@ -255,6 +267,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     );
     this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
+    this.showTableOrientationButton = diagramTypeIsDisabled ? false : this.canShowTableOrientationButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptionsInternal.controls?.fullScreenButton?.show;
     this.showMetadataButton = !!this.diagramOptionsInternal.controls?.metadataButton?.show;
@@ -332,6 +345,13 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     return (
       !!this.diagramOptionsInternal.controls?.downloadButton?.show &&
       this.diagramOptionsInternal.activeDiagramType !== 'table'
+    );
+  }
+
+  private canShowTableOrientationButton(): boolean {
+    return (
+      !!this.diagramOptionsInternal.controls?.tableOrientationButton?.show &&
+      this.diagramOptionsInternal.activeDiagramType === 'table'
     );
   }
 

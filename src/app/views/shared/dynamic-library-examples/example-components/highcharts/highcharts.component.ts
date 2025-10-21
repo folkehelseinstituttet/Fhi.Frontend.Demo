@@ -7,6 +7,7 @@ import { MockData } from './mock-data.enum';
 import {
   FhiDiagramOptions,
   FhiDiagramSerie,
+  FhiTableOrientations,
   FhiDiagramTypeIds,
 } from '@folkehelseinstituttet/angular-highcharts';
 
@@ -58,6 +59,13 @@ export class HighchartsComponent implements OnInit {
     this.diagramOptions = {
       ...this.diagramOptions,
       activeDiagramType: id,
+    };
+  }
+
+  onTableOrientationChange(orientation: FhiTableOrientations) {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      tableOrientation: orientation,
     };
   }
 
@@ -189,6 +197,9 @@ export class HighchartsComponent implements OnInit {
         metadataButton: {
           show: true,
         },
+        tableOrientationButton: {
+          show: true,
+        },
         navigation: {
           items: {
             chartTypes: ['bar', 'column', 'line', 'pie'],
@@ -221,6 +232,12 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
       activeDiagramType: 'line',
+      controls: {
+        ...this.diagramOptions.controls,
+        tableOrientationButton: {
+          show: true,
+        }
+      },
       title: this.titles.title_3b,
       units: [
         {

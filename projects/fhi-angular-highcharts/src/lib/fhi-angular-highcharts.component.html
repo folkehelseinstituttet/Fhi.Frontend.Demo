@@ -71,6 +71,17 @@
               ></fhi-popover-menu>
             </div>
           }
+          @if (showTableOrientationButton) {
+            <div class="ms-auto">
+              <fhi-popover-menu
+                [items]="[
+                  { name: 'Serier som rader', action: 'setSeriesAsRows', icon: 'table' },
+                  { name: 'Serier som kolonner', action: 'setSeriesAsColumns', icon: 'table' }
+                ]"
+                (actionEvent)="onControlsPopoverMenuAction($event)"
+              ></fhi-popover-menu>
+            </div>
+          }
         </div>
       </div>
     </div>
