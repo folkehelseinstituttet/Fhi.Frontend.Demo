@@ -75,8 +75,7 @@
             <div class="ms-auto">
               <fhi-popover-menu
                 [items]="[
-                  { name: 'Serier som rader', action: 'setSeriesAsRows', icon: 'table' },
-                  { name: 'Serier som kolonner', action: 'setSeriesAsColumns', icon: 'table' }
+                  { name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' },
                 ]"
                 (actionEvent)="onControlsPopoverMenuAction($event)"
               ></fhi-popover-menu>

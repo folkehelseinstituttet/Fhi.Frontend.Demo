@@ -40,8 +40,9 @@ import { MetadataForSeriesService } from './services/metadata-for-series.service
 
 enum ControlsPopoverMenuActions {
   downloadSvg = 'downloadSvg',
-  setSeriesAsRows = 'setSeriesAsRows',
-  setSeriesAsColumns = 'setSeriesAsColumns',
+  changeTableOrientation = 'changeTableOrientation',
+  seriesAsRows = 'seriesAsRows',
+  seriesAsColumns = 'seriesAsColumns',
 }
 
 @Component({
@@ -140,12 +141,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
         this.diagramOptionsInternal,
       );
     }
-    if (actionName === ControlsPopoverMenuActions.setSeriesAsRows) {
-      this.tableOrientationChange.emit('seriesAsRows');
-      this.setDiagramTypeGroupToTable();
-    }
-    if (actionName === ControlsPopoverMenuActions.setSeriesAsColumns) {
-      this.tableOrientationChange.emit('seriesAsColumns');
+    if (actionName === ControlsPopoverMenuActions.changeTableOrientation) {
+      this.diagramOptionsInternal.tableOrientation =
+        this.diagramOptionsInternal.tableOrientation === ControlsPopoverMenuActions.seriesAsRows
+          ? ControlsPopoverMenuActions.seriesAsColumns
+          : ControlsPopoverMenuActions.seriesAsRows;
+      this.tableOrientationChange.emit(this.diagramOptionsInternal.tableOrientation);
       this.setDiagramTypeGroupToTable();
     }
   }
