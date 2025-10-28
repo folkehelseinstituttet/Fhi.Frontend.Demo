@@ -71,6 +71,16 @@
               ></fhi-popover-menu>
             </div>
           }
+          @if (showTableOrientationButton) {
+            <div class="ms-auto">
+              <fhi-popover-menu
+                [items]="[
+                  { name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' },
+                ]"
+                (actionEvent)="onControlsPopoverMenuAction($event)"
+              ></fhi-popover-menu>
+            </div>
+          }
         </div>
       </div>
     </div>
