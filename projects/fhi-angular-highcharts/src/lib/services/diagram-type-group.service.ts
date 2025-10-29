@@ -408,6 +408,6 @@ export class DiagramTypeGroupService {
       'Innlandet',
     ];
 
-    return mapFylkerNames.concat(mapFylker2019Names, mapFylker2023Names);
+    return mapFylkerNames.concat(mapFylkerNames, mapFylker2019Names, mapFylker2023Names);
   }
 }
