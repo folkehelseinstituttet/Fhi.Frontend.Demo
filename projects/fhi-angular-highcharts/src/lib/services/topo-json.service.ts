@@ -55,7 +55,8 @@ export class TopoJsonService {
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
     const geometry = geometries.find(
       (geometry: object) =>
-        dataPoint.dataPointId && geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
+        dataPoint.dataPointId &&
+        geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
     );
     if (geometry !== undefined) {
       return [geometry['properties']['hc-key'], dataPoint.y as number];

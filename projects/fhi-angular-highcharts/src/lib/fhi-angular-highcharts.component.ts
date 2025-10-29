@@ -18,7 +18,11 @@ import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
 
-import { FhiDiagramOptions, FhiDiagramTypeIds, FhiTableOrientations } from './models/fhi-diagram-options.model';
+import {
+  FhiDiagramOptions,
+  FhiDiagramTypeIds,
+  FhiTableOrientations,
+} from './models/fhi-diagram-options.model';
 import { FhiDiagramSerie } from './models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from './models/fhi-diagram-serie-data.model';
 import { FlagWithDataPointName } from './models/flag-with-data-point-name.model';
@@ -268,7 +272,9 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     );
     this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
-    this.showTableOrientationButton = diagramTypeIsDisabled ? false : this.canShowTableOrientationButton();
+    this.showTableOrientationButton = diagramTypeIsDisabled
+      ? false
+      : this.canShowTableOrientationButton();
     this.showFooter = diagramTypeIsDisabled ? false : this.canShowFooter();
     this.showFullScreenButton = !!this.diagramOptionsInternal.controls?.fullScreenButton?.show;
     this.showMetadataButton = !!this.diagramOptionsInternal.controls?.metadataButton?.show;

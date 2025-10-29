@@ -236,7 +236,7 @@ export class HighchartsComponent implements OnInit {
         ...this.diagramOptions.controls,
         tableOrientationButton: {
           show: true,
-        }
+        },
       },
       title: this.titles.title_3b,
       units: [
