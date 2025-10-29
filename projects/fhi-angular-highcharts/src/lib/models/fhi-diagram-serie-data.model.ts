@@ -1,5 +1,5 @@
 export interface FhiDiagramSerieData {
   name: string;
   y: number | string;
-  chartKey?: number;
+  dataPointId?: string;
 }
