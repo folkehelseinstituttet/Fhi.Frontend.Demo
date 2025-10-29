@@ -253,12 +253,21 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3c() {
-    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.diagramOptions,
-      activeDiagramType: 'mapFylker2023',
+      activeDiagramType: 'mapFylker',
       title: this.titles.title_3c,
       units: undefined,
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapFylker'],
+          },
+        },
+      },
     });
   }
 
