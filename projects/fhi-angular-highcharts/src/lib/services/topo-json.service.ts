@@ -40,33 +40,30 @@ export class TopoJsonService {
   }
 
   getHighmapsSerie(serie: FhiDiagramSerie): SeriesMapOptions {
-    let mapSerie!: SeriesMapOptions;
-    serie.data.forEach((dataPoint, index) => {
-      if (index === 0) {
-        mapSerie = {
-          data: [this.getMapSerieDataPoint(dataPoint)],
-          name: serie.name as string,
-          type: 'map',
-        };
-      } else if (mapSerie.data !== undefined) {
-        mapSerie.data.push(this.getMapSerieDataPoint(dataPoint));
-      }
-    });
+    const mapSerie: SeriesMapOptions = {
+      data: serie.data
+        .map((dataPoint) => this.getMapSerieDataPoint(dataPoint))
+        .filter((dataPoint) => dataPoint !== undefined),
+      name: serie.name as string,
+      type: 'map',
+    };
     return mapSerie;
   }
 
-  private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] {
+  private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] | undefined {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
     const geometry = geometries.find(
-      (geometry: object) => geometry['properties'].name === dataPoint.name,
+      (geometry: object) =>
+        dataPoint.dataPointId && geometry['properties']['iso3166-2'] == `NO-${dataPoint.dataPointId}`,
     );
     if (geometry !== undefined) {
       return [geometry['properties']['hc-key'], dataPoint.y as number];
     }
     console.warn(
-      `Data point name "${dataPoint.name}" doesn't match any geo names in given TopoJson file.`,
+      `Could not find a map area matching dataPointId: "${dataPoint.dataPointId}" in the current TopoJson file.`,
     );
+    return undefined;
   }
 
   private getMapUrls() {
