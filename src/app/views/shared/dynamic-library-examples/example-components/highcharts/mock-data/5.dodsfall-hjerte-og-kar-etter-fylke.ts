@@ -11,17 +11,17 @@ export const DodsfallHjerteOgKarEtterFylke = [
       {
         name: 'Innlandet',
         y: 3360,
-        dataPointId: '34'
+        dataPointId: '34',
       },
       {
         name: 'Møre og Romsdal',
         y: 1909,
-        dataPointId: '15'
+        dataPointId: '15',
       },
       {
         name: 'Nordland',
         y: 1687,
-        dataPointId: '18'
+        dataPointId: '18',
       },
       {
         name: 'Oslo',
