@@ -13,6 +13,7 @@ import { BefolkningInndelingPr2024_antall } from './mock-data/6.befolkning-innde
 import { BefolkningInndelingPr2024_andel } from './mock-data/7.befolkning-inndeling-pr-2024-andel';
 import { AgensAntallOgAndel } from './mock-data/8.agens-antall-og-andel';
 import { PrikkedeDataMedToSerier } from './mock-data/9.prikkede-data-med-to-serier';
+import { Valgdeltagelse2015 } from './mock-data/10.Valgdeltagelse-2015';
 
 // Data for testing/debugging while developing locally, do not show in dev or prod.
 import { TestData } from './mock-data/test-data-9';
@@ -50,6 +51,9 @@ export class MockDataService {
           break;
         case MockData.PrikkedeDataMedToSerier:
           dataSet.next(PrikkedeDataMedToSerier);
+          break;
+        case MockData.Valgdeltagelse2015:
+          dataSet.next(Valgdeltagelse2015);
           break;
 
         // Data for testing while developing locally, do not show in dev or prod.
