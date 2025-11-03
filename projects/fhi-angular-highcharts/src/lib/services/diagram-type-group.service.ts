@@ -334,7 +334,11 @@ export class DiagramTypeGroupService {
     const validGeoNames = this.getValidGeoNames();
 
     // Only testing first data point in serie since all data points should be valid geo
-    if (validGeoNames.find((name) => name === serie.data[0].name) === undefined) {
+    // TODO: Should find better way to validate if the data points in the series are geo or not.
+    if (
+      validGeoNames.find((name) => name.toLowerCase() === serie.data[0].name.toLowerCase()) ===
+      undefined
+    ) {
       return true;
     }
     return false;
@@ -357,6 +361,7 @@ export class DiagramTypeGroupService {
     const mapFylkerNames = [
       'Akershus',
       'Oslo',
+      'Oslo (Fylke)',
       'Vestland',
       'Rogaland',
       'Trøndelag',
