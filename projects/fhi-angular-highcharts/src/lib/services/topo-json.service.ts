@@ -53,11 +53,27 @@ export class TopoJsonService {
   private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] | undefined {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
-    const geometry = geometries.find(
-      (geometry: object) =>
-        dataPoint.dataPointId &&
-        geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
-    );
+    let geometry = undefined;
+    switch (id) {
+      case MapTypeIdValues.mapFylker:
+        geometry = geometries.find(
+          (geometry: object) =>
+            dataPoint.dataPointId &&
+            geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
+        );
+        break;
+      case MapTypeIdValues.mapFylker2019:
+      case MapTypeIdValues.mapFylker2023:
+        geometry = geometries.find(
+          (geometry: object) => geometry['properties'].name === dataPoint.name,
+        );
+        break;
+      default:
+        console.warn(
+          `No supported map matches given mapTypeId: "${id}", can't get map serie data point!`,
+        );
+        return undefined;
+    }
     if (geometry !== undefined) {
       return [geometry['properties']['hc-key'], dataPoint.y as number];
     }
