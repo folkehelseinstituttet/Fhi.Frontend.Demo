@@ -328,9 +328,12 @@ export class HighchartsComponent implements OnInit {
   private getData__example_3f() {
     this.getData(MockData.Valgdeltagelse2015, {
       ...this.diagramOptions,
-      activeDiagramType: 'line',
+      activeDiagramType: 'mapFylker',
       title: this.titles.title_3f,
       units: undefined,
+      categoryAxis: {
+        title: 'År',
+      },
       controls: {
         ...this.diagramOptions.controls,
         navigation: {
