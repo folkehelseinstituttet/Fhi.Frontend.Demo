@@ -58,7 +58,7 @@ After installing the package and all dependencies, add the following code to you
 
 ```scss
 // In global css-file (usually style.scss)
-@import "@folkehelseinstituttet/angular-highcharts/styles/import/all";
+@import '@folkehelseinstituttet/angular-highcharts/styles/import/all';
 ```
 
 ```ts
@@ -112,32 +112,32 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 
 ### Inputs
 
-| Input              | Type                | Default | Required | Description |
-| ------------------ | ------------------- | ------- | -------- | ----------- |
+| Input              | Type                | Default | Required | Description                                                                                                                                                                                                                    |
+| ------------------ | ------------------- | ------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `[diagramOptions]` | `FhiDiagramOptions` | -       | yes      | All properties used to configure the diagram. See [FhiDiagramOptions](#interface-fhidiagramoptions) for details. **NB!** The object sent in to `@Input diagramOptions` needs to be reassigned for change detection to kick in. |
 
 ### Outputs
 
-| Output                     | Event type          | Description |
-| -------------------------- | ------------------- | ----------- |
-| `(diagramTypeNavigation)`  | `FhiDiagramTypeIds` | If diagram type navigation i visible, this event will fire on every navigation. Outputs an existing diagram type id. |
-| `(metadataButtonClick)`    | `void`              | When link to "Om dataene" is clicked. |
-| `(tableOrientationChange)` | `FhiTableOrientations` | When table orientation is changed. |
+| Output                     | Event type             | Description                                                                                                          |
+| -------------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `(diagramTypeNavigation)`  | `FhiDiagramTypeIds`    | If diagram type navigation i visible, this event will fire on every navigation. Outputs an existing diagram type id. |
+| `(metadataButtonClick)`    | `void`                 | When link to "Om dataene" is clicked.                                                                                |
+| `(tableOrientationChange)` | `FhiTableOrientations` | When table orientation is changed.                                                                                   |
 
 ### Interface FhiDiagramOptions
 
-| Property            | Type                 | Default   | Required | Description |
-| ------------------- | -------------------- | --------- | -------- | ----------- |
-| `activeDiagramType` | `string`             | -         | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds` |
-| `categoryAxis`      | `FhiDiagramCategoryAxis` | -         | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details. |
-| `controls`          | `FhiDiagramControls` | -         | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details. |
-| `description`       | `string`             | -         | no       | A description of the diagram below the `title`. |
-| `footer`            | `FhiDiagramFooter`   | -         | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details. |
-| `openSource`        | `boolean`            | `true`    | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!** |
-| `series`            | `FhiDiagramSerie[]`  | -         | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details. |
-| `tableOrientation`  | `string`             | -         | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations` |
-| `title`             | `string`             | -         | yes      | The title above the diagram. |
-| `units`             | `FhiDiagramUnit[]`   | -         | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
+| Property            | Type                     | Default | Required | Description                                                                                                                                                                                                                                                                                                                                                |
+| ------------------- | ------------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `activeDiagramType` | `string`                 | -       | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds`                                                                                                                                                                                                                                                                             |
+| `categoryAxis`      | `FhiDiagramCategoryAxis` | -       | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details.                                                                                                                                                                                                                              |
+| `controls`          | `FhiDiagramControls`     | -       | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details.                                                                                                                                                                                                                                       |
+| `description`       | `string`                 | -       | no       | A description of the diagram below the `title`.                                                                                                                                                                                                                                                                                                            |
+| `footer`            | `FhiDiagramFooter`       | -       | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details.                                                                                                                                                                                                                                       |
+| `openSource`        | `boolean`                | `true`  | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!**                                                                                                                                                                                                                                                                            |
+| `series`            | `FhiDiagramSerie[]`      | -       | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details.                                                                                                                                                                                                                                                          |
+| `tableOrientation`  | `string`                 | -       | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations`                                                                                                                                                                                                                                                              |
+| `title`             | `string`                 | -       | yes      | The title above the diagram.                                                                                                                                                                                                                                                                                                                               |
+| `units`             | `FhiDiagramUnit[]`       | -       | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
 
 #### Using two units
 
@@ -164,75 +164,76 @@ If not all criteria is met, all units will be ignored.
 
 ### Interface FhiDiagramCategoryAxis
 
-| Property | Type     | Default | Required | Description |
-| -------- | -------- | ------- | -------- | ----------- |
+| Property | Type     | Default | Required | Description                                                                                        |
+| -------- | -------- | ------- | -------- | -------------------------------------------------------------------------------------------------- |
 | `title`  | `string` | -       | no       | Custom title for the categoryAxis (x-axis). Has no effect on diagram types without a categoryAxis. |
 
 ### Interface FhiDiagramControls
 
-| Property                      | Type       | Default | Required | Description |
-| ----------------------------- | ---------- | ------- | -------- | ----------- |
-| `downloadButton`              | `object`   | -       | no       | Properties related to downloadButton. |
-| `downloadButton.show`         | `boolean`  | `false` | yes      | Whether to show a popover menu which shows menuitems for all download formats. |
-| `fullScreenButton`            | `object`   | -       | no       | Properties related to fullScreenButton. |
-| `fullScreenButton.show`       | `boolean`  | `false` | yes      | Whether to show a button which opens the diagram in full screen. |
-| `metadataButton`              | `object`   | -       | no       | Properties related to metadata button. |
-| `metadataButton.show`         | `boolean`  | `false` | yes      | Whether to show a button with an event for custom navigation to your metadata. |
+| Property                      | Type       | Default | Required | Description                                                                                                                                                           |
+| ----------------------------- | ---------- | ------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `downloadButton`              | `object`   | -       | no       | Properties related to downloadButton.                                                                                                                                 |
+| `downloadButton.show`         | `boolean`  | `false` | yes      | Whether to show a popover menu which shows menuitems for all download formats.                                                                                        |
+| `fullScreenButton`            | `object`   | -       | no       | Properties related to fullScreenButton.                                                                                                                               |
+| `fullScreenButton.show`       | `boolean`  | `false` | yes      | Whether to show a button which opens the diagram in full screen.                                                                                                      |
+| `metadataButton`              | `object`   | -       | no       | Properties related to metadata button.                                                                                                                                |
+| `metadataButton.show`         | `boolean`  | `false` | yes      | Whether to show a button with an event for custom navigation to your metadata.                                                                                        |
 | `navigation`                  | `object`   | -       | no       | Properties related to diagram type navigaton. PS. `navigation.items` will always contain table, therefore no `navigation.items.table` as part of the items interface. |
-| `navigation.items.chartTypes` | `string[]` | -       | no       | Chart types to show in diagram type navigaton defined by enum ChartTypeIds. |
-| `navigation.items.mapTypes`   | `string[]` | -       | no       | Map types to show in diagram type navigaton defined by enum MapTypeIds. |
-| `navigation.show`             | `boolean`  | `false` | yes      | Whether to show diagram type navigaton. |
-| `navigation.type`             | `string`   | -       | no       | ID to specify which type of navigation to use defined by enum DiagramTypeNavIds. |
-| `tableOrientationButton`      | `object`   | -       | no       | Properties related to tableOrientationButton. |
-| `tableOrientationButton.show` | `boolean`  | `false` | yes      | Whether to show a button which toggles rows/columns in the diagram type table. **Not implemented yet, so has no effect atm.** |
+| `navigation.items.chartTypes` | `string[]` | -       | no       | Chart types to show in diagram type navigaton defined by enum ChartTypeIds.                                                                                           |
+| `navigation.items.mapTypes`   | `string[]` | -       | no       | Map types to show in diagram type navigaton defined by enum MapTypeIds.                                                                                               |
+| `navigation.show`             | `boolean`  | `false` | yes      | Whether to show diagram type navigaton.                                                                                                                               |
+| `navigation.type`             | `string`   | -       | no       | ID to specify which type of navigation to use defined by enum DiagramTypeNavIds.                                                                                      |
+| `tableOrientationButton`      | `object`   | -       | no       | Properties related to tableOrientationButton.                                                                                                                         |
+| `tableOrientationButton.show` | `boolean`  | `false` | yes      | Whether to show a button which toggles rows/columns in the diagram type table. **Not implemented yet, so has no effect atm.**                                         |
 
 ### Interface FhiDiagramFooter
 
-| Property       | Type               | Default | Required | Description |
-| -------------- | ------------------ | ------- | -------- | ----------- |
-| `credits`      | `object`           | -       | no       | Properties related to source ref. |
-| `credits.href` | `string`           | -       | no       | Link to source ref. |
-| `credits.text` | `string`           | -       | yes      | Text to source ref. |
-| `disclaimer`   | `string`           | -       | no       | Text at the bottom of the footer used to say something about uncertainty in the data shown in a diagram. |
+| Property       | Type               | Default | Required | Description                                                                                                 |
+| -------------- | ------------------ | ------- | -------- | ----------------------------------------------------------------------------------------------------------- |
+| `credits`      | `object`           | -       | no       | Properties related to source ref.                                                                           |
+| `credits.href` | `string`           | -       | no       | Link to source ref.                                                                                         |
+| `credits.text` | `string`           | -       | yes      | Text to source ref.                                                                                         |
+| `disclaimer`   | `string`           | -       | no       | Text at the bottom of the footer used to say something about uncertainty in the data shown in a diagram.    |
 | `flags`        | `FhiDiagramFlag[]` | -       | no       | List of all flags used in `FhiDiagramSerie[]`. See [FhiDiagramFlag](#interface-fhidiagramflag) for details. |
-| `lastUpdated`  | `string`           | -       | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one. |
+| `lastUpdated`  | `string`           | -       | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one.          |
 
 ### Interface FhiDiagramSerie
 
-| Property | Type                    | Default | Required | Description |
-| -------- | ------------------------| ------- | -------- | ----------- |
-| `data`   | `FhiDiagramSerieData[]` | -       | yes      | The individual data points in a serie. See [FhiDiagramSerieData](#interface-fhidiagramseriedata) for details. |
+| Property | Type                    | Default | Required | Description                                                                                                                                                                                                                                                                                                                                                                   |
+| -------- | ----------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data`   | `FhiDiagramSerieData[]` | -       | yes      | The individual data points in a serie. See [FhiDiagramSerieData](#interface-fhidiagramseriedata) for details.                                                                                                                                                                                                                                                                 |
 | `name`   | `string \| string[]`    | -       | yes      | The name of the serie as shown in the legend. **NB!** The type `string` is an formatted string; pipe (`\|`) is beeing used as seperator between category names if more than one category name is concatenated to one single serie name. To avoid dependency on a given separator, use an array of category names instead. NB! `series` can not contain duplicate `serie.name` |
-| `stack`  | `string`                | -       | yes      | This option allows for grouping series in a stacked chart. Only applies to diagramTypeId `barStacked` and `columnStacked`. |
-| `unitId` | `number \| string`      | -       | no       | Used to associate the serie with a unit. This only works if `unit.id` ([FhiDiagramUnit](#interface-fhidiagramunit)) is set, and value is equal to `serie.unitId`. |
+| `stack`  | `string`                | -       | yes      | This option allows for grouping series in a stacked chart. Only applies to diagramTypeId `barStacked` and `columnStacked`.                                                                                                                                                                                                                                                    |
+| `unitId` | `number \| string`      | -       | no       | Used to associate the serie with a unit. This only works if `unit.id` ([FhiDiagramUnit](#interface-fhidiagramunit)) is set, and value is equal to `serie.unitId`.                                                                                                                                                                                                             |
 
 ### Interface FhiDiagramSerieData
 
 FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based on the smallest possible subset of the `chart.series.[chart type].data` object [as described under nr 3. here](https://api.highcharts.com/highcharts/series.line.data) (line chart used as example).
 
-| Property | Type               | Default | Required | Description |
-| -------- | ------------------ | ------- | -------- | ----------- |
-| `name`   | `string`           | -       | yes      | The name of the data point as shown in the tooltip. |
-| `y`      | `number \| string` | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value. |
+| Property      | Type               | Default | Required | Description                                                                                             |
+| ------------- | ------------------ | ------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `name`        | `string`           | -       | yes      | The name of the data point as shown in the tooltip.                                                     |
+| `y`           | `number \| string` | -       | yes      | The value of the data point. If type is `string` the data point is treated as a flagged value.          |
+| `dataPointId` | `string`           | -       | no       | Id for each data point, used specifically for maps, and follows the standard set for Fylker set by SSB. |
 
 ### Interface FhiDiagramFlag
 
-| Property | Type     | Default | Required | Description |
-| -------- | -------- | ------- | -------- | ----------- |
+| Property | Type     | Default | Required | Description                               |
+| -------- | -------- | ------- | -------- | ----------------------------------------- |
 | `label`  | `string` | -       | yes      | Description of the flag, ie. _Anonymized_ |
-| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`. |
+| `symbol` | `string` | -       | yes      | Symbol representing the flag, ie. `:`.    |
 
 ### Interface FhiDiagramUnit
 
-| Property   | Type               | Default | Required | Description |
-| ---------- | ------------------ | ------- | -------- | ----------- |
-| `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`. |
+| Property   | Type               | Default | Required | Description                                                                                                                                                                                                                                                                                                                                                                |
+| ---------- | ------------------ | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`       | `number \| string` | -       | no       | Used to associate the unit with a serie. This only works if a `serie.unitId` ([FhiDiagramSerie](#interface-fhidiagramserie)) is set, and value is equal to `unit.id`.                                                                                                                                                                                                      |
 | `decimals` | `number`           | -       | no       | The decimal count. If `undefined`: the decimal count is same as in the source data (**limited** to 9 decimals because Highcharts tooltips fails if 10 decimals or more). If `0`: no decimals. If `[1..9]`: max decimal count, but limited to the decimal count in the source data. If `10` or more, a warning will be given in the console, and `9` decimals will be used. |
-| `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line. |
-| `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis. |
-| `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'` |
-| `yAxisMax` | `number`           | -       | no       | The maximum value of the y-axis. If not set, the max value is automatically calculated. NB! Highcharts may override the value in some edge cases. |
-| `yAxisMin` | `number`           | -       | no       | The minimum value of the y-axis. If not set, the min value is automatically calculated. NB! Highcharts may override the value in some edge cases. |
+| `label`    | `string`           | -       | yes      | The vertical y-axis label, showing next to the axis line.                                                                                                                                                                                                                                                                                                                  |
+| `symbol`   | `string`           | -       | no       | Symbol before or after the value in both tooltip and y-axis.                                                                                                                                                                                                                                                                                                               |
+| `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'`                                                                                                                                                                                                                                                                 |
+| `yAxisMax` | `number`           | -       | no       | The maximum value of the y-axis. If not set, the max value is automatically calculated. NB! Highcharts may override the value in some edge cases.                                                                                                                                                                                                                          |
+| `yAxisMin` | `number`           | -       | no       | The minimum value of the y-axis. If not set, the min value is automatically calculated. NB! Highcharts may override the value in some edge cases.                                                                                                                                                                                                                          |
 
 ## Changelog
 
