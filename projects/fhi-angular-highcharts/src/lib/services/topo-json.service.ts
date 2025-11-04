@@ -75,7 +75,7 @@ export class TopoJsonService {
         return undefined;
     }
     if (geometry !== undefined) {
-      return [geometry['properties']['hc-key'], dataPoint.y as number];
+      return [geometry['properties']['hc-key'], Number(dataPoint.y)];
     }
     console.warn(
       `Could not find a map area matching dataPointId: "${dataPoint.dataPointId}" in the current TopoJson file.`,
