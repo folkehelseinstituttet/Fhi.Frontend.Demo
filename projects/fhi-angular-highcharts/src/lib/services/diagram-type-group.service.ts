@@ -332,7 +332,6 @@ export class DiagramTypeGroupService {
 
   private serieNotGeo(serie: FhiDiagramSerie): boolean {
     const validGeoNames = this.getValidGeoNames();
-
     // Only testing first data point in serie since all data points should be valid geo
     // TODO: Should find better way to validate if the data points in the series are geo or not.
     if (
@@ -351,7 +350,7 @@ export class DiagramTypeGroupService {
   }
 
   /**
-   * Returns a list of leagal geo names for all maps
+   * Returns a list of legal geo names for all maps
    *
    * PS. This gives 1 fact in 2 places, but the the maps will not change
    *     that often, and the benefit of being able to do a "disable map test"
