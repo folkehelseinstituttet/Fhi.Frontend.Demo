@@ -3,6 +3,11 @@ export const DodsfallHjerteOgKarEtterFylke = [
     name: 'Hjerte- og karsystemet',
     data: [
       {
+        name: 'Oslo (fylke)',
+        y: 1500,
+        dataPointId: '03',
+      },
+      {
         name: 'Agder',
         y: ':',
         dataPointId: '42',
@@ -23,12 +28,7 @@ export const DodsfallHjerteOgKarEtterFylke = [
         y: 1687,
         dataPointId: '18',
       },
-      {
-        name: 'Oslo',
-        y: '.',
-        dataPointId: '03',
-        // "y": 2814
-      },
+
       {
         name: 'Rogaland',
         y: 2143,
