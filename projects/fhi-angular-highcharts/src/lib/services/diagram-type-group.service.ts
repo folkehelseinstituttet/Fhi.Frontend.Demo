@@ -283,11 +283,26 @@ export class DiagramTypeGroupService {
   }
 
   private notGeo(diagramType: DiagramType): boolean {
-    if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
-      return true;
+    console.log('notGeo check: ', diagramType);
+    switch (diagramType.id) {
+      case DiagramTypes.mapFylker.id:
+        console.log('Checking mapFylker for geo validity');
+        if (this.series.length === 1 && this.serieNotValidIsoCode(this.series)) {
+          console.log('MapFylker series not valid iso code');
+          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+          return true;
+        }
+        return false;
+      case DiagramTypes.mapFylker2019.id:
+      case DiagramTypes.mapFylker2023.id:
+        if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
+          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+          return true;
+        }
+        return false;
+      default:
+        return true;
     }
-    return false;
   }
 
   private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
@@ -333,7 +348,6 @@ export class DiagramTypeGroupService {
   private serieNotGeo(serie: FhiDiagramSerie): boolean {
     const validGeoNames = this.getValidGeoNames();
     // Only testing first data point in serie since all data points should be valid geo
-    // TODO: Should find better way to validate if the data points in the series are geo or not.
     if (
       validGeoNames.find((name) => name.toLowerCase() === serie.data[0].name.toLowerCase()) ===
       undefined
@@ -347,6 +361,41 @@ export class DiagramTypeGroupService {
     const uniqueIds = new Set<string | number>();
     this.series.filter((serie) => serie.unitId).forEach((serie) => uniqueIds.add(serie.unitId));
     return uniqueIds.size;
+  }
+
+  private serieNotValidIsoCode(serie: FhiDiagramSerie[]): boolean {
+    const validIsoCodes = [
+      '03',
+      '11',
+      '15',
+      '18',
+      '31',
+      '32',
+      '33',
+      '34',
+      '39',
+      '40',
+      '42',
+      '46',
+      '50',
+      '55',
+      '56',
+    ];
+    // Only testing first data point in serie since all data points should be valid geo
+    // TODO: Loop through all data points in serie to find a least one matching geo name
+    // if (validIsoCodes.find((code) => code === serie.data[0].dataPointId) === undefined) {
+    //   return true;
+    // }
+    // return false;
+    let noValidIsoCodeFound = true;
+    serie[0].data.map((data) => {
+      if (validIsoCodes.find((code) => code === data.dataPointId)) {
+        console.log('Found valid iso code in serie dataPointId:', data.dataPointId);
+        noValidIsoCodeFound = false;
+        return;
+      }
+    });
+    return noValidIsoCodeFound;
   }
 
   /**
