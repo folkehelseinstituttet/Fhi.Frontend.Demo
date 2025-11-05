@@ -283,12 +283,9 @@ export class DiagramTypeGroupService {
   }
 
   private notGeo(diagramType: DiagramType): boolean {
-    console.log('notGeo check: ', diagramType);
     switch (diagramType.id) {
       case DiagramTypes.mapFylker.id:
-        console.log('Checking mapFylker for geo validity');
         if (this.series.length === 1 && this.serieNotValidIsoCode(this.series)) {
-          console.log('MapFylker series not valid iso code');
           this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
           return true;
         }
@@ -385,7 +382,6 @@ export class DiagramTypeGroupService {
     let noValidIsoCodeFound = true;
     serie[0].data.map((data) => {
       if (validIsoCodes.find((code) => code === data.dataPointId)) {
-        console.log('Found valid iso code in serie dataPointId:', data.dataPointId);
         noValidIsoCodeFound = false;
         return;
       }
