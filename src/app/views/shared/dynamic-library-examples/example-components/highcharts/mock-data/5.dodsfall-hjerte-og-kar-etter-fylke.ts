@@ -4,9 +4,8 @@ export const DodsfallHjerteOgKarEtterFylke = [
     data: [
       {
         name: 'Hele landet',
-        y: ':',
+        y: 16978,
         dataPointId: '0',
-        // "y": 1698
       },
       {
         name: 'Oslo (fylke)',

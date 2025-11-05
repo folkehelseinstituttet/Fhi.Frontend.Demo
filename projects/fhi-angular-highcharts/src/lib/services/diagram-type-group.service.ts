@@ -381,12 +381,7 @@ export class DiagramTypeGroupService {
       '55',
       '56',
     ];
-    // Only testing first data point in serie since all data points should be valid geo
-    // TODO: Loop through all data points in serie to find a least one matching geo name
-    // if (validIsoCodes.find((code) => code === serie.data[0].dataPointId) === undefined) {
-    //   return true;
-    // }
-    // return false;
+
     let noValidIsoCodeFound = true;
     serie[0].data.map((data) => {
       if (validIsoCodes.find((code) => code === data.dataPointId)) {
