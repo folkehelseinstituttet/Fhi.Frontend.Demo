@@ -40,33 +40,47 @@ export class TopoJsonService {
   }
 
   getHighmapsSerie(serie: FhiDiagramSerie): SeriesMapOptions {
-    let mapSerie!: SeriesMapOptions;
-    serie.data.forEach((dataPoint, index) => {
-      if (index === 0) {
-        mapSerie = {
-          data: [this.getMapSerieDataPoint(dataPoint)],
-          name: serie.name as string,
-          type: 'map',
-        };
-      } else if (mapSerie.data !== undefined) {
-        mapSerie.data.push(this.getMapSerieDataPoint(dataPoint));
-      }
-    });
+    const mapSerie: SeriesMapOptions = {
+      data: serie.data
+        .map((dataPoint) => this.getMapSerieDataPoint(dataPoint))
+        .filter((dataPoint) => dataPoint !== undefined),
+      name: serie.name as string,
+      type: 'map',
+    };
     return mapSerie;
   }
 
-  private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] {
+  private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] | undefined {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
-    const geometry = geometries.find(
-      (geometry: object) => geometry['properties'].name === dataPoint.name,
-    );
+    let geometry = undefined;
+    switch (id) {
+      case MapTypeIdValues.mapFylker:
+        geometry = geometries.find(
+          (geometry: object) =>
+            dataPoint.dataPointId &&
+            geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
+        );
+        break;
+      case MapTypeIdValues.mapFylker2019:
+      case MapTypeIdValues.mapFylker2023:
+        geometry = geometries.find(
+          (geometry: object) => geometry['properties'].name === dataPoint.name,
+        );
+        break;
+      default:
+        console.warn(
+          `No supported map matches given mapTypeId: "${id}", can't get map serie data point!`,
+        );
+        return undefined;
+    }
     if (geometry !== undefined) {
-      return [geometry['properties']['hc-key'], dataPoint.y as number];
+      return [geometry['properties']['hc-key'], Number(dataPoint.y)];
     }
     console.warn(
-      `Data point name "${dataPoint.name}" doesn't match any geo names in given TopoJson file.`,
+      `Could not find a map area matching dataPointId: "${dataPoint.dataPointId}" in the current TopoJson file.`,
     );
+    return undefined;
   }
 
   private getMapUrls() {

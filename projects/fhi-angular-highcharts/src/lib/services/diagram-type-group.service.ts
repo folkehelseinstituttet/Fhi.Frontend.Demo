@@ -283,11 +283,23 @@ export class DiagramTypeGroupService {
   }
 
   private notGeo(diagramType: DiagramType): boolean {
-    if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
-      return true;
+    switch (diagramType.id) {
+      case DiagramTypes.mapFylker.id:
+        if (this.series.length === 1 && this.serieNotValidIsoCode(this.series)) {
+          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+          return true;
+        }
+        return false;
+      case DiagramTypes.mapFylker2019.id:
+      case DiagramTypes.mapFylker2023.id:
+        if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
+          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+          return true;
+        }
+        return false;
+      default:
+        return true;
     }
-    return false;
   }
 
   private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
@@ -332,9 +344,11 @@ export class DiagramTypeGroupService {
 
   private serieNotGeo(serie: FhiDiagramSerie): boolean {
     const validGeoNames = this.getValidGeoNames();
-
     // Only testing first data point in serie since all data points should be valid geo
-    if (validGeoNames.find((name) => name === serie.data[0].name) === undefined) {
+    if (
+      validGeoNames.find((name) => name.toLowerCase() === serie.data[0].name.toLowerCase()) ===
+      undefined
+    ) {
       return true;
     }
     return false;
@@ -346,8 +360,37 @@ export class DiagramTypeGroupService {
     return uniqueIds.size;
   }
 
+  private serieNotValidIsoCode(serie: FhiDiagramSerie[]): boolean {
+    const validIsoCodes = [
+      '03',
+      '11',
+      '15',
+      '18',
+      '31',
+      '32',
+      '33',
+      '34',
+      '39',
+      '40',
+      '42',
+      '46',
+      '50',
+      '55',
+      '56',
+    ];
+
+    let noValidIsoCodeFound = true;
+    serie[0].data.map((data) => {
+      if (validIsoCodes.find((code) => code === data.dataPointId)) {
+        noValidIsoCodeFound = false;
+        return;
+      }
+    });
+    return noValidIsoCodeFound;
+  }
+
   /**
-   * Returns a list of leagal geo names for all maps
+   * Returns a list of legal geo names for all maps
    *
    * PS. This gives 1 fact in 2 places, but the the maps will not change
    *     that often, and the benefit of being able to do a "disable map test"
@@ -357,6 +400,7 @@ export class DiagramTypeGroupService {
     const mapFylkerNames = [
       'Akershus',
       'Oslo',
+      'Oslo (Fylke)',
       'Vestland',
       'Rogaland',
       'Trøndelag',
@@ -408,6 +452,6 @@ export class DiagramTypeGroupService {
       'Innlandet',
     ];
 
-    return mapFylkerNames.concat(mapFylker2019Names, mapFylker2023Names);
+    return mapFylkerNames.concat(mapFylkerNames, mapFylker2019Names, mapFylker2023Names);
   }
 }

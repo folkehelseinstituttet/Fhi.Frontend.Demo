@@ -37,6 +37,7 @@ export class HighchartsComponent implements OnInit {
     title_3c: 'Dødsfall hjerte og kar, fordelt på fylke',
     title_3d: 'Dobbel akse, linje og søyle',
     title_3e: 'Prikkede data med to serier',
+    title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
   };
 
   constructor(
@@ -127,6 +128,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3e':
         this.getData__example_3e();
+        break;
+      case '3f':
+        this.getData__example_3f();
         break;
     }
   }
@@ -236,7 +240,7 @@ export class HighchartsComponent implements OnInit {
         ...this.diagramOptions.controls,
         tableOrientationButton: {
           show: true,
-        }
+        },
       },
       title: this.titles.title_3b,
       units: [
@@ -253,26 +257,38 @@ export class HighchartsComponent implements OnInit {
   }
 
   private getData__example_3c() {
-    this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.DodsfallHjerteOgKarEtterFylke, {
       ...this.diagramOptions,
-      activeDiagramType: 'mapFylker2023',
+      activeDiagramType: 'mapFylker',
       title: this.titles.title_3c,
       units: undefined,
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapFylker'],
+          },
+        },
+      },
     });
   }
 
   private getData__example_3d() {
-    this.diagramOptions.controls.navigation.items.chartTypes = [
-      'bar',
-      'column',
-      'columnAndLine',
-      'line',
-      'pie',
-    ];
     this.getData(MockData.AgensAntallOgAndel, {
       ...this.diagramOptions,
       activeDiagramType: 'columnAndLine',
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            ...this.diagramOptions.controls.navigation.items,
+            chartTypes: ['bar', 'column', 'columnAndLine', 'line', 'pie'],
+          },
+        },
+      },
       title: this.titles.title_3d,
       units: [
         {
@@ -297,6 +313,37 @@ export class HighchartsComponent implements OnInit {
       description: 'Her kan en legge til en beskrivelse av dataene.',
       title: this.titles.title_3e,
       units: undefined,
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
+    });
+  }
+
+  private getData__example_3f() {
+    this.getData(MockData.Valgdeltagelse2015, {
+      ...this.diagramOptions,
+      activeDiagramType: 'mapFylker',
+      title: this.titles.title_3f,
+      units: undefined,
+      categoryAxis: {
+        title: 'År',
+      },
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapFylker'],
+          },
+        },
+      },
       footer: {
         credits: {
           href: 'https://www.fhi.no',
