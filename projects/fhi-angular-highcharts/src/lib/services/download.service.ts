@@ -22,18 +22,51 @@ export class DownloadService {
       console.warn(`No "chartInstance", can't download chart.`);
       return;
     }
+
+    const isSvg = MIMEtype === 'image/svg+xml';
+    const exportWidth = 1200;
+    const baseHeight = 800;
+
+    const exportHeight = isSvg ? this.getSvgExportHeight(chartInstance, baseHeight) : baseHeight;
+
     const exportingOptions: ExportingOptions = {
       type: MIMEtype,
-      sourceWidth: 1200,
-      sourceHeight: 800,
+      sourceWidth: exportWidth,
+      sourceHeight: exportHeight,
       filename: this.getFilename(diagramOptions.title),
     };
+
     const chartOptions: Options = {
       title: this.getTitle(diagramOptions),
       subtitle: this.getSubtitle(diagramOptions),
       credits: this.getCredits(diagramOptions),
     };
+
+    if (isSvg) {
+      chartOptions.legend = this.getSvgLegendOptions();
+      chartOptions.chart = { height: exportHeight };
+    }
+
     chartInstance.exportChartLocal(exportingOptions, chartOptions);
+  }
+
+  private getSvgLegendOptions(): Options['legend'] {
+    return {
+      maxHeight: 100000,
+      navigation: { enabled: false },
+    };
+  }
+
+  private getSvgExportHeight(chartInstance: Chart, baseHeight: number): number {
+    const legendCount = chartInstance.legend?.allItems?.length ?? 0;
+    if (legendCount === 0) {
+      return baseHeight;
+    }
+
+    const legendItemHeight = 20;
+    const legendPadding = 60;
+
+    return baseHeight + legendCount * legendItemHeight + legendPadding;
   }
 
   private getFilename(title: string) {
