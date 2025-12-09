@@ -16,7 +16,7 @@ import { PrikkedeDataMedToSerier } from './mock-data/9.prikkede-data-med-to-seri
 import { Valgdeltagelse2015 } from './mock-data/10.Valgdeltagelse-2015';
 
 // Data for testing/debugging while developing locally, do not show in dev or prod.
-import { TestData } from './mock-data/test-data-9';
+import { TestData } from './mock-data/test-data-7';
 
 @Injectable({
   providedIn: 'root',
