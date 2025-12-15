@@ -66,13 +66,15 @@ export class DownloadService {
       return baseHeight;
     }
 
-    let columns = () => {
-      return Math.floor(this.exportWidth / chartInstance.legend['maxItemWidth']) || 1;
-    };
+    const legendItemsPerRow = 5;
+    const legendRowCount = Math.ceil(legendCount / legendItemsPerRow);
 
-    const legendItemHeight = 20;
-    const legendPadding = 60;
-    return baseHeight + Math.ceil((legendCount * legendItemHeight + legendPadding) / columns());
+    const extraRows = Math.max(0, legendRowCount - 1);
+
+    const legendRowHeight = 20;
+    const legendPadding = 40;
+
+    return baseHeight + extraRows * legendRowHeight + legendPadding;
   }
 
   private getFilename(title: string) {
