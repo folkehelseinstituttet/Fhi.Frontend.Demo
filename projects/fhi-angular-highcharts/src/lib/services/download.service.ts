@@ -63,10 +63,15 @@ export class DownloadService {
       return baseHeight;
     }
 
-    const legendItemHeight = 20;
-    const legendPadding = 60;
+    const legendItemsPerRow = 5;
+    const legendRowCount = Math.ceil(legendCount / legendItemsPerRow);
 
-    return baseHeight + legendCount * legendItemHeight + legendPadding;
+    const extraRows = Math.max(0, legendRowCount - 1);
+
+    const legendRowHeight = 20;
+    const legendPadding = 40;
+
+    return baseHeight + extraRows * legendRowHeight + legendPadding;
   }
 
   private getFilename(title: string) {
