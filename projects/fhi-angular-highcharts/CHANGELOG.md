@@ -1,4 +1,10 @@
-# 6.4.0
+# Unreleased
+
+> Des 15, 2025
+
+- :tada: **Enhancement** Make large number of legends visible in SVG-download.
+
+## 6.4.0
 
 > Nov 12, 2025
 

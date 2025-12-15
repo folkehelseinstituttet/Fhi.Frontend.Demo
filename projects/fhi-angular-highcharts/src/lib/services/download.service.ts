@@ -13,6 +13,9 @@ import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DownloadService {
+  exportWidth = 1200;
+  baseHeight = 700;
+
   downloadImage(
     chartInstance: Chart,
     MIMEtype: ExportingMimeTypeValue,
@@ -22,18 +25,54 @@ export class DownloadService {
       console.warn(`No "chartInstance", can't download chart.`);
       return;
     }
+
+    const isSvg = MIMEtype === 'image/svg+xml';
+    const exportWidth = this.exportWidth;
+    const baseHeight = this.baseHeight;
+
+    const exportHeight = isSvg ? this.getSvgExportHeight(chartInstance, baseHeight) : baseHeight;
+
     const exportingOptions: ExportingOptions = {
       type: MIMEtype,
-      sourceWidth: 1200,
-      sourceHeight: 800,
+      sourceWidth: exportWidth,
+      sourceHeight: exportHeight,
       filename: this.getFilename(diagramOptions.title),
     };
+
     const chartOptions: Options = {
       title: this.getTitle(diagramOptions),
       subtitle: this.getSubtitle(diagramOptions),
       credits: this.getCredits(diagramOptions),
     };
+
+    if (isSvg) {
+      chartOptions.legend = this.getSvgLegendOptions();
+      chartOptions.chart = { height: exportHeight };
+    }
+
     chartInstance.exportChartLocal(exportingOptions, chartOptions);
+  }
+
+  private getSvgLegendOptions(): Options['legend'] {
+    return {
+      navigation: { enabled: false },
+      verticalAlign: 'bottom',
+    };
+  }
+
+  private getSvgExportHeight(chartInstance: Chart, baseHeight: number): number {
+    const legendCount = chartInstance.legend?.allItems?.length ?? 0;
+    if (legendCount === 0) {
+      return baseHeight;
+    }
+
+    let columns = () => {
+      return Math.floor(this.exportWidth / chartInstance.legend['maxItemWidth']) || 1;
+    };
+
+    const legendItemHeight = 20;
+    const legendPadding = 60;
+    return baseHeight + Math.ceil((legendCount * legendItemHeight + legendPadding) / columns());
   }
 
   private getFilename(title: string) {

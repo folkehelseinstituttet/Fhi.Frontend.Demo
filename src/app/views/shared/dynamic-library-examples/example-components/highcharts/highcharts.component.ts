@@ -360,6 +360,9 @@ export class HighchartsComponent implements OnInit {
     this.getData(MockData.TestData, {
       series: undefined,
       controls: {
+        downloadButton: {
+          show: true,
+        },
         navigation: {
           items: {
             chartTypes: [
