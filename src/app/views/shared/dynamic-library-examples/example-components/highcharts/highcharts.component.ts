@@ -51,8 +51,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsWithMenu.id) {
       this.getExampleData('2a');
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
-      // this.getExampleData('3a');
-      this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+      this.getExampleData('3a');
+      // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
     }
   }
 
