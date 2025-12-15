@@ -13,6 +13,9 @@ import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 @Injectable()
 export class DownloadService {
+  exportWidth = 1200;
+  baseHeight = 700;
+
   downloadImage(
     chartInstance: Chart,
     MIMEtype: ExportingMimeTypeValue,
@@ -24,8 +27,8 @@ export class DownloadService {
     }
 
     const isSvg = MIMEtype === 'image/svg+xml';
-    const exportWidth = 1200;
-    const baseHeight = 800;
+    const exportWidth = this.exportWidth;
+    const baseHeight = this.baseHeight;
 
     const exportHeight = isSvg ? this.getSvgExportHeight(chartInstance, baseHeight) : baseHeight;
 
@@ -52,8 +55,8 @@ export class DownloadService {
 
   private getSvgLegendOptions(): Options['legend'] {
     return {
-      maxHeight: 100000,
       navigation: { enabled: false },
+      verticalAlign: 'bottom',
     };
   }
 
@@ -63,15 +66,13 @@ export class DownloadService {
       return baseHeight;
     }
 
-    const legendItemsPerRow = 5;
-    const legendRowCount = Math.ceil(legendCount / legendItemsPerRow);
+    let columns = () => {
+      return Math.floor(this.exportWidth / chartInstance.legend['maxItemWidth']) || 1;
+    };
 
-    const extraRows = Math.max(0, legendRowCount - 1);
-
-    const legendRowHeight = 20;
-    const legendPadding = 40;
-
-    return baseHeight + extraRows * legendRowHeight + legendPadding;
+    const legendItemHeight = 20;
+    const legendPadding = 60;
+    return baseHeight + Math.ceil((legendCount * legendItemHeight + legendPadding) / columns());
   }
 
   private getFilename(title: string) {
