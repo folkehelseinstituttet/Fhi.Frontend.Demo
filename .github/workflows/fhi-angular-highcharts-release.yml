@@ -29,7 +29,7 @@ jobs:
 
       - name: Check new npm version and publish
         id: publish
-        run: cd dist/fhi-angular-highcharts && npm publish --provenance --access public
+        run: cd dist/fhi-angular-highcharts; npm publish --provenance --access public
 
       - name: Post publish status
         if: steps.publish.outputs.type
