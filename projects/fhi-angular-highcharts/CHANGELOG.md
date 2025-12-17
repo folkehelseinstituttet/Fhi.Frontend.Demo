@@ -1,6 +1,6 @@
 # 6.5.1
 
-> Unreleased
+> Dec 17, 2025
 
 - :tada: **Enhancement** Updated Publish to NPM GitHub Actions [(#410)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Style/pull/410)
 
