@@ -29,12 +29,7 @@ jobs:
 
       - name: Check new npm version and publish
         id: publish
-        uses: JS-DevTools/npm-publish@v3.0.1
-        with:
-          access: 'public'
-          strategy: all
-          package: dist/fhi-angular-highcharts/package.json
-          token: ${{ secrets.NPM_TOKEN }}
+        run: cd dist/fhi-angular-highcharts; npm publish --provenance --access public
 
       - name: Post publish status
         if: steps.publish.outputs.type
