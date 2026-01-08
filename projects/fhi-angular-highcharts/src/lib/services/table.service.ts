@@ -71,11 +71,7 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: this.getRoundedData(
-              series[j - 1].name,
-              series[j - 1].data[i].y,
-              series[j - 1].data[i].yDisplay,
-            ),
+            data: this.getRoundedData(series[j - 1].name, series[j - 1].data[i].y),
           };
         }
       }
@@ -135,11 +131,7 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: this.getRoundedData(
-              series[i].name,
-              series[i].data[j - dimentionsCount].y,
-              series[i].data[j - dimentionsCount].yDisplay,
-            ),
+            data: this.getRoundedData(series[i].name, series[i].data[j - dimentionsCount].y),
           };
         }
       }
@@ -201,26 +193,21 @@ export class TableService {
     return counts;
   }
 
-  private getRoundedData(
-    serieName: string | string[],
-    data: number | string,
-    yDisplay?: string,
-  ): number | string {
-    const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
+  private getRoundedData(serieName: string | string[], data: number | string): number | string {
+    const maxDecimalsRaw = this.metadataForSeriesService.getMaxDecimals(serieName);
+    const maxDecimals = typeof maxDecimalsRaw === 'number' ? maxDecimalsRaw : 0;
 
-    if (yDisplay) {
-      return yDisplay;
+    if (typeof data !== 'number') {
+      return data;
     }
 
-    const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
-
-    if (typeof data === 'number' && decimalCount > maxDecimals) {
+    if (maxDecimals > 0) {
       // Fix for rounding errors in toFixed()
       // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
       const split = data.toString().split('.');
-      data = +(split.join('.') + '1');
+      const fixed = +(split.join('.') + '1');
 
-      return data.toFixed(maxDecimals);
+      return fixed.toFixed(maxDecimals);
     }
 
     return data;
