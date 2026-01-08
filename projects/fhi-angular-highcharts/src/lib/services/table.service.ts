@@ -5,6 +5,7 @@ import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/d
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 import { TableCell, TableData } from '../models/table-data.model';
 import { MetadataForSeriesService } from './metadata-for-series.service';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 
 @Injectable()
 export class TableService {
@@ -70,7 +71,11 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: this.getRoundedData(series[j - 1].name, series[j - 1].data[i].y),
+            data: this.getRoundedData(
+              series[j - 1].name,
+              series[j - 1].data[i].y,
+              series[j - 1].data[i].yDisplay,
+            ),
           };
         }
       }
@@ -130,7 +135,11 @@ export class TableService {
           // Table row data
           tbodyRows[i][j] = {
             isHeading: false,
-            data: this.getRoundedData(series[i].name, series[i].data[j - dimentionsCount].y),
+            data: this.getRoundedData(
+              series[i].name,
+              series[i].data[j - dimentionsCount].y,
+              series[i].data[j - dimentionsCount].yDisplay,
+            ),
           };
         }
       }
@@ -192,8 +201,17 @@ export class TableService {
     return counts;
   }
 
-  private getRoundedData(serieName: string | string[], data: number | string): number | string {
+  private getRoundedData(
+    serieName: string | string[],
+    data: number | string,
+    yDisplay?: string,
+  ): number | string {
     const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
+
+    if (yDisplay) {
+      return yDisplay;
+    }
+
     const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
 
     if (typeof data === 'number' && decimalCount > maxDecimals) {
@@ -203,8 +221,8 @@ export class TableService {
       data = +(split.join('.') + '1');
 
       return data.toFixed(maxDecimals);
-    } else {
-      return data;
     }
+
+    return data;
   }
 }
