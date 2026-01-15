@@ -44,10 +44,10 @@
             aria-label="Velg noe..."
             ngbDropdownToggle
           ></button>
-          <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+          <div class="dropdown-menu" ngbDropdownMenu>
             @for (diagramType of group.children; track diagramType.id) {
               <button
-                class="text-nowrap"
+                class="dropdown-item"
                 [ngClass]="{ active: diagramType?.active }"
                 ngbDropdownItem
                 (click)="navigate(diagramType)"
