@@ -1,4 +1,10 @@
-# 6.3.0
+# 7.0.0
+
+> Jan 09, 2026
+
+* :boom: **Breaking** Update to Angular v20 [(#890)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/890)
+
+## 6.3.0
 
 > Okt 15, 2025
 
