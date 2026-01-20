@@ -9,18 +9,6 @@
         margin-right: $fhi-core-space-3;
         margin-bottom: $fhi-core-space-3;
     }
-
-    .dropdown-menu {
-        right: 0;
-        left: auto;
-        max-width: calc(100vw - 16px) !important;
-        overflow-x: hidden;
-    }
-
-    .dropdown-menu .dropdown-item {
-        white-space: normal;
-        overflow-wrap: anywhere;
-    }
 }
 
 @container diagramControls (max-width: #{$fhi-core-px * 334}) {
@@ -41,6 +29,7 @@
 
         .dropdown-menu {
             max-width: calc(100vw - 16px);
+            inset: unset !important;
         }
     }
 }
