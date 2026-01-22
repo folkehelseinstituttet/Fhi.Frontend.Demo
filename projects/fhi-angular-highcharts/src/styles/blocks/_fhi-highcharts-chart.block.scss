@@ -49,3 +49,25 @@ $square: 1;
         }
     }
 }
+
+.fhi-diagram--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: #fff;
+    padding: 1rem;
+    overflow: auto;
+
+    .fhi-highcharts-chart,
+    .fhi-highcharts-chart--map {
+        max-width: none;
+        width: 100%;
+    }
+
+    .fhi-highcharts-chart highcharts-chart,
+    .fhi-highcharts-chart--map highcharts-chart {
+        max-height: none;
+        aspect-ratio: auto;
+        height: 80vh;
+    }
+}
