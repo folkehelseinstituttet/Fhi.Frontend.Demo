@@ -29,6 +29,7 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
 
 | FHI Angular Highcharts | FHI Angular Componets | Highcharts | Highcharts Angular |
 | ---------------------- | --------------------- | ---------- | ------------------ |
+| 7                      | 7                     | 11.4       | 4.0                |
 | 6                      | 6                     | 11.4       | 4.0                |
 | 5                      | 5                     | 11.4       | 4.0                |
 | >4.1                   | 4                     | 11.4       | 4.0                |
