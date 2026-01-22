@@ -28,7 +28,8 @@
         }
 
         .dropdown-menu {
-            left: calc(#{$fhi-core-px} * -97) !important;
+            max-width: calc(100vw - 16px);
+            inset: unset !important;
         }
     }
 }
