@@ -262,15 +262,15 @@
 
   <ng-template #diagramTypeDisabledWarning>
     <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Vi kan ikke vise grafen du ber om. Bytt til tabellvisning, velg bort kategorier som ikke inneholder verdier og
-          prøv igjen. Det kan også hjelpe å kun velge ett måltall om gangen.
-        </p>
+      <div class="disabled-warning disabled-alert" role="alert">
+        <p class="fw-bold warning-title">Her vil du se diagrammet ditt når følgende er utført.</p>
+        <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
         <ul>
           @for (requirement of diagramRequirements; track $index) {
-            <li>{{ requirement.isMet ? '✅' : '❌' }} {{ requirement.label }} {{ requirement.isMet }} <br /></li>
+            <li>
+              <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+              {{ requirement.label }}
+            </li>
           }
         </ul>
       </div>

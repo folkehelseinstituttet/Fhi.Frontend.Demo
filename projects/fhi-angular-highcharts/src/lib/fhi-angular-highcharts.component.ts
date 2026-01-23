@@ -53,6 +53,7 @@ enum ControlsPopoverMenuActions {
 @Component({
   selector: 'fhi-angular-highcharts',
   templateUrl: './fhi-angular-highcharts.component.html',
+  styleUrl: './fhi-angular-highcharts.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
