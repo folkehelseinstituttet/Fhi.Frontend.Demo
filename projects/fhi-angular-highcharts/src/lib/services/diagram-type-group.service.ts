@@ -11,6 +11,7 @@ import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
+import { FhiDiagramRequirements } from '../models/fhi-diagram-requirements.model';
 
 enum msgId {
   hasFlaggedData,
@@ -30,19 +31,99 @@ export class DiagramTypeGroupService {
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
   private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
-  private diagramTypeDisabledWarningMessages: Record<msgId, string> = {
-    [msgId.hasFlaggedData]: 'series.length > 1 && flaggedSeries?.length !== 0',
-    [msgId.moreThanOneSeries]: 'series.length > 1',
-    [msgId.notAllUnitsFoundInSeries]: 'notAllUnitsFoundInSeries',
-    [msgId.notGeo]: 'series.length === 1 && serieNotGeo(this.series[0])',
-    [msgId.notMaxOneUnitInSeries]: 'this.uniqueUnitIdCountInSeries() > 1',
-    [msgId.notTwoUnitsInSeries]: 'this.uniqueUnitIdCountInSeries() !== 2',
-    [msgId.notTwoUnits]: 'diagramOptions.units?.length !== 2',
-    [msgId.onlyOneSerieAndAllDataAreFlagged]: 'onlyOneSerieAndAllDataAreFlagged',
-  };
+  private diagramTypeDisabledWarningMessages: Record<msgId, { warning: string; message: string }> =
+    {
+      [msgId.hasFlaggedData]: {
+        warning: 'series.length > 1 && flaggedSeries?.length !== 0',
+        message: 'Det er valgt for mange kategorier med manglende data.',
+      },
+      [msgId.moreThanOneSeries]: {
+        warning: 'series.length > 1',
+        message: 'Denne visningen kan bare vise én serie om gangen. Velg bort ekstra serier.',
+      },
+      [msgId.notAllUnitsFoundInSeries]: {
+        warning: 'notAllUnitsFoundInSeries',
+        message: 'Krever at alle valgte måltall finnes i datasettet.',
+      },
+      [msgId.notGeo]: {
+        warning: 'series.length === 1 && serieNotGeo(this.series[0])',
+        message: 'Krever gyldige geografiske data for å vise en kartvisning.',
+      },
+      [msgId.notMaxOneUnitInSeries]: {
+        warning: 'this.uniqueUnitIdCountInSeries() > 1',
+        message:
+          'Denne diagramtypen støtter kun ett nåltall. Sørg for at kun ett måltall er valgt.',
+      },
+      [msgId.notTwoUnitsInSeries]: {
+        warning: 'this.uniqueUnitIdCountInSeries() !== 2',
+        message: 'Krever nøyaktig to måltall med forskjellige måleenheter.',
+      },
+      [msgId.notTwoUnits]: {
+        warning: 'diagramOptions.units?.length !== 2',
+        message: 'Krever nøyaktig to måltall med definisjoner i metadata-konfigurasjonen.', // Trenger hjelp med denne fra Bernt
+      },
+      [msgId.onlyOneSerieAndAllDataAreFlagged]: {
+        warning: 'onlyOneSerieAndAllDataAreFlagged',
+        message: 'Kun én serie er valgt, og alle data er skjult eller mangler.',
+      },
+    };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
     return this.diagramTypeDisabledWarnings[activeDiagramType];
+  }
+
+  getDiagramRequirements(activeDiagramType: DiagramType): FhiDiagramRequirements[] {
+    const requirements: FhiDiagramRequirements[] = [];
+    const msg = this.diagramTypeDisabledWarningMessages;
+    if (this.isAnyTypeButTable(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.onlyOneSerieAndAllDataAreFlagged].message,
+        isMet: !this.onlyOneSerieAndAllDataAreFlagged(activeDiagramType),
+      });
+    }
+    if (this.isAnyTypeButTableOrColumnAndLine(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.notMaxOneUnitInSeries].message,
+        isMet: !this.notMaxOneUnitInSeries(activeDiagramType),
+      });
+    }
+    if (this.isBarOrColumnType(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.hasFlaggedData].message,
+        isMet: !this.hasFlaggedData(activeDiagramType),
+      });
+    }
+    if (this.isMapOrPieType(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.moreThanOneSeries].message,
+        isMet: !this.moreThanOneSeries(activeDiagramType),
+      });
+      requirements.push({
+        label: msg[msgId.notTwoUnits].message,
+        isMet: !this.notTwoUnits(activeDiagramType),
+      });
+    }
+    if (this.isMapType(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.notGeo].message,
+        isMet: !this.notGeo(activeDiagramType),
+      });
+    }
+    if (activeDiagramType.id === DiagramTypes.columnAndLine.id) {
+      requirements.push({
+        label: msg[msgId.notTwoUnits].message,
+        isMet: !this.notTwoUnits(activeDiagramType),
+      });
+      requirements.push({
+        label: msg[msgId.notTwoUnitsInSeries].message,
+        isMet: !this.notTwoUnitsInSeries(activeDiagramType),
+      });
+      requirements.push({
+        label: msg[msgId.notAllUnitsFoundInSeries].message,
+        isMet: !this.notAllUnitsFoundInSeries(activeDiagramType),
+      });
+    }
+    return requirements;
   }
 
   getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
