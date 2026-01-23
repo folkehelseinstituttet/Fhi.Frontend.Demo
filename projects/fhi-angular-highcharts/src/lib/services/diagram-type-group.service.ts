@@ -37,11 +37,11 @@ export class DiagramTypeGroupService {
     {
       [msgId.hasFlaggedData]: {
         warning: 'series.length > 1 && flaggedSeries?.length !== 0',
-        message: 'Det er valgt for mange kategorier med manglende data.',
+        message: 'Krever at ingen serier har flagget data ved valg av flere serier.',
       },
       [msgId.moreThanOneSeries]: {
         warning: 'series.length > 1',
-        message: 'Denne visningen kan bare vise én serie om gangen. Velg bort ekstra serier.',
+        message: 'Krever at kun én serie er valgt.',
       },
       [msgId.notAllUnitsFoundInSeries]: {
         warning: 'notAllUnitsFoundInSeries',
@@ -53,8 +53,7 @@ export class DiagramTypeGroupService {
       },
       [msgId.notMaxOneUnitInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() > 1',
-        message:
-          'Denne diagramtypen støtter kun ett nåltall. Sørg for at kun ett måltall er valgt.',
+        message: 'Krever at kun ett måltall er valgt.',
       },
       [msgId.notTwoUnitsInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() !== 2',
@@ -66,7 +65,7 @@ export class DiagramTypeGroupService {
       },
       [msgId.onlyOneSerieAndAllDataAreFlagged]: {
         warning: 'onlyOneSerieAndAllDataAreFlagged',
-        message: 'Kun én serie er valgt, og alle data er skjult eller mangler.',
+        message: 'Krever at det finnes data i serien som kan vises.',
       },
     };
 
@@ -88,6 +87,7 @@ export class DiagramTypeGroupService {
   }
 
   getDiagramRequirements(activeDiagramType: DiagramType): FhiDiagramRequirements[] {
+    // Merge this with diagramTypeIsDisabled???
     const requirements: FhiDiagramRequirements[] = [];
     const msg = this.diagramTypeDisabledWarningMessages;
     if (this.isAnyTypeButTable(activeDiagramType)) {
@@ -112,10 +112,6 @@ export class DiagramTypeGroupService {
       requirements.push({
         label: msg[msgId.moreThanOneSeries].message,
         isMet: !this.moreThanOneSeries(activeDiagramType),
-      });
-      requirements.push({
-        label: msg[msgId.notTwoUnits].message,
-        isMet: !this.notTwoUnits(activeDiagramType),
       });
     }
     if (this.isMapType(activeDiagramType)) {
