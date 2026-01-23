@@ -22,6 +22,7 @@ enum msgId {
   notTwoUnitsInSeries,
   notTwoUnits,
   onlyOneSerieAndAllDataAreFlagged,
+  datasetIsEmpty,
 }
 
 @Injectable()
@@ -37,7 +38,7 @@ export class DiagramTypeGroupService {
     {
       [msgId.hasFlaggedData]: {
         warning: 'series.length > 1 && flaggedSeries?.length !== 0',
-        message: 'Krever at ingen serier har flagget data ved valg av flere serier.',
+        message: 'Krever at ingen serier har prikket data ved valg av flere serier.',
       },
       [msgId.moreThanOneSeries]: {
         warning: 'series.length > 1',
@@ -67,6 +68,10 @@ export class DiagramTypeGroupService {
         warning: 'onlyOneSerieAndAllDataAreFlagged',
         message: 'Krever at det finnes data i serien som kan vises.',
       },
+      [msgId.datasetIsEmpty]: {
+        warning: 'series === undefined || series.length === 0',
+        message: 'Krever at det finnes data i datasettet.',
+      },
     };
 
   getDiagramTypeDisabledWarningMsg(activeDiagramType: string): {
@@ -86,6 +91,14 @@ export class DiagramTypeGroupService {
     };
   }
 
+  private datasetIsEmpty(diagramType: DiagramType): boolean {
+    if (this.series === undefined || this.series.length === 0) {
+      this.updateDisabledWarnings(diagramType.id, msgId.datasetIsEmpty);
+      return true;
+    }
+    return false;
+  }
+
   getDiagramRequirements(activeDiagramType: DiagramType): FhiDiagramRequirements[] {
     // Merge this with diagramTypeIsDisabled???
     const requirements: FhiDiagramRequirements[] = [];
@@ -93,45 +106,59 @@ export class DiagramTypeGroupService {
     if (this.isAnyTypeButTable(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.onlyOneSerieAndAllDataAreFlagged].message,
-        isMet: !this.onlyOneSerieAndAllDataAreFlagged(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.onlyOneSerieAndAllDataAreFlagged(activeDiagramType),
       });
     }
     if (this.isAnyTypeButTableOrColumnAndLine(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.notMaxOneUnitInSeries].message,
-        isMet: !this.notMaxOneUnitInSeries(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.notMaxOneUnitInSeries(activeDiagramType),
       });
     }
     if (this.isBarOrColumnType(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.hasFlaggedData].message,
-        isMet: !this.hasFlaggedData(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.hasFlaggedData(activeDiagramType),
       });
     }
     if (this.isMapOrPieType(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.moreThanOneSeries].message,
-        isMet: !this.moreThanOneSeries(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.moreThanOneSeries(activeDiagramType),
       });
     }
     if (this.isMapType(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.notGeo].message,
-        isMet: !this.notGeo(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType) ? false : !this.notGeo(activeDiagramType),
       });
     }
     if (activeDiagramType.id === DiagramTypes.columnAndLine.id) {
       requirements.push({
         label: msg[msgId.notTwoUnits].message,
-        isMet: !this.notTwoUnits(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.notTwoUnits(activeDiagramType),
       });
       requirements.push({
         label: msg[msgId.notTwoUnitsInSeries].message,
-        isMet: !this.notTwoUnitsInSeries(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.notTwoUnitsInSeries(activeDiagramType),
       });
       requirements.push({
         label: msg[msgId.notAllUnitsFoundInSeries].message,
-        isMet: !this.notAllUnitsFoundInSeries(activeDiagramType),
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.notAllUnitsFoundInSeries(activeDiagramType),
       });
     }
     return requirements;
@@ -290,6 +317,7 @@ export class DiagramTypeGroupService {
   }
 
   private diagramTypeIsDisabled(diagramType: DiagramType): boolean {
+    if (this.datasetIsEmpty(diagramType)) return true;
     if (this.isAnyTypeButTable(diagramType)) {
       if (this.onlyOneSerieAndAllDataAreFlagged(diagramType)) return true;
     }
