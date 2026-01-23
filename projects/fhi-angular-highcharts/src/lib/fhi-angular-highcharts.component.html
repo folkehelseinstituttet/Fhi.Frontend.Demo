@@ -274,15 +274,17 @@
             }
           </ul>
         }
-        <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
-        <ul>
-          @for (requirement of diagramRequirements; track $index) {
-            <li>
-              <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-              {{ requirement.label }}
-            </li>
-          }
-        </ul>
+        @if (diagramRequirements?.length > 0) {
+          <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
+          <ul>
+            @for (requirement of diagramRequirements; track $index) {
+              <li>
+                <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                {{ requirement.label }}
+              </li>
+            }
+          </ul>
+        }
       </div>
     </div>
   </ng-template>
