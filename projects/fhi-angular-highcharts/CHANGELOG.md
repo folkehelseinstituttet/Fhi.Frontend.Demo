@@ -1,4 +1,11 @@
-# 6.5.0
+# 7.0.0
+
+> Jan 22, 2026
+
+- :bug: **Enhancement** Fix diagram drop down exceeds viewport on small devices [(#910)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/910)
+- :boom: **Breaking** Update to Angular v20 [(#890)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/890)
+
+## 6.5.0
 
 > Des 15, 2025
 
