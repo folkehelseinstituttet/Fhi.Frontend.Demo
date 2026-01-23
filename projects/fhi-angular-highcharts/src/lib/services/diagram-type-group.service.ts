@@ -30,7 +30,9 @@ export class DiagramTypeGroupService {
   private flaggedSeries!: FlaggedSerie[];
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
-  private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
+  private diagramTypeDisabledWarnings: {
+    [key in FhiDiagramTypeIds]?: { warning: string; message: string };
+  } = {};
   private diagramTypeDisabledWarningMessages: Record<msgId, { warning: string; message: string }> =
     {
       [msgId.hasFlaggedData]: {
@@ -68,8 +70,21 @@ export class DiagramTypeGroupService {
       },
     };
 
-  getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
-    return this.diagramTypeDisabledWarnings[activeDiagramType];
+  getDiagramTypeDisabledWarningMsg(activeDiagramType: string): {
+    warning: string;
+    message: string;
+  } {
+    const warning = this.diagramTypeDisabledWarnings[activeDiagramType];
+    if (warning) {
+      return {
+        warning: warning.warning,
+        message: warning.message,
+      };
+    }
+    return {
+      warning: 'ukjent årsak',
+      message: 'Det har oppstått en ukjent feil.',
+    };
   }
 
   getDiagramRequirements(activeDiagramType: DiagramType): FhiDiagramRequirements[] {

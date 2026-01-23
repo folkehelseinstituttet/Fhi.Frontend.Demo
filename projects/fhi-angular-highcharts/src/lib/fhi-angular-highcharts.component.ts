@@ -41,6 +41,7 @@ import { DiagramTypeGroup } from './models/diagram-type-group.model';
 import { FlaggedSerie } from './models/flagged-serie.model';
 import { DownloadService } from './services/download.service';
 import { MetadataForSeriesService } from './services/metadata-for-series.service';
+import { FhiDiagramRequirements } from './models/fhi-diagram-requirements.model';
 
 enum ControlsPopoverMenuActions {
   downloadSvg = 'downloadSvg',
@@ -78,6 +79,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   showDefaultChartTemplate: boolean;
   showDiagramTypeDisabledWarning: boolean;
+  diagramRequirements: FhiDiagramRequirements[] = [];
   showDiagramTypeNav: boolean;
   showDownloadButton: boolean;
   showTableOrientationButton: boolean;
@@ -287,7 +289,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       const msg = this.diagramTypeGroupService.getDiagramTypeDisabledWarningMsg(
         this.diagramOptionsInternal.activeDiagramType,
       );
-      console.warn(`Kan ikke vise diagramtype "${activeDiagramType}" fordi "${msg}"`);
+      this.diagramRequirements = this.diagramTypeGroupService.getDiagramRequirements(
+        this.activeDiagramTypeGroup.diagramType,
+      );
+      console.warn(
+        `Kan ikke vise diagramtype "${activeDiagramType}" fordi "${msg.message}" (Teknisk årsak: "${msg.warning}")`,
+      );
     }
   }
 
