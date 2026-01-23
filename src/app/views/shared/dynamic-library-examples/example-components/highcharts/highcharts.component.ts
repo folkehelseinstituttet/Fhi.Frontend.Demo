@@ -38,6 +38,7 @@ export class HighchartsComponent implements OnInit {
     title_3d: 'Dobbel akse, linje og søyle',
     title_3e: 'Prikkede data med to serier',
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
+    title_11: 'Test-data - Tomt datasett',
   };
 
   constructor(
@@ -131,6 +132,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3f':
         this.getData__example_3f();
+        break;
+      case '11':
+        this.getData__example_11();
         break;
     }
   }
@@ -353,6 +357,47 @@ export class HighchartsComponent implements OnInit {
         flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
       },
+    });
+  }
+
+  private getData__example_11() {
+    this.getData(MockData.TestData11, {
+      ...this.diagramOptions,
+      activeDiagramType: 'line',
+      title: this.titles.title_11,
+      units: undefined,
+      categoryAxis: {
+        title: 'År',
+      },
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapFylker2023'],
+          },
+        },
+      },
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
+      customRequirements: [
+        {
+          label: 'Krever at det er data i datasettet',
+          isMet: false,
+        },
+        {
+          label: 'Krever noe som brukeren har gjort riktig.',
+          isMet: true,
+        },
+      ],
     });
   }
 
