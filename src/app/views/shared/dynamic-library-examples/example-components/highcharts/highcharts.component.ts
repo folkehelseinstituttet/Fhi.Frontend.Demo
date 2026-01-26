@@ -374,8 +374,16 @@ export class HighchartsComponent implements OnInit {
         navigation: {
           ...this.diagramOptions.controls.navigation,
           items: {
-            chartTypes: ['bar', 'column', 'line', 'pie'],
-            mapTypes: ['mapFylker2023'],
+            chartTypes: [
+              'line',
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'pie',
+              'columnAndLine',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
           },
         },
       },
