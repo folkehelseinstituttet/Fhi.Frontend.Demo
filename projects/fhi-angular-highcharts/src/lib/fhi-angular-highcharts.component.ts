@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -58,6 +59,7 @@ enum ControlsPopoverMenuActions {
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
   private chartInstance!: Chart;
+
   isFullscreen = false;
 
   @Input({ required: true }) diagramOptions!: FhiDiagramOptions;
@@ -140,11 +142,10 @@ export class FhiAngularHighchartsComponent implements OnChanges {
 
   toggleFullscreen() {
     this.isFullscreen = !this.isFullscreen;
+    document.body.style.overflow = this.isFullscreen ? 'hidden' : '';
 
     setTimeout(() => {
-      if (this.chartInstance) {
-        this.chartInstance.reflow();
-      }
+      this.chartInstance?.reflow();
     }, 0);
 
     this.changeDetector.detectChanges();
@@ -153,6 +154,17 @@ export class FhiAngularHighchartsComponent implements OnChanges {
   closeFullscreen() {
     if (!this.isFullscreen) return;
     this.toggleFullscreen();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(event: Event) {
+    if (!this.isFullscreen) return;
+
+    const keyboardEvent = event as KeyboardEvent;
+    if (keyboardEvent.key !== 'Escape') return;
+
+    keyboardEvent.preventDefault();
+    this.closeFullscreen();
   }
 
   onControlsPopoverMenuAction(actionName: string) {
@@ -215,6 +227,7 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.allSerieNames = [];
     this.flaggedSeries = [];
     this.metadataForSeriesService.resetMetadataForSeries();
+
     this.isFullscreen = false;
   }
 

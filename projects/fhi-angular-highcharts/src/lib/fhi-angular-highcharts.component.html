@@ -2,6 +2,22 @@
   <article [class.fhi-diagram--fullscreen]="isFullscreen">
     <h1 class="h3 mb-3">{{ diagramOptionsInternal.title }}</h1>
 
+    @if (isFullscreen) {
+      <button
+        type="button"
+        class="btn-close fhi-diagram-fullscreen__close"
+        aria-label="Lukk fullskjerm"
+        (click)="closeFullscreen()"
+      ></button>
+      <button
+        type="button"
+        class="btn fhi-btn-secondary fhi-diagram-fullscreen__close-bottom"
+        (click)="closeFullscreen()"
+      >
+        Lukk
+      </button>
+    }
+
     @if (diagramOptionsInternal.description) {
       <p class="mb-4">{{ diagramOptionsInternal.description }}</p>
     }
@@ -61,14 +77,14 @@
             </button>
           }
 
-          @if (showFullScreenButton && !showDiagramTypeDisabledWarning) {
+          @if (showFullScreenButton && !showDiagramTypeDisabledWarning && !isFullscreen) {
             <button
               type="button"
               class="btn fhi-btn-icon fhi-btn-icon--circular"
               (click)="toggleFullscreen()"
-              [attr.aria-pressed]="isFullscreen"
+              aria-label="Fullskjerm"
             >
-              <i class="icon-arrows-fullscreen"></i>
+              <i class="icon-arrows-fullscreen" aria-hidden="true"></i>
               <span class="visually-hidden">Fullskjerm</span>
             </button>
           }
