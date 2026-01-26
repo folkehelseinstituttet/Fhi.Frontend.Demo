@@ -1,6 +1,6 @@
 {
   "name": "@folkehelseinstituttet/angular-highcharts",
-  "version": "6.5.0",
+  "version": "7.0.0",
   "publishConfig": {
     "tag": "latest"
   },
@@ -10,7 +10,7 @@
     "directory": "projects/fhi-angular-highcharts"
   },
   "peerDependencies": {
-    "@folkehelseinstituttet/angular-components": "^6.0.0",
+    "@folkehelseinstituttet/angular-components": "^7.0.0",
     "highcharts": "~11.4.0",
     "highcharts-angular": "~4.0.0"
   },
