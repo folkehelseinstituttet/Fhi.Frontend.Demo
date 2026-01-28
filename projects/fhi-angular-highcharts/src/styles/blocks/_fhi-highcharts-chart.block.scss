@@ -50,7 +50,7 @@ $square: 1;
     }
 }
 
-/*.fhi-diagram--fullscreen {
+.fhi-diagram--fullscreen {
     position: fixed;
     inset: 0;
     z-index: 1050;
@@ -69,33 +69,4 @@ $square: 1;
         aspect-ratio: auto;
         height: 80vh;
     }
-}*/
-
-.fhi-diagram--fullscreen {
-    position: fixed;
-    inset: 0;
-    z-index: 1050;
-    background: #fff;
-
-    width: 100vw;
-    height: 100dvh;
-    overflow: auto;
-    overflow-x: hidden;
-
-    padding-top: calc(env(safe-area-inset-top) + 1rem);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 4.5rem);
-}
-
-.fhi-diagram--fullscreen .fhi-diagram-fullscreen__close {
-    position: fixed;
-    top: calc(env(safe-area-inset-top) + 1rem);
-    right: calc(env(safe-area-inset-right) + 1rem);
-    z-index: 1100;
-}
-
-.fhi-diagram--fullscreen .fhi-diagram-fullscreen__close-bottom {
-    position: fixed;
-    right: calc(env(safe-area-inset-right) + 1rem);
-    bottom: calc(env(safe-area-inset-bottom) + 1rem);
-    z-index: 1100;
 }
