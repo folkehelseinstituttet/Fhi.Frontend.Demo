@@ -201,15 +201,29 @@ export class TableService {
       return data;
     }
 
-    if (maxDecimals > 0) {
-      // Fix for rounding errors in toFixed()
-      // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
-      const split = data.toString().split('.');
-      const fixed = +(split.join('.') + '1');
+    const decimalsIsSet = this.metadataForSeriesService.getDecimalsIsSet(serieName);
+    const decimalsToUse = decimalsIsSet
+      ? maxDecimals
+      : this.metadataForSeriesService.getDecimalCount(data);
 
-      return fixed.toFixed(maxDecimals);
+    if (decimalsIsSet) {
+      console.log('decimalsIsSet ->', data, decimalsToUse);
+      return this.roundAndToFixed(data, decimalsToUse);
     }
 
+    if (decimalsToUse > 0) {
+      return this.roundAndToFixed(data, decimalsToUse);
+    }
+    console.log({ serieName, maxDecimals, decimalsIsSet, decimalsToUse, data });
     return data;
+  }
+
+  private roundAndToFixed(value: number, decimals: number): string {
+    // Fix for rounding errors in toFixed()
+    // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
+    const factor = 10 ** decimals;
+    const rounded = Math.round((value + Number.EPSILON) * factor) / factor;
+
+    return rounded.toFixed(decimals);
   }
 }

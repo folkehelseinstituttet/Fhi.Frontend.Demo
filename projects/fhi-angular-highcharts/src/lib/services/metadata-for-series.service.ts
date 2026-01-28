@@ -6,10 +6,12 @@ import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 @Injectable()
 export class MetadataForSeriesService {
-  private metadataForSeries: MetadataForSerie[];
+  private metadataForSeries: MetadataForSerie[] = [];
+  private configuredDecimals: number | undefined;
 
   resetMetadataForSeries() {
     this.metadataForSeries = [];
+    this.configuredDecimals = undefined;
   }
 
   get hasPositiveData(): boolean {
@@ -26,7 +28,25 @@ export class MetadataForSeriesService {
 
   getMaxDecimals(serieName: string | string[]): number {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
-    return metadataForSerie.maxDecimals;
+
+    if (!metadataForSerie) {
+      console.warn('No metadata found for serieName in getMaxDecimals()', {
+        serieName,
+        knownSeries: this.metadataForSeries.map((s) => s.name),
+      });
+      return 0;
+    }
+
+    return metadataForSerie.maxDecimals ?? 0;
+  }
+
+  getDecimalsIsSet(serieName: string | string[]): boolean {
+    const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
+    return !!metadataForSerie?.decimalsIsSet;
+  }
+
+  getConfiguredDecimals(): number | undefined {
+    return this.configuredDecimals;
   }
 
   getDecimalCount(value: number | string): number {
@@ -40,12 +60,23 @@ export class MetadataForSeriesService {
   }
 
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
+    let unit = units?.find((unit) => unit.id === serie.unitId);
+
+    if (!unit && units?.length === 1) {
+      unit = units[0];
+    }
+
+    const decimalsIsSet = unit?.decimals !== undefined && unit?.decimals !== null;
+
+    this.configuredDecimals = typeof unit?.decimals === 'number' ? unit.decimals : undefined;
+
     this.metadataForSeries.push({
       name: serie.name,
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
       maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
+      decimalsIsSet: decimalsIsSet,
     });
   }
 
