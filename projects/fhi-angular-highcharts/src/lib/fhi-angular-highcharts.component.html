@@ -74,9 +74,7 @@
           @if (showTableOrientationButton) {
             <div class="ms-auto">
               <fhi-popover-menu
-                [items]="[
-                  { name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' },
-                ]"
+                [items]="[{ name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' }]"
                 (actionEvent)="onControlsPopoverMenuAction($event)"
               ></fhi-popover-menu>
             </div>
@@ -246,6 +244,11 @@
           <a role="button" class="fhi-link" tabindex="0" (click)="setDiagramTypeGroupToTable()">Vis som tabell</a>
           for å se flere detaljer.
         </div>
+      }
+      @if (diagramOptionsInternal.footer?.footnote) {
+        <p class="fst-italic small">
+          {{ diagramOptionsInternal.footer?.footnote }}
+        </p>
       }
       @if (diagramOptionsInternal.footer?.disclaimer) {
         <p class="fst-italic small">
