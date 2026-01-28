@@ -13,19 +13,10 @@
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
-
-    // TODO: uncomment to get a stricter build
-    // "forceConsistentCasingInFileNames": true,
-    // "strict": true,
-    // "noImplicitOverride": true,
-    // "noPropertyAccessFromIndexSignature": true,
-    // "noImplicitReturns": true,
-    // "noFallthroughCasesInSwitch": true,
-
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",

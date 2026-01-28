@@ -29,7 +29,14 @@
             {{ group.name }}
           </span>
         </button>
-        <div class="btn-group fhi-dropdown" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+        <div
+          class="btn-group fhi-dropdown"
+          ngbDropdown
+          placement="bottom-end"
+          display="dynamic"
+          role="group"
+          aria-label="Button group with nested dropdown"
+        >
           <button
             type="button"
             class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
@@ -40,7 +47,7 @@
           <div class="dropdown-menu" ngbDropdownMenu>
             @for (diagramType of group.children; track diagramType.id) {
               <button
-                class="text-nowrap"
+                class="dropdown-item"
                 [ngClass]="{ active: diagramType?.active }"
                 ngbDropdownItem
                 (click)="navigate(diagramType)"
