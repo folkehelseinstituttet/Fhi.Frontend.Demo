@@ -69,4 +69,19 @@ $square: 1;
         aspect-ratio: auto;
         height: 80vh;
     }
+
+    .fhi-diagram-fullscreen__close {
+        position: fixed;
+        top: calc(env(safe-area-inset-top) + clamp(12px, 2vw, 24px));
+        right: calc(env(safe-area-inset-right) + clamp(12px, 2vw, 24px));
+        z-index: 1060;
+    }
+
+    /* "Lukk" nede til høyre */
+    .fhi-diagram-fullscreen__close-bottom {
+        position: fixed;
+        right: calc(env(safe-area-inset-right) + clamp(12px, 2vw, 24px));
+        bottom: calc(env(safe-area-inset-bottom) + clamp(12px, 2vw, 24px));
+        z-index: 1060;
+    }
 }
