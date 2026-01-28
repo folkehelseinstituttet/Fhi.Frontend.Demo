@@ -56,45 +56,50 @@ $square: 1;
     z-index: 1050;
     background: #fff;
     overflow: auto;
-
-    .fhi-highcharts-chart,
-    .fhi-highcharts-chart--map {
-        max-width: none;
-        width: 100%;
-    }
-
-    .fhi-highcharts-chart highcharts-chart,
-    .fhi-highcharts-chart--map highcharts-chart {
-        max-height: none;
-        aspect-ratio: auto;
-        height: 80vh;
-    }
+    box-sizing: border-box;
+    padding: 2rem;
+    padding-bottom: 88px;
 }
 
-@media (max-width: 576px) {
+.fhi-diagram--fullscreen h1 {
+    padding-right: 40px;
+}
+
+.fhi-diagram--fullscreen h1.h3 {
+    font-size: 2.25rem;
+    padding-bottom: 2.9rem;
+}
+
+.fhi-diagram--fullscreen .fhi-diagram-fullscreen__close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    left: auto;
+    z-index: 1060;
+}
+
+.fhi-diagram--fullscreen .fhi-diagram-fullscreen__close-bottom {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    left: auto;
+    z-index: 1060;
+}
+
+@media (max-width: 600px) {
     .fhi-diagram--fullscreen {
-        padding: 16px;
-        padding-bottom: 96px; // plass til "Lukk"
+        padding: 12px;
+        padding-bottom: 96px;
     }
 
-    .fhi-diagram--fullscreen {
-        .fhi-highcharts-chart highcharts-chart,
-        .fhi-highcharts-chart--map highcharts-chart {
-            height: 65vh;
-        }
-    }
-
-    .fhi-diagram-fullscreen__close {
+    .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close {
         top: 12px;
         right: 12px;
-        transform: scale(1.1);
     }
 
-    .fhi-diagram-fullscreen__close-bottom {
-        left: 16px;
-        right: 16px;
-        bottom: 16px;
-        width: auto;
-        max-width: none;
+    .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close-bottom {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
     }
 }

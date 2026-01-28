@@ -22,7 +22,7 @@
       <p class="mb-4">{{ diagramOptionsInternal.description }}</p>
     }
 
-    @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
+    @if (!isFullscreen && (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton)) {
       <ng-container *ngTemplateOutlet="diagramControls" />
     }
     @if (showDiagramTypeDisabledWarning) {
