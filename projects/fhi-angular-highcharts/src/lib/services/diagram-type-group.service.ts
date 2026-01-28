@@ -154,12 +154,7 @@ export class DiagramTypeGroupService {
           ? false
           : !this.notTwoUnitsInSeries(activeDiagramType),
       });
-      requirements.push({
-        label: msg[msgId.notAllUnitsFoundInSeries].message,
-        isMet: this.datasetIsEmpty(activeDiagramType)
-          ? false
-          : !this.notAllUnitsFoundInSeries(activeDiagramType),
-      });
+      // notAllUnitsFoundInSeries skal ikke vises for bruker
     }
     return requirements;
   }
