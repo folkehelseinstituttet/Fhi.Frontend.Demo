@@ -85,30 +85,30 @@ $square: 1;
     }
 }*/
 
-.fhi-diagram--fullscreen {
-    position: fixed;
-    inset: 0;
-    z-index: 1050;
-    background: #fff;
+@media (max-width: 576px) {
+    .fhi-diagram--fullscreen {
+        padding: 16px;
+        padding-bottom: 96px; // plass til "Lukk"
+    }
 
-    box-sizing: border-box;
-    padding: clamp(16px, 2vw, 32px);
+    .fhi-diagram--fullscreen {
+        .fhi-highcharts-chart highcharts-chart,
+        .fhi-highcharts-chart--map highcharts-chart {
+            height: 65vh;
+        }
+    }
 
-    padding-bottom: calc(clamp(16px, 2vw, 32px) + 64px);
+    .fhi-diagram-fullscreen__close {
+        top: 12px;
+        right: 12px;
+        transform: scale(1.1);
+    }
 
-    overflow: auto;
-}
-
-.fhi-diagram-fullscreen__close {
-    position: fixed;
-    top: calc(env(safe-area-inset-top) + clamp(12px, 2vw, 24px));
-    right: calc(env(safe-area-inset-right) + clamp(12px, 2vw, 24px));
-    z-index: 1060;
-}
-
-.fhi-diagram-fullscreen__close-bottom {
-    position: fixed;
-    right: calc(env(safe-area-inset-right) + clamp(12px, 2vw, 24px));
-    bottom: calc(env(safe-area-inset-bottom) + clamp(12px, 2vw, 24px));
-    z-index: 1060;
+    .fhi-diagram-fullscreen__close-bottom {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        width: auto;
+        max-width: none;
+    }
 }
