@@ -57,7 +57,7 @@ $square: 1;
     background: #fff;
     overflow: auto;
     box-sizing: border-box;
-    padding: 2rem;
+    padding: 32px;
     padding-bottom: 88px;
     min-height: 100vh;
 }
@@ -68,39 +68,50 @@ $square: 1;
 
 .fhi-diagram--fullscreen h1.h3 {
     font-size: 2.25rem;
-    padding-bottom: 2.9rem;
+    padding-bottom: 1.6rem;
 }
 
 .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close {
     position: fixed;
-    top: 16px;
-    right: 16px;
+    top: 28px;
+    right: 28px;
     left: auto;
     z-index: 1060;
 }
 
 .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close-bottom {
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: 32px;
+    bottom: 32px;
     left: auto;
     z-index: 1060;
 }
 
 @media (max-width: 600px) {
     .fhi-diagram--fullscreen {
-        padding: 12px;
+        padding-left: 32px;
+        padding-right: 32px;
         padding-bottom: 96px;
+        min-height: 100vh;
+    }
+
+    .fhi-diagram--fullscreen h1.h3 {
+        font-size: 1.7rem;
+        padding-bottom: 1rem;
     }
 
     .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close {
-        top: 12px;
-        right: 12px;
+        top: 27px;
+        right: 25px;
+        left: auto;
+        z-index: 1060;
     }
 
     .fhi-diagram--fullscreen .fhi-diagram-fullscreen__close-bottom {
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
+        left: 28px;
+        right: 28px;
+        bottom: 28px;
+        z-index: 1060;
+        margin: 4px;
     }
 }
