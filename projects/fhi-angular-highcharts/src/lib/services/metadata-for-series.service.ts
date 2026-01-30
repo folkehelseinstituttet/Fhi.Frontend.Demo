@@ -80,6 +80,7 @@ export class MetadataForSeriesService {
     if (unit) {
       return unit;
     }
+
     if (units?.length === 1) {
       return units[0];
     }
