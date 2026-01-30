@@ -194,11 +194,8 @@ export class TableService {
   }
 
   private getRoundedData(serieName: string | string[], data: number | string): number | string {
-    // TODO: disse er unødvendig.
-    // const maxDecimalsRaw = this.metadataForSeriesService.getMaxDecimals(serieName);
-    // const maxDecimals = typeof maxDecimalsRaw === 'number' ? maxDecimalsRaw : 0;
-
-    const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
+    const maxDecimalsRaw = this.metadataForSeriesService.getMaxDecimals(serieName);
+    const maxDecimals = typeof maxDecimalsRaw === 'number' ? maxDecimalsRaw : 0;
 
     if (typeof data !== 'number') {
       return data;
@@ -210,14 +207,14 @@ export class TableService {
       : this.metadataForSeriesService.getDecimalCount(data);
 
     if (decimalsIsSet) {
-      // console.log('decimalsIsSet ->', data, decimalsToUse);
+      console.log('decimalsIsSet ->', data, decimalsToUse);
       return this.roundAndToFixed(data, decimalsToUse);
     }
 
     if (decimalsToUse > 0) {
       return this.roundAndToFixed(data, decimalsToUse);
     }
-    // console.log({ serieName, maxDecimals, decimalsIsSet, decimalsToUse, data });
+    console.log({ serieName, maxDecimals, decimalsIsSet, decimalsToUse, data });
     return data;
   }
 
