@@ -235,14 +235,14 @@ export class HighchartsComponent implements OnInit {
     this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
-      activeDiagramType: 'line',
+      activeDiagramType: 'table',
+      // activeDiagramType: 'line',
       controls: {
         ...this.diagramOptions.controls,
         tableOrientationButton: {
           show: true,
         },
       },
-      title: this.titles.title_3b,
       units: [
         {
           decimals: 1,
@@ -253,6 +253,7 @@ export class HighchartsComponent implements OnInit {
           yAxisMin: 10,
         },
       ],
+      title: this.titles.title_3b,
     });
   }
 

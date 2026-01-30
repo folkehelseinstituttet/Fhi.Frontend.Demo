@@ -7,11 +7,11 @@ import { MetadataForSerie } from '../models/metadata-for-serie.model';
 @Injectable()
 export class MetadataForSeriesService {
   private metadataForSeries: MetadataForSerie[] = [];
-  private configuredDecimals: number | undefined;
+  // private configuredDecimals: number | undefined;
 
   resetMetadataForSeries() {
     this.metadataForSeries = [];
-    this.configuredDecimals = undefined;
+    // this.configuredDecimals = undefined;
   }
 
   get hasPositiveData(): boolean {
@@ -29,13 +29,15 @@ export class MetadataForSeriesService {
   getMaxDecimals(serieName: string | string[]): number {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
 
-    if (!metadataForSerie) {
-      console.warn('No metadata found for serieName in getMaxDecimals()', {
-        serieName,
-        knownSeries: this.metadataForSeries.map((s) => s.name),
-      });
-      return 0;
-    }
+    // TODO: denne er unødvendig.
+    //       Hvorfor trenger du denne testen?
+    // if (!metadataForSerie) {
+    //   console.warn('No metadata found for serieName in getMaxDecimals()', {
+    //     serieName,
+    //     knownSeries: this.metadataForSeries.map((s) => s.name),
+    //   });
+    //   return 0;
+    // }
 
     return metadataForSerie.maxDecimals ?? 0;
   }
@@ -45,9 +47,9 @@ export class MetadataForSeriesService {
     return !!metadataForSerie?.decimalsIsSet;
   }
 
-  getConfiguredDecimals(): number | undefined {
-    return this.configuredDecimals;
-  }
+  // getConfiguredDecimals(): number | undefined {
+  //   return this.configuredDecimals;
+  // }
 
   getDecimalCount(value: number | string): number {
     if (typeof value !== 'number') return 0;
@@ -60,6 +62,8 @@ export class MetadataForSeriesService {
   }
 
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
+    // console.log('units', units);
+
     let unit = units?.find((unit) => unit.id === serie.unitId);
 
     if (!unit && units?.length === 1) {
@@ -67,8 +71,14 @@ export class MetadataForSeriesService {
     }
 
     const decimalsIsSet = unit?.decimals !== undefined && unit?.decimals !== null;
+    console.log('decimalsIsSet', decimalsIsSet);
 
-    this.configuredDecimals = typeof unit?.decimals === 'number' ? unit.decimals : undefined;
+    // TODO: holder dette?
+    const isSet = units?.find((unit) => unit.id === serie.unitId).decimals !== undefined;
+    console.log('isSet', isSet);
+
+    // TODO: trenger vi denne? Svar er nei!
+    // this.configuredDecimals = typeof unit?.decimals === 'number' ? unit.decimals : undefined;
 
     this.metadataForSeries.push({
       name: serie.name,
@@ -76,7 +86,8 @@ export class MetadataForSeriesService {
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
       maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
-      decimalsIsSet: decimalsIsSet,
+      // decimalsIsSet: decimalsIsSet,
+      decimalsIsSet: isSet,
     });
   }
 
