@@ -195,6 +195,8 @@ export class TableService {
   private getRoundedData(serieName: string | string[], data: number | string): number | string {
     const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
     const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
+    const decimalsIsSetInUnitOptions =
+      this.metadataForSeriesService.getDecimalsIsSetInUnitOptions(serieName);
 
     if (typeof data !== 'number') {
       return data;
@@ -208,6 +210,10 @@ export class TableService {
       return data.toFixed(maxDecimals);
     }
 
-    return data.toFixed(maxDecimals);
+    if (decimalsIsSetInUnitOptions) {
+      return data.toFixed(maxDecimals);
+    }
+
+    return data;
   }
 }

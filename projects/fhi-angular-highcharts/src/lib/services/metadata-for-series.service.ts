@@ -39,9 +39,15 @@ export class MetadataForSeriesService {
     return typeof value === 'number' && !Number.isInteger(value);
   }
 
+  getDecimalsIsSetInUnitOptions(serieName: string | string[]): boolean {
+    const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
+    return !!metadataForSerie?.decimalsIsSetInUnitOptions;
+  }
+
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
     this.metadataForSeries.push({
       name: serie.name,
+      decimalsIsSetInUnitOptions: this.decimalsIsSetInUnitOptions(serie, units),
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
@@ -74,7 +80,6 @@ export class MetadataForSeriesService {
     if (unit) {
       return unit;
     }
-
     if (units?.length === 1) {
       return units[0];
     }
@@ -98,5 +103,9 @@ export class MetadataForSeriesService {
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
     );
     return positiveData.length > 0;
+  }
+
+  private decimalsIsSetInUnitOptions(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): boolean {
+    return !!this.findUnit(serie, units)?.decimals;
   }
 }
