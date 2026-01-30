@@ -39,9 +39,15 @@ export class MetadataForSeriesService {
     return typeof value === 'number' && !Number.isInteger(value);
   }
 
+  getDecimalsIsSetInUnitOptions(serieName: string | string[]): boolean {
+    const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
+    return !!metadataForSerie?.decimalsIsSetInUnitOptions;
+  }
+
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
     this.metadataForSeries.push({
       name: serie.name,
+      decimalsIsSetInUnitOptions: this.decimalsIsSetInUnitOptions(serie, units),
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
@@ -50,18 +56,13 @@ export class MetadataForSeriesService {
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): number {
-    let unit = units?.find((unit) => unit.id === serie.unitId);
+    const unit = this.findUnit(serie, units);
 
-    if (!unit && units?.length === 1) {
-      unit = units[0];
+    if (unit?.decimals === null) {
+      throw new Error('"null" is not a supported type for "unit.decimals"');
     }
 
-    if (
-      unit?.decimals !== undefined &&
-      unit?.decimals !== null &&
-      unit?.decimals >= 0 &&
-      unit?.decimals <= 9
-    ) {
+    if (unit && unit.decimals >= 0 && unit.decimals <= 9) {
       return unit.decimals;
     }
 
@@ -70,12 +71,19 @@ export class MetadataForSeriesService {
         'Max decimal places is 9 because Highcharts tooltips fails if 10 decimals or more.',
       );
     }
-
-    if (unit?.decimals === null) {
-      throw new Error('"null" is not a supported type for "unit.decimals"');
-    }
-
     return 9;
+  }
+
+  private findUnit(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): FhiDiagramUnit | undefined {
+    const unit = units?.find((unit) => unit.id === serie.unitId);
+
+    if (unit) {
+      return unit;
+    }
+    if (units?.length === 1) {
+      return units[0];
+    }
+    return;
   }
 
   private serieHasDecimalDataPoints(serie: FhiDiagramSerie): boolean {
@@ -95,5 +103,9 @@ export class MetadataForSeriesService {
       (dataPoint) => typeof dataPoint.y === 'number' && dataPoint.y >= 0,
     );
     return positiveData.length > 0;
+  }
+
+  private decimalsIsSetInUnitOptions(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): boolean {
+    return !!this.findUnit(serie, units)?.decimals;
   }
 }

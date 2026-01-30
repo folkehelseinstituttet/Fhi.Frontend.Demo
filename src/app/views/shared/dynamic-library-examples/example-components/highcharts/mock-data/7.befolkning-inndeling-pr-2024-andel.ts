@@ -6,6 +6,9 @@ export const BefolkningInndelingPr2024_andel = [
       { name: '2023-52', y: 14.91331 },
       { name: '2024-1', y: 15.14092 },
       { name: '2024-2', y: 14.7158 },
+      { name: '2024-3', y: 16.0 },
+      { name: '2024-4', y: 17.1 },
+      { name: '2024-5', y: 18 },
     ],
   },
 ];

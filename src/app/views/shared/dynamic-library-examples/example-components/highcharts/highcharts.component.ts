@@ -235,7 +235,8 @@ export class HighchartsComponent implements OnInit {
     this.diagramOptions.controls.navigation.items.chartTypes = ['bar', 'column', 'line', 'pie'];
     this.getData(MockData.BefolkningInndelingPr2024_andel, {
       ...this.diagramOptions,
-      activeDiagramType: 'line',
+      // activeDiagramType: 'line',
+      activeDiagramType: 'table',
       controls: {
         ...this.diagramOptions.controls,
         tableOrientationButton: {
@@ -245,7 +246,7 @@ export class HighchartsComponent implements OnInit {
       title: this.titles.title_3b,
       units: [
         {
-          decimals: 1,
+          decimals: 2,
           label: 'Prosent',
           symbol: '%',
           position: 'end',

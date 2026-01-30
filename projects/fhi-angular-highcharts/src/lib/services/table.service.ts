@@ -195,14 +195,25 @@ export class TableService {
   private getRoundedData(serieName: string | string[], data: number | string): number | string {
     const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
     const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
+    const decimalsIsSetInUnitOptions =
+      this.metadataForSeriesService.getDecimalsIsSetInUnitOptions(serieName);
 
-    if (typeof data === 'number' && decimalCount > maxDecimals) {
-      // Fix for rounding errors in toFixed()
-      // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
-      const split = data.toString().split('.');
-      data = +(split.join('.') + '1');
+    if (typeof data === 'number') {
+      if (decimalCount > maxDecimals) {
+        // Fix for rounding errors in toFixed()
+        // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
+        const split = data.toString().split('.');
+        data = +(split.join('.') + '1');
+        return data.toFixed(maxDecimals);
+      }
 
-      return data.toFixed(maxDecimals);
+      if (decimalsIsSetInUnitOptions && decimalCount === 0) {
+        return (data.toString() + '.').padEnd(data.toString().length + 1 + maxDecimals, '0');
+      }
+
+      if (decimalsIsSetInUnitOptions && decimalCount < maxDecimals) {
+        return data.toString().padEnd(data.toString().length + maxDecimals - decimalCount, '0');
+      }
     } else {
       return data;
     }
