@@ -241,9 +241,18 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 | Property             | Type                       | Default | Required | Description                                                                                                                                                                            |
 | -------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `showRequirements`   | `boolean`                  | `false` | no       | Whether to show the requirements for the diagram.                                                                                                                                      |
+| `showRequirements`   | `boolean`                  | `false` | no       | Whether to show the requirements for the diagram. If `false`, a generic warning message will be displayed instead.                                                                     |
 | `title`              | `string`                   | -       | no       | Title for the requirements for the diagram.                                                                                                                                            |
 | `customRequirements` | `FhiDiagramRequirements[]` | -       | no       | Custom requirements for the diagram. See [FhiDiagramRequirements](#interface-fhidiagramrequirements) for details. These are always shown if provided regardless of `showRequirements`. |
+
+#### Interaction between properties
+
+The disabled warning can display four types of content:
+
+1. **Custom requirements** - Set `customRequirements` to an array of `FhiDiagramRequirements` objects. These will be displayed above the auto generated requirements, or generic warning message depending on `showRequirements`
+2. **Auto generated requirements** - Set `showRequirements` to `true`. The auto generated requirements will be displayed below any custom requirements. If set to false a generic warning message will be displayed instead.
+3. **Generic warning message** - If `showRequirements` is `false`, a generic warning message will be displayed
+4. **Title** - Set `title` to a string. The title will be displayed above the rest of the contents of the disabled warning
 
 ### Interface FhiDiagramRequirements
 
