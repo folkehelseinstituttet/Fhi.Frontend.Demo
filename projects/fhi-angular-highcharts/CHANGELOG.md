@@ -1,3 +1,15 @@
+# Unreleased
+
+> Feb 03, 2026
+
+- :tada: **Enhancement** Add support for diagram custom requirements and disabled warnings [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
+  - **Migration guide**
+    1. Add `disabledWarning` to your `FhiDiagramOptions`
+    2. Set `showRequirements: true` to enable auto-generated requirements
+    3. Optionally provide `customRequirements` for custom validation messages
+    4. Optionally provide `title` to set a title for the disabled warning.
+    5. See [README](./README.md#interface-fhidiagramdisabledwarning) for complete API documentation
+
 # 7.0.0
 
 > Jan 22, 2026

@@ -110,26 +110,6 @@
     </div>
   </ng-template>
 
-  <!--Fullscreen modal removed - using CSS fullscreen instead-->
-  <!--<ng-template #diagramModal>
-    <fhi-modal
-      [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
-      [modalTitle]="diagramOptionsInternal.title"
-      [size]="'fullscreen'"
-    >
-      <ng-container fhi-modal.button>
-        <i class="icon-arrows-fullscreen"></i>
-        <span class="visually-hidden">Fullskjerm </span>
-      </ng-container>
-      <ng-container fhi-modal.body>
-        @if (diagramOptionsInternal.description) {
-          <p>{{ diagramOptionsInternal.description }}</p>
-        }
-        <ng-container *ngTemplateOutlet="diagramAndFooter" />
-      </ng-container>
-    </fhi-modal>
-  </ng-template>*-->
-
   <ng-template #chart>
     <div class="fhi-highcharts-chart">
       <highcharts-chart
@@ -303,16 +283,19 @@
             }
           </ul>
         }
-        @if (diagramRequirements?.length > 0 && (diagramOptionsInternal.disabledWarning?.showRequirements ?? false)) {
-          <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
-          <ul>
-            @for (requirement of diagramRequirements; track $index) {
-              <li>
-                <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-                {{ requirement.label }}
-              </li>
-            }
-          </ul>
+        @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
+          @if (diagramRequirements?.length > 0) {
+            <!-- Separated into two if statements to avoid displaying generic message when not set to and the dataset is empty -->
+            <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
+            <ul>
+              @for (requirement of diagramRequirements; track $index) {
+                <li>
+                  <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                  {{ requirement.label }}
+                </li>
+              }
+            </ul>
+          }
         } @else {
           <div class="generic-message">
             <i class="icon-bell"></i>
