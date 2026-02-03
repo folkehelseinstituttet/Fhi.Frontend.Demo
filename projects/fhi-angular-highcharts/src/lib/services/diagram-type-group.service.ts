@@ -103,30 +103,13 @@ export class DiagramTypeGroupService {
     // Merge this with diagramTypeIsDisabled???
     const requirements: FhiDiagramRequirements[] = [];
     const msg = this.diagramTypeDisabledWarningMessages;
-    if (this.isAnyTypeButTable(activeDiagramType)) {
-      // Kun for linje og kart, skal ikke vises for de diagrammene som uansett ikke kan vise prikkede data
-      requirements.push({
-        label: msg[msgId.onlyOneSerieAndAllDataAreFlagged].message,
-        isMet: this.datasetIsEmpty(activeDiagramType)
-          ? false
-          : !this.onlyOneSerieAndAllDataAreFlagged(activeDiagramType),
-      });
-    }
+
     if (this.isAnyTypeButTableOrColumnAndLine(activeDiagramType)) {
       requirements.push({
         label: msg[msgId.notMaxOneUnitInSeries].message,
         isMet: this.datasetIsEmpty(activeDiagramType)
           ? false
           : !this.notMaxOneUnitInSeries(activeDiagramType),
-      });
-    }
-    if (this.isBarOrColumnType(activeDiagramType)) {
-      // Skal ikke vise onlyOneSerieAndAllDataAreFlagged, men den er jo uansett ikke relevant her
-      requirements.push({
-        label: msg[msgId.hasFlaggedData].message,
-        isMet: this.datasetIsEmpty(activeDiagramType)
-          ? false
-          : !this.hasFlaggedData(activeDiagramType),
       });
     }
     if (this.isMapOrPieType(activeDiagramType)) {
@@ -137,26 +120,44 @@ export class DiagramTypeGroupService {
           : !this.moreThanOneSeries(activeDiagramType),
       });
     }
-    if (this.isMapType(activeDiagramType)) {
-      requirements.push({
-        label: msg[msgId.notGeo].message,
-        isMet: this.datasetIsEmpty(activeDiagramType) ? false : !this.notGeo(activeDiagramType),
-      });
-    }
     if (activeDiagramType.id === DiagramTypes.columnAndLine.id) {
-      requirements.push({
-        label: msg[msgId.notTwoUnits].message,
-        isMet: this.datasetIsEmpty(activeDiagramType)
-          ? false
-          : !this.notTwoUnits(activeDiagramType),
-      });
       requirements.push({
         label: msg[msgId.notTwoUnitsInSeries].message,
         isMet: this.datasetIsEmpty(activeDiagramType)
           ? false
           : !this.notTwoUnitsInSeries(activeDiagramType),
       });
-      // notAllUnitsFoundInSeries skal ikke vises for bruker
+      requirements.push({
+        label: msg[msgId.notTwoUnits].message,
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.notTwoUnits(activeDiagramType),
+      });
+    }
+    if (
+      this.isBarOrColumnType(activeDiagramType) ||
+      this.activeDiagramType.id === DiagramTypes.pie.id
+    ) {
+      requirements.push({
+        label: msg[msgId.hasFlaggedData].message,
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.hasFlaggedData(activeDiagramType),
+      });
+    }
+    if (this.activeDiagramType.id === DiagramTypes.line.id || this.isMapType(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.onlyOneSerieAndAllDataAreFlagged].message,
+        isMet: this.datasetIsEmpty(activeDiagramType)
+          ? false
+          : !this.onlyOneSerieAndAllDataAreFlagged(activeDiagramType),
+      });
+    }
+    if (this.isMapType(activeDiagramType)) {
+      requirements.push({
+        label: msg[msgId.notGeo].message,
+        isMet: this.datasetIsEmpty(activeDiagramType) ? false : !this.notGeo(activeDiagramType),
+      });
     }
     return requirements;
   }
