@@ -38,39 +38,39 @@ export class DiagramTypeGroupService {
     {
       [msgId.hasFlaggedData]: {
         warning: 'series.length > 1 && flaggedSeries?.length !== 0',
-        message: 'Krever at ingen serier har prikket data ved valg av flere serier.',
+        message: 'Diagramtypen kan ikke vise prikkede data.',
       },
       [msgId.moreThanOneSeries]: {
         warning: 'series.length > 1',
-        message: 'Krever at kun én serie er valgt.',
+        message: 'Du kan bare velge én kategori per serie.',
       },
       [msgId.notAllUnitsFoundInSeries]: {
         warning: 'notAllUnitsFoundInSeries',
-        message: 'Krever at alle valgte måltall finnes i datasettet.',
+        message: 'Krever at alle valgte måltall finnes i datasettet.', // Vises ikke i grensesnittet
       },
       [msgId.notGeo]: {
         warning: 'series.length === 1 && serieNotGeo(this.series[0])',
-        message: 'Krever gyldige geografiske data for å vise en kartvisning.',
+        message: `Geografidimensjonen må være valgt som fordeling og ha gyldige ID'ere.`,
       },
       [msgId.notMaxOneUnitInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() > 1',
-        message: 'Krever at kun ett måltall er valgt.',
+        message: 'Kun én måleenhet kan velges om gangen.',
       },
       [msgId.notTwoUnitsInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() !== 2',
-        message: 'Krever nøyaktig to måltall med forskjellige måleenheter.',
+        message: 'Minst to måltall må være valgt.',
       },
       [msgId.notTwoUnits]: {
         warning: 'diagramOptions.units?.length !== 2',
-        message: 'Krever nøyaktig to måltall med definisjoner i metadata-konfigurasjonen.', // Trenger hjelp med denne fra Bernt
+        message: 'Måltallene må ha eksakt to forskjellige måleenheter.',
       },
       [msgId.onlyOneSerieAndAllDataAreFlagged]: {
         warning: 'onlyOneSerieAndAllDataAreFlagged',
-        message: 'Krever at det finnes data i serien som kan vises.',
+        message: 'Diagrammet kan ikke vises dersom alle data er prikket.',
       },
       [msgId.datasetIsEmpty]: {
         warning: 'series === undefined || series.length === 0',
-        message: 'Krever at det finnes data i datasettet.',
+        message: 'Krever at det finnes data i datasettet.', // Vises ikke i grensesnittet
       },
     };
 
@@ -104,6 +104,7 @@ export class DiagramTypeGroupService {
     const requirements: FhiDiagramRequirements[] = [];
     const msg = this.diagramTypeDisabledWarningMessages;
     if (this.isAnyTypeButTable(activeDiagramType)) {
+      // Kun for linje og kart, skal ikke vises for de diagrammene som uansett ikke kan vise prikkede data
       requirements.push({
         label: msg[msgId.onlyOneSerieAndAllDataAreFlagged].message,
         isMet: this.datasetIsEmpty(activeDiagramType)
@@ -120,6 +121,7 @@ export class DiagramTypeGroupService {
       });
     }
     if (this.isBarOrColumnType(activeDiagramType)) {
+      // Skal ikke vise onlyOneSerieAndAllDataAreFlagged, men den er jo uansett ikke relevant her
       requirements.push({
         label: msg[msgId.hasFlaggedData].message,
         isMet: this.datasetIsEmpty(activeDiagramType)
