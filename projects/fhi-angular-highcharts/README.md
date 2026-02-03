@@ -239,11 +239,11 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 
 ### Interface FhiDiagramDisabledWarning
 
-| Property             | Type                       | Default | Required | Description                                                                                                       |
-| -------------------- | -------------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `showRequirements`   | `boolean`                  | `false` | no       | Whether to show the requirements for the diagram.                                                                 |
-| `title`              | `string`                   | -       | no       | Title for the requirements for the diagram.                                                                       |
-| `customRequirements` | `FhiDiagramRequirements[]` | -       | no       | Custom requirements for the diagram. See [FhiDiagramRequirements](#interface-fhidiagramrequirements) for details. |
+| Property             | Type                       | Default | Required | Description                                                                                                                                                                            |
+| -------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `showRequirements`   | `boolean`                  | `false` | no       | Whether to show the requirements for the diagram.                                                                                                                                      |
+| `title`              | `string`                   | -       | no       | Title for the requirements for the diagram.                                                                                                                                            |
+| `customRequirements` | `FhiDiagramRequirements[]` | -       | no       | Custom requirements for the diagram. See [FhiDiagramRequirements](#interface-fhidiagramrequirements) for details. These are always shown if provided regardless of `showRequirements`. |
 
 ### Interface FhiDiagramRequirements
 
