@@ -39,6 +39,7 @@ export class HighchartsComponent implements OnInit {
     title_3e: 'Prikkede data med to serier',
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
     title_11: 'Test-data - Tomt datasett',
+    title_12: 'TEST: Feilmeldinger for alle diagramtyper',
   };
 
   constructor(
@@ -135,6 +136,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '11':
         this.getData__example_11();
+        break;
+      case '12':
+        this.getData__example_12();
         break;
     }
   }
@@ -399,16 +403,66 @@ export class HighchartsComponent implements OnInit {
       disabledWarning: {
         showRequirements: true,
         title: 'Her vil du se diagrammet ditt når følgende er utført...',
-        customRequirements: [
-          {
-            label: 'Krever at det er data i datasettet',
-            isMet: false,
+      },
+    });
+  }
+
+  private getData__example_12() {
+    // Test data with multiple series, flagged data, and 3 units to trigger validation errors on ALL diagram types
+    this.getData(MockData.TestData12, {
+      series: undefined,
+      activeDiagramType: 'pie',
+      title: this.titles.title_12,
+      description:
+        'Denne siden viser feilmeldinger for alle diagramtyper. Bytt mellom diagram for å se de spesifikke kravene.',
+      controls: {
+        downloadButton: {
+          show: true,
+        },
+        fullScreenButton: {
+          show: true,
+        },
+        navigation: {
+          items: {
+            chartTypes: [
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'columnAndLine',
+              'line',
+              'pie',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
           },
-          {
-            label: 'Krever noe som brukeren har gjort riktig.',
-            isMet: true,
-          },
+          show: true,
+        },
+      },
+      units: [
+        {
+          id: 'enhet1',
+          label: 'Enhet 1',
+        },
+        {
+          id: 'enhet2',
+          decimals: 1,
+          label: 'Enhet 2',
+        },
+        {
+          id: 'enhet3',
+          decimals: 0,
+          label: 'Enhet 3',
+        },
+      ],
+      footer: {
+        flags: [
+          { symbol: '.', label: 'Lar seg ikke beregne' },
+          { symbol: ':', label: 'Anonymisert' },
         ],
+      },
+      disabledWarning: {
+        showRequirements: true,
+        title: 'Diagrammet kan ikke vises',
       },
     });
   }

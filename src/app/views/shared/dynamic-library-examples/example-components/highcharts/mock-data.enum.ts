@@ -11,4 +11,5 @@ export enum MockData {
   TestData,
   Valgdeltagelse2015,
   TestData11,
+  TestData12,
 }

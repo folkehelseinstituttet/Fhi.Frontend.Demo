@@ -18,6 +18,7 @@ import { Valgdeltagelse2015 } from './mock-data/10.Valgdeltagelse-2015';
 // Data for testing/debugging while developing locally, do not show in dev or prod.
 import { TestData } from './mock-data/test-data-7';
 import { TestData11 } from './mock-data/test-data-11';
+import { TestData12 } from './mock-data/test-data-12';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +64,9 @@ export class MockDataService {
           break;
         case MockData.TestData11:
           dataSet.next(TestData11);
+          break;
+        case MockData.TestData12:
+          dataSet.next(TestData12);
           break;
       }
     });
