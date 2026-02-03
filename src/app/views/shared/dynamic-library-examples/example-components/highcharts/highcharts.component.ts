@@ -396,16 +396,20 @@ export class HighchartsComponent implements OnInit {
         flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
       },
-      customRequirements: [
-        {
-          label: 'Krever at det er data i datasettet',
-          isMet: false,
-        },
-        {
-          label: 'Krever noe som brukeren har gjort riktig.',
-          isMet: true,
-        },
-      ],
+      disabledWarning: {
+        showRequirements: true,
+        title: 'Her vil du se diagrammet ditt når følgende er utført...',
+        customRequirements: [
+          {
+            label: 'Krever at det er data i datasettet',
+            isMet: false,
+          },
+          {
+            label: 'Krever noe som brukeren har gjort riktig.',
+            isMet: true,
+          },
+        ],
+      },
     });
   }
 
