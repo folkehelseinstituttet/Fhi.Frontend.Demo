@@ -224,6 +224,7 @@ export class HighchartsComponent implements OnInit {
           { symbol: ':', label: 'Anonymisert' },
         ],
         lastUpdated: '18.04.2024',
+        footnote: 'Footnote for graf',
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
@@ -271,6 +272,10 @@ export class HighchartsComponent implements OnInit {
             mapTypes: ['mapFylker'],
           },
         },
+      },
+      footer: {
+        lastUpdated: '18.04.2024',
+        footnote: 'Footnote for graf',
       },
     });
   }
@@ -352,6 +357,7 @@ export class HighchartsComponent implements OnInit {
         disclaimer: 'Disse dataene kan inneholde feil.',
         flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
+        footnote: 'Kilde: Valgdirektoratet',
       },
     });
   }
@@ -387,6 +393,7 @@ export class HighchartsComponent implements OnInit {
             label: 'Anonymisert',
           },
         ],
+        footnote: 'Dette er en fotnote til diagrammet.',
       },
       openSource: false,
       tableOrientation: 'seriesAsColumns',
