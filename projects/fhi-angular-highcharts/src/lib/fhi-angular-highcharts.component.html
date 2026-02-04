@@ -141,7 +141,14 @@
   </ng-template>
 
   <ng-template #map>
-    <div class="fhi-highcharts-chart fhi-highcharts-chart--map">
+    <div
+      class="fhi-highcharts-chart fhi-highcharts-chart--map fhi-highcharts-chart--map--{{
+        diagramOptions.slotPosition
+      }}"
+    >
+      <div class="fhi-highcharts-chart--map__slot">
+        <ng-content select="[fhi-map-panel-slot]"></ng-content>
+      </div>
       <highcharts-chart
         [Highcharts]="highmaps"
         [constructorType]="'mapChart'"
