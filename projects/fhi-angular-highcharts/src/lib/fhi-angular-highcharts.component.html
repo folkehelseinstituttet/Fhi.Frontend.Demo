@@ -1,12 +1,28 @@
 @if (diagramOptionsInternal) {
-  <article>
+  <article [class.fhi-diagram--fullscreen]="isFullscreen">
     <h1 class="h3 mb-3">{{ diagramOptionsInternal.title }}</h1>
+
+    @if (isFullscreen) {
+      <button
+        type="button"
+        class="btn-close fhi-diagram-fullscreen__close"
+        aria-label="Lukk fullskjerm"
+        (click)="closeFullscreen()"
+      ></button>
+      <button
+        type="button"
+        class="btn fhi-btn-secondary fhi-diagram-fullscreen__close-bottom"
+        (click)="closeFullscreen()"
+      >
+        Lukk
+      </button>
+    }
 
     @if (diagramOptionsInternal.description) {
       <p class="mb-4">{{ diagramOptionsInternal.description }}</p>
     }
 
-    @if (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton) {
+    @if (!isFullscreen && (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton)) {
       <ng-container *ngTemplateOutlet="diagramControls" />
     }
     @if (showDiagramTypeDisabledWarning) {
@@ -60,9 +76,19 @@
               <span class="btn__text">Om dataene</span>
             </button>
           }
-          @if (showFullScreenButton && !showDiagramTypeDisabledWarning) {
-            <ng-container *ngTemplateOutlet="diagramModal" />
+
+          @if (showFullScreenButton && !showDiagramTypeDisabledWarning && !isFullscreen) {
+            <button
+              type="button"
+              class="btn fhi-btn-icon fhi-btn-icon--circular"
+              (click)="toggleFullscreen()"
+              aria-label="Fullskjerm"
+            >
+              <i class="icon-arrows-fullscreen" aria-hidden="true"></i>
+              <span class="visually-hidden">Fullskjerm</span>
+            </button>
           }
+
           @if (showDownloadButton) {
             <div class="ms-auto">
               <fhi-popover-menu
@@ -74,9 +100,7 @@
           @if (showTableOrientationButton) {
             <div class="ms-auto">
               <fhi-popover-menu
-                [items]="[
-                  { name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' },
-                ]"
+                [items]="[{ name: 'Bytt rader og kolonner', action: 'changeTableOrientation', icon: 'table' }]"
                 (actionEvent)="onControlsPopoverMenuAction($event)"
               ></fhi-popover-menu>
             </div>
@@ -86,7 +110,8 @@
     </div>
   </ng-template>
 
-  <ng-template #diagramModal>
+  <!--Fullscreen modal removed - using CSS fullscreen instead-->
+  <!--<ng-template #diagramModal>
     <fhi-modal
       [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
       [modalTitle]="diagramOptionsInternal.title"
@@ -103,7 +128,7 @@
         <ng-container *ngTemplateOutlet="diagramAndFooter" />
       </ng-container>
     </fhi-modal>
-  </ng-template>
+  </ng-template>*-->
 
   <ng-template #chart>
     <div class="fhi-highcharts-chart">
