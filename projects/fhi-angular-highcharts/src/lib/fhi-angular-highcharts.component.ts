@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostListener,
   Input,
   OnChanges,
   Output,
@@ -58,6 +59,8 @@ enum ControlsPopoverMenuActions {
 export class FhiAngularHighchartsComponent implements OnChanges {
   private allSerieNames: string[] = [];
   private chartInstance!: Chart;
+
+  isFullscreen = false;
 
   @Input({ required: true }) diagramOptions!: FhiDiagramOptions;
 
@@ -137,6 +140,33 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.chartInstance = chartInstance;
   }
 
+  toggleFullscreen() {
+    this.isFullscreen = !this.isFullscreen;
+    document.body.style.overflow = this.isFullscreen ? 'hidden' : '';
+
+    setTimeout(() => {
+      this.chartInstance?.reflow();
+    }, 0);
+
+    this.changeDetector.detectChanges();
+  }
+
+  closeFullscreen() {
+    if (!this.isFullscreen) return;
+    this.toggleFullscreen();
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(event: Event) {
+    if (!this.isFullscreen) return;
+
+    const keyboardEvent = event as KeyboardEvent;
+    if (keyboardEvent.key !== 'Escape') return;
+
+    keyboardEvent.preventDefault();
+    this.closeFullscreen();
+  }
+
   onControlsPopoverMenuAction(actionName: string) {
     if (actionName === ControlsPopoverMenuActions.downloadSvg) {
       this.downloadService.downloadImage(
@@ -197,6 +227,8 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.allSerieNames = [];
     this.flaggedSeries = [];
     this.metadataForSeriesService.resetMetadataForSeries();
+
+    this.isFullscreen = false;
   }
 
   private formatSerieName(name: string | Array<string>): string {
