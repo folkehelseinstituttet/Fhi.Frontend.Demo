@@ -56,10 +56,22 @@
 </ng-container>
 
 @if (itemId === items.HighchartsMapWithSlot.id) {
+  <style>
+    #slot-position-selector {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    /* @media (max-width: 768px) {
+      #slot-position-selector {
+        flex-direction: column;
+      }
+    } */
+  </style>
   <ng-container>
     <div class="mb-4">
-      <label class="form-label d-block mb-2">Slot plassering</label>
-      <div class="btn-group" role="group" aria-label="Slot position selector">
+      <label for="slot-position-selector" class="form-label d-block mb-2">Slot plassering</label>
+      <div id="slot-position-selector" class="btn-group" role="group" aria-label="Slot position selector">
         <button
           type="button"
           class="btn btn-sm"
