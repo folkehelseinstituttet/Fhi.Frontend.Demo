@@ -141,20 +141,22 @@
   </ng-template>
 
   <ng-template #map>
-    <div
-      class="fhi-highcharts-chart fhi-highcharts-chart--map fhi-highcharts-chart--map--{{
-        diagramOptions.slotPosition
-      }}"
-    >
-      <div class="fhi-highcharts-chart--map__slot">
-        <ng-content select="[fhi-map-panel-slot]"></ng-content>
+    <div class="fhi-highcharts-chart--map--wrapper">
+      <div
+        class="fhi-highcharts-chart fhi-highcharts-chart--map {{
+          diagramOptions.slotPosition ? 'fhi-highcharts-chart--map--' + diagramOptions.slotPosition : ''
+        }}"
+      >
+        <div class="fhi-highcharts-chart--map__slot">
+          <ng-content select="[fhi-map-panel-slot]"></ng-content>
+        </div>
+        <highcharts-chart
+          [Highcharts]="highmaps"
+          [constructorType]="'mapChart'"
+          [options]="highchartsOptions"
+          (chartInstance)="onChartInstance($event)"
+        ></highcharts-chart>
       </div>
-      <highcharts-chart
-        [Highcharts]="highmaps"
-        [constructorType]="'mapChart'"
-        [options]="highchartsOptions"
-        (chartInstance)="onChartInstance($event)"
-      ></highcharts-chart>
     </div>
   </ng-template>
 
