@@ -57,7 +57,7 @@
         order: 1;
     }
 }
-.fhi-highcharts-chart--map--top {
+.fhi-highcharts-chart--map__top {
     .fhi-highcharts-chart--map__slot {
         order: 1;
     }
@@ -66,13 +66,13 @@
     }
 }
 
-.fhi-highcharts-chart--map--wrapper {
+.fhi-highcharts-chart--map__wrapper {
     container-type: inline-size;
 }
 
 @container (width > 768px) {
-    .fhi-highcharts-chart--map--right,
-    .fhi-highcharts-chart--map--left {
+    .fhi-highcharts-chart--map__right,
+    .fhi-highcharts-chart--map__left {
         display: flex;
         flex-direction: row;
         gap: 1rem;
@@ -91,7 +91,7 @@
             max-width: 30%;
         }
     }
-    .fhi-highcharts-chart--map--left {
+    .fhi-highcharts-chart--map__left {
         .fhi-highcharts-chart--map__slot {
             order: 1;
         }

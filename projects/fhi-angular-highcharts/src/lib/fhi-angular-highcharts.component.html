@@ -141,10 +141,10 @@
   </ng-template>
 
   <ng-template #map>
-    <div class="fhi-highcharts-chart--map--wrapper">
+    <div class="fhi-highcharts-chart--map__wrapper">
       <div
         class="fhi-highcharts-chart fhi-highcharts-chart--map {{
-          diagramOptions.slotPosition ? 'fhi-highcharts-chart--map--' + diagramOptions.slotPosition : ''
+          diagramOptionsInternal.slotPosition ? 'fhi-highcharts-chart--map__' + diagramOptionsInternal.slotPosition : ''
         }}"
       >
         <div class="fhi-highcharts-chart--map__slot">
