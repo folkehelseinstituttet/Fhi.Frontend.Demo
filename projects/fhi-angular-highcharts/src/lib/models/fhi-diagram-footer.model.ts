@@ -8,4 +8,5 @@ export interface FhiDiagramFooter {
   disclaimer?: string;
   flags?: FhiDiagramFlag[];
   lastUpdated?: string;
+  footnote?: string;
 }
