@@ -7,11 +7,9 @@ import { MetadataForSerie } from '../models/metadata-for-serie.model';
 @Injectable()
 export class MetadataForSeriesService {
   private metadataForSeries: MetadataForSerie[] = [];
-  private configuredDecimals: number | undefined;
 
   resetMetadataForSeries() {
     this.metadataForSeries = [];
-    this.configuredDecimals = undefined;
   }
 
   get hasPositiveData(): boolean {
@@ -45,10 +43,6 @@ export class MetadataForSeriesService {
     return !!metadataForSerie?.decimalsIsSet;
   }
 
-  getConfiguredDecimals(): number | undefined {
-    return this.configuredDecimals;
-  }
-
   getDecimalCount(value: number | string): number {
     if (typeof value !== 'number') return 0;
     if (Math.floor(value) === value) return 0;
@@ -67,8 +61,6 @@ export class MetadataForSeriesService {
     }
 
     const decimalsIsSet = unit?.decimals !== undefined && unit?.decimals !== null;
-
-    this.configuredDecimals = typeof unit?.decimals === 'number' ? unit.decimals : undefined;
 
     this.metadataForSeries.push({
       name: serie.name,
