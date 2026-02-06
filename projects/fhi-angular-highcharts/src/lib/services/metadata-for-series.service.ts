@@ -26,16 +26,7 @@ export class MetadataForSeriesService {
 
   getMaxDecimals(serieName: string | string[]): number {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
-
-    if (!metadataForSerie) {
-      console.warn('No metadata found for serieName in getMaxDecimals()', {
-        serieName,
-        knownSeries: this.metadataForSeries.map((s) => s.name),
-      });
-      return 0;
-    }
-
-    return metadataForSerie.maxDecimals ?? 0;
+    return metadataForSerie!.maxDecimals;
   }
 
   getDecimalsIsSet(serieName: string | string[]): boolean {
