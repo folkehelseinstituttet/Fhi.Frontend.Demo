@@ -50,7 +50,7 @@ export class DiagramTypeGroupService {
       },
       [msgId.notGeo]: {
         warning: 'series.length === 1 && serieNotGeo(this.series[0])',
-        message: `Geografidimensjonen må være valgt som fordeling og ha gyldige ID'ere.`,
+        message: `Geografidimensjonen må være valgt som fordeling og ha gyldige ID'er.`,
       },
       [msgId.notMaxOneUnitInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() > 1',
