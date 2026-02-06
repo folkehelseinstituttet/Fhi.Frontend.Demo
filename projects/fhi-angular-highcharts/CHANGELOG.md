@@ -1,3 +1,11 @@
+# Unreleased
+
+> Feb 6, 2026
+
+- :bug: **Bugfix** Changed the way fullscreen view is rendered to prevent separate instances of the chart. [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
+- :bug: **Bugfix** Fixed bug where outline for sections in map would render with too thick stroke. [(#922)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/922)
+- :tada: **Enhancement** Added new input for footnote in the footer. [(#921)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/921)
+
 # 7.0.0
 
 > Jan 22, 2026
