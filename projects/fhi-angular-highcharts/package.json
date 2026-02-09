@@ -1,6 +1,6 @@
 {
   "name": "@folkehelseinstituttet/angular-highcharts",
-  "version": "7.1.1",
+  "version": "7.1.0",
   "publishConfig": {
     "tag": "latest"
   },
