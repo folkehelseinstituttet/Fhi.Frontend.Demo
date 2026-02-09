@@ -2,7 +2,7 @@
 
 > Feb 9, 2026
 
-- :bug: **Bugfux** Added explicit export for enums [(#931)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/931)
+- :bug: **Bugfix** Added explicit export for enums [(#931)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/931)
 
 # 7.1.0
 
