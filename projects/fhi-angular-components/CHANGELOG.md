@@ -1,6 +1,6 @@
-# Unreleased
+# 7.1.0
 
-> Feb 06, 2026
+> Feb 09, 2026
 
 - :bug: **Bugfix** Added explicit export for type that became inaccessible after ugrading to Angular 20 [(#927)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/927)
 
