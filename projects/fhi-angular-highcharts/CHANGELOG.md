@@ -4,7 +4,7 @@
 
 - :bug: **Bugfux** Added explicit export for enums [(#931)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/931)
 
-# 7.1.0
+## 7.1.0
 
 > Feb 9, 2026
 
@@ -13,7 +13,7 @@
 - :tada: **Enhancement** Added new input for footnote in the footer. [(#921)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/921)
 - :bug: **Bugfix** Added explicit export for type that became inaccessible after upgrade to Angular 20 [(#924)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/926)
 
-# 7.0.0
+## 7.0.0
 
 > Jan 22, 2026
 
