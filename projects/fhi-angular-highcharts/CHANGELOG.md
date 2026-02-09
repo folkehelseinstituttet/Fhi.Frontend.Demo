@@ -1,6 +1,6 @@
-# Unreleased
+# 7.1.0
 
-> Feb 6, 2026
+> Feb 9, 2026
 
 - :bug: **Bugfix** Changed the way fullscreen view is rendered to prevent separate instances of the chart. [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
 - :bug: **Bugfix** Fixed bug where outline for sections in map would render with too thick stroke. [(#922)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/922)
