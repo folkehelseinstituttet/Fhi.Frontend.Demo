@@ -205,6 +205,11 @@
 
   <ng-template #diagramFooter>
     <footer class="mt-3">
+      @if (diagramOptionsInternal.footer?.footnote) {
+        <p class="pe-2">
+          {{ diagramOptionsInternal.footer?.footnote }}
+        </p>
+      }
       @if (diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
         <p>
           <strong>Måltall </strong>
@@ -281,6 +286,7 @@
           for å se flere detaljer.
         </div>
       }
+
       @if (diagramOptionsInternal.footer?.disclaimer) {
         <p class="fst-italic small">
           {{ diagramOptionsInternal.footer?.disclaimer }}

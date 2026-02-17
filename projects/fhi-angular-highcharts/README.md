@@ -198,6 +198,7 @@ If not all criteria is met, all units will be ignored.
 | `disclaimer`   | `string`           | -       | no       | Text at the bottom of the footer used to say something about uncertainty in the data shown in a diagram.    |
 | `flags`        | `FhiDiagramFlag[]` | -       | no       | List of all flags used in `FhiDiagramSerie[]`. See [FhiDiagramFlag](#interface-fhidiagramflag) for details. |
 | `lastUpdated`  | `string`           | -       | no       | Text after label _Sist oppdatert_ in footer. Free format, but `dd.mm.yyyy` is the most common one.          |
+| `footnote`     | `string`           | -       | no       | Text that will be displayed as footnote directly under the chart/table.                                     |
 
 ### Interface FhiDiagramSerie
 

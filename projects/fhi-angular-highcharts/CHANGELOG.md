@@ -1,10 +1,25 @@
 # Unreleased
 
-> Feb 5, 2026
+> Feb 17, 2026
 
 - :tada: **Enhancement** Add content projection slot for maps to allow custom panels [(#911)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/911)
 
-# 7.0.0
+## 7.1.1
+
+> Feb 9, 2026
+
+- :bug: **Bugfix** Added explicit export for enums [(#931)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/931)
+
+## 7.1.0
+
+> Feb 9, 2026
+
+- :bug: **Bugfix** Changed the way fullscreen view is rendered to prevent separate instances of the chart. [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
+- :bug: **Bugfix** Fixed bug where outline for sections in map would render with too thick stroke. [(#922)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/922)
+- :tada: **Enhancement** Added new input for footnote in the footer. [(#921)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/921)
+- :bug: **Bugfix** Added explicit export for type that became inaccessible after upgrade to Angular 20 [(#924)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/926)
+
+## 7.0.0
 
 > Jan 22, 2026
 
