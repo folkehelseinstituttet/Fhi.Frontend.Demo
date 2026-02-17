@@ -10,4 +10,5 @@ export enum MockData {
   PrikkedeDataMedToSerier,
   TestData,
   Valgdeltagelse2015,
+  DodsfallHjerteOgKarEtterKommune,
 }

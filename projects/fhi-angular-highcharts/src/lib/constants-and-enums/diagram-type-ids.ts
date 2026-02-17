@@ -8,6 +8,7 @@ export enum DiagramTypeIds {
   mapFylker,
   mapFylker2019,
   mapFylker2023,
+  mapKommuner,
   pie,
   table,
 }
@@ -22,6 +23,7 @@ export const DiagramTypeIdValues = {
   mapFylker: DiagramTypeIds[DiagramTypeIds.mapFylker],
   mapFylker2019: DiagramTypeIds[DiagramTypeIds.mapFylker2019],
   mapFylker2023: DiagramTypeIds[DiagramTypeIds.mapFylker2023],
+  mapKommuner: DiagramTypeIds[DiagramTypeIds.mapKommuner],
   pie: DiagramTypeIds[DiagramTypeIds.pie],
   table: DiagramTypeIds[DiagramTypeIds.table],
 };
@@ -41,10 +43,12 @@ export enum MapTypeIds {
   mapFylker,
   mapFylker2019,
   mapFylker2023,
+  mapKommuner,
 }
 
 export const MapTypeIdValues = {
   mapFylker: MapTypeIds[MapTypeIds.mapFylker],
   mapFylker2019: MapTypeIds[MapTypeIds.mapFylker2019],
   mapFylker2023: MapTypeIds[MapTypeIds.mapFylker2023],
+  mapKommuner: MapTypeIds[MapTypeIds.mapKommuner],
 };

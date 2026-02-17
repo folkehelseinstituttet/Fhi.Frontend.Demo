@@ -1,0 +1,31 @@
+export const DodsfallHjerteOgKarEtterKommune = [
+  {
+    name: 'Hjerte- og karsystemet',
+    data: [
+      { name: 'Oslo', y: 1500, dataPointId: '0301' },
+      { name: 'Eigersund', y: 2882, dataPointId: '1101' },
+      { name: 'Stavanger', y: 2143, dataPointId: '1103' },
+      { name: 'Haugesund', y: 1818, dataPointId: '1106' },
+      { name: 'Sandnes', y: 1527, dataPointId: '1108' },
+      { name: 'Sokndal', y: 1256, dataPointId: '1111' },
+      { name: 'Lund', y: 897, dataPointId: '1112' },
+      { name: 'Bjerkreim', y: 1632, dataPointId: '1114' },
+      { name: 'Hå', y: 192, dataPointId: '1119' },
+      { name: 'Klepp', y: 2341, dataPointId: '1120' },
+      { name: 'Time', y: 1987, dataPointId: '1121' },
+      { name: 'Gjesdal', y: 1515, dataPointId: '1122' },
+      { name: 'Sola', y: 1134, dataPointId: '1124' },
+      { name: 'Randaberg', y: 1153, dataPointId: '1127' },
+      { name: 'Strand', y: 2536, dataPointId: '1130' },
+      { name: 'Hjelmeland', y: 1430, dataPointId: '1133' },
+      { name: 'Suldal', y: 199, dataPointId: '1134' },
+      { name: 'Sauda', y: 132, dataPointId: '1135' },
+      { name: 'Kvitsøy', y: 8343, dataPointId: '1144' },
+      { name: 'Bokn', y: 941, dataPointId: '1145' },
+      { name: 'Tysvær', y: 241, dataPointId: '1146' },
+    ],
+  },
+];
+
+// { name: '', y: , dataPointId: '' },
+//

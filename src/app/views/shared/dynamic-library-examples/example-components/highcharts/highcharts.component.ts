@@ -38,6 +38,7 @@ export class HighchartsComponent implements OnInit {
     title_3d: 'Dobbel akse, linje og søyle',
     title_3e: 'Prikkede data med to serier',
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
+    title_3g: 'Dødsfall hjerte og kar, fordelt på kommune',
   };
 
   constructor(
@@ -131,6 +132,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3f':
         this.getData__example_3f();
+        break;
+      case '3g':
+        this.getData__example_3g();
         break;
     }
   }
@@ -352,6 +356,26 @@ export class HighchartsComponent implements OnInit {
         disclaimer: 'Disse dataene kan inneholde feil.',
         flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
+      },
+    });
+  }
+
+  private getData__example_3g() {
+    this.getData(MockData.DodsfallHjerteOgKarEtterKommune, {
+      //TODO: Opdater interface til å inkludere mapKommuner som maptype
+      ...this.diagramOptions,
+      activeDiagramType: 'mapKommuner',
+      title: this.titles.title_3g,
+      units: undefined,
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapKommuner'],
+          },
+        },
       },
     });
   }

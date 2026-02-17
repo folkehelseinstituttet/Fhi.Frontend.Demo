@@ -12,6 +12,8 @@ import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
 
+import * as kommuneData from '../../assets/kommune-koder.json';
+
 enum msgId {
   hasFlaggedData,
   moreThanOneSeries,
@@ -236,7 +238,8 @@ export class DiagramTypeGroupService {
     return (
       diagramType.id === DiagramTypes.mapFylker.id ||
       diagramType.id === DiagramTypes.mapFylker2019.id ||
-      diagramType.id === DiagramTypes.mapFylker2023.id
+      diagramType.id === DiagramTypes.mapFylker2023.id ||
+      diagramType.id === DiagramTypes.mapKommuner.id
     );
   }
 
@@ -297,6 +300,11 @@ export class DiagramTypeGroupService {
           return true;
         }
         return false;
+      case DiagramTypes.mapKommuner.id:
+        if (this.series.length === 1 && this.serieNotValidHcKey(this.series)) {
+          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
+          return true;
+        }
       default:
         return true;
     }
@@ -387,6 +395,19 @@ export class DiagramTypeGroupService {
       }
     });
     return noValidIsoCodeFound;
+  }
+
+  private serieNotValidHcKey(serie: FhiDiagramSerie[]): boolean {
+    let noValidHcKeyFound = true;
+    const kommuneKoder = kommuneData.codes;
+    console.log(kommuneKoder); // TODO: Fjerne denne, for testing kun.
+    serie[0].data.map((data) => {
+      if (kommuneKoder.find((code) => code === data.dataPointId)) {
+        noValidHcKeyFound = false;
+        return;
+      }
+    });
+    return noValidHcKeyFound;
   }
 
   /**
