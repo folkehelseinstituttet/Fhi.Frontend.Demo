@@ -219,8 +219,6 @@ export class TableService {
   }
 
   private roundAndToFixed(value: number, decimals: number): string {
-    // Fix for rounding errors in toFixed()
-    // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
     const factor = 10 ** decimals;
     const rounded = Math.round((value + Number.EPSILON) * factor) / factor;
 
