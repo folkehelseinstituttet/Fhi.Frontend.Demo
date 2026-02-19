@@ -29,9 +29,9 @@ export class MetadataForSeriesService {
     return metadataForSerie?.maxDecimals ?? 0;
   }
 
-  getDecimalsIsSet(serieName: string | string[]): boolean {
+  getDecimalsIsSetInUnitOptions(serieName: string | string[]): boolean {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
-    return !!metadataForSerie?.decimalsIsSet;
+    return !!metadataForSerie?.decimalsIsSetInUnitOptions;
   }
 
   getDecimalCount(value: number | string): number {
@@ -45,7 +45,7 @@ export class MetadataForSeriesService {
   }
 
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
-    const decimalsIsSet = this.isDecimalsSetForSerie(serie, units);
+    const decimalsIsSetInUnitOptions = this.isDecimalsSetInUnitOptionsForSerie(serie, units);
 
     this.metadataForSeries.push({
       name: serie.name,
@@ -53,19 +53,21 @@ export class MetadataForSeriesService {
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
       maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
-      decimalsIsSet,
+      decimalsIsSetInUnitOptions,
     });
   }
 
-  private isDecimalsSetForSerie(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): boolean {
+  private isDecimalsSetInUnitOptionsForSerie(
+    serie: FhiDiagramSerie,
+    units: FhiDiagramUnit[],
+  ): boolean {
     let matchedUnit = units?.find((currentUnit) => currentUnit.id === serie.unitId);
 
     if (!matchedUnit && units?.length === 1) {
       matchedUnit = units[0];
     }
 
-    const decimalsIsSet = matchedUnit?.decimals !== undefined && matchedUnit?.decimals !== null;
-    return decimalsIsSet;
+    return matchedUnit?.decimals !== undefined && matchedUnit?.decimals !== null;
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): number {

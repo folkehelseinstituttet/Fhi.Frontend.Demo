@@ -201,20 +201,23 @@ export class TableService {
       return data;
     }
 
-    const decimalsIsSet = this.metadataForSeriesService.getDecimalsIsSet(serieName);
-    const decimalsToUse = decimalsIsSet
+    const decimalsIsSetInUnitOptions =
+      this.metadataForSeriesService.getDecimalsIsSetInUnitOptions(serieName);
+
+    const decimalsToUse = decimalsIsSetInUnitOptions
       ? maxDecimals
       : this.metadataForSeriesService.getDecimalCount(data);
 
-    if (decimalsIsSet) {
-      console.log('decimalsIsSet ->', data, decimalsToUse);
+    if (decimalsIsSetInUnitOptions) {
+      console.log('decimalsIsSetInUnitOptions ->', data, decimalsToUse);
       return this.roundAndToFixed(data, decimalsToUse);
     }
 
     if (decimalsToUse > 0) {
       return this.roundAndToFixed(data, decimalsToUse);
     }
-    console.log({ serieName, maxDecimals, decimalsIsSet, decimalsToUse, data });
+
+    console.log({ serieName, maxDecimals, decimalsIsSetInUnitOptions, decimalsToUse, data });
     return data;
   }
 

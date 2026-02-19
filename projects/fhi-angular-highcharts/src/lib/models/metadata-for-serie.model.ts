@@ -2,7 +2,7 @@ export interface MetadataForSerie {
   hasDecimalData?: boolean;
   hasNegativeData?: boolean;
   hasPositiveData?: boolean;
-  decimalsIsSet: boolean;
+  decimalsIsSetInUnitOptions: boolean;
   maxDecimals: number;
   name: string | string[];
 }
