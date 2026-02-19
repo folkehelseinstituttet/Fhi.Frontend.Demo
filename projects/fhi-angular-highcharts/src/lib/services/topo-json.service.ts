@@ -1,18 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SeriesMapOptions } from 'highcharts';
 
 import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 import { MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
+import noFylker2024 from '../topojson/no-fylker-2024.topo.json';
+import noFylker2023 from '../topojson/no-fylker-2023.topo.json';
+import noFylker2019 from '../topojson/no-fylker-2019.topo.json';
+
 @Injectable()
 export class TopoJsonService {
   private topoJsonMaps: object = {};
   private currentMapTypeId: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor() {}
 
   setCurrentMapTypeId(mapTypeId: string) {
     this.currentMapTypeId = mapTypeId;
@@ -26,13 +29,16 @@ export class TopoJsonService {
   }
 
   getMap(mapTypeId: string | undefined): Observable<object> {
-    const maps = this.getMapUrls();
-    const map = maps.find((map) => map.id === mapTypeId);
-
-    if (map !== undefined) {
-      return this.httpClient.get<object>(map.url);
+    const maps = {
+      [MapTypeIdValues.mapFylker]: noFylker2024,
+      [MapTypeIdValues.mapFylker2023]: noFylker2023,
+      [MapTypeIdValues.mapFylker2019]: noFylker2019,
+    };
+    const map = maps[mapTypeId];
+    if (map) {
+      return of(map as object);
     }
-    throw new Error(`No supported map matches given mapTypeId, can't get map!`);
+    throw new Error('No supported map matches the given mapTypeId.');
   }
 
   addMap(map: object, mapTypeId: string) {
@@ -81,24 +87,5 @@ export class TopoJsonService {
       `Could not find a map area matching dataPointId: "${dataPoint.dataPointId}" in the current TopoJson file.`,
     );
     return undefined;
-  }
-
-  private getMapUrls() {
-    const baseUrl = 'https://code.highcharts.com/mapdata/';
-    const maps = [
-      {
-        id: MapTypeIdValues.mapFylker,
-        url: baseUrl + 'countries/no/no-all.topo.json',
-      },
-      {
-        id: MapTypeIdValues.mapFylker2019,
-        url: baseUrl + 'historical/countries/no-2019/no-all-2019.topo.json',
-      },
-      {
-        id: MapTypeIdValues.mapFylker2023,
-        url: baseUrl + 'historical/countries/no-2023/no-all-2023.topo.json',
-      },
-    ];
-    return maps;
   }
 }
