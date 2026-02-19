@@ -15,8 +15,6 @@ export class TopoJsonService {
   private topoJsonMaps: object = {};
   private currentMapTypeId: string;
 
-  constructor() {}
-
   setCurrentMapTypeId(mapTypeId: string) {
     this.currentMapTypeId = mapTypeId;
   }
