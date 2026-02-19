@@ -53,6 +53,8 @@ export class TopoJsonService {
   private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] | undefined {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
+    console.log('geometries', geometries);
+    console.log('dataPoint', dataPoint);
     let geometry = undefined;
     switch (id) {
       case MapTypeIdValues.mapFylker:
@@ -60,6 +62,13 @@ export class TopoJsonService {
           (geometry: object) =>
             dataPoint.dataPointId &&
             geometry['properties']['iso3166-2'] === `NO-${dataPoint.dataPointId}`,
+        );
+        break;
+      case MapTypeIdValues.mapKommuner:
+        geometry = geometries.find(
+          (geometry: object) =>
+            dataPoint.dataPointId &&
+            geometry['properties']['hc-key'] === `no-vl-${dataPoint.dataPointId}`,
         );
         break;
       case MapTypeIdValues.mapFylker2019:
@@ -97,6 +106,10 @@ export class TopoJsonService {
       {
         id: MapTypeIdValues.mapFylker2023,
         url: baseUrl + 'historical/countries/no-2023/no-all-2023.topo.json',
+      },
+      {
+        id: MapTypeIdValues.mapKommuner,
+        url: baseUrl + 'countries/no/no-all-all.topo.json',
       },
     ];
     return maps;

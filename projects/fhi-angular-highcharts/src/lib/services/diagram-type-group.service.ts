@@ -305,6 +305,7 @@ export class DiagramTypeGroupService {
           this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
           return true;
         }
+        return false;
       default:
         return true;
     }

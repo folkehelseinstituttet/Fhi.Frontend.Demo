@@ -2,7 +2,7 @@ export const DodsfallHjerteOgKarEtterKommune = [
   {
     name: 'Hjerte- og karsystemet',
     data: [
-      { name: 'Oslo', y: 1500, dataPointId: '0301' },
+      { name: 'Oslo (kommune)', y: 1500, dataPointId: '0301' },
       { name: 'Eigersund', y: 2882, dataPointId: '1101' },
       { name: 'Stavanger', y: 2143, dataPointId: '1103' },
       { name: 'Haugesund', y: 1818, dataPointId: '1106' },
@@ -26,6 +26,3 @@ export const DodsfallHjerteOgKarEtterKommune = [
     ],
   },
 ];
-
-// { name: '', y: , dataPointId: '' },
-//
