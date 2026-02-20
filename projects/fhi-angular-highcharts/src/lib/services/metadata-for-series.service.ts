@@ -26,7 +26,7 @@ export class MetadataForSeriesService {
 
   getMaxDecimals(serieName: string | string[]): number {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
-    return metadataForSerie?.maxDecimals ?? 0;
+    return metadataForSerie?.maxDecimals;
   }
 
   getDecimalsIsSetInUnitOptions(serieName: string | string[]): boolean {

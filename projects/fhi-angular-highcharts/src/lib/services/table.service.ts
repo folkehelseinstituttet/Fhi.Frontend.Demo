@@ -209,7 +209,6 @@ export class TableService {
       : this.metadataForSeriesService.getDecimalCount(data);
 
     if (decimalsIsSetInUnitOptions) {
-      console.log('decimalsIsSetInUnitOptions ->', data, decimalsToUse);
       return this.roundAndToFixed(data, decimalsToUse);
     }
 
@@ -217,7 +216,6 @@ export class TableService {
       return this.roundAndToFixed(data, decimalsToUse);
     }
 
-    console.log({ serieName, maxDecimals, decimalsIsSetInUnitOptions, decimalsToUse, data });
     return data;
   }
 
