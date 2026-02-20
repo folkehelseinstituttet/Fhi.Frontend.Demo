@@ -6,7 +6,7 @@ import { MetadataForSerie } from '../models/metadata-for-serie.model';
 
 @Injectable()
 export class MetadataForSeriesService {
-  private metadataForSeries: MetadataForSerie[];
+  private metadataForSeries: MetadataForSerie[] = [];
 
   resetMetadataForSeries() {
     this.metadataForSeries = [];
@@ -26,7 +26,12 @@ export class MetadataForSeriesService {
 
   getMaxDecimals(serieName: string | string[]): number {
     const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
-    return metadataForSerie.maxDecimals;
+    return metadataForSerie?.maxDecimals;
+  }
+
+  getDecimalsIsSetInUnitOptions(serieName: string | string[]): boolean {
+    const metadataForSerie = this.metadataForSeries.find((serie) => serie.name === serieName);
+    return !!metadataForSerie?.decimalsIsSetInUnitOptions;
   }
 
   getDecimalCount(value: number | string): number {
@@ -40,13 +45,29 @@ export class MetadataForSeriesService {
   }
 
   updateMetadataForSeries(serie: FhiDiagramSerie, units: FhiDiagramUnit[]) {
+    const decimalsIsSetInUnitOptions = this.isDecimalsSetInUnitOptionsForSerie(serie, units);
+
     this.metadataForSeries.push({
       name: serie.name,
       hasDecimalData: this.serieHasDecimalDataPoints(serie),
       hasNegativeData: this.serieHasNegativeDataPoints(serie),
       hasPositiveData: this.serieHasPositiveDataPoints(serie),
       maxDecimals: this.getVerifiedMaxDecimalCount(serie, units),
+      decimalsIsSetInUnitOptions,
     });
+  }
+
+  private isDecimalsSetInUnitOptionsForSerie(
+    serie: FhiDiagramSerie,
+    units: FhiDiagramUnit[],
+  ): boolean {
+    let matchedUnit = units?.find((currentUnit) => currentUnit.id === serie.unitId);
+
+    if (!matchedUnit && units?.length === 1) {
+      matchedUnit = units[0];
+    }
+
+    return matchedUnit?.decimals !== undefined && matchedUnit?.decimals !== null;
   }
 
   private getVerifiedMaxDecimalCount(serie: FhiDiagramSerie, units: FhiDiagramUnit[]): number {
