@@ -5,6 +5,7 @@ import { DiagramSerieNameSeperator as Seperator } from '../constants-and-enums/d
 import { TableOrientationValues } from '../constants-and-enums/table-orientations';
 import { TableCell, TableData } from '../models/table-data.model';
 import { MetadataForSeriesService } from './metadata-for-series.service';
+import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 
 @Injectable()
 export class TableService {
@@ -193,18 +194,35 @@ export class TableService {
   }
 
   private getRoundedData(serieName: string | string[], data: number | string): number | string {
-    const maxDecimals = this.metadataForSeriesService.getMaxDecimals(serieName);
-    const decimalCount = this.metadataForSeriesService.getDecimalCount(data);
+    const maxDecimalsRaw = this.metadataForSeriesService.getMaxDecimals(serieName);
+    const maxDecimals = typeof maxDecimalsRaw === 'number' ? maxDecimalsRaw : 0;
 
-    if (typeof data === 'number' && decimalCount > maxDecimals) {
-      // Fix for rounding errors in toFixed()
-      // - based on https://www.sitepoint.com/number-tofixed-rounding-errors-broken-but-fixable
-      const split = data.toString().split('.');
-      data = +(split.join('.') + '1');
-
-      return data.toFixed(maxDecimals);
-    } else {
+    if (typeof data !== 'number') {
       return data;
     }
+
+    const decimalsIsSetInUnitOptions =
+      this.metadataForSeriesService.getDecimalsIsSetInUnitOptions(serieName);
+
+    const decimalsToUse = decimalsIsSetInUnitOptions
+      ? maxDecimals
+      : this.metadataForSeriesService.getDecimalCount(data);
+
+    if (decimalsIsSetInUnitOptions) {
+      return this.roundAndToFixed(data, decimalsToUse);
+    }
+
+    if (decimalsToUse > 0) {
+      return this.roundAndToFixed(data, decimalsToUse);
+    }
+
+    return data;
+  }
+
+  private roundAndToFixed(value: number, decimals: number): string {
+    const factor = 10 ** decimals;
+    const rounded = Math.round((value + Number.EPSILON) * factor) / factor;
+
+    return rounded.toFixed(decimals);
   }
 }
