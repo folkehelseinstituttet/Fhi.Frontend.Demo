@@ -278,7 +278,7 @@ export class DiagramTypeGroupService {
     if (diagramType.id === DiagramTypes.columnAndLine.id) {
       if (this.notTwoUnits(diagramType)) isDisabled = true;
       if (this.notTwoUnitsInSeries(diagramType)) isDisabled = true;
-      if (this.notAllUnitsFoundInSeries(diagramType)) isDisabled = true;
+      if (this.notAllUnitsFoundInSeries()) isDisabled = true;
     }
     if (this.isAnyTypeButTable(diagramType)) {
       if (!this.isBarOrColumnType(diagramType)) {
@@ -337,8 +337,8 @@ export class DiagramTypeGroupService {
     return hasMoreThanOneSerie;
   }
 
-  private notAllUnitsFoundInSeries(diagramType: DiagramType): boolean {
-    const allUnitsFound = this.diagramOptions.units.every((unit) =>
+  private notAllUnitsFoundInSeries(): boolean {
+    const allUnitsFound = this.diagramOptions.units?.every((unit) =>
       this.series.some((serie) => serie.unitId === unit.id),
     );
     return !allUnitsFound;
