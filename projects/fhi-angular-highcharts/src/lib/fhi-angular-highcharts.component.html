@@ -213,7 +213,11 @@
           {{ diagramOptionsInternal.footer?.footnote }}
         </p>
       }
-      @if (diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
+      @if (
+        diagramOptionsInternal.units &&
+        diagramOptionsInternal.units.length > 0 &&
+        activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table
+      ) {
         <p>
           <strong>Måltall </strong>
           <span>
@@ -231,12 +235,12 @@
       @if (diagramOptionsInternal.footer?.credits) {
         <p>
           <strong>Kilde </strong>
-          @if (diagramOptionsInternal.footer.credits.href) {
-            <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{
-              diagramOptionsInternal.footer.credits.text
+          @if (diagramOptionsInternal.footer?.credits?.href) {
+            <a href="{{ diagramOptionsInternal.footer?.credits?.href }}">{{
+              diagramOptionsInternal.footer?.credits?.text
             }}</a>
           } @else {
-            <strong>{{ diagramOptionsInternal.footer.credits.text }}</strong>
+            <strong>{{ diagramOptionsInternal.footer?.credits?.text }}</strong>
           }
         </p>
       }
