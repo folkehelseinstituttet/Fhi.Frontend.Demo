@@ -20,3 +20,5 @@ export * from './lib/fhi-modal/fhi-modal.component';
 export * from './lib/fhi-modal/fhi-modal-action-button.model';
 
 export * from './lib/fhi-popover-menu/fhi-popover-menu.component';
+
+export * from './lib/fhi-popover-menu/fhi-popover-menu.model';
