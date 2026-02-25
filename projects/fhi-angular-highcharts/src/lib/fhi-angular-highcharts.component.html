@@ -141,13 +141,15 @@
   </ng-template>
 
   <ng-template #map>
-    <div class="fhi-highcharts-chart--map__wrapper">
+    <div class="fhi-highcharts-chart__wrapper">
       <div
         class="fhi-highcharts-chart fhi-highcharts-chart--map {{
-          diagramOptionsInternal.slotPosition ? 'fhi-highcharts-chart--map__' + diagramOptionsInternal.slotPosition : ''
+          diagramOptionsInternal.slotPosition
+            ? 'fhi-highcharts-chart--slot-position-' + diagramOptionsInternal.slotPosition
+            : ''
         }}"
       >
-        <div class="fhi-highcharts-chart--map__slot">
+        <div class="fhi-highcharts-chart__slot">
           <ng-content select="[fhi-map-panel-slot]"></ng-content>
         </div>
         <highcharts-chart
