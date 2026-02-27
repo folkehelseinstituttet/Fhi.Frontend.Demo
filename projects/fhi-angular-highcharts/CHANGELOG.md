@@ -1,4 +1,10 @@
-# 7.1.1
+# Unreleased
+
+> Feb 26, 2026
+
+- :tada: **Enhancement** Added support for Kommune maps.
+
+## 7.1.1
 
 > Feb 9, 2026
 

@@ -20,7 +20,6 @@ export const DodsfallHjerteOgKarEtterKommune = [
       { name: 'Hjelmeland', y: 1430, dataPointId: '1133' },
       { name: 'Suldal', y: 199, dataPointId: '1134' },
       { name: 'Sauda', y: 132, dataPointId: '1135' },
-      { name: 'Kvitsøy', y: 8343, dataPointId: '1144' },
       { name: 'Bokn', y: 941, dataPointId: '1145' },
       { name: 'Tysvær', y: 241, dataPointId: '1146' },
     ],

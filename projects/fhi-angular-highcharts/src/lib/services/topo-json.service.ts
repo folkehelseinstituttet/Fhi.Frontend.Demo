@@ -9,6 +9,7 @@ import { MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 import noFylker2024 from '../topojson/no-fylker-2024.topo.json';
 import noFylker2023 from '../topojson/no-fylker-2023.topo.json';
 import noFylker2019 from '../topojson/no-fylker-2019.topo.json';
+import noKommuner2025 from '../topojson/no-kommuner-2025.topo.json';
 
 @Injectable()
 export class TopoJsonService {
@@ -31,6 +32,7 @@ export class TopoJsonService {
       [MapTypeIdValues.mapFylker]: noFylker2024,
       [MapTypeIdValues.mapFylker2023]: noFylker2023,
       [MapTypeIdValues.mapFylker2019]: noFylker2019,
+      [MapTypeIdValues.mapKommuner]: noKommuner2025,
     };
     const map = maps[mapTypeId];
     if (map) {
@@ -72,7 +74,10 @@ export class TopoJsonService {
         geometry = geometries.find(
           (geometry: object) =>
             dataPoint.dataPointId &&
-            geometry['properties']['hc-key'] === `no-vl-${dataPoint.dataPointId}`,
+            geometry['properties']['hc-key'].slice(
+              geometry['properties']['hc-key'].length - 4,
+              geometry['properties']['hc-key'].length,
+            ) === `${dataPoint.dataPointId}`,
         );
         break;
       case MapTypeIdValues.mapFylker2019:

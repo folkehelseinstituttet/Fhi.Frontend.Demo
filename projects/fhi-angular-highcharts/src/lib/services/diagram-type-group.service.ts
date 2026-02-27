@@ -401,7 +401,6 @@ export class DiagramTypeGroupService {
   private serieNotValidHcKey(serie: FhiDiagramSerie[]): boolean {
     let noValidHcKeyFound = true;
     const kommuneKoder = kommuneData.codes;
-    console.log(kommuneKoder); // TODO: Fjerne denne, for testing kun.
     serie[0].data.map((data) => {
       if (kommuneKoder.find((code) => code === data.dataPointId)) {
         noValidHcKeyFound = false;

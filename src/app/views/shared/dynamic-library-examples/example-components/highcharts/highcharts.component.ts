@@ -368,7 +368,6 @@ export class HighchartsComponent implements OnInit {
 
   private getData__example_3g() {
     this.getData(MockData.DodsfallHjerteOgKarEtterKommune, {
-      //TODO: Opdater interface til å inkludere mapKommuner som maptype
       ...this.diagramOptions,
       activeDiagramType: 'mapKommuner',
       title: this.titles.title_3g,
