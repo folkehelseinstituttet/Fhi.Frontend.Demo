@@ -2,7 +2,7 @@
 
 > Feb 26, 2026
 
-- :tada: **Enhancement** Added support for Kommune maps.
+- :tada: **Enhancement** Added support for Kommune maps. [(#938)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/938)
 
 ## 7.1.1
 
