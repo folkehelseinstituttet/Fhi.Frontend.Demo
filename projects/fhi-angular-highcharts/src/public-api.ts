@@ -16,5 +16,7 @@ export * from './lib/constants-and-enums/diagram-serie-name-seperator';
 export * from './lib/constants-and-enums/diagram-type-nav-ids';
 export * from './lib/constants-and-enums/table-orientations';
 export * from './lib/constants-and-enums/fhi-diagram-types';
+export * from './lib/models/fhi-diagram-requirements.model';
+export * from './lib/models/fhi-diagram-disabled-warning.model';
 
 export { FhiDiagramTypes } from './lib/constants-and-enums/fhi-diagram-types';

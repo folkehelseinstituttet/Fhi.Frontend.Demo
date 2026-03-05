@@ -5,6 +5,7 @@ import { FhiDiagramUnit } from './fhi-diagram-unit.model';
 import { FhiDiagramControls } from './fhi-diagram-controls.model';
 import { FhiDiagramFooter } from './fhi-diagram-footer.model';
 import { FhiDiagramCategoryAxis } from './fhi-diagram-category-axis.model';
+import { FhiDiagramDisabledWarning } from './fhi-diagram-disabled-warning.model';
 
 export type FhiDiagramTypeIds = keyof typeof DiagramTypeIds;
 export type FhiTableOrientations = keyof typeof TableOrientations;
@@ -21,4 +22,5 @@ export interface FhiDiagramOptions {
   tableOrientation?: FhiTableOrientations;
   title: string;
   units?: FhiDiagramUnit[];
+  disabledWarning?: FhiDiagramDisabledWarning;
 }

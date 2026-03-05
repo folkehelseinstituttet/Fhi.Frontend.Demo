@@ -17,6 +17,8 @@ import { Valgdeltagelse2015 } from './mock-data/10.Valgdeltagelse-2015';
 
 // Data for testing/debugging while developing locally, do not show in dev or prod.
 import { TestData } from './mock-data/test-data-7';
+import { TestData11 } from './mock-data/test-data-11';
+import { TestData12 } from './mock-data/test-data-12';
 import { DodsfallHjerteOgKarEtterFylkeFlereAr } from './mock-data/11.dodsfall-hjerte-og-kar-etter-fylte-flere-ar';
 
 @Injectable({
@@ -60,6 +62,12 @@ export class MockDataService {
         // Data for testing while developing locally, do not show in dev or prod.
         case MockData.TestData:
           dataSet.next(TestData);
+          break;
+        case MockData.TestData11:
+          dataSet.next(TestData11);
+          break;
+        case MockData.TestData12:
+          dataSet.next(TestData12);
           break;
         case MockData.DodsfallHjerteOgKarEtterFylkeFlereAr:
           dataSet.next(DodsfallHjerteOgKarEtterFylkeFlereAr);

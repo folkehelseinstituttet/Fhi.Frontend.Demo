@@ -110,26 +110,6 @@
     </div>
   </ng-template>
 
-  <!--Fullscreen modal removed - using CSS fullscreen instead-->
-  <!--<ng-template #diagramModal>
-    <fhi-modal
-      [openModalButtonClass]="'fhi-btn-icon fhi-btn-icon--circular'"
-      [modalTitle]="diagramOptionsInternal.title"
-      [size]="'fullscreen'"
-    >
-      <ng-container fhi-modal.button>
-        <i class="icon-arrows-fullscreen"></i>
-        <span class="visually-hidden">Fullskjerm </span>
-      </ng-container>
-      <ng-container fhi-modal.body>
-        @if (diagramOptionsInternal.description) {
-          <p>{{ diagramOptionsInternal.description }}</p>
-        }
-        <ng-container *ngTemplateOutlet="diagramAndFooter" />
-      </ng-container>
-    </fhi-modal>
-  </ng-template>*-->
-
   <ng-template #chart>
     <div class="fhi-highcharts-chart">
       <highcharts-chart
@@ -311,12 +291,43 @@
 
   <ng-template #diagramTypeDisabledWarning>
     <div class="mt-3" id="om-dataene">
-      <div class="alert alert-warning" role="alert">
-        <i class="icon-bell"></i>
-        <p class="mb-0">
-          Vi kan ikke vise grafen du ber om. Bytt til tabellvisning, velg bort kategorier som ikke inneholder verdier og
-          prøv igjen. Det kan også hjelpe å kun velge ett måltall om gangen.
-        </p>
+      <div class="disabled-warning disabled-alert" role="alert">
+        @if (diagramOptionsInternal.disabledWarning?.title) {
+          <p class="fw-bold warning-title">{{ diagramOptionsInternal.disabledWarning?.title }}</p>
+        }
+        @if (diagramOptionsInternal.disabledWarning?.customRequirements?.length > 0) {
+          <ul>
+            @for (requirement of diagramOptionsInternal.disabledWarning?.customRequirements; track $index) {
+              <li>
+                <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                {{ requirement.label }}
+              </li>
+            }
+          </ul>
+        }
+        @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
+          @if (diagramRequirements?.length > 0) {
+            <!-- Separated into two if statements to avoid displaying generic message when not set to and the dataset is empty -->
+            <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
+            <ul>
+              @for (requirement of diagramRequirements; track $index) {
+                <li>
+                  <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                  {{ requirement.label }}
+                </li>
+              }
+            </ul>
+          }
+        } @else {
+          <div class="generic-message">
+            <i class="icon-bell"></i>
+
+            <p>
+              Vi kan ikke vise grafen med disse valgene. Velg tabell og skjul rader eller kolonner som ikke inneholder
+              en tallverdi og prøv igjen. Det kan også hjelpe å velge ett måltall om gangen.
+            </p>
+          </div>
+        }
       </div>
     </div>
   </ng-template>
