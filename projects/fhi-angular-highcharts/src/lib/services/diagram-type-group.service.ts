@@ -11,6 +11,7 @@ import { FlaggedSerie } from '../models/flagged-serie.model';
 import { DiagramType } from '../models/diagram-type.model';
 import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-diagram-types';
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
+import { FhiDiagramRequirements } from '../models/fhi-diagram-requirements.model';
 
 enum msgId {
   hasFlaggedData,
@@ -21,6 +22,7 @@ enum msgId {
   notTwoUnitsInSeries,
   notTwoUnits,
   onlyOneSerieAndAllDataAreFlagged,
+  datasetIsEmpty,
 }
 
 @Injectable()
@@ -29,20 +31,80 @@ export class DiagramTypeGroupService {
   private flaggedSeries!: FlaggedSerie[];
   private diagramOptions: FhiDiagramOptions;
   private series!: FhiDiagramSerie[];
-  private diagramTypeDisabledWarnings: { [key in FhiDiagramTypeIds]?: string } = {};
-  private diagramTypeDisabledWarningMessages: Record<msgId, string> = {
-    [msgId.hasFlaggedData]: 'series.length > 1 && flaggedSeries?.length !== 0',
-    [msgId.moreThanOneSeries]: 'series.length > 1',
-    [msgId.notAllUnitsFoundInSeries]: 'notAllUnitsFoundInSeries',
-    [msgId.notGeo]: 'series.length === 1 && serieNotGeo(this.series[0])',
-    [msgId.notMaxOneUnitInSeries]: 'this.uniqueUnitIdCountInSeries() > 1',
-    [msgId.notTwoUnitsInSeries]: 'this.uniqueUnitIdCountInSeries() !== 2',
-    [msgId.notTwoUnits]: 'diagramOptions.units?.length !== 2',
-    [msgId.onlyOneSerieAndAllDataAreFlagged]: 'onlyOneSerieAndAllDataAreFlagged',
-  };
+  private diagramTypeDisabledWarnings: {
+    [key in FhiDiagramTypeIds]?: { warning: string; message: string; isMet: boolean };
+  } = {};
+  private diagramTypeDisabledWarningMessages: Record<msgId, { warning: string; message: string }> =
+    {
+      [msgId.hasFlaggedData]: {
+        warning: 'series.length > 1 && flaggedSeries?.length !== 0',
+        message: 'Diagramtypen kan ikke vise prikkede data.',
+      },
+      [msgId.moreThanOneSeries]: {
+        warning: 'series.length > 1',
+        message: 'Du kan bare velge én kategori per serie.',
+      },
+      [msgId.notAllUnitsFoundInSeries]: {
+        warning: 'notAllUnitsFoundInSeries',
+        message: 'Krever at alle valgte måltall finnes i datasettet.', // Vises ikke i grensesnittet
+      },
+      [msgId.notGeo]: {
+        warning: 'series.length === 1 && serieNotGeo(this.series[0])',
+        message: `Geografidimensjonen må være valgt som fordeling og ha gyldige ID'er.`,
+      },
+      [msgId.notMaxOneUnitInSeries]: {
+        warning: 'this.uniqueUnitIdCountInSeries() > 1',
+        message: 'Kun én måleenhet kan velges om gangen.',
+      },
+      [msgId.notTwoUnitsInSeries]: {
+        warning: 'this.uniqueUnitIdCountInSeries() !== 2',
+        message: 'Minst to måltall må være valgt.',
+      },
+      [msgId.notTwoUnits]: {
+        warning: 'diagramOptions.units?.length !== 2',
+        message: 'Måltallene må ha eksakt to forskjellige måleenheter.',
+      },
+      [msgId.onlyOneSerieAndAllDataAreFlagged]: {
+        warning: 'onlyOneSerieAndAllDataAreFlagged',
+        message: 'Diagrammet kan ikke vises dersom alle data er prikket.',
+      },
+      [msgId.datasetIsEmpty]: {
+        warning: 'series === undefined || series.length === 0',
+        message: 'Krever at det finnes data i datasettet.', // Vises ikke i grensesnittet
+      },
+    };
 
-  getDiagramTypeDisabledWarningMsg(activeDiagramType: string): string {
-    return this.diagramTypeDisabledWarnings[activeDiagramType];
+  getDiagramTypeDisabledWarningMsg(activeDiagramType: string): {
+    warning: string;
+    message: string;
+  } {
+    const warning = this.diagramTypeDisabledWarnings[activeDiagramType];
+    if (warning) {
+      return {
+        warning: warning.warning,
+        message: warning.message,
+      };
+    }
+    return {
+      warning: 'ukjent årsak',
+      message: 'Det har oppstått en ukjent feil.',
+    };
+  }
+
+  private datasetIsEmpty(diagramType: DiagramType): boolean {
+    // TODO: Validate if this is correct
+    const isEmpty = this.series === undefined || this.series.length === 0;
+    return isEmpty;
+  }
+
+  getDiagramRequirements(activeDiagramType: DiagramType): FhiDiagramRequirements[] {
+    const requirements = this.diagramTypeDisabledWarnings[activeDiagramType.id] || [];
+    return requirements.map((requirement: { message: string; isMet: boolean }) => {
+      return {
+        label: requirement.message,
+        isMet: requirement.isMet,
+      };
+    });
   }
 
   getActiveDiagramTypeGroup(groups: DiagramTypeGroup[]): DiagramTypeGroup {
@@ -198,28 +260,33 @@ export class DiagramTypeGroupService {
   }
 
   private diagramTypeIsDisabled(diagramType: DiagramType): boolean {
-    if (this.isAnyTypeButTable(diagramType)) {
-      if (this.onlyOneSerieAndAllDataAreFlagged(diagramType)) return true;
-    }
+    let isDisabled = false;
+    this.diagramTypeDisabledWarnings[diagramType.id] = [];
+    if (this.datasetIsEmpty(diagramType)) return true;
     if (this.isAnyTypeButTableOrColumnAndLine(diagramType)) {
-      if (this.notMaxOneUnitInSeries(diagramType)) return true;
+      if (this.notMaxOneUnitInSeries(diagramType)) isDisabled = true;
     }
     if (this.isBarOrColumnType(diagramType)) {
-      if (this.hasFlaggedData(diagramType)) return true;
+      if (this.hasFlaggedData(diagramType)) isDisabled = true;
     }
     if (this.isMapOrPieType(diagramType)) {
-      if (this.moreThanOneSeries(diagramType)) return true;
+      if (this.moreThanOneSeries(diagramType)) isDisabled = true;
     }
     if (this.isMapType(diagramType)) {
-      if (this.notGeo(diagramType)) return true;
+      if (this.notGeo(diagramType)) isDisabled = true;
     }
     if (diagramType.id === DiagramTypes.columnAndLine.id) {
-      if (this.notTwoUnits(diagramType)) return true;
-      if (this.notTwoUnitsInSeries(diagramType)) return true;
-      if (this.notAllUnitsFoundInSeries(diagramType)) return true;
+      if (this.notTwoUnits(diagramType)) isDisabled = true;
+      if (this.notTwoUnitsInSeries(diagramType)) isDisabled = true;
+      if (this.notAllUnitsFoundInSeries()) isDisabled = true;
+    }
+    if (this.isAnyTypeButTable(diagramType)) {
+      if (!this.isBarOrColumnType(diagramType)) {
+        if (this.onlyOneSerieAndAllDataAreFlagged(diagramType)) isDisabled = true;
+      }
     }
 
-    return false;
+    return isDisabled;
   }
 
   private isBarOrColumnType(diagramType: DiagramType): boolean {
@@ -255,91 +322,82 @@ export class DiagramTypeGroupService {
   }
 
   private hasFlaggedData(diagramType: DiagramType): boolean {
-    if (this.series.length > 1 && this.flaggedSeries?.length !== 0) {
-      this.updateDisabledWarnings(diagramType.id, msgId.hasFlaggedData);
-      return true;
-    }
-    return false;
+    const hasFlaggedData = this.series.length > 1 && this.flaggedSeries?.length !== 0;
+    const isMet = !hasFlaggedData;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.hasFlaggedData, isMet);
+    return hasFlaggedData;
   }
 
   private moreThanOneSeries(diagramType: DiagramType): boolean {
-    if (this.series.length > 1) {
-      this.updateDisabledWarnings(diagramType.id, msgId.moreThanOneSeries);
-      return true;
-    }
-    return false;
+    const hasMoreThanOneSerie = this.series.length > 1;
+    const isMet = !hasMoreThanOneSerie;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.moreThanOneSeries, isMet);
+    return hasMoreThanOneSerie;
   }
 
-  private notAllUnitsFoundInSeries(diagramType: DiagramType): boolean {
-    const allUnitsFoundInSeries = this.diagramOptions.units.every((unit) =>
+  private notAllUnitsFoundInSeries(): boolean {
+    const allUnitsFound = this.diagramOptions.units?.every((unit) =>
       this.series.some((serie) => serie.unitId === unit.id),
     );
-
-    if (!allUnitsFoundInSeries) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notAllUnitsFoundInSeries);
-      return true;
-    }
-    return false;
+    return !allUnitsFound;
   }
 
   private notGeo(diagramType: DiagramType): boolean {
+    let isMet: boolean = false;
     switch (diagramType.id) {
       case DiagramTypes.mapFylker.id:
-        if (this.series.length === 1 && this.serieNotValidIsoCode(this.series)) {
-          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
-          return true;
-        }
-        return false;
+        isMet = this.series.length === 1 && !this.serieNotValidIsoCode(this.series);
+        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        return !isMet;
       case DiagramTypes.mapFylker2019.id:
       case DiagramTypes.mapFylker2023.id:
-        if (this.series.length === 1 && this.serieNotGeo(this.series[0])) {
-          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
-          return true;
-        }
-        return false;
+        isMet = this.series.length === 1 && !this.serieNotGeo(this.series[0]);
+        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        return !isMet;
       default:
-        return true;
+        return !isMet;
     }
   }
 
   private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
-    if (this.uniqueUnitIdCountInSeries() > 1) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notMaxOneUnitInSeries);
-      return true;
-    }
-    return false;
+    const isMet = this.uniqueUnitIdCountInSeries() <= 1;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.notMaxOneUnitInSeries, isMet);
+    return !isMet;
   }
 
   private notTwoUnitsInSeries(diagramType: DiagramType): boolean {
-    if (this.uniqueUnitIdCountInSeries() !== 2) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnitsInSeries);
-      return true;
-    }
-    return false;
+    const isMet = this.uniqueUnitIdCountInSeries() === 2;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnitsInSeries, isMet);
+    return !isMet;
   }
 
   private notTwoUnits(diagramType: DiagramType): boolean {
-    if (this.diagramOptions.units?.length !== 2) {
-      this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnits);
-      return true;
-    }
-    return false;
+    const isMet = this.diagramOptions.units?.length === 2;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.notTwoUnits, isMet);
+    return !isMet;
   }
 
   private onlyOneSerieAndAllDataAreFlagged(diagramType: DiagramType): boolean {
-    if (
+    const onlyOneSerieAndallDataAreFlagged =
       this.series.length === 1 &&
-      this.series[0].data.every((dataPoint) => !(typeof dataPoint.y.valueOf() === 'number'))
-    ) {
-      this.updateDisabledWarnings(diagramType.id, msgId.onlyOneSerieAndAllDataAreFlagged);
-      return true;
-    }
-    return false;
+      this.series[0].data.every((dataPoint) => !(typeof dataPoint.y.valueOf() === 'number'));
+    const isMet = !onlyOneSerieAndallDataAreFlagged;
+
+    this.updateDisabledWarnings(diagramType.id, msgId.onlyOneSerieAndAllDataAreFlagged, isMet);
+    return onlyOneSerieAndallDataAreFlagged;
   }
 
-  private updateDisabledWarnings(diagramTypeId: string, messageId: number) {
+  private updateDisabledWarnings(diagramTypeId: string, messageId: number, isMet: boolean) {
     const messages = this.diagramTypeDisabledWarningMessages;
-    this.diagramTypeDisabledWarnings[diagramTypeId] = messages[messageId];
+    if (!this.diagramTypeDisabledWarnings[diagramTypeId]) {
+      this.diagramTypeDisabledWarnings[diagramTypeId] = [];
+    }
+    this.diagramTypeDisabledWarnings[diagramTypeId].push({ ...messages[messageId], isMet });
   }
 
   private serieNotGeo(serie: FhiDiagramSerie): boolean {

@@ -38,7 +38,7 @@
               }
             },
             "scripts": [
-              "node_modules/marked/lib/marked.esm.js",
+              "node_modules/marked/lib/marked.umd.js",
               "node_modules/prismjs/prism.js"
             ],
             "extractLicenses": false,

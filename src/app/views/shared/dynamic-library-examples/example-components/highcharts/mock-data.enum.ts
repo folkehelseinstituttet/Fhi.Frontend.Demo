@@ -10,4 +10,6 @@ export enum MockData {
   PrikkedeDataMedToSerier,
   TestData,
   Valgdeltagelse2015,
+  TestData11,
+  TestData12,
 }
