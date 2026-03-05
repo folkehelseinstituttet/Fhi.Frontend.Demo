@@ -1,6 +1,8 @@
 # Unreleased
 
-> Feb 03, 2026
+> Feb 17, 2026
+
+- :tada: **Enhancement** Add content projection slot for maps to allow custom panels [(#911)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/911)
 
 - :tada: **Enhancement** Add support for diagram custom requirements and disabled warnings [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
   - **Migration guide**

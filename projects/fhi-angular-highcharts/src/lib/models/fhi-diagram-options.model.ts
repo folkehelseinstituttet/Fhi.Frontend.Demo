@@ -18,6 +18,7 @@ export interface FhiDiagramOptions {
   footer?: FhiDiagramFooter;
   openSource?: boolean;
   series: FhiDiagramSerie[];
+  slotPosition?: 'top' | 'bottom' | 'left' | 'right';
   tableOrientation?: FhiTableOrientations;
   title: string;
   units?: FhiDiagramUnit[];

@@ -121,13 +121,25 @@
   </ng-template>
 
   <ng-template #map>
-    <div class="fhi-highcharts-chart fhi-highcharts-chart--map">
-      <highcharts-chart
-        [Highcharts]="highmaps"
-        [constructorType]="'mapChart'"
-        [options]="highchartsOptions"
-        (chartInstance)="onChartInstance($event)"
-      ></highcharts-chart>
+    <div class="fhi-highcharts-chart-wrapper">
+      <div
+        class="fhi-highcharts-chart fhi-highcharts-chart--map"
+        [ngClass]="
+          diagramOptionsInternal.slotPosition
+            ? 'fhi-highcharts-chart--slot-position-' + diagramOptionsInternal.slotPosition
+            : ''
+        "
+      >
+        <div class="fhi-highcharts-chart__slot">
+          <ng-content select="[fhi-map-panel-slot]"></ng-content>
+        </div>
+        <highcharts-chart
+          [Highcharts]="highmaps"
+          [constructorType]="'mapChart'"
+          [options]="highchartsOptions"
+          (chartInstance)="onChartInstance($event)"
+        ></highcharts-chart>
+      </div>
     </div>
   </ng-template>
 
@@ -181,7 +193,11 @@
           {{ diagramOptionsInternal.footer?.footnote }}
         </p>
       }
-      @if (diagramOptionsInternal.units?.length > 0 && activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table) {
+      @if (
+        diagramOptionsInternal.units &&
+        diagramOptionsInternal.units.length > 0 &&
+        activeDiagramTypeGroup?.name === diagramTypeGroupNames?.table
+      ) {
         <p>
           <strong>Måltall </strong>
           <span>
@@ -199,12 +215,12 @@
       @if (diagramOptionsInternal.footer?.credits) {
         <p>
           <strong>Kilde </strong>
-          @if (diagramOptionsInternal.footer.credits.href) {
-            <a href="{{ diagramOptionsInternal.footer.credits.href }}">{{
-              diagramOptionsInternal.footer.credits.text
+          @if (diagramOptionsInternal.footer?.credits?.href) {
+            <a href="{{ diagramOptionsInternal.footer?.credits?.href }}">{{
+              diagramOptionsInternal.footer?.credits?.text
             }}</a>
           } @else {
-            <strong>{{ diagramOptionsInternal.footer.credits.text }}</strong>
+            <strong>{{ diagramOptionsInternal.footer?.credits?.text }}</strong>
           }
         </p>
       }

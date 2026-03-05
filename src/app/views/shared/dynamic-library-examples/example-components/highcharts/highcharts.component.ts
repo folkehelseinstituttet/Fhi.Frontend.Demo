@@ -25,6 +25,9 @@ export class HighchartsComponent implements OnInit {
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
+  selectedYear: string = '2024';
+  availableYears: string[] = [];
+  allYearsData: FhiDiagramSerie[] = [];
   showUnitSelect = false;
 
   titles = {
@@ -40,6 +43,7 @@ export class HighchartsComponent implements OnInit {
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
     title_11: 'Test-data - Tomt datasett',
     title_12: 'TEST: Feilmeldinger for alle diagramtyper',
+    title_4a: 'Dødsfall hjerte og kar per fylke med filtermeny',
   };
 
   constructor(
@@ -55,6 +59,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.getExampleData('3a');
       // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+    } else if (this.itemId === this.items.HighchartsMapWithSlot.id) {
+      this.getExampleData('4a');
     }
   }
 
@@ -74,6 +80,29 @@ export class HighchartsComponent implements OnInit {
 
   onSelectMockData(value: string) {
     this.getExampleData(value);
+  }
+
+  onSlotPositionChange(value: 'top' | 'bottom' | 'left' | 'right') {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      slotPosition: value,
+    };
+  }
+
+  onYearChange(year: string) {
+    this.selectedYear = year;
+
+    const selectedYearData = this.getDataforYear(this.selectedYear);
+
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      series: [{ name: 'Hjerte- og karsystemet', data: selectedYearData }],
+    };
+  }
+
+  private getDataforYear(year: string): any[] {
+    const yearObj = this.allYearsData.find((data) => data.name === year);
+    return yearObj ? yearObj.data : [];
   }
 
   onMetadataButtonClick() {
@@ -139,6 +168,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '12':
         this.getData__example_12();
+        break;
+      case '4a':
+        this.getData__example_4a();
         break;
     }
   }
@@ -470,6 +502,67 @@ export class HighchartsComponent implements OnInit {
         showRequirements: true,
         title: 'Diagrammet kan ikke vises',
       },
+    });
+  }
+
+  private getData__example_4a() {
+    this.dataIsLoading = true;
+    this.dataIsLoaded = false;
+
+    this.highchartsDataService.getData(MockData.DodsfallHjerteOgKarEtterFylkeFlereAr).subscribe({
+      next: (data: any) => {
+        const dataObject = data[0];
+        this.availableYears = dataObject.availableYears;
+        this.allYearsData = dataObject.data;
+
+        this.selectedYear = this.availableYears[this.availableYears.length - 1];
+
+        const selectedYearData = this.getDataforYear(this.selectedYear);
+
+        this.diagramOptions = {
+          series: [
+            {
+              name: dataObject.name,
+              data: selectedYearData,
+            },
+          ],
+          activeDiagramType: 'mapFylker',
+          title: `${this.titles.title_4a} - ${this.selectedYear}`,
+          units: undefined,
+          slotPosition: 'right',
+          categoryAxis: {
+            title: 'År',
+          },
+          controls: {
+            downloadButton: { show: true },
+            fullScreenButton: { show: true },
+            metadataButton: { show: true },
+            navigation: {
+              items: {
+                chartTypes: ['bar', 'column', 'line', 'pie'],
+                mapTypes: ['mapFylker'],
+              },
+              show: true,
+            },
+          },
+          footer: {
+            credits: {
+              href: 'https://www.fhi.no',
+              text: 'Folkehelseinstituttet',
+            },
+            disclaimer: 'Disse dataene kan inneholde feil.',
+            flags: [{ symbol: ':', label: 'Anonymisert' }],
+            lastUpdated: '04.02.2026',
+          },
+          openSource: false,
+        };
+
+        setTimeout(() => {
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        }, 750);
+      },
+      error: (e) => console.error(e),
     });
   }
 

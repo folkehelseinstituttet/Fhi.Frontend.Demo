@@ -6,6 +6,7 @@ import {
   HostListener,
   Input,
   OnChanges,
+  OnDestroy,
   Output,
 } from '@angular/core';
 
@@ -58,7 +59,7 @@ enum ControlsPopoverMenuActions {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class FhiAngularHighchartsComponent implements OnChanges {
+export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
   private allSerieNames: string[] = [];
   private chartInstance!: Chart;
 
@@ -136,6 +137,12 @@ export class FhiAngularHighchartsComponent implements OnChanges {
       this.updateDiagramState();
     } catch (error) {
       console.error(this.getErrorMsg(error));
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.isFullscreen) {
+      document.body.style.overflow = '';
     }
   }
 
@@ -230,8 +237,6 @@ export class FhiAngularHighchartsComponent implements OnChanges {
     this.allSerieNames = [];
     this.flaggedSeries = [];
     this.metadataForSeriesService.resetMetadataForSeries();
-
-    this.isFullscreen = false;
   }
 
   private formatSerieName(name: string | Array<string>): string {
