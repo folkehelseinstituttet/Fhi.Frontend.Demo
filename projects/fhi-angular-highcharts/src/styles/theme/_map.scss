@@ -45,3 +45,58 @@
 .highcharts-point {
     stroke-width: 0.07; // TODO: Check if still needed when upgrading Highcharts version. Fix for bug with outline.
 }
+
+.fhi-highcharts-chart--map {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    .fhi-highcharts-chart__slot {
+        order: 2;
+    }
+    highcharts-chart {
+        order: 1;
+    }
+}
+.fhi-highcharts-chart--slot-position-top {
+    .fhi-highcharts-chart__slot {
+        order: 1;
+    }
+    highcharts-chart {
+        order: 2;
+    }
+}
+
+.fhi-highcharts-chart-wrapper {
+    container-type: inline-size;
+}
+
+@container (width > 768px) {
+    .fhi-highcharts-chart--slot-position-right,
+    .fhi-highcharts-chart--slot-position-left {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: flex-start;
+        highcharts-chart {
+            flex: 1 1 0;
+            min-width: 400px;
+            height: 100%;
+            min-height: 400px;
+            max-width: 100%;
+        }
+        .fhi-highcharts-chart__slot {
+            flex: 1 1 0;
+            align-self: stretch;
+            height: auto;
+            max-width: 30%;
+        }
+    }
+    .fhi-highcharts-chart--slot-position-left {
+        .fhi-highcharts-chart__slot {
+            order: 1;
+        }
+        highcharts-chart {
+            order: 2;
+        }
+    }
+}

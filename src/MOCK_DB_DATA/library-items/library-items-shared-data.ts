@@ -170,6 +170,10 @@ export const LibraryItemsSharedData: LibraryItemsShared = {
     id: 'highcharts-all-inclusive',
     title: 'Highcharts all inclusive',
   },
+  HighchartsMapWithSlot: {
+    id: 'highcharts-map-with-slot',
+    title: 'Highcharts map with slot',
+  },
 
   Modal: {
     id: 'modal',

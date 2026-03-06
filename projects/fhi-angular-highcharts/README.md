@@ -21,6 +21,13 @@ _An opinionated wrapper to the official minimal [Highcharts wrapper for Angular]
     - [Interface FhiDiagramSerieData](#interface-fhidiagramseriedata)
     - [Interface FhiDiagramFlag](#interface-fhidiagramflag)
     - [Interface FhiDiagramUnit](#interface-fhidiagramunit)
+    - [Interface FhiDiagramDisabledWarning](#interface-fhidiagramdisabledwarning)
+      - [Interaction between properties](#interaction-between-properties)
+    - [Interface FhiDiagramRequirements](#interface-fhidiagramrequirements)
+    - [Content Projection - Map Slot](#content-projection---map-slot)
+      - [Basic usage](#basic-usage)
+      - [Slot position](#slot-position)
+      - [Empty slot behaviour](#empty-slot-behaviour)
   - [Changelog](#changelog)
   - [Contribute](#contribute)
   - [Demo](#demo)
@@ -127,18 +134,20 @@ This is where `allowedCommonJsDependencies` is located in `angular.json`
 
 ### Interface FhiDiagramOptions
 
-| Property            | Type                     | Default | Required | Description                                                                                                                                                                                                                                                                                                                                                |
-| ------------------- | ------------------------ | ------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `activeDiagramType` | `string`                 | -       | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds`                                                                                                                                                                                                                                                                             |
-| `categoryAxis`      | `FhiDiagramCategoryAxis` | -       | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details.                                                                                                                                                                                                                              |
-| `controls`          | `FhiDiagramControls`     | -       | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details.                                                                                                                                                                                                                                       |
-| `description`       | `string`                 | -       | no       | A description of the diagram below the `title`.                                                                                                                                                                                                                                                                                                            |
-| `footer`            | `FhiDiagramFooter`       | -       | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details.                                                                                                                                                                                                                                       |
-| `openSource`        | `boolean`                | `true`  | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!**                                                                                                                                                                                                                                                                            |
-| `series`            | `FhiDiagramSerie[]`      | -       | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details.                                                                                                                                                                                                                                                          |
-| `tableOrientation`  | `string`                 | -       | no       | Transpose table by setting preferd orientation. Values defined by enum `FhiTableOrientations`                                                                                                                                                                                                                                                              |
-| `title`             | `string`                 | -       | yes      | The title above the diagram.                                                                                                                                                                                                                                                                                                                               |
-| `units`             | `FhiDiagramUnit[]`       | -       | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
+| Property            | Type                                     | Default  | Required | Description                                                                                                                                                                                                                                                                                                                                                |
+| ------------------- | ---------------------------------------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `activeDiagramType` | `string`                                 | -        | no       | ID to specify default diagram type. Values defined by enum `FhiDiagramTypeIds`                                                                                                                                                                                                                                                                             |
+| `categoryAxis`      | `FhiDiagramCategoryAxis`                 | -        | no       | Properties related to the categoryAxis (x-axis). See [FhiDiagramCategoryAxis](#interface-fhidiagramcategoryaxis) for details.                                                                                                                                                                                                                              |
+| `controls`          | `FhiDiagramControls`                     | -        | no       | Properties related to controls like navigation. See [FhiDiagramControls](#interface-fhidiagramcontrols) for details.                                                                                                                                                                                                                                       |
+| `description`       | `string`                                 | -        | no       | A description of the diagram below the `title`.                                                                                                                                                                                                                                                                                                            |
+| `footer`            | `FhiDiagramFooter`                       | -        | no       | Properties related to the footer below the diagram. See [FhiDiagramFooter](#interface-fhidiagramfooter) for details.                                                                                                                                                                                                                                       |
+| `openSource`        | `boolean`                                | `true`   | no       | If `false`; the link to Highcharts.com disappears, **AND LICENSE IS REQUIRED!**                                                                                                                                                                                                                                                                            |
+| `series`            | `FhiDiagramSerie[]`                      | -        | yes      | The data used to render a diagram. See [FhiDiagramSerie](#interface-fhidiagramserie) for details.                                                                                                                                                                                                                                                          |
+| `slotPosition`      | `'top' \| 'bottom' \| 'left' \| 'right'` | `bottom` | no       | Position of the projected content.                                                                                                                                                                                                                                                                                                                         |
+| `tableOrientation`  | `string`                                 | -        | no       | Transpose table by setting preferred orientation. Values defined by enum `FhiTableOrientations`.                                                                                                                                                                                                                                                           |
+| `title`             | `string`                                 | -        | yes      | The title above the diagram.                                                                                                                                                                                                                                                                                                                               |
+| `units`             | `FhiDiagramUnit[]`                       | -        | no       | Decimal count, and metadata for y-axis and tooltip. See [FhiDiagramUnit](#interface-fhidiagramunit) for details. Currently only diagram type `table` and `columnAndLine` supports two units, and only `table` supports more than two units. All other diagram types supports max 1 unit. See below this table for more info about using two or more units. |
+| `disabledWarning`   | `FhiDiagramDisabledWarning`              | -        | no       | Custom requirements for the diagram. See [FhiDiagramDisabledWarning](#interface-fhidiagramdisabledwarning) for details.                                                                                                                                                                                                                                    |
 
 #### Using two units
 
@@ -236,6 +245,63 @@ FhiDiagramSerieData is a custum type for FHI Angular Highcharts, but it is based
 | `position` | `string`           | -       | no       | Wether the symbol i placed before or after the numbers in the diagram. Possible values: `'start' \| 'end'`                                                                                                                                                                                                                                                                 |
 | `yAxisMax` | `number`           | -       | no       | The maximum value of the y-axis. If not set, the max value is automatically calculated. NB! Highcharts may override the value in some edge cases.                                                                                                                                                                                                                          |
 | `yAxisMin` | `number`           | -       | no       | The minimum value of the y-axis. If not set, the min value is automatically calculated. NB! Highcharts may override the value in some edge cases.                                                                                                                                                                                                                          |
+
+### Interface FhiDiagramDisabledWarning
+
+| Property             | Type                       | Default | Required | Description                                                                                                                                                                            |
+| -------------------- | -------------------------- | ------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `showRequirements`   | `boolean`                  | `false` | no       | Whether to show the requirements for the diagram. If `false`, a generic warning message will be displayed instead.                                                                     |
+| `title`              | `string`                   | -       | no       | Title for the requirements for the diagram.                                                                                                                                            |
+| `customRequirements` | `FhiDiagramRequirements[]` | -       | no       | Custom requirements for the diagram. See [FhiDiagramRequirements](#interface-fhidiagramrequirements) for details. These are always shown if provided regardless of `showRequirements`. |
+
+#### Interaction between properties
+
+The disabled warning can display four types of content:
+
+1. **Custom requirements** - Set `customRequirements` to an array of `FhiDiagramRequirements` objects. These will be displayed above the auto generated requirements, or generic warning message depending on `showRequirements`
+2. **Auto generated requirements** - Set `showRequirements` to `true`. The auto generated requirements will be displayed below any custom requirements. If set to false a generic warning message will be displayed instead.
+3. **Generic warning message** - If `showRequirements` is `false`, a generic warning message will be displayed
+4. **Title** - Set `title` to a string. The title will be displayed above the rest of the contents of the disabled warning
+
+### Interface FhiDiagramRequirements
+
+| Property | Type      | Default | Required | Description                                            |
+| -------- | --------- | ------- | -------- | ------------------------------------------------------ |
+| `label`  | `string`  | -       | yes      | Requirement label for the requirement warning overlay. |
+| `isMet`  | `boolean` | -       | yes      | Whether the requirement is met.                        |
+
+### Content Projection - Map Slot
+
+The map chart type supports content projection, allowing you to inject custom controls (filters, legends, etc.) alongside the map. This is useful for creating interactive map experiences with filtering capabilities.
+
+#### Basic usage
+
+```html
+<fhi-angular-highcharts [diagramOptions]="mapOptions">
+  <div fhi-map-panel-slot>
+    <!-- Your custom content here -->
+  </div>
+</fhi-angular-highcharts>
+```
+
+#### Slot position
+
+Control the position of the projected content using the `slotPosition` property in `diagramOptions`. If no slot position is set the slot will be displayed below the map.
+
+```ts
+diagramOptions: FhiDiagramOptions = {
+  activeDiagramType: 'mapFylker',
+  slotPosition: 'right', // 'top' | 'bottom' | 'left' | 'right'
+  series: [...],
+  title: 'Map with Filter Panel'
+};
+```
+
+> On screens ≤ 768px, horizontal position (`left`/ `right`) will automatically stack vertically and the slot will be positioned below the map unless the position `top` is set in the `diagramOptions`. The slot uses CSS container queries to ensure optimal layout across different screen sizes. The map remains fully responsive and adjusts its aspect ratio based on the available space and slot position.
+
+#### Empty slot behaviour
+
+If no content is projected, the slot area is hidden automatically. Maps without the `fhi-map-panel-slot` content will render normally without any slot-related layout changes.
 
 ## Changelog
 

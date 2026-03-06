@@ -25,6 +25,9 @@ export class HighchartsComponent implements OnInit {
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
+  selectedYear: string = '2024';
+  availableYears: string[] = [];
+  allYearsData: FhiDiagramSerie[] = [];
   showUnitSelect = false;
 
   titles = {
@@ -39,6 +42,9 @@ export class HighchartsComponent implements OnInit {
     title_3e: 'Prikkede data med to serier',
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
     title_3g: 'Dødsfall hjerte og kar, fordelt på kommune',
+    title_11: 'Test-data - Tomt datasett',
+    title_12: 'TEST: Feilmeldinger for alle diagramtyper',
+    title_4a: 'Dødsfall hjerte og kar per fylke med filtermeny',
   };
 
   constructor(
@@ -54,6 +60,8 @@ export class HighchartsComponent implements OnInit {
     } else if (this.itemId === this.items.HighchartsAllInclusive.id) {
       this.getExampleData('3a');
       // this.getTestData(); // Data for testing/debugging while developing locally, do not show in dev or prod.
+    } else if (this.itemId === this.items.HighchartsMapWithSlot.id) {
+      this.getExampleData('4a');
     }
   }
 
@@ -73,6 +81,29 @@ export class HighchartsComponent implements OnInit {
 
   onSelectMockData(value: string) {
     this.getExampleData(value);
+  }
+
+  onSlotPositionChange(value: 'top' | 'bottom' | 'left' | 'right') {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      slotPosition: value,
+    };
+  }
+
+  onYearChange(year: string) {
+    this.selectedYear = year;
+
+    const selectedYearData = this.getDataforYear(this.selectedYear);
+
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      series: [{ name: 'Hjerte- og karsystemet', data: selectedYearData }],
+    };
+  }
+
+  private getDataforYear(year: string): any[] {
+    const yearObj = this.allYearsData.find((data) => data.name === year);
+    return yearObj ? yearObj.data : [];
   }
 
   onMetadataButtonClick() {
@@ -135,6 +166,15 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3g':
         this.getData__example_3g();
+        break;
+      case '11':
+        this.getData__example_11();
+        break;
+      case '12':
+        this.getData__example_12();
+        break;
+      case '4a':
+        this.getData__example_4a();
         break;
     }
   }
@@ -382,6 +422,170 @@ export class HighchartsComponent implements OnInit {
           },
         },
       },
+    });
+  }
+
+  private getData__example_11() {
+    this.getData(MockData.TestData11, {
+      ...this.diagramOptions,
+      activeDiagramType: 'line',
+      title: this.titles.title_11,
+      units: undefined,
+      categoryAxis: {
+        title: 'År',
+      },
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: [
+              'line',
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'pie',
+              'columnAndLine',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
+        },
+      },
+      footer: {
+        credits: {
+          href: 'https://www.fhi.no',
+          text: 'Folkehelseinstituttet',
+        },
+        disclaimer: 'Disse dataene kan inneholde feil.',
+        flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
+        lastUpdated: '18.04.2024',
+      },
+      disabledWarning: {
+        showRequirements: true,
+        title: 'Her vil du se diagrammet ditt når følgende er utført...',
+      },
+    });
+  }
+
+  private getData__example_12() {
+    // Test data with multiple series, flagged data, and 3 units to trigger validation errors on ALL diagram types
+    this.getData(MockData.TestData12, {
+      series: undefined,
+      activeDiagramType: 'pie',
+      title: this.titles.title_12,
+      description:
+        'Denne siden viser feilmeldinger for alle diagramtyper. Bytt mellom diagram for å se de spesifikke kravene.',
+      controls: {
+        downloadButton: {
+          show: true,
+        },
+        fullScreenButton: {
+          show: true,
+        },
+        navigation: {
+          items: {
+            chartTypes: [
+              'bar',
+              'barStacked',
+              'column',
+              'columnStacked',
+              'columnAndLine',
+              'line',
+              'pie',
+            ],
+            mapTypes: ['mapFylker', 'mapFylker2019', 'mapFylker2023'],
+          },
+          show: true,
+        },
+      },
+      units: [
+        {
+          id: 'enhet1',
+          label: 'Enhet 1',
+        },
+        {
+          id: 'enhet2',
+          decimals: 1,
+          label: 'Enhet 2',
+        },
+        {
+          id: 'enhet3',
+          decimals: 0,
+          label: 'Enhet 3',
+        },
+      ],
+      footer: {
+        flags: [
+          { symbol: '.', label: 'Lar seg ikke beregne' },
+          { symbol: ':', label: 'Anonymisert' },
+        ],
+      },
+      disabledWarning: {
+        showRequirements: true,
+        title: 'Diagrammet kan ikke vises',
+      },
+    });
+  }
+
+  private getData__example_4a() {
+    this.dataIsLoading = true;
+    this.dataIsLoaded = false;
+
+    this.highchartsDataService.getData(MockData.DodsfallHjerteOgKarEtterFylkeFlereAr).subscribe({
+      next: (data: any) => {
+        const dataObject = data[0];
+        this.availableYears = dataObject.availableYears;
+        this.allYearsData = dataObject.data;
+
+        this.selectedYear = this.availableYears[this.availableYears.length - 1];
+
+        const selectedYearData = this.getDataforYear(this.selectedYear);
+
+        this.diagramOptions = {
+          series: [
+            {
+              name: dataObject.name,
+              data: selectedYearData,
+            },
+          ],
+          activeDiagramType: 'mapFylker',
+          title: `${this.titles.title_4a} - ${this.selectedYear}`,
+          units: undefined,
+          slotPosition: 'right',
+          categoryAxis: {
+            title: 'År',
+          },
+          controls: {
+            downloadButton: { show: true },
+            fullScreenButton: { show: true },
+            metadataButton: { show: true },
+            navigation: {
+              items: {
+                chartTypes: ['bar', 'column', 'line', 'pie'],
+                mapTypes: ['mapFylker'],
+              },
+              show: true,
+            },
+          },
+          footer: {
+            credits: {
+              href: 'https://www.fhi.no',
+              text: 'Folkehelseinstituttet',
+            },
+            disclaimer: 'Disse dataene kan inneholde feil.',
+            flags: [{ symbol: ':', label: 'Anonymisert' }],
+            lastUpdated: '04.02.2026',
+          },
+          openSource: false,
+        };
+
+        setTimeout(() => {
+          this.dataIsLoading = false;
+          this.dataIsLoaded = true;
+        }, 750);
+      },
+      error: (e) => console.error(e),
     });
   }
 

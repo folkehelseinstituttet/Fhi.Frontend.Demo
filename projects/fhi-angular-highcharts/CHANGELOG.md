@@ -4,6 +4,16 @@
 
 - :tada: **Enhancement** Added support for Kommune maps. [(#938)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/938)
 
+- :tada: **Enhancement** Add content projection slot for maps to allow custom panels [(#911)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/911)
+
+- :tada: **Enhancement** Add support for diagram custom requirements and disabled warnings [(#913)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/913)
+  - **Migration guide**
+    1. Add `disabledWarning` to your `FhiDiagramOptions`
+    2. Set `showRequirements: true` to enable auto-generated requirements
+    3. Optionally provide `customRequirements` for custom validation messages
+    4. Optionally provide `title` to set a title for the disabled warning.
+    5. See [README](./README.md#interface-fhidiagramdisabledwarning) for complete API documentation
+
 ## 7.1.1
 
 > Feb 9, 2026
@@ -20,6 +30,8 @@
 - :bug: **Bugfix** Added explicit export for type that became inaccessible after upgrade to Angular 20 [(#924)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/926)
 
 ## 7.0.0
+
+# 7.0.0
 
 > Jan 22, 2026
 
