@@ -59,8 +59,6 @@ export class TopoJsonService {
   private getMapSerieDataPoint(dataPoint: FhiDiagramSerieData): [string, number] | undefined {
     const id = this.currentMapTypeId;
     const geometries = this.topoJsonMaps[id]['objects'].default.geometries;
-    console.log('geometries', geometries);
-    console.log('dataPoint', dataPoint);
     let geometry = undefined;
     switch (id) {
       case MapTypeIdValues.mapFylker:
@@ -74,10 +72,7 @@ export class TopoJsonService {
         geometry = geometries.find(
           (geometry: object) =>
             dataPoint.dataPointId &&
-            geometry['properties']['hc-key'].slice(
-              geometry['properties']['hc-key'].length - 4,
-              geometry['properties']['hc-key'].length,
-            ) === `${dataPoint.dataPointId}`,
+            geometry['properties']['hc-key'].endsWith(dataPoint.dataPointId),
         );
         break;
       case MapTypeIdValues.mapFylker2019:

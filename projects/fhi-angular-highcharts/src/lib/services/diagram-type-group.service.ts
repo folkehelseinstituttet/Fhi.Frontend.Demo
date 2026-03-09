@@ -360,11 +360,9 @@ export class DiagramTypeGroupService {
         this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
         return !isMet;
       case DiagramTypes.mapKommuner.id:
-        if (this.series.length === 1 && this.serieNotValidHcKey(this.series)) {
-          this.updateDisabledWarnings(diagramType.id, msgId.notGeo);
-          return true;
-        }
-        return false;
+        isMet = this.series.length === 1 && !this.serieNotValidHcKey(this.series);
+        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        return !isMet;
       default:
         return !isMet;
     }
@@ -447,10 +445,9 @@ export class DiagramTypeGroupService {
     ];
 
     let noValidIsoCodeFound = true;
-    serie[0].data.map((data) => {
+    noValidIsoCodeFound = !serie[0].data.some((data) => {
       if (validIsoCodes.find((code) => code === data.dataPointId)) {
-        noValidIsoCodeFound = false;
-        return;
+        return true;
       }
     });
     return noValidIsoCodeFound;
@@ -459,10 +456,9 @@ export class DiagramTypeGroupService {
   private serieNotValidHcKey(serie: FhiDiagramSerie[]): boolean {
     let noValidHcKeyFound = true;
     const kommuneKoder = kommuneData.codes;
-    serie[0].data.map((data) => {
+    noValidHcKeyFound = !serie[0].data.some((data) => {
       if (kommuneKoder.find((code) => code === data.dataPointId)) {
-        noValidHcKeyFound = false;
-        return;
+        return true;
       }
     });
     return noValidHcKeyFound;
