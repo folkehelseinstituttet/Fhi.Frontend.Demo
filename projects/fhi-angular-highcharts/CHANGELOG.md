@@ -1,6 +1,6 @@
-# Unreleased
+# 7.2.0
 
-> Feb 26, 2026
+> Mar 05, 2026
 
 - :tada: **Enhancement** Added support for Kommune maps. [(#938)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/938)
 
@@ -13,6 +13,8 @@
     3. Optionally provide `customRequirements` for custom validation messages
     4. Optionally provide `title` to set a title for the disabled warning.
     5. See [README](./README.md#interface-fhidiagramdisabledwarning) for complete API documentation
+
+- :tada: **Enhancement** Changed how maps are stored and loaded [(#937)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/937)
 
 ## 7.1.1
 
