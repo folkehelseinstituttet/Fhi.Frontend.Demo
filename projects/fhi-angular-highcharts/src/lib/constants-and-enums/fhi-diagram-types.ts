@@ -88,6 +88,12 @@ const mapFylker2023: DiagramType = {
   ...mapShared,
 };
 
+const mapKommuner: DiagramType = {
+  id: DiagramTypeIdValues.mapKommuner,
+  name: 'Kart (kommuner)',
+  ...mapShared,
+};
+
 // Table
 
 const table: DiagramType = {
@@ -108,6 +114,7 @@ export class DiagramTypes {
   static mapFylker = mapFylker;
   static mapFylker2019 = mapFylker2019;
   static mapFylker2023 = mapFylker2023;
+  static mapKommuner = mapKommuner;
   static pie = pie;
   static table = table;
 }
@@ -122,12 +129,13 @@ export const AllDiagramTypes = [
   mapFylker,
   mapFylker2019,
   mapFylker2023,
+  mapKommuner,
   pie,
   table,
 ];
 
 export const ChartTypes = [line, column, bar, columnStacked, barStacked, pie, columnAndLine];
-export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023];
+export const MapTypes = [mapFylker, mapFylker2019, mapFylker2023, mapKommuner];
 
 // For the public API Surface
 export class FhiDiagramTypes {
@@ -166,6 +174,10 @@ export class FhiDiagramTypes {
   static mapFylker2023 = {
     id: mapFylker2023.id,
     name: mapFylker2023.name,
+  };
+  static mapKommuner = {
+    id: mapKommuner.id,
+    name: mapKommuner.name,
   };
   static pie = {
     id: pie.id,

@@ -41,6 +41,7 @@ export class HighchartsComponent implements OnInit {
     title_3d: 'Dobbel akse, linje og søyle',
     title_3e: 'Prikkede data med to serier',
     title_3f: 'Valgdeltagelse 2015, fordelt på fylke',
+    title_3g: 'Dødsfall hjerte og kar, fordelt på kommune',
     title_11: 'Test-data - Tomt datasett',
     title_12: 'TEST: Feilmeldinger for alle diagramtyper',
     title_4a: 'Dødsfall hjerte og kar per fylke med filtermeny',
@@ -162,6 +163,9 @@ export class HighchartsComponent implements OnInit {
         break;
       case '3f':
         this.getData__example_3f();
+        break;
+      case '3g':
+        this.getData__example_3g();
         break;
       case '11':
         this.getData__example_11();
@@ -398,6 +402,25 @@ export class HighchartsComponent implements OnInit {
         flags: [{ symbol: '.', label: 'Lar seg ikke beregne' }],
         lastUpdated: '18.04.2024',
         footnote: 'Kilde: Valgdirektoratet',
+      },
+    });
+  }
+
+  private getData__example_3g() {
+    this.getData(MockData.DodsfallHjerteOgKarEtterKommune, {
+      ...this.diagramOptions,
+      activeDiagramType: 'mapKommuner',
+      title: this.titles.title_3g,
+      units: undefined,
+      controls: {
+        ...this.diagramOptions.controls,
+        navigation: {
+          ...this.diagramOptions.controls.navigation,
+          items: {
+            chartTypes: ['bar', 'column', 'line', 'pie'],
+            mapTypes: ['mapKommuner'],
+          },
+        },
       },
     });
   }

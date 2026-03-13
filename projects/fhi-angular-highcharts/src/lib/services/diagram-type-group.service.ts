@@ -13,6 +13,8 @@ import { ChartTypes, DiagramTypes, MapTypes } from '../constants-and-enums/fhi-d
 import { FhiDiagramOptions, FhiDiagramTypeIds } from '../models/fhi-diagram-options.model';
 import { FhiDiagramRequirements } from '../models/fhi-diagram-requirements.model';
 
+import * as kommuneData from '../../assets/kommune-koder.json';
+
 enum msgId {
   hasFlaggedData,
   moreThanOneSeries,
@@ -303,7 +305,8 @@ export class DiagramTypeGroupService {
     return (
       diagramType.id === DiagramTypes.mapFylker.id ||
       diagramType.id === DiagramTypes.mapFylker2019.id ||
-      diagramType.id === DiagramTypes.mapFylker2023.id
+      diagramType.id === DiagramTypes.mapFylker2023.id ||
+      diagramType.id === DiagramTypes.mapKommuner.id
     );
   }
 
@@ -354,6 +357,10 @@ export class DiagramTypeGroupService {
       case DiagramTypes.mapFylker2019.id:
       case DiagramTypes.mapFylker2023.id:
         isMet = this.series.length === 1 && !this.serieNotGeo(this.series[0]);
+        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        return !isMet;
+      case DiagramTypes.mapKommuner.id:
+        isMet = this.series.length === 1 && !this.serieNotValidHcKey(this.series);
         this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
         return !isMet;
       default:
@@ -438,13 +445,23 @@ export class DiagramTypeGroupService {
     ];
 
     let noValidIsoCodeFound = true;
-    serie[0].data.map((data) => {
+    noValidIsoCodeFound = !serie[0].data.some((data) => {
       if (validIsoCodes.find((code) => code === data.dataPointId)) {
-        noValidIsoCodeFound = false;
-        return;
+        return true;
       }
     });
     return noValidIsoCodeFound;
+  }
+
+  private serieNotValidHcKey(serie: FhiDiagramSerie[]): boolean {
+    let noValidHcKeyFound = true;
+    const kommuneKoder = kommuneData.codes;
+    noValidHcKeyFound = !serie[0].data.some((data) => {
+      if (kommuneKoder.find((code) => code === data.dataPointId)) {
+        return true;
+      }
+    });
+    return noValidHcKeyFound;
   }
 
   /**
