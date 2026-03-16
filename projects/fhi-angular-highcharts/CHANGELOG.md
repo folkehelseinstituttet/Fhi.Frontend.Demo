@@ -1,8 +1,12 @@
-# 7.2.0
+# 7.3.0
 
-> Mar 05, 2026
+> Mar 16, 2026
 
 - :tada: **Enhancement** Added support for Kommune maps. [(#938)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/938)
+
+## 7.2.0
+
+> Mar 05, 2026
 
 - :tada: **Enhancement** Add content projection slot for maps to allow custom panels [(#911)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/911)
 
