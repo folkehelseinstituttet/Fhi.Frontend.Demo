@@ -19,7 +19,8 @@ enum msgId {
   hasFlaggedData,
   moreThanOneSeries,
   notAllUnitsFoundInSeries,
-  notGeo,
+  notValidGeoId,
+  geoNotDistribution,
   notMaxOneUnitInSeries,
   notTwoUnitsInSeries,
   notTwoUnits,
@@ -50,9 +51,13 @@ export class DiagramTypeGroupService {
         warning: 'notAllUnitsFoundInSeries',
         message: 'Krever at alle valgte måltall finnes i datasettet.', // Vises ikke i grensesnittet
       },
-      [msgId.notGeo]: {
-        warning: 'series.length === 1 && serieNotGeo(this.series[0])',
-        message: `Geografidimensjonen må være valgt som fordeling og ha gyldige ID'er.`,
+      [msgId.notValidGeoId]: {
+        warning: 'serieNotGeo(this.series[0])',
+        message: `Geografidimensjonen må ha gyldige ID'er.`,
+      },
+      [msgId.geoNotDistribution]: {
+        warning: 'series.length === 1',
+        message: `Geografidimensjonen må være valgt som fordeling.`,
       },
       [msgId.notMaxOneUnitInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() > 1',
@@ -276,6 +281,7 @@ export class DiagramTypeGroupService {
     }
     if (this.isMapType(diagramType)) {
       if (this.notGeo(diagramType)) isDisabled = true;
+      if (this.geoNotDistribution(diagramType)) isDisabled = true;
     }
     if (diagramType.id === DiagramTypes.columnAndLine.id) {
       if (this.notTwoUnits(diagramType)) isDisabled = true;
@@ -351,21 +357,27 @@ export class DiagramTypeGroupService {
     let isMet: boolean = false;
     switch (diagramType.id) {
       case DiagramTypes.mapFylker.id:
-        isMet = this.series.length === 1 && !this.serieNotValidIsoCode(this.series);
-        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        isMet = !this.serieNotValidIsoCode(this.series);
+        this.updateDisabledWarnings(diagramType.id, msgId.notValidGeoId, isMet);
         return !isMet;
       case DiagramTypes.mapFylker2019.id:
       case DiagramTypes.mapFylker2023.id:
-        isMet = this.series.length === 1 && !this.serieNotGeo(this.series[0]);
-        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        isMet = !this.serieNotGeo(this.series[0]);
+        this.updateDisabledWarnings(diagramType.id, msgId.notValidGeoId, isMet);
         return !isMet;
       case DiagramTypes.mapKommuner.id:
-        isMet = this.series.length === 1 && !this.serieNotValidHcKey(this.series);
-        this.updateDisabledWarnings(diagramType.id, msgId.notGeo, isMet);
+        isMet = !this.serieNotValidHcKey(this.series);
+        this.updateDisabledWarnings(diagramType.id, msgId.notValidGeoId, isMet);
         return !isMet;
       default:
         return !isMet;
     }
+  }
+
+  private geoNotDistribution(diagramType: DiagramType): boolean {
+    const isMet = this.series.length === 1;
+    this.updateDisabledWarnings(diagramType.id, msgId.geoNotDistribution, isMet);
+    return !isMet;
   }
 
   private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
