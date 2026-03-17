@@ -360,9 +360,9 @@ export class DiagramTypeGroupService {
         isMet = !this.serieNotValidIsoCode(this.series);
         this.updateDisabledWarnings(diagramType.id, msgId.notValidGeoId, isMet);
         return !isMet;
-      case DiagramTypes.mapFylker2019.id:
+      case DiagramTypes.mapFylker2019.id: // TODO: These map types should be removed. Not in use.
       case DiagramTypes.mapFylker2023.id:
-        isMet = !this.serieNotGeo(this.series[0]);
+        isMet = this.series.length === 1 && !this.serieNotGeo(this.series[0]);
         this.updateDisabledWarnings(diagramType.id, msgId.notValidGeoId, isMet);
         return !isMet;
       case DiagramTypes.mapKommuner.id:
