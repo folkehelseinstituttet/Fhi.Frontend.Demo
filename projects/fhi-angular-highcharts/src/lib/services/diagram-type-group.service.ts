@@ -20,7 +20,6 @@ enum msgId {
   moreThanOneSeries,
   notAllUnitsFoundInSeries,
   notValidGeoId,
-  geoNotDistribution,
   notMaxOneUnitInSeries,
   notTwoUnitsInSeries,
   notTwoUnits,
@@ -54,10 +53,6 @@ export class DiagramTypeGroupService {
       [msgId.notValidGeoId]: {
         warning: 'serieNotGeo(this.series[0])',
         message: `Geografidimensjonen må ha gyldige ID'er.`,
-      },
-      [msgId.geoNotDistribution]: {
-        warning: 'series.length === 1',
-        message: `Geografidimensjonen må være valgt som fordeling.`,
       },
       [msgId.notMaxOneUnitInSeries]: {
         warning: 'this.uniqueUnitIdCountInSeries() > 1',
@@ -281,7 +276,6 @@ export class DiagramTypeGroupService {
     }
     if (this.isMapType(diagramType)) {
       if (this.notGeo(diagramType)) isDisabled = true;
-      if (this.geoNotDistribution(diagramType)) isDisabled = true;
     }
     if (diagramType.id === DiagramTypes.columnAndLine.id) {
       if (this.notTwoUnits(diagramType)) isDisabled = true;
@@ -372,12 +366,6 @@ export class DiagramTypeGroupService {
       default:
         return !isMet;
     }
-  }
-
-  private geoNotDistribution(diagramType: DiagramType): boolean {
-    const isMet = this.series.length === 1;
-    this.updateDisabledWarnings(diagramType.id, msgId.geoNotDistribution, isMet);
-    return !isMet;
   }
 
   private notMaxOneUnitInSeries(diagramType: DiagramType): boolean {
