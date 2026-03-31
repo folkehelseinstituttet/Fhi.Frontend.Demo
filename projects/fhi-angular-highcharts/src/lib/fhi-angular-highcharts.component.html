@@ -25,7 +25,7 @@
     @if (!isFullscreen && (showDiagramTypeNav || showDownloadButton || showFullScreenButton || showMetadataButton)) {
       <ng-container *ngTemplateOutlet="diagramControls" />
     }
-    @if (showDiagramTypeDisabledWarning) {
+    @if (showBlockingDisabledWarning) {
       <ng-container *ngTemplateOutlet="diagramTypeDisabledWarning" />
     } @else if (showDuplicateSerieNameError) {
       <ng-container *ngTemplateOutlet="duplicateSerieNameError" />
@@ -133,12 +133,58 @@
         <div class="fhi-highcharts-chart__slot">
           <ng-content select="[fhi-map-panel-slot]"></ng-content>
         </div>
-        <highcharts-chart
-          [Highcharts]="highmaps"
-          [constructorType]="'mapChart'"
-          [options]="highchartsOptions"
-          (chartInstance)="onChartInstance($event)"
-        ></highcharts-chart>
+        <div class="fhi-highcharts-map-chart-layer">
+          <!-- TODO: Change this class name -->
+          <highcharts-chart
+            [Highcharts]="highmaps"
+            [constructorType]="'mapChart'"
+            [options]="highchartsOptions"
+            (chartInstance)="onChartInstance($event)"
+          ></highcharts-chart>
+
+          @if (showMapDisabledOverlay) {
+            <div class="fhi-highcharts-map-chart-layer__disabled-overlay" role="alert" aria-live="polite">
+              <div class="disabled-warning disabled-alert">
+                @if (diagramOptionsInternal.disabledWarning?.title) {
+                  <p class="fw-bold warning-title">{{ diagramOptionsInternal.disabledWarning?.title }}</p>
+                }
+
+                @if (diagramOptionsInternal.disabledWarning.customRequirements?.length > 0) {
+                  <ul>
+                    @for (requirement of diagramOptionsInternal.disabledWarning?.customRequirements; track $index) {
+                      <li>
+                        <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                        {{ requirement.label }}
+                      </li>
+                    }
+                  </ul>
+                }
+
+                @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
+                  @if (diagramRequirements?.length > 0) {
+                    <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
+                    <ul>
+                      @for (requirement of diagramRequirements; track $index) {
+                        <li>
+                          <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+                          {{ requirement.label }}
+                        </li>
+                      }
+                    </ul>
+                  }
+                } @else {
+                  <div class="generic-message">
+                    <i class="icon-bell"></i>
+                    <p>
+                      Vi kan ikke vise grafen med disse valgene. Velg tabell og skjul rader eller kolonner som ikke
+                      inneholder en tallverdi og prøv igjen. Det kan også hjelpe å velge ett måltall om gangen.
+                    </p>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </ng-template>

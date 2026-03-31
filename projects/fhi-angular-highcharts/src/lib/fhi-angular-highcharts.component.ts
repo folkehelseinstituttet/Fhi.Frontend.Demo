@@ -81,9 +81,12 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
   diagramTypeGroupNames = DiagramTypeGroupNames;
   flaggedSeries: FlaggedSerie[];
   tableData: TableData;
+  isMapDiagramType = false;
 
   showDefaultChartTemplate: boolean;
-  showDiagramTypeDisabledWarning: boolean;
+  showDiagramTypeDisabledWarning: boolean; // TODO: Is this needed?
+  showMapDisabledOverlay = false;
+  showBlockingDisabledWarning = false;
   diagramRequirements: FhiDiagramRequirements[] = [];
   showDiagramTypeNav: boolean;
   showDownloadButton: boolean;
@@ -311,6 +314,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       this.diagramOptionsInternal.activeDiagramType,
     );
     this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
+    this.isMapDiagramType = this.activeDiagramTypeGroup?.name === DiagramTypeGroupNames.map;
+    this.showMapDisabledOverlay = diagramTypeIsDisabled && this.isMapDiagramType;
+    this.showBlockingDisabledWarning = diagramTypeIsDisabled && !this.isMapDiagramType;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showTableOrientationButton = diagramTypeIsDisabled
       ? false
@@ -333,6 +339,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       console.warn(
         `Kan ikke vise diagramtype "${activeDiagramType}" fordi "${msg.message}" (Teknisk årsak: "${msg.warning}")`,
       );
+      if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.map) {
+        this.updateMap();
+      }
     }
   }
 
@@ -364,6 +373,10 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
+      if (!this.diagramOptionsInternal.series || this.diagramOptionsInternal.series.length === 0) {
+        // Ensures the map renders even if there are no series
+        this.diagramOptionsInternal.series = [{ name: '', data: [] }];
+      }
       this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptionsInternal);
       this.showMap = true;
       this.changeDetector.detectChanges();

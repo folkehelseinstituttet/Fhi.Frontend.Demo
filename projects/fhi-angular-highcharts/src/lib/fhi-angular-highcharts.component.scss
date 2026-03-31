@@ -5,56 +5,75 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+    }
+    .disabled-warning {
+        padding: 1.5rem;
+        background: white;
+        border-radius: 0.5rem;
+        border: 1px solid #cfd0cb;
+        border-radius: 1rem;
+        width: fit-content;
+        height: fit-content;
+        margin: auto;
+
+        .warning-title {
+            font-size: 1.375rem;
+        }
+        .generic-message {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            place-items: center flex-start;
+            i {
+                min-width: 1.5rem;
+            }
+            p {
+                margin: auto 0;
+            }
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding-left: 0;
+            li {
+                display: flex;
+                gap: 0.5rem;
+                place-content: center flex-start;
+                .icon-check-circle {
+                    color: #29855d; // Keep for reference
+                    // Use filter because svg is in background
+                    filter: invert(42%) sepia(17%) saturate(1617%)
+                        hue-rotate(102deg) brightness(96%) contrast(81%);
+                }
+                .icon-exclamation-circle {
+                    color: #cb4540; // Keep for reference
+                    // Use filter because svg is in background
+                    filter: invert(48%) sepia(34%) saturate(1108%)
+                        hue-rotate(314deg) brightness(77%) contrast(108%);
+                }
+            }
+        }
+    }
+    .fhi-highcharts-map-chart-layer {
+        position: relative;
+
+        &__disabled-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(1px);
+        }
 
         .disabled-warning {
-            padding: 1.5rem;
-            background: white;
-            border-radius: 0.5rem;
-            border: 1px solid #cfd0cb;
-            border-radius: 1rem;
-            width: fit-content;
-            height: fit-content;
-            margin: auto;
-
-            .warning-title {
-                font-size: 1.375rem;
-            }
-            .generic-message {
-                display: flex;
-                flex-direction: row;
-                gap: 1rem;
-                place-items: center flex-start;
-                i {
-                    min-width: 1.5rem;
-                }
-                p {
-                    margin: auto 0;
-                }
-            }
-            ul {
-                list-style-type: none;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-                padding-left: 0;
-                li {
-                    display: flex;
-                    gap: 0.5rem;
-                    place-content: center flex-start;
-                    .icon-check-circle {
-                        color: #29855d; // Keep for reference
-                        // Use filter because svg is in background
-                        filter: invert(42%) sepia(17%) saturate(1617%)
-                            hue-rotate(102deg) brightness(96%) contrast(81%);
-                    }
-                    .icon-exclamation-circle {
-                        color: #cb4540; // Keep for reference
-                        // Use filter because svg is in background
-                        filter: invert(48%) sepia(34%) saturate(1108%)
-                            hue-rotate(314deg) brightness(77%) contrast(108%);
-                    }
-                }
-            }
+            max-width: min(42rem, 100%);
+            margin: 0;
         }
     }
 }
