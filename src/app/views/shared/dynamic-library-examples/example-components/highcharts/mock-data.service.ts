@@ -21,6 +21,7 @@ import { TestData } from './mock-data/test-data-7';
 import { TestData11 } from './mock-data/test-data-11';
 import { TestData12 } from './mock-data/test-data-12';
 import { DodsfallHjerteOgKarEtterFylkeFlereAr } from './mock-data/11.dodsfall-hjerte-og-kar-etter-fylte-flere-ar';
+import { ValgdeltagelseFlereAar } from './mock-data/13.Valgdeltagelse-flere-aar';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +62,9 @@ export class MockDataService {
           break;
         case MockData.DodsfallHjerteOgKarEtterKommune:
           dataSet.next(DodsfallHjerteOgKarEtterKommune);
+          break;
+        case MockData.ValgdeltagelseFlereAar:
+          dataSet.next(ValgdeltagelseFlereAar);
           break;
 
         // Data for testing while developing locally, do not show in dev or prod.

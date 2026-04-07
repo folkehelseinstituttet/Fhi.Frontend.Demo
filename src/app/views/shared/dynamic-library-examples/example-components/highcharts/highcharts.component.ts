@@ -25,8 +25,10 @@ export class HighchartsComponent implements OnInit {
   dataIsLoading = false;
   dataIsLoaded = false;
   diagramOptions!: FhiDiagramOptions;
-  selectedYear: string = '2024';
+  selectedYear: string = '2013';
   availableYears: string[] = [];
+  electionTypes: string[] = [];
+  selectedElectionType: string = 'Stortingsvalg';
   allYearsData: FhiDiagramSerie[] = [];
   showUnitSelect = false;
 
@@ -50,7 +52,13 @@ export class HighchartsComponent implements OnInit {
   constructor(
     private highchartsDataService: MockDataService,
     private viewportScroller: ViewportScroller,
-  ) {}
+  ) {
+    this.diagramOptions = {
+      ...this.diagramOptions,
+      slotPosition: 'right',
+      series: [],
+    };
+  }
 
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
@@ -90,20 +98,25 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  onYearChange(year: string) {
+  onSelectionChange(year: string, electionType: string) {
     this.selectedYear = year;
-
-    const selectedYearData = this.getDataforYear(this.selectedYear);
+    this.selectedElectionType = electionType;
+    const selectedYearData = this.getDatafromDataSet(this.selectedYear, this.allYearsData);
+    const selectedElectionTypeData = this.getDatafromDataSet(
+      this.selectedElectionType,
+      selectedYearData,
+    );
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      series: [{ name: 'Hjerte- og karsystemet', data: selectedYearData }],
+      series: [{ name: 'Hjerte- og karsystemet', data: selectedElectionTypeData }],
     };
   }
 
-  private getDataforYear(year: string): any[] {
-    const yearObj = this.allYearsData.find((data) => data.name === year);
-    return yearObj ? yearObj.data : [];
+  private getDatafromDataSet(key: string, dataSet: Array<any>): any[] {
+    const dataObject = dataSet.find((item: any) => item.name === key);
+    console.log('dataObject', dataObject);
+    return dataObject ? dataObject.data : [];
   }
 
   onMetadataButtonClick() {
@@ -532,21 +545,27 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    this.highchartsDataService.getData(MockData.DodsfallHjerteOgKarEtterFylkeFlereAr).subscribe({
+    this.highchartsDataService.getData(MockData.ValgdeltagelseFlereAar).subscribe({
       next: (data: any) => {
-        const dataObject = data[0];
-        this.availableYears = dataObject.availableYears;
-        this.allYearsData = dataObject.data;
+        console.log('Data', data);
+        this.availableYears = data[0].availableYears;
+        this.allYearsData = data[0].data;
+        this.electionTypes = data[0].electionTypes;
+        console.log('Available years', this.availableYears);
 
         this.selectedYear = this.availableYears[this.availableYears.length - 1];
 
-        const selectedYearData = this.getDataforYear(this.selectedYear);
+        const selectedYearData = this.getDatafromDataSet(this.selectedYear, this.allYearsData);
+        const selectedElectionTypeData = this.getDatafromDataSet(
+          this.selectedElectionType,
+          selectedYearData,
+        );
 
         this.diagramOptions = {
           series: [
             {
-              name: dataObject.name,
-              data: selectedYearData,
+              name: data?.name ?? '',
+              data: selectedElectionTypeData,
             },
           ],
           activeDiagramType: 'mapFylker',
