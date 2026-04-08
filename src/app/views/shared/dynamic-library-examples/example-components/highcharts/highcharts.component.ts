@@ -24,13 +24,14 @@ export class HighchartsComponent implements OnInit {
 
   dataIsLoading = false;
   dataIsLoaded = false;
-  diagramOptions!: FhiDiagramOptions;
-  selectedYear: string = '2013';
+  diagramOptions: FhiDiagramOptions;
+  selectedYear: string;
   availableYears: string[] = [];
   electionTypes: string[] = [];
-  selectedElectionType: string = 'Stortingsvalg';
+  selectedElectionType: string;
   allYearsData: FhiDiagramSerie[] = [];
   showUnitSelect = false;
+  datasetName: string = '';
 
   titles = {
     title_1: 'Dødsfall etter årsak, 2008 - 2018',
@@ -54,9 +55,9 @@ export class HighchartsComponent implements OnInit {
     private viewportScroller: ViewportScroller,
   ) {
     this.diagramOptions = {
-      ...this.diagramOptions,
-      slotPosition: 'right',
+      title: '',
       series: [],
+      slotPosition: 'right',
     };
   }
 
@@ -109,13 +110,12 @@ export class HighchartsComponent implements OnInit {
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      series: [{ name: 'Hjerte- og karsystemet', data: selectedElectionTypeData }],
+      series: [{ name: this.datasetName, data: selectedElectionTypeData }],
     };
   }
 
   private getDatafromDataSet(key: string, dataSet: Array<any>): any[] {
     const dataObject = dataSet.find((item: any) => item.name === key);
-    console.log('dataObject', dataObject);
     return dataObject ? dataObject.data : [];
   }
 
@@ -547,13 +547,13 @@ export class HighchartsComponent implements OnInit {
 
     this.highchartsDataService.getData(MockData.ValgdeltagelseFlereAar).subscribe({
       next: (data: any) => {
-        console.log('Data', data);
+        this.datasetName = data[0].name;
         this.availableYears = data[0].availableYears;
         this.allYearsData = data[0].data;
         this.electionTypes = data[0].electionTypes;
-        console.log('Available years', this.availableYears);
 
-        this.selectedYear = this.availableYears[this.availableYears.length - 1];
+        this.selectedElectionType = this.electionTypes[0];
+        this.selectedYear = this.availableYears[0];
 
         const selectedYearData = this.getDatafromDataSet(this.selectedYear, this.allYearsData);
         const selectedElectionTypeData = this.getDatafromDataSet(
@@ -564,7 +564,7 @@ export class HighchartsComponent implements OnInit {
         this.diagramOptions = {
           series: [
             {
-              name: data?.name ?? '',
+              name: data[0]?.name ?? '',
               data: selectedElectionTypeData,
             },
           ],

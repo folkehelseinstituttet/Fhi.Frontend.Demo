@@ -143,44 +143,9 @@
           ></highcharts-chart>
 
           @if (showMapDisabledOverlay) {
-            <div class="fhi-highcharts-map-chart-layer__disabled-overlay" role="alert" aria-live="polite">
+            <div class="fhi-highcharts-map-chart-layer__disabled-overlay" role="status" aria-live="polite">
               <div class="disabled-warning disabled-alert">
-                @if (diagramOptionsInternal.disabledWarning?.title) {
-                  <p class="fw-bold warning-title">{{ diagramOptionsInternal.disabledWarning?.title }}</p>
-                }
-
-                @if (diagramOptionsInternal.disabledWarning?.customRequirements?.length > 0) {
-                  <ul>
-                    @for (requirement of diagramOptionsInternal.disabledWarning?.customRequirements; track $index) {
-                      <li>
-                        <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-                        {{ requirement.label }}
-                      </li>
-                    }
-                  </ul>
-                }
-
-                @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
-                  @if (diagramRequirements?.length > 0) {
-                    <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
-                    <ul>
-                      @for (requirement of diagramRequirements; track $index) {
-                        <li>
-                          <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-                          {{ requirement.label }}
-                        </li>
-                      }
-                    </ul>
-                  }
-                } @else {
-                  <div class="generic-message">
-                    <i class="icon-bell"></i>
-                    <p>
-                      Vi kan ikke vise grafen med disse valgene. Velg tabell og skjul rader eller kolonner som ikke
-                      inneholder en tallverdi og prøv igjen. Det kan også hjelpe å velge ett måltall om gangen.
-                    </p>
-                  </div>
-                }
+                <ng-container *ngTemplateOutlet="disabledWarningContent" />
               </div>
             </div>
           }
@@ -337,53 +302,55 @@
 
   <ng-template #diagramTypeDisabledWarning>
     <div class="mt-3" id="om-dataene">
-      <div class="disabled-warning disabled-alert" role="alert">
-        @if (diagramOptionsInternal.disabledWarning?.title) {
-          <p class="fw-bold warning-title">{{ diagramOptionsInternal.disabledWarning?.title }}</p>
-        }
-        @if (diagramOptionsInternal.disabledWarning?.customRequirements?.length > 0) {
-          <ul>
-            @for (requirement of diagramOptionsInternal.disabledWarning?.customRequirements; track $index) {
-              <li>
-                <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-                {{ requirement.label }}
-              </li>
-            }
-          </ul>
-        }
-        @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
-          @if (diagramRequirements?.length > 0) {
-            <!-- Separated into two if statements to avoid displaying generic message when not set to and the dataset is empty -->
-            <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
-            <ul>
-              @for (requirement of diagramRequirements; track $index) {
-                <li>
-                  <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
-                  {{ requirement.label }}
-                </li>
-              }
-            </ul>
-          }
-        } @else {
-          <div class="generic-message">
-            <i class="icon-bell"></i>
-
-            <p>
-              Vi kan ikke vise grafen med disse valgene. Velg tabell og skjul rader eller kolonner som ikke inneholder
-              en tallverdi og prøv igjen. Det kan også hjelpe å velge ett måltall om gangen.
-            </p>
-          </div>
-        }
+      <div class="disabled-warning disabled-alert" role="status" aria-live="polite">
+        <ng-container *ngTemplateOutlet="disabledWarningContent" />
       </div>
     </div>
   </ng-template>
 
   <ng-template #duplicateSerieNameError>
     <div class="mt-3" id="om-dataene">
-      <div class="alert alert-error" role="alert">
+      <div class="alert alert-error" role="status" aria-live="polite">
         <i class="icon-exclamation-circle"></i>
         <p class="mb-0">Det finnes duplikate serienavn, diagrammet kan ikke vises.</p>
       </div>
     </div>
+  </ng-template>
+
+  <ng-template #disabledWarningContent>
+    @if (diagramOptionsInternal.disabledWarning?.title) {
+      <p class="fw-bold warning-title">{{ diagramOptionsInternal.disabledWarning.title }}</p>
+    }
+    @if (diagramOptionsInternal.disabledWarning?.customRequirements?.length > 0) {
+      <ul>
+        @for (requirement of diagramOptionsInternal.disabledWarning?.customRequirements; track $index) {
+          <li>
+            <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+            {{ requirement.label }}
+          </li>
+        }
+      </ul>
+    }
+    @if (diagramOptionsInternal.disabledWarning?.showRequirements ?? false) {
+      @if (diagramRequirements?.length > 0) {
+        <p class="fw-bold">For {{ activeDiagramTypeGroup?.diagramType.name }}</p>
+        <ul>
+          @for (requirement of diagramRequirements; track $index) {
+            <li>
+              <i class="{{ requirement.isMet ? 'icon-check-circle' : 'icon-exclamation-circle' }}"></i>
+              {{ requirement.label }}
+            </li>
+          }
+        </ul>
+      }
+    } @else {
+      <div class="generic-message">
+        <i class="icon-bell"></i>
+        <p>
+          Vi kan ikke vise grafen med disse valgene. Velg tabell og skjul rader eller kolonner som ikke inneholder en
+          tallverdi og prøv igjen. Det kan også hjelpe å velge ett måltall om gangen.
+        </p>
+      </div>
+    }
   </ng-template>
 }

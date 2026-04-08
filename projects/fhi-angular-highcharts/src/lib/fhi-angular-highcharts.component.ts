@@ -234,6 +234,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     this.showDuplicateSerieNameError = false;
     this.showFullScreenButton = false;
     this.diagramIsDisabled = false;
+    this.showMapDisabledOverlay = false;
+    this.showBlockingDisabledWarning = false;
+    this.isMapDiagramType = false;
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
