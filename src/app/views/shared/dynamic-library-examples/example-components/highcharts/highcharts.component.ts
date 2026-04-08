@@ -7,11 +7,25 @@ import { MockData } from './mock-data.enum';
 import {
   FhiDiagramOptions,
   FhiDiagramSerie,
+  FhiDiagramSerieData,
   FhiTableOrientations,
   FhiDiagramTypeIds,
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+
+interface NamedDataNode<T> {
+  name: string;
+  dataPointId?: string;
+  data: T[];
+}
+
+interface MultiYearDataset {
+  name: string;
+  availableYears: string[];
+  electionTypes: string[];
+  data: NamedDataNode<NamedDataNode<FhiDiagramSerieData>>[];
+}
 
 @Component({
   selector: 'app-highcharts',
@@ -29,7 +43,7 @@ export class HighchartsComponent implements OnInit {
   availableYears: string[] = [];
   electionTypes: string[] = [];
   selectedElectionType: string;
-  allYearsData: FhiDiagramSerie[] = [];
+  allYearsData: NamedDataNode<NamedDataNode<FhiDiagramSerieData>>[] = [];
   showUnitSelect = false;
   datasetName: string = '';
 
@@ -102,8 +116,8 @@ export class HighchartsComponent implements OnInit {
   onSelectionChange(year: string, electionType: string) {
     this.selectedYear = year;
     this.selectedElectionType = electionType;
-    const selectedYearData = this.getDatafromDataSet(this.selectedYear, this.allYearsData);
-    const selectedElectionTypeData = this.getDatafromDataSet(
+    const selectedYearData = this.getDataFromNode(this.selectedYear, this.allYearsData);
+    const selectedElectionTypeData = this.getDataFromNode(
       this.selectedElectionType,
       selectedYearData,
     );
@@ -114,9 +128,9 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  private getDatafromDataSet(key: string, dataSet: Array<any>): any[] {
-    const dataObject = dataSet.find((item: any) => item.name === key);
-    return dataObject ? dataObject.data : [];
+  private getDataFromNode<T>(key: string, nodes: NamedDataNode<T>[]): T[] {
+    const match = nodes.find((node) => node.name === key);
+    return match ? match.data : [];
   }
 
   onMetadataButtonClick() {
@@ -546,17 +560,18 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoaded = false;
 
     this.highchartsDataService.getData(MockData.ValgdeltagelseFlereAar).subscribe({
-      next: (data: any) => {
-        this.datasetName = data[0].name;
-        this.availableYears = data[0].availableYears;
-        this.allYearsData = data[0].data;
-        this.electionTypes = data[0].electionTypes;
+      next: (data: MultiYearDataset[]) => {
+        const dataset = data[0];
+        this.datasetName = dataset.name;
+        this.availableYears = dataset.availableYears;
+        this.allYearsData = dataset.data;
+        this.electionTypes = dataset.electionTypes;
 
         this.selectedElectionType = this.electionTypes[0];
         this.selectedYear = this.availableYears[0];
 
-        const selectedYearData = this.getDatafromDataSet(this.selectedYear, this.allYearsData);
-        const selectedElectionTypeData = this.getDatafromDataSet(
+        const selectedYearData = this.getDataFromNode(this.selectedYear, this.allYearsData);
+        const selectedElectionTypeData = this.getDataFromNode(
           this.selectedElectionType,
           selectedYearData,
         );
@@ -564,7 +579,7 @@ export class HighchartsComponent implements OnInit {
         this.diagramOptions = {
           series: [
             {
-              name: data[0]?.name ?? '',
+              name: dataset.name,
               data: selectedElectionTypeData,
             },
           ],
