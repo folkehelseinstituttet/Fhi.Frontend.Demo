@@ -84,7 +84,7 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
   isMapDiagramType = false;
 
   showDefaultChartTemplate: boolean;
-  showDiagramTypeDisabledWarning: boolean; // TODO: Is this needed?
+  diagramIsDisabled: boolean;
   showMapDisabledOverlay = false;
   showBlockingDisabledWarning = false;
   diagramRequirements: FhiDiagramRequirements[] = [];
@@ -233,7 +233,7 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     this.showDiagramTypeNav = false;
     this.showDuplicateSerieNameError = false;
     this.showFullScreenButton = false;
-    this.showDiagramTypeDisabledWarning = false;
+    this.diagramIsDisabled = false;
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
@@ -313,7 +313,7 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       this.diagramTypeGroups,
       this.diagramOptionsInternal.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
+    this.diagramIsDisabled = diagramTypeIsDisabled;
     this.isMapDiagramType = this.activeDiagramTypeGroup?.name === DiagramTypeGroupNames.map;
     this.showMapDisabledOverlay = diagramTypeIsDisabled && this.isMapDiagramType;
     this.showBlockingDisabledWarning = diagramTypeIsDisabled && !this.isMapDiagramType;
