@@ -60,7 +60,7 @@
     .fhi-highcharts-chart__map-content {
         position: relative;
 
-        &__disabled-overlay {
+        .fhi-highcharts-chart__disabled-overlay {
             position: absolute;
             inset: 0;
             display: flex;
