@@ -133,8 +133,7 @@
         <div class="fhi-highcharts-chart__slot">
           <ng-content select="[fhi-map-panel-slot]"></ng-content>
         </div>
-        <div class="fhi-highcharts-map-chart-layer">
-          <!-- TODO: Change this class name -->
+        <div class="fhi-highcharts-chart__map-content">
           <highcharts-chart
             [Highcharts]="highmaps"
             [constructorType]="'mapChart'"
@@ -143,7 +142,7 @@
           ></highcharts-chart>
 
           @if (showMapDisabledOverlay) {
-            <div class="fhi-highcharts-map-chart-layer__disabled-overlay" role="status" aria-live="polite">
+            <div class="fhi-highcharts-chart__disabled-overlay" role="status" aria-live="polite">
               <div class="disabled-warning disabled-alert">
                 <ng-container *ngTemplateOutlet="disabledWarningContent" />
               </div>

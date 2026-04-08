@@ -378,7 +378,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
       if (!this.diagramOptionsInternal.series || this.diagramOptionsInternal.series.length === 0) {
         // Ensures the map renders even if there are no series
-        this.diagramOptionsInternal.series = [{ name: '', data: [] }];
+        this.diagramOptionsInternal.series = [
+          { ...this.diagramOptionsInternal.series[0], name: '', data: [] },
+        ];
       }
       this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptionsInternal);
       this.showMap = true;

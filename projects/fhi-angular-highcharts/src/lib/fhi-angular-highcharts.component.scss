@@ -57,13 +57,12 @@
             }
         }
     }
-    .fhi-highcharts-map-chart-layer {
+    .fhi-highcharts-chart__map-content {
         position: relative;
 
         &__disabled-overlay {
             position: absolute;
             inset: 0;
-            // z-index: 5;
             display: flex;
             align-items: center;
             justify-content: center;
