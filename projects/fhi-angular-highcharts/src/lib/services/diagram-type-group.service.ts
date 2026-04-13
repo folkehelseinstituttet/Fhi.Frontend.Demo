@@ -95,7 +95,10 @@ export class DiagramTypeGroupService {
 
   private datasetIsEmpty(diagramType: DiagramType): boolean {
     // TODO: Validate if this is correct
-    const isEmpty = this.series === undefined || this.series.length === 0;
+    const isEmpty =
+      this.series === undefined ||
+      this.series.length === 0 ||
+      this.series.every((serie) => serie.data.length === 0);
     return isEmpty;
   }
 

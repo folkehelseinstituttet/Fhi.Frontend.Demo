@@ -86,7 +86,6 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
   showDefaultChartTemplate: boolean;
   diagramIsDisabled: boolean;
   showMapDisabledOverlay = false;
-  showBlockingDisabledWarning = false;
   diagramRequirements: FhiDiagramRequirements[] = [];
   showDiagramTypeNav: boolean;
   showDownloadButton: boolean;
@@ -235,7 +234,6 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     this.showFullScreenButton = false;
     this.diagramIsDisabled = false;
     this.showMapDisabledOverlay = false;
-    this.showBlockingDisabledWarning = false;
     this.isMapDiagramType = false;
     this.showFooter = false;
     this.showMap = false;
@@ -319,7 +317,6 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     this.diagramIsDisabled = diagramTypeIsDisabled;
     this.isMapDiagramType = this.activeDiagramTypeGroup?.name === DiagramTypeGroupNames.map;
     this.showMapDisabledOverlay = diagramTypeIsDisabled && this.isMapDiagramType;
-    this.showBlockingDisabledWarning = diagramTypeIsDisabled && !this.isMapDiagramType;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showTableOrientationButton = diagramTypeIsDisabled
       ? false
@@ -376,7 +373,10 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
-      if (!this.diagramOptionsInternal.series || this.diagramOptionsInternal.series.length === 0) {
+      if (
+        (!this.diagramOptionsInternal.series || this.diagramOptionsInternal.series.length === 0) &&
+        this.isMapDiagramType
+      ) {
         // Ensures the map renders even if there are no series
         this.diagramOptionsInternal.series = [
           { ...this.diagramOptionsInternal.series[0], name: '', data: [] },
