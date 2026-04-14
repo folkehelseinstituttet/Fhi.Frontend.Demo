@@ -11,6 +11,7 @@ export interface FhiDiagramDisabledWarning {
   showRequirements?: boolean;
   /** Custom requirements
    * These will be displayed above the auto generated requirements, or generic warning message depending on showRequirements
+   * @default []
    */
   customRequirements?: FhiDiagramRequirements[];
 }

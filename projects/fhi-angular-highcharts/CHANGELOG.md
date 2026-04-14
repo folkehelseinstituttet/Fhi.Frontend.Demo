@@ -1,6 +1,8 @@
 # Unreleased
 
-> Mar 17, 2026
+> Apr 8, 2026
+
+- :tada: **Enhancement** Changed rendering of error message for maps to keep slot visible when map is disabled. [(#943)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/943)
 
 - :tada: **Enhancement** Split requirememts for maps into two separate tests with their own messages and states. [(#943)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/943)
 
