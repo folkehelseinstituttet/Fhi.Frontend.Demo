@@ -1,6 +1,6 @@
-# Unreleased
+# 7.3.1
 
-> Apr 8, 2026
+> Apr 14, 2026
 
 - :tada: **Enhancement** Changed rendering of error message for maps to keep slot visible when map is disabled. [(#943)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/943)
 
