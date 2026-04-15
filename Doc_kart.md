@@ -251,5 +251,3 @@ Dette ble valgt fordi:
 - det støttes direkte av Highcharts
 - det gir brukeren en enkel måte å gå tilbake på
 - det passer naturlig i en drilldown-flyt mellom kartnivåer
-
-Andre navigasjonsvalg, som egen drill-up-knapp eller automatisk drilldown når det bare finnes data for ett fylke, er ikke undersøkt ennå.
