@@ -1,3 +1,9 @@
+# Unreleased
+
+> Mai 08, 2026
+
+- :bug: **Bugfix** Added extra validation to Kommunekart to prevent displaying wrong datapoints in the map. [(#949)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/949)
+
 # 7.4.0
 
 > Apr 14, 2026
