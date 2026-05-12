@@ -72,6 +72,7 @@ export class TopoJsonService {
         geometry = geometries.find(
           (geometry: object) =>
             dataPoint.dataPointId &&
+            dataPoint.dataPointId.length === 4 &&
             geometry['properties']['hc-key'].endsWith(dataPoint.dataPointId),
         );
         break;
