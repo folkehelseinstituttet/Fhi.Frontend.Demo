@@ -7,11 +7,25 @@ import { MockData } from './mock-data.enum';
 import {
   FhiDiagramOptions,
   FhiDiagramSerie,
+  FhiDiagramSerieData,
   FhiTableOrientations,
   FhiDiagramTypeIds,
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+
+interface NamedDataNode<T> {
+  name: string;
+  dataPointId?: string;
+  data: T[];
+}
+
+interface MultiYearDataset {
+  name: string;
+  availableYears: string[];
+  electionTypes: string[];
+  data: NamedDataNode<NamedDataNode<FhiDiagramSerieData>>[];
+}
 
 @Component({
   selector: 'app-highcharts',
@@ -24,11 +38,14 @@ export class HighchartsComponent implements OnInit {
 
   dataIsLoading = false;
   dataIsLoaded = false;
-  diagramOptions!: FhiDiagramOptions;
-  selectedYear: string = '2024';
+  diagramOptions: FhiDiagramOptions;
+  selectedYear: string;
   availableYears: string[] = [];
-  allYearsData: FhiDiagramSerie[] = [];
+  electionTypes: string[] = [];
+  selectedElectionType: string;
+  allYearsData: NamedDataNode<NamedDataNode<FhiDiagramSerieData>>[] = [];
   showUnitSelect = false;
+  datasetName: string = '';
 
   titles = {
     title_1: 'Dødsfall etter årsak, 2008 - 2018',
@@ -50,7 +67,13 @@ export class HighchartsComponent implements OnInit {
   constructor(
     private highchartsDataService: MockDataService,
     private viewportScroller: ViewportScroller,
-  ) {}
+  ) {
+    this.diagramOptions = {
+      title: '',
+      series: [],
+      slotPosition: 'right',
+    };
+  }
 
   ngOnInit() {
     if (this.itemId === this.items.HighchartsWithoutMenu.id) {
@@ -90,20 +113,24 @@ export class HighchartsComponent implements OnInit {
     };
   }
 
-  onYearChange(year: string) {
+  onSelectionChange(year: string, electionType: string) {
     this.selectedYear = year;
-
-    const selectedYearData = this.getDataforYear(this.selectedYear);
+    this.selectedElectionType = electionType;
+    const selectedYearData = this.getDataFromNode(this.selectedYear, this.allYearsData);
+    const selectedElectionTypeData = this.getDataFromNode(
+      this.selectedElectionType,
+      selectedYearData,
+    );
 
     this.diagramOptions = {
       ...this.diagramOptions,
-      series: [{ name: 'Hjerte- og karsystemet', data: selectedYearData }],
+      series: [{ name: this.datasetName, data: selectedElectionTypeData }],
     };
   }
 
-  private getDataforYear(year: string): any[] {
-    const yearObj = this.allYearsData.find((data) => data.name === year);
-    return yearObj ? yearObj.data : [];
+  private getDataFromNode<T>(key: string, nodes: NamedDataNode<T>[]): T[] {
+    const match = nodes.find((node) => node.name === key);
+    return match ? match.data : [];
   }
 
   onMetadataButtonClick() {
@@ -532,21 +559,28 @@ export class HighchartsComponent implements OnInit {
     this.dataIsLoading = true;
     this.dataIsLoaded = false;
 
-    this.highchartsDataService.getData(MockData.DodsfallHjerteOgKarEtterFylkeFlereAr).subscribe({
-      next: (data: any) => {
-        const dataObject = data[0];
-        this.availableYears = dataObject.availableYears;
-        this.allYearsData = dataObject.data;
+    this.highchartsDataService.getData(MockData.ValgdeltagelseFlereAar).subscribe({
+      next: (data: MultiYearDataset[]) => {
+        const dataset = data[0];
+        this.datasetName = dataset.name;
+        this.availableYears = dataset.availableYears;
+        this.allYearsData = dataset.data;
+        this.electionTypes = dataset.electionTypes;
 
-        this.selectedYear = this.availableYears[this.availableYears.length - 1];
+        this.selectedElectionType = this.electionTypes[0];
+        this.selectedYear = this.availableYears[0];
 
-        const selectedYearData = this.getDataforYear(this.selectedYear);
+        const selectedYearData = this.getDataFromNode(this.selectedYear, this.allYearsData);
+        const selectedElectionTypeData = this.getDataFromNode(
+          this.selectedElectionType,
+          selectedYearData,
+        );
 
         this.diagramOptions = {
           series: [
             {
-              name: dataObject.name,
-              data: selectedYearData,
+              name: dataset.name,
+              data: selectedElectionTypeData,
             },
           ],
           activeDiagramType: 'mapFylker',

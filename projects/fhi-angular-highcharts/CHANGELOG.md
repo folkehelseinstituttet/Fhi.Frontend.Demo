@@ -4,6 +4,20 @@
 
 - :tada: **Enhancement** Reduced horisontal padding on fullscreen for mobile [(#953)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/953)
 
+## 7.4.1
+
+> Mai 12, 2026
+
+- :bug: **Bugfix** Added extra validation to Kommunekart to prevent displaying wrong datapoints in the map. [(#949)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/949)
+
+## 7.4.0
+
+> Apr 14, 2026
+
+- :tada: **Enhancement** Changed rendering of error message for maps to keep slot visible when map is disabled. [(#943)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/943)
+
+- :tada: **Enhancement** Split requirememts for maps into two separate tests with their own messages and states. [(#943)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/943)
+
 ## 7.3.0
 
 > Mar 16, 2026

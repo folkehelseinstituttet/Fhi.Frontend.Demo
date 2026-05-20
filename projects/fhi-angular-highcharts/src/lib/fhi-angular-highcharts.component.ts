@@ -81,9 +81,11 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
   diagramTypeGroupNames = DiagramTypeGroupNames;
   flaggedSeries: FlaggedSerie[];
   tableData: TableData;
+  isMapDiagramType = false;
 
   showDefaultChartTemplate: boolean;
-  showDiagramTypeDisabledWarning: boolean;
+  diagramIsDisabled: boolean;
+  showMapDisabledOverlay = false;
   diagramRequirements: FhiDiagramRequirements[] = [];
   showDiagramTypeNav: boolean;
   showDownloadButton: boolean;
@@ -230,7 +232,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     this.showDiagramTypeNav = false;
     this.showDuplicateSerieNameError = false;
     this.showFullScreenButton = false;
-    this.showDiagramTypeDisabledWarning = false;
+    this.diagramIsDisabled = false;
+    this.showMapDisabledOverlay = false;
+    this.isMapDiagramType = false;
     this.showFooter = false;
     this.showMap = false;
     this.showMetadataButton = false;
@@ -310,7 +314,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       this.diagramTypeGroups,
       this.diagramOptionsInternal.activeDiagramType,
     );
-    this.showDiagramTypeDisabledWarning = diagramTypeIsDisabled;
+    this.diagramIsDisabled = diagramTypeIsDisabled;
+    this.isMapDiagramType = this.activeDiagramTypeGroup?.name === DiagramTypeGroupNames.map;
+    this.showMapDisabledOverlay = diagramTypeIsDisabled && this.isMapDiagramType;
     this.showDownloadButton = diagramTypeIsDisabled ? false : this.canShowDownloadButton();
     this.showTableOrientationButton = diagramTypeIsDisabled
       ? false
@@ -333,6 +339,9 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
       console.warn(
         `Kan ikke vise diagramtype "${activeDiagramType}" fordi "${msg.message}" (Teknisk årsak: "${msg.warning}")`,
       );
+      if (this.activeDiagramTypeGroup.name === DiagramTypeGroupNames.map) {
+        this.updateMap();
+      }
     }
   }
 
@@ -364,6 +373,15 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
 
     if (this.highmaps.maps && this.highmaps.maps[mapTypeId]) {
       this.topoJsonService.setCurrentMapTypeId(mapTypeId);
+      if (
+        (!this.diagramOptionsInternal.series || this.diagramOptionsInternal.series.length === 0) &&
+        this.isMapDiagramType
+      ) {
+        // Ensures the map renders even if there are no series
+        this.diagramOptionsInternal.series = [
+          { ...this.diagramOptionsInternal.series[0], name: '', data: [] },
+        ];
+      }
       this.highchartsOptions = this.optionsService.updateOptions(this.diagramOptionsInternal);
       this.showMap = true;
       this.changeDetector.detectChanges();
