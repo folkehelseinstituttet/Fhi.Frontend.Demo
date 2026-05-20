@@ -1,4 +1,10 @@
-# 7.4.1
+# Unreleased
+
+> Mai 20, 2026
+
+- :tada: **Enhancement** Reduced horisontal padding on fullscreen for mobile [(#953)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/953)
+
+## 7.4.1
 
 > Mai 12, 2026
 
