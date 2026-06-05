@@ -1,4 +1,16 @@
-# 7.4.0
+# 7.5.0
+
+> Jun 1, 2026
+
+- :tada: **Enhancement** Reduced horisontal padding on fullscreen for mobile [(#953)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/953)
+
+## 7.4.1
+
+> Mai 12, 2026
+
+- :bug: **Bugfix** Added extra validation to Kommunekart to prevent displaying wrong datapoints in the map. [(#949)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/issues/949)
+
+## 7.4.0
 
 > Apr 14, 2026
 

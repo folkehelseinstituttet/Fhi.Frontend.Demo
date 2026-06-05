@@ -22,6 +22,7 @@ export const DodsfallHjerteOgKarEtterKommune = [
       { name: 'Sauda', y: 132, dataPointId: '1135' },
       { name: 'Bokn', y: 941, dataPointId: '1145' },
       { name: 'Tysvær', y: 241, dataPointId: '1146' },
+      { name: 'Trøndelag', y: 90000, dataPointId: '50' },
     ],
   },
 ];
