@@ -19,6 +19,7 @@ import { Chart, Options } from 'highcharts';
 import HighchartsAccessibility from 'highcharts/modules/accessibility';
 import HighchartsExporting from 'highcharts/modules/exporting';
 import HighchartsOfflineExporting from 'highcharts/modules/offline-exporting';
+import DrilldownModule from 'highcharts/modules/drilldown';
 
 import {
   FhiDiagramOptions,
@@ -112,6 +113,7 @@ export class FhiAngularHighchartsComponent implements OnChanges, OnDestroy {
     HighchartsAccessibility(Highmaps);
     HighchartsExporting(Highmaps);
     HighchartsOfflineExporting(Highmaps);
+    DrilldownModule(Highmaps);
 
     this.highcharts.setOptions({
       lang: {

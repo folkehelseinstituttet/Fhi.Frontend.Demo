@@ -5,6 +5,8 @@ import merge from 'lodash-es/merge';
 import { isValid, parseISO } from 'date-fns';
 import {
   Options,
+  SeriesMapDataOptions,
+  SeriesMapOptions,
   SeriesOptionsType,
   TooltipFormatterCallbackFunction,
   TooltipOptions,
@@ -17,7 +19,7 @@ import { FhiDiagramSerie } from '../models/fhi-diagram-serie.model';
 import { FhiDiagramOptions } from '../models/fhi-diagram-options.model';
 
 import { AllDiagramTypes } from '../constants-and-enums/fhi-diagram-types';
-import { DiagramTypeIdValues } from '../constants-and-enums/diagram-type-ids';
+import { DiagramTypeIdValues, MapTypeIdValues } from '../constants-and-enums/diagram-type-ids';
 
 import { TopoJsonService } from './topo-json.service';
 import { OptionsChartsAndMaps } from '../highcharts-options/options-charts-and-maps';
@@ -27,11 +29,41 @@ import { FhiDiagramUnit } from '../models/fhi-diagram-unit.model';
 import { FhiDiagramSerieData } from '../models/fhi-diagram-serie-data.model';
 import { MetadataForSeriesService } from './metadata-for-series.service';
 
+interface MapDrilldownTestConfig {
+  parentMapKey: string;
+  parentName: string;
+  drilldownSeriesId: string;
+  childMapTypeId: string;
+  childSeriesName: string;
+  childSeriesData: FhiDiagramSerieData[];
+}
+
+interface MapPointIdentity {
+  mapKey: string | null;
+  name: string | null;
+}
+
+type MapSeriesDataPoint = NonNullable<SeriesMapOptions['data']>[number];
+
 @Injectable()
 export class OptionsService {
   private allStaticOptions = new Map();
   private diagramOptions: FhiDiagramOptions;
   private isMap: boolean;
+
+  private readonly preloadedMapDrilldownTestConfig: MapDrilldownTestConfig = {
+    parentMapKey: 'no-ro',
+    parentName: 'Rogaland',
+    drilldownSeriesId: 'rogaland-kommuner-drilldown',
+    childMapTypeId: MapTypeIdValues.mapKommuner,
+    childSeriesName: 'Rogaland kommuner',
+    childSeriesData: [
+      { name: 'Eigersund', dataPointId: '1101', y: 2882 },
+      { name: 'Stavanger', dataPointId: '1103', y: 2143 },
+      { name: 'Haugesund', dataPointId: '1106', y: 1818 },
+      { name: 'Sandnes', dataPointId: '1108', y: 1527 },
+    ],
+  };
 
   constructor(
     private topoJsonService: TopoJsonService,
@@ -155,6 +187,7 @@ export class OptionsService {
       [0.92, '#2a6a82'], // B2-50
       [1, '#234e5f'], // B2-40
     ];
+
     if (
       this.metadataForSeriesService.hasNegativeData &&
       this.metadataForSeriesService.hasPositiveData
@@ -165,10 +198,295 @@ export class OptionsService {
     } else {
       options.colorAxis = { ...colorAxis, stops: stopsPositive };
     }
-    options.chart.map = this.diagramOptions.activeDiagramType;
 
-    options.series = [this.topoJsonService.getHighmapsSerie(options.series[0] as FhiDiagramSerie)];
+    this.setActiveMapType(options);
+
+    return this.addPreloadedMapDrilldownTest(options, this.preloadedMapDrilldownTestConfig);
+  }
+
+  private setActiveMapType(options: Options): void {
+    options.chart = {
+      ...options.chart,
+      map: this.diagramOptions.activeDiagramType,
+    };
+  }
+
+  private addPreloadedMapDrilldownTest(
+    options: Options,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): Options {
+    const mapSerie = this.createMapSeriesFromFirstOptionsSeries(options);
+
+    if (mapSerie === null) {
+      this.logSkippedPreloadedMapDrilldownTest('No map series was found in options.series.', {
+        activeDiagramType: this.diagramOptions.activeDiagramType,
+      });
+
+      return options;
+    }
+
+    const mapSerieData = this.getMapSeriesData(mapSerie);
+
+    if (mapSerieData === null || mapSerieData.length === 0) {
+      this.logSkippedPreloadedMapDrilldownTest('Map series has no data yet.', {
+        activeDiagramType: this.diagramOptions.activeDiagramType,
+        mapSerie,
+      });
+
+      this.setMapSeries(options, mapSerie);
+      return options;
+    }
+
+    const parentDataPoint = this.findParentDataPoint(mapSerieData, drilldownConfig);
+
+    if (parentDataPoint === null) {
+      this.logSkippedPreloadedMapDrilldownTest('Parent point was not found in the map series.', {
+        expectedParentMapKey: drilldownConfig.parentMapKey,
+        expectedParentName: drilldownConfig.parentName,
+        availableMapPoints: this.getAvailableMapPointIdentities(mapSerieData),
+      });
+
+      this.setMapSeries(options, mapSerie);
+      return options;
+    }
+
+    mapSerie.data = this.addDrilldownToParentPoint(mapSerieData, drilldownConfig);
+
+    this.setMapSeries(options, mapSerie);
+    this.setPreloadedChildMapDrilldownSeries(options, drilldownConfig);
+    this.addMapDrilldownDebugEvents(options, mapSerie);
+
+    console.log(
+      'Preloaded map drilldown setup completed',
+      this.findParentDataPoint(mapSerie.data, drilldownConfig),
+    );
+
     return options;
+  }
+
+  private createMapSeriesFromFirstOptionsSeries(options: Options): SeriesMapOptions | null {
+    const firstSeries = options.series?.[0];
+
+    if (!firstSeries) {
+      return null;
+    }
+
+    return this.topoJsonService.getHighmapsSerie(firstSeries as FhiDiagramSerie);
+  }
+
+  private getMapSeriesData(mapSerie: SeriesMapOptions): MapSeriesDataPoint[] | null {
+    const mapSerieData = mapSerie.data ?? null;
+
+    if (!Array.isArray(mapSerieData)) {
+      return null;
+    }
+
+    return mapSerieData;
+  }
+
+  private findParentDataPoint(
+    mapSerieData: MapSeriesDataPoint[],
+    drilldownConfig: MapDrilldownTestConfig,
+  ): MapSeriesDataPoint | null {
+    return (
+      mapSerieData.find((dataPoint) => this.isParentMapPoint(dataPoint, drilldownConfig)) ?? null
+    );
+  }
+
+  private addDrilldownToParentPoint(
+    mapSerieData: MapSeriesDataPoint[],
+    drilldownConfig: MapDrilldownTestConfig,
+  ): MapSeriesDataPoint[] {
+    return mapSerieData.map((dataPoint) => {
+      if (!this.isParentMapPoint(dataPoint, drilldownConfig)) {
+        return dataPoint;
+      }
+
+      return this.createParentPointWithDrilldown(dataPoint, drilldownConfig);
+    });
+  }
+
+  private createParentPointWithDrilldown(
+    dataPoint: MapSeriesDataPoint,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): MapSeriesDataPoint {
+    if (Array.isArray(dataPoint)) {
+      const [mapKey, value] = dataPoint;
+      const mapKeyText = this.getTextValueOrNull(mapKey);
+
+      if (mapKeyText === null) {
+        console.warn('Parent point matched, but the array map key is missing.', dataPoint);
+
+        return dataPoint;
+      }
+
+      return {
+        'hc-key': mapKeyText,
+        value,
+        drilldown: drilldownConfig.drilldownSeriesId,
+        events: this.createParentPointDebugEvents(),
+      } as SeriesMapDataOptions;
+    }
+
+    if (this.isMapObjectDataPoint(dataPoint)) {
+      return {
+        ...dataPoint,
+        drilldown: drilldownConfig.drilldownSeriesId,
+        events: {
+          ...this.getMapPointEvents(dataPoint),
+          ...this.createParentPointDebugEvents(),
+        },
+      } as SeriesMapDataOptions;
+    }
+
+    console.warn('Parent point matched, but the data shape is not supported.', dataPoint);
+
+    return dataPoint;
+  }
+
+  private isParentMapPoint(
+    dataPoint: MapSeriesDataPoint,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): boolean {
+    const mapPointIdentity = this.getMapPointIdentity(dataPoint);
+
+    return (
+      mapPointIdentity.mapKey === drilldownConfig.parentMapKey ||
+      mapPointIdentity.name === drilldownConfig.parentName
+    );
+  }
+
+  private getMapPointIdentity(dataPoint: MapSeriesDataPoint): MapPointIdentity {
+    if (Array.isArray(dataPoint)) {
+      return {
+        mapKey: this.getTextValueOrNull(dataPoint[0]),
+        name: null,
+      };
+    }
+
+    if (this.isMapObjectDataPoint(dataPoint)) {
+      return {
+        mapKey: this.getTextValueOrNull(dataPoint['hc-key']),
+        name: this.getTextValueOrNull(dataPoint.name),
+      };
+    }
+
+    return {
+      mapKey: null,
+      name: null,
+    };
+  }
+
+  private getAvailableMapPointIdentities(mapSerieData: MapSeriesDataPoint[]): MapPointIdentity[] {
+    return mapSerieData.map((dataPoint) => this.getMapPointIdentity(dataPoint));
+  }
+
+  private setMapSeries(options: Options, mapSerie: SeriesMapOptions): void {
+    options.series = [mapSerie as SeriesOptionsType];
+  }
+
+  private setPreloadedChildMapDrilldownSeries(
+    options: Options,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): void {
+    const existingDrilldownSeries = options.drilldown?.series ?? [];
+
+    const drilldownSeriesWithoutCurrentTest = existingDrilldownSeries.filter(
+      (series) => !this.isSameDrilldownSeries(series, drilldownConfig.drilldownSeriesId),
+    );
+
+    options.drilldown = {
+      ...options.drilldown,
+      series: [
+        ...drilldownSeriesWithoutCurrentTest,
+        this.createChildMapDrilldownSeries(drilldownConfig) as SeriesOptionsType,
+      ],
+    };
+  }
+
+  private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): SeriesMapOptions {
+    const childMapSeries = this.topoJsonService.getHighmapsSerieForMapType(
+      drilldownConfig.childSeriesName,
+      drilldownConfig.childSeriesData,
+      drilldownConfig.childMapTypeId,
+    );
+
+    return {
+      ...childMapSeries,
+      id: drilldownConfig.drilldownSeriesId,
+      name: drilldownConfig.childSeriesName,
+      type: 'map',
+      mapData: this.topoJsonService.getMapDataForMapType(drilldownConfig.childMapTypeId),
+      joinBy: 'hc-key',
+      allAreas: true,
+    };
+  }
+
+  private isSameDrilldownSeries(series: SeriesOptionsType, drilldownSeriesId: string): boolean {
+    return this.getTextValueOrNull(series.id) === drilldownSeriesId;
+  }
+
+  private addMapDrilldownDebugEvents(options: Options, parentMapSerie: SeriesMapOptions): void {
+    const parentMapTypeId = this.diagramOptions.activeDiagramType;
+    const parentColorAxis = cloneDeep(options.colorAxis);
+    const parentDrilldownOptions = cloneDeep(options.drilldown);
+    const parentMapSerieForDrillUp = cloneDeep(parentMapSerie);
+
+    options.chart = {
+      ...options.chart,
+      events: {
+        ...options.chart?.events,
+
+        drilldown: (event) => {},
+
+        drillupall: (event) => {
+          window.setTimeout(() => {
+            event.target.update(
+              {
+                chart: {
+                  map: parentMapTypeId,
+                },
+                colorAxis: parentColorAxis,
+                drilldown: parentDrilldownOptions,
+                series: [cloneDeep(parentMapSerieForDrillUp) as SeriesOptionsType],
+              },
+              true,
+              true,
+            );
+
+            console.log('Parent map series was restored after drillup');
+          });
+        },
+      },
+    };
+  }
+
+  private createParentPointDebugEvents(): NonNullable<SeriesMapDataOptions['events']> {
+    return {
+      click: () => {},
+    };
+  }
+
+  private getMapPointEvents(
+    dataPoint: SeriesMapDataOptions,
+  ): NonNullable<SeriesMapDataOptions['events']> {
+    return dataPoint.events ?? {};
+  }
+
+  private isMapObjectDataPoint(dataPoint: MapSeriesDataPoint): dataPoint is SeriesMapDataOptions {
+    return typeof dataPoint === 'object' && dataPoint !== null && !Array.isArray(dataPoint);
+  }
+
+  private getTextValueOrNull(value: string | number | null | undefined): string | null {
+    if (value === null || value === undefined) {
+      return null;
+    }
+
+    return String(value);
+  }
+
+  private logSkippedPreloadedMapDrilldownTest(reason: string, details: object): void {
+    console.warn(`Skipping preloaded map drilldown test. ${reason}`, details);
   }
 
   private updateOptionsForCurrentDiagramType(options: Options): Options {
