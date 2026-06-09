@@ -216,27 +216,51 @@ export class TopoJsonService {
     return String(value);
   }
 
-  getMapDataForMapType(mapTypeId: string): object {
-    const loadedMap = this.topoJsonMaps[mapTypeId];
+  getMapDataForMapTypeAndParentMapKey(mapTypeId: string, parentMapKey: string): object {
+    const mapData = this.getStoredOrStaticMap(mapTypeId);
+    const childGeometries = this.getGeometriesForParentMapKey(
+      mapData.objects.default.geometries,
+      parentMapKey,
+    );
 
-    if (loadedMap) {
-      return loadedMap;
+    if (childGeometries.length === 0) {
+      console.warn(
+        `No child map geometries found for parentMapKey "${parentMapKey}". Using full mapData as fallback.`,
+      );
+
+      return mapData as object;
     }
 
-    const staticMaps = {
-      [MapTypeIdValues.mapFylker]: noFylker2024,
-      [MapTypeIdValues.mapFylker2023]: noFylker2023,
-      [MapTypeIdValues.mapFylker2019]: noFylker2019,
-      [MapTypeIdValues.mapKommuner]: noKommuner2025,
-    };
+    return {
+      ...mapData,
+      objects: {
+        ...mapData.objects,
+        default: {
+          ...mapData.objects.default,
+          geometries: childGeometries,
+        },
+      },
+    } as object;
+  }
 
-    const staticMap = staticMaps[mapTypeId];
+  private getGeometriesForParentMapKey(
+    geometries: TopoJsonMapGeometry[],
+    parentMapKey: string,
+  ): TopoJsonMapGeometry[] {
+    const childMapKeyPrefix = `${parentMapKey}-`;
 
-    if (staticMap) {
-      return staticMap as object;
-    }
+    return geometries.filter((geometry) =>
+      this.geometryBelongsToParentMapKey(geometry, childMapKeyPrefix),
+    );
+  }
 
-    throw new Error(`No supported map matches given mapTypeId: "${mapTypeId}".`);
+  private geometryBelongsToParentMapKey(
+    geometry: TopoJsonMapGeometry,
+    childMapKeyPrefix: string,
+  ): boolean {
+    const mapKey = geometry.properties['hc-key'];
+
+    return typeof mapKey === 'string' && mapKey.startsWith(childMapKeyPrefix);
   }
 
   /* Kept for reference. Replaced by the test createMapDataPointForMapType and the helper fucntions.

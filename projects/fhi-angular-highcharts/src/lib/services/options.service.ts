@@ -51,7 +51,7 @@ export class OptionsService {
   private diagramOptions: FhiDiagramOptions;
   private isMap: boolean;
 
-  private readonly preloadedMapDrilldownTestConfig: MapDrilldownTestConfig = {
+  private readonly asyncMapDrilldownTestConfig: MapDrilldownTestConfig = {
     parentMapKey: 'no-ro',
     parentName: 'Rogaland',
     drilldownSeriesId: 'rogaland-kommuner-drilldown',
@@ -201,7 +201,7 @@ export class OptionsService {
 
     this.setActiveMapType(options);
 
-    return this.addPreloadedMapDrilldownTest(options, this.preloadedMapDrilldownTestConfig);
+    return this.addAsyncMapDrilldownTest(options, this.asyncMapDrilldownTestConfig);
   }
 
   private setActiveMapType(options: Options): void {
@@ -211,14 +211,14 @@ export class OptionsService {
     };
   }
 
-  private addPreloadedMapDrilldownTest(
+  private addAsyncMapDrilldownTest(
     options: Options,
     drilldownConfig: MapDrilldownTestConfig,
   ): Options {
     const mapSerie = this.createMapSeriesFromFirstOptionsSeries(options);
 
     if (mapSerie === null) {
-      this.logSkippedPreloadedMapDrilldownTest('No map series was found in options.series.', {
+      this.logSkippedAsyncMapDrilldownTest('No map series was found in options.series.', {
         activeDiagramType: this.diagramOptions.activeDiagramType,
       });
 
@@ -228,7 +228,7 @@ export class OptionsService {
     const mapSerieData = this.getMapSeriesData(mapSerie);
 
     if (mapSerieData === null || mapSerieData.length === 0) {
-      this.logSkippedPreloadedMapDrilldownTest('Map series has no data yet.', {
+      this.logSkippedAsyncMapDrilldownTest('Map series has no data yet.', {
         activeDiagramType: this.diagramOptions.activeDiagramType,
         mapSerie,
       });
@@ -240,7 +240,7 @@ export class OptionsService {
     const parentDataPoint = this.findParentDataPoint(mapSerieData, drilldownConfig);
 
     if (parentDataPoint === null) {
-      this.logSkippedPreloadedMapDrilldownTest('Parent point was not found in the map series.', {
+      this.logSkippedAsyncMapDrilldownTest('Parent point was not found in the map series.', {
         expectedParentMapKey: drilldownConfig.parentMapKey,
         expectedParentName: drilldownConfig.parentName,
         availableMapPoints: this.getAvailableMapPointIdentities(mapSerieData),
@@ -250,16 +250,10 @@ export class OptionsService {
       return options;
     }
 
-    mapSerie.data = this.addDrilldownToParentPoint(mapSerieData, drilldownConfig);
+    mapSerie.data = this.addAsyncDrilldownToParentPoint(mapSerieData, drilldownConfig);
 
     this.setMapSeries(options, mapSerie);
-    this.setPreloadedChildMapDrilldownSeries(options, drilldownConfig);
-    this.addMapDrilldownDebugEvents(options, mapSerie);
-
-    console.log(
-      'Preloaded map drilldown setup completed',
-      this.findParentDataPoint(mapSerie.data, drilldownConfig),
-    );
+    this.addAsyncMapDrilldownEvents(options, drilldownConfig, mapSerie);
 
     return options;
   }
@@ -293,7 +287,7 @@ export class OptionsService {
     );
   }
 
-  private addDrilldownToParentPoint(
+  private addAsyncDrilldownToParentPoint(
     mapSerieData: MapSeriesDataPoint[],
     drilldownConfig: MapDrilldownTestConfig,
   ): MapSeriesDataPoint[] {
@@ -302,46 +296,63 @@ export class OptionsService {
         return dataPoint;
       }
 
-      return this.createParentPointWithDrilldown(dataPoint, drilldownConfig);
+      return this.createParentPointWithAsyncDrilldown(dataPoint, drilldownConfig);
     });
   }
 
-  private createParentPointWithDrilldown(
+  private createParentPointWithAsyncDrilldown(
     dataPoint: MapSeriesDataPoint,
     drilldownConfig: MapDrilldownTestConfig,
   ): MapSeriesDataPoint {
     if (Array.isArray(dataPoint)) {
-      const [mapKey, value] = dataPoint;
-      const mapKeyText = this.getTextValueOrNull(mapKey);
-
-      if (mapKeyText === null) {
-        console.warn('Parent point matched, but the array map key is missing.', dataPoint);
-
-        return dataPoint;
-      }
-
-      return {
-        'hc-key': mapKeyText,
-        value,
-        drilldown: drilldownConfig.drilldownSeriesId,
-        events: this.createParentPointDebugEvents(),
-      } as SeriesMapDataOptions;
+      return this.createAsyncParentPointFromArrayData(dataPoint, drilldownConfig);
     }
 
     if (this.isMapObjectDataPoint(dataPoint)) {
-      return {
-        ...dataPoint,
-        drilldown: drilldownConfig.drilldownSeriesId,
-        events: {
-          ...this.getMapPointEvents(dataPoint),
-          ...this.createParentPointDebugEvents(),
-        },
-      } as SeriesMapDataOptions;
+      return this.createAsyncParentPointFromObjectData(dataPoint, drilldownConfig);
     }
 
     console.warn('Parent point matched, but the data shape is not supported.', dataPoint);
 
     return dataPoint;
+  }
+
+  private createAsyncParentPointFromArrayData(
+    dataPoint: MapSeriesDataPoint,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): MapSeriesDataPoint {
+    if (!Array.isArray(dataPoint)) {
+      return dataPoint;
+    }
+
+    const [mapKey, value] = dataPoint;
+    const mapKeyText = this.getTextValueOrNull(mapKey);
+
+    if (mapKeyText === null) {
+      console.warn('Parent point matched, but the array map key is missing.', dataPoint);
+
+      return dataPoint;
+    }
+    return {
+      'hc-key': mapKeyText,
+      value,
+      drilldown: drilldownConfig.drilldownSeriesId,
+      events: this.createParentPointDebugEvents(),
+    } as SeriesMapDataOptions;
+  }
+
+  private createAsyncParentPointFromObjectData(
+    dataPoint: SeriesMapDataOptions,
+    drilldownConfig: MapDrilldownTestConfig,
+  ): MapSeriesDataPoint {
+    return {
+      ...dataPoint,
+      drilldown: drilldownConfig.drilldownSeriesId,
+      events: {
+        ...this.getMapPointEvents(dataPoint),
+        ...this.createParentPointDebugEvents(),
+      },
+    } as SeriesMapDataOptions;
   }
 
   private isParentMapPoint(
@@ -385,25 +396,6 @@ export class OptionsService {
     options.series = [mapSerie as SeriesOptionsType];
   }
 
-  private setPreloadedChildMapDrilldownSeries(
-    options: Options,
-    drilldownConfig: MapDrilldownTestConfig,
-  ): void {
-    const existingDrilldownSeries = options.drilldown?.series ?? [];
-
-    const drilldownSeriesWithoutCurrentTest = existingDrilldownSeries.filter(
-      (series) => !this.isSameDrilldownSeries(series, drilldownConfig.drilldownSeriesId),
-    );
-
-    options.drilldown = {
-      ...options.drilldown,
-      series: [
-        ...drilldownSeriesWithoutCurrentTest,
-        this.createChildMapDrilldownSeries(drilldownConfig) as SeriesOptionsType,
-      ],
-    };
-  }
-
   private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): SeriesMapOptions {
     const childMapSeries = this.topoJsonService.getHighmapsSerieForMapType(
       drilldownConfig.childSeriesName,
@@ -416,17 +408,20 @@ export class OptionsService {
       id: drilldownConfig.drilldownSeriesId,
       name: drilldownConfig.childSeriesName,
       type: 'map',
-      mapData: this.topoJsonService.getMapDataForMapType(drilldownConfig.childMapTypeId),
+      mapData: this.topoJsonService.getMapDataForMapTypeAndParentMapKey(
+        drilldownConfig.childMapTypeId,
+        drilldownConfig.parentMapKey,
+      ),
       joinBy: 'hc-key',
       allAreas: true,
     };
   }
 
-  private isSameDrilldownSeries(series: SeriesOptionsType, drilldownSeriesId: string): boolean {
-    return this.getTextValueOrNull(series.id) === drilldownSeriesId;
-  }
-
-  private addMapDrilldownDebugEvents(options: Options, parentMapSerie: SeriesMapOptions): void {
+  private addAsyncMapDrilldownEvents(
+    options: Options,
+    drilldownConfig: MapDrilldownTestConfig,
+    parentMapSerie: SeriesMapOptions,
+  ): void {
     const parentMapTypeId = this.diagramOptions.activeDiagramType;
     const parentColorAxis = cloneDeep(options.colorAxis);
     const parentDrilldownOptions = cloneDeep(options.drilldown);
@@ -437,9 +432,21 @@ export class OptionsService {
       events: {
         ...options.chart?.events,
 
-        drilldown: (event) => {},
+        drilldown: (event) => {
+          console.log('Highcharts async map drilldown event fired', event);
+
+          if (event.seriesOptions) {
+            return;
+          }
+
+          const childSeries = this.createChildMapDrilldownSeries(drilldownConfig);
+
+          event.target.addSeriesAsDrilldown(event.point, childSeries as SeriesOptionsType);
+        },
 
         drillupall: (event) => {
+          console.log('Highcharts async map drillupall event fired');
+
           window.setTimeout(() => {
             event.target.update(
               {
@@ -453,8 +460,6 @@ export class OptionsService {
               true,
               true,
             );
-
-            console.log('Parent map series was restored after drillup');
           });
         },
       },
@@ -463,7 +468,9 @@ export class OptionsService {
 
   private createParentPointDebugEvents(): NonNullable<SeriesMapDataOptions['events']> {
     return {
-      click: () => {},
+      click: () => {
+        console.log('Async parent map point was clicked');
+      },
     };
   }
 
@@ -485,8 +492,8 @@ export class OptionsService {
     return String(value);
   }
 
-  private logSkippedPreloadedMapDrilldownTest(reason: string, details: object): void {
-    console.warn(`Skipping preloaded map drilldown test. ${reason}`, details);
+  private logSkippedAsyncMapDrilldownTest(reason: string, details: object): void {
+    console.warn(`Skipping async map drilldown test. ${reason}`, details);
   }
 
   private updateOptionsForCurrentDiagramType(options: Options): Options {
