@@ -395,7 +395,7 @@ Testen skulle bekrefte:
 
 Testen ble gjort som en POC i `options.service.ts`.
 
-Denne testen dekker kun `preloaded drilldown`.
+Denne testen dekker kun `preloaded drilldown` og brukes som en teknisk POC.
 
 ### Testoppsett
 
@@ -410,41 +410,23 @@ Testen ble gjort med Rogaland som parent point.
 | Drilldown `id`    | `rogaland-kommuner-drilldown` |
 | Child series name | `Rogaland kommuner`           |
 | Child level       | Kommuner                      |
+| Child map type    | `mapKommuner`                 |
 
 ### Demo-oppsett brukt for testen
 
 POC-en ble testet i demoen gjennom `getData__example_4a()`. Demoen brukte `activeDiagramType: 'mapFylker'` som parent level.
 
 ```ts
-const diagramOptionsWithDrilldown: DiagramOptionsWithDrilldown = {
-  series: [
-    {
-      name: dataset.name,
-      data: selectedElectionTypeData,
-    },
-  ],
-  activeDiagramType: 'mapFylker',
-  title: `${this.titles.title_4a} - ${this.selectedYear}`,
+activeDiagramType: 'mapFylker',
 
-  drilldown: {
-    breadcrumbs: {
-      floating: true,
-      position: {
-        align: 'left',
-      },
+drilldown: {
+  breadcrumbs: {
+    floating: true,
+    position: {
+      align: 'left',
     },
   },
-
-  controls: {
-    navigation: {
-      items: {
-        chartTypes: ['bar', 'column', 'line', 'pie'],
-        mapTypes: ['mapFylker'],
-      },
-      show: true,
-    },
-  },
-};
+},
 ```
 
 Breadcrumbs ble lagt inn for å teste drill-up navigation. Testen ble kjørt på eksisterende demo-data med valgt år og valgt valgtype.
@@ -479,13 +461,16 @@ private readonly preloadedMapDrilldownTestConfig: MapDrilldownTestConfig = {
 
 ## Teknisk prinsipp
 
-Highcharts kobler parent point og child series sammen med to verdier:
+Preloaded drilldown krever at child series ligger i `options.drilldown.series` før brukeren klikker.
 
-`point.drilldown` og `drilldown.series[].id`
+Koblingen skjer med:
 
-Verdien i `point.drilldown` må være lik `id` på child series.
+- `point.drilldown`
+- `drilldown.series[].id`
 
-**eksempel:**
+Verdien i `point.drilldown` må matche `id` på child series.Kilde: [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series)
+
+**Eksempel:**
 
 ```ts
 {
@@ -503,17 +488,13 @@ Verdien i `point.drilldown` må være lik `id` på child series.
 }
 ```
 
-Når brukeren klikker på rogaland, finner Highcharts child series med sammen id som `point.drilldown`. Deretter bytter Highcharts fra parent map series til child map series.
+Når brukeren klikker på Rogaland, finner Highcharts child series med samme `id` som `point.drilldown`.
 
 ## Hvor testen ble lagt inn
 
-Testen ble lagt inn i `options.service.ts`, fordi denne filen bygger `Highcharts.Options` for kartsvisningen.
+Testen ble lagt inn i `options.service.ts`, fordi denne filen bygger `Highcharts.Options` for kartvisningen.
 
-Det var viktig sted for POC-en fordi drilldown-oppsettet må legges inn mens chart options bygges.
-
-## Hvor POC-en kobles inn i options-flyten
-
-Testen ble koblet inn i `updateMapOptions()` etter at map options og `colorAxis` var satt.
+POC-en ble koblet inn i `updateMapOptions()` etter at map type og `colorAxis` var satt.
 
 ```ts
 this.setActiveMapType(options);
@@ -525,23 +506,13 @@ return this.addPreloadedMapDrilldownTest(options, this.preloadedMapDrilldownTest
 
 - `updateMapOptions()` kjøres når aktiv diagramtype er et kart.
 
-- `setActiveMapType()` setter riktig parent map type, for eksempel mapFylker.
+- `setActiveMapType()` setter riktig parent map type, for eksempel `mapFylker`.
 
 - `addPreloadedMapDrilldownTest()` legger deretter drilldown-oppsettet inn i samme `Highcharts.Options` objekt.
 
-## Relevant flyt:
+**Relevant flyt:**
 
-`fhiAngularHighchartsComponent`
-
-- `updateMap()`
-
-- `loadMap()`
-
-- `OptionsService.updateOptions()`
-
-- `OptionsService.updateMapOptions()`
-
-- `addPreloadedMapDrilldownTest()`
+`FhiAngularHighchartsComponent.updateMap()` → `loadMap()` → `OptionsService.updateOptions()` → `updateMapOptions()` → `addPreloadedMapDrilldownTest()`
 
 Dette betyr at drilldown må settes opp etter at map series finnes i options.
 
@@ -552,51 +523,13 @@ Dette betyr at drilldown må settes opp etter at map series finnes i options.
 Derfor måtte POC-en ha guard clauses før drilldown ble satt opp.
 
 ```ts
-private addPreloadedMapDrilldownTest(
-  options: Options,
-  drilldownConfig: MapDrilldownTestConfig,
-): Options {
-  const mapSerie = this.createMapSeriesFromFirstOptionsSeries(options);
-
-  if (mapSerie === null) {
-    this.logSkippedPreloadedMapDrilldownTest('No map series was found in options.series.', {
-      activeDiagramType: this.diagramOptions.activeDiagramType,
-    });
-
-    return options;
-  }
-
-  const mapSerieData = this.getMapSeriesData(mapSerie);
-
-  if (mapSerieData === null || mapSerieData.length === 0) {
-    this.logSkippedPreloadedMapDrilldownTest('Map series has no data yet.', {
-      activeDiagramType: this.diagramOptions.activeDiagramType,
-      mapSerie,
-    });
-
-    this.setMapSeries(options, mapSerie);
-    return options;
-  }
-
-  const parentDataPoint = this.findParentDataPoint(mapSerieData, drilldownConfig);
-
-  if (parentDataPoint === null) {
-    this.logSkippedPreloadedMapDrilldownTest('Parent point was not found in the map series.', {
-      expectedParentMapKey: drilldownConfig.parentMapKey,
-      expectedParentName: drilldownConfig.parentName,
-      availableMapPoints: this.getAvailableMapPointIdentities(mapSerieData),
-    });
-
-    this.setMapSeries(options, mapSerie);
-    return options;
-  }
-
-  mapSerie.data = this.addDrilldownToParentPoint(mapSerieData, drilldownConfig);
+if (mapSerieData === null || mapSerieData.length === 0) {
+  this.logSkippedPreloadedMapDrilldownTest('Map series has no data yet.', {
+    activeDiagramType: this.diagramOptions.activeDiagramType,
+    mapSerie,
+  });
 
   this.setMapSeries(options, mapSerie);
-  this.setPreloadedChildMapDrilldownSeries(options, drilldownConfig);
-  this.addMapDrilldownDebugEvents(options, mapSerie);
-
   return options;
 }
 ```
@@ -623,46 +556,9 @@ Denne loggen betyr ikke at drilldown feilet. Den betyr at POC-en stoppet fordi m
 
 ## Finne parent map series og parent point
 
-POC-en lager først en map series fra første series i `options.series`.
+POC-en lager først en map series fra første series i `options.series`, deretter hentes data fra map series.
 
-```ts
-private createMapSeriesFromFirstOptionsSeries(options: Options): SeriesMapOptions | null {
-  const firstSeries = options.series?.[0];
-
-  if (!firstSeries) {
-    return null;
-  }
-
-  return this.topoJsonService.getHighmapsSerie(firstSeries as FhiDiagramSerie);
-}
-```
-
-Deretter hentes data fra map series.
-
-```ts
-private getMapSeriesData(mapSerie: SeriesMapOptions): MapSeriesDataPoint[] | null {
-  const mapSerieData = mapSerie.data ?? null;
-
-  if (!Array.isArray(mapSerieData)) {
-    return null;
-  }
-
-  return mapSerieData;
-}
-```
-
-Parent point blir funnet ved å sjekke om datapunktet matcher `parentMapKey` eller `parentName`.
-
-```ts
-private findParentDataPoint(
-  mapSerieData: MapSeriesDataPoint[],
-  drilldownConfig: MapDrilldownTestConfig,
-): MapSeriesDataPoint | null {
-  return (
-    mapSerieData.find((dataPoint) => this.isParentMapPoint(dataPoint, drilldownConfig)) ?? null
-  );
-}
-```
+Parent point ble funnet ved å sjekke om datapunktet matchet `parentMapKey` eller `parentName`.
 
 ```ts
 private isParentMapPoint(
@@ -726,7 +622,7 @@ return {
 
 - `Array-format` som `['no-ro', 78.1]` har ikke plass til drilldown. Derfor må Rogaland-pointet gjøres om til object-format.
 
-- drilldown får verdien `rogaland-kommuner-drilldown.` Denne verdien matcher `id` på child series.
+- `drilldown` får verdien `rogaland-kommuner-drilldown`. Denne verdien matcher `id` på child series.
 
 ## Opprette child map series for Rogaland kommuner
 
@@ -755,13 +651,13 @@ private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): 
 
 - `getHighmapsSerieForMapType()` lager kommune-data i Highmaps-format.
 
-- `id` matcher point.drilldown på Rogaland.
+- `id` matcher `point.drilldown` på Rogaland.
 
 - `mapData` gir Highcharts kommune-geometrien.
 
 - `joinBy: 'hc-key'` kobler kommune-data til kommune-geometri.
 
-- `allAreas:` true gjør at kommuneområder kan vises selv om ikke alle har verdi i testdata.
+- `allAreas: true` gjør at kommuneområder kan vises selv om ikke alle har verdi i testdata.
 
 ## Legge child series inn i `options.drilldown.series`
 
@@ -790,31 +686,7 @@ private setPreloadedChildMapDrilldownSeries(
 
 Child series blir opprettet med kommune-data og kommune-map geometry.
 
-```ts
-private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): SeriesMapOptions {
-  const childMapSeries = this.topoJsonService.getHighmapsSerieForMapType(
-    drilldownConfig.childSeriesName,
-    drilldownConfig.childSeriesData,
-    drilldownConfig.childMapTypeId,
-  );
-
-  return {
-    ...childMapSeries,
-    id: drilldownConfig.drilldownSeriesId,
-    name: drilldownConfig.childSeriesName,
-    type: 'map',
-    mapData: this.topoJsonService.getMapDataForMapType(drilldownConfig.childMapTypeId),
-    joinBy: 'hc-key',
-    allAreas: true,
-  };
-}
-```
-
-```ts
-private isSameDrilldownSeries(series: SeriesOptionsType, drilldownSeriesId: string): boolean {
-  return this.getTextValueOrNull(series.id) === drilldownSeriesId;
-}
-```
+`drilldownSeriesWithoutCurrentTest` hindrer at samme test series legges inn flere ganger.
 
 **Begrunnelse:**
 
@@ -832,9 +704,7 @@ private isSameDrilldownSeries(series: SeriesOptionsType, drilldownSeriesId: stri
 
 ## Legge til breadcrumbs
 
-Navigasjon tilbake ble testet med Highcharts sin innebygde drilldown-navigation.
-
-I demo-oppsettet ble breadcrumbs lagt inn i `diagramOptions`.
+Breadcrumbs ble lagt inn i demo-oppsettet for å teste drill-up navigation.
 
 ```ts
 drilldown: {
@@ -847,10 +717,6 @@ drilldown: {
 },
 ```
 
-- `breadcrumbs` gir brukeren en tilbake-knapp etter drilldown.
-- `floating: true` gjør at breadcrumbs kan vises over chartområdet.
-- `position.align: 'left'` plasserer breadcrumbs til venstre.
-
 Dette ble brukt for å teste drill-up navigation i POC-en.
 
 ## Legge til chart events for verifisering
@@ -858,144 +724,47 @@ Dette ble brukt for å teste drill-up navigation i POC-en.
 For å bekrefte at Highcharts faktisk kjørte drilldown-flowen, ble det lagt til logging på chart events.
 
 ```ts
-private addMapDrilldownDebugEvents(options: Options, parentMapSerie: SeriesMapOptions): void {
-  const parentMapTypeId = this.diagramOptions.activeDiagramType;
-  const parentColorAxis = cloneDeep(options.colorAxis);
-  const parentDrilldownOptions = cloneDeep(options.drilldown);
-  const parentMapSerieForDrillUp = cloneDeep(parentMapSerie);
+events: {
+  drilldown: (event) => {
+    console.log('Highcharts map drilldown event fired', event);
+  },
 
-  options.chart = {
-    ...options.chart,
-    events: {
-      ...options.chart?.events,
-
-      drilldown: (event) => {
-        console.log(' Highcharts map drilldown event fired', event);
-      },
-
-      drillupall: (event) => {
-        console.log('Highcharts map drillupall event fired');
-
-        window.setTimeout(() => {
-          event.target.update(
-            {
-              chart: {
-                map: parentMapTypeId,
-              },
-              colorAxis: parentColorAxis,
-              drilldown: parentDrilldownOptions,
-              series: [cloneDeep(parentMapSerieForDrillUp) as SeriesOptionsType],
-            },
-            true,
-            true,
-          );
-
-        });
-      },
-    },
-  };
+  drillupall: () => {
+    console.log('Highcharts map drillupall event fired');
+  },
 }
+```
+
+## Gjenopprette parent map etter drill-up
+
+I testen måtte parent map series gjenopprettes etter drill-up.
+
+Uten dette kunne fylkeskartet komme tilbake uten riktig fargevisning.
+
+```ts
+event.target.update(
+  {
+    chart: {
+      map: parentMapTypeId,
+    },
+    colorAxis: parentColorAxis,
+    drilldown: parentDrilldownOptions,
+    series: [cloneDeep(parentMapSerieForDrillUp) as SeriesOptionsType],
+  },
+  true,
+  true,
+);
 ```
 
 **Begrunnelse:**
 
-- `drilldown` bekrefter at klikk på parent point starter Highcharts sin drilldown-flow.
+- Parent map type må settes tilbake.
 
-- `drillupall` bekrefter at brukeren har navigert tilbake til parent level.
+- `colorAxis` må settes tilbake.
 
-- `parentMapSerie`, `colorAxis` og `drilldown` options blir lagret før drilldown.
+- Parent series må settes tilbake.
 
-- Etter drill-up blir parent map series satt tilbake med `event.target.update()`.
-
-- Dette løste problemet der parent fylkeskart kom tilbake uten riktig fargevisning.
-
-- `window.setTimeout()` gjør at restore skjer etter at Highcharts er ferdig med sin egen drill-up-prosess.
-
-## Full POC-struktur
-
-POC-en ble delt i små funksjoner for å gjøre testen lettere å lese og feilsøke.
-
-```ts
-private addPreloadedMapDrilldownTest(
-  options: Options,
-  drilldownConfig: MapDrilldownTestConfig,
-): Options {
-  const mapSerie = this.createMapSeriesFromFirstOptionsSeries(options);
-
-  if (mapSerie === null) {
-    this.logSkippedPreloadedMapDrilldownTest('No map series was found in options.series.', {
-      activeDiagramType: this.diagramOptions.activeDiagramType,
-    });
-
-    return options;
-  }
-
-  const mapSerieData = this.getMapSeriesData(mapSerie);
-
-  if (mapSerieData === null || mapSerieData.length === 0) {
-    this.logSkippedPreloadedMapDrilldownTest('Map series has no data yet.', {
-      activeDiagramType: this.diagramOptions.activeDiagramType,
-      mapSerie,
-    });
-
-    this.setMapSeries(options, mapSerie);
-    return options;
-  }
-
-  const parentDataPoint = this.findParentDataPoint(mapSerieData, drilldownConfig);
-
-  if (parentDataPoint === null) {
-    this.logSkippedPreloadedMapDrilldownTest('Parent point was not found in the map series.', {
-      expectedParentMapKey: drilldownConfig.parentMapKey,
-      expectedParentName: drilldownConfig.parentName,
-      availableMapPoints: this.getAvailableMapPointIdentities(mapSerieData),
-    });
-
-    this.setMapSeries(options, mapSerie);
-    return options;
-  }
-
-  mapSerie.data = this.addDrilldownToParentPoint(mapSerieData, drilldownConfig);
-
-  this.setMapSeries(options, mapSerie);
-  this.setPreloadedChildMapDrilldownSeries(options, drilldownConfig);
-  this.addMapDrilldownDebugEvents(options, mapSerie);
-
-  return options;
-}
-```
-
-**Funksjonsansvar:**
-
-- `createMapSeriesFromFirstOptionsSeries()` lager parent map series fra første series i options.
-
-- `getMapSeriesData()` henter data fra parent map series.
-
-- `findParentDataPoint()` finner Rogaland i parent map series.
-
-- `addDrilldownToParentPoint()` legger `drilldown` på parent point.
-
-- `setMapSeries()` setter oppdatert parent map series tilbake i options.
-
-- `setPreloadedChildMapDrilldownSeries()` legger child series inn i `options.drilldown.series`.
-
-- `createChildMapDrilldownSeries()` lager child map series for Rogaland kommuner.
-
-- `addMapDrilldownDebugEvents()` legger til logging og restore av parent map etter drill-up.
-
-**Teknisk resultat:**
-
-- Parent map er `mapFylker`.
-
-- Parent point er Rogaland.
-
-- Parent key er `no-ro`.
-
-- Child map type er `mapKommuner`.
-
-- Child series bruker kommune-data og kommune-map geometry.
-
-- Koblingen mellom parent og child skjer med `point.drilldown` og `drilldown.series[].id`.
+- `window.setTimeout()` ble brukt slik at restore kjørte etter Highcharts sin egen drill-up-prosess.
 
 ## Testresultat
 
@@ -1015,15 +784,43 @@ POC-en bekreftet at preloaded drilldown fungerer teknisk i prosjektet.
 
 - Farger på parent map ble vist riktig etter drill-up.
 
+**Teknisk verifisering:**
+
+- `point.drilldown` ble lagt til på Rogaland.
+
+- Child series ble lagt inn i `options.drilldown.series`.
+
+- `drilldown` event fired ved klikk.
+
+- `drillupall` event fired ved tilbake-navigasjon.
+
+- Parent map series ble gjenopprettet etter drill-up.
+
 ## Observasjoner
 
+### Map data kan mangle første gang
+
 Det ble observert at POC-en kunne kjøre før map data var klar. Dette ble håndtert med guard clause i `addPreloadedMapDrilldownTest().`
+
+### Accessibility warning
 
 Det ble også observert en browser warning relatert til `aria-hidden` etter drill-up:
 
 _Blocked aria-hidden_ on an element because its descendant retained focus.
 
 Dette stoppet ikke drilldown-funksjonaliteten, men bør vurderes videre dersom accessibility skal dokumenteres eller testes mer.
+
+### Begrensninger med preloaded drilldown
+
+Preloaded drilldown fungerer teknisk, men er ikke nødvendigvis beste løsning for endelig implementasjon.
+
+- Child data må være tilgjengelig før brukeren klikker.
+
+- Child map geometry må være tilgjengelig før brukeren klikker.
+
+- `options.drilldown.series` kan bli stor dersom alle fylker og kommuner legges inn samtidig.
+
+- Løsningen er mindre fleksibel dersom child data skal hentes dynamisk.
 
 ## Foreløpig konklusjon av Preload drilldown
 
@@ -1045,9 +842,13 @@ For full fylke-til-kommune drilldown må løsningen i tillegg ha:
 - fallback dersom child data mangler
 - generell løsning for alle fylker
 
-Denne POC-en dekker ikke hele research-oppgaven alene.
+Denne POC-en dekker første del av undersøkelsen:
 
-Den dekker første del av undersøkelsen: å verifisere at Highcharts drilldown-mekanismen fungerer i prosjektet med preloaded child series.
+`Kan Highcharts drilldown-mekanismen fungere i prosjektet med preloaded child series?`
+
+Svar: Ja.
+
+Denne POC-en dekker ikke hele research-oppgaven alene. Async drilldown må også vurderes før endelig anbefaling.
 
 # Async drilldown test i kart
 
