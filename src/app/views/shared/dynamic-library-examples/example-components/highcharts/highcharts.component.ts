@@ -593,8 +593,6 @@ export class HighchartsComponent implements OnInit {
 
           drilldown: {
             breadcrumbs: {
-              showFullPath: true,
-              floating: true,
               position: {
                 align: 'left',
               },

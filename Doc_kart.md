@@ -4,26 +4,27 @@
 
 Formålet med undersøkelsen er å finne ut hvordan drilldown kan implementeres i kartvisninger i FHI Angular Highcharts-prosjektet.
 
-Undersøkelsen skal dekke to mulige tekniske løsninger:
+Undersøkelsen dekker to mulige tekniske løsninger:
 
 - `preloaded drilldown`
 - `async drilldown`
+
+Målet er å finne ut hvilken løsning som passer best for drilldown fra fylkesnivå til kommunenivå.
 
 ## Hvordan Highcharts håndterer drilldown i kart
 
 Highcharts Maps støtter drilldown ved at et point i parent series kobles til en child series.
 
-Koblingen skjer med:
+Drilldown krever at `highcharts/modules/drilldown` er registrert.
+
+Ved preloaded drilldown skjer koblingen med:
 
 - `point.drilldown`
-
 - `drilldown.series[].id`
 
-Verdien i `point.drilldown` må matche `id` på child series [Highchart Drilldown.](https://www.highcharts.com/docs/chart-concepts/drilldown)
+Verdien i `point.drilldown` må matche `id` på child series.
 
-**Eksempel:**
-
-_Forenklet prinsipp_
+**Forenklet eksempel:**
 
 ```ts
 {
@@ -32,6 +33,9 @@ _Forenklet prinsipp_
   value: 78.1,
   drilldown: 'rogaland-kommuner-drilldown'
 }
+```
+
+```ts
 drilldown: {
   series: [
     {
@@ -39,106 +43,101 @@ drilldown: {
       name: 'Rogaland kommuner',
       type: 'map',
       data: kommuneData,
-      mapData: kommuneTopology
-    }
-  ]
+      mapData: kommuneMapData,
+    },
+  ];
 }
 ```
 
 Når brukeren klikker på parent point, sjekker Highcharts om punktet har en `drilldown` verdi.
 
-Dersom verdien matcher en child series i `drilldown.series`, bytter Highcharts fra parent series til child series.
+Dersom verdien matcher `id` på en child series i `drilldown.series`, bytter Highcharts fra parent series til child series.
 
-For flere nivåer brukes samme prinsipp videre. Et child point kan også ha en egen `drilldown` verdi som peker til en ny child series. På den måten kan Highcharts bygge flere drilldown-nivåer.
+For flere nivåer brukes samme prinsipp videre. Et child point kan også ha en egen `drilldown` verdi som peker til en ny child series.
 
-[Highcharts Drildown](https://www.highcharts.com/docs/chart-concepts/drilldown) Beskriver at en drilldown series kobles til parent point ved hjelp av `id` i `drilldown.series`.
+Ved async drilldown ligger ikke child series klar i `drilldown.series` fra start.
 
-- https://www.highcharts.com/docs/chart-concepts/drilldown
-- https://www.highcharts.com/docs/maps/map-drill-down
-- https://api.highcharts.com/highmaps/drilldown.series
+Da brukes:
+
+- `chart.events.drilldown`
+- `addSeriesAsDrilldown()`
+
+Dette gjør at child series kan bygges eller hentes først når brukeren klikker på parent point.
+
+I denne undersøkelsen ble begge løsningene testet for å vurdere hvilken som passer best for fylke-til-kommune drilldown i prosjektet. [Highcharts: Drilldown](https://www.highcharts.com/docs/chart-concepts/drilldown), [Highcharts Maps: Map drill down](https://www.highcharts.com/docs/maps/map-drill-down), [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series), [Highcharts API: chart.events.drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown).
 
 ## Preloaded drilldown
 
-Ved preloaded drilldown legges child series inn i `options.drilldown.series` når chart options bygges.
+Ved preloaded drilldown legges child series inn i chart options før brukeren klikker i kartet.
 
-Dette betyr at child data og child map geometry må være tilgjengelig før brukeren klikker i kartet [Highcharts Map drilldown.](https://www.highcharts.com/docs/maps/map-drill-down)
-
-### Preloaded drilldown krever:
+Preloaded drilldown krever:
 
 - parent map series
-
 - parent point med `drilldown`
-
 - child map series med matchende `id`
-
 - child data
-
-- child map geometry, for eksempel `mapData` eller topology
-
+- child map geometry, for eksempel TopoJSON/mapData
 - `highcharts/modules/drilldown`
 
-### Fordel:
+### Fordeler
 
-- Enkel teknisk
-
+- Enkel teknisk løsning
 - Ingen async loading ved klikk
-
 - God løsning for å bekrefte grunnmekanismen i Highcharts Maps
 
 ### Begrensninger
 
 - Kan gi store chart options dersom alle kommunekart lastes inn samtidig
-
 - Mindre egnet dersom mange nivåer eller store map files skal støttes
-
 - Krever at child data og child map geometry er tilgjengelig når options bygges
 
 ## Async drilldown
 
-Ved async drilldown lastes child series først når brukeren klikker på et parent point.
+Ved async drilldown legges ikke child series inn i `drilldown.series` fra start.
 
-Dette gjøres med:
+I stedet bygges eller hentes child series når brukeren klikker på et parent point.
 
+Async drilldown krever:
+
+- parent map series
+- parent point med `drilldown`
 - `chart.events.drilldown`
-
+- child data for valgt parent point
+- child map geometry for valgt parent point
 - `chart.addSeriesAsDrilldown(point, childSeriesOptions)`
+- `highcharts/modules/drilldown`
 
-Async drilldown må undersøkes videre fordi fylke-til-kommune kan kreve at kommune-data og kommune-map geometry lastes dynamisk basert på valgt fylke.
+Denne løsningen passer bedre når kommune-data og kommune-map geometry skal bestemmes basert på hvilket fylke brukeren klikker på.
 
-[Highcharts JS API Reference](https://api.highcharts.com/highmaps/chart.events.drilldown)
-
-[Highcharts Map Drilldown](https://www.highcharts.com/docs/maps/map-drill-down)
+- [Highcharts: Drilldown](https://www.highcharts.com/docs/chart-concepts/drilldown)
+- [Highcharts Maps: Map drill down](https://www.highcharts.com/docs/maps/map-drill-down)
+- [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series)
+- [Highcharts API: chart.events.drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown)
+- [Highcharts API: addSeriesAsDrilldown](https://api.highcharts.com/class-reference/Highcharts.Chart#addSeriesAsDrilldown)
 
 ## Nødvendige Highcharts-moduler
 
-For denne POC-en var disse modulene relevante:
+For denne undersøkelsen var disse modulene relevante:
 
-`highcharts/highmaps`
+### `highcharts/highmaps`
 
 Brukes for kartvisning.
 
-`highcharts/modules/drilldown`
+### `highcharts/modules/drilldown`
 
-Brukes for:
+Brukes for drilldown-funksjonalitet, for eksempel:
 
 - `point.drilldown`
-
 - `drilldown.series`
-
 - `chart.events.drilldown`
-
+- `addSeriesAsDrilldown()`
 - `drillupall`
-
-- drill-up navigation
-
-- breadcrumbs
+- breadcrumbs / drill-up navigation
 
 **Begrunnelse:**
 
-- `highcharts/highmaps` brukes fordi chart type er map.
-
+- `highcharts/highmaps` brukes fordi diagramtypen er kart.
 - `highcharts/modules/drilldown` må registreres for at Highcharts skal tolke `point.drilldown` som en drilldown-kobling.
-
 - Uten drilldown-modulen blir ikke parent point koblet til child series.
 
 ## Registrering av drilldown-modulen
@@ -156,37 +155,35 @@ HighchartsOfflineExporting(Highmaps);
 DrilldownModule(Highmaps);
 ```
 
+**Begrunnelse:**
+
 - `Highmaps` brukes for kartvisning.
-- `DrilldownModule(Highmaps)` må registreres for at Highcharts Maps skal støtte `point.drilldown`, `drilldown.series`, `chart.events.drilldown` og drill-up.
-- Modulen ble registrert på `Highmaps`, ikke bare `Highcharts`, fordi testen gjelder kart
+- `DrilldownModule(Highmaps)` må registreres for at Highcharts Maps skal støtte drilldown i kart.
+- Modulen ble registrert på `Highmaps`, ikke bare `Highcharts`, fordi testen gjelder kart.
 
 ## Dagens løsning
 
-Dagens kartløsning er laget for visning på ett geografisk nivå.
+Dagens kartløsning støtter kartvisning på ett geografisk nivå om gangen, for eksempel fylke eller kommune.
 
 `FhiAngularHighchartsComponent` har ansvar for å laste inn kart og oppdatere visningen.
 
-`OptionsService` bygger opp `Highcharts.Options` for kart og diagrammer.
+`OptionsService` bygger `Highcharts.Options` for kart og diagrammer.
 
-`TopoJsonService` henter `topojson`-filer og kobler innkommende datapunkter til riktig `hc-key` (map geometry).
+`TopoJsonService` henter TopoJSON-filer og kobler innkommende datapunkter til riktig map geometry.
 
-Dagens løsning støtter fylkeskart, men har ikke ferdig støtte for flere geografiske nivåer i samme kartflyt.
+Den har ikke ferdig generell støtte for å gå fra ett geografisk nivå til et annet i samme kartflyt.
 
 Det finnes foreløpig ikke generell støtte for:
 
 - child series for drilldown
-
 - child map geometry for neste nivå
-
 - mapping mellom parent fylke og child kommuner
-
-- generell drilldown-navigation mellom nivåer
-
+- ferdig drilldown-navigation mellom nivåer
 - fallback dersom child data mangler
 
 Dagens kobling mellom data og kart skjer også på litt ulik måte avhengig av karttype.
 
-**Eksempler på identifikatorer som brukes:**
+Eksempler på identifikatorer som brukes:
 
 - `hc-key`
 - `dataPointId`
@@ -201,9 +198,9 @@ Dette er viktig fordi drilldown krever en stabil kobling mellom:
 
 ## Foreløpig vurdering av datastruktur
 
-POC-en viser at dagens parent map data kan brukes til å starte drilldown dersom hvert parent point har en stabil key.
+Det vises at dagens parent map data kan brukes til å starte drilldown dersom hvert parent point har en stabil key.
 
-I testen ble `hc-key` brukt som den.
+I testen ble `hc-key` brukt som stabil key.
 
 **Eksempel:**
 
@@ -215,33 +212,36 @@ Dette identifiserer Rogaland i parent map series.
 
 For en full løsning fra fylke til kommune må datastrukturen også støtte child level.
 
-**Det betyr at løsningen trenger:**
+Det betyr at løsningen trenger:
 
-- parent fylke med stabil key, for eksempel hc-key
-
-- child kommune data
-
-- kommune key som matcher kommune map geometry, for eksempel `no-ro-1101`
-
+- parent fylke med stabil key, for eksempel `hc-key`
+- child data for kommunenivå
+- kommune-key som matcher kommune map geometry, for eksempel `no-ro-1101`
 - child map geometry for kommunenivå
-
 - mapping mellom valgt fylke og riktig child series
+- fallback dersom child data eller child geometry mangler
 
 Dersom innkommende data kun inneholder fylkesnivå, er ikke dagens datastruktur alene nok for en full fylke-til-kommune drilldown.
 
 Da må løsningen enten:
 
 - utvide datastrukturen med child data
-
 - hente child data fra en egen kilde
-
 - ha en mapping mellom fylke og kommunedata
-
 - ha en mapping mellom fylke og kommune map geometry
 
 ## Endringer i TopoJsonService for kommune-data
 
-`TopoJsonService` ble endret slik at samme service kan lage map series for flere map types.
+`TopoJsonService` måtte kunne lage map series for flere map types.
+
+Dette var nødvendig fordi parent level og child level bruker ulike karttyper:
+
+- parent level bruker `mapFylker`
+- child level bruker `mapKommuner`
+
+### Lage map series for valgt map type
+
+For å støtte child level ble det laget en metode som tar imot `mapTypeId`.
 
 ```ts
 getHighmapsSerieForMapType(
@@ -261,15 +261,17 @@ getHighmapsSerieForMapType(
 }
 ```
 
-**Begrunnelser**
+Denne metoden gjør at løsningen kan lage en map series for `mapKommuner`, selv om parent chartet viser `mapFylker`.
 
-- Parent level bruker `mapFylker`.
-
-- Child level bruker `mapKommuner`.
-
-- POC-en trenger derfor en måte å lage map series for et annet map type enn aktiv parent map.
+Datapunkter som ikke kan matches mot map geometry blir filtrert bort.
 
 ### Mapping for kommune-data
+
+Kommune-data må kobles til riktig kommune-geometry før det kan vises i kartet.
+
+I testen bruker kommune-data `dataPointId`, for eksempel `1101`.
+
+Kommune-geometrien bruker `hc-key`, for eksempel `no-ro-1101`.
 
 ```ts
 private createKommuneMapDataPoint(
@@ -289,93 +291,19 @@ private createKommuneMapDataPoint(
 }
 ```
 
-**Begrunnelse:**
+`endsWith(dataPointId)` gjør at `1101` kan matches mot `no-ro-1101`.
 
-- Kommune-testdata bruker `dataPointId`, for eksempel `1101`.
-- Kommune-geometrien bruker hc-key, for eksempel `no-ro-1101`.
-- `endsWith(dataPointId)` gjør at `1101` kan matches mot `no-ro-1101`
-- `dataPointId.length !== 4` hindrer at ugyldige kommune-id-er brukes i kommune-mappingen.
+Kontrollen `dataPointId.length !== 4` hindrer at ugyldige kommune-id-er brukes i kommune-mappingen.
 
-## Hente child map geometry
+Denne mappingen forutsetter at kommune-id i data matcher slutten av `hc-key` i map geometry.
 
-```ts
-getMapDataForMapType(mapTypeId: string): object {
-  const loadedMap = this.topoJsonMaps[mapTypeId];
+## Child map geometry
 
-  if (loadedMap) {
-    return loadedMap;
-  }
+Child map geometry må finnes for at child level skal kunne vises.
 
-  const staticMaps = {
-    [MapTypeIdValues.mapFylker]: noFylker2024,
-    [MapTypeIdValues.mapFylker2023]: noFylker2023,
-    [MapTypeIdValues.mapFylker2019]: noFylker2019,
-    [MapTypeIdValues.mapKommuner]: noKommuner2025,
-  };
+I async-testen ble child geometry filtrert basert på valgt fylke, slik at Rogaland bare viste kommuner i Rogaland.
 
-  const staticMap = staticMaps[mapTypeId];
-
-  if (staticMap) {
-    return staticMap as object;
-  }
-
-  throw new Error(`No supported map matches given mapTypeId: "${mapTypeId}".`);
-}
-```
-
-**Begrunnelse:**
-
-- Preloaded child series trenger kommune-geometri før klikk.
-- `getMapDataForMapType(MapTypeIdValues.mapKommuner)` gjør at child series kan bruke kommune-kartet selv om parent chart viser fylkeskart.
-
-## Relevante filer
-
-Filer som var relevante for POC-en:
-
-- `fhi-angular-highcharts.component.ts`
-- `options.service.ts`
-- `topo-json.service.ts`
-- `highcharts.component.ts`
-
-**Begrunnelse:**
-
-- `fhi-angular-highcharts.component.ts` registrerer `highcharts/modules/drilldown` på `Highmaps`.
-
-- `options.service.ts` bygger `Highcharts.Options` og legger inn POC-oppsettet for preloaded drilldown.
-
-- `topo-json.service.ts` ble utvidet for å kunne lage map series for et annet map type enn aktiv parent map.
-
-- `highcharts.component.ts` i demoen ble brukt til å teste POC-en med `activeDiagramType: 'mapFylker'`.
-
-`highcharts.component.html` ble bare brukt til midlertidig debug-visning og er derfor ikke relevant for selve drilldown-implementeringen.
-
-## Navigasjon
-
-Highcharts støtter drill-up navigasjon når drilldown-modulen er aktiv.
-
-Anbefalt navigasjon er:
-
-```js
-drilldown: {
-  breadcrumbs: {
-    showFullPath: false,
-  },
-}
-```
-
-`breadcrumbs` bør brukes i stedet for `drillUpButton`, siden `drillUpButton` er deprecated.
-
-For kartløsningen anbefales enkel navigasjon i første versjon:
-
-- bruk `breadcrumbs` som back-knapp
-
-- vis kun aktivt nivå i kartet
-
-- unngå søkefelt i første implementering
-
-- vurder søkefelt senere dersom kommune-nivået blir vanskelig å navigere
-
-[Highcharts Breadcrumbs](https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs)
+Den delen er dokumentert under `Async drilldown test`, fordi filtreringen ble testet som en del av async-løsningen.
 
 # Preloaded drilldown test i kart
 
@@ -388,7 +316,7 @@ Testen skulle bekrefte:
 - at `highcharts/modules/drilldown` fungerer sammen med Highmaps
 - at et fylke i parent map series kan kobles til en child map series
 - at koblingen mellom `point.drilldown` og `drilldown.series[].id` fungerer
-- at Highcharts sin innebygde `drilldown` event fires ved klikk
+- at Highcharts sin innebygde `drilldown` event fungerer ved klikk
 - at child map series vises visuelt etter klikk
 - at parent map series kommer tilbake ved drill-up
 - at farger på parent map series fortsatt vises riktig etter drill-up
@@ -418,18 +346,11 @@ POC-en ble testet i demoen gjennom `getData__example_4a()`. Demoen brukte `activ
 
 ```ts
 activeDiagramType: 'mapFylker',
-
-drilldown: {
-  breadcrumbs: {
-    floating: true,
-    position: {
-      align: 'left',
-    },
-  },
-},
 ```
 
-Breadcrumbs ble lagt inn for å teste drill-up navigation. Testen ble kjørt på eksisterende demo-data med valgt år og valgt valgtype.
+Breadcrumbs ble også brukt for å teste drill-up navigation. Dette nevnes senere i seksjonen `Legge til breadcrumbs`.
+
+Testen ble kjørt på eksisterende demo-data med valgt år og valgt valgtype.
 
 ### Testkonfigurasjon
 
@@ -468,7 +389,7 @@ Koblingen skjer med:
 - `point.drilldown`
 - `drilldown.series[].id`
 
-Verdien i `point.drilldown` må matche `id` på child series.Kilde: [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series)
+Verdien i `point.drilldown` må matche `id` på child series, [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series).
 
 **Eksempel:**
 
@@ -479,6 +400,9 @@ Verdien i `point.drilldown` må matche `id` på child series.Kilde: [Highcharts 
   value: 78.1,
   drilldown: 'rogaland-kommuner-drilldown'
 }
+```
+
+```ts
 {
   id: 'rogaland-kommuner-drilldown',
   name: 'Rogaland kommuner',
@@ -502,7 +426,7 @@ this.setActiveMapType(options);
 return this.addPreloadedMapDrilldownTest(options, this.preloadedMapDrilldownTestConfig);
 ```
 
-**begrunnelse**
+**Begrunnelse:**
 
 - `updateMapOptions()` kjøres når aktiv diagramtype er et kart.
 
@@ -626,6 +550,8 @@ return {
 
 ## Opprette child map series for Rogaland kommuner
 
+Child map series ble laget med kommune-data og kommune-map geometry.
+
 ```ts
 private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): SeriesMapOptions {
   const childMapSeries = this.topoJsonService.getHighmapsSerieForMapType(
@@ -644,20 +570,17 @@ private createChildMapDrilldownSeries(drilldownConfig: MapDrilldownTestConfig): 
     allAreas: true,
   };
 }
-
 ```
 
-**Begrunnelse:**
+`getHighmapsSerieForMapType()` lager kommune-data i Highmaps-format.
 
-- `getHighmapsSerieForMapType()` lager kommune-data i Highmaps-format.
+`id` matcher `point.drilldown` på Rogaland.
 
-- `id` matcher `point.drilldown` på Rogaland.
+`mapData` gir Highcharts kommune-geometrien.
 
-- `mapData` gir Highcharts kommune-geometrien.
+`joinBy: 'hc-key'` kobler kommune-data til kommune-geometri.
 
-- `joinBy: 'hc-key'` kobler kommune-data til kommune-geometri.
-
-- `allAreas: true` gjør at kommuneområder kan vises selv om ikke alle har verdi i testdata.
+`allAreas: true` gjør at kommuneområder kan vises selv om ikke alle har verdi i testdata.
 
 ## Legge child series inn i `options.drilldown.series`
 
@@ -684,32 +607,21 @@ private setPreloadedChildMapDrilldownSeries(
 }
 ```
 
-Child series blir opprettet med kommune-data og kommune-map geometry.
+Preloaded drilldown krever at child series finnes i `options.drilldown.series` før brukeren klikker.
+
+Highcharts bruker `id` på child series for å koble den til `point.drilldown` på parent point.
 
 `drilldownSeriesWithoutCurrentTest` hindrer at samme test series legges inn flere ganger.
 
-**Begrunnelse:**
-
-- Preloaded drilldown krever at child series finnes i `options.drilldown.series` før brukeren klikker.
-
-- `drilldownSeriesWithoutCurrentTest` hindrer at samme test series legges inn flere ganger.
-
-- `id` på child series matcher `point.drilldown` på Rogaland.
-
-- `mapData` gir Highcharts kommune-geometrien.
-
-- `joinBy: 'hc-key'` kobler kommune-data til kommune-geometri.
-
-- `allAreas: true` gjør at kommuneområder kan vises selv om ikke alle har verdi i testdata.
-
 ## Legge til breadcrumbs
 
-Breadcrumbs ble lagt inn i demo-oppsettet for å teste drill-up navigation.
+Breadcrumbs ble brukt for å teste drill-up navigation i POC-en.
+
+I demo-oppsettet ble breadcrumbs lagt inn slik:
 
 ```ts
 drilldown: {
   breadcrumbs: {
-    floating: true,
     position: {
       align: 'left',
     },
@@ -717,7 +629,9 @@ drilldown: {
 },
 ```
 
-Dette ble brukt for å teste drill-up navigation i POC-en.
+Drill-up fungerte i testen.
+
+Det bør likevel dobbelsjekkes at custom breadcrumbs-options fra `diagramOptions.drilldown` blir sendt videre til final `Highcharts.Options` før det konkluderes med endelig breadcrumbs-styling.
 
 ## Legge til chart events for verifisering
 
@@ -742,28 +656,30 @@ I testen måtte parent map series gjenopprettes etter drill-up.
 Uten dette kunne fylkeskartet komme tilbake uten riktig fargevisning.
 
 ```ts
-event.target.update(
-  {
-    chart: {
-      map: parentMapTypeId,
-    },
-    colorAxis: parentColorAxis,
-    drilldown: parentDrilldownOptions,
-    series: [cloneDeep(parentMapSerieForDrillUp) as SeriesOptionsType],
-  },
-  true,
-  true,
-);
+drillupall: (event) => {
+
+  window.setTimeout(() => {
+    event.target.update(
+      {
+        chart: {
+          map: parentMapTypeId,
+        },
+        colorAxis: parentColorAxis,
+        drilldown: parentDrilldownOptions,
+        series: [cloneDeep(parentMapSerieForDrillUp) as SeriesOptionsType],
+      },
+      true,
+      true,
+    );
+  });
+},
 ```
 
 **Begrunnelse:**
 
 - Parent map type må settes tilbake.
-
 - `colorAxis` må settes tilbake.
-
 - Parent series må settes tilbake.
-
 - `window.setTimeout()` ble brukt slik at restore kjørte etter Highcharts sin egen drill-up-prosess.
 
 ## Testresultat
@@ -790,9 +706,9 @@ POC-en bekreftet at preloaded drilldown fungerer teknisk i prosjektet.
 
 - Child series ble lagt inn i `options.drilldown.series`.
 
-- `drilldown` event fired ved klikk.
+- `drilldown` event fungerte ved klikk.
 
-- `drillupall` event fired ved tilbake-navigasjon.
+- `drillupall` event fungerte ved tilbake-navigasjon.
 
 - Parent map series ble gjenopprettet etter drill-up.
 
@@ -822,7 +738,7 @@ Preloaded drilldown fungerer teknisk, men er ikke nødvendigvis beste løsning f
 
 - Løsningen er mindre fleksibel dersom child data skal hentes dynamisk.
 
-## Foreløpig konklusjon av Preload drilldown
+## Foreløpig konklusjon av preloaded drilldown
 
 Testen bekrefter at Highcharts Maps kan koble et fylke til et child map level ved hjelp av:
 
@@ -860,7 +776,7 @@ Testen skulle bekrefte:
 
 - at parent point kan markeres som drilldown-punkt
 
-- at `chart.events.drilldown` fires ved klikk på Rogaland
+- at `chart.events.drilldown` fungerer ved klikk på Rogaland
 
 - at `event.seriesOptions` er `undefined`, slik at child series ikke er preloaded
 
@@ -1071,7 +987,7 @@ drilldown: (event) => {
 
 - `addSeriesAsDrilldown()` legger child series til klikket parent point.
 
-Highcharts sin API beskriver at `chart.events.drilldown` fires før en ny series legges til, og at eventen også brukes for async drilldown når `seriesOptions` ikke er lagt inn via options på forhånd. [Drilldown - Call back function](https://api.highcharts.com/highcharts/chart.events.drilldown)
+Highcharts API beskriver at `chart.events.drilldown` kjører før en ny series legges til, og at eventen også brukes for async drilldown når `seriesOptions` ikke er lagt inn via options på forhånd. [Drilldown - Call back function](https://api.highcharts.com/highcharts/chart.events.drilldown)
 
 ## Gjenopprette parent map etter drill-up
 
@@ -1112,13 +1028,13 @@ drillupall: (event) => {
 
 Først ble async POC-en testet med hele kommune-kartet som child `mapData`.
 
-Dette fungerte teknisk, men ga ikke optimal visning fordi kartet ikke holdt tydelig fokus på Rogaland-kommunene.
+Dette fungerte teknisk, men ga ikke den beste visning fordi kartet ikke holdt tydelig fokus på Rogaland-kommunene.
 
 Derfor ble child map geometry filtrert slik at child mapData bare inneholder kommuner som tilhører valgt fylke.
 
 I `TopoJsonService` ble det lagt til en metode som henter mapData for child map type og filtrerer geometries basert på parent map key.
 
-Highcharts Maps bruker TopoJSON eller GeoJSON som map geometry. Derfor kan child `mapData` bygges ved å bruke samme map structure, men med filtrerte geometries for valgt område. [Highcharts Map](https://www.highcharts.com/docs/maps/getting-started)
+Highcharts Maps kan bruke TopoJSON eller GeoJSON som map geometry. I denne testen ble samme kommune-map brukt, men `geometries` ble filtrert til valgt fylke. [Highcharts Map](https://www.highcharts.com/docs/maps/getting-started)
 
 ```ts
   getMapDataForMapTypeAndParentMapKey(mapTypeId: string, parentMapKey: string): object {
@@ -1149,17 +1065,35 @@ Highcharts Maps bruker TopoJSON eller GeoJSON som map geometry. Derfor kan child
   }
 ```
 
+Filtreringen skjer ved å lage en prefix fra parent map key.
+
+```ts
+private getGeometriesForParentMapKey(
+  geometries: TopoJsonMapGeometry[],
+  parentMapKey: string,
+): TopoJsonMapGeometry[] {
+  const childMapKeyPrefix = `${parentMapKey}-`;
+
+  return geometries.filter((geometry) =>
+    this.geometryBelongsToParentMapKey(geometry, childMapKeyPrefix),
+  );
+}
+```
+
+For Rogaland blir prefixen:
+
+```text
+no-ro-
+```
+
+Det gjør at kommune-geometries som `no-ro-1101` og `no-ro-1103` blir med i child mapData.
+
 **Begrunnelse:**
 
 - Parent key for Rogaland er `no-ro`.
-
 - Kommune `hc-key` for Rogaland starter med `no-ro-`, for eksempel `no-ro-1101`.
-
 - Ved å filtrere på parent key får child mapData bare kommuner som hører til valgt fylke.
-
-- Dette gir et mer presist child level.
-
-- Dette er mer robust enn å bruke hele kommune-kartet og bare prøve å zoome visuelt etterpå.
+- Dette gir et mer presist child level enn å bruke hele kommune-kartet som child `mapData`.
 
 Denne løsningen forutsetter at kommune `hc-key` starter med parent fylke-key, for eksempel `no-ro-1101` for Rogaland. Dersom map key-strukturen endres, bør filtreringen erstattes med en tydelig mapping mellom fylke og kommuner.
 
@@ -1219,7 +1153,7 @@ Highcharts async map drillupall event fired
 
 - Parent point fikk `drilldown`.
 
-- `chart.events.drilldown` fired ved klikk.
+- `chart.events.drilldown` fungerte ved klikk.
 
 - `event.seriesOptions` var `undefined`.
 
@@ -1229,24 +1163,30 @@ Highcharts async map drillupall event fired
 
 - Child map geometry ble filtrert til valgt fylke.
 
-- `drillupall` fired ved tilbake-navigasjon.
+- `drillupall` kjørte ved tilbake-navigasjon.
 
 I `drilldown` eventen ble `seriesOptions` vist som `undefined`.
 
 Dette bekrefter at child series ikke var preloaded i `options.drilldown.series`.
 
-Dette samsvarer med Highcharts sin beskrivelse av async drilldown, der `seriesOptions` ikke er lagt inn via options på forhånd, men lastes async i eventen. [Chart events drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown)
+Dette samsvarer med Highcharts sin dokumentasjon av async drilldown, der `seriesOptions` ikke er lagt inn via options på forhånd, men lastes async i eventen. [Chart events drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown)
 
 Child series ble laget og lagt til først ved klikk på Rogaland.
 
 **Visuell verifisering:**
 
 - Parent map ble vist som fylkeskart.
+
 - Rogaland kunne klikkes.
-- Highcharts sin `drilldown` event fired.
+
+- Highcharts sin `drilldown` event fungerte.
+
 - Kommune map series ble vist etter klikk.
+
 - Child map geometry ble filtrert til Rogaland-kommuner.
+
 - Drill-up/back navigation fungerte teknisk.
+
 - Parent fylkeskart kom tilbake etter drill-up.
 
 ## Observasjoner
@@ -1273,11 +1213,11 @@ Kan ikke vise diagramtype "mapFylker" fordi "undefined" (Teknisk årsak: "undefi
 
 Async drilldown fungerte likevel etter at kartdata ble lastet. Denne warningen bør undersøkes separat dersom den fortsetter å komme i endelig løsning.
 
-### Breadcrumbs var teknisk funksjonelle, men ikke tydelige nok
+### Breadcrumbs fungerte, men ikke var tydelige nok
 
-Breadcrumbs/drill-up fungerte teknisk. Brukeren kan klikke på øverste nivå i breadcrumb-stien for å gå tilbake til fylkeskartet.
+Breadcrumbs/drill-up fungerte teknisk. Custom breadcrumbs-options bør verifiseres videre i final `Highcharts.Options`.
 
-I testen var dette ikke veldig tydelig visuelt, fordi breadcrumb-teksten ble vist som en sti, for eksempel:
+I testen var dette ikke veldig tydelig visuelt, fordi breadcrumb-teksten ble vist som en sti.
 
 ```text
 Valgdeltagelse flere år / Rogaland kommuner
@@ -1292,9 +1232,13 @@ Testen bekrefter at Highcharts Maps kan støtte async drilldown i prosjektet.
 Async drilldown fungerer ved at:
 
 - parent point markeres med `drilldown`
-- `chart.events.drilldown` fires ved klikk
+
+- `chart.events.drilldown` fungerer ved klikk
+
 - child series bygges i drilldown-eventen
+
 - child map geometry hentes og filtreres til valgt fylke
+
 - child series legges til med `addSeriesAsDrilldown()`
 
 Testen tyder på at async drilldown er mer egnet enn preloaded drilldown dersom child data eller child map geometry skal hentes dynamisk basert på valgt fylke.
@@ -1303,65 +1247,280 @@ Denne POC-en viser at async drilldown er en sterkere kandidat enn preloaded dril
 
 ---
 
-## Kilder
+# Breadcrumbs og navigasjon
 
-_Alle kilder brukt så langt_
+## Formål med navigation-testen
 
-- Highcharts Maps: Map drill down
-  https://www.highcharts.com/docs/maps/map-drill-down
+Formålet med navigasjonstesten var å undersøke hvordan brukeren kan gå tilbake etter drilldown i kartet.
 
-- Highcharts: Drill down concept
-  https://www.highcharts.com/docs/chart-concepts/drilldown
+Når brukeren driller ned fra fylkesnivå til kommunenivå, må løsningen ha en tydelig vei tilbake til parent level.
 
-- Highcharts Maps API: `drilldown`
-  https://api.highcharts.com/highmaps/drilldown
+Testen skulle undersøke:
 
-- Highcharts Maps API: `drilldown.series`
-  https://api.highcharts.com/highmaps/drilldown.series
+- om Highcharts breadcrumbs fungerer med kart-drilldown
+- om brukeren kan gå tilbake fra kommunenivå til fylkesnivå
+- om breadcrumbs fungerer etter både preloaded og async drilldown
+- om breadcrumb-teksten er tydelig nok for bruker
 
-- Highcharts Maps API: `chart.events.drilldown`
-  https://api.highcharts.com/highmaps/chart.events.drilldown
+Denne testen fokuserer på navigasjon etter drilldown.
 
-- Highcharts Maps API: `drilldown.breadcrumbs`
-  https://api.highcharts.com/highmaps/drilldown.breadcrumbs
+## Hva Highcharts støtter
 
-- Highcharts: Breadcrumbs
-  https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs
+Highcharts støtter drill-up navigation gjennom `drilldown.breadcrumbs`.
 
-- Highcharts Maps API: `drilldown.drillUpButton`
-  https://api.highcharts.com/highmaps/drilldown.drillUpButton - Brukt for å dokumentere at `drillUpButton` er deprecated og at `breadcrumbs` bør brukes i stedet.
+Breadcrumbs viser drilldown-stien og lar brukeren gå tilbake til tidligere nivåer.
 
-- Highcharts Highmaps: `Fit to Geometry`
-  https://api.highcharts.com/highmaps/mapView.fitToGeometry
+I kart-drilldown betyr dette:
 
-- Highcharts: Drill down concept / async setup  
-  https://www.highcharts.com/docs/chart-concepts/drilldown
+```text
+Fylkesnivå → Kommunenivå
+```
 
-- Highcharts Maps: Map drill down  
-  https://www.highcharts.com/docs/maps/map-drill-down
+Relevante breadcrumbs-options:
 
-- Highcharts API: `chart.events.drilldown`  
-  https://api.highcharts.com/highcharts/chart.events.drilldown
+- `position` brukes for plassering av breadcrumbs.
+- `floating` påvirker om plot area flyttes for å gi plass til breadcrumbs.
+- `showFullPath` kan vise hele breadcrumb-stien eller bare én breadcrumb-knapp.
+- `format` eller `formatter` kan brukes dersom breadcrumb-teksten må tilpasses.
 
-- Highcharts API: `MapChart.addSeriesAsDrilldown()`  
-  https://api.highcharts.com/class-reference/Highcharts.MapChart
+Highcharts har også `drillUpButton`, men denne er deprecated. Derfor bør `drilldown.breadcrumbs` brukes i stedet. [Breadcrumbs](https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs), [Drilldown.breadcrumbs](https://api.highcharts.com/highmaps/drilldown.breadcrumbs), [Drill up button](https://api.highcharts.com/highmaps/drilldown.drillUpButton).
 
-- Highcharts Maps: Getting started / TopoJSON and GeoJSON  
-  https://www.highcharts.com/docs/maps/getting-started
+## Testoppsett
 
-- Highcharts Maps API: `series.map.joinBy`  
-  https://api.highcharts.com/highmaps/series.map.joinBy
+Navigasjonstesten ble gjort med samme kartoppsett som preloaded og async POC-ene.
 
-- Highcharts Maps API: `mapView.fitToGeometry`  
-  https://api.highcharts.com/highmaps/mapView.fitToGeometry
+Testoppsett:
 
-- Highcharts API: `MapView.fitToBounds`  
-  https://api.highcharts.com/class-reference/Highcharts.MapView#fitToBounds
+| Del                 | Verdi                                  |
+| ------------------- | -------------------------------------- |
+| Parent level        | Fylke                                  |
+| Child level         | Kommune                                |
+| Parent point        | Rogaland                               |
+| Parent map key      | `no-ro`                                |
+| Child series        | `Rogaland kommuner`                    |
+| Drill-up navigation | `drilldown.breadcrumbs`                |
+| Testet med          | Preloaded drilldown og async drilldown |
 
-# Anbefalte løsning
+I demo-oppsettet ble breadcrumbs lagt inn i `diagramOptions`:
 
-For en endelig løsning vurderes async drilldown med filtrert child map geometry/data som den mest robuste løsningen.
+```ts
+drilldown: {
+  breadcrumbs: {
+    position: {
+      align: 'left',
+    },
+  },
+},
+```
 
-Å filtrere child map geometry gjør at child map level blir mindre, tydeligere og mer knyttet til valgt parent fylke.
+Det bør verifiseres at `diagramOptions.drilldown` blir kopiert videre til ferdig `Highcharts.Options`.
 
-`mapView.fitToGeometry` eller `fitToBounds` kan eventuelt brukes som et ekstra visuelt tiltak dersom kartet fortsatt ikke zoomer/fokuserer godt nok, men bør ikke være hovedløsningen alene. [MapView fit To Geometry](https://api.highcharts.com/highmaps/mapView.fitToGeometry) og [fitToBounds](https://api.highcharts.com/class-reference/Highcharts.MapView#fitToBounds)
+Dersom dette ikke skjer, bør breadcrumbs settes direkte i `OptionsService` når drilldown options bygges.
+
+```ts
+options.drilldown = {
+  ...options.drilldown,
+  breadcrumbs: {
+    position: {
+      align: 'left',
+    },
+  },
+};
+```
+
+Testen kontrollerte:
+
+- om breadcrumbs ble vist etter drilldown
+- om brukeren kunne klikke på parent level i breadcrumb-stien
+- om drill-up gikk tilbake til fylkeskartet
+- om parent map ble vist riktig etter drill-up
+
+## Testresultat
+
+Breadcrumbs fungerte teknisk som drill-up navigation.
+
+Brukeren kunne gå tilbake fra kommunenivå til fylkesnivå ved å klikke på parent level i breadcrumb-stien.
+
+I testen ble breadcrumb-stien vist slik:
+
+```text
+Valgdeltagelse flere år / Rogaland kommuner
+```
+
+Ved å klikke på `Valgdeltagelse flere år` gikk kartet tilbake til parent level.
+
+Testen viser at breadcrumbs fungerer teknisk, men at custom breadcrumb-options bør verifiseres videre.
+
+Dette gjelder spesielt options som:
+
+- `floating`
+- `showFullPath`
+- `format`
+- `formatter`
+
+Grunnen er at det må bekreftes at disse options faktisk blir sendt videre til final `Highcharts.Options`.
+
+## Navigasjonsvalg
+
+Breadcrumbs fungerer teknisk som drill-up navigation i kart-drilldown og bør brukes i første versjon.
+
+`drillUpButton` bør ikke brukes som hovedløsning, siden Highcharts markerer den som deprecated og anbefaler breadcrumbs i stedet.
+
+Tekst og visuell tydelighet bør vurderes videre dersom breadcrumb-teksten ikke er tydelig nok for brukeren.
+
+Søkefelt bør ikke prioriteres i første versjon, siden drill-up fungerer med breadcrumbs.
+
+Søkefelt kan vurderes senere dersom kommunenivået blir vanskelig å navigere.
+
+---
+
+# Anbefalt løsning
+
+Basert på testene anbefales `async drilldown` med filtrert child map geometry.
+
+### Hvorfor preloaded ikke anbefales som hovedløsning
+
+Preloaded drilldown krever at child series ligger i `options.drilldown.series` før brukeren klikker [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series).
+
+Dette fungerte i testen, men løsningen passer dårligere dersom alle fylker skal ha egne kommune-series.
+
+**Begrunnelse:**
+
+- child data må være tilgjengelig før chartet bygges
+
+- child map geometry må være tilgjengelig før chartet bygges
+
+- `chart options` kan bli store dersom alle fylker og kommuner legges inn fra start
+
+- Løsningen er mindre fleksibel dersom child data skal hentes eller bygges dynamisk
+
+Preloaded drilldown bør derfor brukes som referanse og POC, **ikke som hovedløsning.**
+
+### Hvorfor async drilldown passer bedre
+
+Async drilldown lager child series først når brukeren klikker på et parent point.
+
+Highcharts beskriver async drilldown som en løsning der child series lastes i `chart.events.drilldown` og legges til med `addSeriesAsDrilldown()`. [Highcharts API: chart.events.drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown), [Highcharts API: addSeriesAsDrilldown](https://api.highcharts.com/class-reference/Highcharts.Chart#addSeriesAsDrilldown).
+
+Dette passer bedre for fylke-til-kommune drilldown.
+
+**Begrunnelse:**
+
+- child series kan bygges ved klikk
+
+- child data kan hentes eller bygges basert på valgt fylke
+
+- child map geometry kan filtreres til valgt fylke
+
+- `options.drilldown.series` trenger ikke å inneholde alle child series fra start
+
+- Løsningen skalerer bedre dersom flere fylker skal støtte drilldown
+
+I async-testen ble Rogaland brukt som parent point. Child map geometry ble filtrert slik at kommune-kartet bare inneholdt kommuner i Rogaland.
+
+### Anbefalt teknisk løsning
+
+Den videre løsningen bør bruke:
+
+- `highcharts/modules/drilldown`
+
+- `chart.events.drilldown`
+
+- `addSeriesAsDrilldown()`
+
+- filtrert child map geometry
+
+- `drilldown.breadcrumbs` for drill-up navigation
+
+### Krav til datastruktur
+
+For at løsningen skal fungere generelt, må data kunne kobles mellom parent level og child level.
+
+**Løsningen trenger:**
+
+- stabil parent key, for eksempel `hc-key`
+
+- child data for kommunenivå
+
+- kommune-key som matcher child map geometry
+
+- mapping mellom fylke og kommuner
+
+- fallback dersom child data eller child geometry mangler
+
+### Dersom datasettet bare har ett fylke
+
+Automatisk drilldown kan vurderes dersom datasettet bare inneholder data for ett fylke.
+
+Dette ble ikke testet i POC-ene, men er tatt med som en vurdering fordi oppgaven nevner dette som et scenario.
+
+**Anbefaling for første versjon:**
+
+- vis fylkeskartet som standard
+- la brukeren selv klikke seg ned til kommunenivå
+- behold breadcrumbs slik at brukeren kan gå tilbake til fylkesnivå
+- vurder automatisk drilldown senere dersom brukertesting viser at det gir bedre flyt
+
+Automatisk drilldown bør ikke være standard før det er testet med reelle data og brukere.
+
+### Navigasjon
+
+Navigasjon ble testet separat i breadcrumbs-seksjonen.
+
+Basert på navigasjonstesten fungerer breadcrumbs som drill-up navigation og bør brukes videre i løsningen.
+
+Highcharts beskriver `drilldown.breadcrumbs` som navigasjon tilbake gjennom drilldown-nivåer. `drillUpButton` bør ikke brukes som hovedløsning, fordi Highcharts markerer den som deprecated og anbefaler breadcrumbs i stedet.
+
+Kilder:
+
+- [Highcharts: Breadcrumbs](https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs)
+- [Highcharts Maps API: drilldown.breadcrumbs](https://api.highcharts.com/highmaps/drilldown.breadcrumbs)
+- [Highcharts Maps API: drillUpButton](https://api.highcharts.com/highmaps/drilldown.drillUpButton)
+
+Søkefelt bør ikke prioriteres i første versjon, siden drill-up fungerer med breadcrumbs. Det kan vurderes senere dersom kommunenivået blir vanskelig å navigere.
+
+# Kilder
+
+- [Highcharts Maps: Map drill down](https://www.highcharts.com/docs/maps/map-drill-down)
+  Brukt for å forklare drilldown i kart, forskjellen mellom preloaded og async drilldown, samt generell navigasjon mellom nivåer.
+
+- [Highcharts: Drilldown concept](https://www.highcharts.com/docs/chart-concepts/drilldown)
+  Brukt for å forklare hvordan Highcharts håndterer drilldown, async drilldown og `addSeriesAsDrilldown()`.
+
+- [Highcharts Maps API: drilldown](https://api.highcharts.com/highmaps/drilldown)
+  Brukt som referanse for tilgjengelige drilldown-konfigurasjoner i Highcharts Maps.
+
+- [Highcharts Maps API: drilldown.series](https://api.highcharts.com/highmaps/drilldown.series)
+  Brukt for å forklare preloaded drilldown og hvordan `point.drilldown` kobles til `drilldown.series[].id`.
+
+- [Highcharts API: chart.events.drilldown](https://api.highcharts.com/highcharts/chart.events.drilldown)
+  Brukt for å forklare hvordan `chart.events.drilldown` brukes i async drilldown.
+
+- [Highcharts Maps API: chart.events.drilldown](https://api.highcharts.com/highmaps/chart.events.drilldown)
+  Brukt som Maps-spesifikk API-referanse for drilldown-events.
+
+- [Highcharts API: Highcharts.Chart.addSeriesAsDrilldown()](https://api.highcharts.com/class-reference/Highcharts.Chart#addSeriesAsDrilldown)
+  Brukt for å forklare hvordan child series legges til etter klikk på parent point.
+
+- [Highcharts Maps API: series.map.joinBy](https://api.highcharts.com/highmaps/series.map.joinBy)
+  Brukt for å forklare hvordan `joinBy: 'hc-key'` kobler map geometry sammen med data.
+
+- [Highcharts Maps: Getting started](https://www.highcharts.com/docs/maps/getting-started)
+  Brukt for å forklare map geometry, TopoJSON/GeoJSON og `mapData`.
+
+- [Highcharts: Breadcrumbs](https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs)
+  Brukt for å forklare breadcrumbs som navigasjon tilbake etter drilldown.
+
+- [Highcharts Maps API: drilldown.breadcrumbs](https://api.highcharts.com/highmaps/drilldown.breadcrumbs)
+  Brukt for å dokumentere breadcrumbs-options som `position`, `floating`, `showFullPath`, `format` og `formatter`.
+
+- [Highcharts Maps API: drilldown.drillUpButton](https://api.highcharts.com/highmaps/drilldown.drillUpButton)
+  Brukt for å dokumentere at `drillUpButton` er deprecated og at `breadcrumbs` bør brukes i stedet.
+
+- [Highcharts Maps API: mapView.fitToGeometry](https://api.highcharts.com/highmaps/mapView.fitToGeometry)
+  Brukt for å forklare automatisk zoom og sentrering mot valgt geometri ved drilldown.
+
+- [Highcharts API: MapView.fitToBounds](https://api.highcharts.com/class-reference/Highcharts.MapView#fitToBounds)
+  Brukt som referanse for kartvisning, zoom og tilpasning til geografiske grenser.
+- [Highcharts API: drilldown.breadcrumbs.showFullPath](https://api.highcharts.com/highcharts/drilldown.breadcrumbs.showFullPath)
+  Brukt for å forklare at `showFullPath` bestemmer om breadcrumbs viser hele drilldown-stien eller bare én knapp.
