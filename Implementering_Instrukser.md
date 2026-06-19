@@ -321,7 +321,7 @@ Dette sørger for at fylkeskartet kommer tilbake med riktig map type, series og 
 
 ### 10. Legg til breadcrumbs
 
-**Plassering:** `options.service.ts` eller der final `Highcharts.Options` bygges
+**Plassering:** `options.service.ts` eller der siste `Highcharts.Options` bygges
 
 Breadcrumbs brukes for drill-up navigation.
 
@@ -342,15 +342,15 @@ Breadcrumbs lar brukeren gå tilbake fra child level til parent level.
 
 `drillUpButton` bør ikke brukes som hovedløsning, siden Highcharts markerer den som deprecated.
 
-Kilder:
+Kilder
 
 - [Highcharts: Breadcrumbs](https://www.highcharts.com/docs/advanced-chart-features/breadcrumbs)
 - [Highcharts Maps API: drilldown.breadcrumbs](https://api.highcharts.com/highmaps/drilldown.breadcrumbs)
 - [Highcharts Maps API: drillUpButton](https://api.highcharts.com/highmaps/drilldown.drillUpButton)
 
-# Kilder liste
+---
 
-## Kilder
+# Kilder liste
 
 - [Highcharts: Chart concepts - Drilldown](https://www.highcharts.com/docs/chart-concepts/drilldown)
   Brukt for å forklare hvordan Highcharts håndterer drilldown og async drilldown.
