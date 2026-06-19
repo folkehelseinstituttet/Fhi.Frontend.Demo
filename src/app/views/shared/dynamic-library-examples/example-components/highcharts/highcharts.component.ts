@@ -13,6 +13,7 @@ import {
 } from '@folkehelseinstituttet/angular-highcharts';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
+import type { Options as HighchartsOptions } from 'highcharts';
 
 interface NamedDataNode<T> {
   name: string;
@@ -26,6 +27,10 @@ interface MultiYearDataset {
   electionTypes: string[];
   data: NamedDataNode<NamedDataNode<FhiDiagramSerieData>>[];
 }
+
+type DiagramOptionsWithDrilldown = FhiDiagramOptions & {
+  drilldown?: HighchartsOptions['drilldown'];
+};
 
 @Component({
   selector: 'app-highcharts',
@@ -576,7 +581,7 @@ export class HighchartsComponent implements OnInit {
           selectedYearData,
         );
 
-        this.diagramOptions = {
+        const diagramOptionsWithDrilldown: DiagramOptionsWithDrilldown = {
           series: [
             {
               name: dataset.name,
@@ -585,6 +590,15 @@ export class HighchartsComponent implements OnInit {
           ],
           activeDiagramType: 'mapFylker',
           title: `${this.titles.title_4a} - ${this.selectedYear}`,
+
+          drilldown: {
+            breadcrumbs: {
+              position: {
+                align: 'left',
+              },
+            },
+          },
+
           units: undefined,
           slotPosition: 'right',
           categoryAxis: {
@@ -613,6 +627,8 @@ export class HighchartsComponent implements OnInit {
           },
           openSource: false,
         };
+
+        this.diagramOptions = diagramOptionsWithDrilldown;
 
         setTimeout(() => {
           this.dataIsLoading = false;
