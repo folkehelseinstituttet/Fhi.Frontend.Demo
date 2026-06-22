@@ -1523,4 +1523,4 @@ Søkefelt bør ikke prioriteres i første versjon, siden drill-up fungerer med b
 - [Highcharts API: MapView.fitToBounds](https://api.highcharts.com/class-reference/Highcharts.MapView#fitToBounds)
   Brukt som referanse for kartvisning, zoom og tilpasning til geografiske grenser.
 - [Highcharts API: drilldown.breadcrumbs.showFullPath](https://api.highcharts.com/highcharts/drilldown.breadcrumbs.showFullPath)
-  Brukt for å forklare at `showFullPath` bestemmer om breadcrumbs viser hele drilldown-stien eller bare én knapp.
+  Brukt for å forklare at `showFullPath` bestemmer om breadcrumbs viser hele drilldown-stien eller bare en knapp.
