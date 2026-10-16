@@ -1,6 +1,6 @@
 # Unreleaed
 
-- :page_facing_up: **Chore** Update dependecy info for package [()]()
+- :page_facing_up: **Chore** Update dependecy info for package [(#965)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/965)
 
 ## 8.0.0
 
