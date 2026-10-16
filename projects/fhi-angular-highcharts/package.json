@@ -10,7 +10,7 @@
     "directory": "projects/fhi-angular-highcharts"
   },
   "peerDependencies": {
-    "@folkehelseinstituttet/angular-components": "^8.0.0",
+    "@folkehelseinstituttet/angular-components": "^8.0.1",
     "highcharts": "~11.4.0",
     "highcharts-angular": "~4.0.0"
   },
