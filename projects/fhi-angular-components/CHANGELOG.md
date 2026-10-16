@@ -1,6 +1,6 @@
 # 8.0.0
 
-> Oct 16, 2026
+> Oct 13, 2026
 
 - :boom: **Breaking** Update to Angular v21 [(#959)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/959)
 
