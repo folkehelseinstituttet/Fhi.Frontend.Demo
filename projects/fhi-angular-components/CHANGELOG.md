@@ -1,6 +1,10 @@
-# 8.0.0
+# Unreleaed
 
-> Oct 13, 2026
+- :page_facing_up: **Chore** Update dependecy info for package [(#965)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/965)
+
+## 8.0.0
+
+> Oct 16, 2026
 
 - :boom: **Breaking** Update to Angular v21 [(#959)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/959)
 
