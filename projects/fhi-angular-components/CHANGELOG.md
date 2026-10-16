@@ -1,4 +1,6 @@
-# Unreleaed
+# 8.0.1
+
+> Oct 16, 2026
 
 - :page_facing_up: **Chore** Update dependecy info for package [(#965)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/965)
 
