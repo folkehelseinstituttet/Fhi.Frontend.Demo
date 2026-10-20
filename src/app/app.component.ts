@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationEnd, Scroll } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { fromEvent } from 'rxjs';
@@ -8,9 +8,10 @@ import { BrowserViewportService } from './services/browser-viewport.service';
 import { UrlService } from './services/url.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   projectName = 'Designsystem-old (deprecated)';

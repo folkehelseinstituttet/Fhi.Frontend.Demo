@@ -145,14 +145,14 @@
               class="form-check-input"
               type="checkbox"
               value=""
-              [id]="'check-input-' + item.internal?.id"
+              [id]="'check-input-' + $safeNavigationMigration(item.internal?.id)"
               [checked]="item.isChecked"
               (click)="toggleChecked(item)"
             />
             <label
               class="form-check-label"
-              [for]="'check-input-' + item.internal?.id"
-              [id]="'label-' + item.internal?.id"
+              [for]="'check-input-' + $safeNavigationMigration(item.internal?.id)"
+              [id]="'label-' + $safeNavigationMigration(item.internal?.id)"
               [innerHTML]="item.name"
             ></label>
           </div>
@@ -162,14 +162,14 @@
               class="form-check-input"
               type="radio"
               [name]="name"
-              [id]="name + '-' + item.internal?.id"
+              [id]="name + '-' + $safeNavigationMigration(item.internal?.id)"
               [checked]="item.isChecked"
               (change)="toggleChecked(item, false, false)"
             />
             <label
               class="form-check-label"
-              [for]="name + '-' + item.internal?.id"
-              [id]="'label-' + item.internal?.id"
+              [for]="name + '-' + $safeNavigationMigration(item.internal?.id)"
+              [id]="'label-' + $safeNavigationMigration(item.internal?.id)"
               [innerHTML]="item.name"
             ></label>
           </div>
@@ -180,7 +180,12 @@
             <ng-container
               *ngTemplateOutlet="
                 checkboxItems;
-                context: { items: item.children, listID: item.internal?.id, searched: !!searched, toplevel: false }
+                context: {
+                  items: item.children,
+                  listID: $safeNavigationMigration(item.internal?.id),
+                  searched: !!searched,
+                  toplevel: false,
+                }
               "
             ></ng-container>
           </div>

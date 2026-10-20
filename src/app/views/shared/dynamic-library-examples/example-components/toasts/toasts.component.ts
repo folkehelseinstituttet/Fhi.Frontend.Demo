@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-toasts',
-    templateUrl: './toasts.component.html',
-    standalone: false
+  selector: 'app-toasts',
+  templateUrl: './toasts.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ToastsComponent {
   @Input() itemId!: string;

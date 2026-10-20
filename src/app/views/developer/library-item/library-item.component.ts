@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 
@@ -16,9 +16,10 @@ const MenuItemName = {
 };
 
 @Component({
-    selector: 'app-library-item',
-    templateUrl: './library-item.component.html',
-    standalone: false
+  selector: 'app-library-item',
+  templateUrl: './library-item.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LibraryItemComponent implements OnInit, AfterViewInit {
   @Input() group: LibraryItemGroup;

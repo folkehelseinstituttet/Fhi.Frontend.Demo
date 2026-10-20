@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-progress-indicators',
-    templateUrl: './progress-indicators.component.html',
-    standalone: false
+  selector: 'app-progress-indicators',
+  templateUrl: './progress-indicators.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ProgressIndicatorsComponent {
   @Input() itemId!: string;

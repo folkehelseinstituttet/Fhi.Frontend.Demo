@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -19,9 +19,10 @@ interface FormValues {
 }
 
 @Component({
-    selector: 'app-modals',
-    templateUrl: './modals.component.html',
-    standalone: false
+  selector: 'app-modals',
+  templateUrl: './modals.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ModalsComponent {
   @Input() itemId!: string;

@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-paginations',
-    templateUrl: './paginations.component.html',
-    standalone: false
+  selector: 'app-paginations',
+  templateUrl: './paginations.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class PaginationsComponent {
   @Input() itemId!: string;

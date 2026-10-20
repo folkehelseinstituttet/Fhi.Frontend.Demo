@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from 'src/app/services/url.service';
@@ -12,9 +12,10 @@ import {
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'app-article',
-    templateUrl: './article.component.html',
-    standalone: false
+  selector: 'app-article',
+  templateUrl: './article.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

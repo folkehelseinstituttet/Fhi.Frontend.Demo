@@ -4,12 +4,15 @@
       <button
         type="button"
         class="btn fhi-btn-group__btn"
-        [ngClass]="{ active: group.diagramType?.active }"
+        [ngClass]="{ active: $safeNavigationMigration(group.diagramType?.active) }"
         (click)="navigate(group.diagramType)"
       >
         <ng-container
           [ngTemplateOutlet]="icon"
-          [ngTemplateOutletContext]="{ icon: group.diagramType?.icon, active: group.diagramType?.active }"
+          [ngTemplateOutletContext]="{
+            icon: $safeNavigationMigration(group.diagramType?.icon),
+            active: $safeNavigationMigration(group.diagramType?.active),
+          }"
         />
         {{ group.name }}
       </button>
@@ -18,13 +21,16 @@
         <button
           type="button"
           class="btn fhi-btn-group__btn fhi-btn-group__split-btn"
-          [ngClass]="{ active: group.diagramType?.active }"
+          [ngClass]="{ active: $safeNavigationMigration(group.diagramType?.active) }"
           (click)="navigate(group.diagramType)"
         >
           <span>
             <ng-container
               [ngTemplateOutlet]="icon"
-              [ngTemplateOutletContext]="{ icon: group.diagramType?.icon, active: group.diagramType?.active }"
+              [ngTemplateOutletContext]="{
+                icon: $safeNavigationMigration(group.diagramType?.icon),
+                active: $safeNavigationMigration(group.diagramType?.active),
+              }"
             />
             {{ group.name }}
           </span>
@@ -40,7 +46,7 @@
           <button
             type="button"
             class="btn fhi-btn-group__btn fhi-dropdown__btn fhi-btn-group__split-btn-toggler"
-            [ngClass]="{ active: group.diagramType?.active }"
+            [ngClass]="{ active: $safeNavigationMigration(group.diagramType?.active) }"
             aria-label="Velg noe..."
             ngbDropdownToggle
           ></button>
@@ -48,7 +54,7 @@
             @for (diagramType of group.children; track diagramType.id) {
               <button
                 class="dropdown-item"
-                [ngClass]="{ active: diagramType?.active }"
+                [ngClass]="{ active: $safeNavigationMigration(diagramType?.active) }"
                 ngbDropdownItem
                 (click)="navigate(diagramType)"
               >

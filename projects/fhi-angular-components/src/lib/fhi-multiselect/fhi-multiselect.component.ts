@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -6,10 +13,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FhiMultiselectItem } from './fhi-multiselect.model';
 
 @Component({
-    selector: 'fhi-multiselect',
-    imports: [CommonModule, FormsModule, NgSelectModule],
-    templateUrl: './fhi-multiselect.component.html',
-    encapsulation: ViewEncapsulation.None
+  selector: 'fhi-multiselect',
+  imports: [CommonModule, FormsModule, NgSelectModule],
+  templateUrl: './fhi-multiselect.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FhiMultiselectComponent {
   @Input({ required: true }) items!: Array<FhiMultiselectItem>;

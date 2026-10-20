@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Table, TableEditable } from './table.consts';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-tables',
-    templateUrl: './tables.component.html',
-    standalone: false
+  selector: 'app-tables',
+  templateUrl: './tables.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TablesComponent implements OnInit {
   @Input() itemId!: string;

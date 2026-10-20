@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-    selector: 'app-tabs-example',
-    templateUrl: './tabs-example.component.html',
-    standalone: false
+  selector: 'app-tabs-example',
+  templateUrl: './tabs-example.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class TabsExampleComponent {
   mainMenuIsOpen = false;

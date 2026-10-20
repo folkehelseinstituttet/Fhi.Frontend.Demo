@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface Alert {
   type: string;
@@ -55,9 +55,10 @@ const ALERTS: Alert[] = [
 ];
 
 @Component({
-    selector: 'app-alert-closable',
-    templateUrl: './alert-closable.component.html',
-    standalone: false
+  selector: 'app-alert-closable',
+  templateUrl: './alert-closable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AlertClosableComponent {
   alerts: Alert[];
