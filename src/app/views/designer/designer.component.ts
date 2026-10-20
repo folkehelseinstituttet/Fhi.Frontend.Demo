@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UrlService } from '../../services/url.service';
@@ -8,6 +8,7 @@ import { MenuItem } from '../../models/menu-item.model';
 @Component({
   selector: 'app-designer',
   templateUrl: './designer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class DesignerComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

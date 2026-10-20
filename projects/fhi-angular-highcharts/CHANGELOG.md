@@ -1,4 +1,10 @@
-# 8.0.0
+# Unreleased
+
+> Oct 20, 2026
+
+- :boom: **Breaking** Update to Angular v22
+
+## 8.0.0
 
 > Oct 16, 2026
 

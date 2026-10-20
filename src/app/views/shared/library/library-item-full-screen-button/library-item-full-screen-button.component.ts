@@ -1,5 +1,5 @@
 import { HtmlParser } from '@angular/compiler';
-import { Component, OnInit, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 // import { LibraryItem, LibraryItemType } from '../../../shared/models/library-item.model';
@@ -7,6 +7,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-library-item-full-screen-button',
   templateUrl: './library-item-full-screen-button.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
 })
 export class LibraryItemFullScreenButtonComponent implements OnInit {
   @Input() itemMarkup: any;

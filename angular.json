@@ -119,10 +119,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": ["src/assets"],
@@ -176,7 +176,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "projects/fhi-angular-components/src/test.ts",
             "tsConfig": "projects/fhi-angular-components/tsconfig.spec.json",
@@ -206,7 +206,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "projects/fhi-angular-highcharts/src/test.ts",
             "tsConfig": "projects/fhi-angular-highcharts/tsconfig.spec.json",

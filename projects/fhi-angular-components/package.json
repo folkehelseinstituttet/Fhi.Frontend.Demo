@@ -14,7 +14,7 @@
     "@angular/core": "^22.2.3",
     "@folkehelseinstituttet/style": "^6.0.0",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
-    "@ng-select/ng-select": "^23.0.0",
+    "@ng-select/ng-select": "^23.11.0",
     "bootstrap": "5.3.8",
     "date-fns": ">=3.3.1 <4"
   },
