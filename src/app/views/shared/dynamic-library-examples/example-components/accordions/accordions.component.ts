@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-accordions',
-    templateUrl: './accordions.component.html',
-    standalone: false
+  selector: 'app-accordions',
+  templateUrl: './accordions.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AccordionsComponent {
   @Input() itemId!: string;

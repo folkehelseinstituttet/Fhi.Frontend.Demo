@@ -35,16 +35,16 @@
   </article>
 
   <ng-template #diagramAndFooter>
-    @switch (activeDiagramTypeGroup?.name) {
-      @case (diagramTypeGroupNames?.table) {
+    @switch ($safeNavigationMigration(activeDiagramTypeGroup?.name)) {
+      @case ($safeNavigationMigration(diagramTypeGroupNames?.table)) {
         <ng-container *ngTemplateOutlet="table" />
       }
-      @case (diagramTypeGroupNames?.map) {
+      @case ($safeNavigationMigration(diagramTypeGroupNames?.map)) {
         @if (showMap) {
           <ng-container *ngTemplateOutlet="map" />
         }
       }
-      @case (diagramTypeGroupNames?.chart) {
+      @case ($safeNavigationMigration(diagramTypeGroupNames?.chart)) {
         @if (showDefaultChartTemplate) {
           <ng-container *ngTemplateOutlet="chart" />
         } @else {
@@ -160,7 +160,7 @@
           @for (headerRow of tableData.theadRows; track $index) {
             <tr>
               @for (tableCell of headerRow; track $index) {
-                @if (tableCell?.isHeading && tableCell?.name !== undefined) {
+                @if (tableCell?.isHeading && $safeNavigationMigration(tableCell?.name) !== undefined) {
                   <th class="text-center" [attr.colspan]="tableCell.colspan ? tableCell.colspan : null" scope="col">
                     {{ tableCell.name }}
                   </th>
@@ -179,7 +179,7 @@
           @for (bodyRow of tableData.tbodyRows; track $index) {
             <tr>
               @for (tableCell of bodyRow; track $index) {
-                @if (tableCell?.isHeading && tableCell?.name !== undefined) {
+                @if (tableCell?.isHeading && $safeNavigationMigration(tableCell?.name) !== undefined) {
                   <th class="text-start" [attr.rowspan]="tableCell.rowspan ? tableCell.rowspan : null" scope="row">
                     {{ tableCell.name }}
                   </th>

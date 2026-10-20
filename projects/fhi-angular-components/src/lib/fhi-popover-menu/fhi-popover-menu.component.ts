@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -8,9 +8,10 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FhiPopoverItem } from './fhi-popover-menu.model';
 
 @Component({
-    selector: 'fhi-popover-menu',
-    imports: [CommonModule, NgbPopoverModule, RouterModule],
-    templateUrl: './fhi-popover-menu.component.html'
+  selector: 'fhi-popover-menu',
+  imports: [CommonModule, NgbPopoverModule, RouterModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './fhi-popover-menu.component.html',
 })
 export class FhiPopoverMenuComponent {
   @Input({ required: true }) items!: Array<FhiPopoverItem>;
@@ -18,7 +19,7 @@ export class FhiPopoverMenuComponent {
   @Output() actionEvent = new EventEmitter<string>();
 
   popperOptions = (options: Partial<Options>) => {
-    (options.placement = 'bottom-end'), 'auto';
+    ((options.placement = 'bottom-end'), 'auto');
 
     options.onFirstUpdate = (state) => {
       if (state.elements?.arrow) {

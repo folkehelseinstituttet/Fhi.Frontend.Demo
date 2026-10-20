@@ -1,10 +1,11 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
 @Component({
-    selector: 'app-layout-templates',
-    templateUrl: './layout-templates.component.html',
-    standalone: false
+  selector: 'app-layout-templates',
+  templateUrl: './layout-templates.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LayoutTemplatesComponent {
   @ViewChild('drawerContent') drawerContent: ElementRef;

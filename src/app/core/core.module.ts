@@ -1,5 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -17,7 +17,7 @@ import { mockDbInterceptor } from './mock-db.interceptor';
   imports: [SharedModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'nb' },
-    provideHttpClient(withInterceptors([mockDbInterceptor])),
+    provideHttpClient(withXhr(), withInterceptors([mockDbInterceptor])),
   ],
 })
 export class CoreModule {

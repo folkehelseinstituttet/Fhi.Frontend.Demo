@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import { MultiselectComponent } from './multiselect/multiselect.component';
 
 @Component({
-    selector: 'app-form-controls',
-    imports: [MultiselectComponent, SharedModule],
-    templateUrl: './form-controls.component.html'
+  selector: 'app-form-controls',
+  imports: [MultiselectComponent, SharedModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './form-controls.component.html',
 })
 export class FormControlsComponent {
   @Input() itemId!: string;

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 
 import { MockDataService } from './mock-data.service';
@@ -30,6 +30,7 @@ interface MultiYearDataset {
 @Component({
   selector: 'app-highcharts',
   templateUrl: './highcharts.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class HighchartsComponent implements OnInit {

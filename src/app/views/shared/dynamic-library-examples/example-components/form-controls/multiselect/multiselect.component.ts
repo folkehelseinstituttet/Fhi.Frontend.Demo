@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MultiselectDataService, Person } from './multiselect-data.service';
 import { map } from 'rxjs';
 
 @Component({
-    selector: 'app-multiselect',
-    imports: [SharedModule],
-    templateUrl: './multiselect.component.html'
+  selector: 'app-multiselect',
+  imports: [SharedModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './multiselect.component.html',
 })
 export class MultiselectComponent {
   constructor(private multiselectDataService: MultiselectDataService) {}

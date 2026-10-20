@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { FhiTreeViewSelectionComponent } from '../fhi-tree-view-selection.component';
 import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-item.model';
 
 @Component({
-    selector: 'fhi-tree-view-radio',
-    imports: [FhiTreeViewSelectionComponent],
-    templateUrl: './fhi-tree-view-radio.component.html'
+  selector: 'fhi-tree-view-radio',
+  imports: [FhiTreeViewSelectionComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './fhi-tree-view-radio.component.html',
 })
 export class FhiTreeViewRadioComponent {
   @Input() enableFilter = false;

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { LibraryItemsShared } from '../../../models/library-item.model';
@@ -247,9 +247,10 @@ const countries = [
 ];
 
 @Component({
-    selector: 'app-search',
-    templateUrl: './search.component.html',
-    standalone: false
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class SearchComponent {
   @Input() itemId!: string;
