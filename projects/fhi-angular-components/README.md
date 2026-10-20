@@ -15,7 +15,7 @@ _Contains Angular components used by Folkehelseinstituttet, which are based on [
 
 | FHI Angular Components | FHI Style | Bootstrap | NgSelect | NgBootstrap | Angular | Node/NPM |
 | ---------------------- | --------- | --------- | -------- | ----------- | ------- | -------- |
-| 9                      | 6         | 5.3.8     | ^23.11.0 | 21          | 22      | 24/11 \* |
+| 9                      | 6         | 5.3.8     | ^23.11.0 | 21          | 22      | 22/11 \* |
 | 8                      | 6         | 5.3.2     | 21       | 20          | 21      | 24/11 \* |
 | 7                      | 6         | 5.3.2     | 20       | 19          | 20      | 20/10 \* |
 | 6                      | 6         | 5.3.2     | 14       | 18          | 19      | 20/10 \* |
