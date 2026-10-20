@@ -2,7 +2,7 @@
 
 > Oct 20, 2026
 
-- :boom: **Breaking** Update to Angular v22
+- :boom: **Breaking** Update to Angular v22 [(#969)](https://github.com/folkehelseinstituttet/Fhi.Frontend.Demo/pull/967)
 
 ## 8.0.1
 
