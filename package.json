@@ -48,7 +48,7 @@
     "zone.js": "~0.15.0"
   },
   "engines": {
-    "node": "^22.22.3"
+    "node": "^24.15.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^22.2.3",
