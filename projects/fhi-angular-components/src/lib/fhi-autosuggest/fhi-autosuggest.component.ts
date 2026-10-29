@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -6,10 +13,11 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { FhiAutosuggestItem } from './fhi-autosuggest.model';
 
 @Component({
-    selector: 'fhi-autosuggest',
-    imports: [CommonModule, NgSelectModule, FormsModule],
-    templateUrl: './fhi-autosuggest.component.html',
-    encapsulation: ViewEncapsulation.None
+  selector: 'fhi-autosuggest',
+  imports: [CommonModule, NgSelectModule, FormsModule],
+  templateUrl: './fhi-autosuggest.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FhiAutosuggestComponent {
   @Input({ required: true }) items!: Array<FhiAutosuggestItem>;

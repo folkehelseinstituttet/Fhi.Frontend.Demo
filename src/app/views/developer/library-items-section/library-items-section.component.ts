@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
 import { mergeMap, Subscription, tap } from 'rxjs';
 
@@ -12,9 +12,10 @@ import { SharedConstants as CONST } from '../../shared/shared.constants';
 import { LibraryItemsDataService } from '../../shared/services/library-items-data.service';
 
 @Component({
-    selector: 'app-library-items-section',
-    templateUrl: './library-items-section.component.html',
-    standalone: false
+  selector: 'app-library-items-section',
+  templateUrl: './library-items-section.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LibraryItemsSectionComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

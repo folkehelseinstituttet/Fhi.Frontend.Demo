@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 
@@ -8,9 +8,10 @@ import { IncludedIcons as Icons } from 'src/MOCK_DB_DATA/library-items/icons/ico
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-icon-list',
-    templateUrl: './icon-list.component.html',
-    standalone: false
+  selector: 'app-icon-list',
+  templateUrl: './icon-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class IconListComponent {
   @Input() itemId!: string;

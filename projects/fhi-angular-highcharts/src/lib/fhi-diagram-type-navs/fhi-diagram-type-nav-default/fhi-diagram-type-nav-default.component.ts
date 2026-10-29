@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -6,9 +6,10 @@ import { DiagramTypeGroup } from '../../models/diagram-type-group.model';
 import { DiagramType } from '../../models/diagram-type.model';
 
 @Component({
-    selector: 'fhi-diagram-type-nav-default',
-    imports: [CommonModule, NgbDropdownModule],
-    templateUrl: './fhi-diagram-type-nav-default.component.html'
+  selector: 'fhi-diagram-type-nav-default',
+  imports: [CommonModule, NgbDropdownModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './fhi-diagram-type-nav-default.component.html',
 })
 export class FhiDiagramTypeNavDefaultComponent {
   @Input() diagramTypeGroups!: DiagramTypeGroup[];

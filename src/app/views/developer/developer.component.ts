@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 
@@ -11,9 +11,10 @@ import { LibraryItemGroupsShared } from '../shared/models/library-item.model';
 import { LibraryItemsDataService } from '../shared/services/library-items-data.service';
 
 @Component({
-    selector: 'app-developer',
-    templateUrl: './developer.component.html',
-    standalone: false
+  selector: 'app-developer',
+  templateUrl: './developer.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DeveloperComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

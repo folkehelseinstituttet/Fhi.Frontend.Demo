@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-library-copy-button',
-    templateUrl: './library-copy-button.component.html',
-    standalone: false
+  selector: 'app-library-copy-button',
+  templateUrl: './library-copy-button.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class LibraryCopyButtonComponent {
   @Input() contentToCopy: string;

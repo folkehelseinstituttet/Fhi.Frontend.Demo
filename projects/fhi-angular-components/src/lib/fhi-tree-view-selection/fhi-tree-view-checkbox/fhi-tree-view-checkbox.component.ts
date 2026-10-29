@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { FhiTreeViewSelectionComponent } from '../fhi-tree-view-selection.component';
 import { FhiTreeViewSelectionItem as Item } from '../fhi-tree-view-selection-item.model';
 
 @Component({
-    selector: 'fhi-tree-view-checkbox',
-    imports: [FhiTreeViewSelectionComponent],
-    templateUrl: './fhi-tree-view-checkbox.component.html'
+  selector: 'fhi-tree-view-checkbox',
+  imports: [FhiTreeViewSelectionComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  templateUrl: './fhi-tree-view-checkbox.component.html',
 })
 export class FhiTreeViewCheckboxComponent {
   @Input() enableCheckAll = false;

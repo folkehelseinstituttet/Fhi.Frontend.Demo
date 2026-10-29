@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { LibraryItemsShared } from '../../../models/library-item.model';
 import {
@@ -11,6 +11,7 @@ import {
 @Component({
   selector: 'app-tree-views',
   templateUrl: './tree-views.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false,
 })
 export class TreeViewsComponent implements OnInit {

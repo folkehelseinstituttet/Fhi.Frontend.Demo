@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { mergeMap, Subscription, tap } from 'rxjs';
 
 import {
@@ -10,9 +10,10 @@ import { LibraryItemsDataService } from '../services/library-items-data.service'
 import { UrlService } from 'src/app/services/url.service';
 
 @Component({
-    selector: 'app-dynamic-library-example',
-    templateUrl: './dynamic-library-example.component.html',
-    standalone: false
+  selector: 'app-dynamic-library-example',
+  templateUrl: './dynamic-library-example.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class DynamicLibraryExampleComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();

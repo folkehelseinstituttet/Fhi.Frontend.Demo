@@ -20,10 +20,12 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strict": false,
+    "ignoreDeprecations": "6.0"
   },
   "angularCompilerOptions": {
-    "strictTemplates": true,
+    "strictTemplates": true
 
     // TODO: uncomment to get a stricter build
     // "enableI18nLegacyMessageIdFormat": false,

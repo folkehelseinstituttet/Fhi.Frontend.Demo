@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular/build:application",
           "options": {
             "allowedCommonJsDependencies": ["highcharts", "mobx"],
             "outputPath": {
@@ -30,7 +30,6 @@
               "includePaths": ["node_modules", "."],
               "sass": {
                 "silenceDeprecations": [
-                  "mixed-decls",
                   "color-functions",
                   "global-builtin",
                   "import"
@@ -103,7 +102,7 @@
           "defaultConfiguration": ""
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "fhi-frontend-library-web-client:build"
           },
@@ -114,16 +113,16 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "fhi-frontend-library-web-client:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["src/polyfills.ts"],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": ["src/assets"],
@@ -162,7 +161,7 @@
       "sourceRoot": "projects/fhi-angular-components/src",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "project": "projects/fhi-angular-components/ng-package.json"
           },
@@ -177,7 +176,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "projects/fhi-angular-components/src/test.ts",
             "tsConfig": "projects/fhi-angular-components/tsconfig.spec.json",
@@ -192,7 +191,7 @@
       "sourceRoot": "projects/fhi-angular-highcharts/src",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "project": "projects/fhi-angular-highcharts/ng-package.json"
           },
@@ -207,7 +206,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular/build:karma",
           "options": {
             "main": "projects/fhi-angular-highcharts/src/test.ts",
             "tsConfig": "projects/fhi-angular-highcharts/tsconfig.spec.json",

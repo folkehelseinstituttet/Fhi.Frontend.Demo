@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { UrlSegment } from 'src/app/url-segment.constants';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
-    selector: 'app-main-menu',
-    templateUrl: './main-menu.component.html',
-    standalone: false
+  selector: 'app-main-menu',
+  templateUrl: './main-menu.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class MainMenuComponent {
   @Input() projectName: string;
